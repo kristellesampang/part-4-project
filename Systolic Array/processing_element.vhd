@@ -27,6 +27,7 @@ architecture behaviour of processing_element is
     -- -- initialise signals and vairables
     signal data, weight : std_logic_vector(7 downto 0) := (others => '0');
     signal accumulator : signed(31 downto 0) := (others => '0');
+    signal multiplication : signed(31 downto 0) := (others => '0');
 
 begin
     -- instantiate all the processing elements
@@ -40,14 +41,15 @@ begin
             elsif rising_edge (clk) then
                 data <= in_data;
                 weight <= in_weight;
-                accumulator <= accumulator + resize(resize(signed(in_data), 8) * resize(signed(in_weight), 8), 32); -- MAC operation
-
+                multiplication <= resize(signed(in_data) * signed(in_weight),32);
+                -- accumulator <= signed(accumulator) + resize(signed(in_data) * signed(in_weight),32);
             end if;
     end process;
 
     -- output assignment
     out_data <= data;
     out_weight <= weight;
-    result_register <= std_logic_vector(accumulator);
+    -- result_register <= std_logic_vector(accumulator);
+    result_register <= std_logic_vector(multiplication);
 
 end behaviour;
