@@ -19,14 +19,14 @@ port(
     -- outputs for the MAC operation
     out_data : out std_logic_vector(7 downto 0);
     out_weight : out std_logic_vector(7 downto 0);
-    result_register : out std_logic_vector(31 downto 0); -- this stays within the PE, the systolic array does not do anything with this 
-)
+    result_register : out std_logic_vector(31 downto 0) -- this stays within the PE, the systolic array does not do anything with this 
+);
 end processing_element;
     
 architecture behaviour of processing_element is
     -- -- initialise signals and vairables
     signal data, weight : std_logic_vector(7 downto 0) := (others => '0');
-    signal accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal accumulator : signed(31 downto 0) := (others => '0');
 
 begin
     -- instantiate all the processing elements
@@ -37,10 +37,10 @@ begin
                 data <= (others => '0');
                 weight <= (others => '0');
                 accumulator <= (others => '0');
-            elseif rising_edge (clk) then
+            elsif rising_edge (clk) then
                 data <= in_data;
                 weight <= in_weight;
-                accumulator <= accumulator + resize(signed(in_data), 32) * resize(signed(in_weight), 32); -- MAC operation
+                accumulator <= accumulator + resize(resize(signed(in_data), 8) * resize(signed(in_weight), 8), 32); -- MAC operation
 
             end if;
     end process;
