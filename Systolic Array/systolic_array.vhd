@@ -1,4 +1,4 @@
--- 4x4 Systolic Arrays 
+-- 3x3 Systolic Arrays 
 -- Project #43 (2025)
 
 
@@ -61,6 +61,17 @@ architecture behaviour of systolic_array is
     signal PE21_result : std_logic_vector(31 downto 0) := (others => '0');
     signal PE22_result : std_logic_vector(31 downto 0) := (others => '0');
 
+    -- Accumulator of each PE
+    signal PE00_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE01_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE02_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE10_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE11_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE12_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE20_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE21_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+    signal PE22_accumulator : std_logic_vector(31 downto 0) := (others => '0');
+
     -- Dummy signals to move data and weight outside the systolic array
     signal PE02_2_dummy : std_logic_vector(7 downto 0) := (others => '0');
     signal PE12_2_dummy : std_logic_vector(7 downto 0) := (others => '0');
@@ -114,6 +125,7 @@ begin
         reset           => reset,
         in_data         => PE00_data,
         in_weight       => PE00_weight,
+        in_accumulator  => PE00_accumulator,
         out_data        => PE00_2_PE01_data,
         out_weight      => PE00_2_PE10_weight,
         result_register => PE00_result
@@ -125,6 +137,7 @@ begin
         reset           => reset,
         in_data         => PE00_2_PE01_data,
         in_weight       => PE01_weight,
+        in_accumulator  => PE01_accumulator,
         out_data        => PE01_2_PE02_data,
         out_weight      => PE01_2_PE11_weight,
         result_register => PE01_result
@@ -137,6 +150,7 @@ begin
         reset           => reset,
         in_data         => PE01_2_PE02_data,
         in_weight       => PE02_weight,
+        in_accumulator  => PE02_accumulator,
         out_data        => PE02_2_dummy,
         out_weight      => PE02_2_PE12_weight,
         result_register => PE02_result
@@ -148,6 +162,7 @@ begin
         reset           => reset,
         in_data         => PE10_data,
         in_weight       => PE00_2_PE10_weight,
+        in_accumulator  => PE10_accumulator,
         out_data        => PE10_2_PE11_data,
         out_weight      => PE10_2_PE20_weight,
         result_register => PE10_result
@@ -159,6 +174,7 @@ begin
         reset           => reset,
         in_data         => PE10_2_PE11_data,
         in_weight       => PE01_2_PE11_weight,
+        in_accumulator  => PE11_accumulator,
         out_data        => PE11_2_PE12_data,
         out_weight      => PE11_2_PE21_weight,
         result_register => PE11_result 
@@ -170,6 +186,7 @@ begin
         reset           => reset,
         in_data         => PE11_2_PE12_data,
         in_weight       => PE02_2_PE12_weight,
+        in_accumulator  => PE12_accumulator,
         out_data        => PE12_2_dummy,
         out_weight      => PE12_2_PE22_weight,
         result_register => PE12_result
@@ -181,6 +198,7 @@ begin
         reset           => reset,
         in_data         => PE20_data,
         in_weight       => PE10_2_PE20_weight,
+        in_accumulator  => PE20_accumulator,
         out_data        => PE20_2_PE21_data,
         out_weight      => PE20_2_dummy,
         result_register => PE20_result
@@ -192,6 +210,7 @@ begin
         reset           => reset,
         in_data         => PE20_2_PE21_data,
         in_weight       => PE11_2_PE21_weight,
+        in_accumulator  => PE21_accumulator,
         out_data        => PE21_2_PE22_data,
         out_weight      => PE21_2_dummy,
         result_register => PE21_result
@@ -203,6 +222,7 @@ begin
         reset           => reset,
         in_data         => PE21_2_PE22_data,
         in_weight       => PE12_2_PE22_weight,
+        in_accumulator  => PE22_accumulator,
         out_data        => PE22_2_dummy_data,
         out_weight      => PE22_2_dummy_weight,
         result_register => PE22_result
@@ -253,6 +273,7 @@ begin
                         PE20_data   <= (matrix_data(2,2));
                         PE02_weight <= (matrix_weight(2,2));
 
+
                     when others =>
                         -- no new data/weight injection
                         PE00_data   <= (others => '0');
@@ -262,6 +283,15 @@ begin
                         PE01_weight <= (others => '0');
                         PE02_weight <= (others => '0');
                 end case;
+                PE00_accumulator <= PE00_result;
+                PE01_accumulator <= PE01_result;
+                PE02_accumulator <= PE02_result;
+                PE10_accumulator <= PE10_result;
+                PE11_accumulator <= PE11_result;
+                PE12_accumulator <= PE12_result;
+                PE20_accumulator <= PE20_result;
+                PE21_accumulator <= PE21_result;
+                PE22_accumulator <= PE22_result;
                 
             end if;
            

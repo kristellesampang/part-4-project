@@ -47,6 +47,31 @@ begin
     begin
         -- Apply reset
         reset <= '1';
+
+        -- initiliase to 0
+        -- Matrix A (data)
+        matrix_data(0,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(0,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(0,2) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(1,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(1,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(1,2) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(2,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(2,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_data(2,2) <= std_logic_vector(to_unsigned(0, 8));
+
+        -- Matrix B (weight)
+        matrix_weight(0,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(0,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(0,2) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(1,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(1,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(1,2) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(2,0) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(2,1) <= std_logic_vector(to_unsigned(0, 8));
+        matrix_weight(2,2) <= std_logic_vector(to_unsigned(0, 8));
+        
+
         wait for 2 * clk_period;
         reset <= '0';
 
@@ -71,7 +96,6 @@ begin
         matrix_weight(2,0) <= std_logic_vector(to_unsigned(3, 8));
         matrix_weight(2,1) <= std_logic_vector(to_unsigned(2, 8));
         matrix_weight(2,2) <= std_logic_vector(to_unsigned(1, 8));
-
         -- Let systolic array run for enough time
         wait for 300 ns;
         wait;
