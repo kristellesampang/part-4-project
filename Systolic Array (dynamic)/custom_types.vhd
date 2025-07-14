@@ -5,7 +5,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 PACKAGE custom_types IS
 
-    -- bit sizes
+    -- bit sizes (from ReCOP, Zoran Salcic)
 	SUBTYPE bit_32 IS STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SUBTYPE bit_23 IS STD_LOGIC_VECTOR(22 DOWNTO 0);
 	SUBTYPE bit_22 IS STD_LOGIC_VECTOR(21 DOWNTO 0);
@@ -35,6 +35,15 @@ PACKAGE custom_types IS
     -- to hold a row or column of elements 
     type matrix_1x3 is array (0 to 2) of bit_8; 
     type PE_en_3x3 is array (0 to 2, 0 to 2) of bit_1; -- or bit_1 if alias
+
+
+	-- Dynamic 
+	-- shift registers 
+	type input_shift_matrix is array (0 to 2) of bit_8; 
+	-- inter-PE signals (modify based on design)
+	type data_bus_matrix is array(0 to 3, 0 to 3) of bit_8;     -- includes right boundary
+	type weight_bus_matrix is array(0 to 3, 0 to 3) of bit_8;   -- includes bottom boundary
+	type result_matrix is array(0 to 2, 0 to 2) of bit_32;
 
 
 END custom_types;
