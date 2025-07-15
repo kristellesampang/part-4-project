@@ -1,4 +1,4 @@
--- Dynamic Systolic Array
+-- Dynamic Systolic Array 
 -- Project #43 (2025)
 library ieee; 
 use ieee.std_logic_1164.all;
@@ -13,11 +13,13 @@ port(
     reset : in bit_1; -- reset 
 
     -- inputs for the MAC operation
-    matrix_data : in matrix_3x3; -- data 
-    matrix_weight : in matrix_3x3; -- weight 
+    matrix_data : in systolic_array_matrix_input; -- data 
+    matrix_weight : in systolic_array_matrix_input; -- weight 
+    enabled_PE : in enabled_PE_matrix; -- enabled PE
+    array_size : in integer; -- N size of the matrix input 
 
     -- outputs for the MAC operation
-    output : out matrix_3x3_output;
+    output : out systolic_array_matrix_output;
     cycle_counter : out integer
 );
 end systolic_array;
@@ -26,12 +28,8 @@ architecture behaviour of systolic_array is
 
     
     -- shift registers for feeding data and weights
-    signal data_shift : input_shift_matrix := (others => (others => '0'));
-    signal weight_shift : input_shift_matrix := (others => (others => '0'));
-
-    -- placeholder for the PE enable bits
-    signal enabled_PE : PE_en_3x3 := (others => (others => '1'));
-    
+    signal data_shift : input_shift_matrix := (others => (others => '0')); -- 1xN size
+    signal weight_shift : input_shift_matrix := (others => (others => '0')); -- 1xN size
 
     -- bus signals to connect all PEs
     signal data_bus   : data_bus_matrix := (others => (others => (others => '0')));
@@ -43,102 +41,83 @@ architecture behaviour of systolic_array is
 
 begin
 
-    -- Dynamically assign inputs to left/top edges using generate
-    feed_data_edge: for i in 0 to 2 generate
-        data_bus(i, 0) <= data_shift(i);
+    -- Dynamically assign inputs to left/top edges
+    feed_data_edge: for i in 0 to N-1 generate
+        data_bus(i, 0) <= data_shift(i); 
     end generate feed_data_edge;
 
-    feed_weight_edge: for i in 0 to 2 generate
-        weight_bus(0, i) <= weight_shift(i);
+    feed_weight_edge: for i in 0 to N-1 generate
+        weight_bus(0, i) <= weight_shift(i); 
     end generate feed_weight_edge;
 
-    -- Generate block for 3x3 PEs
-    gen_PE_array : for i in 0 to 2 generate
-    pe_col : for j in 0 to 2 generate        
+    -- Generate block for 8x8 PEs
+    gen_PE_array : for i in 0 to N-1 generate
+    pe_col : for j in 0 to N-1 generate        
     begin
+        -- instantiates a PE
         PE_inst : entity work.processing_element
         port map (
             clk             => clk,
             reset           => reset,
-            en              => enabled_PE(i, j),
-            in_data         => data_bus(i, j),
-            in_weight       => weight_bus(i, j),
-            out_data        => data_bus(i, j+1),
-            out_weight      => weight_bus(i+1, j),
-            result_register => results(i, j)
+            en              => enabled_PE(i, j), -- based off the enabled PE mask
+            in_data         => data_bus(i, j), -- input data at the PE location
+            in_weight       => weight_bus(i, j), -- input weihgt at the PE location
+            out_data        => data_bus(i, j+1), -- passes the data to the right 
+            out_weight      => weight_bus(i+1, j), -- passes the weight downwards
+            result_register => results(i, j) -- holds the accumlated value 
         );
     end generate pe_col;
 end generate gen_PE_array;
 
-     -- Assign results to output
-    output(0,0) <= results(0,0);
-    output(0,1) <= results(0,1);
-    output(0,2) <= results(0,2);
-    output(1,0) <= results(1,0);
-    output(1,1) <= results(1,1);
-    output(1,2) <= results(1,2);
-    output(2,0) <= results(2,0);
-    output(2,1) <= results(2,1);
-    output(2,2) <= results(2,2);
+    -- Assign results to output
+    gen_output_assign : for i in 0 to N-1 generate
+        gen_output_col : for j in 0 to N-1 generate
+        begin
+            --  only assign a result if the PE is enabled, otherwise it is 0
+            output(i, j) <= results(i, j) when enabled_PE(i,j) = '1' else (others => '0');
+        end generate gen_output_col;
+    end generate gen_output_assign;
+
     cycle_counter <= cycle_count;
 
-
--- Feeder Process
-    process(clk, reset) 
+    -- acts like the control unit of how the data is fed into the systolic array in a staggered manner
+    feeder : process(clk, reset)
     begin
-        if reset = '1' then 
+        -- resets all the values to 0 
+        if reset = '1' then
             cycle_count <= 0;
 
-            data_shift(0) <= (others => '0');
-            data_shift(1) <= (others => '0');
-            data_shift(2) <= (others => '0');
+            -- clear all shift registers
+            for i in 0 to N-1 loop
+                data_shift(i)   <= (others => '0');
+                weight_shift(i) <= (others => '0');
+            end loop;
 
-            weight_shift(0) <= (others => '0');
-            weight_shift(1) <= (others => '0');
-            weight_shift(2) <= (others => '0');
-
-        elsif rising_edge(clk) then    	
+        elsif rising_edge(clk) then
+            -- increment clock cycle count at every rising edge 
             cycle_count <= cycle_count + 1;
 
-            -- Feed matrix_data row-wise with staggered delays
-            if cycle_count < 3 then
-                data_shift(0) <= matrix_data(0, cycle_count);
-            else
-                data_shift(0) <= (others => '0');
-            end if;
-
-            if cycle_count >= 1 and cycle_count < 4 then
-                data_shift(1) <= matrix_data(1, cycle_count - 1);
-            else
-                data_shift(1) <= (others => '0');
-            end if;
-
-            if cycle_count >= 2 and cycle_count < 5 then
-                data_shift(2) <= matrix_data(2, cycle_count - 2);
-            else
-                data_shift(2) <= (others => '0');
-            end if;
-
-            -- Feed matrix_weight column-wise with staggered delays
-            if cycle_count < 3 then
-                weight_shift(0) <= matrix_weight(cycle_count, 0);
-            else
-                weight_shift(0) <= (others => '0');
-            end if;
-
-            if cycle_count >= 1 and cycle_count < 4 then
-                weight_shift(1) <= matrix_weight(cycle_count - 1, 1);
-            else
-                weight_shift(1) <= (others => '0');
-            end if;
-
-            if cycle_count >= 2 and cycle_count < 5 then
-                weight_shift(2) <= matrix_weight(cycle_count - 2, 2);
-            else
-                weight_shift(2) <= (others => '0');
-            end if;
+            -- feeds the data (the left most side)
+            for i in 0 to array_size-1 loop
+                if cycle_count >= i and cycle_count < i + array_size then
+                    -- matrix_data(row = i, col = cycle‑i)
+                    data_shift(i) <= matrix_data(i, cycle_count - i);
+                else
+                    data_shift(i) <= (others => '0');
+                end if;
+            end loop;
+            
+            -- feeds the weight (from the top to bottom)
+            for j in 0 to array_size-1 loop
+                if cycle_count >= j and cycle_count < j + array_size then
+                    -- matrix_weight(row = cycle‑j, col = j)
+                    weight_shift(j) <= matrix_weight(cycle_count - j, j);
+                else
+                    weight_shift(j) <= (others => '0');
+                end if;
+            end loop;
         end if;
-    end process;
+    end process feeder;
 
 
 end behaviour;

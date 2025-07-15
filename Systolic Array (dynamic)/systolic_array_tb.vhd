@@ -9,11 +9,18 @@ end tb_systolic_array;
 architecture sim of tb_systolic_array is
     signal clk           : bit_1 := '0';
     signal reset         : bit_1 := '1';
-    signal matrix_A      : matrix_3x3;
-    signal matrix_B      : matrix_3x3;
-    signal result_C      : matrix_3x3_output;
+    signal matrix_A      : systolic_array_matrix_input;
+    signal matrix_B      : systolic_array_matrix_input;
+    signal result_C      : systolic_array_matrix_output;
     signal cycle_counter : integer;
-
+    -- signal enabled_PE_tb : enabled_PE_matrix := (others => (others =>'1'));
+    signal enabled_PE_tb : enabled_PE_matrix := (
+        0 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
+        1 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
+        2 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
+        others => (others => '0')
+    );
+    signal array_size_tb : integer := 3;
     constant CLK_PER : time := 20 ns;
 begin
     -- Clock generation
@@ -26,6 +33,8 @@ begin
         reset         => reset,
         matrix_data   => matrix_A,
         matrix_weight => matrix_B,
+        enabled_PE    => enabled_PE_tb,
+        array_size    => array_size_tb,
         output        => result_C,
         cycle_counter => cycle_counter
     );
@@ -67,17 +76,6 @@ begin
 
         -- Wait for systolic array to propagate and compute
         wait for 10 * CLK_PER;
-
-        -- -- Print result
-        -- report "PE(0,0) = " & integer'image(to_integer(unsigned(result_C(0,0))));
-        -- report "PE(0,1) = " & integer'image(to_integer(unsigned(result_C(0,1))));
-        -- report "PE(0,2) = " & integer'image(to_integer(unsigned(result_C(0,2))));
-        -- report "PE(1,0) = " & integer'image(to_integer(unsigned(result_C(1,0))));
-        -- report "PE(1,1) = " & integer'image(to_integer(unsigned(result_C(1,1))));
-        -- report "PE(1,2) = " & integer'image(to_integer(unsigned(result_C(1,2))));
-        -- report "PE(2,0) = " & integer'image(to_integer(unsigned(result_C(2,0))));
-        -- report "PE(2,1) = " & integer'image(to_integer(unsigned(result_C(2,1))));
-        -- report "PE(2,2) = " & integer'image(to_integer(unsigned(result_C(2,2))));
 
         wait;
     end process;
