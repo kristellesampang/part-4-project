@@ -9,19 +9,14 @@ end tb_systolic_array;
 architecture sim of tb_systolic_array is
     signal clk           : bit_1 := '0';
     signal reset         : bit_1 := '1';
-    signal matrix_A      : systolic_array_matrix_input;
-    signal matrix_B      : systolic_array_matrix_input;
+    signal matrix_A      : systolic_array_matrix_input := (others => (others => (others => '0')));
+    signal matrix_B      : systolic_array_matrix_input := (others => (others => (others => '0')));
     signal result_C      : systolic_array_matrix_output;
     signal cycle_counter : integer;
-    -- signal enabled_PE_tb : enabled_PE_matrix := (others => (others =>'1'));
-    signal enabled_PE_tb : enabled_PE_matrix := (
-        0 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
-        1 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
-        2 => (0 => '1', 1 => '1', 2 => '1', others => '0'),
-        others => (others => '0')
-    );
-    signal array_size_tb : integer := 3;
-    constant CLK_PER : time := 20 ns;
+    signal enabled_PE_tb : enabled_PE_matrix := (others => (others => '0'));
+    signal array_size_tb : integer := 1;
+    constant CLK_PER     : time := 20 ns;
+
 begin
     -- Clock generation
     clk <= not clk after CLK_PER / 2;
@@ -39,44 +34,59 @@ begin
         cycle_counter => cycle_counter
     );
 
-    -- Test process
+    -- Test process for matrix sizes 1x1 to 8x8
     process
-    begin
-        -- Load A = [0 1 2; 3 4 5; 6 7 8]
-        -- Load D = [69 44 26; 72 96 15; 89 22 11]
-        matrix_A(0,0) <= std_logic_vector(to_unsigned(69, 8)); 
-        matrix_A(0,1) <= std_logic_vector(to_unsigned(44, 8)); 
-        matrix_A(0,2) <= std_logic_vector(to_unsigned(26, 8));
+    variable val_a : integer;
+    variable val_b : integer;
+begin
+    for size in 1 to 8 loop
+        -- Reset values for each size (to match MATLAB)
+        val_a := 1;
+        val_b := 10;
 
-        matrix_A(1,0) <= std_logic_vector(to_unsigned(72, 8)); 
-        matrix_A(1,1) <= std_logic_vector(to_unsigned(96, 8)); 
-        matrix_A(1,2) <= std_logic_vector(to_unsigned(15, 8));
+        array_size_tb <= size;
 
-        matrix_A(2,0) <= std_logic_vector(to_unsigned(89, 8)); 
-        matrix_A(2,1) <= std_logic_vector(to_unsigned(22, 8)); 
-        matrix_A(2,2) <= std_logic_vector(to_unsigned(11, 8));
+        -- Enable only relevant PEs
+        for i in 0 to 7 loop
+            for j in 0 to 7 loop
+                if i < size and j < size then
+                    enabled_PE_tb(i,j) <= '1';
+                else
+                    enabled_PE_tb(i,j) <= '0';
+                end if;
+            end loop;
+        end loop;
 
-        -- Load E = [93 45 12; 75 37 40; 53 3 36]
-        matrix_B(0,0) <= std_logic_vector(to_unsigned(93, 8)); 
-        matrix_B(0,1) <= std_logic_vector(to_unsigned(45, 8)); 
-        matrix_B(0,2) <= std_logic_vector(to_unsigned(12, 8));
+        -- Load matrix_A and matrix_B with sample values
+        for i in 0 to size-1 loop
+            for j in 0 to size-1 loop
+                matrix_A(i,j) <= std_logic_vector(to_unsigned(val_a, 8));
+                matrix_B(i,j) <= std_logic_vector(to_unsigned(val_b, 8));
+                val_a := val_a + 1;
+                val_b := val_b + 1;
+            end loop;
+        end loop;
 
-        matrix_B(1,0) <= std_logic_vector(to_unsigned(75, 8)); 
-        matrix_B(1,1) <= std_logic_vector(to_unsigned(37, 8)); 
-        matrix_B(1,2) <= std_logic_vector(to_unsigned(40, 8));
-
-        matrix_B(2,0) <= std_logic_vector(to_unsigned(53, 8)); 
-        matrix_B(2,1) <= std_logic_vector(to_unsigned(3, 8)); 
-        matrix_B(2,2) <= std_logic_vector(to_unsigned(36, 8));
-
-
-        -- Hold reset for 2 clock cycles
+        -- Reset
+        reset <= '1';
         wait for 2 * CLK_PER;
         reset <= '0';
 
-        -- Wait for systolic array to propagate and compute
-        wait for 10 * CLK_PER;
+        -- Wait long enough for computation to complete
+        wait for (2 * size + size + 2) * CLK_PER;
 
-        wait;
-    end process;
+        -- Print result_C for active section
+        for i in 0 to size-1 loop
+            for j in 0 to size-1 loop
+                report "Result(" & integer'image(i) & "," & integer'image(j) & ") = " &
+                       integer'image(to_integer(unsigned(result_C(i,j))));
+            end loop;
+        end loop;
+
+        wait for 5 * CLK_PER;
+    end loop;
+
+    wait;
+end process;
+
 end sim;
