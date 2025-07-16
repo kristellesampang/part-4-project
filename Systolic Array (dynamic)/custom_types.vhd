@@ -28,22 +28,20 @@ PACKAGE custom_types IS
 	SUBTYPE bit_2 IS STD_LOGIC_VECTOR(1 DOWNTO 0);
 	SUBTYPE bit_1 IS STD_LOGIC;
 
-    -- matrix sizes 
-    -- !! below are just testing values 
-    type matrix_3x3 is array (0 to 2, 0 to 2) of bit_8; -- might need to change the size of the bit
-    type matrix_3x3_output is array (0 to 2, 0 to 2) of bit_32; 
-    -- to hold a row or column of elements 
-    type matrix_1x3 is array (0 to 2) of bit_8; 
-    type PE_en_3x3 is array (0 to 2, 0 to 2) of bit_1; -- or bit_1 if alias
+	-- Dynamic Systolic Arrays 
+	constant N : integer := 8; -- array dimension (only need to change this)
 
-
-	-- Dynamic 
+	-- input and output matrix
+	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_8; -- must match the systolic array size
+	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_32; -- must match the systolic array size
 	-- shift registers 
-	type input_shift_matrix is array (0 to 2) of bit_8; 
+	type input_shift_matrix is array (0 to N-1) of bit_8; -- 1xN size 
+	-- PE enabled mask
+	type enabled_PE_matrix is array (0 to N-1, 0 to N-1) of bit_1; -- 1 bit enable for all PEs
 	-- inter-PE signals (modify based on design)
-	type data_bus_matrix is array(0 to 3, 0 to 3) of bit_8;     -- includes right boundary
-	type weight_bus_matrix is array(0 to 3, 0 to 3) of bit_8;   -- includes bottom boundary
-	type result_matrix is array(0 to 2, 0 to 2) of bit_32;
+	type data_bus_matrix is array(0 to N, 0 to N) of bit_8; -- includes the bus going out of the right   
+	type weight_bus_matrix is array(0 to N, 0 to N) of bit_8; -- includes the bus going out of the bottom
+	type result_matrix is array(0 to N-1, 0 to N-1) of bit_32; -- holds the accumlated 8-bit value of each PE as a matrix
 
 
 END custom_types;
