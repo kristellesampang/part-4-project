@@ -1,0 +1,119 @@
+import torch
+import torchvision.models as models
+from torchvision import transforms
+from PIL import Image
+import numpy as np
+import torch.quantization
+import time
+
+# Wrapper class remains the same
+class QuantizableAlexNet(torch.nn.Module):
+    def __init__(self, model_fp32):
+        super(QuantizableAlexNet, self).__init__()
+        self.quant = torch.quantization.QuantStub()
+        self.dequant = torch.quantization.DeQuantStub()
+        self.model_fp32 = model_fp32
+
+    def forward(self, x):
+        x = self.quant(x)
+        x = self.model_fp32.features(x)
+        x = self.model_fp32.avgpool(x)
+        x = torch.flatten(x, 1)
+        x = self.model_fp32.classifier(x)
+        x = self.dequant(x)
+        return x
+
+def main():
+    """
+    Main function to load AlexNet, quantize it, extract matrices, and show tiling.
+    """
+    # 1. & 2. --- Load and Quantize the Model ---
+    print("Loading and quantizing AlexNet model...")
+    alexnet_fp32 = models.alexnet(weights=models.AlexNet_Weights.DEFAULT)
+    quantizable_model = QuantizableAlexNet(model_fp32=alexnet_fp32)
+    quantizable_model.eval()
+    quantizable_model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
+    model_prepared = torch.quantization.prepare(quantizable_model, inplace=False)
+    with torch.no_grad():
+        for _ in range(10):
+            model_prepared(torch.randn(1, 3, 224, 224))
+    model_quantized = torch.quantization.convert(model_prepared, inplace=False)
+    print("Model successfully quantized.")
+
+    # 3. --- Load and Preprocess a Real Image ---
+    image_path = 'cat.jpg'
+    try:
+        img = Image.open(image_path).convert('RGB')
+    except FileNotFoundError:
+        print(f"ERROR: The image file '{image_path}' was not found. Please add a 'cat.jpg' to your directory.")
+        return
+    preprocess = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+    input_tensor = preprocess(img).unsqueeze(0)
+
+    # 4. --- Extract RAW INT8 Matrices ---
+    quantized_weight_tensor = model_quantized.model_fp32.classifier[1].weight()
+    fc1_weights_int8 = quantized_weight_tensor.int_repr().numpy()
+    
+    activation = {}
+    def get_quantized_activation(name):
+        def hook(model, input, output):
+            activation[name] = output
+        return hook
+    hook_handle = model_quantized.model_fp32.avgpool.register_forward_hook(get_quantized_activation('avgpool'))
+    with torch.no_grad():
+        model_quantized(input_tensor)
+    hook_handle.remove()
+    quantized_activation_tensor = activation['avgpool']
+    activation_matrix_int8 = torch.flatten(quantized_activation_tensor.int_repr(), 1).numpy()
+    
+    # 5. --- Apply ReLU ---
+    weights_after_relu = np.maximum(0, fc1_weights_int8)
+    activations_after_relu = np.maximum(0, activation_matrix_int8)
+
+    # 6. --- 8x8 TILING DEMO ---
+    print("\n--- 8x8 TILING DEMO (First 5 Tiles of Weight Matrix) ---")
+    tile_size = 8
+    num_tiles_to_print = 5
+
+    for i in range(num_tiles_to_print):
+        start_col = i * tile_size
+        end_col = start_col + tile_size
+        weight_tile = weights_after_relu[0:tile_size, start_col:end_col]
+        print(f"\n--- Tile {i+1} (Cols {start_col}-{end_col-1}) ---")
+        print(weight_tile)
+
+    # --- 7. 8x8 Weight by 8x1 Activation Multiplication Demo ---
+    print("\n--- 8x8 by 8x1 MATRIX MULTIPLICATION DEMO ---")
+
+    weight_matrix_8x8 = weights_after_relu[0:tile_size, 0:tile_size]
+    activation_vector_8x1 = activations_after_relu[:, 0:tile_size].T
+
+    print(f"Multiplying Weight Matrix of shape: {weight_matrix_8x8.shape}")
+    print(f"with Activation Vector of shape: {activation_vector_8x1.shape}")
+
+    # Time the software execution in nanoseconds ("ticks")
+    start_ns = time.perf_counter_ns()
+    result_vector = np.matmul(weight_matrix_8x8, activation_vector_8x1)
+    end_ns = time.perf_counter_ns()
+
+    # Calculate duration in nanoseconds
+    execution_time_ns = end_ns - start_ns
+
+    # Convert nanoseconds to seconds for the final result
+    execution_time_seconds = execution_time_ns / 1_000_000_000
+
+    print(f"\nResulting vector shape: {result_vector.shape}")
+    print(f"Resulting vector (first 8 elements):\n{result_vector.flatten()}")
+    
+    print("\n--- Timing Analysis ---")
+    print(f"Execution time in 'ticks' (nanoseconds): {execution_time_ns} ns")
+    print(f"Converted to seconds: {execution_time_seconds:.8f} s")
+
+
+if __name__ == '__main__':
+    main()
