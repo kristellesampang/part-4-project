@@ -26,6 +26,13 @@ architecture structure of top_level_systolic_array is
     signal weight_shift_sig  : input_shift_matrix;
     signal enabled_PE_mask   : enabled_PE_matrix;
 
+    -- BRAM interface
+    signal db_wraddr    : std_logic_vector(10 downto 0);
+    signal db_rdaddr    : std_logic_vector(10 downto 0);
+    signal db_data_in   : std_logic_vector(7 downto 0);
+    signal db_data_out  : std_logic_vector(7 downto 0);
+    signal db_wren      : std_logic;
+
 begin
 
     -- Instantiate the Control Unit
@@ -51,5 +58,16 @@ begin
             enabled_PE  => enabled_PE_mask,
             output      => output
         );
+
+    DataBuffer : entity work.DataBuffer
+        port map (
+		clock		=> clk,
+		data		=> db_data_in,
+		rdaddress   => db_rdaddr,
+		wraddress   => db_wraddr,
+		wren		=> db_wren,
+		q		    => db_data_out
+	);
+END DataBuffer;
 
 end architecture;

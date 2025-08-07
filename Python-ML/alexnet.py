@@ -81,6 +81,7 @@ def main():
     num_tiles_to_print = 5
 
     for i in range(num_tiles_to_print):
+        
         start_col = i * tile_size
         end_col = start_col + tile_size
         weight_tile = weights_after_relu[0:tile_size, start_col:end_col]
