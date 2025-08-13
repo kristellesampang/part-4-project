@@ -92,13 +92,17 @@ begin
 
                 -- End of Row
                 if col = N-1 then
+                    -- reset the column back to 0
                     col <= 0;
+                    -- When at the last row, make the start signal high
                     if row = N-1 then
                         loadingCompleteFlag <= true; 
                         start_sig <= '1';
+                    -- Otherwise move to the next row
                     else
                         row <= row + 1;
                     end if;
+                -- Otherwise Move to the next column
                 else
                     col <= col + 1;
                 end if;
@@ -135,4 +139,10 @@ begin
             output      => output
         );
 
+    dbg_db_rdaddr     <= db_rdaddr;
+    dbg_db_data_out   <= db_data_out;
+    dbg_wb_rdaddr     <= wb_rdaddr;
+    dbg_wb_data_out   <= wb_data_out;
+    dbg_matrix_data   <= matrix_data_sig;
+    dbg_matrix_weight <= matrix_weight_sig;
 end architecture;
