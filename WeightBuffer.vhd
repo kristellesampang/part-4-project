@@ -66,7 +66,7 @@ BEGIN
 		clock_enable_input_a => "BYPASS",
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_b => "BYPASS",
-		init_file => "./MIF_files/matrix_weight.mif",
+		init_file => "C:/Users/OEM/Documents/part-4-project/MIF_files/matrix_weight.mif",
 		intended_device_family => "Cyclone V",
 		lpm_type => "altsyncram",
 		numwords_a => 2048,

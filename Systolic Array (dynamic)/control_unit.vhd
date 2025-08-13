@@ -11,6 +11,7 @@ port(
     -- clock and reset signals
     clk : in bit_1; -- synchronous 
     reset : in bit_1; -- reset 
+    start : in bit_1; -- start shifting after the BRAM loads 
 
     -- inputs for the MAC operation
     matrix_data : in systolic_array_matrix_input; -- data 
@@ -30,14 +31,16 @@ architecture behaviour of control_unit is
     signal weight_reg : input_shift_matrix := (others => (others => '0'));
     signal count      : integer := 0;
     signal mask_internal  : enabled_PE_matrix := (others => (others => '0'));
+
+    constant array_size : integer := matrix_data'length;
     
 begin
 
     process(clk, reset)
-        variable array_size : integer;
+        --variable array_size : integer;
     begin
         -- get the array size
-        array_size := matrix_data'length;
+        --array_size := matrix_data'length;
 
         -- reset all signals 
         if reset = '1' then
@@ -47,47 +50,121 @@ begin
                 weight_reg(i) <= (others => '0');
             end loop;
         elsif rising_edge(clk) then
-            -- increment clock cycle count at every rising edge
-            count <= count + 1;
+            -- Only start when start is started
+            if start = '1' then
+                -- increment clock cycle count at every rising edge
+                count <= count + 1;
 
-            -- feeds the data into the systolic array depending on how the input matrices are 
-            -- feeds the data (the left most side)
-            for i in 0 to array_size - 1 loop
-                if count >= i and count < i + array_size then
-                    data_reg(i) <= matrix_data(i, count - i);
-                else
-                    data_reg(i) <= (others => '0');
-                end if;
-            end loop;
-
-            -- feeds the weight (from the top to bottom)
-            for j in 0 to array_size - 1 loop
-                if count >= j and count < j + array_size then
-                    weight_reg(j) <= matrix_weight(count - j, j);
-                else
-                    weight_reg(j) <= (others => '0');
-                end if;
-            end loop;
-
-
-            -- generate mask once (can be moved outside the clock if static)
-            for i in 0 to N-1 loop
-                for j in 0 to N-1 loop
-                    if i < array_size and j < array_size then
-                        mask_internal(i, j) <= '1';
+                -- feeds the data into the systolic array depending on how the input matrices are 
+                -- feeds the data (the left most side)
+                for i in 0 to array_size - 1 loop
+                    if count >= i and count < i + array_size then
+                        data_reg(i) <= matrix_data(i, count - i);
                     else
-                        mask_internal(i, j) <= '0';
+                        data_reg(i) <= (others => '0');
                     end if;
                 end loop;
-            end loop;
 
+                -- feeds the weight (from the top to bottom)
+                for j in 0 to array_size - 1 loop
+                    if count >= j and count < j + array_size then
+                        weight_reg(j) <= matrix_weight(count - j, j);
+                    else
+                        weight_reg(j) <= (others => '0');
+                    end if;
+                end loop;
+
+
+                -- generate mask once (can be moved outside the clock if static)
+                for i in 0 to N-1 loop
+                    for j in 0 to N-1 loop
+                        if i < array_size and j < array_size then
+                            mask_internal(i, j) <= '1';
+                        else
+                            mask_internal(i, j) <= '0';
+                        end if;
+                    end loop;
+                end loop;
+            end if;
         end if;
     end process;
 
     PE_enabled_mask <= mask_internal;
     data_shift   <= data_reg;
     weight_shift <= weight_reg;
-    PE_enabled_mask <= mask_internal;
+    --PE_enabled_mask <= mask_internal;
     cycle_count  <= count;
 
 end behaviour; 
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.custom_types.all;
+
+entity tb_buffer is
+end tb_buffer;
+
+architecture sim of tb_buffer is
+
+    constant clk_period : time := 20 ns;
+
+    signal clk          : std_logic := '0';
+    signal reset        : std_logic := '0';
+    signal output_mat   : systolic_array_matrix_output;
+    signal cycle_count  : integer;
+
+begin
+    
+
+    clk <= not clk after clk_period / 2;
+
+        -- Instantiate DUT
+    DUT: entity work.top_level_systolic_array
+    port map (
+        clk           => clk,
+        reset         => reset,
+        output        => output_mat,
+        cycle_count   => cycle_count
+    );
+
+    -- DataBuffer_inst : entity work.DataBuffer
+    --     port map (
+    --         clock     => clk,
+    --         data      => (others => '0'),   -
+    --         rdaddress => db_rdaddr,
+    --         wraddress => (others => '0'),
+    --         wren      => '0',
+    --         q         => db_data_out
+    --     );
+
+    -- WeightBuffer_inst : entity work.DataBuffer
+    --     port map (
+    --         clock     => clk,
+    --         data      => (others => '0'),   
+    --         rdaddress => wb_rdaddr,
+    --         wraddress => (others => '0'),
+    --         wren      => '0',
+    --         q         => wb_data_out
+    --     );
+
+    process
+    begin
+        -- Hold reset for a bit so that buffers are loaded
+        wait for 5 * clk_period;
+        reset <= '0';
+
+        -- wait for enough cycles to complete load + computation
+        --(BRAM load = N*N cycles, computation = 3*N - 2 more cycles)
+        wait for clk_period * (N * N + (3 * N - 2) + 5);
+
+        for i in 0 to N-1 loop
+            for j in 0 to N-1 loop
+                report "Output(" & integer'image(i) & "," & integer'image(j) & ") = " &
+                        integer'image(to_integer(unsigned(output_mat(i, j))));
+            end loop;
+        end loop;
+
+        wait;
+    end process;
+
+end sim;
