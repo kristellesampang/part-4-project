@@ -5,6 +5,9 @@ from PIL import Image
 import numpy as np
 import torch.quantization
 import time
+import json
+import requests
+import os
 
 # Wrapper class remains the same
 class QuantizableAlexNet(torch.nn.Module):
@@ -23,9 +26,27 @@ class QuantizableAlexNet(torch.nn.Module):
         x = self.dequant(x)
         return x
 
+def get_imagenet_labels():
+    """
+    Downloads and loads the ImageNet class labels.
+    """
+    labels_path = 'imagenet_class_index.json'
+    labels_url = 'https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json'
+
+    if not os.path.exists(labels_path):
+        print(f"Downloading ImageNet labels from {labels_url}...")
+        response = requests.get(labels_url)
+        with open(labels_path, 'w') as f:
+            json.dump(response.json(), f)
+        print("Labels downloaded.")
+
+    with open(labels_path) as f:
+        labels = json.load(f)
+    return labels
+
 def main():
     """
-    Main function to load AlexNet, quantize it, extract matrices, and show tiling.
+    Main function to load AlexNet, quantize it, extract matrices, and make an inference.
     """
     # 1. & 2. --- Load and Quantize the Model ---
     print("Loading and quantizing AlexNet model...")
@@ -81,7 +102,6 @@ def main():
     num_tiles_to_print = 5
 
     for i in range(num_tiles_to_print):
-        
         start_col = i * tile_size
         end_col = start_col + tile_size
         weight_tile = weights_after_relu[0:tile_size, start_col:end_col]
@@ -97,23 +117,39 @@ def main():
     print(f"Multiplying Weight Matrix of shape: {weight_matrix_8x8.shape}")
     print(f"with Activation Vector of shape: {activation_vector_8x1.shape}")
 
-    # Time the software execution in nanoseconds ("ticks")
     start_ns = time.perf_counter_ns()
     result_vector = np.matmul(weight_matrix_8x8, activation_vector_8x1)
     end_ns = time.perf_counter_ns()
-
-    # Calculate duration in nanoseconds
     execution_time_ns = end_ns - start_ns
-
-    # Convert nanoseconds to seconds for the final result
     execution_time_seconds = execution_time_ns / 1_000_000_000
 
     print(f"\nResulting vector shape: {result_vector.shape}")
     print(f"Resulting vector (first 8 elements):\n{result_vector.flatten()}")
-    
     print("\n--- Timing Analysis ---")
     print(f"Execution time in 'ticks' (nanoseconds): {execution_time_ns} ns")
     print(f"Converted to seconds: {execution_time_seconds:.8f} s")
+
+    # --- 8. Full Model Inference ---
+    print("\n--- FULL MODEL INFERENCE ---")
+    
+    # Load the class labels
+    labels = get_imagenet_labels()
+    
+    # Get the raw output scores (logits) from the model
+    output_logits = model_quantized(input_tensor)
+    
+    # Find the index of the highest score
+    prediction_index = torch.argmax(output_logits, 1).item()
+    
+    # Convert logits to probabilities to get a confidence score
+    probabilities = torch.nn.functional.softmax(output_logits, dim=1)
+    confidence = probabilities[0, prediction_index].item() * 100
+    
+    # Look up the class name from the index
+    predicted_class = labels[str(prediction_index)][1]
+    
+    print(f"\nPrediction: {predicted_class.replace('_', ' ').title()}")
+    print(f"Confidence: {confidence:.2f}%")
 
 
 if __name__ == '__main__':
