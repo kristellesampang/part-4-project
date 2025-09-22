@@ -29,7 +29,7 @@ PACKAGE custom_types IS
 	SUBTYPE bit_1 IS STD_LOGIC;
 
 	-- Dynamic Systolic Arrays 
-	constant N : integer := 8; -- array dimension (only need to change this)
+	constant N : integer := 4; -- array dimension (only need to change this)
 
 	-- input and output matrix
 	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_8; -- must match the systolic array size

@@ -19,7 +19,10 @@ port(
     -- outputs for the MAC operation
     data_shift    : out input_shift_matrix;
     weight_shift  : out input_shift_matrix;
+
     cycle_count   : out integer;
+
+    -- Per-cycle enable mask for every PE
     PE_enabled_mask : out enabled_PE_matrix
 );
 end control_unit;
@@ -42,10 +45,18 @@ begin
         -- reset all signals 
         if reset = '1' then
             count <= 0;
+
             for i in 0 to N-1 loop
                 data_reg(i)   <= (others => '0');
                 weight_reg(i) <= (others => '0');
             end loop;
+
+            for i in 0 to N-1 loop
+                for j in 0 to N-1 loop
+                    mask_internal(i,j) <= '0';
+                end loop;
+            end loop;
+  
         elsif rising_edge(clk) then
             -- increment clock cycle count at every rising edge
             count <= count + 1;
@@ -70,17 +81,20 @@ begin
             end loop;
 
 
-            -- generate mask once (can be moved outside the clock if static)
-            for i in 0 to N-1 loop
-                for j in 0 to N-1 loop
-                    if i < array_size and j < array_size then
-                        mask_internal(i, j) <= '1';
+            -- Per-cycle enable mask
+            for i in 0 to array_size-1 loop
+                for j in 0 to array_size-1 loop
+                    if (count >= i) and (count < i + array_size) and (count >= j) and (count < j + array_size) then
+                        if (matrix_data(i, count - i) /= x"00") and (matrix_weight(count - j, j) /= x"00") then
+                            mask_internal(i, j) <= '1';
+                        else 
+                            mask_internal(i, j) <= '0';
+                        end if;
                     else
                         mask_internal(i, j) <= '0';
                     end if;
                 end loop;
             end loop;
-
         end if;
     end process;
 
