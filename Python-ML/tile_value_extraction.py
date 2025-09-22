@@ -32,6 +32,9 @@ def save_matrix_as_mif(matrix, filename, data_width=8):
     """
     depth = matrix.size
     with open(filename, 'w') as f:
+        # print the matrix values as an array for verification
+        print("Matrix values:")
+        print(matrix)
         # Write the MIF header
         f.write(f"WIDTH={data_width};\n")
         f.write(f"DEPTH={depth};\n")
@@ -67,7 +70,8 @@ def main():
     print("Model successfully quantized.")
 
     # 3. --- Load and Preprocess a Real Image ---
-    image_path = 'cat.jpg'
+    # copy path and make sure to use forward slashes
+    image_path = 'C:/Users/iamkr/Documents/part-4-project/Python-ML/cat.jpg'
     try:
         img = Image.open(image_path).convert('RGB')
     except FileNotFoundError:
@@ -82,6 +86,7 @@ def main():
     input_tensor = preprocess(img).unsqueeze(0)
 
     # 4. --- Extract RAW INT8 Matrices ---
+    # !! Here we can change the layer from changing the [1] to a number up to [4]
     quantized_weight_tensor = model_quantized.model_fp32.classifier[1].weight()
     fc1_weights_int8 = quantized_weight_tensor.int_repr().numpy()
     
@@ -115,10 +120,12 @@ def main():
     activation_tile_0[0, :] = activation_vector_slice
 
     # Save the tiles to .mif files
-    save_matrix_as_mif(weight_tile_0, "weights.mif")
+    # change this to go to local mif directory
+    save_matrix_as_mif(weight_tile_0, "C:/Users/iamkr/Documents/part-4-project/Systolic Array (packing)/mif/weights.mif")
     print("\nSaved the first weight tile to 'weights.mif'")
     
-    save_matrix_as_mif(activation_tile_0, "activations.mif")
+    # change this to go to local mif directory
+    save_matrix_as_mif(activation_tile_0, "C:/Users/iamkr/Documents/part-4-project/Systolic Array (packing)/mif/activations.mif")
     print("Saved the first activation tile to 'activations.mif'")
     print("\nYou can now use these files to initialize the BRAMs in your Quartus project.")
 
