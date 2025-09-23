@@ -42,13 +42,12 @@ begin
 
         -- Only process data if PE is enabled 
         elsif rising_edge(clk) then
-
+            -- Synchronous 
+            if en = '1' then
             -- Receive the incoming data and weight
             data <= in_data;
             weight <= in_weight;
 
-            if en = '1' then
-                
                 if in_data /= x"00" and in_weight /= x"00" then
                     -- Compute the multplication result (the product)
                     multiplication := resize(unsigned(in_data) * unsigned(in_weight), 32);

@@ -13,6 +13,9 @@ entity top_level_systolic_array is
         matrix_data   : in  systolic_array_matrix_input;
         matrix_weight : in  systolic_array_matrix_input;
 
+        active_rows   : in integer;
+        active_cols   : in integer;
+
         -- Outputs from the systolic array
         output        : out systolic_array_matrix_output;
         cycle_count   : out integer
@@ -38,7 +41,9 @@ begin
             data_shift       => data_shift_sig,
             weight_shift     => weight_shift_sig,
             cycle_count      => cycle_count,
-            PE_enabled_mask  => enabled_PE_mask
+            PE_enabled_mask  => enabled_PE_mask,
+            active_rows      => active_rows,
+            active_cols      => active_cols
         );
 
     -- Instantiate the Systolic Array
