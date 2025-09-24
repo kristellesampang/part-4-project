@@ -37,15 +37,25 @@ def generate_vhdl_stimulus(matrix_type, matrix_to_print, active_rows, active_col
 
 # Define original sparse matrices in Python
 N_hardware = 8
-inputMatrix_data = np.array([[9, 1, 0, 3],
-                            [0, 0, 0, 0],
-                            [7, 0, 0, 0],
-                            [0, 0, 0, 6]])
+inputMatrix_data = np.array([[0, 0, 0, 0, 0, 0, 0, 0],
+                             [3, 0, 5, 1, 0, 2, 0, 0], 
+                             [0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0],
+                             [8, 0, 0, 6, 0, 0, 0, 0],  
+                             [0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0]])
 
-inputMatrix_weight = np.array([[1, 0, 0, 5],
-                                [0, 5, 0, 0],
-                                [0, 0, 0, 0],
-                                [4, 0, 0, 1]])
+
+inputMatrix_weight = np.array([[0, 9, 0, 0, 1, 0, 2, 0], 
+                               [0, 0, 0, 0, 0, 0, 0, 0],
+                               [0, 7, 0, 0, 0, 0, 0, 0], 
+                               [0, 0, 0, 0, 4, 0, 0, 0], 
+                               [0, 0, 0, 0, 0, 0, 0, 0],
+                               [0, 1, 0, 0, 0, 0, 5, 0], 
+                               [0, 0, 0, 0, 0, 0, 0, 0],
+                               [0, 0, 0, 0, 0, 0, 0, 0]])
+
 
 # --- CASE 1: WITH SPARSITY HANDLING (Row Stripping) ---
 print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")

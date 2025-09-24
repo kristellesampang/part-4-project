@@ -7,7 +7,7 @@ import torch.quantization
 import time
 
 # Wrapper class remains the same
-class QuantizableAlexNet(torch.nn.Module):
+class QuantizableAlexNet(torch.nn.Module):+
     def __init__(self, model_fp32):
         super(QuantizableAlexNet, self).__init__()
         self.quant = torch.quantization.QuantStub()

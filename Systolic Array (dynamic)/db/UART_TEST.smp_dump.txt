@@ -1,0 +1,8 @@
+
+State Machine - |UART_IP_Top_Level|r_state
+Name r_state.s_wait_for_data r_state.s_read_data r_state.s_wait_for_status r_state.s_check_status r_state.s_idle 
+r_state.s_idle 0 0 0 0 0 
+r_state.s_check_status 0 0 0 1 1 
+r_state.s_wait_for_status 0 0 1 0 1 
+r_state.s_read_data 0 1 0 0 1 
+r_state.s_wait_for_data 1 0 0 0 1 
