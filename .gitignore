@@ -1,0 +1,30 @@
+# ModelSim / Quartus Simulation Files
+
+# Simulation database files
+wlf*
+*.wlf
+*.mpf
+_ngo
+_impact
+
+# Transcript and log files
+*.log
+transcript
+vsim.wlf
+
+# Project and work library files
+*.mpf
+work/
+transcript-TCL.log
+modelsim.ini
+
+# Other generated directories and files
+db/
+incremental_db/
+simulation/
+output_files/
+greybox_tmp/
+timing/
+*.qws
+*.bak
+c5_e_sii_ddr_p0*

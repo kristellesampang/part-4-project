@@ -21,6 +21,8 @@ inputMatrix =   [[5,2,0,3],
 
 dense, rows, cols, rmap, cmap = RowRemoval(inputMatrix)
 
+print("Original matrix:")
+print(np.array(inputMatrix))
 print("Stripped matrix:")
 print(dense)
 print("Active rows:", rows, "Active cols:", cols)
