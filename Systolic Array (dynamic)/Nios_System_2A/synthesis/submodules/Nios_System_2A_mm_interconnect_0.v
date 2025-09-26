@@ -8,11 +8,11 @@
 `timescale 1 ps / 1 ps
 module Nios_System_2A_mm_interconnect_0 (
 		input  wire        clocks_sys_clk_clk,                                 //                               clocks_sys_clk.clk
-		input  wire        CustomTopLevel_1_reset_reset_bridge_in_reset_reset, // CustomTopLevel_1_reset_reset_bridge_in_reset.reset
-		input  wire [31:0] CustomTopLevel_1_data_address,                      //                        CustomTopLevel_1_data.address
-		output wire        CustomTopLevel_1_data_waitrequest,                  //                                             .waitrequest
-		input  wire        CustomTopLevel_1_data_read,                         //                                             .read
-		output wire [31:0] CustomTopLevel_1_data_readdata,                     //                                             .readdata
+		input  wire        CustomTopLevel_0_reset_reset_bridge_in_reset_reset, // CustomTopLevel_0_reset_reset_bridge_in_reset.reset
+		input  wire [31:0] CustomTopLevel_0_data_address,                      //                        CustomTopLevel_0_data.address
+		output wire        CustomTopLevel_0_data_waitrequest,                  //                                             .waitrequest
+		input  wire        CustomTopLevel_0_data_read,                         //                                             .read
+		output wire [31:0] CustomTopLevel_0_data_readdata,                     //                                             .readdata
 		output wire [3:0]  DATA_BRAM_s2_address,                               //                                 DATA_BRAM_s2.address
 		output wire        DATA_BRAM_s2_write,                                 //                                             .write
 		input  wire [31:0] DATA_BRAM_s2_readdata,                              //                                             .readdata
@@ -22,17 +22,17 @@ module Nios_System_2A_mm_interconnect_0 (
 		output wire        DATA_BRAM_s2_clken                                  //                                             .clken
 	);
 
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_waitrequest;   // DATA_BRAM_s2_translator:uav_waitrequest -> CustomTopLevel_1_data_translator:uav_waitrequest
-	wire  [31:0] customtoplevel_1_data_translator_avalon_universal_master_0_readdata;      // DATA_BRAM_s2_translator:uav_readdata -> CustomTopLevel_1_data_translator:uav_readdata
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_debugaccess;   // CustomTopLevel_1_data_translator:uav_debugaccess -> DATA_BRAM_s2_translator:uav_debugaccess
-	wire  [31:0] customtoplevel_1_data_translator_avalon_universal_master_0_address;       // CustomTopLevel_1_data_translator:uav_address -> DATA_BRAM_s2_translator:uav_address
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_read;          // CustomTopLevel_1_data_translator:uav_read -> DATA_BRAM_s2_translator:uav_read
-	wire   [3:0] customtoplevel_1_data_translator_avalon_universal_master_0_byteenable;    // CustomTopLevel_1_data_translator:uav_byteenable -> DATA_BRAM_s2_translator:uav_byteenable
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_readdatavalid; // DATA_BRAM_s2_translator:uav_readdatavalid -> CustomTopLevel_1_data_translator:uav_readdatavalid
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_lock;          // CustomTopLevel_1_data_translator:uav_lock -> DATA_BRAM_s2_translator:uav_lock
-	wire         customtoplevel_1_data_translator_avalon_universal_master_0_write;         // CustomTopLevel_1_data_translator:uav_write -> DATA_BRAM_s2_translator:uav_write
-	wire  [31:0] customtoplevel_1_data_translator_avalon_universal_master_0_writedata;     // CustomTopLevel_1_data_translator:uav_writedata -> DATA_BRAM_s2_translator:uav_writedata
-	wire   [2:0] customtoplevel_1_data_translator_avalon_universal_master_0_burstcount;    // CustomTopLevel_1_data_translator:uav_burstcount -> DATA_BRAM_s2_translator:uav_burstcount
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_waitrequest;   // DATA_BRAM_s2_translator:uav_waitrequest -> CustomTopLevel_0_data_translator:uav_waitrequest
+	wire  [31:0] customtoplevel_0_data_translator_avalon_universal_master_0_readdata;      // DATA_BRAM_s2_translator:uav_readdata -> CustomTopLevel_0_data_translator:uav_readdata
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_debugaccess;   // CustomTopLevel_0_data_translator:uav_debugaccess -> DATA_BRAM_s2_translator:uav_debugaccess
+	wire  [31:0] customtoplevel_0_data_translator_avalon_universal_master_0_address;       // CustomTopLevel_0_data_translator:uav_address -> DATA_BRAM_s2_translator:uav_address
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_read;          // CustomTopLevel_0_data_translator:uav_read -> DATA_BRAM_s2_translator:uav_read
+	wire   [3:0] customtoplevel_0_data_translator_avalon_universal_master_0_byteenable;    // CustomTopLevel_0_data_translator:uav_byteenable -> DATA_BRAM_s2_translator:uav_byteenable
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_readdatavalid; // DATA_BRAM_s2_translator:uav_readdatavalid -> CustomTopLevel_0_data_translator:uav_readdatavalid
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_lock;          // CustomTopLevel_0_data_translator:uav_lock -> DATA_BRAM_s2_translator:uav_lock
+	wire         customtoplevel_0_data_translator_avalon_universal_master_0_write;         // CustomTopLevel_0_data_translator:uav_write -> DATA_BRAM_s2_translator:uav_write
+	wire  [31:0] customtoplevel_0_data_translator_avalon_universal_master_0_writedata;     // CustomTopLevel_0_data_translator:uav_writedata -> DATA_BRAM_s2_translator:uav_writedata
+	wire   [2:0] customtoplevel_0_data_translator_avalon_universal_master_0_burstcount;    // CustomTopLevel_0_data_translator:uav_burstcount -> DATA_BRAM_s2_translator:uav_burstcount
 
 	altera_merlin_master_translator #(
 		.AV_ADDRESS_W                (32),
@@ -58,24 +58,24 @@ module Nios_System_2A_mm_interconnect_0 (
 		.UAV_CONSTANT_BURST_BEHAVIOR (0),
 		.AV_LINEWRAPBURSTS           (0),
 		.AV_REGISTERINCOMINGSIGNALS  (0)
-	) customtoplevel_1_data_translator (
+	) customtoplevel_0_data_translator (
 		.clk                    (clocks_sys_clk_clk),                                                       //                       clk.clk
-		.reset                  (CustomTopLevel_1_reset_reset_bridge_in_reset_reset),                       //                     reset.reset
-		.uav_address            (customtoplevel_1_data_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
-		.uav_burstcount         (customtoplevel_1_data_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
-		.uav_read               (customtoplevel_1_data_translator_avalon_universal_master_0_read),          //                          .read
-		.uav_write              (customtoplevel_1_data_translator_avalon_universal_master_0_write),         //                          .write
-		.uav_waitrequest        (customtoplevel_1_data_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
-		.uav_readdatavalid      (customtoplevel_1_data_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
-		.uav_byteenable         (customtoplevel_1_data_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
-		.uav_readdata           (customtoplevel_1_data_translator_avalon_universal_master_0_readdata),      //                          .readdata
-		.uav_writedata          (customtoplevel_1_data_translator_avalon_universal_master_0_writedata),     //                          .writedata
-		.uav_lock               (customtoplevel_1_data_translator_avalon_universal_master_0_lock),          //                          .lock
-		.uav_debugaccess        (customtoplevel_1_data_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
-		.av_address             (CustomTopLevel_1_data_address),                                            //      avalon_anti_master_0.address
-		.av_waitrequest         (CustomTopLevel_1_data_waitrequest),                                        //                          .waitrequest
-		.av_read                (CustomTopLevel_1_data_read),                                               //                          .read
-		.av_readdata            (CustomTopLevel_1_data_readdata),                                           //                          .readdata
+		.reset                  (CustomTopLevel_0_reset_reset_bridge_in_reset_reset),                       //                     reset.reset
+		.uav_address            (customtoplevel_0_data_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
+		.uav_burstcount         (customtoplevel_0_data_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
+		.uav_read               (customtoplevel_0_data_translator_avalon_universal_master_0_read),          //                          .read
+		.uav_write              (customtoplevel_0_data_translator_avalon_universal_master_0_write),         //                          .write
+		.uav_waitrequest        (customtoplevel_0_data_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
+		.uav_readdatavalid      (customtoplevel_0_data_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
+		.uav_byteenable         (customtoplevel_0_data_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
+		.uav_readdata           (customtoplevel_0_data_translator_avalon_universal_master_0_readdata),      //                          .readdata
+		.uav_writedata          (customtoplevel_0_data_translator_avalon_universal_master_0_writedata),     //                          .writedata
+		.uav_lock               (customtoplevel_0_data_translator_avalon_universal_master_0_lock),          //                          .lock
+		.uav_debugaccess        (customtoplevel_0_data_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
+		.av_address             (CustomTopLevel_0_data_address),                                            //      avalon_anti_master_0.address
+		.av_waitrequest         (CustomTopLevel_0_data_waitrequest),                                        //                          .waitrequest
+		.av_read                (CustomTopLevel_0_data_read),                                               //                          .read
+		.av_readdata            (CustomTopLevel_0_data_readdata),                                           //                          .readdata
 		.av_burstcount          (1'b1),                                                                     //               (terminated)
 		.av_byteenable          (4'b1111),                                                                  //               (terminated)
 		.av_beginbursttransfer  (1'b0),                                                                     //               (terminated)
@@ -122,18 +122,18 @@ module Nios_System_2A_mm_interconnect_0 (
 		.AV_DATA_HOLD_CYCLES            (0)
 	) data_bram_s2_translator (
 		.clk                    (clocks_sys_clk_clk),                                                       //                      clk.clk
-		.reset                  (CustomTopLevel_1_reset_reset_bridge_in_reset_reset),                       //                    reset.reset
-		.uav_address            (customtoplevel_1_data_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
-		.uav_burstcount         (customtoplevel_1_data_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
-		.uav_read               (customtoplevel_1_data_translator_avalon_universal_master_0_read),          //                         .read
-		.uav_write              (customtoplevel_1_data_translator_avalon_universal_master_0_write),         //                         .write
-		.uav_waitrequest        (customtoplevel_1_data_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
-		.uav_readdatavalid      (customtoplevel_1_data_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
-		.uav_byteenable         (customtoplevel_1_data_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
-		.uav_readdata           (customtoplevel_1_data_translator_avalon_universal_master_0_readdata),      //                         .readdata
-		.uav_writedata          (customtoplevel_1_data_translator_avalon_universal_master_0_writedata),     //                         .writedata
-		.uav_lock               (customtoplevel_1_data_translator_avalon_universal_master_0_lock),          //                         .lock
-		.uav_debugaccess        (customtoplevel_1_data_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
+		.reset                  (CustomTopLevel_0_reset_reset_bridge_in_reset_reset),                       //                    reset.reset
+		.uav_address            (customtoplevel_0_data_translator_avalon_universal_master_0_address),       // avalon_universal_slave_0.address
+		.uav_burstcount         (customtoplevel_0_data_translator_avalon_universal_master_0_burstcount),    //                         .burstcount
+		.uav_read               (customtoplevel_0_data_translator_avalon_universal_master_0_read),          //                         .read
+		.uav_write              (customtoplevel_0_data_translator_avalon_universal_master_0_write),         //                         .write
+		.uav_waitrequest        (customtoplevel_0_data_translator_avalon_universal_master_0_waitrequest),   //                         .waitrequest
+		.uav_readdatavalid      (customtoplevel_0_data_translator_avalon_universal_master_0_readdatavalid), //                         .readdatavalid
+		.uav_byteenable         (customtoplevel_0_data_translator_avalon_universal_master_0_byteenable),    //                         .byteenable
+		.uav_readdata           (customtoplevel_0_data_translator_avalon_universal_master_0_readdata),      //                         .readdata
+		.uav_writedata          (customtoplevel_0_data_translator_avalon_universal_master_0_writedata),     //                         .writedata
+		.uav_lock               (customtoplevel_0_data_translator_avalon_universal_master_0_lock),          //                         .lock
+		.uav_debugaccess        (customtoplevel_0_data_translator_avalon_universal_master_0_debugaccess),   //                         .debugaccess
 		.av_address             (DATA_BRAM_s2_address),                                                     //      avalon_anti_slave_0.address
 		.av_write               (DATA_BRAM_s2_write),                                                       //                         .write
 		.av_readdata            (DATA_BRAM_s2_readdata),                                                    //                         .readdata

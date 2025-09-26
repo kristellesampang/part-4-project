@@ -9,6 +9,7 @@ use IEEE.numeric_std.all;
 entity Nios_System_2A is
 	port (
 		button_pio_external_connection_export : in    std_logic_vector(1 downto 0)  := (others => '0'); -- button_pio_external_connection.export
+		button_pio_irq_irq                    : out   std_logic;                                        --                 button_pio_irq.irq
 		clocks_ref_clk_clk                    : in    std_logic                     := '0';             --                 clocks_ref_clk.clk
 		clocks_ref_reset_reset                : in    std_logic                     := '0';             --               clocks_ref_reset.reset
 		clocks_sdram_clk_clk                  : out   std_logic;                                        --               clocks_sdram_clk.clk
@@ -64,7 +65,6 @@ architecture rtl of Nios_System_2A is
 
 	component Nios_System_2A_DATA_BRAM is
 		port (
-			clk         : in  std_logic                     := 'X';             -- clk
 			address     : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- address
 			clken       : in  std_logic                     := 'X';             -- clken
 			chipselect  : in  std_logic                     := 'X';             -- chipselect
@@ -72,8 +72,6 @@ architecture rtl of Nios_System_2A is
 			readdata    : out std_logic_vector(31 downto 0);                    -- readdata
 			writedata   : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			byteenable  : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
-			reset       : in  std_logic                     := 'X';             -- reset
-			reset_req   : in  std_logic                     := 'X';             -- reset_req
 			address2    : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- address
 			chipselect2 : in  std_logic                     := 'X';             -- chipselect
 			clken2      : in  std_logic                     := 'X';             -- clken
@@ -81,9 +79,9 @@ architecture rtl of Nios_System_2A is
 			readdata2   : out std_logic_vector(31 downto 0);                    -- readdata
 			writedata2  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			byteenable2 : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
-			clk2        : in  std_logic                     := 'X';             -- clk
-			reset2      : in  std_logic                     := 'X';             -- reset
-			reset_req2  : in  std_logic                     := 'X';             -- reset_req
+			clk         : in  std_logic                     := 'X';             -- clk
+			reset       : in  std_logic                     := 'X';             -- reset
+			reset_req   : in  std_logic                     := 'X';             -- reset_req
 			freeze      : in  std_logic                     := 'X'              -- freeze
 		);
 	end component Nios_System_2A_DATA_BRAM;
@@ -103,26 +101,23 @@ architecture rtl of Nios_System_2A is
 
 	component Nios_System_2A_WEIGHT_BRAM is
 		port (
-			clk         : in  std_logic                     := 'X';             -- clk
-			address     : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- address
+			address     : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
 			clken       : in  std_logic                     := 'X';             -- clken
 			chipselect  : in  std_logic                     := 'X';             -- chipselect
 			write       : in  std_logic                     := 'X';             -- write
 			readdata    : out std_logic_vector(31 downto 0);                    -- readdata
 			writedata   : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			byteenable  : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
-			reset       : in  std_logic                     := 'X';             -- reset
-			reset_req   : in  std_logic                     := 'X';             -- reset_req
-			address2    : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- address
+			address2    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
 			chipselect2 : in  std_logic                     := 'X';             -- chipselect
 			clken2      : in  std_logic                     := 'X';             -- clken
 			write2      : in  std_logic                     := 'X';             -- write
 			readdata2   : out std_logic_vector(31 downto 0);                    -- readdata
 			writedata2  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			byteenable2 : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
-			clk2        : in  std_logic                     := 'X';             -- clk
-			reset2      : in  std_logic                     := 'X';             -- reset
-			reset_req2  : in  std_logic                     := 'X';             -- reset_req
+			clk         : in  std_logic                     := 'X';             -- clk
+			reset       : in  std_logic                     := 'X';             -- reset
+			reset_req   : in  std_logic                     := 'X';             -- reset_req
 			freeze      : in  std_logic                     := 'X'              -- freeze
 		);
 	end component Nios_System_2A_WEIGHT_BRAM;
@@ -149,11 +144,13 @@ architecture rtl of Nios_System_2A is
 			d_waitrequest                       : in  std_logic                     := 'X';             -- waitrequest
 			d_write                             : out std_logic;                                        -- write
 			d_writedata                         : out std_logic_vector(31 downto 0);                    -- writedata
+			d_readdatavalid                     : in  std_logic                     := 'X';             -- readdatavalid
 			debug_mem_slave_debugaccess_to_roms : out std_logic;                                        -- debugaccess
 			i_address                           : out std_logic_vector(27 downto 0);                    -- address
 			i_read                              : out std_logic;                                        -- read
 			i_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			i_waitrequest                       : in  std_logic                     := 'X';             -- waitrequest
+			i_readdatavalid                     : in  std_logic                     := 'X';             -- readdatavalid
 			irq                                 : in  std_logic_vector(31 downto 0) := (others => 'X'); -- irq
 			debug_reset_request                 : out std_logic;                                        -- reset
 			debug_mem_slave_address             : in  std_logic_vector(8 downto 0)  := (others => 'X'); -- address
@@ -240,11 +237,11 @@ architecture rtl of Nios_System_2A is
 	component Nios_System_2A_mm_interconnect_0 is
 		port (
 			clocks_sys_clk_clk                                 : in  std_logic                     := 'X';             -- clk
-			CustomTopLevel_1_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
-			CustomTopLevel_1_data_address                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- address
-			CustomTopLevel_1_data_waitrequest                  : out std_logic;                                        -- waitrequest
-			CustomTopLevel_1_data_read                         : in  std_logic                     := 'X';             -- read
-			CustomTopLevel_1_data_readdata                     : out std_logic_vector(31 downto 0);                    -- readdata
+			CustomTopLevel_0_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
+			CustomTopLevel_0_data_address                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- address
+			CustomTopLevel_0_data_waitrequest                  : out std_logic;                                        -- waitrequest
+			CustomTopLevel_0_data_read                         : in  std_logic                     := 'X';             -- read
+			CustomTopLevel_0_data_readdata                     : out std_logic_vector(31 downto 0);                    -- readdata
 			DATA_BRAM_s2_address                               : out std_logic_vector(3 downto 0);                     -- address
 			DATA_BRAM_s2_write                                 : out std_logic;                                        -- write
 			DATA_BRAM_s2_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -264,6 +261,7 @@ architecture rtl of Nios_System_2A is
 			cpu_data_master_byteenable              : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
 			cpu_data_master_read                    : in  std_logic                     := 'X';             -- read
 			cpu_data_master_readdata                : out std_logic_vector(31 downto 0);                    -- readdata
+			cpu_data_master_readdatavalid           : out std_logic;                                        -- readdatavalid
 			cpu_data_master_write                   : in  std_logic                     := 'X';             -- write
 			cpu_data_master_writedata               : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			cpu_data_master_debugaccess             : in  std_logic                     := 'X';             -- debugaccess
@@ -271,6 +269,7 @@ architecture rtl of Nios_System_2A is
 			cpu_instruction_master_waitrequest      : out std_logic;                                        -- waitrequest
 			cpu_instruction_master_read             : in  std_logic                     := 'X';             -- read
 			cpu_instruction_master_readdata         : out std_logic_vector(31 downto 0);                    -- readdata
+			cpu_instruction_master_readdatavalid    : out std_logic;                                        -- readdatavalid
 			BUTTON_pio_s1_address                   : out std_logic_vector(1 downto 0);                     -- address
 			BUTTON_pio_s1_write                     : out std_logic;                                        -- write
 			BUTTON_pio_s1_readdata                  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -284,11 +283,11 @@ architecture rtl of Nios_System_2A is
 			cpu_debug_mem_slave_byteenable          : out std_logic_vector(3 downto 0);                     -- byteenable
 			cpu_debug_mem_slave_waitrequest         : in  std_logic                     := 'X';             -- waitrequest
 			cpu_debug_mem_slave_debugaccess         : out std_logic;                                        -- debugaccess
-			CustomTopLevel_1_control_address        : out std_logic_vector(2 downto 0);                     -- address
-			CustomTopLevel_1_control_write          : out std_logic;                                        -- write
-			CustomTopLevel_1_control_read           : out std_logic;                                        -- read
-			CustomTopLevel_1_control_readdata       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			CustomTopLevel_1_control_writedata      : out std_logic_vector(31 downto 0);                    -- writedata
+			CustomTopLevel_0_control_address        : out std_logic_vector(2 downto 0);                     -- address
+			CustomTopLevel_0_control_write          : out std_logic;                                        -- write
+			CustomTopLevel_0_control_read           : out std_logic;                                        -- read
+			CustomTopLevel_0_control_readdata       : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			CustomTopLevel_0_control_writedata      : out std_logic_vector(31 downto 0);                    -- writedata
 			DATA_BRAM_s1_address                    : out std_logic_vector(3 downto 0);                     -- address
 			DATA_BRAM_s1_write                      : out std_logic;                                        -- write
 			DATA_BRAM_s1_readdata                   : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -329,7 +328,7 @@ architecture rtl of Nios_System_2A is
 			sdram_s1_readdatavalid                  : in  std_logic                     := 'X';             -- readdatavalid
 			sdram_s1_waitrequest                    : in  std_logic                     := 'X';             -- waitrequest
 			sdram_s1_chipselect                     : out std_logic;                                        -- chipselect
-			WEIGHT_BRAM_s1_address                  : out std_logic_vector(3 downto 0);                     -- address
+			WEIGHT_BRAM_s1_address                  : out std_logic_vector(1 downto 0);                     -- address
 			WEIGHT_BRAM_s1_write                    : out std_logic;                                        -- write
 			WEIGHT_BRAM_s1_readdata                 : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			WEIGHT_BRAM_s1_writedata                : out std_logic_vector(31 downto 0);                    -- writedata
@@ -342,12 +341,12 @@ architecture rtl of Nios_System_2A is
 	component Nios_System_2A_mm_interconnect_2 is
 		port (
 			clocks_sys_clk_clk                                 : in  std_logic                     := 'X';             -- clk
-			CustomTopLevel_1_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
-			CustomTopLevel_1_weight_address                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- address
-			CustomTopLevel_1_weight_waitrequest                : out std_logic;                                        -- waitrequest
-			CustomTopLevel_1_weight_read                       : in  std_logic                     := 'X';             -- read
-			CustomTopLevel_1_weight_readdata                   : out std_logic_vector(31 downto 0);                    -- readdata
-			WEIGHT_BRAM_s2_address                             : out std_logic_vector(3 downto 0);                     -- address
+			CustomTopLevel_0_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
+			CustomTopLevel_0_weight_address                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- address
+			CustomTopLevel_0_weight_waitrequest                : out std_logic;                                        -- waitrequest
+			CustomTopLevel_0_weight_read                       : in  std_logic                     := 'X';             -- read
+			CustomTopLevel_0_weight_readdata                   : out std_logic_vector(31 downto 0);                    -- readdata
+			WEIGHT_BRAM_s2_address                             : out std_logic_vector(1 downto 0);                     -- address
 			WEIGHT_BRAM_s2_write                               : out std_logic;                                        -- write
 			WEIGHT_BRAM_s2_readdata                            : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			WEIGHT_BRAM_s2_writedata                           : out std_logic_vector(31 downto 0);                    -- writedata
@@ -359,10 +358,9 @@ architecture rtl of Nios_System_2A is
 
 	component Nios_System_2A_irq_mapper is
 		port (
-			clk           : in  std_logic                     := 'X'; -- clk
-			reset         : in  std_logic                     := 'X'; -- reset
-			receiver0_irq : in  std_logic                     := 'X'; -- irq
-			sender_irq    : out std_logic_vector(31 downto 0)         -- irq
+			clk        : in  std_logic                     := 'X'; -- clk
+			reset      : in  std_logic                     := 'X'; -- reset
+			sender_irq : out std_logic_vector(31 downto 0)         -- irq
 		);
 	end component Nios_System_2A_irq_mapper;
 
@@ -432,11 +430,11 @@ architecture rtl of Nios_System_2A is
 		);
 	end component altera_reset_controller;
 
-	signal clocks_sys_clk_clk                                            : std_logic;                     -- clocks:sys_clk_clk -> [BUTTON_pio:clk, CustomTopLevel_1:clk, DATA_BRAM:clk, DATA_BRAM:clk2, LED_pio:clk, WEIGHT_BRAM:clk, WEIGHT_BRAM:clk2, cpu:clk, high_res_timer:clk, irq_mapper:clk, jtag_uart:clk, mm_interconnect_0:clocks_sys_clk_clk, mm_interconnect_1:clocks_sys_clk_clk, mm_interconnect_2:clocks_sys_clk_clk, onchip_memory:clk, rst_controller:clk, sdram:clk]
-	signal customtoplevel_1_data_readdata                                : std_logic_vector(31 downto 0); -- mm_interconnect_0:CustomTopLevel_1_data_readdata -> CustomTopLevel_1:avm_data_readdata
-	signal customtoplevel_1_data_waitrequest                             : std_logic;                     -- mm_interconnect_0:CustomTopLevel_1_data_waitrequest -> CustomTopLevel_1:avm_data_waitrequest
-	signal customtoplevel_1_data_address                                 : std_logic_vector(31 downto 0); -- CustomTopLevel_1:avm_data_address -> mm_interconnect_0:CustomTopLevel_1_data_address
-	signal customtoplevel_1_data_read                                    : std_logic;                     -- CustomTopLevel_1:avm_data_read -> mm_interconnect_0:CustomTopLevel_1_data_read
+	signal clocks_sys_clk_clk                                            : std_logic;                     -- clocks:sys_clk_clk -> [BUTTON_pio:clk, CustomTopLevel_0:clk, DATA_BRAM:clk, LED_pio:clk, WEIGHT_BRAM:clk, cpu:clk, high_res_timer:clk, irq_mapper:clk, jtag_uart:clk, mm_interconnect_0:clocks_sys_clk_clk, mm_interconnect_1:clocks_sys_clk_clk, mm_interconnect_2:clocks_sys_clk_clk, onchip_memory:clk, rst_controller:clk, sdram:clk]
+	signal customtoplevel_0_data_readdata                                : std_logic_vector(31 downto 0); -- mm_interconnect_0:CustomTopLevel_0_data_readdata -> CustomTopLevel_0:avm_data_readdata
+	signal customtoplevel_0_data_waitrequest                             : std_logic;                     -- mm_interconnect_0:CustomTopLevel_0_data_waitrequest -> CustomTopLevel_0:avm_data_waitrequest
+	signal customtoplevel_0_data_address                                 : std_logic_vector(31 downto 0); -- CustomTopLevel_0:avm_data_address -> mm_interconnect_0:CustomTopLevel_0_data_address
+	signal customtoplevel_0_data_read                                    : std_logic;                     -- CustomTopLevel_0:avm_data_read -> mm_interconnect_0:CustomTopLevel_0_data_read
 	signal mm_interconnect_0_data_bram_s2_chipselect                     : std_logic;                     -- mm_interconnect_0:DATA_BRAM_s2_chipselect -> DATA_BRAM:chipselect2
 	signal mm_interconnect_0_data_bram_s2_readdata                       : std_logic_vector(31 downto 0); -- DATA_BRAM:readdata2 -> mm_interconnect_0:DATA_BRAM_s2_readdata
 	signal mm_interconnect_0_data_bram_s2_address                        : std_logic_vector(3 downto 0);  -- mm_interconnect_0:DATA_BRAM_s2_address -> DATA_BRAM:address2
@@ -450,12 +448,14 @@ architecture rtl of Nios_System_2A is
 	signal cpu_data_master_address                                       : std_logic_vector(27 downto 0); -- cpu:d_address -> mm_interconnect_1:cpu_data_master_address
 	signal cpu_data_master_byteenable                                    : std_logic_vector(3 downto 0);  -- cpu:d_byteenable -> mm_interconnect_1:cpu_data_master_byteenable
 	signal cpu_data_master_read                                          : std_logic;                     -- cpu:d_read -> mm_interconnect_1:cpu_data_master_read
+	signal cpu_data_master_readdatavalid                                 : std_logic;                     -- mm_interconnect_1:cpu_data_master_readdatavalid -> cpu:d_readdatavalid
 	signal cpu_data_master_write                                         : std_logic;                     -- cpu:d_write -> mm_interconnect_1:cpu_data_master_write
 	signal cpu_data_master_writedata                                     : std_logic_vector(31 downto 0); -- cpu:d_writedata -> mm_interconnect_1:cpu_data_master_writedata
 	signal cpu_instruction_master_readdata                               : std_logic_vector(31 downto 0); -- mm_interconnect_1:cpu_instruction_master_readdata -> cpu:i_readdata
 	signal cpu_instruction_master_waitrequest                            : std_logic;                     -- mm_interconnect_1:cpu_instruction_master_waitrequest -> cpu:i_waitrequest
 	signal cpu_instruction_master_address                                : std_logic_vector(27 downto 0); -- cpu:i_address -> mm_interconnect_1:cpu_instruction_master_address
 	signal cpu_instruction_master_read                                   : std_logic;                     -- cpu:i_read -> mm_interconnect_1:cpu_instruction_master_read
+	signal cpu_instruction_master_readdatavalid                          : std_logic;                     -- mm_interconnect_1:cpu_instruction_master_readdatavalid -> cpu:i_readdatavalid
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_chipselect      : std_logic;                     -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_chipselect -> jtag_uart:av_chipselect
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_readdata        : std_logic_vector(31 downto 0); -- jtag_uart:av_readdata -> mm_interconnect_1:jtag_uart_avalon_jtag_slave_readdata
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_waitrequest     : std_logic;                     -- jtag_uart:av_waitrequest -> mm_interconnect_1:jtag_uart_avalon_jtag_slave_waitrequest
@@ -463,11 +463,11 @@ architecture rtl of Nios_System_2A is
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_read            : std_logic;                     -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_read -> mm_interconnect_1_jtag_uart_avalon_jtag_slave_read:in
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_write           : std_logic;                     -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_write -> mm_interconnect_1_jtag_uart_avalon_jtag_slave_write:in
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_writedata       : std_logic_vector(31 downto 0); -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_writedata -> jtag_uart:av_writedata
-	signal mm_interconnect_1_customtoplevel_1_control_readdata           : std_logic_vector(31 downto 0); -- CustomTopLevel_1:avs_control_readdata -> mm_interconnect_1:CustomTopLevel_1_control_readdata
-	signal mm_interconnect_1_customtoplevel_1_control_address            : std_logic_vector(2 downto 0);  -- mm_interconnect_1:CustomTopLevel_1_control_address -> CustomTopLevel_1:avs_control_address
-	signal mm_interconnect_1_customtoplevel_1_control_read               : std_logic;                     -- mm_interconnect_1:CustomTopLevel_1_control_read -> CustomTopLevel_1:avs_control_read
-	signal mm_interconnect_1_customtoplevel_1_control_write              : std_logic;                     -- mm_interconnect_1:CustomTopLevel_1_control_write -> CustomTopLevel_1:avs_control_write
-	signal mm_interconnect_1_customtoplevel_1_control_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_1:CustomTopLevel_1_control_writedata -> CustomTopLevel_1:avs_control_writedata
+	signal mm_interconnect_1_customtoplevel_0_control_readdata           : std_logic_vector(31 downto 0); -- CustomTopLevel_0:avs_control_readdata -> mm_interconnect_1:CustomTopLevel_0_control_readdata
+	signal mm_interconnect_1_customtoplevel_0_control_address            : std_logic_vector(2 downto 0);  -- mm_interconnect_1:CustomTopLevel_0_control_address -> CustomTopLevel_0:avs_control_address
+	signal mm_interconnect_1_customtoplevel_0_control_read               : std_logic;                     -- mm_interconnect_1:CustomTopLevel_0_control_read -> CustomTopLevel_0:avs_control_read
+	signal mm_interconnect_1_customtoplevel_0_control_write              : std_logic;                     -- mm_interconnect_1:CustomTopLevel_0_control_write -> CustomTopLevel_0:avs_control_write
+	signal mm_interconnect_1_customtoplevel_0_control_writedata          : std_logic_vector(31 downto 0); -- mm_interconnect_1:CustomTopLevel_0_control_writedata -> CustomTopLevel_0:avs_control_writedata
 	signal mm_interconnect_1_cpu_debug_mem_slave_readdata                : std_logic_vector(31 downto 0); -- cpu:debug_mem_slave_readdata -> mm_interconnect_1:cpu_debug_mem_slave_readdata
 	signal mm_interconnect_1_cpu_debug_mem_slave_waitrequest             : std_logic;                     -- cpu:debug_mem_slave_waitrequest -> mm_interconnect_1:cpu_debug_mem_slave_waitrequest
 	signal mm_interconnect_1_cpu_debug_mem_slave_debugaccess             : std_logic;                     -- mm_interconnect_1:cpu_debug_mem_slave_debugaccess -> cpu:debug_mem_slave_debugaccess
@@ -483,15 +483,6 @@ architecture rtl of Nios_System_2A is
 	signal mm_interconnect_1_onchip_memory_s1_write                      : std_logic;                     -- mm_interconnect_1:onchip_memory_s1_write -> onchip_memory:write
 	signal mm_interconnect_1_onchip_memory_s1_writedata                  : std_logic_vector(31 downto 0); -- mm_interconnect_1:onchip_memory_s1_writedata -> onchip_memory:writedata
 	signal mm_interconnect_1_onchip_memory_s1_clken                      : std_logic;                     -- mm_interconnect_1:onchip_memory_s1_clken -> onchip_memory:clken
-	signal mm_interconnect_1_sdram_s1_chipselect                         : std_logic;                     -- mm_interconnect_1:sdram_s1_chipselect -> sdram:az_cs
-	signal mm_interconnect_1_sdram_s1_readdata                           : std_logic_vector(15 downto 0); -- sdram:za_data -> mm_interconnect_1:sdram_s1_readdata
-	signal mm_interconnect_1_sdram_s1_waitrequest                        : std_logic;                     -- sdram:za_waitrequest -> mm_interconnect_1:sdram_s1_waitrequest
-	signal mm_interconnect_1_sdram_s1_address                            : std_logic_vector(24 downto 0); -- mm_interconnect_1:sdram_s1_address -> sdram:az_addr
-	signal mm_interconnect_1_sdram_s1_read                               : std_logic;                     -- mm_interconnect_1:sdram_s1_read -> mm_interconnect_1_sdram_s1_read:in
-	signal mm_interconnect_1_sdram_s1_byteenable                         : std_logic_vector(1 downto 0);  -- mm_interconnect_1:sdram_s1_byteenable -> mm_interconnect_1_sdram_s1_byteenable:in
-	signal mm_interconnect_1_sdram_s1_readdatavalid                      : std_logic;                     -- sdram:za_valid -> mm_interconnect_1:sdram_s1_readdatavalid
-	signal mm_interconnect_1_sdram_s1_write                              : std_logic;                     -- mm_interconnect_1:sdram_s1_write -> mm_interconnect_1_sdram_s1_write:in
-	signal mm_interconnect_1_sdram_s1_writedata                          : std_logic_vector(15 downto 0); -- mm_interconnect_1:sdram_s1_writedata -> sdram:az_data
 	signal mm_interconnect_1_high_res_timer_s1_chipselect                : std_logic;                     -- mm_interconnect_1:high_res_timer_s1_chipselect -> high_res_timer:chipselect
 	signal mm_interconnect_1_high_res_timer_s1_readdata                  : std_logic_vector(15 downto 0); -- high_res_timer:readdata -> mm_interconnect_1:high_res_timer_s1_readdata
 	signal mm_interconnect_1_high_res_timer_s1_address                   : std_logic_vector(2 downto 0);  -- mm_interconnect_1:high_res_timer_s1_address -> high_res_timer:address
@@ -507,6 +498,15 @@ architecture rtl of Nios_System_2A is
 	signal mm_interconnect_1_led_pio_s1_address                          : std_logic_vector(1 downto 0);  -- mm_interconnect_1:LED_pio_s1_address -> LED_pio:address
 	signal mm_interconnect_1_led_pio_s1_write                            : std_logic;                     -- mm_interconnect_1:LED_pio_s1_write -> mm_interconnect_1_led_pio_s1_write:in
 	signal mm_interconnect_1_led_pio_s1_writedata                        : std_logic_vector(31 downto 0); -- mm_interconnect_1:LED_pio_s1_writedata -> LED_pio:writedata
+	signal mm_interconnect_1_sdram_s1_chipselect                         : std_logic;                     -- mm_interconnect_1:sdram_s1_chipselect -> sdram:az_cs
+	signal mm_interconnect_1_sdram_s1_readdata                           : std_logic_vector(15 downto 0); -- sdram:za_data -> mm_interconnect_1:sdram_s1_readdata
+	signal mm_interconnect_1_sdram_s1_waitrequest                        : std_logic;                     -- sdram:za_waitrequest -> mm_interconnect_1:sdram_s1_waitrequest
+	signal mm_interconnect_1_sdram_s1_address                            : std_logic_vector(24 downto 0); -- mm_interconnect_1:sdram_s1_address -> sdram:az_addr
+	signal mm_interconnect_1_sdram_s1_read                               : std_logic;                     -- mm_interconnect_1:sdram_s1_read -> mm_interconnect_1_sdram_s1_read:in
+	signal mm_interconnect_1_sdram_s1_byteenable                         : std_logic_vector(1 downto 0);  -- mm_interconnect_1:sdram_s1_byteenable -> mm_interconnect_1_sdram_s1_byteenable:in
+	signal mm_interconnect_1_sdram_s1_readdatavalid                      : std_logic;                     -- sdram:za_valid -> mm_interconnect_1:sdram_s1_readdatavalid
+	signal mm_interconnect_1_sdram_s1_write                              : std_logic;                     -- mm_interconnect_1:sdram_s1_write -> mm_interconnect_1_sdram_s1_write:in
+	signal mm_interconnect_1_sdram_s1_writedata                          : std_logic_vector(15 downto 0); -- mm_interconnect_1:sdram_s1_writedata -> sdram:az_data
 	signal mm_interconnect_1_data_bram_s1_chipselect                     : std_logic;                     -- mm_interconnect_1:DATA_BRAM_s1_chipselect -> DATA_BRAM:chipselect
 	signal mm_interconnect_1_data_bram_s1_readdata                       : std_logic_vector(31 downto 0); -- DATA_BRAM:readdata -> mm_interconnect_1:DATA_BRAM_s1_readdata
 	signal mm_interconnect_1_data_bram_s1_address                        : std_logic_vector(3 downto 0);  -- mm_interconnect_1:DATA_BRAM_s1_address -> DATA_BRAM:address
@@ -516,35 +516,34 @@ architecture rtl of Nios_System_2A is
 	signal mm_interconnect_1_data_bram_s1_clken                          : std_logic;                     -- mm_interconnect_1:DATA_BRAM_s1_clken -> DATA_BRAM:clken
 	signal mm_interconnect_1_weight_bram_s1_chipselect                   : std_logic;                     -- mm_interconnect_1:WEIGHT_BRAM_s1_chipselect -> WEIGHT_BRAM:chipselect
 	signal mm_interconnect_1_weight_bram_s1_readdata                     : std_logic_vector(31 downto 0); -- WEIGHT_BRAM:readdata -> mm_interconnect_1:WEIGHT_BRAM_s1_readdata
-	signal mm_interconnect_1_weight_bram_s1_address                      : std_logic_vector(3 downto 0);  -- mm_interconnect_1:WEIGHT_BRAM_s1_address -> WEIGHT_BRAM:address
+	signal mm_interconnect_1_weight_bram_s1_address                      : std_logic_vector(1 downto 0);  -- mm_interconnect_1:WEIGHT_BRAM_s1_address -> WEIGHT_BRAM:address
 	signal mm_interconnect_1_weight_bram_s1_byteenable                   : std_logic_vector(3 downto 0);  -- mm_interconnect_1:WEIGHT_BRAM_s1_byteenable -> WEIGHT_BRAM:byteenable
 	signal mm_interconnect_1_weight_bram_s1_write                        : std_logic;                     -- mm_interconnect_1:WEIGHT_BRAM_s1_write -> WEIGHT_BRAM:write
 	signal mm_interconnect_1_weight_bram_s1_writedata                    : std_logic_vector(31 downto 0); -- mm_interconnect_1:WEIGHT_BRAM_s1_writedata -> WEIGHT_BRAM:writedata
 	signal mm_interconnect_1_weight_bram_s1_clken                        : std_logic;                     -- mm_interconnect_1:WEIGHT_BRAM_s1_clken -> WEIGHT_BRAM:clken
-	signal customtoplevel_1_weight_readdata                              : std_logic_vector(31 downto 0); -- mm_interconnect_2:CustomTopLevel_1_weight_readdata -> CustomTopLevel_1:avm_weight_readdata
-	signal customtoplevel_1_weight_waitrequest                           : std_logic;                     -- mm_interconnect_2:CustomTopLevel_1_weight_waitrequest -> CustomTopLevel_1:avm_weight_waitrequest
-	signal customtoplevel_1_weight_address                               : std_logic_vector(31 downto 0); -- CustomTopLevel_1:avm_weight_address -> mm_interconnect_2:CustomTopLevel_1_weight_address
-	signal customtoplevel_1_weight_read                                  : std_logic;                     -- CustomTopLevel_1:avm_weight_read -> mm_interconnect_2:CustomTopLevel_1_weight_read
+	signal customtoplevel_0_weight_readdata                              : std_logic_vector(31 downto 0); -- mm_interconnect_2:CustomTopLevel_0_weight_readdata -> CustomTopLevel_0:avm_weight_readdata
+	signal customtoplevel_0_weight_waitrequest                           : std_logic;                     -- mm_interconnect_2:CustomTopLevel_0_weight_waitrequest -> CustomTopLevel_0:avm_weight_waitrequest
+	signal customtoplevel_0_weight_address                               : std_logic_vector(31 downto 0); -- CustomTopLevel_0:avm_weight_address -> mm_interconnect_2:CustomTopLevel_0_weight_address
+	signal customtoplevel_0_weight_read                                  : std_logic;                     -- CustomTopLevel_0:avm_weight_read -> mm_interconnect_2:CustomTopLevel_0_weight_read
 	signal mm_interconnect_2_weight_bram_s2_chipselect                   : std_logic;                     -- mm_interconnect_2:WEIGHT_BRAM_s2_chipselect -> WEIGHT_BRAM:chipselect2
 	signal mm_interconnect_2_weight_bram_s2_readdata                     : std_logic_vector(31 downto 0); -- WEIGHT_BRAM:readdata2 -> mm_interconnect_2:WEIGHT_BRAM_s2_readdata
-	signal mm_interconnect_2_weight_bram_s2_address                      : std_logic_vector(3 downto 0);  -- mm_interconnect_2:WEIGHT_BRAM_s2_address -> WEIGHT_BRAM:address2
+	signal mm_interconnect_2_weight_bram_s2_address                      : std_logic_vector(1 downto 0);  -- mm_interconnect_2:WEIGHT_BRAM_s2_address -> WEIGHT_BRAM:address2
 	signal mm_interconnect_2_weight_bram_s2_byteenable                   : std_logic_vector(3 downto 0);  -- mm_interconnect_2:WEIGHT_BRAM_s2_byteenable -> WEIGHT_BRAM:byteenable2
 	signal mm_interconnect_2_weight_bram_s2_write                        : std_logic;                     -- mm_interconnect_2:WEIGHT_BRAM_s2_write -> WEIGHT_BRAM:write2
 	signal mm_interconnect_2_weight_bram_s2_writedata                    : std_logic_vector(31 downto 0); -- mm_interconnect_2:WEIGHT_BRAM_s2_writedata -> WEIGHT_BRAM:writedata2
 	signal mm_interconnect_2_weight_bram_s2_clken                        : std_logic;                     -- mm_interconnect_2:WEIGHT_BRAM_s2_clken -> WEIGHT_BRAM:clken2
-	signal irq_mapper_receiver0_irq                                      : std_logic;                     -- BUTTON_pio:irq -> irq_mapper:receiver0_irq
 	signal cpu_irq_irq                                                   : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> cpu:irq
-	signal rst_controller_reset_out_reset                                : std_logic;                     -- rst_controller:reset_out -> [CustomTopLevel_1:reset, DATA_BRAM:reset, DATA_BRAM:reset2, WEIGHT_BRAM:reset, WEIGHT_BRAM:reset2, irq_mapper:reset, mm_interconnect_0:CustomTopLevel_1_reset_reset_bridge_in_reset_reset, mm_interconnect_1:cpu_reset_reset_bridge_in_reset_reset, mm_interconnect_2:CustomTopLevel_1_reset_reset_bridge_in_reset_reset, onchip_memory:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
-	signal rst_controller_reset_out_reset_req                            : std_logic;                     -- rst_controller:reset_req -> [DATA_BRAM:reset_req, DATA_BRAM:reset_req2, WEIGHT_BRAM:reset_req, WEIGHT_BRAM:reset_req2, cpu:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
+	signal rst_controller_reset_out_reset                                : std_logic;                     -- rst_controller:reset_out -> [CustomTopLevel_0:reset, DATA_BRAM:reset, WEIGHT_BRAM:reset, irq_mapper:reset, mm_interconnect_0:CustomTopLevel_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:cpu_reset_reset_bridge_in_reset_reset, mm_interconnect_2:CustomTopLevel_0_reset_reset_bridge_in_reset_reset, onchip_memory:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
+	signal rst_controller_reset_out_reset_req                            : std_logic;                     -- rst_controller:reset_req -> [DATA_BRAM:reset_req, WEIGHT_BRAM:reset_req, cpu:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
 	signal cpu_debug_reset_request_reset                                 : std_logic;                     -- cpu:debug_reset_request -> rst_controller:reset_in0
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_read:inv -> jtag_uart:av_read_n
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_write:inv -> jtag_uart:av_write_n
-	signal mm_interconnect_1_sdram_s1_read_ports_inv                     : std_logic;                     -- mm_interconnect_1_sdram_s1_read:inv -> sdram:az_rd_n
-	signal mm_interconnect_1_sdram_s1_byteenable_ports_inv               : std_logic_vector(1 downto 0);  -- mm_interconnect_1_sdram_s1_byteenable:inv -> sdram:az_be_n
-	signal mm_interconnect_1_sdram_s1_write_ports_inv                    : std_logic;                     -- mm_interconnect_1_sdram_s1_write:inv -> sdram:az_wr_n
 	signal mm_interconnect_1_high_res_timer_s1_write_ports_inv           : std_logic;                     -- mm_interconnect_1_high_res_timer_s1_write:inv -> high_res_timer:write_n
 	signal mm_interconnect_1_button_pio_s1_write_ports_inv               : std_logic;                     -- mm_interconnect_1_button_pio_s1_write:inv -> BUTTON_pio:write_n
 	signal mm_interconnect_1_led_pio_s1_write_ports_inv                  : std_logic;                     -- mm_interconnect_1_led_pio_s1_write:inv -> LED_pio:write_n
+	signal mm_interconnect_1_sdram_s1_read_ports_inv                     : std_logic;                     -- mm_interconnect_1_sdram_s1_read:inv -> sdram:az_rd_n
+	signal mm_interconnect_1_sdram_s1_byteenable_ports_inv               : std_logic_vector(1 downto 0);  -- mm_interconnect_1_sdram_s1_byteenable:inv -> sdram:az_be_n
+	signal mm_interconnect_1_sdram_s1_write_ports_inv                    : std_logic;                     -- mm_interconnect_1_sdram_s1_write:inv -> sdram:az_wr_n
 	signal rst_controller_reset_out_reset_ports_inv                      : std_logic;                     -- rst_controller_reset_out_reset:inv -> [BUTTON_pio:reset_n, LED_pio:reset_n, cpu:reset_n, high_res_timer:reset_n, jtag_uart:rst_n, sdram:reset_n]
 
 begin
@@ -559,31 +558,30 @@ begin
 			chipselect => mm_interconnect_1_button_pio_s1_chipselect,      --                    .chipselect
 			readdata   => mm_interconnect_1_button_pio_s1_readdata,        --                    .readdata
 			in_port    => button_pio_external_connection_export,           -- external_connection.export
-			irq        => irq_mapper_receiver0_irq                         --                 irq.irq
+			irq        => button_pio_irq_irq                               --                 irq.irq
 		);
 
-	customtoplevel_1 : component top_level_systolic_array
+	customtoplevel_0 : component top_level_systolic_array
 		port map (
 			clk                    => clocks_sys_clk_clk,                                   --   clock.clk
 			reset                  => rst_controller_reset_out_reset,                       --   reset.reset
-			avs_control_address    => mm_interconnect_1_customtoplevel_1_control_address,   -- control.address
-			avs_control_write      => mm_interconnect_1_customtoplevel_1_control_write,     --        .write
-			avs_control_writedata  => mm_interconnect_1_customtoplevel_1_control_writedata, --        .writedata
-			avs_control_read       => mm_interconnect_1_customtoplevel_1_control_read,      --        .read
-			avs_control_readdata   => mm_interconnect_1_customtoplevel_1_control_readdata,  --        .readdata
-			avm_data_address       => customtoplevel_1_data_address,                        --    data.address
-			avm_data_read          => customtoplevel_1_data_read,                           --        .read
-			avm_data_readdata      => customtoplevel_1_data_readdata,                       --        .readdata
-			avm_data_waitrequest   => customtoplevel_1_data_waitrequest,                    --        .waitrequest
-			avm_weight_address     => customtoplevel_1_weight_address,                      --  weight.address
-			avm_weight_read        => customtoplevel_1_weight_read,                         --        .read
-			avm_weight_readdata    => customtoplevel_1_weight_readdata,                     --        .readdata
-			avm_weight_waitrequest => customtoplevel_1_weight_waitrequest                   --        .waitrequest
+			avs_control_address    => mm_interconnect_1_customtoplevel_0_control_address,   -- control.address
+			avs_control_write      => mm_interconnect_1_customtoplevel_0_control_write,     --        .write
+			avs_control_writedata  => mm_interconnect_1_customtoplevel_0_control_writedata, --        .writedata
+			avs_control_read       => mm_interconnect_1_customtoplevel_0_control_read,      --        .read
+			avs_control_readdata   => mm_interconnect_1_customtoplevel_0_control_readdata,  --        .readdata
+			avm_data_address       => customtoplevel_0_data_address,                        --    data.address
+			avm_data_read          => customtoplevel_0_data_read,                           --        .read
+			avm_data_readdata      => customtoplevel_0_data_readdata,                       --        .readdata
+			avm_data_waitrequest   => customtoplevel_0_data_waitrequest,                    --        .waitrequest
+			avm_weight_address     => customtoplevel_0_weight_address,                      --  weight.address
+			avm_weight_read        => customtoplevel_0_weight_read,                         --        .read
+			avm_weight_readdata    => customtoplevel_0_weight_readdata,                     --        .readdata
+			avm_weight_waitrequest => customtoplevel_0_weight_waitrequest                   --        .waitrequest
 		);
 
 	data_bram : component Nios_System_2A_DATA_BRAM
 		port map (
-			clk         => clocks_sys_clk_clk,                        --   clk1.clk
 			address     => mm_interconnect_1_data_bram_s1_address,    --     s1.address
 			clken       => mm_interconnect_1_data_bram_s1_clken,      --       .clken
 			chipselect  => mm_interconnect_1_data_bram_s1_chipselect, --       .chipselect
@@ -591,8 +589,6 @@ begin
 			readdata    => mm_interconnect_1_data_bram_s1_readdata,   --       .readdata
 			writedata   => mm_interconnect_1_data_bram_s1_writedata,  --       .writedata
 			byteenable  => mm_interconnect_1_data_bram_s1_byteenable, --       .byteenable
-			reset       => rst_controller_reset_out_reset,            -- reset1.reset
-			reset_req   => rst_controller_reset_out_reset_req,        --       .reset_req
 			address2    => mm_interconnect_0_data_bram_s2_address,    --     s2.address
 			chipselect2 => mm_interconnect_0_data_bram_s2_chipselect, --       .chipselect
 			clken2      => mm_interconnect_0_data_bram_s2_clken,      --       .clken
@@ -600,9 +596,9 @@ begin
 			readdata2   => mm_interconnect_0_data_bram_s2_readdata,   --       .readdata
 			writedata2  => mm_interconnect_0_data_bram_s2_writedata,  --       .writedata
 			byteenable2 => mm_interconnect_0_data_bram_s2_byteenable, --       .byteenable
-			clk2        => clocks_sys_clk_clk,                        --   clk2.clk
-			reset2      => rst_controller_reset_out_reset,            -- reset2.reset
-			reset_req2  => rst_controller_reset_out_reset_req,        --       .reset_req
+			clk         => clocks_sys_clk_clk,                        --   clk1.clk
+			reset       => rst_controller_reset_out_reset,            -- reset1.reset
+			reset_req   => rst_controller_reset_out_reset_req,        --       .reset_req
 			freeze      => '0'                                        -- (terminated)
 		);
 
@@ -620,7 +616,6 @@ begin
 
 	weight_bram : component Nios_System_2A_WEIGHT_BRAM
 		port map (
-			clk         => clocks_sys_clk_clk,                          --   clk1.clk
 			address     => mm_interconnect_1_weight_bram_s1_address,    --     s1.address
 			clken       => mm_interconnect_1_weight_bram_s1_clken,      --       .clken
 			chipselect  => mm_interconnect_1_weight_bram_s1_chipselect, --       .chipselect
@@ -628,8 +623,6 @@ begin
 			readdata    => mm_interconnect_1_weight_bram_s1_readdata,   --       .readdata
 			writedata   => mm_interconnect_1_weight_bram_s1_writedata,  --       .writedata
 			byteenable  => mm_interconnect_1_weight_bram_s1_byteenable, --       .byteenable
-			reset       => rst_controller_reset_out_reset,              -- reset1.reset
-			reset_req   => rst_controller_reset_out_reset_req,          --       .reset_req
 			address2    => mm_interconnect_2_weight_bram_s2_address,    --     s2.address
 			chipselect2 => mm_interconnect_2_weight_bram_s2_chipselect, --       .chipselect
 			clken2      => mm_interconnect_2_weight_bram_s2_clken,      --       .clken
@@ -637,9 +630,9 @@ begin
 			readdata2   => mm_interconnect_2_weight_bram_s2_readdata,   --       .readdata
 			writedata2  => mm_interconnect_2_weight_bram_s2_writedata,  --       .writedata
 			byteenable2 => mm_interconnect_2_weight_bram_s2_byteenable, --       .byteenable
-			clk2        => clocks_sys_clk_clk,                          --   clk2.clk
-			reset2      => rst_controller_reset_out_reset,              -- reset2.reset
-			reset_req2  => rst_controller_reset_out_reset_req,          --       .reset_req
+			clk         => clocks_sys_clk_clk,                          --   clk1.clk
+			reset       => rst_controller_reset_out_reset,              -- reset1.reset
+			reset_req   => rst_controller_reset_out_reset_req,          --       .reset_req
 			freeze      => '0'                                          -- (terminated)
 		);
 
@@ -664,11 +657,13 @@ begin
 			d_waitrequest                       => cpu_data_master_waitrequest,                       --                          .waitrequest
 			d_write                             => cpu_data_master_write,                             --                          .write
 			d_writedata                         => cpu_data_master_writedata,                         --                          .writedata
+			d_readdatavalid                     => cpu_data_master_readdatavalid,                     --                          .readdatavalid
 			debug_mem_slave_debugaccess_to_roms => cpu_data_master_debugaccess,                       --                          .debugaccess
 			i_address                           => cpu_instruction_master_address,                    --        instruction_master.address
 			i_read                              => cpu_instruction_master_read,                       --                          .read
 			i_readdata                          => cpu_instruction_master_readdata,                   --                          .readdata
 			i_waitrequest                       => cpu_instruction_master_waitrequest,                --                          .waitrequest
+			i_readdatavalid                     => cpu_instruction_master_readdatavalid,              --                          .readdatavalid
 			irq                                 => cpu_irq_irq,                                       --                       irq.irq
 			debug_reset_request                 => cpu_debug_reset_request_reset,                     --       debug_reset_request.reset
 			debug_mem_slave_address             => mm_interconnect_1_cpu_debug_mem_slave_address,     --           debug_mem_slave.address
@@ -750,11 +745,11 @@ begin
 	mm_interconnect_0 : component Nios_System_2A_mm_interconnect_0
 		port map (
 			clocks_sys_clk_clk                                 => clocks_sys_clk_clk,                        --                               clocks_sys_clk.clk
-			CustomTopLevel_1_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,            -- CustomTopLevel_1_reset_reset_bridge_in_reset.reset
-			CustomTopLevel_1_data_address                      => customtoplevel_1_data_address,             --                        CustomTopLevel_1_data.address
-			CustomTopLevel_1_data_waitrequest                  => customtoplevel_1_data_waitrequest,         --                                             .waitrequest
-			CustomTopLevel_1_data_read                         => customtoplevel_1_data_read,                --                                             .read
-			CustomTopLevel_1_data_readdata                     => customtoplevel_1_data_readdata,            --                                             .readdata
+			CustomTopLevel_0_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,            -- CustomTopLevel_0_reset_reset_bridge_in_reset.reset
+			CustomTopLevel_0_data_address                      => customtoplevel_0_data_address,             --                        CustomTopLevel_0_data.address
+			CustomTopLevel_0_data_waitrequest                  => customtoplevel_0_data_waitrequest,         --                                             .waitrequest
+			CustomTopLevel_0_data_read                         => customtoplevel_0_data_read,                --                                             .read
+			CustomTopLevel_0_data_readdata                     => customtoplevel_0_data_readdata,            --                                             .readdata
 			DATA_BRAM_s2_address                               => mm_interconnect_0_data_bram_s2_address,    --                                 DATA_BRAM_s2.address
 			DATA_BRAM_s2_write                                 => mm_interconnect_0_data_bram_s2_write,      --                                             .write
 			DATA_BRAM_s2_readdata                              => mm_interconnect_0_data_bram_s2_readdata,   --                                             .readdata
@@ -773,6 +768,7 @@ begin
 			cpu_data_master_byteenable              => cpu_data_master_byteenable,                                --                                .byteenable
 			cpu_data_master_read                    => cpu_data_master_read,                                      --                                .read
 			cpu_data_master_readdata                => cpu_data_master_readdata,                                  --                                .readdata
+			cpu_data_master_readdatavalid           => cpu_data_master_readdatavalid,                             --                                .readdatavalid
 			cpu_data_master_write                   => cpu_data_master_write,                                     --                                .write
 			cpu_data_master_writedata               => cpu_data_master_writedata,                                 --                                .writedata
 			cpu_data_master_debugaccess             => cpu_data_master_debugaccess,                               --                                .debugaccess
@@ -780,6 +776,7 @@ begin
 			cpu_instruction_master_waitrequest      => cpu_instruction_master_waitrequest,                        --                                .waitrequest
 			cpu_instruction_master_read             => cpu_instruction_master_read,                               --                                .read
 			cpu_instruction_master_readdata         => cpu_instruction_master_readdata,                           --                                .readdata
+			cpu_instruction_master_readdatavalid    => cpu_instruction_master_readdatavalid,                      --                                .readdatavalid
 			BUTTON_pio_s1_address                   => mm_interconnect_1_button_pio_s1_address,                   --                   BUTTON_pio_s1.address
 			BUTTON_pio_s1_write                     => mm_interconnect_1_button_pio_s1_write,                     --                                .write
 			BUTTON_pio_s1_readdata                  => mm_interconnect_1_button_pio_s1_readdata,                  --                                .readdata
@@ -793,11 +790,11 @@ begin
 			cpu_debug_mem_slave_byteenable          => mm_interconnect_1_cpu_debug_mem_slave_byteenable,          --                                .byteenable
 			cpu_debug_mem_slave_waitrequest         => mm_interconnect_1_cpu_debug_mem_slave_waitrequest,         --                                .waitrequest
 			cpu_debug_mem_slave_debugaccess         => mm_interconnect_1_cpu_debug_mem_slave_debugaccess,         --                                .debugaccess
-			CustomTopLevel_1_control_address        => mm_interconnect_1_customtoplevel_1_control_address,        --        CustomTopLevel_1_control.address
-			CustomTopLevel_1_control_write          => mm_interconnect_1_customtoplevel_1_control_write,          --                                .write
-			CustomTopLevel_1_control_read           => mm_interconnect_1_customtoplevel_1_control_read,           --                                .read
-			CustomTopLevel_1_control_readdata       => mm_interconnect_1_customtoplevel_1_control_readdata,       --                                .readdata
-			CustomTopLevel_1_control_writedata      => mm_interconnect_1_customtoplevel_1_control_writedata,      --                                .writedata
+			CustomTopLevel_0_control_address        => mm_interconnect_1_customtoplevel_0_control_address,        --        CustomTopLevel_0_control.address
+			CustomTopLevel_0_control_write          => mm_interconnect_1_customtoplevel_0_control_write,          --                                .write
+			CustomTopLevel_0_control_read           => mm_interconnect_1_customtoplevel_0_control_read,           --                                .read
+			CustomTopLevel_0_control_readdata       => mm_interconnect_1_customtoplevel_0_control_readdata,       --                                .readdata
+			CustomTopLevel_0_control_writedata      => mm_interconnect_1_customtoplevel_0_control_writedata,      --                                .writedata
 			DATA_BRAM_s1_address                    => mm_interconnect_1_data_bram_s1_address,                    --                    DATA_BRAM_s1.address
 			DATA_BRAM_s1_write                      => mm_interconnect_1_data_bram_s1_write,                      --                                .write
 			DATA_BRAM_s1_readdata                   => mm_interconnect_1_data_bram_s1_readdata,                   --                                .readdata
@@ -850,11 +847,11 @@ begin
 	mm_interconnect_2 : component Nios_System_2A_mm_interconnect_2
 		port map (
 			clocks_sys_clk_clk                                 => clocks_sys_clk_clk,                          --                               clocks_sys_clk.clk
-			CustomTopLevel_1_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,              -- CustomTopLevel_1_reset_reset_bridge_in_reset.reset
-			CustomTopLevel_1_weight_address                    => customtoplevel_1_weight_address,             --                      CustomTopLevel_1_weight.address
-			CustomTopLevel_1_weight_waitrequest                => customtoplevel_1_weight_waitrequest,         --                                             .waitrequest
-			CustomTopLevel_1_weight_read                       => customtoplevel_1_weight_read,                --                                             .read
-			CustomTopLevel_1_weight_readdata                   => customtoplevel_1_weight_readdata,            --                                             .readdata
+			CustomTopLevel_0_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,              -- CustomTopLevel_0_reset_reset_bridge_in_reset.reset
+			CustomTopLevel_0_weight_address                    => customtoplevel_0_weight_address,             --                      CustomTopLevel_0_weight.address
+			CustomTopLevel_0_weight_waitrequest                => customtoplevel_0_weight_waitrequest,         --                                             .waitrequest
+			CustomTopLevel_0_weight_read                       => customtoplevel_0_weight_read,                --                                             .read
+			CustomTopLevel_0_weight_readdata                   => customtoplevel_0_weight_readdata,            --                                             .readdata
 			WEIGHT_BRAM_s2_address                             => mm_interconnect_2_weight_bram_s2_address,    --                               WEIGHT_BRAM_s2.address
 			WEIGHT_BRAM_s2_write                               => mm_interconnect_2_weight_bram_s2_write,      --                                             .write
 			WEIGHT_BRAM_s2_readdata                            => mm_interconnect_2_weight_bram_s2_readdata,   --                                             .readdata
@@ -866,10 +863,9 @@ begin
 
 	irq_mapper : component Nios_System_2A_irq_mapper
 		port map (
-			clk           => clocks_sys_clk_clk,             --       clk.clk
-			reset         => rst_controller_reset_out_reset, -- clk_reset.reset
-			receiver0_irq => irq_mapper_receiver0_irq,       -- receiver0.irq
-			sender_irq    => cpu_irq_irq                     --    sender.irq
+			clk        => clocks_sys_clk_clk,             --       clk.clk
+			reset      => rst_controller_reset_out_reset, -- clk_reset.reset
+			sender_irq => cpu_irq_irq                     --    sender.irq
 		);
 
 	rst_controller : component altera_reset_controller
@@ -941,17 +937,17 @@ begin
 
 	mm_interconnect_1_jtag_uart_avalon_jtag_slave_write_ports_inv <= not mm_interconnect_1_jtag_uart_avalon_jtag_slave_write;
 
-	mm_interconnect_1_sdram_s1_read_ports_inv <= not mm_interconnect_1_sdram_s1_read;
-
-	mm_interconnect_1_sdram_s1_byteenable_ports_inv <= not mm_interconnect_1_sdram_s1_byteenable;
-
-	mm_interconnect_1_sdram_s1_write_ports_inv <= not mm_interconnect_1_sdram_s1_write;
-
 	mm_interconnect_1_high_res_timer_s1_write_ports_inv <= not mm_interconnect_1_high_res_timer_s1_write;
 
 	mm_interconnect_1_button_pio_s1_write_ports_inv <= not mm_interconnect_1_button_pio_s1_write;
 
 	mm_interconnect_1_led_pio_s1_write_ports_inv <= not mm_interconnect_1_led_pio_s1_write;
+
+	mm_interconnect_1_sdram_s1_read_ports_inv <= not mm_interconnect_1_sdram_s1_read;
+
+	mm_interconnect_1_sdram_s1_byteenable_ports_inv <= not mm_interconnect_1_sdram_s1_byteenable;
+
+	mm_interconnect_1_sdram_s1_write_ports_inv <= not mm_interconnect_1_sdram_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

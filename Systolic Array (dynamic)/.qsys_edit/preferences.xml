@@ -5,7 +5,7 @@
   <columns>
    <connections preferredWidth="191" />
    <irq preferredWidth="34" />
-   <description preferredWidth="296" />
+   <description preferredWidth="90" />
    <name preferredWidth="190" />
    <export preferredWidth="211" />
    <inputclock preferredWidth="209" />
