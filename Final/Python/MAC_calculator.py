@@ -41,8 +41,8 @@ if __name__ == '__main__':
     # Define the file paths and matrix dimensions
     # data_mif_path = 'data.mif'
     # weight_mif_path = 'weights.mif'
-    data_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/activation_tile_0.mif'
-    weight_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/weight_tile_0.mif'
+    data_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/activation_tile_4.mif'
+    weight_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/weight_tile_4.mif'
     
     ROWS, COLS = 8, 8
     

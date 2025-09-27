@@ -14,29 +14,45 @@ architecture sim of tb_row_stripping_sparsity is
         return std_logic_vector(to_unsigned(x, 8));
     end function;
 
+    -- Helper function to find the maximum of two integers
+    function maximum(a, b : integer) return integer is
+    begin
+        if a > b then
+            return a;
+        else
+            return b;
+        end if;
+    end function;
+
+
 
 -- VHDL stimulus for data matrix
 constant ACTIVE_ROWS_DATA : integer := 1;
 constant ACTIVE_COLS_DATA : integer := 8;
 constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
-    (u8(90), u8(90), u8(90), u8(103), u8(106), u8(92), u8(90), u8(90)),
+    (u8(90), u8(101), u8(92), u8(90), u8(90), u8(90), u8(90), u8(90)),
     others => (others => u8(0))
 );
 ------------------------------
 -- VHDL stimulus for weight matrix
-constant ACTIVE_ROWS_WEIGHT : integer := 7;
-constant ACTIVE_COLS_WEIGHT : integer := 8;
+constant ACTIVE_ROWS_WEIGHT : integer := 8;
+constant ACTIVE_COLS_WEIGHT : integer := 7;
 constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
-    (u8(13), u8(19), u8(42), u8(30), u8(45), u8(6), u8(19), u8(0)),
-    (u8(4), u8(6), u8(8), u8(0), u8(4), u8(25), u8(14), u8(45)),
-    (u8(0), u8(4), u8(0), u8(6), u8(0), u8(8), u8(29), u8(17)),
-    (u8(0), u8(15), u8(14), u8(22), u8(8), u8(0), u8(33), u8(35)),
-    (u8(0), u8(0), u8(3), u8(42), u8(0), u8(0), u8(0), u8(14)),
-    (u8(27), u8(39), u8(71), u8(10), u8(0), u8(0), u8(26), u8(11)),
-    (u8(0), u8(38), u8(67), u8(9), u8(0), u8(47), u8(0), u8(0)),
+    (u8(0), u8(0), u8(30), u8(0), u8(0), u8(0), u8(1), u8(0)),
+    (u8(57), u8(14), u8(28), u8(0), u8(0), u8(0), u8(0), u8(0)),
+    (u8(0), u8(0), u8(0), u8(31), u8(14), u8(0), u8(7), u8(0)),
+    (u8(18), u8(0), u8(18), u8(0), u8(0), u8(34), u8(0), u8(0)),
+    (u8(0), u8(0), u8(4), u8(0), u8(0), u8(0), u8(0), u8(0)),
+    (u8(44), u8(5), u8(0), u8(76), u8(0), u8(23), u8(0), u8(0)),
+    (u8(0), u8(51), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
+    (u8(0), u8(5), u8(69), u8(42), u8(0), u8(0), u8(0), u8(0)),
     others => (others => u8(0))
 );
----------------
+------------------------------
+
+    -- Determine the maximum active dimensions to send to the DUT
+    constant MAX_ACTIVE_ROWS : integer := maximum(ACTIVE_ROWS_DATA, ACTIVE_ROWS_WEIGHT);
+    constant MAX_ACTIVE_COLS : integer := maximum(ACTIVE_COLS_DATA, ACTIVE_COLS_WEIGHT);
 
     -- System signals
     signal clk   : bit_1 := '0';
@@ -66,8 +82,8 @@ begin
         matrix_weight => matrix_weight_sig,
         output        => result_matrix_sig,
         cycle_count   => open, 
-        active_rows   => ACTIVE_ROWS_DATA, 
-        active_cols   => ACTIVE_COLS_DATA
+        active_rows   => max_active_rows, 
+        active_cols   => max_active_cols
     );
 
 
