@@ -1,6 +1,7 @@
 
 module Nios_System_2A (
 	button_pio_external_connection_export,
+	button_pio_irq_irq,
 	clocks_ref_clk_clk,
 	clocks_ref_reset_reset,
 	clocks_sdram_clk_clk,
@@ -13,12 +14,10 @@ module Nios_System_2A (
 	sdram_wire_dq,
 	sdram_wire_dqm,
 	sdram_wire_ras_n,
-	sdram_wire_we_n,
-	jtag_uart_irq_irq,
-	button_pio_irq_irq,
-	high_res_timer_irq_irq);	
+	sdram_wire_we_n);	
 
 	input	[1:0]	button_pio_external_connection_export;
+	output		button_pio_irq_irq;
 	input		clocks_ref_clk_clk;
 	input		clocks_ref_reset_reset;
 	output		clocks_sdram_clk_clk;
@@ -32,7 +31,4 @@ module Nios_System_2A (
 	output	[1:0]	sdram_wire_dqm;
 	output		sdram_wire_ras_n;
 	output		sdram_wire_we_n;
-	output		jtag_uart_irq_irq;
-	output		button_pio_irq_irq;
-	output		high_res_timer_irq_irq;
 endmodule

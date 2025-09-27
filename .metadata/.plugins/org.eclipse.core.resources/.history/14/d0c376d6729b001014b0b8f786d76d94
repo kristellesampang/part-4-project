@@ -1,0 +1,23 @@
+#include "system.h" // Provides the base address for the LEDs
+#include "io.h"     // Provides the IOWR macro for direct hardware access
+
+int main()
+{
+  int led_pattern = 0x01;
+  while(1)
+  {
+    // Write the current pattern to the LED hardware register.
+    IOWR(LED_PIO_BASE, 0, led_pattern);
+
+    // Simple delay loop
+    for(int i = 0; i < 200000; i++);
+
+    // "Rotate" the lit LED for the next loop.
+    if (led_pattern == 0x80) {
+      led_pattern = 0x01;
+    } else {
+      led_pattern = led_pattern << 1;
+    }
+  }
+  return 0;
+}

@@ -13,8 +13,6 @@ entity Nios_System_2A is
 		clocks_ref_clk_clk                    : in    std_logic                     := '0';             --                 clocks_ref_clk.clk
 		clocks_ref_reset_reset                : in    std_logic                     := '0';             --               clocks_ref_reset.reset
 		clocks_sdram_clk_clk                  : out   std_logic;                                        --               clocks_sdram_clk.clk
-		high_res_timer_irq_irq                : out   std_logic;                                        --             high_res_timer_irq.irq
-		jtag_uart_irq_irq                     : out   std_logic;                                        --                  jtag_uart_irq.irq
 		led_pio_external_connection_export    : out   std_logic_vector(7 downto 0);                     --    led_pio_external_connection.export
 		sdram_wire_addr                       : out   std_logic_vector(12 downto 0);                    --                     sdram_wire.addr
 		sdram_wire_ba                         : out   std_logic_vector(1 downto 0);                     --                               .ba
@@ -358,9 +356,11 @@ architecture rtl of Nios_System_2A is
 
 	component Nios_System_2A_irq_mapper is
 		port (
-			clk        : in  std_logic                     := 'X'; -- clk
-			reset      : in  std_logic                     := 'X'; -- reset
-			sender_irq : out std_logic_vector(31 downto 0)         -- irq
+			clk           : in  std_logic                     := 'X'; -- clk
+			reset         : in  std_logic                     := 'X'; -- reset
+			receiver0_irq : in  std_logic                     := 'X'; -- irq
+			receiver1_irq : in  std_logic                     := 'X'; -- irq
+			sender_irq    : out std_logic_vector(31 downto 0)         -- irq
 		);
 	end component Nios_System_2A_irq_mapper;
 
@@ -532,6 +532,8 @@ architecture rtl of Nios_System_2A is
 	signal mm_interconnect_2_weight_bram_s2_write                        : std_logic;                     -- mm_interconnect_2:WEIGHT_BRAM_s2_write -> WEIGHT_BRAM:write2
 	signal mm_interconnect_2_weight_bram_s2_writedata                    : std_logic_vector(31 downto 0); -- mm_interconnect_2:WEIGHT_BRAM_s2_writedata -> WEIGHT_BRAM:writedata2
 	signal mm_interconnect_2_weight_bram_s2_clken                        : std_logic;                     -- mm_interconnect_2:WEIGHT_BRAM_s2_clken -> WEIGHT_BRAM:clken2
+	signal irq_mapper_receiver0_irq                                      : std_logic;                     -- jtag_uart:av_irq -> irq_mapper:receiver0_irq
+	signal irq_mapper_receiver1_irq                                      : std_logic;                     -- high_res_timer:irq -> irq_mapper:receiver1_irq
 	signal cpu_irq_irq                                                   : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> cpu:irq
 	signal rst_controller_reset_out_reset                                : std_logic;                     -- rst_controller:reset_out -> [CustomTopLevel_0:reset, DATA_BRAM:reset, WEIGHT_BRAM:reset, irq_mapper:reset, mm_interconnect_0:CustomTopLevel_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:cpu_reset_reset_bridge_in_reset_reset, mm_interconnect_2:CustomTopLevel_0_reset_reset_bridge_in_reset_reset, onchip_memory:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
 	signal rst_controller_reset_out_reset_req                            : std_logic;                     -- rst_controller:reset_req -> [DATA_BRAM:reset_req, WEIGHT_BRAM:reset_req, cpu:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
@@ -686,7 +688,7 @@ begin
 			readdata   => mm_interconnect_1_high_res_timer_s1_readdata,        --      .readdata
 			chipselect => mm_interconnect_1_high_res_timer_s1_chipselect,      --      .chipselect
 			write_n    => mm_interconnect_1_high_res_timer_s1_write_ports_inv, --      .write_n
-			irq        => high_res_timer_irq_irq                               --   irq.irq
+			irq        => irq_mapper_receiver1_irq                             --   irq.irq
 		);
 
 	jtag_uart : component Nios_System_2A_jtag_uart
@@ -700,7 +702,7 @@ begin
 			av_write_n     => mm_interconnect_1_jtag_uart_avalon_jtag_slave_write_ports_inv, --                  .write_n
 			av_writedata   => mm_interconnect_1_jtag_uart_avalon_jtag_slave_writedata,       --                  .writedata
 			av_waitrequest => mm_interconnect_1_jtag_uart_avalon_jtag_slave_waitrequest,     --                  .waitrequest
-			av_irq         => jtag_uart_irq_irq                                              --               irq.irq
+			av_irq         => irq_mapper_receiver0_irq                                       --               irq.irq
 		);
 
 	onchip_memory : component Nios_System_2A_onchip_memory
@@ -863,9 +865,11 @@ begin
 
 	irq_mapper : component Nios_System_2A_irq_mapper
 		port map (
-			clk        => clocks_sys_clk_clk,             --       clk.clk
-			reset      => rst_controller_reset_out_reset, -- clk_reset.reset
-			sender_irq => cpu_irq_irq                     --    sender.irq
+			clk           => clocks_sys_clk_clk,             --       clk.clk
+			reset         => rst_controller_reset_out_reset, -- clk_reset.reset
+			receiver0_irq => irq_mapper_receiver0_irq,       -- receiver0.irq
+			receiver1_irq => irq_mapper_receiver1_irq,       -- receiver1.irq
+			sender_irq    => cpu_irq_irq                     --    sender.irq
 		);
 
 	rst_controller : component altera_reset_controller

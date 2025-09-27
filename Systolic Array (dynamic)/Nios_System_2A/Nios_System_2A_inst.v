@@ -1,5 +1,6 @@
 	Nios_System_2A u0 (
 		.button_pio_external_connection_export (<connected-to-button_pio_external_connection_export>), // button_pio_external_connection.export
+		.button_pio_irq_irq                    (<connected-to-button_pio_irq_irq>),                    //                 button_pio_irq.irq
 		.clocks_ref_clk_clk                    (<connected-to-clocks_ref_clk_clk>),                    //                 clocks_ref_clk.clk
 		.clocks_ref_reset_reset                (<connected-to-clocks_ref_reset_reset>),                //               clocks_ref_reset.reset
 		.clocks_sdram_clk_clk                  (<connected-to-clocks_sdram_clk_clk>),                  //               clocks_sdram_clk.clk
@@ -12,9 +13,6 @@
 		.sdram_wire_dq                         (<connected-to-sdram_wire_dq>),                         //                               .dq
 		.sdram_wire_dqm                        (<connected-to-sdram_wire_dqm>),                        //                               .dqm
 		.sdram_wire_ras_n                      (<connected-to-sdram_wire_ras_n>),                      //                               .ras_n
-		.sdram_wire_we_n                       (<connected-to-sdram_wire_we_n>),                       //                               .we_n
-		.jtag_uart_irq_irq                     (<connected-to-jtag_uart_irq_irq>),                     //                  jtag_uart_irq.irq
-		.button_pio_irq_irq                    (<connected-to-button_pio_irq_irq>),                    //                 button_pio_irq.irq
-		.high_res_timer_irq_irq                (<connected-to-high_res_timer_irq_irq>)                 //             high_res_timer_irq.irq
+		.sdram_wire_we_n                       (<connected-to-sdram_wire_we_n>)                        //                               .we_n
 	);
 

@@ -245,16 +245,6 @@
    type="clock"
    dir="start" />
  <interface
-   name="high_res_timer_irq"
-   internal="high_res_timer.irq"
-   type="interrupt"
-   dir="end" />
- <interface
-   name="jtag_uart_irq"
-   internal="jtag_uart.irq"
-   type="interrupt"
-   dir="end" />
- <interface
    name="led_pio_external_connection"
    internal="LED_pio.external_connection"
    type="conduit"
@@ -439,7 +429,7 @@
   <parameter name="instruction_master_high_performance_paddr_size" value="0" />
   <parameter name="instruction_master_paddr_base" value="0" />
   <parameter name="instruction_master_paddr_size" value="0" />
-  <parameter name="internalIrqMaskSystemInfo" value="0" />
+  <parameter name="internalIrqMaskSystemInfo" value="3" />
   <parameter name="io_regionbase" value="0" />
   <parameter name="io_regionsize" value="0" />
   <parameter name="master_addr_map" value="false" />
@@ -812,6 +802,16 @@
    version="18.1"
    start="clocks.sys_clk"
    end="CustomTopLevel_0.clock" />
+ <connection kind="interrupt" version="18.1" start="cpu.irq" end="jtag_uart.irq">
+  <parameter name="irqNumber" value="0" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="cpu.irq"
+   end="high_res_timer.irq">
+  <parameter name="irqNumber" value="1" />
+ </connection>
  <connection
    kind="reset"
    version="18.1"

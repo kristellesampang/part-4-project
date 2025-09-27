@@ -1,6 +1,7 @@
 	component Nios_System_2A is
 		port (
 			button_pio_external_connection_export : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- export
+			button_pio_irq_irq                    : out   std_logic;                                        -- irq
 			clocks_ref_clk_clk                    : in    std_logic                     := 'X';             -- clk
 			clocks_ref_reset_reset                : in    std_logic                     := 'X';             -- reset
 			clocks_sdram_clk_clk                  : out   std_logic;                                        -- clk
@@ -13,16 +14,14 @@
 			sdram_wire_dq                         : inout std_logic_vector(15 downto 0) := (others => 'X'); -- dq
 			sdram_wire_dqm                        : out   std_logic_vector(1 downto 0);                     -- dqm
 			sdram_wire_ras_n                      : out   std_logic;                                        -- ras_n
-			sdram_wire_we_n                       : out   std_logic;                                        -- we_n
-			jtag_uart_irq_irq                     : out   std_logic;                                        -- irq
-			button_pio_irq_irq                    : out   std_logic;                                        -- irq
-			high_res_timer_irq_irq                : out   std_logic                                         -- irq
+			sdram_wire_we_n                       : out   std_logic                                         -- we_n
 		);
 	end component Nios_System_2A;
 
 	u0 : component Nios_System_2A
 		port map (
 			button_pio_external_connection_export => CONNECTED_TO_button_pio_external_connection_export, -- button_pio_external_connection.export
+			button_pio_irq_irq                    => CONNECTED_TO_button_pio_irq_irq,                    --                 button_pio_irq.irq
 			clocks_ref_clk_clk                    => CONNECTED_TO_clocks_ref_clk_clk,                    --                 clocks_ref_clk.clk
 			clocks_ref_reset_reset                => CONNECTED_TO_clocks_ref_reset_reset,                --               clocks_ref_reset.reset
 			clocks_sdram_clk_clk                  => CONNECTED_TO_clocks_sdram_clk_clk,                  --               clocks_sdram_clk.clk
@@ -35,9 +34,6 @@
 			sdram_wire_dq                         => CONNECTED_TO_sdram_wire_dq,                         --                               .dq
 			sdram_wire_dqm                        => CONNECTED_TO_sdram_wire_dqm,                        --                               .dqm
 			sdram_wire_ras_n                      => CONNECTED_TO_sdram_wire_ras_n,                      --                               .ras_n
-			sdram_wire_we_n                       => CONNECTED_TO_sdram_wire_we_n,                       --                               .we_n
-			jtag_uart_irq_irq                     => CONNECTED_TO_jtag_uart_irq_irq,                     --                  jtag_uart_irq.irq
-			button_pio_irq_irq                    => CONNECTED_TO_button_pio_irq_irq,                    --                 button_pio_irq.irq
-			high_res_timer_irq_irq                => CONNECTED_TO_high_res_timer_irq_irq                 --             high_res_timer_irq.irq
+			sdram_wire_we_n                       => CONNECTED_TO_sdram_wire_we_n                        --                               .we_n
 		);
 
