@@ -16,24 +16,27 @@ architecture sim of tb_row_stripping_sparsity is
 
 
 -- VHDL stimulus for data matrix
-constant ACTIVE_ROWS_DATA : integer := 2;
-constant ACTIVE_COLS_DATA : integer := 4;
+constant ACTIVE_ROWS_DATA : integer := 1;
+constant ACTIVE_COLS_DATA : integer := 8;
 constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
-    (u8(3), u8(5), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0)),
-    (u8(8), u8(0), u8(6), u8(0), u8(0), u8(0), u8(0), u8(0)),
+    (u8(90), u8(90), u8(90), u8(103), u8(106), u8(92), u8(90), u8(90)),
     others => (others => u8(0))
 );
-
+------------------------------
 -- VHDL stimulus for weight matrix
-constant ACTIVE_ROWS_WEIGHT : integer := 4;
-constant ACTIVE_COLS_WEIGHT : integer := 3;
+constant ACTIVE_ROWS_WEIGHT : integer := 7;
+constant ACTIVE_COLS_WEIGHT : integer := 8;
 constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
-    (u8(9), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(7), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(0), u8(4), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(1), u8(0), u8(5), u8(0), u8(0), u8(0), u8(0), u8(0)),
+    (u8(13), u8(19), u8(42), u8(30), u8(45), u8(6), u8(19), u8(0)),
+    (u8(4), u8(6), u8(8), u8(0), u8(4), u8(25), u8(14), u8(45)),
+    (u8(0), u8(4), u8(0), u8(6), u8(0), u8(8), u8(29), u8(17)),
+    (u8(0), u8(15), u8(14), u8(22), u8(8), u8(0), u8(33), u8(35)),
+    (u8(0), u8(0), u8(3), u8(42), u8(0), u8(0), u8(0), u8(14)),
+    (u8(27), u8(39), u8(71), u8(10), u8(0), u8(0), u8(26), u8(11)),
+    (u8(0), u8(38), u8(67), u8(9), u8(0), u8(47), u8(0), u8(0)),
     others => (others => u8(0))
 );
+---------------
 
     -- System signals
     signal clk   : bit_1 := '0';
