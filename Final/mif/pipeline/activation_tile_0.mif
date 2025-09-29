@@ -5,7 +5,7 @@ DATA_RADIX=HEX;
 
 CONTENT BEGIN
 	0	:	4E;
-	1	:	53;
+	1	:	55;
 	2	:	4E;
 	3	:	4E;
 	4	:	4E;

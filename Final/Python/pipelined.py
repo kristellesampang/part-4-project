@@ -10,6 +10,7 @@ import requests
 import os
 import sys
 import re
+import serial
 
 # --- Constants ---
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
@@ -307,6 +308,37 @@ def simulate_systolic_array(matrix_A, matrix_B):
     print(result_matrix)
     print("\n" + "="*40)
     print(f"Total Clock Cycles (Latency): {latency}\n")
+    
+def send_matrix_serial(serial_port, matrix):
+    """Sends a matrix byte-by-byte over the serial port."""
+    print(f"Sending {matrix.size} bytes...")
+    
+    # Flatten the matrix into a 1D array for easy iteration
+    flat_matrix = matrix.flatten()
+    
+    # Send one byte at a time
+    for byte_val in flat_matrix:
+        serial_port.write(bytearray([byte_val]))
+        # A small delay can help prevent buffer overflows on the receiver
+        time.sleep(0.001)
+        
+    print("Matrix sent successfully.")    
+    
+def send_matrix_serial(serial_port, matrix):
+    """Sends a matrix byte-by-byte over the serial port."""
+    print(f"Sending {matrix.size} bytes...")
+    
+    # Flatten the matrix into a 1D array for easy iteration
+    flat_matrix = matrix.flatten()
+    
+    # Send one byte at a time
+    for byte_val in flat_matrix:
+        serial_port.write(bytearray([byte_val]))
+        # A small delay can help prevent buffer overflows on the receiver
+        time.sleep(0.001)
+        
+    print("Matrix sent successfully.")
+    
 # --- Main Orchestration Function ---
 
 def main():
@@ -367,6 +399,26 @@ def main():
     # verify with mac calcuator
     mac_calculator(data_mif_path, weight_mif_path, 8,8);
     
+    
+    # 1. Open the serial port connection
+    #    (Replace 'COM3' with the correct port for your DE1-SoC)
+    try:
+        ser = serial.Serial('COM3', 115200, timeout=1) # 115200 baud rate is common
+        print(f"Opened serial port {ser.name}")
+    except serial.SerialException as e:
+        print(f"Error: Could not open serial port. {e}")
+        return # Exit if the port can't be opened
+    
+    # 2. Send the matrices
+    print("\n--- Sending Weight Matrix via UART ---")
+    send_matrix_serial(ser, stripped_weight)
+
+    print("\n--- Sending Activation Matrix via UART ---")
+    send_matrix_serial(ser, stripped_data)
+
+    # 4. Close the port
+    ser.close()
+    print("\nSerial port closed.")
 
 if __name__ == '__main__':
     main()
