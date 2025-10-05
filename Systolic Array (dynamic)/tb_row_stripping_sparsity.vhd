@@ -16,17 +16,17 @@ architecture sim of tb_row_stripping_sparsity is
 
 
 -- VHDL stimulus for data matrix
-constant ACTIVE_ROWS_DATA : integer := 2;
-constant ACTIVE_COLS_DATA : integer := 4;
+-- VHDL stimulus for compacted matrices
+constant ACTIVE_ROWS : integer := 2;
+constant ACTIVE_K : integer := 4;
+constant ACTIVE_COLS : integer := 3;
+
 constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
     (u8(3), u8(5), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0)),
     (u8(8), u8(0), u8(6), u8(0), u8(0), u8(0), u8(0), u8(0)),
     others => (others => u8(0))
 );
 
--- VHDL stimulus for weight matrix
-constant ACTIVE_ROWS_WEIGHT : integer := 4;
-constant ACTIVE_COLS_WEIGHT : integer := 3;
 constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
     (u8(9), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0), u8(0)),
     (u8(7), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
@@ -34,7 +34,6 @@ constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
     (u8(1), u8(0), u8(5), u8(0), u8(0), u8(0), u8(0), u8(0)),
     others => (others => u8(0))
 );
-
     -- System signals
     signal clk   : bit_1 := '0';
     signal reset : bit_1 := '1';
@@ -63,15 +62,16 @@ begin
         matrix_weight => matrix_weight_sig,
         output        => result_matrix_sig,
         cycle_count   => open, 
-        active_rows   => ACTIVE_ROWS_DATA, 
-        active_cols   => ACTIVE_COLS_DATA
+        active_rows   => ACTIVE_ROWS, 
+        active_cols   => ACTIVE_COLS,
+        active_k      => ACTIVE_K
     );
 
 
     LatencyTest: process
         -- Calculate latency until last result
         -- Formula (rows-1) for vertical travel + (cols-1) for horizontal travel + (cols) for stream duration + 1 for final PE register stage.
-        variable last_result_latency : integer := (ACTIVE_ROWS_DATA - 1) + (ACTIVE_COLS_DATA - 1) + ACTIVE_COLS_DATA + 1;
+        variable last_result_latency : integer := (ACTIVE_ROWS - 1) + (ACTIVE_COLS - 1) + ACTIVE_K;
         variable final_latency_value : natural := 0;
     begin
         -- Load the matrices
@@ -98,7 +98,7 @@ begin
 
         -- Report the final performance results to the console.
         report "--- PERFORMANCE REPORT ---" severity note;
-        report "Active Dimensions (Data): " & integer'image(ACTIVE_ROWS_DATA) & "x" & integer'image(ACTIVE_COLS_DATA) severity note;
+        --report "Active Dimensions (Data): " & integer'image(ACTIVE_ROWS) & "x" & integer'image(ACTIVE_COLS) severity note;
         report "Measured Latency: " & integer'image(final_latency_value) & " cycles." severity note;
         report "--------------------------" severity note;
         
