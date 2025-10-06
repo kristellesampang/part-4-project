@@ -10,6 +10,7 @@ port(
     clk : in bit_1;
     reset : in bit_1;
     ready : in bit_1;
+    completed : out bit_1;
 
     matrix_data   : in systolic_array_matrix_input;
     matrix_weight : in systolic_array_matrix_input;
@@ -18,6 +19,7 @@ port(
     weight_shift  : out input_shift_matrix;
     cycle_count   : out integer;
     PE_enabled_mask : out enabled_PE_matrix;
+    
 
     active_rows : in integer;
     active_cols : in integer
@@ -44,10 +46,9 @@ begin
                     mask_internal(i,j) <= '0';
                 end loop;
             end loop;
-
         elsif rising_edge(clk) and ready = '1' then
 
-            count <= count + 1;
+            
 
             -- DATA (matrix A) (left->right)
             for i in 0 to active_rows-1 loop
@@ -82,7 +83,20 @@ begin
                     end if;
                 end loop;
             end loop;
+
+
+            -- Assert completed flag when done 
+            if count = 3 * N -1  then
+                completed <= '1';
+                
+            else
+                completed <= '0';
+                count <= count + 1;
+            end if;
+
+
         end if;
+        
     end process;
 
     data_shift      <= data_reg;

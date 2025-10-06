@@ -33,6 +33,7 @@ architecture sim of tb_memory is
     signal result_matrix_sig : systolic_array_matrix_output;
     signal cycle_count_sig   : integer;
     signal tb_ready        : bit_1 := '0';
+    signal completed      : bit_1;
     
 begin
     clk <= not clk after CLK_PER / 2;
@@ -47,6 +48,7 @@ begin
         ready         => tb_ready,
         matrix_data   => matrix_data_sig,
         matrix_weight => matrix_weight_sig,
+        completed     => completed,
         output        => result_matrix_sig,
         cycle_count   => cycle_count_sig,
         active_rows   => MAX_ACTIVE_ROWS,
@@ -104,10 +106,12 @@ begin
 
             when WAIT_FOR_COMPLETION =>
                 tb_ready <= '1';
-                -- wait for MAX_ACTIVE_ROWS * MAX_ACTIVE_COLS * CLK_PER + (2*CLK_PER) ;
-                -- wait for (3 * MAX_ACTIVE_COLS * CLK_PER) - CLK_PER; -- the "real" clock cycle time based on previous experience 
-                wait for 2 * MAX_ACTIVE_COLS * CLK_PER;
-                tb_ready <= '0';
+                -- set tb_ready to 0 once completed is high
+                if completed = '1' then
+                    tb_ready <= '0';
+                    current_state := IDLE;
+                    addr_counter := 0;
+                end if;
                 
                 -- report "Simulation  finished." severity note;
                 -- std.env.finish;

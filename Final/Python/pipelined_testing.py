@@ -218,7 +218,7 @@ def mif_to_matrix(filename, rows=8, cols=8):
         if len(data_values) < rows * cols:
             data_values.extend([0] * (rows * cols - len(data_values)))
             matrix = np.array(data_values, dtype=np.int32).reshape((rows, cols))
-            print("Warning: Data was padded with zeros to fit the desired shape.")
+            print("Warning: Data was padded with zeros to fit the desired shape for the matrix multiplication.")
             return matrix
         # print(f"Error: Could not reshape data into a {rows}x{cols} matrix. {e}")
         return None
@@ -427,9 +427,9 @@ def main():
         print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
         
         # apply the desired sparsity
-        sparsity_percent = 25  # Set this from 0 to 100 as needed
+        sparsity_percent = 0  # Set this from 0 to 100 as needed
         
-        # inputMatrix_data = apply_sparsity(inputMatrix_data, sparsity_percent, seed=42)
+        inputMatrix_data = apply_sparsity(inputMatrix_data, sparsity_percent, seed=42)
         inputMatrix_weight = apply_sparsity(inputMatrix_weight, sparsity_percent, seed=42)
         
         stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
