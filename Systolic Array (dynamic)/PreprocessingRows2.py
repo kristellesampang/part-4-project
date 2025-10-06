@@ -1,9 +1,4 @@
 import numpy as np
-
-# ==============================================================================
-# --- CORE LOGIC: The Correct, Coordinated Row/Column Removal ---
-# ==============================================================================
-
 def coordinated_row_removal(data_matrix, weight_matrix):
     """
     This function correctly implements your original goal. It finds all active
@@ -35,10 +30,6 @@ def coordinated_row_removal(data_matrix, weight_matrix):
 
     return compact_data, compact_weight, m_new, k_new, n_new
 
-# ==============================================================================
-# --- VHDL GENERATION HELPER ---
-# ==============================================================================
-
 def generate_vhdl_stimulus(compact_data, compact_weight, m, k, n, N=8):
     """
     Generates VHDL 'constant' declarations for the compacted matrices.
@@ -69,35 +60,41 @@ def generate_vhdl_stimulus(compact_data, compact_weight, m, k, n, N=8):
     print(vhdl_weight)
     print("-" * 40)
 
-# ==============================================================================
-# --- MAIN EXECUTION BLOCK (Using your original structure and matrices) ---
-# ==============================================================================
-
 # Define hardware size
 N_hardware = 8
 
 # Define your original sparse matrices
+# inputMatrix_data = np.array([
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [3, 0, 5, 1, 0, 2, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [8, 0, 0, 6, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0]
+# ])
 inputMatrix_data = np.array([
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [3, 0, 5, 1, 0, 2, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [8, 0, 0, 6, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
+    [1,2,3],
+    [0,0,0],
+    [5,6,7],
+])
+inputMatrix_weight = np.array([
+    [1, 2, 0],
+    [5, 6, 0],
+    [7, 8, 0],
 ])
 
-inputMatrix_weight = np.array([
-    [0, 9, 0, 0, 1, 0, 2, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 7, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 4, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 5, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
-])
+# inputMatrix_weight = np.array([
+#     [0, 9, 0, 0, 1, 0, 2, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 7, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 4, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 1, 0, 0, 0, 0, 5, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 0]
+# ])
 
 
 # --- CASE 1: OPTIMIZED SPARSITY HANDLING ---
@@ -107,7 +104,7 @@ generate_vhdl_stimulus(cd1, cw1, m1, k1, n1, N=N_hardware)
 
 
 # --- CASE 2: UNOPTIMIZED (VANILLA) ---
-print("\n### VHDL FOR UNOPTIMIZED (VANILLA) TEST ###\n")
+print("\n### VHDL FOR UNOPTIMIZED TEST ###\n")
 print("-- VHDL stimulus for original un-optimized matrices (8x8x8)")
 print(f"constant ACTIVE_M : integer := {N_hardware};")
 print(f"constant ACTIVE_K : integer := {N_hardware};")

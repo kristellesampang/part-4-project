@@ -15,25 +15,24 @@ architecture sim of tb_row_stripping_sparsity is
     end function;
 
 
--- VHDL stimulus for data matrix
--- VHDL stimulus for compacted matrices
-constant ACTIVE_ROWS : integer := 2;
-constant ACTIVE_K : integer := 4;
-constant ACTIVE_COLS : integer := 3;
+    -- VHDL stimulus for data matrix
+    -- VHDL stimulus for compacted matrices
+    constant ACTIVE_ROWS : integer := 2;
+    constant ACTIVE_K : integer := 3;
+    constant ACTIVE_COLS : integer := 2;
 
-constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
-    (u8(3), u8(5), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0)),
-    (u8(8), u8(0), u8(6), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    others => (others => u8(0))
-);
+    constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
+        (u8(1), u8(2), u8(3), u8(0), u8(0), u8(0), u8(0), u8(0)),
+        (u8(5), u8(6), u8(7), u8(0), u8(0), u8(0), u8(0), u8(0)),
+        others => (others => u8(0))
+    );
 
-constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
-    (u8(9), u8(1), u8(2), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(7), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(0), u8(4), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    (u8(1), u8(0), u8(5), u8(0), u8(0), u8(0), u8(0), u8(0)),
-    others => (others => u8(0))
-);
+    constant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (
+        (u8(1), u8(2), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
+        (u8(5), u8(6), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
+        (u8(7), u8(8), u8(0), u8(0), u8(0), u8(0), u8(0), u8(0)),
+        others => (others => u8(0))
+    );
     -- System signals
     signal clk   : bit_1 := '0';
     signal reset : bit_1 := '1';
