@@ -400,25 +400,25 @@ def main():
     mac_calculator(data_mif_path, weight_mif_path, 8,8);
     
     
-    # 1. Open the serial port connection
-    #    (Replace 'COM3' with the correct port for your DE1-SoC)
-    try:
-        ser = serial.Serial('COM3', 115200, timeout=1) # 115200 baud rate is common
-        print(f"Opened serial port {ser.name}")
-    except serial.SerialException as e:
-        print(f"Error: Could not open serial port. {e}")
-        return # Exit if the port can't be opened
+    # # 1. Open the serial port connection
+    # #    (Replace 'COM3' with the correct port for your DE1-SoC)
+    # try:
+    #     ser = serial.Serial('COM3', 115200, timeout=1) # 115200 baud rate is common
+    #     print(f"Opened serial port {ser.name}")
+    # except serial.SerialException as e:
+    #     print(f"Error: Could not open serial port. {e}")
+    #     return # Exit if the port can't be opened
     
-    # 2. Send the matrices
-    print("\n--- Sending Weight Matrix via UART ---")
-    send_matrix_serial(ser, stripped_weight)
+    # # 2. Send the matrices
+    # print("\n--- Sending Weight Matrix via UART ---")
+    # send_matrix_serial(ser, stripped_weight)
 
-    print("\n--- Sending Activation Matrix via UART ---")
-    send_matrix_serial(ser, stripped_data)
+    # print("\n--- Sending Activation Matrix via UART ---")
+    # send_matrix_serial(ser, stripped_data)
 
-    # 4. Close the port
-    ser.close()
-    print("\nSerial port closed.")
+    # # 4. Close the port
+    # ser.close()
+    # print("\nSerial port closed.")
 
 if __name__ == '__main__':
     main()
