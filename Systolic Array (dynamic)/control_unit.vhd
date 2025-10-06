@@ -9,6 +9,7 @@ entity control_unit is
 port(
     clk : in bit_1;
     reset : in bit_1;
+    done  : out bit_1;
 
     matrix_data   : in systolic_array_matrix_input;
     matrix_weight : in systolic_array_matrix_input;
@@ -19,7 +20,8 @@ port(
     PE_enabled_mask : out enabled_PE_matrix;
 
     active_rows : in integer;
-    active_cols : in integer
+    active_cols : in integer;
+    active_k    : in integer
 );
 end control_unit;
 
@@ -48,35 +50,33 @@ begin
             count <= count + 1;
 
             -- DATA (matrix A) (left->right)
-            for i in 0 to N-1 loop
-					if i < active_rows then 
+            for i in 0 to active_rows-1 loop
                 -- stagger and timing logic
-                if (count >= i) and (count < i + active_cols) then
+                if (count >= i) and (count < i + active_k) then
                     data_reg(i) <= matrix_data(i, count - i);
                 -- fill the rest with zeros
                 else
                     data_reg(i) <= (others => '0');
                 end if;
-					else
-						data_reg(i) <= (others => '0');
-					end if;
             end loop;
 
-
             -- WEIGHT (matrix B) -> (top->bottom)
-            for j in 0 to N-1 loop
-					if j < active_cols then
+            for j in 0 to active_cols-1 loop
                 -- stagger and timing logic
-                if (count >= j) and (count < j + active_cols) then
+                if (count >= j) and (count < j + active_k) then
                     weight_reg(j) <= matrix_weight(count - j, j);
                 -- fill the rest with zeros
                 else
                     weight_reg(j) <= (others => '0');
                 end if;
-					else 
-						weight_reg(j) <= (others => '0');
-					end if;
             end loop;
+
+            -- this was a done signal generation i was trying out for modelsim memory testing 
+            -- if (count >= (active_k + active_cols + active_rows - 2)) then
+            --     done <= '1';
+            -- else
+            --     done <= '0';
+            -- end if;
 
             -- PE enable mask for power optimisation
             for i in 0 to N-1 loop

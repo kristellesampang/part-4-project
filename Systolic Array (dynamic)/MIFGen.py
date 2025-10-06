@@ -1,15 +1,21 @@
 import numpy as np
 import os
+import struct 
 
 def save_mif_32bit(filename, data, width=32):
     """
     Saves a NumPy array to a 32-bit wide MIF file, packing four 8-bit
     values into each 32-bit word.
+    THIS VERSION CONTAINS THE CORRECTED PACKING LOGIC.
     """
     # Flatten the 8x8 matrix into a 1D array of 64 bytes
     flat_data = data.flatten().astype(np.uint8)
     
-    # Calculate the depth for a 32-bit memory (64 bytes / 4 bytes per word = 16 words)
+    # Pad with zeros if the total number of bytes is not a multiple of 4
+    if len(flat_data) % 4 != 0:
+        padding_needed = 4 - (len(flat_data) % 4)
+        flat_data = np.pad(flat_data, (0, padding_needed), 'constant')
+        
     depth = len(flat_data) // 4
 
     with open(filename, "w") as f:
@@ -26,9 +32,11 @@ def save_mif_32bit(filename, data, width=32):
             # Get a chunk of four 8-bit values
             chunk = flat_data[i:i+4]
             
-            # Pack the four 8-bit bytes into a single 32-bit integer (big-endian)
-            # Example: [9, 1, 0, 3] -> 0x09010003
-            word = (chunk[0] << 24) | (chunk[1] << 16) | (chunk[2] << 8) | chunk[3]
+            # === THE BUG FIX: Replaced faulty bit-shifting with robust 'struct' packing ===
+            # This is the bulletproof, industry-standard way to ensure big-endian packing.
+            packed_bytes = struct.pack('>BBBB', chunk[0], chunk[1], chunk[2], chunk[3])
+            word, = struct.unpack('>I', packed_bytes)
+            # =============================================================================
             
             # The address for the 32-bit word
             addr = i // 4
@@ -39,13 +47,13 @@ def save_mif_32bit(filename, data, width=32):
             
         f.write("END;\n")
 
-# === Main script execution ===
+# === Main script execution (Your original structure and paths) ===
 
 # Create a directory for the MIF files if it doesn't exist
-output_dir = "C:/Users/OEM\Documents/part-4-project/Systolic Array (dynamic)"
+output_dir = "C:/Users/OEM/Documents/part-4-project/Systolic Array (dynamic)"
 os.makedirs(output_dir, exist_ok=True)
 
-# Generate two 8×8 matrices for testing
+# Generate two 8x8 matrices for testing
 matrix_data = np.arange(1, 65, dtype=np.uint8).reshape(8, 8)      # [1, 2, ..., 64]
 matrix_weight = np.flip(matrix_data, axis=1)                      # Horizontally flipped version
 
@@ -53,7 +61,7 @@ print("--- Generating 32-bit Wide MIF Files ---")
 print("Matrix Data (first 4 values):", matrix_data.flatten()[:4])
 print("Matrix Weight (first 4 values):", matrix_weight.flatten()[:4])
 
-# Define the output file paths
+# Define the output file paths (Your original paths)
 data_mif_path = os.path.join(output_dir, "matrix_data_32bit.mif")
 weight_mif_path = os.path.join(output_dir, "matrix_weight_32bit.mif")
 
@@ -62,4 +70,4 @@ save_mif_32bit(data_mif_path, matrix_data)
 save_mif_32bit(weight_mif_path, matrix_weight)
 
 print(f"\n✅ 32-bit MIF files generated in '{output_dir}' folder.")
-print("You can now use these files to initialize your BRAMs in Platform Designer.")
+print("The output format is now corrected to big-endian using the robust 'struct' method.")
