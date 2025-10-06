@@ -106,12 +106,7 @@ begin
 
             when WAIT_FOR_COMPLETION =>
                 tb_ready <= '1';
-                -- set tb_ready to 0 once completed is high
-                if completed = '1' then
-                    tb_ready <= '0';
-                    current_state := IDLE;
-                    addr_counter := 0;
-                end if;
+                
                 
                 -- report "Simulation  finished." severity note;
                 -- std.env.finish;

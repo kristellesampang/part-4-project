@@ -47,7 +47,7 @@ begin
                 end loop;
             end loop;
         elsif rising_edge(clk) and ready = '1' then
-
+            count <= count + 1;
             
 
             -- DATA (matrix A) (left->right)
@@ -85,14 +85,6 @@ begin
             end loop;
 
 
-            -- Assert completed flag when done 
-            if count = 3 * N -1  then
-                completed <= '1';
-                
-            else
-                completed <= '0';
-                count <= count + 1;
-            end if;
 
 
         end if;

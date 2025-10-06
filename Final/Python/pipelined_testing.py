@@ -427,7 +427,7 @@ def main():
         print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
         
         # apply the desired sparsity
-        sparsity_percent = 0  # Set this from 0 to 100 as needed
+        sparsity_percent = 95  # Set this from 0 to 100 as needed
         
         inputMatrix_data = apply_sparsity(inputMatrix_data, sparsity_percent, seed=42)
         inputMatrix_weight = apply_sparsity(inputMatrix_weight, sparsity_percent, seed=42)
