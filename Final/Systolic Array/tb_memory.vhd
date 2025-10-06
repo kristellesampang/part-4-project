@@ -17,7 +17,7 @@ architecture sim of tb_memory is
     end component;
     
     -- Constants
-    constant MAX_ACTIVE_ROWS : integer := 1;
+    constant MAX_ACTIVE_ROWS : integer := 8;
     constant MAX_ACTIVE_COLS : integer := 8;
     constant CLK_PER : time := 20 ns;
 

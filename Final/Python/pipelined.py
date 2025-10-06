@@ -324,20 +324,7 @@ def send_matrix_serial(serial_port, matrix):
         
     print("Matrix sent successfully.")    
     
-def send_matrix_serial(serial_port, matrix):
-    """Sends a matrix byte-by-byte over the serial port."""
-    print(f"Sending {matrix.size} bytes...")
-    
-    # Flatten the matrix into a 1D array for easy iteration
-    flat_matrix = matrix.flatten()
-    
-    # Send one byte at a time
-    for byte_val in flat_matrix:
-        serial_port.write(bytearray([byte_val]))
-        # A small delay can help prevent buffer overflows on the receiver
-        time.sleep(0.001)
-        
-    print("Matrix sent successfully.")
+
     
 # --- Main Orchestration Function ---
 
@@ -382,10 +369,15 @@ def main():
         print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
         
         stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
+        # save the stripped matrices as .mif files
+        save_matrix_as_mif(stripped_data, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif')
+        save_matrix_as_mif(stripped_weight, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif')
+        
 
         generate_vhdl_stimulus("data", stripped_data, N=N_hardware)
         generate_vhdl_stimulus("weight", stripped_weight, N=N_hardware)
-
+                
+    
         # --- CASE 2: (Vanilla) ---
         print("\n### VHDL FOR UNOPTIMIZED (VANILLA) TEST ###\n")
         
@@ -397,7 +389,10 @@ def main():
     
     
     # verify with mac calcuator
-    mac_calculator(data_mif_path, weight_mif_path, 8,8);
+    # mac_calculator(data_mif_path, weight_mif_path, 8,8);
+    # mac stripped matrix
+    mac_calculator('C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif', 
+                   'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif', 8,8);
     
     
     # # 1. Open the serial port connection
