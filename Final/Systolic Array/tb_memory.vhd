@@ -95,7 +95,7 @@ begin
                 end if;
                 
                 -- Check if loading is complete
-                if addr_counter = (N*N - 1) then
+                if addr_counter = (N*N+1) then
                     current_state := WAIT_FOR_COMPLETION;
                 else
                     addr_counter := addr_counter + 1;
