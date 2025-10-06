@@ -8,6 +8,7 @@ entity top_level_systolic_array is
     port (
         clk           : in  bit_1;
         reset         : in  bit_1;
+        ready         : in bit_1;
 
         -- Inputs to feed matrices
         matrix_data   : in  systolic_array_matrix_input;
@@ -36,6 +37,7 @@ begin
         port map (
             clk              => clk,
             reset            => reset,
+            ready            => ready,
             matrix_data      => matrix_data,
             matrix_weight    => matrix_weight,
             data_shift       => data_shift_sig,

@@ -4,13 +4,13 @@ ADDRESS_RADIX=UNS;
 DATA_RADIX=HEX;
 
 CONTENT BEGIN
-	0	:	4E;
-	1	:	4E;
-	2	:	55;
-	3	:	4E;
-	4	:	6C;
-	5	:	4E;
-	6	:	4E;
+	0	:	4F;
+	1	:	4F;
+	2	:	58;
+	3	:	4F;
+	4	:	67;
+	5	:	4F;
+	6	:	4F;
 	7	:	-75;
 	8	:	00;
 	9	:	00;

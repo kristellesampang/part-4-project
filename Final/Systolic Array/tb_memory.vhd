@@ -17,7 +17,7 @@ architecture sim of tb_memory is
     end component;
     
     -- Constants
-    constant MAX_ACTIVE_ROWS : integer := 8;
+    constant MAX_ACTIVE_ROWS : integer := 1;
     constant MAX_ACTIVE_COLS : integer := 8;
     constant CLK_PER : time := 20 ns;
 
@@ -32,6 +32,7 @@ architecture sim of tb_memory is
     signal matrix_weight_sig : systolic_array_matrix_input := (others => (others => (others => '0')));
     signal result_matrix_sig : systolic_array_matrix_output;
     signal cycle_count_sig   : integer;
+    signal tb_ready        : bit_1 := '0';
     
 begin
     clk <= not clk after CLK_PER / 2;
@@ -43,6 +44,7 @@ begin
     port map (
         clk           => clk,
         reset         => reset,
+        ready         => tb_ready,
         matrix_data   => matrix_data_sig,
         matrix_weight => matrix_weight_sig,
         output        => result_matrix_sig,
@@ -78,7 +80,6 @@ begin
                 -- Present the address
                 data_rom_addr   <= std_logic_vector(to_unsigned(addr_counter, data_rom_addr'length));
                 weight_rom_addr <= std_logic_vector(to_unsigned(addr_counter, weight_rom_addr'length));
-                
                 -- Wait for the next clock edge
                 wait until rising_edge(clk);
                 
@@ -102,12 +103,17 @@ begin
                 end if;
 
             when WAIT_FOR_COMPLETION =>
-                wait for ((MAX_ACTIVE_ROWS - 1) + (MAX_ACTIVE_COLS - 1) + MAX_ACTIVE_COLS + 5) * CLK_PER;
+                tb_ready <= '1';
+                -- wait for MAX_ACTIVE_ROWS * MAX_ACTIVE_COLS * CLK_PER + (2*CLK_PER) ;
+                -- wait for (3 * MAX_ACTIVE_COLS * CLK_PER) - CLK_PER; -- the "real" clock cycle time based on previous experience 
+                wait for 2 * MAX_ACTIVE_COLS * CLK_PER;
+                tb_ready <= '0';
                 
                 -- report "Simulation  finished." severity note;
                 -- std.env.finish;
                 wait; 
         end case;
     end process;
+
 
 end sim;

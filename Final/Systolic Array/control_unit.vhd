@@ -9,6 +9,7 @@ entity control_unit is
 port(
     clk : in bit_1;
     reset : in bit_1;
+    ready : in bit_1;
 
     matrix_data   : in systolic_array_matrix_input;
     matrix_weight : in systolic_array_matrix_input;
@@ -44,7 +45,8 @@ begin
                 end loop;
             end loop;
 
-        elsif rising_edge(clk) then
+        elsif rising_edge(clk) and ready = '1' then
+
             count <= count + 1;
 
             -- DATA (matrix A) (left->right)
