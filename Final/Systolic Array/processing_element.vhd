@@ -28,12 +28,12 @@ architecture behaviour of processing_element is
 
     -- -- initialise signals and vairables for the internal registers
     signal data, weight : bit_8 := (others => '0');
-    signal accumulator : unsigned(31 downto 0) := (others => '0'); 
+    signal accumulator : signed(31 downto 0) := (others => '0'); 
 
 
 begin
     process(clk, reset)
-        variable multiplication : unsigned(31 downto 0);
+        variable multiplication : signed(31 downto 0);
     begin
         if reset = '1' then
             data <= (others => '0');
@@ -50,7 +50,7 @@ begin
 
                 if in_data /= x"00" and in_weight /= x"00" then
                     -- Compute the multplication result (the product)
-                    multiplication := resize(unsigned(in_data) * unsigned(in_weight), 32);
+                    multiplication := resize(signed(in_data) * signed(in_weight), 32);
                     -- Add product to accumulator
                     accumulator <= accumulator + multiplication;
                 end if;

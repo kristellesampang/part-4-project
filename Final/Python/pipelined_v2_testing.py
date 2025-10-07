@@ -18,11 +18,12 @@ import serial
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
-MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/activation_tile_4.mif'
-TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/weight_tile_4.mif'
-STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_activation.mif'
-STRIPPED_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_weight.mif'
+# MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
+MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1"
+# TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
+# TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
+STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/stripped_activation.mif'
+STRIPPED_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/stripped_weight.mif'
 LAYER_SIZE = 64
 TILE_SIZE = 8
 
@@ -235,9 +236,10 @@ def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_s
         print(w_tile)
         print(a_tile)
 
-        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
-        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
-
+        # save_matrix_to_mif(w_tile, os.path.join(output_dir, f"/tile_{tile_counter}/weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
+        # save_matrix_to_mif(a_tile, os.path.join(output_dir, f"/tile_{tile_counter}/activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
+        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"tile_{tile_counter}", f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
+        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"tile_{tile_counter}", f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)   
         tile_counter += 1
 
     print(f"Generated and saved {tile_counter} pairs of {tile_size}x{tile_size} tiles.")
@@ -427,7 +429,7 @@ def twos_complement_to_uint8(arr):
 def main():
     
     ##### Part 1: Load, Quantise, Extract, Tile, and Inference AlexNet
-    print("\n=== PART 1: LOAD, QUANTISE, EXTRACT, TILE, AND INFERENCE ALEXNET ===")
+    print("\n\n\n=== PART 1: LOAD, QUANTISE, EXTRACT, TILE, AND INFERENCE ALEXNET ===")
     # Load and Quantise AlexNet
     model = load_quantized_alexnet()
     print("\n---  MODEL LOADED AND QUANTISED ---")
@@ -450,40 +452,65 @@ def main():
     
     
     ##### Part 2: Apply Stripping Algorithm
-    print("\n=== PART 2: APPLY STRIPPING ALGORITHM ===")
-    testing_data = mif_to_matrix(TEST_DATA_MIF_DIR, TILE_SIZE, TILE_SIZE)
-    testing_weight = mif_to_matrix(TEST_WEIGHT_MIF_DIR, TILE_SIZE, TILE_SIZE)
+    print("\n\n\n=== PART 2: APPLY STRIPPING ALGORITHM ===")
+    # testing_data = mif_to_matrix(TEST_DATA_MIF_DIR, TILE_SIZE, TILE_SIZE)
+    # testing_weight = mif_to_matrix(TEST_WEIGHT_MIF_DIR, TILE_SIZE, TILE_SIZE)
     
-    if testing_data is None or testing_weight is None:
-        print("Aborting Part 2 due to file read error.")
-        return
-    else:
+    # if testing_data is None or testing_weight is None:
+    #     print("Aborting Part 2 due to file read error.")
+    #     return
+    # else:
+    #     # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
+    #     print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
+        
+    #     # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
+    #     stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
+    #     # apply twos complement to the stripped_weight 
+    #     stripped_weight = twos_complement_to_uint8(stripped_weight)
+
+
+    #     print(f"Stripped Weight: {stripped_weight}")
+        
+    #     # save the stripped matrices as .mif files
+    #     save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
+    #     save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
+    #     generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
+        
+    #     # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---
+    #     print("### VHDL FOR BASELINE (NO SPARSITY) TEST ###\n")
+    #     generate_vhdl_stimulus(testing_data, testing_weight, TILE_SIZE, TILE_SIZE, TILE_SIZE, N=TILE_SIZE)
+    
+    # Run the Stripping Algorithms on all the saved tiles
+    for tile_idx in range(8):  # Assuming 8 tiles
+        testing_data = mif_to_matrix(os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif"), TILE_SIZE, TILE_SIZE)
+        testing_weight = mif_to_matrix(os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif"), TILE_SIZE, TILE_SIZE)
+        
+        if testing_data is None or testing_weight is None:
+            print(f"Aborting Part 2 due to file read error on tile {tile_idx}.")
+            continue
+        else:
         # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
-        print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
-        
-        # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
-        stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
-        # apply twos complement to the stripped_weight 
-        stripped_weight = twos_complement_to_uint8(stripped_weight)
+            print(f"\n--- TILE {tile_idx}: VHDL FOR OPTIMIZED (SPARSITY) TEST ---\n")
+            
+            # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
+            stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
+            # apply twos complement to the stripped_weight 
+            stripped_weight = twos_complement_to_uint8(stripped_weight)
 
 
-        print(f"Stripped Weight: {stripped_weight}")
-        
-        # save the stripped matrices as .mif files
-        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
-        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
-        generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
-        
-        # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---
-        print("### VHDL FOR BASELINE (NO SPARSITY) TEST ###\n")
-        generate_vhdl_stimulus(testing_data, testing_weight, TILE_SIZE, TILE_SIZE, TILE_SIZE, N=TILE_SIZE)
+            print(f"Stripped Weight: {stripped_weight}")
+            
+            # save the stripped matrices as .mif files
+            save_matrix_to_mif(stripped_data, os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", "stripped_activation.mif"), LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
+            save_matrix_to_mif(stripped_weight, os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", "stripped_weight.mif"), LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
+            # generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
 
-    ##### Part 3: Systolic Array Simulation on Python
-    print("\n=== PART 3: SYSTOLIC ARRAY SIMULATION ON PYTHON ===")
-    print("\n--- USING ORIGINAL MATRICES ---")
-    simulate_systolic_array(testing_data, testing_weight, m_value, n_value, k_value)  
-    print("\n--- USING STRIPPED MATRICES ---")
-    simulate_systolic_array(stripped_data, stripped_weight, m_value, n_value, k_value)  
+            ##### Part 3: Systolic Array Simulation on Python
+            print(f"\n\n\n=== PART 3: TILE {tile_idx} SYSTOLIC ARRAY SIMULATION ON PYTHON ===")
+            print("\n--- USING ORIGINAL MATRICES ---")
+            simulate_systolic_array(testing_data, testing_weight, m_value, n_value, k_value)  
+            print("\n--- USING STRIPPED MATRICES ---")
+            simulate_systolic_array(stripped_data, stripped_weight, m_value, n_value, k_value)  
 
 
 

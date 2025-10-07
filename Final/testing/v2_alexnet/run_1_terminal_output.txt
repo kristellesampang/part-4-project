@@ -1,0 +1,923 @@
+Microsoft Windows [Version 10.0.26100.6584]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\iamkr>cd C:\Users\iamkr\Documents\part-4-project\Final\Python
+
+C:\Users\iamkr\Documents\part-4-project\Final\Python>python pipelined_v2_testing.py
+
+
+
+=== PART 1: LOAD, QUANTISE, EXTRACT, TILE, AND INFERENCE ALEXNET ===
+C:\Users\iamkr\AppData\Local\Programs\Python\Python310\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+C:\Users\iamkr\AppData\Local\Programs\Python\Python310\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+C:\Users\iamkr\Documents\part-4-project\Final\Python\pipelined_v2_testing.py:102: DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10.
+For migrations of users:
+1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead
+2. FX graph mode quantization (torch.ao.quantization.quantize_fx.prepare_fx,torch.ao.quantization.quantize_fx.convert_fx, please migrate to use torchao pt2e quantization API instead (prepare_pt2e, convert_pt2e)
+3. pt2e quantization has been migrated to torchao (https://github.com/pytorch/ao/tree/main/torchao/quantization/pt2e)
+see https://github.com/pytorch/ao/issues/2259 for more details
+  torch.quantization.prepare(model, inplace=True)
+C:\Users\iamkr\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\ao\quantization\observer.py:246: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  warnings.warn(
+C:\Users\iamkr\Documents\part-4-project\Final\Python\pipelined_v2_testing.py:107: DeprecationWarning: torch.ao.quantization is deprecated and will be removed in 2.10.
+For migrations of users:
+1. Eager mode quantization (torch.ao.quantization.quantize, torch.ao.quantization.quantize_dynamic), please migrate to use torchao eager mode quantize_ API instead
+2. FX graph mode quantization (torch.ao.quantization.quantize_fx.prepare_fx,torch.ao.quantization.quantize_fx.convert_fx, please migrate to use torchao pt2e quantization API instead (prepare_pt2e, convert_pt2e)
+3. pt2e quantization has been migrated to torchao (https://github.com/pytorch/ao/tree/main/torchao/quantization/pt2e)
+see https://github.com/pytorch/ao/issues/2259 for more details
+  torch.quantization.convert(model, inplace=True)
+
+---  MODEL LOADED AND QUANTISED ---
+
+--- IMAGE PREPROCESSED ---
+
+--- EXTRACTING QUANTISED CONV WEIGHTS AND ACTIVATION (CONV0, RELU1) ---
+Conv weights shape: (64, 363)
+Activation shape: (3025, 576)
+
+--- FINDING CONSISTENT NON-SPARSE STARTING POINT FOR TILING ---
+Tiling starts at row 0, col 0 for both weights and activations.
+
+--- GENERATING 8x8 TILES AND SAVING AS .MIF ---
+\Tile 0:
+[[ 26  21  21  23  23  15  11  11]
+ [ -1   2  32  35  25  29  41  33]
+ [-13   3   2  22  37  40  22   0]
+ [ -2  -1   6  11  11  13  11  12]
+ [ 41  13  72  31  14  -5 -16 -28]
+ [ 48 -26  56  -9  16  -2 -17 -16]
+ [-11 -19   3   9  29  40  41  27]
+ [-20 -26 -18 -34 -30 -15  -3  -1]]
+[[0 0 0 0 0 1 0 0]
+ [0 0 0 0 1 2 0 1]
+ [0 0 0 1 2 0 1 0]
+ [0 0 0 2 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_0\weight_tile_0.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_0\activation_tile_0.mif
+\Tile 1:
+[[ 12   5  11  17   9  12  17  16]
+ [ 41  17  13  -8  -3  12  13  26]
+ [-23 -27 -52 -22  -3  -8  17  41]
+ [ 11   5  -2   1 -10 -15 -15 -12]
+ [-47 -70 -37  23   9  66  31  10]
+ [  2 -51  -9  -6 -41   4 -14   3]
+ [  2  -9 -21 -10 -12   5   5  12]
+ [ -7   5  -3  -1 -10 -11 -34 -27]]
+[[1 0 0 0 0 2 0 0]
+ [0 0 0 0 2 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 1 0]
+ [0 0 0 0 0 1 2 0]
+ [0 0 0 0 1 2 3 0]
+ [0 0 0 0 2 3 3 1]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_1\weight_tile_1.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_1\activation_tile_1.mif
+\Tile 2:
+[[ 16  12   6   6  -3   1  17   9]
+ [ 22  31  21  36  11  16   2  -1]
+ [ 54  45  18 -18 -36 -73 -32 -10]
+ [ -3   3   4   4   7   4   2  -9]
+ [ -4 -16 -27 -38 -56 -22  50  33]
+ [  4   4  -5  19  -5  10  59  -2]
+ [  6  -1 -13 -18 -14  -6  -1 -11]
+ [ -7 -10 -18 -18   7   6  -8 -11]]
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 1]
+ [0 0 0 0 0 0 1 1]
+ [0 1 0 0 0 1 1 1]
+ [1 1 0 0 0 1 1 0]
+ [1 1 0 0 0 1 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_2\weight_tile_2.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_2\activation_tile_2.mif
+\Tile 3:
+[[ 12  12  12  11  11   6  10   2]
+ [ 18  21  18  18  13 -18 -17 -41]
+ [-12  25  67  99 112  92  52   8]
+ [-19 -38 -57 -63 -64 -55 -44 -27]
+ [ 97  61  23 -14 -36 -50 -60 -79]
+ [ 48   8   8   5  -3 -27  -1 -44]
+ [ 20  19  19  15   4 -19 -29 -24]
+ [  3 -23 -46 -35 -33 -17   0  14]]
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 1 0 0 0 0 0]
+ [0 1 0 0 0 0 0 0]
+ [1 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]
+ [2 0 0 0 0 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_3\weight_tile_3.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_3\activation_tile_3.mif
+\Tile 4:
+[[  3  16  12  14  14  13   9  10]
+ [ 17   4  13  20  27  25  20   1]
+ [-42 -48 -32 -36  -6  41  87 121]
+ [-18  17  27  44  57  54  39  19]
+ [-48  48  46 115  66  17 -23 -44]
+ [-20  27 -32  26  -7   4   9  -1]
+ [  5  -4  -8  24  22  17   6 -13]
+ [  9  -1  -1   6 -30 -80 -70 -16]]
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 1]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_4\weight_tile_4.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_4\activation_tile_4.mif
+\Tile 5:
+[[  8  10   0   1  19  17  16  19]
+ [-38 -47 -64  40   3 -10  12  15]
+ [124  89  35 -32 -59 -45 -59 -42]
+ [  1 -13 -16 -12  -4  -4   9  30]
+ [-51 -58 -80 -45  57  55 127  76]
+ [-11   2 -25   3  43 -22  30  -1]
+ [-30 -33 -15  24   7   6  38  14]
+ [ 48  71  67  26  -8   0 -25 -82]]
+[[2 2 0 2 2 0 0 0]
+ [2 1 2 2 2 0 0 0]
+ [1 0 2 2 0 0 0 0]
+ [0 0 2 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_5\weight_tile_5.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_5\activation_tile_5.mif
+\Tile 6:
+[[  21   15    7    5    5   -2   -8   21]
+ [   1  -14  -20  -55  -53  -72   43   13]
+ [  -3   44   91  127  118   70   -8  -57]
+ [  54   81   91   89   73   44   27   -8]
+ [  18  -25  -43  -55  -69  -88  -52   50]
+ [   5    2  -13  -30    1  -31  -18   45]
+ [   6    1  -29  -42  -25    0   31   17]
+ [-126  -88    7   79   90   61   18  -21]]
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 2 0 0 3 0 0]
+ [0 2 3 0 3 4 0 0]
+ [2 3 3 3 4 5 0 0]
+ [3 3 0 4 5 1 0 0]
+ [3 0 0 5 1 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_6\weight_tile_6.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_6\activation_tile_6.mif
+\Tile 7:
+[[  22   22   24   16    8   -2  -10   -8]
+ [  -4   12   28   -2  -24    6  -22  -44]
+ [ -51  -76  -64  -39   -2   46   96  107]
+ [ -18  -39  -49  -58  -50  -31  -12   12]
+ [  53  125   86   22  -24  -40  -63  -75]
+ [ -21   46    9    4   -4  -12  -13    1]
+ [  15   29    1   -7  -23  -54  -52   -5]
+ [ -22  -32  -91 -128  -95  -17   36   24]]
+[[0 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_7\weight_tile_7.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_7\activation_tile_7.mif
+Generated and saved 8 pairs of 8x8 tiles.
+Files are saved in the 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1' directory.
+
+--- FULL MODEL INFERENCE (FOR REFERENCE) ---
+Prediction: Vase
+Confidence: 11.69%
+
+
+
+=== PART 2: APPLY STRIPPING ALGORITHM ===
+
+--- TILE 0: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 26  21  21  23  23  15  11  11]
+ [255   2  32  35  25  29  41  33]
+ [243   3   2  22  37  40  22   0]
+ [254 255   6  11  11  13  11  12]
+ [ 41  13  72  31  14 251 240 228]
+ [ 48 230  56 247  16 254 239 240]
+ [245 237   3   9  29  40  41  27]
+ [236 230 238 222 226 241 253 255]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_0\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_0\stripped_weight.mif
+
+
+
+=== PART 3: TILE 0 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 1 0 0]
+ [0 0 0 0 1 2 0 1]
+ [0 0 0 1 2 0 1 0]
+ [0 0 0 2 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[ 26  21  21  23  23  15  11  11]
+ [ -1   2  32  35  25  29  41  33]
+ [-13   3   2  22  37  40  22   0]
+ [ -2  -1   6  11  11  13  11  12]
+ [ 41  13  72  31  14  -5 -16 -28]
+ [ 48 -26  56  -9  16  -2 -17 -16]
+ [-11 -19   3   9  29  40  41  27]
+ [-20 -26 -18 -34 -30 -15  -3  -1]]
+
+Result Matrix (C):
+[[ 48 -26  56  -9  16  -2 -17 -16]
+ [117 -65 166 -21  16 -24 -53 -61]
+ [ 69   6 153  82  68  43  20 -17]
+ [ -4  -2  12  22  22  26  22  24]
+ [  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]]
+
+Simulated Total Clock Cycles (Latency): 19
+Active Rows (m): 4, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (4, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 1 0 0]
+ [0 0 0 0 1 2 0 1]
+ [0 0 0 1 2 0 1 0]
+ [0 0 0 2 0 0 0 0]]
+
+Input Matrix (B):
+[[ 26  21  21  23  23  15  11  11]
+ [255   2  32  35  25  29  41  33]
+ [243   3   2  22  37  40  22   0]
+ [254 255   6  11  11  13  11  12]
+ [ 41  13  72  31  14 251 240 228]
+ [ 48 230  56 247  16 254 239 240]
+ [245 237   3   9  29  40  41  27]
+ [236 230 238 222 226 241 253 255]]
+
+Result Matrix (C):
+[[  48  230   56  247   16  254  239  240]
+ [ 373  703  422  747  272 1000  971  963]
+ [ 581  518  153   82   68  555  532  495]
+ [ 508  510   12   22   22   26   22   24]]
+
+Simulated Total Clock Cycles (Latency): 19
+Active Rows (m): 4, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 1: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 12   5  11  17   9  12  17  16]
+ [ 41  17  13 248 253  12  13  26]
+ [233 229 204 234 253 248  17  41]
+ [ 11   5 254   1 246 241 241 244]
+ [209 186 219  23   9  66  31  10]
+ [  2 205 247 250 215   4 242   3]
+ [  2 247 235 246 244   5   5  12]
+ [249   5 253 255 246 245 222 229]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_1\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_1\stripped_weight.mif
+
+
+
+=== PART 3: TILE 1 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[1 0 0 0 0 2 0 0]
+ [0 0 0 0 2 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 1 0]
+ [0 0 0 0 0 1 2 0]
+ [0 0 0 0 1 2 3 0]
+ [0 0 0 0 2 3 3 1]]
+
+Input Matrix (B):
+[[ 12   5  11  17   9  12  17  16]
+ [ 41  17  13  -8  -3  12  13  26]
+ [-23 -27 -52 -22  -3  -8  17  41]
+ [ 11   5  -2   1 -10 -15 -15 -12]
+ [-47 -70 -37  23   9  66  31  10]
+ [  2 -51  -9  -6 -41   4 -14   3]
+ [  2  -9 -21 -10 -12   5   5  12]
+ [ -7   5  -3  -1 -10 -11 -34 -27]]
+
+Result Matrix (C):
+[[  16  -97   -7    5  -73   20  -11   22]
+ [ -94 -140  -74   46   18  132   62   20]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   2   -9  -21  -10  -12    5    5   12]
+ [   6  -69  -51  -26  -65   14   -4   27]
+ [ -37 -199 -118  -19 -109   89   18   52]
+ [ -89 -315 -167   -3 -151  148    1   38]]
+
+Simulated Total Clock Cycles (Latency): 21
+Active Rows (m): 6, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (6, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[1 0 0 0 0 2 0 0]
+ [0 0 0 0 2 0 0 0]
+ [0 0 0 0 0 0 1 0]
+ [0 0 0 0 0 1 2 0]
+ [0 0 0 0 1 2 3 0]
+ [0 0 0 0 2 3 3 1]]
+
+Input Matrix (B):
+[[ 12   5  11  17   9  12  17  16]
+ [ 41  17  13 248 253  12  13  26]
+ [233 229 204 234 253 248  17  41]
+ [ 11   5 254   1 246 241 241 244]
+ [209 186 219  23   9  66  31  10]
+ [  2 205 247 250 215   4 242   3]
+ [  2 247 235 246 244   5   5  12]
+ [249   5 253 255 246 245 222 229]]
+
+Result Matrix (C):
+[[  16  415  505  517  439   20  501   22]
+ [ 418  372  438   46   18  132   62   20]
+ [   2  247  235  246  244    5    5   12]
+ [   6  699  717  742  703   14  252   27]
+ [ 219 1337 1418 1261 1171   89  530   52]
+ [ 679 1733 2137 1789 1641  404 1025  294]]
+
+Simulated Total Clock Cycles (Latency): 21
+Active Rows (m): 6, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 2: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 16  12   6   6 253   1  17   9]
+ [ 22  31  21  36  11  16   2 255]
+ [ 54  45  18 238 220 183 224 246]
+ [253   3   4   4   7   4   2 247]
+ [252 240 229 218 200 234  50  33]
+ [  4   4 251  19 251  10  59 254]
+ [  6 255 243 238 242 250 255 245]
+ [249 246 238 238   7   6 248 245]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_2\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_2\stripped_weight.mif
+
+
+
+=== PART 3: TILE 2 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 1]
+ [0 0 0 0 0 0 1 1]
+ [0 1 0 0 0 1 1 1]
+ [1 1 0 0 0 1 1 0]
+ [1 1 0 0 0 1 0 0]]
+
+Input Matrix (B):
+[[ 16  12   6   6  -3   1  17   9]
+ [ 22  31  21  36  11  16   2  -1]
+ [ 54  45  18 -18 -36 -73 -32 -10]
+ [ -3   3   4   4   7   4   2  -9]
+ [ -4 -16 -27 -38 -56 -22  50  33]
+ [  4   4  -5  19  -5  10  59  -2]
+ [  6  -1 -13 -18 -14  -6  -1 -11]
+ [ -7 -10 -18 -18   7   6  -8 -11]]
+
+Result Matrix (C):
+[[  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [ -7 -10 -18 -18   7   6  -8 -11]
+ [ -1 -11 -31 -36  -7   0  -9 -22]
+ [ 25  24 -15  19  -1  26  52 -25]
+ [ 48  46   9  43 -11  21  77  -5]
+ [ 42  47  22  61   3  27  78   6]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (5, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 1]
+ [0 0 0 0 0 0 1 1]
+ [0 1 0 0 0 1 1 1]
+ [1 1 0 0 0 1 1 0]
+ [1 1 0 0 0 1 0 0]]
+
+Input Matrix (B):
+[[ 16  12   6   6 253   1  17   9]
+ [ 22  31  21  36  11  16   2 255]
+ [ 54  45  18 238 220 183 224 246]
+ [253   3   4   4   7   4   2 247]
+ [252 240 229 218 200 234  50  33]
+ [  4   4 251  19 251  10  59 254]
+ [  6 255 243 238 242 250 255 245]
+ [249 246 238 238   7   6 248 245]]
+
+Result Matrix (C):
+[[249 246 238 238   7   6 248 245]
+ [255 501 481 476 249 256 503 490]
+ [281 536 753 531 511 282 564 999]
+ [ 48 302 521 299 757 277 333 763]
+ [ 42  47 278  61 515  27  78 518]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 3: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 12  12  12  11  11   6  10   2]
+ [ 18  21  18  18  13 238 239 215]
+ [244  25  67  99 112  92  52   8]
+ [237 218 199 193 192 201 212 229]
+ [ 97  61  23 242 220 206 196 177]
+ [ 48   8   8   5 253 229 255 212]
+ [ 20  19  19  15   4 237 227 232]
+ [  3 233 210 221 223 239   0  14]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_3\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_3\stripped_weight.mif
+
+
+
+=== PART 3: TILE 3 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 1 0 0 0 0 0]
+ [0 1 0 0 0 0 0 0]
+ [1 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]
+ [2 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[ 12  12  12  11  11   6  10   2]
+ [ 18  21  18  18  13 -18 -17 -41]
+ [-12  25  67  99 112  92  52   8]
+ [-19 -38 -57 -63 -64 -55 -44 -27]
+ [ 97  61  23 -14 -36 -50 -60 -79]
+ [ 48   8   8   5  -3 -27  -1 -44]
+ [ 20  19  19  15   4 -19 -29 -24]
+ [  3 -23 -46 -35 -33 -17   0  14]]
+
+Result Matrix (C):
+[[  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0]
+ [-12  25  67  99 112  92  52   8]
+ [ 18  21  18  18  13 -18 -17 -41]
+ [-12  62 146 209 235 190 114  18]
+ [ 36  42  36  36  26 -36 -34 -82]
+ [ 24  24  24  22  22  12  20   4]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (5, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 1 0 0 0 0 0]
+ [0 1 0 0 0 0 0 0]
+ [1 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]
+ [2 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[ 12  12  12  11  11   6  10   2]
+ [ 18  21  18  18  13 238 239 215]
+ [244  25  67  99 112  92  52   8]
+ [237 218 199 193 192 201 212 229]
+ [ 97  61  23 242 220 206 196 177]
+ [ 48   8   8   5 253 229 255 212]
+ [ 20  19  19  15   4 237 227 232]
+ [  3 233 210 221 223 239   0  14]]
+
+Result Matrix (C):
+[[244  25  67  99 112  92  52   8]
+ [ 18  21  18  18  13 238 239 215]
+ [500  62 146 209 235 190 114  18]
+ [ 36  42  36  36  26 476 478 430]
+ [ 24  24  24  22  22  12  20   4]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 4: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[  3  16  12  14  14  13   9  10]
+ [ 17   4  13  20  27  25  20   1]
+ [214 208 224 220 250  41  87 121]
+ [238  17  27  44  57  54  39  19]
+ [208  48  46 115  66  17 233 212]
+ [236  27 224  26 249   4   9 255]
+ [  5 252 248  24  22  17   6 243]
+ [  9 255 255   6 226 176 186 240]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_4\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_4\stripped_weight.mif
+
+
+
+=== PART 3: TILE 4 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 1]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[  3  16  12  14  14  13   9  10]
+ [ 17   4  13  20  27  25  20   1]
+ [-42 -48 -32 -36  -6  41  87 121]
+ [-18  17  27  44  57  54  39  19]
+ [-48  48  46 115  66  17 -23 -44]
+ [-20  27 -32  26  -7   4   9  -1]
+ [  5  -4  -8  24  22  17   6 -13]
+ [  9  -1  -1   6 -30 -80 -70 -16]]
+
+Result Matrix (C):
+[[   0    0    0    0    0    0    0    0]
+ [  18   -2   -2   12  -60 -160 -140  -32]
+ [  18   -2   -2   12  -60 -160 -140  -32]
+ [   9   -1   -1    6  -30  -80  -70  -16]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]]
+
+Simulated Total Clock Cycles (Latency): 18
+Active Rows (m): 3, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (3, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 2]
+ [0 0 0 0 0 0 0 1]]
+
+Input Matrix (B):
+[[  3  16  12  14  14  13   9  10]
+ [ 17   4  13  20  27  25  20   1]
+ [214 208 224 220 250  41  87 121]
+ [238  17  27  44  57  54  39  19]
+ [208  48  46 115  66  17 233 212]
+ [236  27 224  26 249   4   9 255]
+ [  5 252 248  24  22  17   6 243]
+ [  9 255 255   6 226 176 186 240]]
+
+Result Matrix (C):
+[[ 18 510 510  12 452 352 372 480]
+ [ 18 510 510  12 452 352 372 480]
+ [  9 255 255   6 226 176 186 240]]
+
+Simulated Total Clock Cycles (Latency): 18
+Active Rows (m): 3, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 5: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[  8  10   0   1  19  17  16  19]
+ [218 209 192  40   3 246  12  15]
+ [124  89  35 224 197 211 197 214]
+ [  1 243 240 244 252 252   9  30]
+ [205 198 176 211  57  55 127  76]
+ [245   2 231   3  43 234  30 255]
+ [226 223 241  24   7   6  38  14]
+ [ 48  71  67  26 248   0 231 174]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_5\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_5\stripped_weight.mif
+
+
+
+=== PART 3: TILE 5 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[2 2 0 2 2 0 0 0]
+ [2 1 2 2 2 0 0 0]
+ [1 0 2 2 0 0 0 0]
+ [0 0 2 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[  8  10   0   1  19  17  16  19]
+ [-38 -47 -64  40   3 -10  12  15]
+ [124  89  35 -32 -59 -45 -59 -42]
+ [  1 -13 -16 -12  -4  -4   9  30]
+ [-51 -58 -80 -45  57  55 127  76]
+ [-11   2 -25   3  43 -22  30  -1]
+ [-30 -33 -15  24   7   6  38  14]
+ [ 48  71  67  26  -8   0 -25 -82]]
+
+Result Matrix (C):
+[[-160 -216 -320  -32  150  116  328  280]
+ [ 126    9 -186 -136   29   36  198  181]
+ [ 258  162   38  -87 -107  -81  -84   -5]
+ [ 248  178   70  -64 -118  -90 -118  -84]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]]
+
+Simulated Total Clock Cycles (Latency): 19
+Active Rows (m): 4, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (4, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[2 2 0 2 2 0 0 0]
+ [2 1 2 2 2 0 0 0]
+ [1 0 2 2 0 0 0 0]
+ [0 0 2 0 0 0 0 0]]
+
+Input Matrix (B):
+[[  8  10   0   1  19  17  16  19]
+ [218 209 192  40   3 246  12  15]
+ [124  89  35 224 197 211 197 214]
+ [  1 243 240 244 252 252   9  30]
+ [205 198 176 211  57  55 127  76]
+ [245   2 231   3  43 234  30 255]
+ [226 223 241  24   7   6  38  14]
+ [ 48  71  67  26 248   0 231 174]]
+
+Result Matrix (C):
+[[ 864 1320 1216  992  662 1140  328  280]
+ [ 894 1289 1094 1400 1053 1316  710  693]
+ [ 258  674  550  937  917  943  428  507]
+ [ 248  178   70  448  394  422  394  428]]
+
+Simulated Total Clock Cycles (Latency): 19
+Active Rows (m): 4, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 6: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 21  15   7   5   5 254 248  21]
+ [  1 242 236 201 203 184  43  13]
+ [253  44  91 127 118  70 248 199]
+ [ 54  81  91  89  73  44  27 248]
+ [ 18 231 213 201 187 168 204  50]
+ [  5   2 243 226   1 225 238  45]
+ [  6   1 227 214 231   0  31  17]
+ [130 168   7  79  90  61  18 235]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_6\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_6\stripped_weight.mif
+
+
+
+=== PART 3: TILE 6 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 2 0 0 3 0 0]
+ [0 2 3 0 3 4 0 0]
+ [2 3 3 3 4 5 0 0]
+ [3 3 0 4 5 1 0 0]
+ [3 0 0 5 1 0 0 0]]
+
+Input Matrix (B):
+[[  21   15    7    5    5   -2   -8   21]
+ [   1  -14  -20  -55  -53  -72   43   13]
+ [  -3   44   91  127  118   70   -8  -57]
+ [  54   81   91   89   73   44   27   -8]
+ [  18  -25  -43  -55  -69  -88  -52   50]
+ [   5    2  -13  -30    1  -31  -18   45]
+ [   6    1  -29  -42  -25    0   31   17]
+ [-126  -88    7   79   90   61   18  -21]]
+
+Result Matrix (C):
+[[   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   9   94  143  164  239   47  -70   21]
+ [  67   37   52  -14   45 -322 -166  185]
+ [ 295  273  263  123  153 -385 -128  311]
+ [ 377  204   97  -99 -196 -517  -65  365]
+ [ 351  425  433  405  311  126   59   73]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (5, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 2 0 0 3 0 0]
+ [0 2 3 0 3 4 0 0]
+ [2 3 3 3 4 5 0 0]
+ [3 3 0 4 5 1 0 0]
+ [3 0 0 5 1 0 0 0]]
+
+Input Matrix (B):
+[[ 21  15   7   5   5 254 248  21]
+ [  1 242 236 201 203 184  43  13]
+ [253  44  91 127 118  70 248 199]
+ [ 54  81  91  89  73  44  27 248]
+ [ 18 231 213 201 187 168 204  50]
+ [  5   2 243 226   1 225 238  45]
+ [  6   1 227 214 231   0  31  17]
+ [130 168   7  79  90  61  18 235]]
+
+Result Matrix (C):
+[[ 521   94  911  932  239  815 1210  533]
+ [ 835 1317 2356 2290 1325 1982 2394  953]
+ [1063 2065 3335 3195 1945 3199 3456 1847]
+ [ 377 2252 2401 2205 1852 2555 2239 1389]
+ [ 351  681  689  661  567 1150 1083 1353]]
+
+Simulated Total Clock Cycles (Latency): 20
+Active Rows (m): 5, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- TILE 7: VHDL FOR OPTIMIZED (SPARSITY) TEST ---
+
+Stripped Weight: [[ 22  22  24  16   8 254 246 248]
+ [252  12  28 254 232   6 234 212]
+ [205 180 192 217 254  46  96 107]
+ [238 217 207 198 206 225 244  12]
+ [ 53 125  86  22 232 216 193 181]
+ [235  46   9   4 252 244 243   1]
+ [ 15  29   1 249 233 202 204 251]
+ [234 224 165 128 161 239  36  24]]
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_7\stripped_activation.mif
+Matrix saved to C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1\tile_7\stripped_weight.mif
+
+
+
+=== PART 3: TILE 7 SYSTOLIC ARRAY SIMULATION ON PYTHON ===
+
+--- USING ORIGINAL MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (8, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[  22   22   24   16    8   -2  -10   -8]
+ [  -4   12   28   -2  -24    6  -22  -44]
+ [ -51  -76  -64  -39   -2   46   96  107]
+ [ -18  -39  -49  -58  -50  -31  -12   12]
+ [  53  125   86   22  -24  -40  -63  -75]
+ [ -21   46    9    4   -4  -12  -13    1]
+ [  15   29    1   -7  -23  -54  -52   -5]
+ [ -22  -32  -91 -128  -95  -17   36   24]]
+
+Result Matrix (C):
+[[-102 -152 -128  -78   -4   92  192  214]
+ [  -8   24   56   -4  -48   12  -44  -88]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]
+ [   0    0    0    0    0    0    0    0]]
+
+Simulated Total Clock Cycles (Latency): 17
+Active Rows (m): 2, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+--- USING STRIPPED MATRICES ---
+
+--- 4. Systolic Array Simulation ---
+Input A shape: (2, 8), Input B shape: (8, 8)
+
+Input Matrix (A):
+[[0 0 2 0 0 0 0 0]
+ [0 2 0 0 0 0 0 0]]
+
+Input Matrix (B):
+[[ 22  22  24  16   8 254 246 248]
+ [252  12  28 254 232   6 234 212]
+ [205 180 192 217 254  46  96 107]
+ [238 217 207 198 206 225 244  12]
+ [ 53 125  86  22 232 216 193 181]
+ [235  46   9   4 252 244 243   1]
+ [ 15  29   1 249 233 202 204 251]
+ [234 224 165 128 161 239  36  24]]
+
+Result Matrix (C):
+[[410 360 384 434 508  92 192 214]
+ [504  24  56 508 464  12 468 424]]
+
+Simulated Total Clock Cycles (Latency): 17
+Active Rows (m): 2, Active Columns (n): 8, Active K (k): 8
+
+========================================
+
+C:\Users\iamkr\Documents\part-4-project\Final\Python>
