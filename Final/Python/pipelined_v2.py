@@ -451,7 +451,7 @@ def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
     
     # Calculate the latency (Total Clock Cycles)
     # latency = (rows_A - 1) + (cols_B - 1) + cols_A # !! change
-    latency = m + n + k - 2  
+    latency = m + n + k - 1
     
     print("\n--- 4. Systolic Array Simulation ---")
     print(f"Input A shape: {matrix_A.shape}, Input B shape: {matrix_B.shape}")
