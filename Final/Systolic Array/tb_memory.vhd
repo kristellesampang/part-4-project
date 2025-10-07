@@ -17,7 +17,7 @@ architecture sim of tb_memory is
     end component;
     
     -- Constants
-    constant MAX_ACTIVE_ROWS : integer := 3;
+    constant MAX_ACTIVE_ROWS : integer := 5;
     constant MAX_ACTIVE_COLS : integer := 8;
     constant ACTIVE_K : integer := 8; 
     constant CLK_PER : time := 20 ns;
@@ -99,8 +99,15 @@ begin
                     matrix_weight_sig(target_row, target_col) <= weight_rom_q;
                 end if;
                 
+                -- Calculate the target row and column for current addr_counter
+                -- target_row := addr_counter / N;
+                -- target_col := addr_counter mod N;
+                -- matrix_data_sig(target_row, target_col)   <= data_rom_q;
+                -- matrix_weight_sig(target_row, target_col) <= weight_rom_q;
+
+
                 -- Check if loading is complete
-                if addr_counter = (N*N-1) then
+                if addr_counter = (N*N+1) then
                     current_state := WAIT_FOR_COMPLETION;
                 else
                     addr_counter := addr_counter + 1;
@@ -111,7 +118,7 @@ begin
                 -- if clock cycle is more than ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS + 2 then
                 -- if cycle_count_sig > (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) then
                 wait for (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) * CLK_PER;
-                    tb_ready <= '0';
+                -- tb_ready <= '0';
                 -- end if;
             
                 wait; 

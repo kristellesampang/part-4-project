@@ -19,8 +19,8 @@ import serial
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/activation_tile_4.mif'
-TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/weight_tile_4.mif'
+TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/activation_tile_6.mif'
+TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/weight_tile_6.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_activation.mif'
 STRIPPED_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_weight.mif'
 LAYER_SIZE = 64
@@ -250,11 +250,11 @@ def save_matrix_to_mif(matrix, filename, depth, width):
     """Saves a 2D numpy array to a Memory Initialization File (MIF)."""
     
     with open(filename, 'w') as f:
-        f.write(f"DEPTH = {depth};\n")
         f.write(f"WIDTH = {width};\n")
+        f.write(f"DEPTH = {depth};\n")
         f.write("ADDRESS_RADIX = UNS;\n")
         f.write("DATA_RADIX = HEX;\n")
-        f.write("CONTENT BEGIN\n")
+        f.write("\nCONTENT BEGIN\n")
         
         flat_matrix = matrix.flatten()
         for i, val in enumerate(flat_matrix):
@@ -519,8 +519,8 @@ def main():
         # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
         stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
         # apply twos complement to the stripped_weight 
-        # stripped_weight = twos_complement_to_uint8(stripped_weight)
-        
+        stripped_weight = twos_complement_to_uint8(stripped_weight)
+
 
         print(f"Stripped Weight: {stripped_weight}")
         
@@ -535,7 +535,10 @@ def main():
 
     ##### Part 3: Systolic Array Simulation on Python
     print("\n=== PART 3: SYSTOLIC ARRAY SIMULATION ON PYTHON ===")
+    print("\n--- USING ORIGINAL MATRICES ---")
     simulate_systolic_array(testing_data, testing_weight, m_value, n_value, k_value)  
+    print("\n--- USING STRIPPED MATRICES ---")
+    simulate_systolic_array(stripped_data, stripped_weight, m_value, n_value, k_value)  
 
 
 
