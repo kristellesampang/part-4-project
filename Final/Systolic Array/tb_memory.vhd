@@ -129,8 +129,8 @@ begin
                 tb_ready <= '1';
                 -- if clock cycle is more than ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS + 2 then
                 -- if cycle_count_sig > (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) then
-                wait for (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) * CLK_PER;
-                -- tb_ready <= '0';
+                wait for (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 1) * CLK_PER;
+                tb_ready <= '0';
                 -- end if;
             
                 wait; 
