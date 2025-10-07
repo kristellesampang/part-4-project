@@ -19,8 +19,8 @@ architecture sim of tb_memory is
     -- Constants
     constant MAX_ACTIVE_ROWS : integer := 3;
     constant MAX_ACTIVE_COLS : integer := 8;
-    constant CLK_PER : time := 20 ns;
     constant ACTIVE_K : integer := 8; 
+    constant CLK_PER : time := 20 ns;
 
     -- Signals
     signal clk   : std_logic := '0';
@@ -108,10 +108,12 @@ begin
 
             when WAIT_FOR_COMPLETION =>
                 tb_ready <= '1';
-                
-                
-                -- report "Simulation  finished." severity note;
-                -- std.env.finish;
+                -- if clock cycle is more than ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS + 2 then
+                -- if cycle_count_sig > (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) then
+                wait for (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) * CLK_PER;
+                    tb_ready <= '0';
+                -- end if;
+            
                 wait; 
         end case;
     end process;

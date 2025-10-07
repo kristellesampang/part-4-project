@@ -252,7 +252,7 @@ def save_matrix_to_mif(matrix, filename, depth, width):
     with open(filename, 'w') as f:
         f.write(f"DEPTH = {depth};\n")
         f.write(f"WIDTH = {width};\n")
-        f.write("ADDRESS_RADIX = HEX;\n")
+        f.write("ADDRESS_RADIX = UNS;\n")
         f.write("DATA_RADIX = HEX;\n")
         f.write("CONTENT BEGIN\n")
         
@@ -291,8 +291,8 @@ def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_s
         print(w_tile)
         print(a_tile)
 
-        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), tile_size, tile_size)
-        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), tile_size, tile_size)
+        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size)
+        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size)
 
         tile_counter += 1
 
@@ -519,14 +519,14 @@ def main():
         # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
         stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
         # apply twos complement to the stripped_weight 
-        stripped_weight = twos_complement_to_uint8(stripped_weight)
+        # stripped_weight = twos_complement_to_uint8(stripped_weight)
         
 
         print(f"Stripped Weight: {stripped_weight}")
         
         # save the stripped matrices as .mif files
-        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, m_value, k_value)
-        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, k_value, n_value)        
+        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE)
+        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE)        
         generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
         
         # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---
