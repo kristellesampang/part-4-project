@@ -476,7 +476,9 @@ def coordinated_row_removal(data_matrix, weight_matrix):
 
     return compact_data, compact_weight, m_new, k_new, n_new
 
-# Main 
+def twos_complement_to_uint8(arr):
+    return arr.astype(np.int8).astype(np.uint8)
+
 def main():
     
     ##### Part 1: Load, Quantise, Extract, Tile, and Inference AlexNet
@@ -516,6 +518,12 @@ def main():
         
         # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
         stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
+        # apply twos complement to the stripped_weight 
+        stripped_weight = twos_complement_to_uint8(stripped_weight)
+        
+
+        print(f"Stripped Weight: {stripped_weight}")
+        
         # save the stripped matrices as .mif files
         save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, m_value, k_value)
         save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, k_value, n_value)        

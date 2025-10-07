@@ -10,7 +10,7 @@ port(
     clk : in bit_1;
     reset : in bit_1;
     ready : in bit_1;
-    completed : out bit_1;
+    -- completed : out bit_1;
 
     matrix_data   : in systolic_array_matrix_input;
     matrix_weight : in systolic_array_matrix_input;
@@ -91,6 +91,9 @@ begin
         end if;
         
     end process;
+
+    
+
 
     data_shift      <= data_reg;
     weight_shift    <= weight_reg;

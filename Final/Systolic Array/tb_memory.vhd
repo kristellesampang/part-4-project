@@ -17,10 +17,10 @@ architecture sim of tb_memory is
     end component;
     
     -- Constants
-    constant MAX_ACTIVE_ROWS : integer := 8;
+    constant MAX_ACTIVE_ROWS : integer := 3;
     constant MAX_ACTIVE_COLS : integer := 8;
     constant CLK_PER : time := 20 ns;
-    constant ACTIVE_K : integer := 3; 
+    constant ACTIVE_K : integer := 8; 
 
     -- Signals
     signal clk   : std_logic := '0';
@@ -49,11 +49,12 @@ begin
         ready         => tb_ready,
         matrix_data   => matrix_data_sig,
         matrix_weight => matrix_weight_sig,
-        completed     => completed,
+        -- completed     => completed,
         output        => result_matrix_sig,
         cycle_count   => cycle_count_sig,
         active_rows   => MAX_ACTIVE_ROWS,
-        active_cols   => MAX_ACTIVE_COLS
+        active_cols   => MAX_ACTIVE_COLS,
+        active_k      => ACTIVE_K
     );
 
     -- Main Test Process as an FSM
@@ -99,7 +100,7 @@ begin
                 end if;
                 
                 -- Check if loading is complete
-                if addr_counter = (N*N+1) then
+                if addr_counter = (N*N-1) then
                     current_state := WAIT_FOR_COMPLETION;
                 else
                     addr_counter := addr_counter + 1;

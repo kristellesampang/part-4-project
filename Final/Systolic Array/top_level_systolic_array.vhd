@@ -19,7 +19,7 @@ entity top_level_systolic_array is
         active_k      : in integer;
 
         -- Outputs from the systolic array
-        completed     : out bit_1;
+        -- completed     : out bit_1;
         output        : out systolic_array_matrix_output;
         cycle_count   : out integer
     );
@@ -40,7 +40,7 @@ begin
             clk              => clk,
             reset            => reset,
             ready            => ready,
-            completed        => completed,
+            -- completed        => completed,
             matrix_data      => matrix_data,
             matrix_weight    => matrix_weight,
             data_shift       => data_shift_sig,
