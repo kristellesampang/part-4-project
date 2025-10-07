@@ -14,7 +14,7 @@ import serial
 
 # --- Constants ---
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
-MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline"
+MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v1"
 LAYER_SIZE = 64
 TILE_SIZE = 8
 
@@ -214,7 +214,13 @@ def mif_to_matrix(filename, rows=8, cols=8):
         matrix = np.array(data_values, dtype=np.int32).reshape((rows, cols))
         return matrix
     except ValueError as e:
-        print(f"Error: Could not reshape data into a {rows}x{cols} matrix. {e}")
+        # Add padding with zeros if necessary
+        if len(data_values) < rows * cols:
+            data_values.extend([0] * (rows * cols - len(data_values)))
+            matrix = np.array(data_values, dtype=np.int32).reshape((rows, cols))
+            print("Warning: Data was padded with zeros to fit the desired shape for the matrix multiplication.")
+            return matrix
+        # print(f"Error: Could not reshape data into a {rows}x{cols} matrix. {e}")
         return None
 
 def strip_matrices(matrix_A, matrix_B):
@@ -265,10 +271,11 @@ def generate_vhdl_stimulus(matrix_type, matrix_to_print, N=8):
     print("-" * 30)
 
 # create a MAC calculator
-def mac_calculator(data_mif_path, weight_mif_path, ROWS=8, COLS=8):
+def mac_calculator(data_mif_path, weight_mif_path, ROWS, COLS):
     # Load matrices from the .mif files
     A = mif_to_matrix(data_mif_path, ROWS, COLS)
     B = mif_to_matrix(weight_mif_path, ROWS, COLS)
+    
     
     # Proceed only if both files were loaded successfully
     if A is not None and B is not None:
@@ -324,6 +331,55 @@ def send_matrix_serial(serial_port, matrix):
         
     print("Matrix sent successfully.")    
     
+    
+def apply_sparsity(tile, target_sparsity_percent, seed=None):
+    """
+    Adjusts the sparsity of the tile to match the target percentage.
+    - tile: 2D numpy array
+    - target_sparsity_percent: desired sparsity (0-100)
+    - seed: for reproducibility
+    """
+    if seed is not None:
+        np.random.seed(seed)
+    total_elements = tile.size
+    current_nonzero = np.count_nonzero(tile)
+    current_sparsity = 100 * (1 - current_nonzero / total_elements)
+
+    # Flatten for easy indexing
+    flat = tile.flatten()
+
+    if current_sparsity > target_sparsity_percent:
+        # Too sparse: fill some zeros with random nonzero values
+        num_to_fill = int(total_elements * (current_sparsity - target_sparsity_percent) / 100)
+        zero_indices = np.flatnonzero(flat == 0)
+        if len(zero_indices) > 0 and num_to_fill > 0:
+            fill_indices = np.random.choice(zero_indices, size=min(num_to_fill, len(zero_indices)), replace=False)
+            flat[fill_indices] = np.random.randint(1, 256, size=len(fill_indices))
+        print(f"Current sparsity {current_sparsity:.2f}% > target {target_sparsity_percent}%. Filled {len(fill_indices) if 'fill_indices' in locals() else 0} zeros.")
+    elif current_sparsity < target_sparsity_percent:
+        # Not sparse enough: zero out some nonzero values
+        num_to_zero = int(total_elements * (target_sparsity_percent - current_sparsity) / 100)
+        nonzero_indices = np.flatnonzero(flat != 0)
+        if len(nonzero_indices) > 0 and num_to_zero > 0:
+            zero_indices = np.random.choice(nonzero_indices, size=min(num_to_zero, len(nonzero_indices)), replace=False)
+            flat[zero_indices] = 0
+        print(f"Current sparsity {current_sparsity:.2f}% < target {target_sparsity_percent}%. Zeroed {len(zero_indices) if 'zero_indices' in locals() else 0} values.")
+    else:
+        print(f"Current sparsity matches target ({current_sparsity:.2f}%). No change.")
+
+    return flat.reshape(tile.shape)
+    
+    
+    
+    
+   
+
+
+    # Randomly select indices to zero out
+    zero_out_indices = np.random.choice(np.flatnonzero(tile), size=num_to_zero, replace=False)
+    tile[zero_out_indices] = 0
+
+    return tile
 
     
 # --- Main Orchestration Function ---
@@ -344,6 +400,8 @@ def main():
 
     # 3. Extract and process the relevant weight and activation tensors
     weights, activations = extract_and_process_tensors(model_quantized, input_tensor)
+    
+
 
     # 4. Slice tensors, create tiles, and save as .mif files
     generate_and_save_mif_tiles(weights, activations, MIF_OUTPUT_DIR, LAYER_SIZE, TILE_SIZE)
@@ -368,52 +426,34 @@ def main():
         # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
         print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
         
+        # apply the desired sparsity
+        sparsity_percent = 95  # Set this from 0 to 100 as needed
+        
+        inputMatrix_data = apply_sparsity(inputMatrix_data, sparsity_percent, seed=42)
+        inputMatrix_weight = apply_sparsity(inputMatrix_weight, sparsity_percent, seed=42)
+        
         stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
         # save the stripped matrices as .mif files
         save_matrix_as_mif(stripped_data, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif')
         save_matrix_as_mif(stripped_weight, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif')
         
 
-        generate_vhdl_stimulus("data", stripped_data, N=N_hardware)
-        generate_vhdl_stimulus("weight", stripped_weight, N=N_hardware)
+        # generate_vhdl_stimulus("data", stripped_data, N=N_hardware)
+        # generate_vhdl_stimulus("weight", stripped_weight, N=N_hardware)
                 
     
         # --- CASE 2: (Vanilla) ---
-        print("\n### VHDL FOR UNOPTIMIZED (VANILLA) TEST ###\n")
+        # print("\n### VHDL FOR UNOPTIMIZED (VANILLA) TEST ###\n")
         
-        generate_vhdl_stimulus("data", inputMatrix_data, N=N_hardware)
-        generate_vhdl_stimulus("weight", inputMatrix_weight, N=N_hardware)
+        # generate_vhdl_stimulus("data", inputMatrix_data, N=N_hardware)
+        # generate_vhdl_stimulus("weight", inputMatrix_weight, N=N_hardware)
         
     # simluate the systolic array operation 
     simulate_systolic_array(stripped_data, stripped_weight)
     
-    
-    # verify with mac calcuator
-    # mac_calculator(data_mif_path, weight_mif_path, 8,8);
-    # mac stripped matrix
+    # verify with mac calcuator via striped matrices
+
     mac_calculator('C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif', 
                    'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif', 8,8);
-    
-    
-    # # 1. Open the serial port connection
-    # #    (Replace 'COM3' with the correct port for your DE1-SoC)
-    # try:
-    #     ser = serial.Serial('COM3', 115200, timeout=1) # 115200 baud rate is common
-    #     print(f"Opened serial port {ser.name}")
-    # except serial.SerialException as e:
-    #     print(f"Error: Could not open serial port. {e}")
-    #     return # Exit if the port can't be opened
-    
-    # # 2. Send the matrices
-    # print("\n--- Sending Weight Matrix via UART ---")
-    # send_matrix_serial(ser, stripped_weight)
-
-    # print("\n--- Sending Activation Matrix via UART ---")
-    # send_matrix_serial(ser, stripped_data)
-
-    # # 4. Close the port
-    # ser.close()
-    # print("\nSerial port closed.")
-
 if __name__ == '__main__':
     main()

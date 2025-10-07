@@ -20,6 +20,7 @@ architecture sim of tb_memory is
     constant MAX_ACTIVE_ROWS : integer := 8;
     constant MAX_ACTIVE_COLS : integer := 8;
     constant CLK_PER : time := 20 ns;
+    constant ACTIVE_K : integer := 3; 
 
     -- Signals
     signal clk   : std_logic := '0';

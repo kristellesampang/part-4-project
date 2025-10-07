@@ -1,4 +1,6 @@
+
 import torch
+import torch.nn.functional as F
 import torchvision.models as models
 from torchvision import transforms
 from PIL import Image
@@ -13,30 +15,54 @@ import re
 import serial
 
 # --- Constants ---
-IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
-MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline"
+# IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
+IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
+MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
+TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/activation_tile_4.mif'
+TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/weight_tile_4.mif'
+STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_activation.mif'
+STRIPPED_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/stripped_weight.mif'
 LAYER_SIZE = 64
 TILE_SIZE = 8
 
-# --- Model Wrapper and Utility Functions (Unchanged) ---
 
+# Quantise Alexnet to int8
 class QuantizableAlexNet(torch.nn.Module):
     """A wrapper class to make AlexNet quantizable."""
+    
+    # Initialize with a pre-trained AlexNet model
     def __init__(self, model_fp32):
-        super(QuantizableAlexNet, self).__init__()
-        self.quant = torch.quantization.QuantStub()
+        super(QuantizableAlexNet, self).__init__() 
+        self.quant = torch.quantization.QuantStub() 
         self.dequant = torch.quantization.DeQuantStub()
-        self.model_fp32 = model_fp32
+        self.model_fp32 = model_fp32 # Pre-trained AlexNet model
 
-    def forward(self, x):
-        x = self.quant(x)
-        x = self.model_fp32.features(x)
-        x = self.model_fp32.avgpool(x)
-        x = torch.flatten(x, 1)
-        x = self.model_fp32.classifier(x)
-        x = self.dequant(x)
+    # Forward pass with options to return convolutional outputs and apply im2col
+    def forward(self, x, return_conv=False, im2col=False):
+        x = self.quant(x) # Quantize the input
+        conv_out = self.model_fp32.features(x) # Feature extractor (convolutional output)
+        if return_conv:
+            # Return convolutional activations (4D: N, C, H, W)
+            if im2col:
+                # Convert activations to 2D using unfold (im2col)
+                # im2col: each column is a patch for the next layer
+                # Example: kernel_size=3, stride=1, padding=1
+                unfolded = torch.nn.functional.unfold(conv_out, kernel_size=3, stride=1, padding=1)
+                # unfolded shape: (N, C*kernel_size*kernel_size, L) -> transpose to (L, C*ks*ks)
+                return unfolded
+            return conv_out
+        x = self.model_fp32.avgpool(conv_out) # Average pooling
+        x = torch.flatten(x, 1) # Flatten the tensor
+        x = self.model_fp32.classifier(x) # Classifier
+        x = self.dequant(x) # Dequantize the output
         return x
 
+    def get_conv_weights(self, layer_idx=0):
+        # Get weights of a convolutional layer in 4D (out_channels, in_channels, kH, kW)
+        conv_layer = [m for m in self.model_fp32.features if isinstance(m, torch.nn.Conv2d)][layer_idx]
+        return conv_layer.weight.data
+    
+# Retrieve ImageNet Labels
 def get_imagenet_labels():
     """Downloads and loads the ImageNet class labels."""
     labels_path = 'imagenet_class_index.json'
@@ -58,119 +84,233 @@ def get_imagenet_labels():
         labels = json.load(f)
     return labels
 
-def save_matrix_as_mif(matrix, filename, data_width=8):
-    """Saves a 2D NumPy matrix into a Quartus Memory Initialization File (.mif)."""
-    depth = matrix.size
-    with open(filename, 'w') as f:
-        f.write(f"WIDTH={data_width};\n")
-        f.write(f"DEPTH={depth};\n")
-        f.write("ADDRESS_RADIX=UNS;\n")
-        f.write("DATA_RADIX=HEX;\n\n")
-        f.write("CONTENT BEGIN\n")
+# Load and Quantise AlexNet Model
+def load_quantized_alexnet():
+    """Loads and quantizes a pre-trained AlexNet model."""
+    model_fp32 = models.alexnet(pretrained=True) # Load pre-trained AlexNet
+    model_fp32.eval() # Set to evaluation mode
 
+    # Fuse Conv, ReLU, and MaxPool layers for quantization
+    modules_to_fuse = [['0', '1'], ['3', '4'], ['6', '7'], ['8', '9'], ['10', '11']]
+    torch.quantization.fuse_modules(model_fp32.features, modules_to_fuse, inplace=True)
+
+
+    model = QuantizableAlexNet(model_fp32)
+    model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
+    torch.quantization.prepare(model, inplace=True)
+
+    # Calibrate with a dummy input
+    model(torch.randn(1, 3, 224, 224))
+
+    torch.quantization.convert(model, inplace=True)
+    return model
+
+# Preprocess the Input Image
+def preprocess_image(image_path):
+    """Preprocesses the input image for AlexNet."""
+    preprocess = transforms.Compose([
+        transforms.Resize(256), # Resize to 256x256
+        transforms.CenterCrop(224), # Center crop to 224x224
+        transforms.ToTensor(), # Convert to tensor
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # Normalize
+    ])
+    img = Image.open(image_path).convert('RGB') # Open and convert image to RGB
+    img_t = preprocess(img) # Apply preprocessing
+    img_t = img_t.unsqueeze(0) # Add batch dimension
+    return img_t
+
+# Extract Weights and Activation (with ReLU)
+# def extract_weights_and_activations(model, input_tensor):
+#     """Extracts weights and activations from the model."""
+#     # Extract weights from the first convolutional layer as 4D tensor
+#     quantized_weight_tensor = model.get_conv_weights(layer_idx=0)
+#     # Convert Weight to 2D by shaping it to (filter, channel*height*width)
+#     weights_2d = quantized_weight_tensor.view(quantized_weight_tensor.size(0), -1).detach().cpu().numpy()   
+
+#     # Extract the Activation Tensor after ReLU
+#     with torch.no_grad():
+#         activation_tensor = model(input_tensor, return_conv=True) # Get conv output
+#         relu_activation_tensor = torch.nn.functional.relu(activation_tensor) # Apply ReLU
+#         # Convert activation to 2D using im2col
+#         activations_2d = relu_activation_tensor.squeeze(0).transpose(0, 1).detach().cpu().numpy() # Shape (L, C*ks*ks)
+        
+#     return weights_2d, activations_2d
+
+
+# def extract_matched_matrices(model, input_tensor, target_feature_idx, next_conv_feature_idx):
+#     """ Extracts matched 2D weight and activation matrices from a quantized model. """
+#     # Use a dictionary to store the captured activation tensor
+#     captured_activation = {}
+#     # Hook: ggrabbing the output of a layer during a forward pass
+#     def hook_fn(module, input, output):
+#         captured_activation['value'] = output
+
+#     # 1. Identify the target layer (to hook) and the next conv layer (for weights/params)
+#     target_layer = model.model_fp32.features[target_feature_idx]
+#     next_conv_layer = model.model_fp32.features[next_conv_feature_idx]
+
+#     # 2. Register the forward hook on the target layer
+#     handle = target_layer.register_forward_hook(hook_fn)
+
+#     # 3. Run a forward pass to trigger the hook
+#     # This means we need to pass the input tensor through the model
+#     with torch.no_grad():
+#         model(input_tensor)
+
+#     # 4. Remove the hook immediately to keep things clean
+#     handle.remove()
+
+#     # 5. Retrieve the captured activation tensor
+#     activation_4d = captured_activation['value'] # This is the output of the target layer after the forward pass.
+#     if hasattr(activation_4d, 'dequantize'):
+#         activation_4d = activation_4d.dequantize()
+#         # quantise to int8
+#         activation_4d = activation_4d.init_repr().to(torch.int8)
+        
+
+#     # 6. Extract the weights from the NEXT conv layer and reshape to 2D
+#     weight_4d = model.model_fp32.classifier[1].weight()
+#     fc1_weights_int8 = weight_4d.int_repr().numpy() 
+#     # convert to 2D by shaping it to (filter, channel*height*width)
+#     weights_2d = fc1_weights_int8.reshape(fc1_weights_int8.shape[0], -1)
+
+#     # 7. Apply im2col (`unfold`) to the captured activation tensor
+#     #    using the parameters from the NEXT conv layer.
+#     activations_unfolded = F.unfold( 
+#         activation_4d,
+#         kernel_size=next_conv_layer.kernel_size,
+#         stride=next_conv_layer.stride,
+#         padding=next_conv_layer.padding
+#     )
+        
+#     # Reshape to the final 2D activation matrix
+#     activations_2d = activations_unfolded.squeeze(0)
+#     # convert this from a tensor to a numpy array
+#     activations_2d = activations_2d.detach().cpu().numpy()
+    
+#     print(f"Extracted weight matrix shape: {weights_2d.shape}")
+#     print(weights_2d)
+#     print(f"Extracted activation matrix shape: {activations_2d.shape}")
+#     print(activations_2d)
+
+#     return weights_2d, activations_2d
+
+
+
+def extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx):
+    """Extracts quantized weights and activations from a convolutional layer."""
+    # 1. Extract quantized weights
+    conv_layer = model.model_fp32.features[conv_idx]
+    quantized_weight_tensor = conv_layer.weight() if callable(conv_layer.weight) else conv_layer.weight
+    weights_int8 = quantized_weight_tensor.int_repr().cpu().numpy()
+    weights_2d = weights_int8.reshape(weights_int8.shape[0], -1)
+
+    # 2. Extract activations after ReLU using a forward hook
+    activation = {}
+    def get_quantized_activation(name):
+        def hook(module, input, output):
+            activation[name] = output
+        return hook
+
+    # The hook captures the output of the ReLU layer during the forward pass
+    # and stores it in the 'activation' dictionary.
+    # This allows us to access the quantized activation values later.
+    # Register the hook on the specified ReLU layer
+    relu_layer = model.model_fp32.features[relu_idx]
+    hook_handle = relu_layer.register_forward_hook(get_quantized_activation('relu'))
+    with torch.no_grad():
+        model(input_tensor)
+    hook_handle.remove()
+    # Convert the quantized activation tensor to int8 numpy array
+    quantized_activation_tensor = activation['relu']
+    activations_int8 = quantized_activation_tensor.int_repr().cpu().numpy()
+        
+    # Save as a 2D matrix using im2col
+    # Convert to float32 for unfold (im2col), then back to int8 for hardware
+    if hasattr(quantized_activation_tensor, 'dequantize'):
+        activations_float = quantized_activation_tensor.dequantize().cpu()
+    else:
+        activations_float = torch.tensor(activations_int8, dtype=torch.float32).unsqueeze(0)
+    activations_unfolded = F.unfold(
+        activations_float,
+        kernel_size=3,
+        stride=1,
+        padding=1
+    )
+    activations_2d = activations_unfolded.squeeze(0).transpose(0, 1).numpy().astype(np.int8)
+
+    print(f"Conv weights shape: {weights_2d.shape}")
+    print(f"Activation shape: {activations_2d.shape}")
+    return weights_2d, activations_2d
+
+
+# Save 2D Matrix to MIF File
+def save_matrix_to_mif(matrix, filename, depth, width):
+    """Saves a 2D numpy array to a Memory Initialization File (MIF)."""
+    
+    with open(filename, 'w') as f:
+        f.write(f"DEPTH = {depth};\n")
+        f.write(f"WIDTH = {width};\n")
+        f.write("ADDRESS_RADIX = HEX;\n")
+        f.write("DATA_RADIX = HEX;\n")
+        f.write("CONTENT BEGIN\n")
+        
         flat_matrix = matrix.flatten()
         for i, val in enumerate(flat_matrix):
             hex_val = f"{val:02X}"
             f.write(f"\t{i}\t:\t{hex_val};\n")
 
         f.write("END;\n")
-
-# --- Refactored Helper Functions ---
-
-def load_and_quantize_model():
-    """Loads a pre-trained AlexNet model and applies dynamic quantization."""
-    print("Loading and quantizing AlexNet model...")
-    alexnet_fp32 = models.alexnet(weights=models.AlexNet_Weights.DEFAULT)
-    quantizable_model = QuantizableAlexNet(model_fp32=alexnet_fp32)
-    quantizable_model.eval()
-    quantizable_model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
-    model_prepared = torch.quantization.prepare(quantizable_model, inplace=False)
-
-    # Calibrate the model with dummy data
-    with torch.no_grad():
-        for _ in range(10):
-            model_prepared(torch.randn(1, 3, 224, 224))
-            
-    model_quantized = torch.quantization.convert(model_prepared, inplace=False)
-    print("Model successfully quantized.")
-    return model_quantized
-
-def preprocess_image(image_path):
-    """Loads an image from the given path and preprocesses it for the model."""
-    try:
-        img = Image.open(image_path).convert('RGB')
-    except FileNotFoundError:
-        print(f"ERROR: The image file '{image_path}' was not found.")
-        return None
-
-    preprocess = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ])
-    return preprocess(img).unsqueeze(0)
-
-def extract_and_process_tensors(model, input_tensor):
-    """Extracts weight and activation tensors, and applies ReLU to weights."""
-    # 1. Extract and process weights
-    quantized_weight_tensor = model.model_fp32.classifier[1].weight()
-    fc1_weights_int8 = quantized_weight_tensor.int_repr().numpy()
-    weights_after_relu = np.maximum(0, fc1_weights_int8)
+    # print(f"Matrix saved to {filename}")
     
-    # 2. Extract activations using a forward hook after the first ReLU
-    activation = {}
-    def get_quantized_activation(name):
-        def hook(model, input, output):
-            activation[name] = output
-        return hook
-
-    # --- THIS IS THE CORRECTED LINE ---
-    # Hook the first ReLU layer in the classifier (at index 2)
-    hook_handle = model.model_fp32.classifier[2].register_forward_hook(get_quantized_activation('relu1'))
-    
-    with torch.no_grad():
-        model(input_tensor)
-    hook_handle.remove()
-    
-    quantized_activation_tensor = activation['relu1']
-    # The output is already post-ReLU, so no need for np.maximum(0, ...)
-    activations_int8 = torch.flatten(quantized_activation_tensor.int_repr(), 1).numpy()
-    
-    # shape into a 2D matrix
-    activations_int8 = activations_int8.reshape(64,64)
-    
-    return weights_after_relu, activations_int8
-
-def generate_and_save_mif_tiles(weights, activations, output_dir, layer_size, tile_size):
+# Slices the matrices into NxN tiles and saves each tile as a separate MIF file
+def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_size):
     """Slices matrices, generates 8x8 tiles, and saves them as .mif files."""
     # --- 1. Slice Matrices to the specified layer size ---
-    print(f"\n--- SLICING MATRICES TO {layer_size}x{layer_size} ---")
-    weights_slice = weights[0:layer_size, 0:layer_size]
-    activations_slice = activations[:, 0:layer_size]
-    print(f"Created a {weights_slice.shape} weight matrix.")
-    print(f"Created a {activations_slice.shape} activation matrix.")
-    
+    print(f"\n--- FINDING CONSISTENT NON-SPARSE STARTING POINT FOR TILING ---")
+    # start_r, start_c = find_joint_non_sparse_tile_start(weights, activations, tile_size)
+    start_r, start_c = 0, 0  # Default to (0,0) 
+    print(f"Tiling starts at row {start_r}, col {start_c} for both weights and activations.")
+
     # --- 2. Generate and save tiles ---
     print(f"\n--- GENERATING {tile_size}x{tile_size} TILES AND SAVING AS .MIF ---")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    
+
     tile_counter = 0
-    for c in range(0, layer_size, tile_size):
-        w_tile = weights_slice[0:tile_size, c:c+tile_size]
-        
-        a_vector_slice = activations_slice[:, c:c+tile_size]
-        a_tile = np.zeros((tile_size, tile_size), dtype=weights.dtype)
-        a_tile[0, :] = a_vector_slice
-        
-        save_matrix_as_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"))
-        save_matrix_as_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"))
+    for c in range(start_c, start_c + layer_size, tile_size):
+        w_tile = weights[start_r:start_r+tile_size, c:c+tile_size]
+        a_tile = activations[start_r:start_r+tile_size, c:c+tile_size]
+        # Ensure a_tile is tile_size x tile_size
+        # if a_tile.shape[0] < tile_size or a_tile.shape[1] < tile_size:
+        #     padded_tile = np.zeros((tile_size, tile_size), dtype=weights.dtype)
+        #     padded_tile[:a_tile.shape[0], :a_tile.shape[1]] = a_tile
+        #     a_tile = padded_tile
+        print(f"\Tile {tile_counter}:")
+        print(w_tile)
+        print(a_tile)
+
+        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), tile_size, tile_size)
+        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), tile_size, tile_size)
+
         tile_counter += 1
 
-    print(f"\nGenerated and saved {tile_counter} pairs of {tile_size}x{tile_size} tiles.")
+    print(f"Generated and saved {tile_counter} pairs of {tile_size}x{tile_size} tiles.")
     print(f"Files are saved in the '{output_dir}' directory.")
+    
 
+# def find_joint_non_sparse_tile_start(weights, activations, tile_size, min_nonzero=8):
+#     rows, cols = weights.shape
+#     for r in range(0, rows - tile_size + 1):
+#         for c in range(0, cols - tile_size + 1):
+#             w_tile = weights[r:r+tile_size, c:c+tile_size]
+#             a_tile = activations[r:r+tile_size, c:c+tile_size]
+#             if np.count_nonzero(w_tile) > min_nonzero and np.count_nonzero(a_tile) > min_nonzero:
+#                 return r, c
+#     # If no suitable tile is found, return (0,0)
+#     return 0, 0
+
+    
 def run_inference(model, input_tensor, labels):
     """Performs inference on the input tensor and prints the prediction."""
     print("\n--- FULL MODEL INFERENCE (FOR REFERENCE) ---")
@@ -183,11 +323,10 @@ def run_inference(model, input_tensor, labels):
     
     predicted_class = labels[str(prediction_index)][1]
     
-    print(f"\nPrediction: {predicted_class.replace('_', ' ').title()}")
+    print(f"Prediction: {predicted_class.replace('_', ' ').title()}")
     print(f"Confidence: {confidence:.2f}%")
     
-
-def mif_to_matrix(filename, rows=8, cols=8):
+def mif_to_matrix(filename, rows, cols):
     """
     Reads a Quartus Memory Initialization File (.mif) and converts it
     into a 2D NumPy array.
@@ -220,74 +359,58 @@ def mif_to_matrix(filename, rows=8, cols=8):
         print(f"Error: Could not reshape data into a {rows}x{cols} matrix. {e}")
         return None
 
-def strip_matrices(matrix_A, matrix_B):
+def generate_vhdl_stimulus(compact_data, compact_weight, m, k, n, N=8):
     """
-    Strips all-zero rows and columns from two matrices while keeping their
-    inner dimensions compatible for multiplication (A * B).
+    Generates VHDL 'constant' declarations for the compacted matrices.
+    The padding is a VHDL requirement to fit the smaller logical matrix
+    into the fixed-size 8x8 physical type.
     """
-    # Find rows in A that are NOT all-zero
-    nonzero_rows_A = {i for i in range(matrix_A.shape[0]) if np.any(matrix_A[i, :])}
-    
-    # Find columns in B that are NOT all-zero
-    nonzero_cols_B = {j for j in range(matrix_B.shape[1]) if np.any(matrix_B[:, j])}
-    
-    # Find inner dimensions (columns of A, rows of B) that are NOT all-zero in EITHER matrix
-    nonzero_cols_A = {j for j in range(matrix_A.shape[1]) if np.any(matrix_A[:, j])}
-    nonzero_rows_B = {i for i in range(matrix_B.shape[0]) if np.any(matrix_B[i, :])}
-    
-    # The indices to keep for the inner dimension is the union of both
-    keep_indices = sorted(list(nonzero_cols_A.union(nonzero_rows_B)))
-    
-    # Create the stripped matrices
-    stripped_A = matrix_A[sorted(list(nonzero_rows_A)), :][:, keep_indices]
-    stripped_B = matrix_B[:, sorted(list(nonzero_cols_B))][keep_indices, :]
-    
-    return stripped_A, stripped_B
+    print(f"-- VHDL stimulus for compacted matrices")
+    print(f"constant ACTIVE_ROWS : integer := {m};")
+    print(f"constant ACTIVE_K : integer := {k};")
+    print(f"constant ACTIVE_COLS : integer := {n};")
 
-def generate_vhdl_stimulus(matrix_type, matrix_to_print, N=8):
-    """
-    Generates VHDL 'constant' declarations for a given matrix stimulus.
-    """
-    active_rows, active_cols = matrix_to_print.shape if matrix_to_print.size > 0 else (0, 0)
-    
-    print(f"-- VHDL stimulus for {matrix_type} matrix")
-    print(f"constant ACTIVE_ROWS_{matrix_type.upper()} : integer := {active_rows};")
-    print(f"constant ACTIVE_COLS_{matrix_type.upper()} : integer := {active_cols};")
-    
-    vhdl = f"constant MATRIX_{matrix_type.upper()}_STIMULUS : systolic_array_matrix_input := (\n"
+    # Generate VHDL for the Data Matrix
+    vhdl_data = f"\nconstant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (\n"
+    for r in range(m):
+        row_elements = [f"u8({compact_data[r, c]})" for c in range(k)]
+        padding = [f"u8(0)"] * (N - k)
+        vhdl_data += f"    ({', '.join(row_elements + padding)}),\n"
+    vhdl_data += "    others => (others => u8(0))\n);"
+    print(vhdl_data)
 
-    for r in range(active_rows):
-        row_elements = [f"u8({matrix_to_print[r, c]})" for c in range(active_cols)]
-        padding = [f"u8(0)"] * (N - active_cols)
-        vhdl += f"    ({', '.join(row_elements + padding)}),\n"
-        
-    vhdl += "    others => (others => u8(0))\n"
-    vhdl += ");"
+    # Generate VHDL for the Weight Matrix
+    vhdl_weight = f"\nconstant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (\n"
+    for r in range(k):
+        row_elements = [f"u8({compact_weight[r, c]})" for c in range(n)]
+        padding = [f"u8(0)"] * (N - n)
+        vhdl_weight += f"    ({', '.join(row_elements + padding)}),\n"
+    vhdl_weight += "    others => (others => u8(0))\n);"
+    print(vhdl_weight)
+    print("-" * 40)
     
-    print(vhdl)
-    print("-" * 30)
+def mac_calculator(data_mif_path, weight_mif_path, data_m, data_n, weight_m, weight_n):
+    """Calculates the matrix multiplication using a MAC approach."""
+    data_matrix = mif_to_matrix(data_mif_path, data_m, data_n)
+    weight_matrix = mif_to_matrix(weight_mif_path, weight_m, weight_n)
 
-# create a MAC calculator
-def mac_calculator(data_mif_path, weight_mif_path, ROWS=8, COLS=8):
-    # Load matrices from the .mif files
-    A = mif_to_matrix(data_mif_path, ROWS, COLS)
-    B = mif_to_matrix(weight_mif_path, ROWS, COLS)
+    if data_matrix is None or weight_matrix is None:
+        print("\nAborting MAC calculation due to file read error.")
+        return
     
-    # Proceed only if both files were loaded successfully
-    if A is not None and B is not None:
-        # Perform the matrix multiplication
-        C = np.matmul(A, B)
-        
-        print("--- Matrix A (Loaded from MIF) ---")
-        print(A)
-        print("\n--- Matrix B (Loaded from MIF) ---")
-        print(B)
-        print("\n--- Accumulated value of each PE (Result C) ---")
-        print(C)
-        
-        
-        
-def simulate_systolic_array(matrix_A, matrix_B):
+    if data_matrix.shape[1] != weight_matrix.shape[0]:
+        print("Error: Matrix dimensions are not compatible for multiplication.")
+        return
+    
+    result_matrix = np.matmul(data_matrix, weight_matrix)
+    
+    print("\n--- MAC Calculator Result ---")
+    print(f"Input A shape: {data_matrix.shape}, Input B shape: {weight_matrix.shape}")
+    print("\nResult Matrix (C):")
+    print(result_matrix)
+    print("\n" + "="*40 + "\n")
+
+def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
     """Simulates the behavior of a systolic array for matrix multiplication."""
     if matrix_A is None or matrix_B is None:
         return
@@ -303,119 +426,78 @@ def simulate_systolic_array(matrix_A, matrix_B):
     result_matrix = np.matmul(matrix_A, matrix_B)
     
     # Calculate the latency (Total Clock Cycles)
-    latency = (rows_A - 1) + (cols_B - 1) + cols_A
+    # latency = (rows_A - 1) + (cols_B - 1) + cols_A # !! change
+    latency = m + n + k - 2  
     
     print("\n--- 4. Systolic Array Simulation ---")
     print(f"Input A shape: {matrix_A.shape}, Input B shape: {matrix_B.shape}")
+    # print both input and output matrices
+    print("\nInput Matrix (A):")
+    print(matrix_A)
+    print("\nInput Matrix (B):")
+    print(matrix_B)
     print("\nResult Matrix (C):")
     print(result_matrix)
+    print(f"\nSimulated Total Clock Cycles (Latency): {latency}")
+    print(f"Active Rows (m): {m}, Active Columns (n): {n}, Active K (k): {k}")
     print("\n" + "="*40)
-    print(f"Total Clock Cycles (Latency): {latency}\n")
-    
-def send_matrix_serial(serial_port, matrix):
-    """Sends a matrix byte-by-byte over the serial port."""
-    print(f"Sending {matrix.size} bytes...")
-    
-    # Flatten the matrix into a 1D array for easy iteration
-    flat_matrix = matrix.flatten()
-    
-    # Send one byte at a time
-    for byte_val in flat_matrix:
-        serial_port.write(bytearray([byte_val]))
-        # A small delay can help prevent buffer overflows on the receiver
-        time.sleep(0.001)
-        
-    print("Matrix sent successfully.")    
-    
 
-    
-# --- Main Orchestration Function ---
 
+def coordinated_row_removal(data_matrix, weight_matrix):
+    """
+    This function correctly implements your original goal. It finds all active
+    rows and columns for each matrix but coordinates the inner dimension 'k'
+    to ensure the multiplication is always valid.
+    """
+    data_matrix = np.array(data_matrix)
+    weight_matrix = np.array(weight_matrix)
+
+    # 1. Find the active rows for data (m) and active columns for weight (n).
+    active_m_indices = np.where(np.any(data_matrix, axis=1))[0]
+    active_n_indices = np.where(np.any(weight_matrix, axis=0))[0]
+
+    # 2. Find the active inner dimension 'k' by taking the UNION of active
+    #    data columns and active weight rows. This captures all contributing parts.
+    data_k_indices = np.where(np.any(data_matrix, axis=0))[0]
+    weight_k_indices = np.where(np.any(weight_matrix, axis=1))[0]
+    # Using a set union ensures we have a sorted list of unique indices
+    common_k_indices = sorted(list(set(data_k_indices) | set(weight_k_indices)))
+
+    # 3. Create the new, dense matrices by stripping all zero-axes using these indices.
+    compact_data = data_matrix[np.ix_(active_m_indices, common_k_indices)]
+    compact_weight = weight_matrix[np.ix_(common_k_indices, active_n_indices)]
+
+    # 4. Extract the final, correct dimensions.
+    m_new = compact_data.shape[0]
+    k_new = compact_data.shape[1]
+    n_new = compact_weight.shape[1]
+
+    return compact_data, compact_weight, m_new, k_new, n_new
+
+# Main 
 def main():
-    """
-    Main function to orchestrate the model quantization, tensor extraction,
-    .mif file generation, and final inference.
-    """
-    # 1. Load and Quantize the Model
-    model_quantized = load_and_quantize_model()
+    # Load and Quantise AlexNet
+    model = load_quantized_alexnet()
+    print("\n---  MODEL LOADED AND QUANTISED ---")
     
-
-    # 2. Load and Preprocess a Real Image
+    # Preprocess the image
     input_tensor = preprocess_image(IMAGE_PATH)
     if input_tensor is None:
         return # Exit if image was not found
+    print("\n--- IMAGE PREPROCESSED ---")
 
-    # 3. Extract and process the relevant weight and activation tensors
-    weights, activations = extract_and_process_tensors(model_quantized, input_tensor)
+    # --- Extract and print quantized conv weights and activations (first conv layer) ---
+    print("\n--- EXTRACTING QUANTISED CONV WEIGHTS AND ACTIVATION (CONV0, RELU1) ---")
+    conv_weights_2d, conv_activations_2d = extract_conv_weights_and_activations(model, input_tensor, conv_idx=0, relu_idx=1)
 
-    # 4. Slice tensors, create tiles, and save as .mif files
-    generate_and_save_mif_tiles(weights, activations, MIF_OUTPUT_DIR, LAYER_SIZE, TILE_SIZE)
-
-    # 5. Run a full inference for reference and print the result
+    # Tile the matrices and save as MIF files
+    generate_and_save_tiles(conv_weights_2d, conv_activations_2d, MIF_OUTPUT_DIR, LAYER_SIZE, TILE_SIZE)
+    # Run Inference
     labels = get_imagenet_labels()
-    run_inference(model_quantized, input_tensor, labels)
+    run_inference(model, input_tensor, labels)
 
 
 
-    # Apply the stripping algorithm
-    N_hardware = 8
-    data_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/activation_tile_4.mif'
-    weight_mif_path = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/weight_tile_4.mif'
-    # Load the matrices from the .mif files
-    inputMatrix_data = mif_to_matrix(data_mif_path, N_hardware, N_hardware)
-    inputMatrix_weight = mif_to_matrix(weight_mif_path, N_hardware, N_hardware)
-
-    if inputMatrix_data is None or inputMatrix_weight is None:
-        print("\nAborting due to file read error.")
-    else:
-        # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
-        print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
-        
-        stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
-        # save the stripped matrices as .mif files
-        save_matrix_as_mif(stripped_data, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif')
-        save_matrix_as_mif(stripped_weight, 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif')
-        
-
-        generate_vhdl_stimulus("data", stripped_data, N=N_hardware)
-        generate_vhdl_stimulus("weight", stripped_weight, N=N_hardware)
-                
-    
-        # --- CASE 2: (Vanilla) ---
-        print("\n### VHDL FOR UNOPTIMIZED (VANILLA) TEST ###\n")
-        
-        generate_vhdl_stimulus("data", inputMatrix_data, N=N_hardware)
-        generate_vhdl_stimulus("weight", inputMatrix_weight, N=N_hardware)
-        
-    # simluate the systolic array operation 
-    simulate_systolic_array(stripped_data, stripped_weight)
-    
-    
-    # verify with mac calcuator
-
-    mac_calculator('C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_activation.mif', 
-                   'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline/stripped_weight.mif', 8,8);
-    
-    
-    # # 1. Open the serial port connection
-    # #    (Replace 'COM3' with the correct port for your DE1-SoC)
-    # try:
-    #     ser = serial.Serial('COM3', 115200, timeout=1) # 115200 baud rate is common
-    #     print(f"Opened serial port {ser.name}")
-    # except serial.SerialException as e:
-    #     print(f"Error: Could not open serial port. {e}")
-    #     return # Exit if the port can't be opened
-    
-    # # 2. Send the matrices
-    # print("\n--- Sending Weight Matrix via UART ---")
-    # send_matrix_serial(ser, stripped_weight)
-
-    # print("\n--- Sending Activation Matrix via UART ---")
-    # send_matrix_serial(ser, stripped_data)
-
-    # # 4. Close the port
-    # ser.close()
-    # print("\nSerial port closed.")
 
 if __name__ == '__main__':
     main()

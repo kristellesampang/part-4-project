@@ -14,7 +14,7 @@ import serial
 
 # --- Constants ---
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
-MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline"
+MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v1"
 LAYER_SIZE = 64
 TILE_SIZE = 8
 

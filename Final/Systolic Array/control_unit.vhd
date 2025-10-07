@@ -22,7 +22,8 @@ port(
     
 
     active_rows : in integer;
-    active_cols : in integer
+    active_cols : in integer;
+    active_k : in integer
 );
 end control_unit;
 
@@ -53,7 +54,7 @@ begin
             -- DATA (matrix A) (left->right)
             for i in 0 to active_rows-1 loop
                 -- stagger and timing logic
-                if (count >= i) and (count < i + active_cols) then
+                if (count >= i) and (count < i + active_k) then
                     data_reg(i) <= matrix_data(i, count - i);
                 -- fill the rest with zeros
                 else
@@ -65,7 +66,7 @@ begin
             -- WEIGHT (matrix B) -> (top->bottom)
             for j in 0 to active_cols-1 loop
                 -- stagger and timing logic
-                if (count >= j) and (count < j + active_cols) then
+                if (count >= j) and (count < j + active_k) then
                     weight_reg(j) <= matrix_weight(count - j, j);
                 -- fill the rest with zeros
                 else

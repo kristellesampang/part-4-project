@@ -16,6 +16,7 @@ entity top_level_systolic_array is
 
         active_rows   : in integer;
         active_cols   : in integer;
+        active_k      : in integer;
 
         -- Outputs from the systolic array
         completed     : out bit_1;
@@ -47,7 +48,8 @@ begin
             cycle_count      => cycle_count,
             PE_enabled_mask  => enabled_PE_mask,
             active_rows      => active_rows,
-            active_cols      => active_cols
+            active_cols      => active_cols,
+            active_k        => active_k
         );
 
     -- Instantiate the Systolic Array
