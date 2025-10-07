@@ -17,6 +17,7 @@ import serial
 # --- Constants ---
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
 IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
+# IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
 TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/activation_tile_4.mif'
 TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2/weight_tile_4.mif'
@@ -343,7 +344,8 @@ def mif_to_matrix(filename, rows, cols):
                 if 'END;' in line:
                     break
                 if in_content_section:
-                    match = re.search(r'\d+\s*:\s*([0-9a-fA-F]+);', line)
+                    # match = re.search(r'\d+\s*:\s*([0-9a-fA-F]+);', line)
+                    match = re.search(r'\d+\s*:\s*(-?[0-9a-fA-F]+);', line) 
                     if match:
                         hex_value = match.group(1)
                         data_values.append(int(hex_value, 16))
@@ -476,6 +478,9 @@ def coordinated_row_removal(data_matrix, weight_matrix):
 
 # Main 
 def main():
+    
+    ##### Part 1: Load, Quantise, Extract, Tile, and Inference AlexNet
+    print("\n=== PART 1: LOAD, QUANTISE, EXTRACT, TILE, AND INFERENCE ALEXNET ===")
     # Load and Quantise AlexNet
     model = load_quantized_alexnet()
     print("\n---  MODEL LOADED AND QUANTISED ---")
@@ -495,6 +500,35 @@ def main():
     # Run Inference
     labels = get_imagenet_labels()
     run_inference(model, input_tensor, labels)
+    
+    
+    ##### Part 2: Apply Stripping Algorithm
+    print("\n=== PART 2: APPLY STRIPPING ALGORITHM ===")
+    testing_data = mif_to_matrix(TEST_DATA_MIF_DIR, TILE_SIZE, TILE_SIZE)
+    testing_weight = mif_to_matrix(TEST_WEIGHT_MIF_DIR, TILE_SIZE, TILE_SIZE)
+    
+    if testing_data is None or testing_weight is None:
+        print("Aborting Part 2 due to file read error.")
+        return
+    else:
+        # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
+        print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
+        
+        # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
+        stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
+        # save the stripped matrices as .mif files
+        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, m_value, k_value)
+        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, k_value, n_value)        
+        generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
+        
+        # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---
+        print("### VHDL FOR BASELINE (NO SPARSITY) TEST ###\n")
+        generate_vhdl_stimulus(testing_data, testing_weight, TILE_SIZE, TILE_SIZE, TILE_SIZE, N=TILE_SIZE)
+
+    ##### Part 3: Systolic Array Simulation on Python
+    print("\n=== PART 3: SYSTOLIC ARRAY SIMULATION ON PYTHON ===")
+    simulate_systolic_array(testing_data, testing_weight, m_value, n_value, k_value)  
+
 
 
 
