@@ -246,8 +246,10 @@ def extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx
 
 
 # Save 2D Matrix to MIF File
-def save_matrix_to_mif(matrix, filename, depth, width):
+def save_matrix_to_mif(matrix, filename, depth, width, m, n, k):
     """Saves a 2D numpy array to a Memory Initialization File (MIF)."""
+    
+    depth += 3; # extra 3 bits for m, n, k
     
     with open(filename, 'w') as f:
         f.write(f"WIDTH = {width};\n")
@@ -257,12 +259,31 @@ def save_matrix_to_mif(matrix, filename, depth, width):
         f.write("\nCONTENT BEGIN\n")
         
         flat_matrix = matrix.flatten()
+        
+        f.write(f"\t0\t:\t{m:02X};\n")
+        f.write(f"\t1\t:\t{n:02X};\n")
+        f.write(f"\t2\t:\t{k:02X};\n")
         for i, val in enumerate(flat_matrix):
             hex_val = f"{val:02X}"
-            f.write(f"\t{i}\t:\t{hex_val};\n")
-
+            f.write(f"\t{(i+3)}\t:\t{hex_val};\n")
         f.write("END;\n")
-    # print(f"Matrix saved to {filename}")
+        # for i, val in enumerate(flat_matrix):
+        #     # for the first three lines, add m, n, k
+        #     if i == 0:
+        #         hex_val = f"{m:02X}"
+        #         f.write(f"\t{i}\t:\t{hex_val};\n")
+        #     elif i == 1:
+        #         hex_val = f"{n:02X}"
+        #         f.write(f"\t{i}\t:\t{hex_val};\n")
+        #     elif i == 2:
+        #         hex_val = f"{k:02X}"
+        #         f.write(f"\t{i}\t:\t{hex_val};\n")
+        #     else:
+        #         hex_val = f"{val:02X}"
+        #         f.write(f"\t{i}\t:\t{hex_val};\n")
+
+        # f.write("END;\n")
+    print(f"Matrix saved to {filename}")
     
 # Slices the matrices into NxN tiles and saves each tile as a separate MIF file
 def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_size):
@@ -291,8 +312,8 @@ def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_s
         print(w_tile)
         print(a_tile)
 
-        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size)
-        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size)
+        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
+        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
 
         tile_counter += 1
 
@@ -344,11 +365,12 @@ def mif_to_matrix(filename, rows, cols):
                 if 'END;' in line:
                     break
                 if in_content_section:
-                    # match = re.search(r'\d+\s*:\s*([0-9a-fA-F]+);', line)
-                    match = re.search(r'\d+\s*:\s*(-?[0-9a-fA-F]+);', line) 
+                    match = re.search(r'\d+\s*:\s*(-?[0-9a-fA-F]+);', line)
                     if match:
                         hex_value = match.group(1)
                         data_values.append(int(hex_value, 16))
+        # Skip the first 3 values (m, n, k)
+        data_values = data_values[3:]
                         
     except FileNotFoundError:
         print(f"Error: The file '{filename}' was not found.")
@@ -525,8 +547,8 @@ def main():
         print(f"Stripped Weight: {stripped_weight}")
         
         # save the stripped matrices as .mif files
-        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE)
-        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE)        
+        save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
+        save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
         generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
         
         # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---

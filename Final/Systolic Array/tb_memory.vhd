@@ -10,24 +10,24 @@ architecture sim of tb_memory is
 
     -- Component Declarations
     component data_rom is
-        port (address : in std_logic_vector(5 downto 0); clock : in std_logic; q : out std_logic_vector(7 downto 0));
+        port (address : in std_logic_vector(6 downto 0); clock : in std_logic; q : out std_logic_vector(7 downto 0));
     end component;
     component weight_rom is
-        port (address : in std_logic_vector(5 downto 0); clock : in std_logic; q : out std_logic_vector(7 downto 0));
+        port (address : in std_logic_vector(6 downto 0); clock : in std_logic; q : out std_logic_vector(7 downto 0));
     end component;
     
     -- Constants
-    constant MAX_ACTIVE_ROWS : integer := 5;
-    constant MAX_ACTIVE_COLS : integer := 8;
-    constant ACTIVE_K : integer := 8; 
+    -- constant MAX_ACTIVE_ROWS : integer := 5;
+    -- constant MAX_ACTIVE_COLS : integer := 8;
+    -- constant ACTIVE_K : integer := 8; 
     constant CLK_PER : time := 20 ns;
 
     -- Signals
     signal clk   : std_logic := '0';
     signal reset : std_logic;
-    signal data_rom_addr     : std_logic_vector(5 downto 0);
+    signal data_rom_addr     : std_logic_vector(6 downto 0);
     signal data_rom_q        : std_logic_vector(7 downto 0);
-    signal weight_rom_addr   : std_logic_vector(5 downto 0);
+    signal weight_rom_addr   : std_logic_vector(6 downto 0);
     signal weight_rom_q      : std_logic_vector(7 downto 0);
     signal matrix_data_sig   : systolic_array_matrix_input := (others => (others => (others => '0')));
     signal matrix_weight_sig : systolic_array_matrix_input := (others => (others => (others => '0')));
@@ -35,7 +35,9 @@ architecture sim of tb_memory is
     signal cycle_count_sig   : integer;
     signal tb_ready        : bit_1 := '0';
     signal completed      : bit_1;
-    
+    signal MAX_ACTIVE_ROWS : integer range 0 to 8 := 0;
+    signal MAX_ACTIVE_COLS : integer range 0 to 8 := 0;
+    signal ACTIVE_K : integer range 0 to 8 := 0;
 begin
     clk <= not clk after CLK_PER / 2;
 
@@ -89,14 +91,24 @@ begin
                 
                 -- Only start writing after the first two reads to create the shift
                 if addr_counter >= 2 then
-                    -- Calculate the shifted 1D index
-                    shifted_index := addr_counter - 2;
-                    target_row    := shifted_index / N;
-                    target_col    := shifted_index mod N;
-                    
-                    -- Latch the data into the shifted position
-                    matrix_data_sig(target_row, target_col)   <= data_rom_q;
-                    matrix_weight_sig(target_row, target_col) <= weight_rom_q;
+                    -- the remaining addresses are below
+                    if addr_counter = 2 then
+                        MAX_ACTIVE_ROWS <= to_integer(unsigned(data_rom_q));
+                    elsif addr_counter = 3 then
+                        MAX_ACTIVE_COLS <= to_integer(unsigned(data_rom_q));
+                    elsif addr_counter = 4 then
+                        ACTIVE_K <= to_integer(unsigned(data_rom_q));
+                    else
+                        -- Calculate the shifted 1D index
+                        shifted_index := addr_counter - 5;
+                        target_row    := shifted_index / N;
+                        target_col    := shifted_index mod N;
+                        
+                        -- Latch the data into the shifted position
+                        matrix_data_sig(target_row, target_col)   <= data_rom_q;
+                        matrix_weight_sig(target_row, target_col) <= weight_rom_q;
+                    end if;
+
                 end if;
                 
                 -- Calculate the target row and column for current addr_counter
@@ -107,7 +119,7 @@ begin
 
 
                 -- Check if loading is complete
-                if addr_counter = (N*N+1) then
+                if addr_counter = (N*N+1+3) then
                     current_state := WAIT_FOR_COMPLETION;
                 else
                     addr_counter := addr_counter + 1;

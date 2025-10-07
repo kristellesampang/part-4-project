@@ -42,7 +42,7 @@ USE altera_mf.altera_mf_components.all;
 ENTITY data_rom IS
 	PORT
 	(
-		address		: IN STD_LOGIC_VECTOR (5 DOWNTO 0);
+		address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
@@ -66,11 +66,11 @@ BEGIN
 		intended_device_family => "Cyclone V",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
-		numwords_a => 64,
+		numwords_a => 128,
 		operation_mode => "ROM",
 		outdata_aclr_a => "NONE",
 		outdata_reg_a => "CLOCK0",
-		widthad_a => 6,
+		widthad_a => 7,
 		width_a => 8,
 		width_byteena_a => 1
 	)
