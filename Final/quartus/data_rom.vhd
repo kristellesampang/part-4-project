@@ -61,7 +61,7 @@ BEGIN
 		address_aclr_a => "NONE",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_7/stripped_activation.mif",
+		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_7/stripped_activation.mif",
 		intended_device_family => "Cyclone V",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
