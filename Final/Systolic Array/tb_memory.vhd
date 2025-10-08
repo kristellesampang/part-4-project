@@ -38,6 +38,7 @@ architecture sim of tb_memory is
     signal MAX_ACTIVE_ROWS : integer range 0 to 8 := 0;
     signal MAX_ACTIVE_COLS : integer range 0 to 8 := 0;
     signal ACTIVE_K : integer range 0 to 8 := 0;
+    signal addr_counter_sig : integer range 0 to 68:= 0;
 begin
     clk <= not clk after CLK_PER / 2;
 
@@ -123,7 +124,9 @@ begin
                     current_state := WAIT_FOR_COMPLETION;
                 else
                     addr_counter := addr_counter + 1;
+                    
                 end if;
+                
 
             when WAIT_FOR_COMPLETION =>
                 tb_ready <= '1';
@@ -131,11 +134,15 @@ begin
                 -- if cycle_count_sig > (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) then
                 wait for (ACTIVE_K + MAX_ACTIVE_ROWS + MAX_ACTIVE_COLS - 2) * CLK_PER;
                 tb_ready <= '0';
+                addr_counter := 0;
                 -- end if;
             
                 wait; 
         end case;
+        addr_counter_sig <= addr_counter;
     end process;
+
+    
 
 
 end sim;
