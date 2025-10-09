@@ -33,7 +33,7 @@ architecture behaviour of control_unit is
     signal count      : integer := 0;
     signal mask_internal : enabled_PE_matrix := (others => (others => '0'));
 begin
-    process(clk, reset)
+    process(clk, reset, ready)
     begin
         if reset = '1' then
             count <= 0;
@@ -52,11 +52,16 @@ begin
             
 
             -- DATA (matrix A) (left->right)
-            for i in 0 to active_rows-1 loop
-                -- stagger and timing logic
-                if (count >= i) and (count < i + active_k) then
-                    data_reg(i) <= matrix_data(i, count - i);
-                -- fill the rest with zeros
+            -- Use a constant loop bound (0..N-1) for synthesis and guard
+            for i in 0 to N-1 loop
+                if i < active_rows then
+                    -- stagger and timing logic
+                    if (count >= i) and (count < i + active_k) then
+                        data_reg(i) <= matrix_data(i, count - i);
+                    -- fill the rest with zeros
+                    else
+                        data_reg(i) <= (others => '0');
+                    end if;
                 else
                     data_reg(i) <= (others => '0');
                 end if;
@@ -64,11 +69,16 @@ begin
 
 
             -- WEIGHT (matrix B) -> (top->bottom)
-            for j in 0 to active_cols-1 loop
-                -- stagger and timing logic
-                if (count >= j) and (count < j + active_k) then
-                    weight_reg(j) <= matrix_weight(count - j, j);
-                -- fill the rest with zeros
+            -- Use a constant loop bound (0..N-1) for synthesis and guard
+            for j in 0 to N-1 loop
+                if j < active_cols then
+                    -- stagger and timing logic
+                    if (count >= j) and (count < j + active_k) then
+                        weight_reg(j) <= matrix_weight(count - j, j);
+                    -- fill the rest with zeros
+                    else
+                        weight_reg(j) <= (others => '0');
+                    end if;
                 else
                     weight_reg(j) <= (others => '0');
                 end if;
