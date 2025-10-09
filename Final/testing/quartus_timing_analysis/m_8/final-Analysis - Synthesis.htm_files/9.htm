@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Analysis &amp; Synthesis Resource Utilization by Entity</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Compilation Hierarchy Node</TH>
+<TH>Combinational ALUTs</TH>
+<TH>Dedicated Logic Registers</TH>
+<TH>Block Memory Bits</TH>
+<TH>DSP Blocks</TH>
+<TH>Pins</TH>
+<TH>Virtual Pins</TH>
+<TH>Full Hierarchy Name</TH>
+<TH>Entity Name</TH>
+<TH>Library Name</TH>
+</TR>
+</thead><tbody><TR >
+<TD >|npu_wrapper</TD>
+<TD >104 (72)</TD>
+<TD >74 (42)</TD>
+<TD >512</TD>
+<TD >0</TD>
+<TD >43</TD>
+<TD >0</TD>
+<TD >|npu_wrapper</TD>
+<TD >npu_wrapper</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|data_rom:data_rom_inst|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|npu_wrapper|data_rom:data_rom_inst</TD>
+<TD >data_rom</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram:altsyncram_component|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|npu_wrapper|data_rom:data_rom_inst|altsyncram:altsyncram_component</TD>
+<TD >altsyncram</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram_70a4:auto_generated|</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|npu_wrapper|data_rom:data_rom_inst|altsyncram:altsyncram_component|altsyncram_70a4:auto_generated</TD>
+<TD >altsyncram_70a4</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|top_level_systolic_array:systolic_array_inst|</TD>
+<TD >32 (0)</TD>
+<TD >32 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|npu_wrapper|top_level_systolic_array:systolic_array_inst</TD>
+<TD >top_level_systolic_array</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|control_unit:control_unit|</TD>
+<TD >32 (32)</TD>
+<TD >32 (32)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|npu_wrapper|top_level_systolic_array:systolic_array_inst|control_unit:control_unit</TD>
+<TD >control_unit</TD>
+<TD >work</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
