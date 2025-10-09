@@ -4,7 +4,7 @@ ADDRESS_RADIX = UNS;
 DATA_RADIX = HEX;
 
 CONTENT BEGIN
-	0	:	02;
+	0	:	00;
 	1	:	08;
 	2	:	08;
 	3	:	08;
