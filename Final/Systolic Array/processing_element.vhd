@@ -25,45 +25,36 @@ port(
 end processing_element;
     
 architecture behaviour of processing_element is
-
-    -- -- initialise signals and vairables for the internal registers
-    signal data, weight : bit_8 := (others => '0');
-    signal accumulator : signed(31 downto 0) := (others => '0'); 
-
+    -- Internal signals for pipelining
+    signal data_reg        : signed(7 downto 0) := (others => '0');
+    signal weight_reg      : signed(7 downto 0) := (others => '0');
+    signal mult_result_reg : signed(15 downto 0) := (others => '0'); -- 8x8 = 16 bits
+    signal accumulator_reg : signed(31 downto 0) := (others => '0');
 
 begin
-    process(clk, reset)
-        variable multiplication : signed(31 downto 0);
+    process(clk)
     begin
-        if reset = '1' then
-            data <= (others => '0');
-            weight <= (others => '0');
-            accumulator <= (others => '0');
+        if rising_edge(clk) then
+            if reset = '1' then
+                data_reg        <= (others => '0');
+                weight_reg      <= (others => '0');
+                mult_result_reg <= (others => '0');
+                accumulator_reg <= (others => '0');
+            elsif en = '1' then
+                -- Register inputs and perform multiplication
+                data_reg        <= signed(in_data);
+                weight_reg      <= signed(in_weight);
+                mult_result_reg <= data_reg * weight_reg;
 
-        -- Only process data if PE is enabled 
-        elsif rising_edge(clk) then
-            -- Synchronous 
-            if en = '1' then
-            -- Receive the incoming data and weight
-            data <= in_data;
-            weight <= in_weight;
-
-                if in_data /= x"00" and in_weight /= x"00" then
-                    -- Compute the multplication result (the product)
-                    multiplication := resize(signed(in_data) * signed(in_weight), 32);
-                    -- Add product to accumulator
-                    accumulator <= accumulator + multiplication;
-                end if;
-
+                -- Add the result from the previous cycle's multiplication
+                accumulator_reg <= accumulator_reg + resize(mult_result_reg, accumulator_reg'length);
             end if;
-        else 
-            -- do nothing
         end if;
-        
     end process;
 
-    -- output assignment
-    out_data <= data;
-    out_weight <= weight;
-    result_register <= std_logic_vector(accumulator);
+    -- Output assignment (pass registered values through)
+    out_data        <= std_logic_vector(data_reg);
+    out_weight      <= std_logic_vector(weight_reg);
+    result_register <= std_logic_vector(accumulator_reg); 
+
 end behaviour;
