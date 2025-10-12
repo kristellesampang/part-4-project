@@ -21,7 +21,7 @@ entity top_level_systolic_array is
         -- Outputs from the systolic array
         -- completed     : out bit_1;
         output        : out systolic_array_matrix_output;
-        cycle_count   : out integer
+        cycle_count   : out integer range 0 to 3*N
     );
 end top_level_systolic_array;
 

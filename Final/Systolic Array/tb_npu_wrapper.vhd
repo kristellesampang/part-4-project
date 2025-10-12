@@ -34,9 +34,9 @@ begin
             reset        => reset,
             start        => start,
             done         => done,
-            rows         => rows,
-            cols         => cols,
-            read_rom_counter => read_rom_counter,
+            -- rows         => rows,
+            -- cols         => cols,
+            -- read_rom_counter => read_rom_counter,
             read_address => read_address,
             read_data    => read_data
         );

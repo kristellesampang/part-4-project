@@ -38,7 +38,7 @@ architecture rtl of npu_wrapper is
             active_cols : in  integer;
             active_k    : in  integer;
             output      : out systolic_array_matrix_output;
-            cycle_count : out integer
+            cycle_count : out integer range 0 to 3*N
         );
     end component;
 
@@ -70,9 +70,9 @@ architecture rtl of npu_wrapper is
     signal active_m_sig          : integer range 0 to N;
     signal active_n_sig          : integer range 0 to N;
     signal active_k_sig          : integer range 0 to N;
-    signal sa_cycle_count        : integer;
+    signal sa_cycle_count        : integer range 0 to 3*N := 0;
     signal sa_ready_sig          : bit_1 := '0';
-    signal expected_latency      : integer;
+    signal expected_latency      : integer range 0 to 3*N := 0;
 
     -- On-chip memory for storing the final result
     signal internal_result_matrix: systolic_array_matrix_output := (others => (others => (others => '0')));
@@ -189,9 +189,8 @@ begin
                     -- Latency is calculated based on the active dimensions read from ROM
                     expected_latency <= active_m_sig + active_n_sig + active_k_sig - 2;
                     -- move onto S_FINISH if cycle count has surpassed expected latency + 64 cycles
-                    if sa_cycle_count >= expected_latency + 64 then
+                    if sa_cycle_count > expected_latency then
                         current_state <= S_FINISH;
-
                     end if;
 
                 when S_FINISH =>
