@@ -65,6 +65,7 @@ architecture Behavioral of de1_soc_top is
             done    : out bit_1;
             active_m    : out integer;
             active_n    : out integer;
+            npu_cycle_count : out std_logic_vector(7 downto 0);
             ready_to_read : out bit_1;
             read_address : in bit_7;
             read_data    : out bit_32
@@ -89,6 +90,8 @@ architecture Behavioral of de1_soc_top is
     signal npu_ready_to_read : std_logic := '1';  -- Always ready to read for simplicity
     signal npu_active_m    : integer;
     signal npu_active_n    : integer;
+    signal sa_cycle_count  : std_logic_vector(7 downto 0);
+    signal send_flag : std_logic := '0';
 
     -- TX controls
     signal tx_byte          : std_logic_vector(7 downto 0) := (others => '0');
@@ -120,7 +123,7 @@ begin
             CLOCK_50 => CLOCK_50,
             RST      => s_reset,          -- Active low reset
             data_tx => data_byte,
-            send     => '1',       -- Use KEY[0] as send button (active low)
+            send     => send_flag,       -- Use KEY[0] as send button (active low)
             LED      => LEDR(7 downto 0), -- Display received byte on lower 8 LEDs
             UART_TXD => FPGA_UART_TX,     -- Connect to physical TX pin
             UART_RXD => FPGA_UART_RX      -- Connect to physical RX pin
@@ -144,6 +147,7 @@ begin
             done         => npu_done,
             active_m     => npu_active_m,
             active_n     => npu_active_n,
+            npu_cycle_count => sa_cycle_count,
             ready_to_read => npu_ready_to_read,
             read_address => npu_read_address,
             read_data    => npu_read_data
@@ -156,32 +160,18 @@ begin
                 data_reg <= (others => '0');
                 data_reg <= "11111111111111111111111111111111"; -- "11111111 11111111 11111111 11111111";
             else
-                if npu_ready_to_read = '1' then
-                    -- data_reg <= std_logic_vector(to_unsigned(12345, 32));
-                    data_reg <= npu_read_data;
-                    -- data_byte <= std_logic_vector(to_unsigned(12345 mod 256, 8)); -- Send least significant byte
-                    
-                    -- send the 4 bytes one by one in subsequent clock cycles
-                    case byte_idx is
-                        when 0 =>
-                            data_byte <= data_reg(7 downto 0);
-                            byte_idx <= 1;
-                        when 1 =>
-                            data_byte <= data_reg(15 downto 8);
-                            byte_idx <= 2;
-                        when 2 =>
-                            data_byte <= data_reg(23 downto 16);
-                            byte_idx <= 3;
-                        when 3 =>
-                            data_byte <= data_reg(31 downto 24);
-                            byte_idx <= 0; -- Reset for next transmission
-                        when others =>
-                            byte_idx <= 0;
-                    end case;
-                end if; 
+                if npu_done = '1' then
+                   data_byte <= sa_cycle_count; -- Transmit the cycle count when starting
+                     send_flag <= '1';
+                else
+                     send_flag <= '0';
+                   end if; 
             end if;
         end if;
+		  
     end process;
+
+    
 
     --- Process to start the NPU by clicking KEY1, wait for the NPU to be done, read the 2D array, then transmit this through uart
     -- process(CLOCK_50)

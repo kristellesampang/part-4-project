@@ -31,10 +31,9 @@ while True:
             # print the byte
             for byte in data_bytes:
                 
-                
-
                 print(f"{print_counter} | Received byte: {byte:08b} (decimal {byte})")
-                print_counter += 1
-                
+                print(f"Calculating time taken by the NPU: {byte} cycles")
+                print(f"Using a 50MHz clock, this takes {byte * 20} nanoseconds")
+
 
 

@@ -17,6 +17,9 @@ entity npu_wrapper is
         active_m    : out integer;
         active_n    : out integer;
 
+        -- systolic array cycle count output
+        npu_cycle_count : out std_logic_vector(7 downto 0);
+
         -- Read Interface for accessing the on-chip memory
         ready_to_read : out bit_1;
         read_address  : in  bit_7;
@@ -138,13 +141,13 @@ begin
             
             case current_state is
                 when S_IDLE =>
+                    done <= '0';
                     if start = '1' then
                         rom_addr_counter := 0;
                         current_state    <= S_LOAD_PARAMS;
                     end if;
 
                 when S_LOAD_PARAMS =>
-                    -- sa_ready_sig <= '1';
                     rom_addr <= to_unsigned(rom_addr_counter, rom_addr'length);
                     
                     -- ROMs have a 1-cycle read latency
@@ -184,7 +187,7 @@ begin
 
                 when S_WAIT_DONE =>
                     -- Keep ready asserted throughout the computation
-                sa_ready_sig <= '1';
+                    sa_ready_sig <= '1';
                     done <= '0';
                     -- Latency is calculated based on the active dimensions read from ROM
                     expected_latency <= active_m_sig + active_n_sig + active_k_sig - 2;
@@ -194,10 +197,10 @@ begin
                     end if;
 
                 when S_FINISH =>
-                    sa_ready_sig <= '1';
+                    sa_ready_sig <= '0';
                     done        <= '1'; -- Signal completion
-                    
-                    -- current_state <= S_IDLE;
+                    npu_cycle_count <= std_logic_vector(to_unsigned(sa_cycle_count, 8));
+                    current_state <= S_IDLE;
                     
             end case;
         end if;
