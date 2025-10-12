@@ -106,14 +106,21 @@ begin
     -- Use KEY[0] as the active-low reset button
     s_reset <= not KEY(0);
 	-- s_start_pulse <= not KEY(1);
+    
 
+
+    -- UART starts transmission when the NPU computation starts (so at the same time)
+    -- It will continue transmission until the npu is done
+    -- When the npu is done uart transmission stops
+    -- this will prevent the spamming of the UART port on the receiving end
+    
     -- Instantiate the UART component
     UART_inst : UART
         port map (
             CLOCK_50 => CLOCK_50,
             RST      => s_reset,          -- Active low reset
             data_tx => data_byte,
-            send     => s_start_pulse,       -- Use KEY[0] as send button (active low)
+            send     => '1',       -- Use KEY[0] as send button (active low)
             LED      => LEDR(7 downto 0), -- Display received byte on lower 8 LEDs
             UART_TXD => FPGA_UART_TX,     -- Connect to physical TX pin
             UART_RXD => FPGA_UART_RX      -- Connect to physical RX pin
@@ -142,16 +149,16 @@ begin
             read_data    => npu_read_data
         );
 
-    process(s_start_pulse)
+    process(CLOCK_50)
     begin
-        if rising_edge(s_start_pulse) then
+        if rising_edge(CLOCK_50) then
             if s_reset = '1' then
                 data_reg <= (others => '0');
                 data_reg <= "11111111111111111111111111111111"; -- "11111111 11111111 11111111 11111111";
             else
                 if npu_ready_to_read = '1' then
                     -- data_reg <= std_logic_vector(to_unsigned(12345, 32));
-                    data_reg <= "11110000000011111110101001010101"; -- "11110000 00001111 11101010 01010101";
+                    data_reg <= npu_read_data;
                     -- data_byte <= std_logic_vector(to_unsigned(12345 mod 256, 8)); -- Send least significant byte
                     
                     -- send the 4 bytes one by one in subsequent clock cycles

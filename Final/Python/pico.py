@@ -25,13 +25,16 @@ while True:
     if poll_obj.poll(1):
         # Read all available bytes
         data_bytes = uart.read()
+        #print(data_bytes)
         print_counter = 0
         if data_bytes:
             # print the byte
             for byte in data_bytes:
                 
-                # print(f"Received byte: {byte:08b} (decimal {byte})")
+                
+
                 print(f"{print_counter} | Received byte: {byte:08b} (decimal {byte})")
                 print_counter += 1
                 
+
 

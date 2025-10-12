@@ -52,7 +52,24 @@ C2: RX PORT MAP(CLOCK_50,UART_RXD,RX_DATA,RX_BUSY);
 		end if;
 	end process;
 
-	
+	-- case statement
+    -- when idle
+            -- if (npu_start) 
+            -- case <= transmit     
+    -- when transmit
+            -- do everything same as before
+            -- also include this:
+            -- if (npu_done)
+            -- case <= idle
+
+    -- start
+    -- when np
+    -- clock cycle 1: matrix[0][0] being outputted
+    -- clock cycle 2: matrix[0][1]
+    -- ....
+    -- clock cycle 64: matrix[7][7] being outputted
+    -- done
+            
 	process(CLOCK_50,RST)
 	begin
 		if RST = '1' then
