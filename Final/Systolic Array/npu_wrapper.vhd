@@ -13,6 +13,11 @@ entity npu_wrapper is
         start   : in  bit_1;
         done    : out bit_1;
 
+        -- tb
+        rows : out integer range 0 to N-1;
+        cols : out integer range 0 to N-1;
+        read_rom_counter : out integer range 0 to N*N + 5;
+
         -- Read Interface for accessing the on-chip memory
         read_address  : in  bit_7;
         read_data     : out bit_32
@@ -139,37 +144,35 @@ begin
                     end if;
 
                 when S_LOAD_PARAMS =>
+                    -- sa_ready_sig <= '1';
                     rom_addr <= to_unsigned(rom_addr_counter, rom_addr'length);
                     
                     -- ROMs have a 1-cycle read latency
-                    if rom_addr_counter = 1 then
+                    if rom_addr_counter = 3 then
                         active_m_sig <= to_integer(unsigned(data_from_rom));
-                    elsif rom_addr_counter = 2 then
+                    elsif rom_addr_counter = 4 then
                         active_n_sig <= to_integer(unsigned(data_from_rom));
-                    elsif rom_addr_counter = 3 then
+                    elsif rom_addr_counter = 5 then
                         active_k_sig <= to_integer(unsigned(data_from_rom));
-                    end if;
-                    
-                    if rom_addr_counter = 4 then
-                        rom_addr_counter := 5; -- Start of matrix data
                         current_state    <= S_LOAD_MATRICES;
-                    else
-                        rom_addr_counter := rom_addr_counter + 1;
                     end if;
 
+                    rom_addr_counter := rom_addr_counter + 1;
+
                 when S_LOAD_MATRICES =>
+                -- sa_ready_sig <= '1';
                     rom_addr <= to_unsigned(rom_addr_counter, rom_addr'length);
 
                     -- De-serialize 1D ROM data into 2D matrix buffers
-                    target_row := (rom_addr_counter - 5) / N;
-                    target_col := (rom_addr_counter - 5) mod N;
+                    target_row := (rom_addr_counter - 6) / N;
+                    target_col := (rom_addr_counter - 6) mod N;
 
                     if target_row < N then
                         matrix_data_buffer(target_row, target_col)   <= data_from_rom;
                         matrix_weight_buffer(target_row, target_col) <= weight_from_rom;
                     end if;
 
-                    if rom_addr_counter >= (N*N + 5 - 1) then
+                    if rom_addr_counter >= (N*N + 5) then
                         current_state <= S_EXECUTE;
                     else
                         rom_addr_counter := rom_addr_counter + 1;
@@ -180,6 +183,8 @@ begin
                     current_state <= S_WAIT_DONE;
 
                 when S_WAIT_DONE =>
+                    -- Keep ready asserted throughout the computation
+                    sa_ready_sig <= '1';
                     -- Latency is calculated based on the active dimensions read from ROM
                     expected_latency <= active_m_sig + active_n_sig + active_k_sig - 2;
                     if sa_cycle_count >= expected_latency then
@@ -187,12 +192,15 @@ begin
                     end if;
 
                 when S_FINISH =>
-                    sa_ready_sig <= '0';
+                    sa_ready_sig <= '1';
                     done        <= '1'; -- Signal completion
+                    internal_result_matrix <= sa_result_internal;
                     current_state <= S_IDLE;
                     
             end case;
         end if;
+
+    read_rom_counter <= rom_addr_counter;
     end process fsm_proc;
 
     -- This process implements the read access to the on-chip memory
@@ -200,13 +208,17 @@ begin
         variable row_idx : integer range 0 to N-1;
         variable col_idx : integer range 0 to N-1;
     begin
-        -- Convert the 6-bit linear address into 2D matrix coordinates
-        row_idx := to_integer(unsigned(read_address(5 downto 3)));
-        col_idx := to_integer(unsigned(read_address(2 downto 0)));
+        -- Decode the 1D read_address into 2D matrix indices
+        row_idx := to_integer(unsigned(read_address)) / N;
+        col_idx := to_integer(unsigned(read_address)) mod N;
+        
 
         -- Place the selected data element onto the output bus
         -- Assumes systolic_array_matrix_output contains signed elements of 32 bits
         read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx));
+
+        rows <= row_idx;
+        cols <= col_idx;
     end process read_logic_proc;
 
 end architecture rtl;

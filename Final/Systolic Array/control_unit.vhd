@@ -47,6 +47,7 @@ begin
                     mask_internal(i,j) <= '0';
                 end loop;
             end loop;
+            
         elsif rising_edge(clk) and ready = '1' then
             count <= count + 1;
             

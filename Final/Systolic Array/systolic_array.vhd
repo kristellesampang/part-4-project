@@ -66,6 +66,8 @@ end generate gen_PE_array;
         gen_output_col : for j in 0 to N-1 generate
         begin
             --  only assign a result if the PE is enabled, otherwise it is 0
+            -- output(i, j) <= results(i, j) when enabled_PE(i,j) = '1' else (others => '0');
+            -- enabled pe is based on enabled_PE mask from control unit
             output(i, j) <= results(i, j) when enabled_PE(i,j) = '1' else (others => '0');
         end generate gen_output_col;
     end generate gen_output_assign;

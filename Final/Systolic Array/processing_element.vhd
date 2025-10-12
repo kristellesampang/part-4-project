@@ -40,14 +40,17 @@ begin
                 weight_reg      <= (others => '0');
                 mult_result_reg <= (others => '0');
                 accumulator_reg <= (others => '0');
-            elsif en = '1' then
-                -- Register inputs and perform multiplication
+            else
+                -- Always register inputs for data propagation
                 data_reg        <= signed(in_data);
                 weight_reg      <= signed(in_weight);
-                mult_result_reg <= data_reg * weight_reg;
-
-                -- Add the result from the previous cycle's multiplication
-                accumulator_reg <= accumulator_reg + resize(mult_result_reg, accumulator_reg'length);
+                
+                -- Only perform MAC when enabled AND we have non-zero inputs
+                if en = '1' then
+                    mult_result_reg <= data_reg * weight_reg;
+                    -- Add the result from the previous cycle's multiplication  
+                    accumulator_reg <= accumulator_reg + resize(mult_result_reg, accumulator_reg'length);
+                end if;
             end if;
         end if;
     end process;
