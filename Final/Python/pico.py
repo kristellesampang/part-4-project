@@ -32,12 +32,9 @@ while True:
                 # Increment counter
                 print_counter += 1
                 
+                # concatenate every 4 bytes into a 32-bit binary string
+                binary_str = ''.join(f'{b:08b}' for b in data_bytes)
+                decimal_value = int(binary_str, 2)
+                print(f"Byte {print_counter}: Binary: {binary_str}, Decimal: {decimal_value}")
                 
-                # Convert to an 8-bit binary string
-                binary_string = f'{byte:08b}'
-                # The byte variable already holds the decimal (integer) value
-                decimal_value = byte
-                
-                # Print both values with counter
-                print(f"[{print_counter}] Received: Decimal = {decimal_value:3}, Binary = {binary_string}")
 

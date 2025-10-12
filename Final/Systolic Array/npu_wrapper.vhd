@@ -13,12 +13,8 @@ entity npu_wrapper is
         start   : in  bit_1;
         done    : out bit_1;
 
-        -- tb
-        rows : out integer range 0 to N-1;
-        cols : out integer range 0 to N-1;
-        read_rom_counter : out integer range 0 to N*N + 5;
-
         -- Read Interface for accessing the on-chip memory
+        ready_to_read : out bit_1;
         read_address  : in  bit_7;
         read_data     : out bit_32
     );
@@ -203,7 +199,6 @@ begin
             end case;
         end if;
 
-    read_rom_counter <= rom_addr_counter;
     internal_result_matrix <= sa_result_internal;
     end process fsm_proc;
 
@@ -217,7 +212,7 @@ begin
         
         -- only do this process if sa_cycle_count is more than 100
         if sa_cycle_count > 100 then
-            
+            ready_to_read <= '1';
             row_idx := to_integer(unsigned(read_address)) / N;
         
             col_idx := to_integer(unsigned(read_address)) mod N;
@@ -225,11 +220,11 @@ begin
             -- Place the selected data element onto the output bus
             -- Assumes systolic_array_matrix_output contains signed elements of 32 bits
             read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx)); 
-
-        
+        else
+            ready_to_read <= '0';
+            read_data <= (others => '0');
         end if;
-        rows <= row_idx;
-        cols <= col_idx;
+	
     end process read_logic_proc;
 
 end architecture rtl;

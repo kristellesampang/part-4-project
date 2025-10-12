@@ -54,6 +54,7 @@ architecture Behavioral of de1_soc_top is
             reset   : in  bit_1;
             start   : in  bit_1;
             done    : out bit_1;
+            ready_to_read : out bit_1;
             read_address : in bit_7;
             read_data    : out bit_32
         );
@@ -71,6 +72,7 @@ architecture Behavioral of de1_soc_top is
     signal npu_done         : std_logic;
     signal npu_read_address : std_logic_vector(6 downto 0) := (others => '0');
     signal npu_read_data    : std_logic_vector(31 downto 0);
+    signal npu_ready_to_read : std_logic := '1';  -- Always ready to read for simplicity
 
     -- TX controls
     signal tx_byte          : std_logic_vector(7 downto 0) := (others => '0');
@@ -123,6 +125,7 @@ begin
             reset        => s_reset,
             start        => s_start_pulse,
             done         => npu_done,
+            ready_to_read => npu_ready_to_read,
             read_address => npu_read_address,
             read_data    => npu_read_data
         );
@@ -142,7 +145,7 @@ begin
             else
                 case dstate is
                     when D_IDLE =>
-                        if s_start_pulse = '1' then
+                        if s_start_pulse = '1' and npu_ready_to_read = '1' then
                             dstate <= D_START;
                         end if;
 
@@ -152,7 +155,7 @@ begin
                         dstate <= D_WAIT_DONE;
 
                     when D_WAIT_DONE =>
-                        if npu_done = '1' then
+                        if npu_done = '1' and npu_ready_to_read = '1' then
                             dstate <= D_SET_ADDR;
                         end if;
 
