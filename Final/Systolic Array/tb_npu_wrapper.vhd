@@ -70,10 +70,14 @@ begin
                 wait until rising_edge(clk);
                 if done = '1' then
                     a := 0;
+                    -- wait for 100 clock cycles to ensure all data is ready
+                    wait for 100 * CLK_PER;
                     s := READ_RESULTS;
                 end if;
 
             when READ_RESULTS =>
+                -- wait for 100 clock cycles to ensure all data is ready
+
                 read_address <= std_logic_vector(to_unsigned(a, 7));
                 wait until rising_edge(clk); -- 1-cycle latency
                 w := read_data;

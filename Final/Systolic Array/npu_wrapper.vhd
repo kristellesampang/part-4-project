@@ -184,18 +184,21 @@ begin
 
                 when S_WAIT_DONE =>
                     -- Keep ready asserted throughout the computation
-                    sa_ready_sig <= '1';
+                sa_ready_sig <= '1';
+                    done <= '0';
                     -- Latency is calculated based on the active dimensions read from ROM
                     expected_latency <= active_m_sig + active_n_sig + active_k_sig - 2;
-                    if sa_cycle_count >= expected_latency then
+                    -- move onto S_FINISH if cycle count has surpassed expected latency + 64 cycles
+                    if sa_cycle_count >= expected_latency + 64 then
                         current_state <= S_FINISH;
+
                     end if;
 
                 when S_FINISH =>
                     sa_ready_sig <= '1';
                     done        <= '1'; -- Signal completion
                     
-                    current_state <= S_IDLE;
+                    -- current_state <= S_IDLE;
                     
             end case;
         end if;
@@ -205,26 +208,26 @@ begin
     end process fsm_proc;
 
     -- This process implements the read access to the on-chip memory
-    read_logic_proc : process(read_address, internal_result_matrix)
+    read_logic_proc : process(read_address, internal_result_matrix, current_state, sa_cycle_count)
         variable row_idx : integer range 0 to N-1;
         variable col_idx : integer range 0 to N-1;
     begin
         -- Decode the 1D read_address into 2D matrix indices
 
-        if to_integer(unsigned(read_address)) < 8 then
-            row_idx := 0; -- Prevent uninitialized variable usage
-        else
+        
+        -- only do this process if sa_cycle_count is more than 100
+        if sa_cycle_count > 100 then
+            
             row_idx := to_integer(unsigned(read_address)) / N;
-        end if;
-        col_idx := to_integer(unsigned(read_address)) mod N;
+        
+            col_idx := to_integer(unsigned(read_address)) mod N;
 
+            -- Place the selected data element onto the output bus
+            -- Assumes systolic_array_matrix_output contains signed elements of 32 bits
+            read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx)); 
 
         
-
-        -- Place the selected data element onto the output bus
-        -- Assumes systolic_array_matrix_output contains signed elements of 32 bits
-        read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx)); 
-
+        end if;
         rows <= row_idx;
         cols <= col_idx;
     end process read_logic_proc;
