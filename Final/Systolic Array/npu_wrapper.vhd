@@ -194,13 +194,14 @@ begin
                 when S_FINISH =>
                     sa_ready_sig <= '1';
                     done        <= '1'; -- Signal completion
-                    internal_result_matrix <= sa_result_internal;
+                    
                     current_state <= S_IDLE;
                     
             end case;
         end if;
 
     read_rom_counter <= rom_addr_counter;
+    internal_result_matrix <= sa_result_internal;
     end process fsm_proc;
 
     -- This process implements the read access to the on-chip memory
@@ -209,13 +210,20 @@ begin
         variable col_idx : integer range 0 to N-1;
     begin
         -- Decode the 1D read_address into 2D matrix indices
-        row_idx := to_integer(unsigned(read_address)) / N;
+
+        if to_integer(unsigned(read_address)) < 8 then
+            row_idx := 0; -- Prevent uninitialized variable usage
+        else
+            row_idx := to_integer(unsigned(read_address)) / N;
+        end if;
         col_idx := to_integer(unsigned(read_address)) mod N;
+
+
         
 
         -- Place the selected data element onto the output bus
         -- Assumes systolic_array_matrix_output contains signed elements of 32 bits
-        read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx));
+        read_data <= std_logic_vector(internal_result_matrix(row_idx, col_idx)); 
 
         rows <= row_idx;
         cols <= col_idx;

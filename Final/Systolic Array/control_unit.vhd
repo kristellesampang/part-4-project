@@ -47,7 +47,7 @@ begin
                     mask_internal(i,j) <= '0';
                 end loop;
             end loop;
-            
+
         elsif rising_edge(clk) and ready = '1' then
             count <= count + 1;
             
@@ -57,7 +57,7 @@ begin
             for i in 0 to N-1 loop
                 if i < active_rows then
                     -- stagger and timing logic
-                    if (count >= i) and (count < i + active_k) then
+            if (count >= i) and (count < i + active_k) then
                         data_reg(i) <= matrix_data(i, count - i);
                     -- fill the rest with zeros
                     else
