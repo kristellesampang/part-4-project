@@ -13,6 +13,10 @@ entity npu_wrapper is
         start   : in  bit_1;
         done    : out bit_1;
 
+        -- output M and K value as an integer
+        active_m    : out integer;
+        active_n    : out integer;
+
         -- Read Interface for accessing the on-chip memory
         ready_to_read : out bit_1;
         read_address  : in  bit_7;
@@ -207,8 +211,8 @@ begin
         variable row_idx : integer range 0 to N-1;
         variable col_idx : integer range 0 to N-1;
     begin
-        -- Decode the 1D read_address into 2D matrix indices
-
+    -- Decode the 1D read_address into 2D matrix indices
+        
         
         -- only do this process if sa_cycle_count is more than 100
         if sa_cycle_count > 100 then

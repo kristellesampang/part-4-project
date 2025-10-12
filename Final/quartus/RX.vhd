@@ -44,8 +44,8 @@ begin
 						if(DATAFLL(0) = '0' AND DATAFLL(9) = '1')then
 							DATA<=DATAFLL(8 downto 1);
 						else
---							DATA<=(OTHERS=>'0');
-							DATA <= "11100111";
+							DATA<=(OTHERS=>'0');
+							-- DATA <= "11100111";
 						end if;
 					RX_FLG<='0';
 					BUSY<='0';

@@ -25,16 +25,13 @@ while True:
     if poll_obj.poll(1):
         # Read all available bytes
         data_bytes = uart.read()
-        
+        print_counter = 0
         if data_bytes:
-            # For each byte received...
+            # print the byte
             for byte in data_bytes:
-                # Increment counter
-                print_counter += 1
                 
-                # concatenate every 4 bytes into a 32-bit binary string
-                binary_str = ''.join(f'{b:08b}' for b in data_bytes)
-                decimal_value = int(binary_str, 2)
-                print(f"Byte {print_counter}: Binary: {binary_str}, Decimal: {decimal_value}")
+                # print(f"Received byte: {byte:08b} (decimal {byte})")
+                print(f"{print_counter} | Received byte: {byte:08b} (decimal {byte})")
+                print_counter += 1
                 
 
