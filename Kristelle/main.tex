@@ -205,7 +205,7 @@
 \vfill
 \begin{center}
     % \includegraphics[width=0.7\linewidth]{figures/ecse-horizontal-hc.png}
-    \includegraphics[width=0.7\linewidth]{figures/UoA-Logo-Primary-RGB-Large.png}
+    \includegraphics[width=0.4\linewidth]{figures/UoA-Logo-Primary-RGB-Large.png}
 \end{center}
 
 \clearpage
@@ -317,7 +317,7 @@ Thank important people here.
 \setlength{\parskip}{9pt}
 \pagenumbering{arabic}
 % --- Main Body of the Report ---
-\section{Introduction}
+\section{Introduction} \label{sec: intro}
     \subsection{Motivation}
     % Hook the reader. Why is this project important? What is the big-picture problem? 
     % (e.g., The explosion of AI and IoT devices demands powerful but low-power processing directly on the edge.)
@@ -357,8 +357,9 @@ Thank important people here.
     % Briefly outline the rest of the report, section by section.
     The remainder of this report goes as follows: Section X covers Y....
 
-
-\section{Background}
+\clearpage  
+\newpage
+\section{Background} \label{sec: background}
     % According to the rubric, this section must "Clearly define the project context" and demonstrate
     % "a good understanding of the broader scientific or engineering domain."
     % Think of this section as bringing a reader up to speed on the core technologies you're using.
@@ -366,57 +367,26 @@ Thank important people here.
 
     However, this shift presents an alarming issue where DNNs are computationally intensive and power-hungry, whilst edge devices operate under strict power and resource limitations. To bridge this gap, hardware accelerators, such as Neural Processing Units (NPUs) are introduced to execute AI algorithms at faster rates than general-purpose CPUs \cite{manor_custom_2022}. This section provides necessary background on the core technologies that support this project, starting with the most popular model for image-based tasks, the Convolutional Neural Network.
     
-    \subsection{Convolutional Neural Networks (CNN)}
-    % Here, explain what a CNN is at a high level. Use your research from Week 3.
-    % 1.  **Introduce CNNs**: Mention they are a class of Deep Neural Networks (DNNs) highly effective
-    %     for image processing tasks like object recognition.
-    % 2.  **Explain the Layers**: Briefly describe the key layers you researched:
-    %     -   **Convolutional Layer**: This is the most important part. Explain that it uses filters (kernels)
-    %         to detect features. Crucially, state that this operation is fundamentally
-    %         a massive number of Multiply-Accumulate (MAC) operations, which is what makes CNNs so
-    %         computationally intensive.
-    %     -   **ReLU Layer**: Introduce the Rectified Linear Unit as a common activation function.
-    %         You can briefly mention its role in introducing non-linearity. You'll go into more detail
-    %         about its effect on sparsity in the Lit Review.
-    %     -   **Pooling & Fully Connected Layers**: Briefly mention their roles in down-sampling features
-    %         and making the final prediction, respectively.
-    % 3.  **The Computational Challenge**: Conclude by stating that the sheer volume of MAC operations in
-    %     convolutional layers necessitates specialised hardware for efficient execution, especially on
-    %     power-constrained edge devices.
-
-
+    \subsection{Convolutional Neural Networks (CNN)} \label{sec: CNN}
 Convolutional Neural Networks (CNNs) is a prominent type of DNN model, mainly utilised image processing tasks, such as object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers. 
 The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
 \[
 O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
 \] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
 \newline 
-An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section X. % !!
+An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
     
 
-    \subsection{Hardware Acceleration for Machine Learning}
-    % This subsection justifies the need for accelerators and your choice of an FPGA.
-    % 1.  **Why Accelerate?**: Explain that general-purpose CPUs are not designed for the massive parallelism
-    %     inherent in CNNs. Running these models on CPUs is slow and power-inefficient.
-    % 2.  **Compare Platforms**: Briefly discuss the common hardware solutions, as you researched in
-    %     your literature review.
-    %     -   **GPUs**: Excellent for parallelism but often have high power consumption, making them
-    %         unsuitable for many edge devices.
-    %     -   **ASICs (like NPUs in phones)**: Extremely energy-efficient but are fixed-function and lack
-    %         flexibility.
-    %     -   **FPGAs**: State that FPGAs offer a compelling balance. They provide massive parallelism
-    %         and can be tailored to a specific application, offering better energy efficiency than GPUs
-    %         while being more flexible than ASICs. This reconfigurability is the key reason
-    %         it's the perfect platform for your *reconfigurable* NPU project.
-General-purpose CPUs alone are not powerful enough to handle the computational requirements of modern deep learning models. Typically, specialised hardware accelerators, such as GPUs and FPGAs, are integerated with the CPU as a heterogenous system  to enhance the performance of AI applications \cite{manor_custom_2022}. A study discovered that GPUs highly accelerate computationally intensive tasks with parallelism at ease but with a trade-off of high power consumption \cite{oh_investigation_2017}. Furthermore, GPUs are not typically found in edge devices, such as smartphones and IoT devices, due to its high power consumption and thermal output. Neural Procesing Units (NPUs) is a type of specialised hardware accelerator, best a executing AI-based algorithms. Due to its dedicated use, it has extreme performance and low-energy effiency, however, it is limited in its flexibility. On the other hand, FPGAs can achieve energy-efficiency by consuming half the power of a GPU\cite{liu_energy-efficient_2024} by tailoring the hardware architecture to a specific task. This customisability allows for optimised dataflow and memory access patterns, crucial for improving the performance of deep learning models. Therefore, this project chooses to implement the NPU on an FPGA platform to create a reconfigurable hardware accelerator. 
+    \subsection{Hardware Acceleration for Machine Learning} \label{sec: hardware accel}
+    General-purpose CPUs alone are not powerful enough to handle the computational requirements of modern deep learning models. Typically, specialised hardware accelerators, such as GPUs and FPGAs, are integerated with the CPU as a heterogenous system  to enhance the performance of AI applications \cite{manor_custom_2022}. A study discovered that GPUs highly accelerate computationally intensive tasks with parallelism at ease but with a trade-off of high power consumption \cite{oh_investigation_2017}. Furthermore, GPUs are not typically found in edge devices, such as smartphones and IoT devices, due to its high power consumption and thermal output. Neural Procesing Units (NPUs) is a type of specialised hardware accelerator, best a executing AI-based algorithms. Due to its dedicated use, it has extreme performance and low-energy effiency, however, it is limited in its flexibility. On the other hand, FPGAs can achieve energy-efficiency by consuming half the power of a GPU\cite{liu_energy-efficient_2024} by tailoring the hardware architecture to a specific task. This customisability allows for optimised dataflow and memory access patterns, crucial for improving the performance of deep learning models. Therefore, this project chooses to implement the NPU on an FPGA platform to create a reconfigurable hardware accelerator. 
 
-    \subsection{Systolic Array Architecture}    
+    \subsection{Systolic Array Architecture} \label{sec: systolic array }
     A systolic array is a structured network of processing elements (PEs) where computations are carried out in a systematic approach, similar to pipelining. Each PE will receive, process, and pass on data to its neighbour concurrently in one clock cycle. Due to this, it provides characteristics like parallel computing, pipelining, synchronicity, and spatial and temporal locality.  These are advantageous as processes are completed simultaneously at higher speeds, computations are timed by a global clock for predictable data movement, and faster memory accessing time. Additionally, systolic arrays are highly compact together and allow simple data control flow. As its architecture is an array, it can easily be scaled for larger data sets, perfect for ML, and the predictable structure makes it easier to design and optimise algorithms. Furthermore, since the PEs are densely packed together, there are less data transmission, causing lower energy consumption. However, there are some disadvantages to systolic arrays. These include difficult and costly to build and specialised and inflexible in the problems it can solve, limiting its versatility. Because systolic arrayss offer high throughput and effiency, it is commonly used in NPUs to accelerate matrix multiplication, the core operation in a CNN's convolutional layer. However, its rigid and structured dataflow is inefficient for sparse matrices, leading to imbalanced workloads and low PE utilisation. This limitation motivates the need for a reconfigurable systolic array that can adapt to the sparsity in neural networks, becoming the focus of this project.
     % !! need more references here
 
 
 % --- Literature Review ---
-\section{Literature Review}
+\section{Literature Review} \label{sec: literature review}
     % The rubric wants you to "Critically assess the strengths and limitations of existing research"
     % and "identify knowledge gaps". This section should tell a story:
     % 1. Sparsity is a huge opportunity in NNs.
@@ -424,20 +394,21 @@ General-purpose CPUs alone are not powerful enough to handle the computational r
     % 3. Here's how others have tried to solve it (with their pros and cons).
     % 4. Their limitations create the "gap" that our project fills.
 
-    This section delves deep into the gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. 
+    This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. 
     % !! Add more after section is completed
 
-    \subsection{Sparsity in Neural Networks}
+    \subsection{Sparsity in Neural Networks} \label{sec: sparsity in nn}
     % Explain where the zeros come from and why they are a problem.
     % 1.  **Introduce Sparsity**: Define sparsity as the presence of a large number of zero values in
     %     the weight and activation matrices.
     % 2.  **Sources of Sparsity**:
-        \subsubsection{Rectified Linear Unit (ReLU)}
-        % Explain that ReLU, a widely used activation function, sets all negative inputs to zero.
-        % Use the quote you found: "For IFMs [input feature maps], approximately half of their
-        % elements are zeros because of the widely used nonlinear function rectified linear unit (ReLU)"
-        % (\cite{sun_sense_2023}).
-        \subsubsection{Network Pruning}
+    As discussed in Section \ref{sec: CNN}, sparsity is a property of matrices that arise from many sources, such as activation functions and model compression techniques. This section explores these in detail to find the root cause of sparsity in neural networks. 
+        \subsubsection{Rectified Linear Unit (ReLU)} \label{sec: relu}
+        To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec: CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
+        % !! need references
+        % !! need to add the section referencing ReLU in the intro 
+    
+        \subsubsection{Pruning} 
         % Explain that pruning is a model compression technique that intentionally removes (sets to zero)
         % unimportant weights. This can significantly reduce model size with minimal
         % impact on accuracy. You can also mention that weights with a smaller
@@ -448,21 +419,16 @@ General-purpose CPUs alone are not powerful enough to handle the computational r
     %     access efficiency" (\cite{sun_sense_2023}). Emphasize that "data movement
     %     consumes much more energy than computation", so inefficiently handling sparse
     %     data is very costly.
+    Model Pruning is a technique used to remove redundant data that may not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that more than half of weights in convolutional layers can be set to zero without impacting the overall accruracy. To decide what weights to prune, the sensitivity of the weight is considered and how it influences the output. \textcite{gorvadiya_energy_2025} discovered that their Weight Pruning technique resulted in minimal accuracy loss of 1-2\% whilst saving 25\% in power consumption. These results suggests that pruning is an effective method to reduce model size and computation without sacrificing performance. 
+    
+    Whilst both methods work toegether to help accelerate the efficiency of the neural network by introducing sparsity in the system, thius presents a challenge for systemlic array based hardware architecture. Balancing the benefits and drawbacks of how the systolic array handles sparsity is explored in the next section.
 
-    \subsection{Hardware Architectures for Sparsity}
+    \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
-        \subsubsection{Zero-Skipping and Data Gating}
-        % Describe this as the most straightforward approach. The hardware checks if an operand is zero
-        % and, if so, "gates" the clock to the multiplier to save power. You can reference your initial
-        % idea of having an enable bit on each PE.
-        % **Critique (Limitation)**: Note that while this saves dynamic power, it often doesn't reduce
-        % latency, as the PE still has to wait for the data. The data still needs to be fetched from
-        % memory, and the systolic pipeline still advances at the same rate. This is a key limitation
-        % that more advanced methods try to solve. Mention that you ultimately removed this feature from
-        % your PE design because the hardware cost of the comparator outweighed the benefit, as accumulating
-        % a zero doesn't change the result anyway. This shows deep design insight.
+        \subsubsection{Power Gating} \label{sec: power-gating}
+        As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. The most straight forward approach to handling sparsity in hardware is power-gating. This method skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate. This key limitation is what more advanced methods try to solve. 
 
-        \subsubsection{Compressed Data Formats}
+        \subsubsection{Compressed Data Formats} \label{sec: compressed}
         % Discuss the next level of sophistication. Instead of just skipping zeros, these methods compress
         % the sparse matrices before processing.
         % Mention that architectures like SCNN work directly with compressed data, which "eliminating
@@ -472,7 +438,7 @@ General-purpose CPUs alone are not powerful enough to handle the computational r
         % to handle the irregular data access patterns, which can add significant overhead and complexity
         % to the accelerator's control logic.
 
-        \subsubsection{Specialised Dataflows and Architectures}
+        \subsubsection{Specialised Dataflows and Architectures} \label{sec: dataflow}
         % This is where you position your work against the state-of-the-art and highlight your contribution.
         % 1.  **Introduce Advanced Architectures**: Summarize a couple of key papers to show you've surveyed the field.
         %     -   **Sparse-TPU**: Discuss its column-packing algorithm, which you experimented with.
@@ -500,68 +466,68 @@ General-purpose CPUs alone are not powerful enough to handle the computational r
         %     of redundant computation.
 
 % --- Design and Methodology ---
-\section{Design and Methodology}
-    \subsection{System Architecture Overview}
+\section{Design and Methodology} \label{sec: design_method}
+    \subsection{System Architecture Overview} \label{sec: SA overview}
     % Present a high-level block diagram of your final design. Show the NPU Wrapper, the NPU Core (top_level_systolic_array), the BRAMs, the Control Unit, and the Systolic Array.
     % Briefly explain the role of each block and the data flow between them.
     
-    \subsection{Data Generation and Pre-processing}
-        \subsubsection{AlexNet Model and Data Extraction}
+    \subsection{Data Generation and Pre-processing} \label{sec: data_gen}
+        \subsubsection{AlexNet Model and Data Extraction} \label{sec: alexnet}
         % Explain the Python script's role. Why did you choose AlexNet? How did you extract the INT8 weights and activations?
         
-        \subsubsection{Tiling and .mif File Generation}
+        \subsubsection{Tiling and .mif File Generation}\label{sec: tiling}
         % Why is tiling necessary? Explain how you break down the large matrices into 8x8 tiles.
         % Explain the purpose of the .mif files for static hardware testing.
         
-    \subsection{Baseline Systolic Array Architecture}
+    \subsection{Baseline Systolic Array Architecture} \label{sec: baseline}
     % Describe your core 8x8 systolic array. Explain the PE design (the MAC unit).
     % What dataflow did you choose (e.g., output stationary) and why?
     
-    \subsection{Dynamic Control Unit for Variable Matrix Sizes}
+    \subsection{Dynamic Control Unit for Variable Matrix Sizes} \label{sec: dynamic}
     % This is a key part of your contribution. Explain the design of your `control_unit`.
     % How do the `active_rows` and `active_cols` inputs work? Why was this feature necessary to enable sparsity handling?
     % Show how this makes your design more flexible than a standard, fixed-size controller.
     
-    \subsection{Sparsity Handling Algorithm}
+    \subsection{Sparsity Handling Algorithm} \label{sec: handling algo}
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.
     
-\section{Verification and Results}
-    \subsection{Testbench and Simulation Environment}
+\section{Verification and Results} \label{sec: verification}
+    \subsection{Testbench and Simulation Environment} \label{sec: testbench}
     % Describe your VHDL testbench. How does it work? What does it measure (latency)?
     % What tools did you use (ModelSim, Quartus)?
     
-    \subsection{Baseline Performance (Dense Matrices)}
+    \subsection{Baseline Performance (Dense Matrices)} \label{sec: perform base}
     % Present the results of running a full 8x8 matrix through your NPU.
     % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
     
-    \subsection{Optimised Performance (Stripped Matrices)}
+    \subsection{Optimised Performance (Stripped Matrices)} \label{sec: perform optimised}
     % Present the results of running a sparse, stripped matrix through your NPU.
     % What were the new, smaller `active_rows` and `active_cols`?
     % What was the new, lower latency? How did the resource utilization change (if at all)?
     
-    \subsection{Performance Analysis}
+    \subsection{Performance Analysis}\label{sec: per analysis}
     % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).
     % Use tables and graphs to make this comparison clear and impactful. This is where you prove your design works and is effective.
 
-\section{Discussion}
-    \subsection{Analysis of Results}
+\section{Discussion} \label{sec: discussion}
+    \subsection{Analysis of Results} \label{sec: analysis}
     % Go deeper than the numbers. Why did your design achieve the speedup it did?
     % How does your result compare to the theoretical speedup?
     
     
-    \subsection{Design Trade-offs}
+    \subsection{Design Trade-offs} \label{sec: trade-offs}
     % Discuss the choices you made. Why did you choose to do the stripping in software (Python) instead of in hardware? 
     % What are the pros and cons of this decision? (e.g., Pro: Simpler hardware design. Con: Not a real-time system.)
     
-    \subsection{Limitations}
+    \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
     
-\section{Conclusion}
+\section{Conclusion} \label{sec: conclusion}
     % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
     % Reiterate the importance and success of your contributions.
 
-\section{Future Work}
+\section{Future Work} \label{sec: future work}
     % What would be the next logical steps for this project?
     % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
 

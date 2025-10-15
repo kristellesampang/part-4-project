@@ -143,6 +143,7 @@
       \strng{authornamehash}{b3b7e9f93549e0fd1abf95c68b71122a}
       \strng{authorfullhash}{ca12a5cc61a4dc45c58a68410643e047}
       \strng{authorfullhashraw}{ca12a5cc61a4dc45c58a68410643e047}
+      \field{extraname}{1}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
@@ -519,6 +520,140 @@
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/document/10525057/
+      \endverb
+    \endentry
+    \entry{kim_fpga_2021}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=6152705b3e688d9c8905d55ef8ea611e}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Soobeom},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fc793675f93836eea0b95c020d956b65}{%
+           family={Cho},
+           familyi={C\bibinitperiod},
+           given={Seunghwan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9f786b2380b2d8a162784257496c4340}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Eunhyeok},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2538148fcfacddefed8d7acd8201539b}{%
+           family={Yoo},
+           familyi={Y\bibinitperiod},
+           given={Sungjoo},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Paris, France}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{a4a0503d0ca3c3ed8e50af4f2a0d7056}
+      \strng{fullhash}{c65df112665117882abbc7a8c085ce77}
+      \strng{fullhashraw}{c65df112665117882abbc7a8c085ce77}
+      \strng{bibnamehash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authorbibnamehash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authornamehash}{a4a0503d0ca3c3ed8e50af4f2a0d7056}
+      \strng{authorfullhash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authorfullhashraw}{c65df112665117882abbc7a8c085ce77}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this study, we aim to design an energy-efﬁcient computation system for deep neural networks on edge devices. To maximize energy efﬁciency, we design a novel hardware accelerator that supports low-precision computation and sparsityaware structured zero-skipping on top of the well-known systolicarray structure. In addition, we introduce a full-stack software platform, including a model optimizer, instruction compiler, and host interface, to translate the pre-trained PyTorch model to the proposed accelerator and orchestrate it automatically. We validate the entire system by prototyping the accelerator on the Xilinx Alveo U250 FPGA board and demonstrating the inference of the 4-bit ResNet-50 model through the software stack. According to our experiment, our platform shows 317 GOPS inference speed and 51.96 GOPS/W energy efﬁciency for ResNet-50 on Xilinx Alveo U250 FPGA at 108 MHz, which is comparable to the advanced commercial acceleration system in terms of energy efﬁciency.}
+      \field{booktitle}{2021 {IEEE} {International} {Workshop} on {Rapid} {System} {Prototyping} ({RSP})}
+      \field{isbn}{978-1-6654-6956-2}
+      \field{month}{10}
+      \field{title}{{FPGA} {Prototyping} of {Systolic} {Array}-based {Accelerator} for {Low}-{Precision} {Inference} of {Deep} {Neural} {Networks}}
+      \field{urlday}{30}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/RSP53691.2021.9806200
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\CMDGP9N6\\Kim et al. - 2021 - FPGA Prototyping of Systolic Array-based Accelerator for Low-Precision Inference of Deep Neural Netw.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9806200/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9806200/
+      \endverb
+    \endentry
+    \entry{gorvadiya_energy_2025}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=138fab28392e37d3d3b5b8774472c342}{%
+           family={Gorvadiya},
+           familyi={G\bibinitperiod},
+           given={Jay},
+           giveni={J\bibinitperiod}}}%
+        {{hash=59424db4fddeaf4efab4c53bf1b0ee02}{%
+           family={Chagela},
+           familyi={C\bibinitperiod},
+           given={Ankur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ee24823c42999ac24bd003142051b0e1}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Mohendra},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Gandhinagar, India}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{fullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{fullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{bibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorbibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authornamehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{authorfullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorfullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As deep learning models are increasingly being deployed on resource-constrained edge devices, the need to develop techniques to make the model more energy efficient without sacrificing its performance becomes crucial. In this study we explored the three most prominent approaches, such as bit quantization, model pruning, and adaptive switching techniques to address the computational and memory overheads of deep neural networks. Bit quantization reduces the weight and activation precisions, effectively lowering the hardware requirements for both storage and computation. Again the model pruning eliminates redundant parameters; thus, reduces the model complexity, and boost the inference time. Along with all these methods the adaptive switching techniques allow the model’s parameters or structure to switch at run-time so that trade-off between accuracy and energy consumption is dynamically optimized. In this paper we explored the advantages and limitations of such techniques for edge devices through a comprehensive study of recent advancements and methodologies. Point out that the open challenge on how to balance model performance with energy efficiency and future directions for the optimization of deep learning models for edge computing environments.}
+      \field{booktitle}{2025 {International} {Conference} on {Sustainable} {Energy} {Technologies} and {Computational} {Intelligence} ({SETCOM})}
+      \field{isbn}{979-8-3315-2054-0}
+      \field{month}{2}
+      \field{title}{Energy {Efficient} {Pruning} and {Quantization} {Methods} for {Deep} {Learning} {Models}}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/SETCOM64758.2025.10932458
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\H6XN8PYV\\Gorvadiya et al. - 2025 - Energy Efficient Pruning and Quantization Methods for Deep Learning Models.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10932458/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10932458/
       \endverb
     \endentry
   \enddatalist
