@@ -426,8 +426,10 @@ An activation layer determines whether a neuron should be activated based on its
 
     \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
-        \subsubsection{Power Gating} \label{sec: power-gating}
-        As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. The most straight forward approach to handling sparsity in hardware is power-gating. This method skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate. This key limitation is what more advanced methods try to solve. 
+        \subsubsection{Power Gating and Zero-Skipping} \label{sec: power-gating}
+        As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. The most straight forward approach to handling sparsity in hardware is power-gating. This method skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate.
+        
+        A more advanced approach that reduces latency is zero-skipping. This technique involves only processing non-zero values and skipping over the zeros entirely. On a smaller scale, this can be applied to individiual weights to reduce the number of clock cycles \cite{duk_kim_24_2020}. On a larger scale, in the architecture by \textcite{kim_fpga_2021}, the accelerator was able to skip 128x128 square blocks if structured sparsity existed, leading to a significant reduction in latency. However, this requires high levels of structured sparsity, that may not always occur in real-case scenarios.
 
         \subsubsection{Compressed Data Formats} \label{sec: compressed}
         % Discuss the next level of sophistication. Instead of just skipping zeros, these methods compress
@@ -438,6 +440,13 @@ An activation layer determines whether a neuron should be activated based on its
         % **Critique (Limitation)**: The main challenge is that this requires complex decoding hardware
         % to handle the irregular data access patterns, which can add significant overhead and complexity
         % to the accelerator's control logic.
+        To further improve efficiency, compressed data formats are investigated to reduce the memory access and 
+
+        \textcite{palacios_systolic_2025,kim_fpga_2021} found that with structured pruning, where entire rows or columns of weights are pruned, the hardware can be optimised to skip entire rows or columns of computations. This is more efficient than unstructured pruning, where individual weights are pruned, as it maintains the regularity of the data access patterns. However, this requires a more complex control logic to manage the skipping of rows and columns, adding to the design complexity.
+        \textcite{seo_versa_2024} "Column-wise condensing has the effect of removing many of the zero-valued weights in advance."
+        \textcite{he_sparse-tpu_2020} "In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix"
+        "Note that the sparse matrix packing is conducted offline, and loaded into the systolic array in the same manner as the TPU" and then propose a systolic array based system,"
+        \textcite{seo_versa_2024} "(1) pre-processing when conducting a column-wise condensing of the weights (i.e., B matrix) and (2) post-processing for adjusting the column indices of the generated partial sum matrix (i.e.,the partial sum of the C matrix)."
 
         \subsubsection{Specialised Dataflows and Architectures} \label{sec: dataflow}
         % This is where you position your work against the state-of-the-art and highlight your contribution.

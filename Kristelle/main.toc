@@ -14,8 +14,8 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Rectified Linear Unit (ReLU)}{3}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Pruning}{4}{subsubsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.2}Hardware Architectures for Sparsity}{4}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Power Gating}{4}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Compressed Data Formats}{5}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Power Gating and Zero-Skipping}{4}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Compressed Data Formats}{4}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Specialised Dataflows and Architectures}{5}{subsubsection.3.2.3}%
 \contentsline {section}{\numberline {4}Design and Methodology}{5}{section.4}%
 \contentsline {subsection}{\numberline {4.1}System Architecture Overview}{5}{subsection.4.1}%
