@@ -368,31 +368,39 @@ Thank important people here.
     However, this shift presents an alarming issue where DNNs are computationally intensive and power-hungry, whilst edge devices operate under strict power and resource limitations. To bridge this gap, hardware accelerators, such as Neural Processing Units (NPUs) are introduced to execute AI algorithms at faster rates than general-purpose CPUs \cite{manor_custom_2022}. This section provides necessary background on the core technologies that support this project, starting with the most popular model for image-based tasks, the Convolutional Neural Network.
     
     \subsection{Convolutional Neural Networks (CNN)} \label{sec: CNN}
-Convolutional Neural Networks (CNNs) is a prominent type of DNN model, mainly utilised image processing tasks, such as object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers. 
-The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
-\[
-O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
-\] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
-\newline 
-An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
+    Convolutional Neural Networks (CNNs) is a prominent type of DNN model, mainly utilised image processing tasks, such as object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers. 
+    The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
+    \[
+    O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
+    \] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
+    \newline 
+    An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
     
 
     \subsection{Hardware Acceleration for Machine Learning} \label{sec: hardware accel}
     General-purpose CPUs alone are not powerful enough to handle the computational requirements of modern deep learning models. Typically, specialised hardware accelerators, such as GPUs and FPGAs, are integerated with the CPU as a heterogenous system  to enhance the performance of AI applications \cite{manor_custom_2022}. A study discovered that GPUs highly accelerate computationally intensive tasks with parallelism at ease but with a trade-off of high power consumption \cite{oh_investigation_2017}. Furthermore, GPUs are not typically found in edge devices, such as smartphones and IoT devices, due to its high power consumption and thermal output. Neural Procesing Units (NPUs) is a type of specialised hardware accelerator, best a executing AI-based algorithms. Due to its dedicated use, it has extreme performance and low-energy effiency, however, it is limited in its flexibility. On the other hand, FPGAs can achieve energy-efficiency by consuming half the power of a GPU\cite{liu_energy-efficient_2024} by tailoring the hardware architecture to a specific task. This customisability allows for optimised dataflow and memory access patterns, crucial for improving the performance of deep learning models. Therefore, this project chooses to implement the NPU on an FPGA platform to create a reconfigurable hardware accelerator. 
 
+    % !! expand on each cpu, gpu, npu, fpga (refer to either miro or logbook for this context)
+
     \subsection{Systolic Array Architecture} \label{sec: systolic array }
     A systolic array is a structured network of processing elements (PEs) where computations are carried out in a systematic approach, similar to pipelining. Each PE will receive, process, and pass on data to its neighbour concurrently in one clock cycle. Due to this, it provides characteristics like parallel computing, pipelining, synchronicity, and spatial and temporal locality.  These are advantageous as processes are completed simultaneously at higher speeds, computations are timed by a global clock for predictable data movement, and faster memory accessing time. Additionally, systolic arrays are highly compact together and allow simple data control flow. As its architecture is an array, it can easily be scaled for larger data sets, perfect for ML, and the predictable structure makes it easier to design and optimise algorithms. Furthermore, since the PEs are densely packed together, there are less data transmission, causing lower energy consumption. However, there are some disadvantages to systolic arrays. These include difficult and costly to build and specialised and inflexible in the problems it can solve, limiting its versatility. Because systolic arrayss offer high throughput and effiency, it is commonly used in NPUs to accelerate matrix multiplication, the core operation in a CNN's convolutional layer. However, its rigid and structured dataflow is inefficient for sparse matrices, leading to imbalanced workloads and low PE utilisation. This limitation motivates the need for a reconfigurable systolic array that can adapt to the sparsity in neural networks, becoming the focus of this project.
     % !! need more references here
+    %  !! HT KUNG AND CHARLES E LEISERSON. 1979. Systolic Arrays (1st ed.). ACM Press, New York, NY, USA.
+    % !! insert image from that paper for visuals
+    % !! talk about how MAC is exploited in a systolic array
+    % !! talk about how systolic arrays are used in NPUs
+    % !! talk about how systolic arrays are good for dense matrices but not sparse matrices
+    % !! talk about PE specifically 
+
+
+    % !! energy-efficiency section from original literature review (quantisation, pruning etc)
+    % !! motivation for energy efficiency 
+    % !! tie in everything together to motivate the project and bridge it with the rest of the literature review 
 
 
 % --- Literature Review ---
 \section{Literature Review} \label{sec: literature review}
-    % The rubric wants you to "Critically assess the strengths and limitations of existing research"
-    % and "identify knowledge gaps". This section should tell a story:
-    % 1. Sparsity is a huge opportunity in NNs.
-    % 2. But it's a big problem for systolic arrays.
-    % 3. Here's how others have tried to solve it (with their pros and cons).
-    % 4. Their limitations create the "gap" that our project fills.
+
 
     This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. It explroes the challenges posed by sparsity and reviews existing hardware architectures deisgned to mitigate these issues, leading to the motivation for this project.
     % !! Add more after section is completed
@@ -409,16 +417,7 @@ An activation layer determines whether a neuron should be activated based on its
         % !! need to add the section referencing ReLU in the intro 
     
         \subsubsection{Pruning} 
-        % Explain that pruning is a model compression technique that intentionally removes (sets to zero)
-        % unimportant weights. This can significantly reduce model size with minimal
-        % impact on accuracy. You can also mention that weights with a smaller
-        % absolute value are considered less important (\cite{molchanov_pruning_2017}).
-    % 3.  **The Challenge of Sparsity**: State that while sparsity offers a theoretical opportunity for
-    %     acceleration (by skipping zero-computations), it poses a practical challenge. Use the quote:
-    %     "sparse IFMs and weights can be irregular and fragmented, which leads to lower memory
-    %     access efficiency" (\cite{sun_sense_2023}). Emphasize that "data movement
-    %     consumes much more energy than computation", so inefficiently handling sparse
-    %     data is very costly.
+
     Model Pruning is a technique used to remove redundant data that may not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that more than half of weights in convolutional layers can be set to zero without impacting the overall accuracy. To decide what weights to prune, the sensitivity of the weight is considered and how it influences the output. \textcite{gorvadiya_energy_2025} discovered that their Weight Pruning technique resulted in minimal accuracy loss of 1-2\% whilst saving 25\% in power consumption. These results suggests that pruning is an effective method to reduce model size and computation without sacrificing performance.
 
     Whilst both ReLU and pruning work together to help accelerate the efficiency of the neural network by introducing sparsity in the system, this presents a challenge for systolic array based hardware architecture.
@@ -426,6 +425,7 @@ An activation layer determines whether a neuron should be activated based on its
 
     \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
+    % !! introductory / bridging paragraph
         \subsubsection{Power Gating and Zero-Skipping} \label{sec: power-gating}
         As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. The most straight forward approach to handling sparsity in hardware is power-gating. This method skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate.
         
@@ -469,6 +469,44 @@ An activation layer determines whether a neuron should be activated based on its
         %     This approach maintains the simplicity and efficiency of the systolic dataflow while still
         %     achieving significant latency and energy reduction by completely skipping entire rows/columns
         %     of redundant computation.
+
+        % !! review specific architectures that handle sparsity in systolic arrays
+        % !! talk about how it uses the previously mentioned techniques and critique its limitations
+        % !! bridge to the research gap and how your project fills it
+        Advanced architectures redesign the entire dataflow and control logic to efficiently handle sparsity in systolic array based hardware. These architecture offer higher performance but at the cost of significant hardware complexity. This section focuses on two key architectures, Sparse-TPU \cite{he_sparse-tpu_2020} and SCNN \cite{parashar_scnn_2017}, to illustrate the current state-of-the-art and identify the research gap that this project aims to fill. 
+
+        \begin{itemize}
+            \item \textbf{Sparse-TPU}: This architecture implements a column-packing algorithm to reorganise the sparse weight matrix into a denser format. It does this by examining each column and pushing non-zero elements to the left, creating a new row if a collision occurs. A collision is considered when two non-zero elements exist in the same row after pushing. This effectively reduces the number of columns, especially with non-structured sparsity, leading to lower memory access costs. However, this method requires complex pre-processing and alters the input data structures, complicating the hardware dataflow. It is critical that the rearrangement is tracked to ensure that the MAC operations are mathematically correct \cite{he_sparse-tpu_2020}. 
+            \item \textbf{SCNN}: This architecture uses a different approach to handle sparsity. It operates on a compressed-sparse dataflow, where only non-zero weights and activations are fetched from memory and delivered to the multiplier array. This dataflow tracks the output coordinate for each multiplication and sends the resulting product to a specialised scatter accumulator, ensuring the value is summed at the correct location in the output feature map. This approach maximises data reuse but diverges significantly from standard systolic array designs \cite{parashar_scnn_2017}.
+        \end{itemize}
+        % Sparse-TPU: Adapting Systolic Arrays for Sparse Matrices - - 
+        % The way packing works here is that you look at a column. You check the column on 
+        % the right and push it onto the first column. If there are any collisions, then a new row is 
+        % created.  
+        % Keep track of this because we need to rearrange the input the same way so that we 
+        % can mathematically do the MAC operations correctly. This basically just skips out on 
+        % the zeros in the systolic array. 
+
+        % SCNN: An Accelerator for Compressed-sparse Convolutional Neural Networks 
+        % • the SCNN dataflow only delivers weights and activations to the multiplier array that can all 
+        % be multiplied by one another in the manner of a Cartesian product. Furthermore, the 
+        % activation vectors are reused in an input stationary [6] fashion against a number of weight 
+        % vectors to reduce data accesses. Finally, only non-zero weights and activations are fetched 
+        % from the input storage arrays and delivered to the multiplier array. 
+        % • SCNN doesn’t do the typical MAC operation where the multiplied output is directly 
+        % multiplied in the PE. Instead, it tracks the output coordinate  
+        % • Their methods of exploiting sparsity: 
+        % o Compressing data: Encoding the sparse weights and/or activations provides an 
+        % architecture an opportunity to reduce the amount of data that must be moved 
+        % throughout the memory hierarchy. It also reduces the data footprint, which allows 
+        % larger matrices to be held a given size storage structure. 
+        % o Eliminating computation: For multiplications that have a zero weight and/or 
+        % activation operand, the operation can be data gated or the operands might never be 
+        % sent to the multiplier. This can save energy consumption or both time and energy 
+        % consumption, respectively.
+        The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests that fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler that can exploit structured sparsity without overhauling the classic systolic array pipeline.
+
+        % !! probably need to expand
 
 % --- Design and Methodology ---
 \section{Design and Methodology} \label{sec: design_method}

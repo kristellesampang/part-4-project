@@ -2394,6 +2394,11 @@
     <bcf:citekey order="19" intorder="1">palacios_systolic_2025</bcf:citekey>
     <bcf:citekey order="19" intorder="2">kim_fpga_2021</bcf:citekey>
     <bcf:citekey order="20" intorder="1">seo_versa_2024</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">palacios_systolic_2025</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
