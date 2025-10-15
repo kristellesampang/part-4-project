@@ -869,6 +869,62 @@
       \verb https://ieeexplore.ieee.org/document/9062907/
       \endverb
     \endentry
+    \entry{seo_versa_2024}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5cc888af8d4b35e4f1197167922b62cd}{%
+           family={Seo},
+           familyi={S\bibinitperiod},
+           given={Juwon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cdf783d77e2b5b26a9711598bc223dac}{%
+           family={Kong},
+           familyi={K\bibinitperiod},
+           given={Joonho},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{fullhash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{fullhashraw}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{bibnamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorbibnamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authornamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorfullhash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorfullhashraw}{d0199a29319f81d941dcdb0f03572b70}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{A key part of modern deep neural network (DNN) applications is matrix multiplication. As DNN applications are becoming more diverse, there is a need for both dense and sparse matrix multiplications to be accelerated by hardware. However, most hardware accelerators are designed to accelerate either dense or sparse matrix multiplication. In this paper, we propose VerSA, a versatile systolic array architecture for both dense and sparse matrix multiplications. VerSA employs intermediate paths and SRAM buffers between the rows of the systolic array (SA), thereby enabling an early termination in sparse matrix multiplication with a negligible performance overhead when running dense matrix multiplication. When running sparse matrix multiplication, 256 × 256 VerSA brings performance (i.e., an inverse of execution time) improvement and energy saving by 1.21×–1.60× and 7.5–30.2\%, respectively, when compared to the conventional SA. When running dense matrix multiplication, VerSA results in only a 0.52\% performance overhead compared to the conventional SA.}
+      \field{issn}{2079-9292}
+      \field{journaltitle}{Electronics}
+      \field{month}{4}
+      \field{number}{8}
+      \field{shorttitle}{{VerSA}}
+      \field{title}{{VerSA}: {Versatile} {Systolic} {Array} {Architecture} for {Sparse} and {Dense} {Matrix} {Multiplications}}
+      \field{urlday}{15}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{13}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{1500}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/electronics13081500
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\ZB6CP4QF\\Seo and Kong - 2024 - VerSA Versatile Systolic Array Architecture for Sparse and Dense Matrix Multiplications.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2079-9292/13/8/1500
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2079-9292/13/8/1500
+      \endverb
+    \endentry
     \entry{palacios_systolic_2025}{inproceedings}{}{}
       \name{author}{5}{}{%
         {{hash=a919c51cb179e03235675aab7314989b}{%
@@ -937,62 +993,6 @@
       \verb http://arxiv.org/abs/2411.10285
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Hardware Architecture}
-    \endentry
-    \entry{seo_versa_2024}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=5cc888af8d4b35e4f1197167922b62cd}{%
-           family={Seo},
-           familyi={S\bibinitperiod},
-           given={Juwon},
-           giveni={J\bibinitperiod}}}%
-        {{hash=cdf783d77e2b5b26a9711598bc223dac}{%
-           family={Kong},
-           familyi={K\bibinitperiod},
-           given={Joonho},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{fullhash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{fullhashraw}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{bibnamehash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{authorbibnamehash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{authornamehash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{authorfullhash}{d0199a29319f81d941dcdb0f03572b70}
-      \strng{authorfullhashraw}{d0199a29319f81d941dcdb0f03572b70}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{shorttitle}
-      \field{abstract}{A key part of modern deep neural network (DNN) applications is matrix multiplication. As DNN applications are becoming more diverse, there is a need for both dense and sparse matrix multiplications to be accelerated by hardware. However, most hardware accelerators are designed to accelerate either dense or sparse matrix multiplication. In this paper, we propose VerSA, a versatile systolic array architecture for both dense and sparse matrix multiplications. VerSA employs intermediate paths and SRAM buffers between the rows of the systolic array (SA), thereby enabling an early termination in sparse matrix multiplication with a negligible performance overhead when running dense matrix multiplication. When running sparse matrix multiplication, 256 × 256 VerSA brings performance (i.e., an inverse of execution time) improvement and energy saving by 1.21×–1.60× and 7.5–30.2\%, respectively, when compared to the conventional SA. When running dense matrix multiplication, VerSA results in only a 0.52\% performance overhead compared to the conventional SA.}
-      \field{issn}{2079-9292}
-      \field{journaltitle}{Electronics}
-      \field{month}{4}
-      \field{number}{8}
-      \field{shorttitle}{{VerSA}}
-      \field{title}{{VerSA}: {Versatile} {Systolic} {Array} {Architecture} for {Sparse} and {Dense} {Matrix} {Multiplications}}
-      \field{urlday}{15}
-      \field{urlmonth}{10}
-      \field{urlyear}{2025}
-      \field{volume}{13}
-      \field{year}{2024}
-      \field{urldateera}{ce}
-      \field{pages}{1500}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/electronics13081500
-      \endverb
-      \verb{file}
-      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\ZB6CP4QF\\Seo and Kong - 2024 - VerSA Versatile Systolic Array Architecture for Sparse and Dense Matrix Multiplications.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb https://www.mdpi.com/2079-9292/13/8/1500
-      \endverb
-      \verb{url}
-      \verb https://www.mdpi.com/2079-9292/13/8/1500
-      \endverb
     \endentry
   \enddatalist
 \endrefsection

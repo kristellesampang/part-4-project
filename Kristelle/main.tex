@@ -258,7 +258,7 @@ Signature:
 \includegraphics[width=0.3\linewidth]{figures/signature.png}
 
 \vspace{1cm}
-Date: \includegraphics[width=0.3\linewidth]{figures/date.png}
+Date: \includegraphics[width=0.2\linewidth]{figures/date.png}
 % !! Remember to sign this
 
 \newpage
@@ -432,21 +432,16 @@ An activation layer determines whether a neuron should be activated based on its
         A more advanced approach that reduces latency is zero-skipping. This technique involves only processing non-zero values and skipping over the zeros entirely. On a smaller scale, this can be applied to individiual weights to reduce the number of clock cycles \cite{duk_kim_24_2020}. On a larger scale, in the architecture by \textcite{kim_fpga_2021}, the accelerator was able to skip 128x128 square blocks if structured sparsity existed, leading to a significant reduction in latency. However, this requires high levels of structured sparsity, that may not always occur in real-case scenarios.
 
         \subsubsection{Compressed Data Formats} \label{sec: compressed}
-        % Discuss the next level of sophistication. Instead of just skipping zeros, these methods compress
-        % the sparse matrices before processing.
-        % Mention that architectures like SCNN work directly with compressed data, which "eliminating
-        % computation... can save energy consumption or both time and energy consumption"
-        % (\cite{parashar_scnn_2017}).
-        % **Critique (Limitation)**: The main challenge is that this requires complex decoding hardware
-        % to handle the irregular data access patterns, which can add significant overhead and complexity
-        % to the accelerator's control logic.
-        To further improve efficiency, compressed data formats are investigated to reduce the memory access and 
+        To further improve performance, many architectures use compressed data formats to reduce the significant energy and latency costs of memory access. This is often implemented as a software-hardware co-design where a pre-processing stage reorganises the sparse matrix before it is sent to the accelerator. For example, \textcite{he_sparse-tpu_2020} proposes a packing technique to confense the matrix offline then loads it into the systolic array. Similarly, \textcite{seo_versa_2024} uses a pre-processing column-wise condensation of the weights to remove zero values in advanced. Additionally, \textcite{palacios_systolic_2025,kim_fpga_2021} found that with structured pruning, where entire rows or columns of weights are pruned, the hardware can be optimised to skip entire rows or columns of computations. This is more efficient than unstructured pruning, where individual weights are pruned, as it maintains the regularity of the data access patterns. 
 
-        \textcite{palacios_systolic_2025,kim_fpga_2021} found that with structured pruning, where entire rows or columns of weights are pruned, the hardware can be optimised to skip entire rows or columns of computations. This is more efficient than unstructured pruning, where individual weights are pruned, as it maintains the regularity of the data access patterns. However, this requires a more complex control logic to manage the skipping of rows and columns, adding to the design complexity.
-        \textcite{seo_versa_2024} "Column-wise condensing has the effect of removing many of the zero-valued weights in advance."
-        \textcite{he_sparse-tpu_2020} "In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix"
-        "Note that the sparse matrix packing is conducted offline, and loaded into the systolic array in the same manner as the TPU" and then propose a systolic array based system,"
-        \textcite{seo_versa_2024} "(1) pre-processing when conducting a column-wise condensing of the weights (i.e., B matrix) and (2) post-processing for adjusting the column indices of the generated partial sum matrix (i.e.,the partial sum of the C matrix)."
+        Although these methods significantly reduce memory access costs and improve performance, there are trade-offs. As these methods change the structure of the input matrices, it requires complex hardware and control logic to manage the new dataflow. Additionally, post-processing is required to rearrange the result matrix is required to ensure that the indices match up the original input \textcite{seo_versa_2024}. This added complexity may lead to increased power consumption and use of hardware resources, potentially nullifying the benefits of handling sparsity. Therefore, whilst compressed data formats are effective, there are significant design challenges that must be carefully considered to fully exploit its advantages.
+
+
+        % \textcite{seo_versa_2024} "Column-wise condensing has the effect of removing many of the zero-valued weights in advance."
+        % \textcite{he_sparse-tpu_2020} "In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix"
+        % "Note that the sparse matrix packing is conducted offline, and loaded into the systolic array in the same manner as the TPU" and then propose a systolic array based system,"
+        % \textcite{seo_versa_2024} "(1) pre-processing when conducting a column-wise condensing of the weights (i.e., B matrix) and (2) post-processing for adjusting the column indices of the generated partial sum matrix (i.e.,the partial sum of the C matrix)."
+        % \textcite{parashar_scnn_2017} "Compressing data: Encoding the sparse weights and/or activations provides an architecture an opportunity to reduce the amount of data that must be moved throughout the memory hierarchy. It also reduces the data footprint, which allows larger matrices to be held a given size storage structure"
 
         \subsubsection{Specialised Dataflows and Architectures} \label{sec: dataflow}
         % This is where you position your work against the state-of-the-art and highlight your contribution.
