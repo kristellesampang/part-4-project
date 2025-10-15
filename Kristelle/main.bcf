@@ -2379,6 +2379,9 @@
     <bcf:citekey order="4" intorder="1">choi_enabling_2023</bcf:citekey>
     <bcf:citekey order="5" intorder="1">choi_enabling_2023</bcf:citekey>
     <bcf:citekey order="6" intorder="1">sun_sense_2023</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">manor_custom_2022</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">oh_investigation_2017</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">liu_energy-efficient_2024</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

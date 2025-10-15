@@ -382,6 +382,145 @@
       \verb https://ieeexplore.ieee.org/document/10043636/
       \endverb
     \endentry
+    \entry{oh_investigation_2017}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=da18672593a4e0c6fe87bb4bdc8c3ed2}{%
+           family={Oh},
+           familyi={O\bibinitperiod},
+           given={Sangyoon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=831c31fa2a983c85538039d3ee1d55c1}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Minsub},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1408e24df809033aae869051ae6040dc}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Donghoon},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4ae32b3d6cea0adf64c7a8f3387650ba}{%
+           family={Jeong},
+           familyi={J\bibinitperiod},
+           given={Minjoong},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d16ebfd807b6c3f53f52e3fcaf685ea8}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Minsu},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Kuta Bali}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2ee111c2d50ced7edb65ffe0829dddfb}
+      \strng{fullhash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{fullhashraw}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{bibnamehash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authorbibnamehash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authornamehash}{2ee111c2d50ced7edb65ffe0829dddfb}
+      \strng{authorfullhash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authorfullhashraw}{f7a7ab34deeb7543518e6a6196a55b99}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The use of a Convolutional Neural Network based method for object detection increases the accuracy that surpasses human visual system. Because it requires considerable computational capability, its use in embedded devices that place constraints in terms of power consumption as well as computational capability has thus far been limited. However, with the recent development of GPU for use in embedded devices and open-source software library for machine learning, it has become viable to utilize CNN in an energy-efficient embedded computing environment. In this study, CPU and GPU performance and energy efficiency of CNN-based object detection inference on an embedded platform is investigated through comparison with a traditional PC-based platform. Two publicly available hardware platforms are empirically evaluated; in one of them—NVIDIA Jetson TX-1—the results demonstrate image processing performance of 65\% of that of the PC, while the embedded device consumes 2.6\% of power consumed by the PC.}
+      \field{booktitle}{2017 4th {International} {Conference} on {Computer} {Applications} and {Information} {Processing} {Technology} ({CAIPT})}
+      \field{isbn}{978-1-5386-0600-1}
+      \field{month}{8}
+      \field{title}{Investigation on performance and energy efficiency of {CNN}-based object detection on embedded device}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 4}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1109/CAIPT.2017.8320657
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\K5V7H78L\\Oh et al. - 2017 - Investigation on performance and energy efficiency of CNN-based object detection on embedded device.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/8320657/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/8320657/
+      \endverb
+    \endentry
+    \entry{liu_energy-efficient_2024}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=e01bab79ba2d6e141c6d42ea37ea5417}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Xing},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b226fd29fe2cc6b3d8f58e7309da243a}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Wenxing},
+           giveni={W\bibinitperiod}}}%
+        {{hash=07a750250bc37c9181998579542af8c2}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=f21793fbe383ed5b3d2f9fca68a8d5c4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Mengya},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d1db83d915774f6233412d7ee58895b9}
+      \strng{fullhash}{f320b5e585a7382983221e95123fec3d}
+      \strng{fullhashraw}{f320b5e585a7382983221e95123fec3d}
+      \strng{bibnamehash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authorbibnamehash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authornamehash}{d1db83d915774f6233412d7ee58895b9}
+      \strng{authorfullhash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authorfullhashraw}{f320b5e585a7382983221e95123fec3d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The time and energy optimization of computationally intensive tasks involving unmanned air vehicles (UAVs) is highly important for increasing the reaction speed of UAVs and for prolonging their lifetime. To achieve the above objective, many studies based on heterogeneous computing have been carried out. Although these studies have achieved good results, limitations remain. First, neural processing units (NPUs) have emerged in recent years. However, insufﬁcient attention has been devoted to CPU/NPU research in academia currently. Second, most popular heterogeneous computing architectures have only one kind of accelerator, e.g., CPU/GPU or CPU/ﬁeld programmable gate array (FPGA). A heterogeneous system with multiple kinds of accelerators, e.g., CPU/FPGA/NPU, has not been investigated in depth. To address the above concerns, we propose a heterogeneous CPU/FPGA/NPU system aimed at realizing energy-efﬁcient computing acceleration for computationally intensive UAV tasks. First, we select several representative computationally intensive UAV tasks and design FPGA and NPU accelerators dedicated to these tasks. Then, we calculate the time and energy costs of these tasks on the FPGA and NPU, respectively, and ﬁnd that different tasks are appropriate for running on different cores. Based on this ﬁnding, we further build a heterogeneous CPU/FPGA/NPU architecture and assign each UAV task to the most appropriate core for execution. In this way, the UAV tasks can be executed more efﬁciently. We conduct experiments by executing all the representative UAV tasks on the CPU, CPU/GPU, CPU/FPGA, CPU/NPU and CPU/FPGA/NPU platforms. The results show that a heterogeneous system with multiple accelerators can achieve better computing performance and higher energy efﬁciency.}
+      \field{issn}{2327-4662, 2372-2541}
+      \field{journaltitle}{IEEE Internet of Things Journal}
+      \field{month}{8}
+      \field{number}{16}
+      \field{title}{Energy-{Efficient} {Computing} {Acceleration} of {Unmanned} {Aerial} {Vehicles} {Based} on a {CPU}/{FPGA}/{NPU} {Heterogeneous} {System}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{11}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{27126\bibrangedash 27138}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1109/JIOT.2024.3397649
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\TCDCGNCT\\Liu et al. - 2024 - Energy-Efficient Computing Acceleration of Unmanned Aerial Vehicles Based on a CPUFPGANPU Heteroge.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10525057/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10525057/
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

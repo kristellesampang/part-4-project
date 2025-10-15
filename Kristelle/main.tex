@@ -40,7 +40,7 @@
 \newcommand{\linksColour}{black}
 % hyperref package
 \usepackage[colorlinks=true, linkcolor=\linksColour, citecolor=\linksColour, urlcolor=blue, bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
-\usepackage{breakurl}         % break long urls
+% \usepackage{breakurl}      % break long urls
 \urlstyle{rm}               % Change url fonts to match report font
 
 % -------------------- Header and Footer Settings ------------------------------
@@ -408,27 +408,12 @@ An activation layer determines whether a neuron should be activated based on its
     %         and can be tailored to a specific application, offering better energy efficiency than GPUs
     %         while being more flexible than ASICs. This reconfigurability is the key reason
     %         it's the perfect platform for your *reconfigurable* NPU project.
+General-purpose CPUs alone are not powerful enough to handle the computational requirements of modern deep learning models. Typically, specialised hardware accelerators, such as GPUs and FPGAs, are integerated with the CPU as a heterogenous system  to enhance the performance of AI applications \cite{manor_custom_2022}. A study discovered that GPUs highly accelerate computationally intensive tasks with parallelism at ease but with a trade-off of high power consumption \cite{oh_investigation_2017}. Furthermore, GPUs are not typically found in edge devices, such as smartphones and IoT devices, due to its high power consumption and thermal output. Neural Procesing Units (NPUs) is a type of specialised hardware accelerator, best a executing AI-based algorithms. Due to its dedicated use, it has extreme performance and low-energy effiency, however, it is limited in its flexibility. On the other hand, FPGAs can achieve energy-efficiency by consuming half the power of a GPU\cite{liu_energy-efficient_2024} by tailoring the hardware architecture to a specific task. This customisability allows for optimised dataflow and memory access patterns, crucial for improving the performance of deep learning models. Therefore, this project chooses to implement the NPU on an FPGA platform to create a reconfigurable hardware accelerator. 
 
-    
+    \subsection{Systolic Array Architecture}    
+    A systolic array is a structured network of processing elements (PEs) where computations are carried out in a systematic approach, similar to pipelining. Each PE will receive, process, and pass on data to its neighbour concurrently in one clock cycle. Due to this, it provides characteristics like parallel computing, pipelining, synchronicity, and spatial and temporal locality.  These are advantageous as processes are completed simultaneously at higher speeds, computations are timed by a global clock for predictable data movement, and faster memory accessing time. Additionally, systolic arrays are highly compact together and allow simple data control flow. As its architecture is an array, it can easily be scaled for larger data sets, perfect for ML, and the predictable structure makes it easier to design and optimise algorithms. Furthermore, since the PEs are densely packed together, there are less data transmission, causing lower energy consumption. However, there are some disadvantages to systolic arrays. These include difficult and costly to build and specialised and inflexible in the problems it can solve, limiting its versatility. Because systolic arrayss offer high throughput and effiency, it is commonly used in NPUs to accelerate matrix multiplication, the core operation in a CNN's convolutional layer. However, its rigid and structured dataflow is inefficient for sparse matrices, leading to imbalanced workloads and low PE utilisation. This limitation motivates the need for a reconfigurable systolic array that can adapt to the sparsity in neural networks, becoming the focus of this project.
+    % !! need more references here
 
-    \subsection{Systolic Array Architecture}
-    % Here, introduce the core architecture you implemented. Use your deep dive from Weeks 9-10.
-    % 1.  **What is a Systolic Array?**: Describe it as a network of simple Processing Elements (PEs)
-    %     that process data in a rhythmic, pipelined fashion. Each PE typically performs a
-    %     MAC operation.
-    % 2.  **What are its benefits?**: This is a great place to use the quotes you found. Explain that
-    %     systolic arrays are ideal for matrix multiplication because they "propagate data horizontally
-    %     and vertically with simplified inter-PE connection, which can highly reuse data and reduce
-    %     data movement consumption" \cite{sun_sense_2023}. This leads to high
-    %     throughput and efficiency for *dense* matrices. Also mention that "the control unit only
-    %     takes up a small portion of system hardware cost, achieving high resource utilization"
-    %     \cite{sun_sense_2023}.
-    % 3.  **What is its major limitation?**: This is the core problem your project solves. State clearly
-    %     that the rigid, structured dataflow is highly inefficient for sparse matrices. Use the quote:
-    %     "sparsity conflicts with the structured dataflow in systolic array, which may induce
-    %     imbalanced workloads, causing low PE utilization and insufficient acceleration"
-    %     \cite{sun_sense_2023}. This perfectly sets up your literature review.
-    
 
 % --- Literature Review ---
 \section{Literature Review}
@@ -438,6 +423,9 @@ An activation layer determines whether a neuron should be activated based on its
     % 2. But it's a big problem for systolic arrays.
     % 3. Here's how others have tried to solve it (with their pros and cons).
     % 4. Their limitations create the "gap" that our project fills.
+
+    This section delves deep into the gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. 
+    % !! Add more after section is completed
 
     \subsection{Sparsity in Neural Networks}
     % Explain where the zeros come from and why they are a problem.
