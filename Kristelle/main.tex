@@ -1,0 +1,608 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, a4paper, ukenglish]{article}
+
+% -------------------------- Font and Encoding ---------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{times} % Use Times font
+\usepackage[utf8]{inputenc}
+
+% -------------------------- Page Layout ---------------------------------------
+\usepackage[left=2.5cm, top=2cm, right=2.5cm, bottom=2cm]{geometry}
+\setlength{\parskip}{\medskipamount}
+
+% -------------------------- Required Packages ---------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{esint}
+\usepackage{mathdots}
+\usepackage{mathtools}
+\usepackage[version=4]{mhchem}
+\usepackage{stackrel}
+\usepackage{stmaryrd}
+% \usepackage{undertilde}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+% \usepackage[ukenglish]{babel}
+
+% -------------------------- Bibliography Settings -----------------------------
+% NOTE: The 'cite' package conflicts with biblatex. It has been removed.
+\usepackage[style=ieee, backend=biber]{biblatex}
+\addbibresource{final_report.bib} % Make sure this filename matches your .bib file
+
+% -------------------------- Hyperlinks Settings -------------------------------
+\usepackage{xcolor} % Colours for hyperref package
+% Define links colour
+\newcommand{\linksColour}{black}
+% hyperref package
+\usepackage[colorlinks=true, linkcolor=\linksColour, citecolor=\linksColour, urlcolor=blue, bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
+\usepackage{breakurl}         % break long urls
+\urlstyle{rm}               % Change url fonts to match report font
+
+% -------------------- Header and Footer Settings ------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}                   % clear the default header
+\fancyfoot{}                   % clear the default footer
+% \fancyfoot[CO,CE]{\footnotesize\thepage}   % page number in the middle
+\renewcommand{\headrulewidth}{0.0pt}       % remove the default header line
+% Header and footer of automatically generated pages (e.g. TOC)
+\fancypagestyle{plain}{
+    \fancyhead{}
+    \fancyfoot{}
+    % \fancyfoot[CO,CE]{\footnotesize\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------ Title Page Box Settings -----------------------------
+% settings for the text box on the front page
+\newcommand\HRule{\noindent\rule{\linewidth}{2pt}}
+
+% -------------------------- Figures Settings ----------------------------------
+% Redefine how latex deals with figure placement
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.7}
+\renewcommand{\textfraction}{.15}
+\renewcommand{\floatpagefraction}{.66}
+\renewcommand{\dbltopfraction}{.66}
+\renewcommand{\dblfloatpagefraction}{.66}
+\usepackage[labelfont={bf,footnotesize},textfont={footnotesize}, labelsep=quad]{caption}
+
+% ------------------------------ TOC Settings ----------------------------------
+% Adding dots to sections in table of contents
+\usepackage{tocloft}
+\renewcommand{\cftloftitlefont}{\large\bfseries}
+\renewcommand{\cftlottitlefont}{\large\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% Adding the word Figure in list of figures
+\renewcommand*\cftfigpresnum{Figure~}
+\settowidth{\cftfignumwidth}{\cftfigpresnum}
+\renewcommand{\cftfigaftersnumb}{\qquad}
+% Adding the word Table in list of figures
+\renewcommand*\cfttabpresnum{Table~}
+\settowidth{\cfttabnumwidth}{\cfttabpresnum}
+\renewcommand{\cfttabaftersnumb}{\qquad}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% -------------------- Formatting Section Titles -------------------------------
+% Shrinking the space after headers
+\usepackage[clearempty]{titlesec} % loaded with a setting for automatically generated empty pages to be completely blank
+\beforetitleunit = 1pt
+\aftertitleunit = 1pt
+% specifying the spacing before and after the titles (note \parskip = 9pts)
+\titlespacing{\section}{0pt}{*9}{*9}    % for 18 pt space
+\titlespacing{\subsection}{0pt}{*3}{*3}  % for 12 pt space
+\titlespacing{\subsubsection}{0pt}{*3}{*3} % for 12 pt space
+% specifying the title formatting
+\titleformat{\section} {\normalfont\fontsize{14}{14}\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection} {\normalfont\fontsize{12}{12}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection} {\normalfont\fontsize{12}{12}\it}{\thesubsubsection}{1em}{}
+
+% Modifying how appendices look (title and toc)
+\usepackage[titletoc,title]{appendix}
+
+% ------------------------- Nomenclature Settings ------------------------------
+\usepackage{nomencl}
+\makenomenclature
+\def\nompreamble{\addcontentsline{toc}{section}{\nomname}\markboth{\nomname}{\nomname}}
+% customising nomenclature groups
+\usepackage{ifthen}
+\renewcommand{\nomgroup}[1]{
+    \ifthenelse{\equal{#1}{A}}{\item[\textbf{Symbols}]}{%
+    \ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{}
+    }% matches Greek Symbols
+}% matches Roman Symbols
+% unit column in nomenclature
+\newcommand{\nomunit}[1]{\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+
+% -------------------------- Code Listings Settings ----------------------------
+\usepackage{listings}
+\lstset{
+    basicstyle={\ttfamily\footnotesize},
+    belowcaptionskip=3mm,
+    breaklines=true,
+    commentstyle={\color[rgb]{0,0.5,0}},
+    frame=tb, % Top and bottom frame lines
+    keywordstyle={\color{blue}},
+    language=Matlab,
+    numbers=left,
+    numberstyle={\scriptsize},
+    showstringspaces=false,
+    stringstyle={\color{purple}}
+}
+% Change default name for code environments
+\renewcommand{\lstlistingname}{Program}
+
+% -------------------------- Miscellaneous Settings ----------------------------
+\usepackage[british]{isodate}
+\usepackage{menukeys}       % for menu instructions
+\usepackage[bottom]{footmisc} % force footnotes to be always at the bottom of the page
+\usepackage{multirow}
+\usepackage{units}
+\allowdisplaybreaks     % to allow page breaks within equations
+
+% Disable automatic date printing
+% \date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BODY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% --- Define name and report number he
+\def\name{Kristelle Sampang}
+\def\reportNumber{COMPSYS043-\the\year}
+
+% --- Title Page ---
+\thispagestyle{empty}
+\pagenumbering{roman}
+
+\begin{center}
+    \vspace*{10mm}
+    % {\large \textbf{Research Project in Computer Systems Engineering}}
+
+    \vspace*{10mm}
+    \HRule
+    
+    \vspace{0.5cm}
+    Final Report
+    \vspace{0.5cm}
+    
+    {\Large \textbf{Project \#43: Reconfigurable Neural Processing Unit (NPU) for Energy-Efficient AI at the Edge}}
+    
+    \vspace{1cm}
+    {\large \name}
+    
+    \vspace{0.5cm}
+    Project Report 
+    
+    \vspace{0.5cm}
+    \HRule
+\end{center}
+
+\vfill
+\begin{center}
+    \begin{tabular}{r l}
+        \addlinespace[1.5em]
+        Project Partner: & Pratham Chhabra \\
+        \addlinespace[1.5em]
+        Supervisor: & Dr Morteza Biglari-Abhari \\
+        \addlinespace[1.5em]
+        Co-Supervisor: & Dr Maryam Hemmati
+    \end{tabular}
+\end{center}
+
+\vfill
+\begin{center}
+    \today
+\end{center}
+
+\vfill
+\begin{center}
+    % \includegraphics[width=0.7\linewidth]{figures/ecse-horizontal-hc.png}
+    \includegraphics[width=0.7\linewidth]{figures/UoA-Logo-Primary-RGB-Large.png}
+\end{center}
+
+\clearpage
+
+% --- Abstract Page ---
+\noindent \reportNumber
+
+\vspace{1em}
+\begin{center}
+    {\large \textbf{\scshape Reconfigurable Neural Processing Unit (NPU) for Energy-Efficient AI at the Edge}}
+\end{center}
+
+\vspace{2em}
+\begin{center}
+    {\large \textbf{\name}}
+\end{center}
+
+\vspace{2em}
+\begin{center}
+    {\large \textbf{\scshape ABSTRACT}}
+\end{center}
+
+Abstract goes here.
+
+% --- Declaration Page ---
+% \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{Declaration.pdf}
+\clearpage
+\newpage
+\vspace{2em}
+\begin{center}
+\Large\textbf{DECLARATION}
+\end{center}
+\noindent
+\textbf{Student}
+\vspace{1em}
+I hereby declare that:
+\begin{enumerate}
+    \item This report is the result of the final year project work carried out by my project partner (see cover page) and I under the guidance of our supervisor (see cover page) in the 2025 academic year at the Department of Electrical, Computer and Software Engineering, Faculty of Engineering, University of Auckland. 
+    \item This report is not the outcome of work done previously. 
+    \item This report is not the outcome of work done in collaboration, except that with a potential project sponsor (if any) as stated in the text.
+    \item This report is not the same as any report, thesis, conference article or journal paper, or any other publication or unpublished work in any format. 
+\end{enumerate}
+\vspace{1em}
+\noindent
+In the case of a continuing project, please state clearly what has been developed during the project and what was available from previous year(s): 
+\vspace{3cm}
+\noindent
+\newline
+Signature:
+\includegraphics[width=0.3\linewidth]{figures/signature.png}
+
+\vspace{1cm}
+Date: \includegraphics[width=0.3\linewidth]{figures/date.png}
+% !! Remember to sign this
+
+\newpage
+
+% --- Table of Contents ---
+\setlength{\parskip}{6pt}
+\renewcommand{\contentsname}{\large{Table of Contents}}
+\tableofcontents
+\newpage
+\setlength{\parskip}{9pt}
+
+% --- Acknowledgements ---
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+\label{sec:Acknowledgements1}
+
+Thank important people here.
+
+
+
+\newpage
+
+% --- Glossary of Terms ---
+\section*{Glossary of Terms}
+\addcontentsline{toc}{section}{Glossary of Terms}
+
+\begin{longtable}{p{0.25\linewidth} p{0.70\linewidth}}
+    \toprule
+    \textbf{Term} & \textbf{Definition} \\
+    \midrule
+    \endhead
+    % Add glossary terms here
+    \bottomrule
+\end{longtable}
+\addtocounter{table}{-1}
+
+% --- Abbreviations ---
+\section*{Abbreviations}
+\addcontentsline{toc}{section}{Abbreviations}
+
+\begin{longtable}{p{0.25\linewidth} p{0.70\linewidth}}
+    \toprule
+    \textbf{AOA} & \textbf{Angle of attack} \\
+    \midrule
+    \endhead
+    % Add abbreviations here
+    \bottomrule
+\end{longtable}
+\addtocounter{table}{-1}
+
+% --- Nomenclature ---
+\printnomenclature
+
+\clearpage
+\setlength{\parskip}{9pt}
+\pagenumbering{arabic}
+% --- Main Body of the Report ---
+\section{Introduction}
+    \subsection{Motivation}
+    % Hook the reader. Why is this project important? What is the big-picture problem? 
+    % (e.g., The explosion of AI and IoT devices demands powerful but low-power processing directly on the edge.)
+    % Why are current solutions like CPUs/GPUs not good enough for this specific problem? (e.g., Power consumption, size constraints.)
+
+    \begin{itemize}
+        \item As the demand for artificial intelligence grows to become prominent in today's society, its energy consumption has become a key issue. 
+        \item The processing required to run machine learning models is large, with millions of computations needed to be executed. 
+        \item This means that low-power processing devices at edge are limited to its use. 
+        \item The processing power to run machine learning models is large, limiting its use for low-power processing devices at the edge.  
+        \item With high computational power required, energy-efficiency is a key concern, especially nowadays when energy is an essential resource to not waste.
+        \item In the past decade, common types of processors for running AI are CPU, GPU, and FPGA. 
+        \item However, as technology continues to improve, Neural Processing Units (NPU) are developed. These are processors that specialise in processing AI computations.
+        \item By integrating NPU alongside other processors, the performance and energy-efficiency are improved compared to a standalone processor. 
+        % \item This report aims to focus on tacking the issue of low energy-efficient use of AI at edge. 
+        %% I need more context here
+    \end{itemize}
+    
+    \subsection{Problem Statement}
+    % Clearly and concisely state the specific problem you are solving.
+    % (e.g., Conventional systolic arrays on FPGAs are efficient for dense matrices but suffer significant performance and energy penalties when processing sparse neural networks.)
+    % What specific gap are you filling?
+
+    % Aims and objectives
+    
+    
+    % \subsection{Contributions}
+    % List your key achievements in bullet points. This is your main marketing section. Use strong action verbs.
+    % (e.g., "In this work, we present a novel hardware accelerator that:
+    % \begin{itemize}
+    %   \item Implements a reconfigurable control unit capable of processing variable-sized matrices, directly enabling the acceleration of stripped sparse data.
+    %   \item Introduces a software-hardware co-design methodology for preparing and verifying sparse matrix tiles from a pre-trained CNN model.
+    %   \item Achieves a speedup of X compared to a baseline dense implementation...")
+    % \end{itemize}
+    
+    \subsection{Report Structure}
+    % Briefly outline the rest of the report, section by section.
+    The remainder of this report goes as follows: Section X covers Y....
+
+
+\section{Background}
+    % According to the rubric, this section must "Clearly define the project context" and demonstrate
+    % "a good understanding of the broader scientific or engineering domain."
+    % Think of this section as bringing a reader up to speed on the core technologies you're using.
+    The rapid growth of Artificial Intelligence (AI) in the past decade has driven significant advancements across numerous field. Machine Learning (ML) models, particularly Deep Neural Networks (DNNs), are popular for its applications in image classification to autonomous driving \cite{parashar_scnn_2017}. There has been significant shift from AI inferencing occur at a cloud-level to resource-constrained edge devices. This move motivates the "AI at the Edge" in the research, where lower latency, enhanced data privacy, and real-time processing capabilities must are requirements that must be met without relying on constant network connection \cite{kim_energy-efficient_2020}.
+
+    However, this shift presents an alarming issue where DNNs are computationally intensive and power-hungry, whilst edge devices operate under strict power and resource limitations. To bridge this gap, hardware accelerators, such as Neural Processing Units (NPUs) are introduced to execute AI algorithms at faster rates than general-purpose CPUs \cite{manor_custom_2022}. This section provides necessary background on the core technologies that support this project, starting with the most popular model for image-based tasks, the Convolutional Neural Network.
+    
+    \subsection{Convolutional Neural Networks (CNN)}
+    % Here, explain what a CNN is at a high level. Use your research from Week 3.
+    % 1.  **Introduce CNNs**: Mention they are a class of Deep Neural Networks (DNNs) highly effective
+    %     for image processing tasks like object recognition.
+    % 2.  **Explain the Layers**: Briefly describe the key layers you researched:
+    %     -   **Convolutional Layer**: This is the most important part. Explain that it uses filters (kernels)
+    %         to detect features. Crucially, state that this operation is fundamentally
+    %         a massive number of Multiply-Accumulate (MAC) operations, which is what makes CNNs so
+    %         computationally intensive.
+    %     -   **ReLU Layer**: Introduce the Rectified Linear Unit as a common activation function.
+    %         You can briefly mention its role in introducing non-linearity. You'll go into more detail
+    %         about its effect on sparsity in the Lit Review.
+    %     -   **Pooling & Fully Connected Layers**: Briefly mention their roles in down-sampling features
+    %         and making the final prediction, respectively.
+    % 3.  **The Computational Challenge**: Conclude by stating that the sheer volume of MAC operations in
+    %     convolutional layers necessitates specialised hardware for efficient execution, especially on
+    %     power-constrained edge devices.
+
+
+Convolutional Neural Networks (CNNs) is a prominent type of DNN model, mainly utilised image processing tasks, such as object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers. 
+The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
+\[
+O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
+\] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
+\newline 
+An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section X. % !!
+    
+
+    \subsection{Hardware Acceleration for Machine Learning}
+    % This subsection justifies the need for accelerators and your choice of an FPGA.
+    % 1.  **Why Accelerate?**: Explain that general-purpose CPUs are not designed for the massive parallelism
+    %     inherent in CNNs. Running these models on CPUs is slow and power-inefficient.
+    % 2.  **Compare Platforms**: Briefly discuss the common hardware solutions, as you researched in
+    %     your literature review.
+    %     -   **GPUs**: Excellent for parallelism but often have high power consumption, making them
+    %         unsuitable for many edge devices.
+    %     -   **ASICs (like NPUs in phones)**: Extremely energy-efficient but are fixed-function and lack
+    %         flexibility.
+    %     -   **FPGAs**: State that FPGAs offer a compelling balance. They provide massive parallelism
+    %         and can be tailored to a specific application, offering better energy efficiency than GPUs
+    %         while being more flexible than ASICs. This reconfigurability is the key reason
+    %         it's the perfect platform for your *reconfigurable* NPU project.
+
+    
+
+    \subsection{Systolic Array Architecture}
+    % Here, introduce the core architecture you implemented. Use your deep dive from Weeks 9-10.
+    % 1.  **What is a Systolic Array?**: Describe it as a network of simple Processing Elements (PEs)
+    %     that process data in a rhythmic, pipelined fashion. Each PE typically performs a
+    %     MAC operation.
+    % 2.  **What are its benefits?**: This is a great place to use the quotes you found. Explain that
+    %     systolic arrays are ideal for matrix multiplication because they "propagate data horizontally
+    %     and vertically with simplified inter-PE connection, which can highly reuse data and reduce
+    %     data movement consumption" \cite{sun_sense_2023}. This leads to high
+    %     throughput and efficiency for *dense* matrices. Also mention that "the control unit only
+    %     takes up a small portion of system hardware cost, achieving high resource utilization"
+    %     \cite{sun_sense_2023}.
+    % 3.  **What is its major limitation?**: This is the core problem your project solves. State clearly
+    %     that the rigid, structured dataflow is highly inefficient for sparse matrices. Use the quote:
+    %     "sparsity conflicts with the structured dataflow in systolic array, which may induce
+    %     imbalanced workloads, causing low PE utilization and insufficient acceleration"
+    %     \cite{sun_sense_2023}. This perfectly sets up your literature review.
+    
+
+% --- Literature Review ---
+\section{Literature Review}
+    % The rubric wants you to "Critically assess the strengths and limitations of existing research"
+    % and "identify knowledge gaps". This section should tell a story:
+    % 1. Sparsity is a huge opportunity in NNs.
+    % 2. But it's a big problem for systolic arrays.
+    % 3. Here's how others have tried to solve it (with their pros and cons).
+    % 4. Their limitations create the "gap" that our project fills.
+
+    \subsection{Sparsity in Neural Networks}
+    % Explain where the zeros come from and why they are a problem.
+    % 1.  **Introduce Sparsity**: Define sparsity as the presence of a large number of zero values in
+    %     the weight and activation matrices.
+    % 2.  **Sources of Sparsity**:
+        \subsubsection{Rectified Linear Unit (ReLU)}
+        % Explain that ReLU, a widely used activation function, sets all negative inputs to zero.
+        % Use the quote you found: "For IFMs [input feature maps], approximately half of their
+        % elements are zeros because of the widely used nonlinear function rectified linear unit (ReLU)"
+        % (\cite{sun_sense_2023}).
+        \subsubsection{Network Pruning}
+        % Explain that pruning is a model compression technique that intentionally removes (sets to zero)
+        % unimportant weights. This can significantly reduce model size with minimal
+        % impact on accuracy. You can also mention that weights with a smaller
+        % absolute value are considered less important (\cite{molchanov_pruning_2017}).
+    % 3.  **The Challenge of Sparsity**: State that while sparsity offers a theoretical opportunity for
+    %     acceleration (by skipping zero-computations), it poses a practical challenge. Use the quote:
+    %     "sparse IFMs and weights can be irregular and fragmented, which leads to lower memory
+    %     access efficiency" (\cite{sun_sense_2023}). Emphasize that "data movement
+    %     consumes much more energy than computation", so inefficiently handling sparse
+    %     data is very costly.
+
+    \subsection{Hardware Architectures for Sparsity}
+    % Now, review what others have done to solve the sparsity problem.
+        \subsubsection{Zero-Skipping and Data Gating}
+        % Describe this as the most straightforward approach. The hardware checks if an operand is zero
+        % and, if so, "gates" the clock to the multiplier to save power. You can reference your initial
+        % idea of having an enable bit on each PE.
+        % **Critique (Limitation)**: Note that while this saves dynamic power, it often doesn't reduce
+        % latency, as the PE still has to wait for the data. The data still needs to be fetched from
+        % memory, and the systolic pipeline still advances at the same rate. This is a key limitation
+        % that more advanced methods try to solve. Mention that you ultimately removed this feature from
+        % your PE design because the hardware cost of the comparator outweighed the benefit, as accumulating
+        % a zero doesn't change the result anyway. This shows deep design insight.
+
+        \subsubsection{Compressed Data Formats}
+        % Discuss the next level of sophistication. Instead of just skipping zeros, these methods compress
+        % the sparse matrices before processing.
+        % Mention that architectures like SCNN work directly with compressed data, which "eliminating
+        % computation... can save energy consumption or both time and energy consumption"
+        % (\cite{parashar_scnn_2017}).
+        % **Critique (Limitation)**: The main challenge is that this requires complex decoding hardware
+        % to handle the irregular data access patterns, which can add significant overhead and complexity
+        % to the accelerator's control logic.
+
+        \subsubsection{Specialised Dataflows and Architectures}
+        % This is where you position your work against the state-of-the-art and highlight your contribution.
+        % 1.  **Introduce Advanced Architectures**: Summarize a couple of key papers to show you've surveyed the field.
+        %     -   **Sparse-TPU**: Discuss its column-packing algorithm, which you experimented with.
+        %       Explain that it reorganizes the sparse matrix into a denser, smaller format.
+        %       **Limitation**: State that this requires significant pre-processing and fundamentally
+        %       alters the input data structures, requiring a correspondingly complex dataflow in hardware to
+        %       manage the "packed" format (\cite{he_sparse-tpu_2020}).
+        %     -   **SCNN**: Explain that this architecture uses a different approach, tracking coordinates
+        %       of non-zero elements and using an input-stationary dataflow to maximize data reuse
+        %       (\cite{parashar_scnn_2017}).
+        %       **Limitation**: This again requires very specialized and complex control logic and accumulators
+        %       that are different from a standard systolic array.
+        % 2.  **Identify the Research Gap**: Conclude by articulating the gap your project fills. State
+        %     that while architectures like Sparse-TPU and SCNN achieve high performance by redesigning
+        %     the core dataflow, they do so at the cost of significant hardware complexity. A gap exists for a
+        %     simpler, more elegant solution that can exploit **structured sparsity** (entire rows or
+        %     columns of zeros) without requiring a complete overhaul of the classic systolic array pipeline.
+        % 3.  **Introduce Your Approach**: Briefly state that your project addresses this gap through a
+        %     **software-hardware co-design**. A software pre-processing stage analyzes matrix tiles for
+        %     structured sparsity and extracts the effective computational dimensions. These dimensions are then
+        %     passed to a **reconfigurable NPU** whose control logic dynamically adjusts the bounds of the
+        %     computation, effectively "shrinking" the systolic array's active region on a tile-by-tile basis.
+        %     This approach maintains the simplicity and efficiency of the systolic dataflow while still
+        %     achieving significant latency and energy reduction by completely skipping entire rows/columns
+        %     of redundant computation.
+
+% --- Design and Methodology ---
+\section{Design and Methodology}
+    \subsection{System Architecture Overview}
+    % Present a high-level block diagram of your final design. Show the NPU Wrapper, the NPU Core (top_level_systolic_array), the BRAMs, the Control Unit, and the Systolic Array.
+    % Briefly explain the role of each block and the data flow between them.
+    
+    \subsection{Data Generation and Pre-processing}
+        \subsubsection{AlexNet Model and Data Extraction}
+        % Explain the Python script's role. Why did you choose AlexNet? How did you extract the INT8 weights and activations?
+        
+        \subsubsection{Tiling and .mif File Generation}
+        % Why is tiling necessary? Explain how you break down the large matrices into 8x8 tiles.
+        % Explain the purpose of the .mif files for static hardware testing.
+        
+    \subsection{Baseline Systolic Array Architecture}
+    % Describe your core 8x8 systolic array. Explain the PE design (the MAC unit).
+    % What dataflow did you choose (e.g., output stationary) and why?
+    
+    \subsection{Dynamic Control Unit for Variable Matrix Sizes}
+    % This is a key part of your contribution. Explain the design of your `control_unit`.
+    % How do the `active_rows` and `active_cols` inputs work? Why was this feature necessary to enable sparsity handling?
+    % Show how this makes your design more flexible than a standard, fixed-size controller.
+    
+    \subsection{Sparsity Handling Algorithm}
+    % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
+    % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.
+    
+\section{Verification and Results}
+    \subsection{Testbench and Simulation Environment}
+    % Describe your VHDL testbench. How does it work? What does it measure (latency)?
+    % What tools did you use (ModelSim, Quartus)?
+    
+    \subsection{Baseline Performance (Dense Matrices)}
+    % Present the results of running a full 8x8 matrix through your NPU.
+    % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
+    
+    \subsection{Optimised Performance (Stripped Matrices)}
+    % Present the results of running a sparse, stripped matrix through your NPU.
+    % What were the new, smaller `active_rows` and `active_cols`?
+    % What was the new, lower latency? How did the resource utilization change (if at all)?
+    
+    \subsection{Performance Analysis}
+    % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).
+    % Use tables and graphs to make this comparison clear and impactful. This is where you prove your design works and is effective.
+
+\section{Discussion}
+    \subsection{Analysis of Results}
+    % Go deeper than the numbers. Why did your design achieve the speedup it did?
+    % How does your result compare to the theoretical speedup?
+    
+    
+    \subsection{Design Trade-offs}
+    % Discuss the choices you made. Why did you choose to do the stripping in software (Python) instead of in hardware? 
+    % What are the pros and cons of this decision? (e.g., Pro: Simpler hardware design. Con: Not a real-time system.)
+    
+    \subsection{Limitations}
+    % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
+    
+\section{Conclusion}
+    % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
+    % Reiterate the importance and success of your contributions.
+
+\section{Future Work}
+    % What would be the next logical steps for this project?
+    % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
+
+% --- Bibliography ---
+\newpage
+\addcontentsline{toc}{section}{References}
+\printbibliography
+
+
+% \newpage
+
+% % --- Appendices ---
+% \begin{appendices}
+%      \titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}{Appendix~\thesection}{1em}{}
+     
+%      % Renaming the captions to include the appendix name
+%      \renewcommand{\theequation}{\thesection.\arabic{equation}}
+%      \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+%      \renewcommand{\thetable}{\thesection.\arabic{table}}
+%      \renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
+
+%      \section{The First Appendix}
+    
+%      \clearpage
+%      \section{Second Appendix}
+
+
+%      % Content for the second appendix goes here.
+
+% \end{appendices}
+
+\end{document}

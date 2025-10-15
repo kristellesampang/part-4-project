@@ -5,11 +5,9 @@ import time
 
 
 # --- Constants ---
-IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
 
 TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/demo/master_data.mif'
 TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/demo/master_weight.mif'
-TILE_SIZE = 8
 
 MASTER_DATA_TILE_0_START_POS = 0 
 MASTER_DATA_TILE_1_START_POS = 3
@@ -183,7 +181,7 @@ def twos_complement_to_uint8(arr):
 def main():
     # Load each matrix from the master file 
     # run the simulation function 3 times and get an average of the time for each matrix
-    run_X_times = 200
+    run_X_times = 1000
     count = 0
     for i in DATA_TILE_START_POSITIONS:
         time_array = []
@@ -202,7 +200,7 @@ def main():
                 time_taken = simulate_systolic_array(stripped_data, stripped_weight, m_value, n_value, k_value)  
                 time_array.append(time_taken) 
         average_time = sum(time_array) / run_X_times
-        print(f"Average Duration for tile {count} starting at {i}: {average_time:.2f} ns over {run_X_times} runs, where M = {m_value}, N = {n_value}, K = {k_value}")
+        print(f"Average Duration for tile {count}: {average_time:.2f} ns over {run_X_times} runs, where M = {m_value}, N = {n_value}, K = {k_value}")
         count += 1  
             
              
