@@ -2385,7 +2385,8 @@
     <bcf:citekey order="10" intorder="1">sun_sense_2023</bcf:citekey>
     <bcf:citekey order="11" intorder="1">kim_fpga_2021</bcf:citekey>
     <bcf:citekey order="12" intorder="1">gorvadiya_energy_2025</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">parashar_scnn_2017</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

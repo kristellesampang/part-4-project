@@ -1,0 +1,39 @@
+\section{Literature Review} \label{sec: literature review}
+    % The rubric wants you to "Critically assess the strengths and limitations of existing research"
+    % and "identify knowledge gaps". This section should tell a story:
+    % 1. Sparsity is a huge opportunity in NNs.
+    % 2. But it's a big problem for systolic arrays.
+    % 3. Here's how others have tried to solve it (with their pros and cons).
+    % 4. Their limitations create the "gap" that our project fills.
+
+    This section delves into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. It explores the challenges posed by sparsity and reviews existing hardware architectures designed to mitigate these issues, leading to the motivation for this project.
+    % !! Add more after section is completed
+
+    \subsection{Sparsity in Neural Networks} \label{sec: sparsity in nn}
+    % ... (Your existing section on sources of sparsity) ...
+
+    While methods like ReLU and pruning introduce efficiency at the model level, they present a significant challenge for the underlying hardware. [cite_start]One paper notes that "sparse IFMs and weights can be irregular and fragmented, which leads to lower memory access efficiency" [cite: 1000-1001] \cite{sun_sense_2023}. [cite_start]This is a critical issue, as "computation of convolutional neural network (CNN) requires a significant amount of memory access, which leads to lots of energy consumption... the energy consumption of memory access and data migration between on-chip buffer and off-chip DRAM is even much more than the computation energy on processing element array (PE array)"[cite: 1090]. [cite_start]The fundamental conflict is that the inherent "sparsity conflicts with the structured dataflow in systolic array, which may induce imbalanced workloads, causing low PE utilization and insufficient acceleration" [cite: 1004, 1089] \cite{sun_sense_2023}. The following section reviews various hardware approaches that attempt to resolve this conflict.
+
+
+    \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
+    Researchers have proposed several architectural solutions to exploit sparsity, ranging from simple power-saving techniques to complex dataflow redesigns.
+
+    \subsubsection{Power Gating and Zero-Skipping} \label{sec: power-gating}
+    The most straightforward approach to handling sparsity is to avoid computation on zero-valued operands. This can be done by either gating the power to save energy or skipping the operation entirely to save time and energy. [cite_start]One paper defines this opportunity as "Eliminating computation"[cite: 1243]:
+    \blockquote{For multiplications that have a zero weight and/or activation operand, the operation can be data gated or the operands might never be sent to the multiplier. [cite_start]This can save energy consumption or both time and energy consumption, respectively [cite: 1243-1244] \cite{parashar_scnn_2017}.}
+    While simple data gating saves power, it often does not reduce latency. More advanced zero-skipping techniques aim to reduce the computation cycle count. For structured sparsity, this can be highly effective, as one study notes:
+    [cite_start]\blockquote{"If structured sparsity exists in the granularity of the 128×128 square block, our inference accelerator can skip the entire computation for the corresponding block, thereby significantly minimizing the computation cycle" [cite: 1205] \cite{kim_fpga_2021}.}
+
+    \subsubsection{Compressed Data Formats} \label{sec: compressed}
+    To reduce the significant energy cost of data movement, another approach is to keep the matrices in a compressed format for as long as possible. This reduces memory footprint and expensive off-chip memory traffic. The SCNN paper describes this benefit:
+    [cite_start]\blockquote{"Compressing data: Encoding the sparse weights and/or activations provides an architecture an opportunity to reduce the amount of data that must be moved throughout the memory hierarchy. It also reduces the data footprint, which allows larger matrices to be held a given size storage structure" [cite: 1241-1242] \cite{parashar_scnn_2017}.}
+    The challenge with this approach is that it requires specialized hardware to decode the compressed formats and handle the resulting irregular data patterns, adding complexity to the design.
+
+    \subsubsection{Specialised Dataflows and Architectures} \label{sec: dataflow}
+    More advanced architectures redesign the entire dataflow to work natively with sparse data. The SCNN accelerator is a prime example, which employs a dataflow that only processes non-zero data. Its key principles include:
+    \begin{itemize}
+        [cite_start]\item The dataflow "only delivers weights and activations to the multiplier array that can all be multiplied by one another in the manner of a Cartesian product" [cite: 1234] \cite{parashar_scnn_2017}.
+        [cite_start]\item It uses an input-stationary approach where "the activation vectors are reused... against a number of weight vectors to reduce data accesses" [cite: 1235] \cite{parashar_scnn_2017}.
+        [cite_start]\item Critically, "only non-zero weights and activations are fetched from the input storage arrays and delivered to the multiplier array" [cite: 1236] \cite{parashar_scnn_2017}.
+    \end{itemize}
+    While highly efficient, such specialized dataflows require complex hardware, including coordinate tracking and scatter-gather networks, which represents a significant departure from a standard systolic array architecture. These complex solutions leave a research gap for a simpler method that can exploit structured sparsity without a complete hardware redesign, which is the gap this project aims to address.

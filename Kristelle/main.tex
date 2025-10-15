@@ -394,7 +394,7 @@ An activation layer determines whether a neuron should be activated based on its
     % 3. Here's how others have tried to solve it (with their pros and cons).
     % 4. Their limitations create the "gap" that our project fills.
 
-    This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. 
+    This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. It explroes the challenges posed by sparsity and reviews existing hardware architectures deisgned to mitigate these issues, leading to the motivation for this project.
     % !! Add more after section is completed
 
     \subsection{Sparsity in Neural Networks} \label{sec: sparsity in nn}
@@ -419,9 +419,10 @@ An activation layer determines whether a neuron should be activated based on its
     %     access efficiency" (\cite{sun_sense_2023}). Emphasize that "data movement
     %     consumes much more energy than computation", so inefficiently handling sparse
     %     data is very costly.
-    Model Pruning is a technique used to remove redundant data that may not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that more than half of weights in convolutional layers can be set to zero without impacting the overall accruracy. To decide what weights to prune, the sensitivity of the weight is considered and how it influences the output. \textcite{gorvadiya_energy_2025} discovered that their Weight Pruning technique resulted in minimal accuracy loss of 1-2\% whilst saving 25\% in power consumption. These results suggests that pruning is an effective method to reduce model size and computation without sacrificing performance. 
-    
-    Whilst both methods work toegether to help accelerate the efficiency of the neural network by introducing sparsity in the system, thius presents a challenge for systemlic array based hardware architecture. Balancing the benefits and drawbacks of how the systolic array handles sparsity is explored in the next section.
+    Model Pruning is a technique used to remove redundant data that may not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that more than half of weights in convolutional layers can be set to zero without impacting the overall accuracy. To decide what weights to prune, the sensitivity of the weight is considered and how it influences the output. \textcite{gorvadiya_energy_2025} discovered that their Weight Pruning technique resulted in minimal accuracy loss of 1-2\% whilst saving 25\% in power consumption. These results suggests that pruning is an effective method to reduce model size and computation without sacrificing performance.
+
+    Whilst both ReLU and pruning work together to help accelerate the efficiency of the neural network by introducing sparsity in the system, this presents a challenge for systolic array based hardware architecture.
+    As the architecture of systolic arrays is rigid and structured, it is advantageous for dense matrices with regular data access patterns. However, with the introduction of irregularity due to sparsity, this leads to inefficient memory access patterns and imbalanced workloads, causing low PE utilisation \cite{he_sparse-tpu_2020}. Additionally, with the high volume of computations required to run a CNN, the impact of the inefficiency is magnified. This means that handling sparsity is a critical issue that must be solved to fully exploit the benefits of sparsity in neural networks. Balancing the benefits and drawbacks of how sparsity is handled in systolic arrays is explored in the following section.
 
     \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
