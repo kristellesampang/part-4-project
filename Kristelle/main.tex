@@ -541,26 +541,31 @@ Thank important people here.
 
         \subsubsection{AlexNet Model and Data Extraction} \label{sec: alexnet}
         
-        The AlexNet model was chosen for its popularity in image classification task and balance between complexity and size. It was commonly found in literature as the model of choice for edge devices due to its efficiency \cite{parashar_scnn_2017,sun_sense_2023}. A pre-trained model from the PyTorch library was used, as training is out of the scope of this project. The weights and activations were extracted from the first convolutional layer, as it has the largest matrices and highest sparsity due to ReLU. The image used for testing is a photo of a cat (shown in Figure \ref{fig: cat}), as it is a common test image for image classification tasks and has a good variety of features for the convolutional layer to extract.
+        The AlexNet model was chosen for its popularity in image classification task and balance between complexity and size. It was commonly found in literature as the model of choice for edge devices due to its efficiency \cite{parashar_scnn_2017,sun_sense_2023}. A pre-trained model from the PyTorch library was used, as training is out of the scope of this project. The weights and activations were extracted from the first convolutional layer, as it has the largest matrices and highest sparsity due to ReLU. This was quantised to INT8 as edge devices are resource-constrained and require low memory usage. In comparison to other data types such as FP32 and INT16, INT8 provides a good balance between accuracy, memory usage, and energy-efficieny \cite{gorvadiya_energy_2025}. The model was tested with a sample image to extract the activation matrix.The image used for testing is a photo of a cat (shown in Figure \ref{fig:cat}), as it is a common test image for image classification tasks and has a good variety of features for the convolutional layer to extract. 
+        % !! add more detail for reproducibility
+     
 
-    
-        
-        
         \subsubsection{Tiling and .mif File Generation}\label{sec: tiling}
-        % Why is tiling necessary? Explain how you break down the large matrices into 8x8 tiles.
-        % Explain the purpose of the .mif files for static hardware testing.
-        - we tile these large matrices into 8x8 tiles to match the size of our systolic array. for now, we are only looking into the first 8 tiles to get a diverse set of data to test with.
-        - we save these tiles as .mif files to load into the FPGA's BRAM for static testing. this allows us to easily test and verify our hardware design with real-world data. 
+        % !! find the alexnet size Conv weights shape: (64, 363) Activation shape: (3025, 576)
+        % why tile: 
+        
+        % \cite{palacios_systolic_2025} "Matrices employed by transformer models are commonly much larger than the size of systolic arrays. Hence, operations to perform GEMM must be tiled"
+        % \textcite{scnn} "To scale beyond the practical limits of multiplier count and buffer sizes within a PE, we employ a tiling strategy to spread the work across an array of PEs so that each PE can operate independently"
+        % me: "By tiling, we are able to split the sections of the layers, and see that there are sections of rows/columns of zeros, which we may not see if all the way zoomed out" i.e identify features like structured sparsity in a tiled matrix (i.e. 8 elements in a row that are zero when tiled but in reality, the entire row isn't actually this all zeros)
 
+        Once the weight and activation matrices were extracted from the model, it was found that its size were (64, 363) and (3025, 576) respectively. These sizes are much larger than what the systolic array can handle, making it necessary to tile the matrices into smaller sub-matrices. Literature from \textcite{palacios_systolic_2025} and \textcite{parashar_scnn_2017} support this approach, as it improves data locality and reduces memory access costs. Additionally, sizes were not perfectly divisible by 8, leading to incomplete tiles. To address this, zero-padding was applied to the matrices to ensure that they could be evenly divided into 8x8 tiles. This involved adding rows and columns of zeros to the bottom and right of the matrices until their dimensions were multiples of 8. This ensured that all tiles were complete and could be processed by the systolic array without any issues. 
+        Furthermore, by tiling the matrices, it allows for easier identification of features that look like structured sparsity that may not be apparent when looking at the entire matrix. This means that when looking at the layer as a whole, it may not be obvious that there are entire rows or columns of zeros. However, when the layer is broken down into smaller tiles, it becomes easier to see these patterns. This is important as it allows for more effective pre-processing and optimisation of the data for the hardware design.
 
-        - tiling is done because the systolic array is 8x8, so we need to break down the large matrices into smaller tiles that can be processed by the hardware.
-        - another reason is that from the literature review, many architectures process data in tiles to improve data locality and reduce memory access costs. (find references )
-        - .mif files are used to store the tiles in a format that can be easily read 
-        - the ROM blocks in the FPGA can read .mif files directly, making it easy to load the data into the hardware for testing. it is important to note that only one tile is currently loaded into the BRAM at a time, meaning that the testing is static and not real-time. however, a master data and master weight file does exist to load different tiles into the BRAM, but this is not currently implemented in the hardware design.
+        These are saved as .mif files, which can be directly loaded into the FPGA's BRAM for static testing. This allows for easy verification of the hardware design with real-world data. It is important to note that only one tile is currently loaded into the BRAM at a time, meaning that the testing is static and not real-time. However, a master data and master weight file does exist to load different tiles into the BRAM, but this is not currently implemented in the hardware design.
+       
+
+        Overall, by pre-processing the data in this manner, it ensures that the hardware tested is relevant and compatible with the hardware design detailed in the following sections. This validates the effectiveness of the approach in handling sparsity present in CNN models. The code for this software component can be found in the compendium with the filename \texttt{pipelined\_v2.py}.
         
     \subsection{Baseline Systolic Array Architecture} \label{sec: baseline}
     % Describe your core 8x8 systolic array. Explain the PE design (the MAC unit).
     % What dataflow did you choose (e.g., output stationary) and why?
+    \subsubsection{Processing Element}
+    \subsubsection{Control Unit}
     
     \subsection{Dynamic Control Unit for Variable Matrix Sizes} \label{sec: dynamic}
     % This is a key part of your contribution. Explain the design of your `control_unit`.
