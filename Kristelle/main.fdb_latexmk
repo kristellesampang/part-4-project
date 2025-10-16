@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760580954.07907 "main.bcf" "main.bbl" "main" 1760581013.67529 0
+["biber main"] 1760580954.07907 "main.bcf" "main.bbl" "main" 1760590519.16946 0
   "final_report.bib" 1760562992 67148 9800e8fa4a7bf45254c79fe4e9ecbaf8 ""
-  "main.bcf" 1760581013 110023 d0c42670dcfae80915d9c1cf97ace468 "pdflatex"
+  "main.bcf" 1760590518 110023 d0c42670dcfae80915d9c1cf97ace468 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760581008.87511 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760581013.67688 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760581007 47377 6e87277c3a5b72bf052a7356e923587f ""
+["pdflatex"] 1760590514.74517 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760590519.17032 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760590505 54200 d49e477ee1e632925880227d06953fa4 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1744948596 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -256,6 +256,7 @@
   "c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty" 1745146949 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "c:/texlive/2025/texmf-dist/tex/latex/relsize/relsize.sty" 1745147027 15542 c4cc3164fe24f2f2fbb06eb71b1da4c4 ""
   "c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1745147054 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
+  "c:/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty" 1745147852 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "c:/texlive/2025/texmf-dist/tex/latex/stmaryrd/Ustmry.fd" 1745148709 1766 216b0f832c406513647608b5bb9bb8ff ""
   "c:/texlive/2025/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty" 1745148709 11080 aa7f81da60ce104f0dbb8b827dd14383 ""
   "c:/texlive/2025/texmf-dist/tex/latex/substr/substr.sty" 1745148851 5724 d3505925e87b345f11a5f17d58550dea ""
@@ -273,17 +274,19 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1745153217 5566248 283e34c4583bb4558172329c5ffc2be9 ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1745153667 3561284 21e9446283e90a6076ff413d868420a3 ""
   "c:/texlive/2025/texmf.cnf" 1745153182 713 e69b156964470283e0530f5060668171 ""
+  "figures/MAC.jpg" 1760586843 500400 ba25ea25bf87de2aa4b219df713e5bf1 ""
   "figures/UoA-Logo-Primary-RGB-Large.png" 1760493403 116659 640fcdfb23e543394ca8f019adb91322 ""
+  "figures/baseline_systolic_array.jpg" 1760589738 1307645 c245def49376052750cfb50b4e0fe4a9 ""
   "figures/cat.jpg" 1759222068 138526 7ba11f02fa20b0ec09fe92b2e0c6c078 ""
   "figures/date.png" 1760493387 11011 34ccf860ae95a59a239f3f1ba8e4679f ""
   "figures/signature.png" 1760493396 16213 ca2c53f49a580472bc42db51e9d1186c ""
-  "main.aux" 1760581013 12449 f3f87ad847f110859159ba9068ff63df "pdflatex"
+  "main.aux" 1760590518 13885 112f29d1bfcbafa864cbb59eb7d10b68 "pdflatex"
   "main.bbl" 1760580957 56331 83edf519deb345842450852b4ba9bc8b "biber main"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760581013 8586 ba9c8097246f59b2ef20e2913d4b78f8 "pdflatex"
-  "main.run.xml" 1760581013 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760581007 47377 6e87277c3a5b72bf052a7356e923587f ""
-  "main.toc" 1760581013 3753 99d8f3a399cb5761feaa4f814eee4573 "pdflatex"
+  "main.out" 1760590518 8748 e86ed6eab728a9152ac9c145f309705b "pdflatex"
+  "main.run.xml" 1760590518 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760590505 54200 d49e477ee1e632925880227d06953fa4 ""
+  "main.toc" 1760590518 3798 14e4efc1414f3ecb063505bf20562ad6 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

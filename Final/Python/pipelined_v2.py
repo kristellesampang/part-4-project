@@ -441,7 +441,10 @@ def main():
     # --- Extract and print quantized conv weights and activations (first conv layer) ---
     print("\n--- EXTRACTING QUANTISED CONV WEIGHTS AND ACTIVATION (CONV0, RELU1) ---")
     conv_weights_2d, conv_activations_2d = extract_conv_weights_and_activations(model, input_tensor, conv_idx=0, relu_idx=1)
-
+    # print out the size of the convolutional weight and convolutional activation size 
+    print(f"Convolutional Weights Shape (2D): {conv_weights_2d.shape}")
+    print(f"Convolutional Activations Shape (2D): {conv_activations_2d.shape}")
+    
     # Tile the matrices and save as MIF files
     generate_and_save_tiles(conv_weights_2d, conv_activations_2d, MIF_OUTPUT_DIR, LAYER_SIZE, TILE_SIZE)
     # Run Inference

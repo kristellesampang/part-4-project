@@ -434,11 +434,27 @@ def main():
     model = load_quantized_alexnet()
     print("\n---  MODEL LOADED AND QUANTISED ---")
     
+    # print out the the size of the convolutional layer of weights and activation layers
+    conv_weights = model.get_conv_weights(layer_idx=0)
+    print(f"Conv Weights Shape (4D): {conv_weights.shape}")
+    conv_activations = model.get_conv_activations(layer_idx=0)
+    print(f"Conv Activations Shape (4D): {conv_activations.shape}")
+    
+    # Reshape the 4D tensors to 2D
+    conv_weights_2d = conv_weights.reshape(-1, conv_weights.shape[-1])
+    conv_activations_2d = conv_activations.reshape(-1, conv_activations.shape[-1])
+
+    # Print the shapes of the 2D tensors
+    print(f"Conv Weights Shape (2D): {conv_weights_2d.shape}")
+    print(f"Conv Activations Shape (2D): {conv_activations_2d.shape}")
+
     # Preprocess the image
     input_tensor = preprocess_image(IMAGE_PATH)
     if input_tensor is None:
         return # Exit if image was not found
     print("\n--- IMAGE PREPROCESSED ---")
+    
+
 
     # --- Extract and print quantized conv weights and activations (first conv layer) ---
     print("\n--- EXTRACTING QUANTISED CONV WEIGHTS AND ACTIVATION (CONV0, RELU1) ---")

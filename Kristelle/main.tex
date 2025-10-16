@@ -168,6 +168,42 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 % FIGURES
 %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\MACRegImage}{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.2\linewidth]{figures/MAC.jpg}
+        \caption{Image of the MAC unit in the Processing Element (PE)}
+        \label{fig:MAC}
+    \end{figure}
+}
+\newcommand{\baselineSystolicArrayImage}{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array.jpg}
+        \caption{Image of the Baseline Systolic Array Arragement}
+        \label{fig:baseline_systolic_array}
+    \end{figure}
+}
+
+\newcommand{\baselineDataflowImage}{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array_dataflow.jpg.jpg}
+        \caption{Image of the Baseline Systolic Array's Dataflow}
+        \label{fig:baseline_dataflow}
+    \end{figure}
+}
+
+
+
+
+% add page numbers
+\fancyfoot[CO,CE]{\footnotesize\thepage}   % page number  
+% line spacing 
+\usepackage{setspace}
+\setstretch{1.15}
+
+
 
 
 
@@ -535,13 +571,17 @@ Thank important people here.
     \subsection{System Architecture Overview} \label{sec: SA overview}
     % Present a high-level block diagram of your final design. Show the NPU Wrapper, the NPU Core (top_level_systolic_array), the BRAMs, the Control Unit, and the Systolic Array.
     % Briefly explain the role of each block and the data flow between them.
-    
+    % high-level overview of the final design iteration.
+    % The system architecture is designed to efficiently handle sparsity in neural networks through a reconfigurable systolic array. The high-level block diagram of the final design is shown in Figure \ref{fig:system_architecture}. The main components of the system include the NPU Wrapper, NPU Core (top\_level\_systolic\_array), BRAMs, Control Unit, and the Systolic Array.
+
     \subsection{Data Generation and Pre-processing} \label{sec: data_gen}
     This is section covers the software side of the co-design. It utilises AlexNet to generate and extract realistic weight and activation matcies, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a mif file and stored into the FPGA's BRAM for static testing. This section is crucial as it ensures that the hardware is tested with real-world data, validating its effectiveness in handling sparsity. Additionally, this section was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
 
         \subsubsection{AlexNet Model and Data Extraction} \label{sec: alexnet}
         
-        The AlexNet model was chosen for its popularity in image classification task and balance between complexity and size. It was commonly found in literature as the model of choice for edge devices due to its efficiency \cite{parashar_scnn_2017,sun_sense_2023}. A pre-trained model from the PyTorch library was used, as training is out of the scope of this project. The weights and activations were extracted from the first convolutional layer, as it has the largest matrices and highest sparsity due to ReLU. This was quantised to INT8 as edge devices are resource-constrained and require low memory usage. In comparison to other data types such as FP32 and INT16, INT8 provides a good balance between accuracy, memory usage, and energy-efficieny \cite{gorvadiya_energy_2025}. The model was tested with a sample image to extract the activation matrix.The image used for testing is a photo of a cat (shown in Figure \ref{fig:cat}), as it is a common test image for image classification tasks and has a good variety of features for the convolutional layer to extract. 
+        The AlexNet model was chosen for its popularity in image classification task and balance between complexity and size. It was commonly found in literature as the model of choice for edge devices due to its efficiency \cite{parashar_scnn_2017,sun_sense_2023}. A pre-trained model from the PyTorch library was used, as training is out of the scope of this project. The weights and activations were extracted from the first convolutional layer, as it has the largest matrices and highest sparsity due to ReLU. This was quantised to INT8 as edge devices are resource-constrained and require low memory usage. In comparison to other data types such as FP32 and INT16, INT8 provides a good balance between accuracy, memory usage, and energy-efficieny \cite{gorvadiya_energy_2025}. The model was tested with a sample image to extract the activation matrix. The image used for testing is a photo of a cat (shown in Figure \ref{fig:cat}), as it is a common test image for image classification tasks and has a good variety of features for the convolutional layer to extract. 
+
+        \catImage
         % !! add more detail for reproducibility
      
 
@@ -564,9 +604,33 @@ Thank important people here.
     \subsection{Baseline Systolic Array Architecture} \label{sec: baseline}
     % Describe your core 8x8 systolic array. Explain the PE design (the MAC unit).
     % What dataflow did you choose (e.g., output stationary) and why?
-    \subsubsection{Processing Element}
-    \subsubsection{Control Unit}
+    The core of the hardware accelerator is an 8x8 systolic array, designed to perform matrix multiplication for convolutional layers. The fundamental building block of this array is the Processing Element (PE), a custom-designed Multiply-Accumulate (MAC) unit. The entire hardware accelerator was designed in VHDL.
     
+    \subsubsection{Processing Elements and Systolic Array Formation}
+    The fundamental process that the PE executes is the MAC operation, the core computation in convolutional layers. This can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:MAC}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map. These inputs are multiplied together and adds the result to an accumulate that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations.  Together, 64 PEs are arranged in an 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
+    
+    
+    
+    Each PE communicates with its neighbours to pass data along the array, enabling a continuous flow of data through the system. The dataflow chosen for this design is output-stationary, where the output partial sums remain in the PE until the final result is computed. This approach minimises data movement and maximises data locality, reducing memory access costs. The PE is designed to operate in a pipelined manner, allowing it to accept new inputs every clock cycle while still processing previous inputs. This pipelining is crucial for maintaining high throughput in the systolic array.
+
+    The bus communication between each PE uses the "generate" statement in VHDL to create a scalable and modular design. This allows for easy expansion or modification of the array size in the future. The systolic array is integrated into a top-level module, which manages the overall operation of the array, including data input and output, as well as interfacing with the Control Unit and BRAMs. For the purpose of this project, the systolic array is designed to handle 8x8 tiles, as discussed in Section \ref{sec: tiling}. This size was chosen as it provides a good balance between hardware resource usage and computational capability, making it suitable for edge devices with limited resources.
+
+
+    
+
+    \MACRegImage
+    \baselineSystolicArrayImage
+
+
+    \subsubsection{Control Unit}
+    The Control Unit is the mastermind of the Systolic Array operation, orchestrating the flow of data and ensuring that each PE operaetes synchronously. It generates the necessary control signals to manage the timing and coordination of data movement through the array. The Control Unit is responsible for initiating the loading of weights and activations into the array, as well as signalling when to start and stop computations. It also manages the readout of the final output feature map once all computations are complete. The Control Unit is designed to be flexible, allowing for adjustments in the operation of the systolic array based on the specific requirements of the input data. This flexibility is crucial for adapting to different matrix sizes and sparsity patterns, which will be further explored in Section \ref{sec: dynamic}.
+
+
+    The dataflow of the systolic array is designed to be highly efficient. Weights are fed into the array from the left, moving horizontally across each row of PEs. Activations are fed in from the top, moving vertically down each column. As weights and activations move through the array, each PE performs its MAC operation and passes the activation to the PE below it and the weight to the PE to its right. This creates a wave-like motion of data flowing through the array, ensuring that all PEs are utilised effectively. The output partial sums are stored in local registers within each PE until the entire matrix multiplication is complete. Once all inputs have been processed, the final output feature map is read out from the bottom-right corner of the array.
+
+    
+    As stated previously, the hardware accelerator is designed to take in 8x8 tiles of weights and activation matrices. The systolic array is capable of handling different sized inputs less than 8x8. This is achieved by the cotrol unit checking the input matrix size and adjusting the operation of the array accordingly. For example, if a 6x6 tile is inputted, the control unit will ensure that the systolic array will synthesise the correct amount of PEs and busses required. This effectively "shrinks" the systolic array to only use the necessary resources, improving efficiency. This feature is crucial for handling sparsity, as it allows the array to adapt to the effective size of the input matrices after pre-processing, which will be discussed in Section \ref{sec: handling algo}.
+
     \subsection{Dynamic Control Unit for Variable Matrix Sizes} \label{sec: dynamic}
     % This is a key part of your contribution. Explain the design of your `control_unit`.
     % How do the `active_rows` and `active_cols` inputs work? Why was this feature necessary to enable sparsity handling?
@@ -575,7 +639,7 @@ Thank important people here.
     \subsection{Sparsity Handling Algorithm} \label{sec: handling algo}
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.
-
+    
     \subsubsection{Software Pre-Processing}
     % Here talk about how we do the same thing as in the alexnet/tiling section, except after we tile, we do some row stripping algorithm THEN we save it as a mif 
     
@@ -633,8 +697,18 @@ Thank important people here.
      \titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}{Appendix~\thesection}{1em}{}
      
      % Renaming the captions to include the appendix name
+    %  \renewcommand{\theequation}{\thesection.\arabic{equation}}
+    %  \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+    %  \renewcommand{\thetable}{\thesection.\arabic{table}}
+     
+     % Reset counters for appendix
+     \setcounter{equation}{0}
+     \setcounter{figure}{0}
+     \setcounter{table}{0}
      \section{The First Appendix}
      \catImage
+     \MACRegImage
+     \baselineSystolicArrayImage
     
      \clearpage
     %  \section{Second Appendix}
