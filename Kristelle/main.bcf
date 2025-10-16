@@ -2399,6 +2399,8 @@
     <bcf:citekey order="23" intorder="1">he_sparse-tpu_2020</bcf:citekey>
     <bcf:citekey order="24" intorder="1">parashar_scnn_2017</bcf:citekey>
     <bcf:citekey order="25" intorder="1">palacios_systolic_2025</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="26" intorder="2">sun_sense_2023</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

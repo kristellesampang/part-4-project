@@ -522,6 +522,17 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc8t.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc8t.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT ./figures/cat.jpg
+INPUT ./figures/cat.jpg
+INPUT ./figures/cat.jpg
+INPUT ./figures/cat.jpg
+INPUT ./figures/cat.jpg
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out

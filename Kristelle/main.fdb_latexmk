@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760571684.67125 "main.bcf" "main.bbl" "main" 1760571786.4568 0
+["biber main"] 1760576265.17118 "main.bcf" "main.bbl" "main" 1760576625.86176 0
   "final_report.bib" 1760562992 67148 9800e8fa4a7bf45254c79fe4e9ecbaf8 ""
-  "main.bcf" 1760571785 109650 4f4cbd19a3cada12b39056f75987e396 "pdflatex"
+  "main.bcf" 1760576625 109794 4bc077f3862405de080ce6797e793e67 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760571779.24277 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760571786.45848 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760571778 42216 ec4811637c06bbf770d9f4855c3261e2 ""
+["pdflatex"] 1760576619.17678 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760576625.86276 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760576615 45107 8df8c4429c0edad49f4ac65e1d1827d8 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1745150354 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -269,15 +269,16 @@
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1745153667 3561284 21e9446283e90a6076ff413d868420a3 ""
   "c:/texlive/2025/texmf.cnf" 1745153182 713 e69b156964470283e0530f5060668171 ""
   "figures/UoA-Logo-Primary-RGB-Large.png" 1760493403 116659 640fcdfb23e543394ca8f019adb91322 ""
+  "figures/cat.jpg" 1759222068 138526 7ba11f02fa20b0ec09fe92b2e0c6c078 ""
   "figures/date.png" 1760493387 11011 34ccf860ae95a59a239f3f1ba8e4679f ""
   "figures/signature.png" 1760493396 16213 ca2c53f49a580472bc42db51e9d1186c ""
-  "main.aux" 1760571785 11190 522a48a7a40a100f31016480c7b4e8d7 "pdflatex"
-  "main.bbl" 1760571688 56331 83edf519deb345842450852b4ba9bc8b "biber main"
+  "main.aux" 1760576625 11940 f17803a6be6dedffd050d3d3f2437235 "pdflatex"
+  "main.bbl" 1760576268 56331 83edf519deb345842450852b4ba9bc8b "biber main"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760571785 7805 f58fac406977876472026506c6b58a12 "pdflatex"
-  "main.run.xml" 1760571785 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760571778 42216 ec4811637c06bbf770d9f4855c3261e2 ""
-  "main.toc" 1760571785 3382 167eb4906f8babb6a4ed67111eee4652 "pdflatex"
+  "main.out" 1760576625 8228 a3be45659a9903c53d3e2d113a4df643 "pdflatex"
+  "main.run.xml" 1760576625 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760576615 45107 8df8c4429c0edad49f4ac65e1d1827d8 ""
+  "main.toc" 1760576625 3571 f1f08a095a811acdff888652cf8e2b9d "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

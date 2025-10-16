@@ -1,0 +1,1000 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{parashar_scnn_2017}{misc}{}{}
+      \name{author}{9}{}{%
+        {{hash=1de2945a304c7acbf818a154b643364e}{%
+           family={Parashar},
+           familyi={P\bibinitperiod},
+           given={Angshuman},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6e5473c09f05f9a5463f5b3873572bdb}{%
+           family={Rhu},
+           familyi={R\bibinitperiod},
+           given={Minsoo},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3b7ba1c2106d093ac7dca622518e0a12}{%
+           family={Mukkara},
+           familyi={M\bibinitperiod},
+           given={Anurag},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1dbcd1a20c216dec3d1eab3daa198e56}{%
+           family={Puglielli},
+           familyi={P\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=06f93f99c02ab5615a28470a24b006a2}{%
+           family={Venkatesan},
+           familyi={V\bibinitperiod},
+           given={Rangharajan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=dae981e9b7384d0927fb1b575abca099}{%
+           family={Khailany},
+           familyi={K\bibinitperiod},
+           given={Brucek},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4172f9d712839b9414bd23e63b5a9110}{%
+           family={Emer},
+           familyi={E\bibinitperiod},
+           given={Joel},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cacfbd2fac3b3c6c59a4f36eb0743326}{%
+           family={Keckler},
+           familyi={K\bibinitperiod},
+           given={Stephen\bibnamedelima W.},
+           giveni={S\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=c4a8df92e1f8e22aa2062da8bcfd402d}{%
+           family={Dally},
+           familyi={D\bibinitperiod},
+           given={William\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{8426e47c1e5adfcd21e6ed2007b8a2ba}
+      \strng{fullhash}{7f41df2d1689a5a7e60b8b52acbd266c}
+      \strng{fullhashraw}{7f41df2d1689a5a7e60b8b52acbd266c}
+      \strng{bibnamehash}{8426e47c1e5adfcd21e6ed2007b8a2ba}
+      \strng{authorbibnamehash}{8426e47c1e5adfcd21e6ed2007b8a2ba}
+      \strng{authornamehash}{8426e47c1e5adfcd21e6ed2007b8a2ba}
+      \strng{authorfullhash}{7f41df2d1689a5a7e60b8b52acbd266c}
+      \strng{authorfullhashraw}{7f41df2d1689a5a7e60b8b52acbd266c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Convolutional Neural Networks (CNNs) have emerged as a fundamental technology for machine learning. High performance and extreme energy efﬁciency are critical for deployments of CNNs in a wide range of situations, especially mobile platforms such as autonomous vehicles, cameras, and electronic personal assistants. This paper introduces the Sparse CNN (SCNN) accelerator architecture, which improves performance and energy efﬁciency by exploiting the zero-valued weights that stem from network pruning during training and zero-valued activations that arise from the common ReLU operator applied during inference. Speciﬁcally, SCNN employs a novel dataﬂow that enables maintaining the sparse weights and activations in a compressed encoding, which eliminates unnecessary data transfers and reduces storage requirements. Furthermore, the SCNN dataﬂow facilitates efﬁcient delivery of those weights and activations to the multiplier array, where they are extensively reused. In addition, the accumulation of multiplication products are performed in a novel accumulator array. Our results show that on contemporary neural networks, SCNN can improve both performance and energy by a factor of 2.7× and 2.3×, respectively, over a comparably provisioned dense CNN accelerator.}
+      \field{month}{5}
+      \field{note}{arXiv:1708.04485 [cs]}
+      \field{shorttitle}{{SCNN}}
+      \field{title}{{SCNN}: {An} {Accelerator} for {Compressed}-sparse {Convolutional} {Neural} {Networks}}
+      \field{urlday}{18}
+      \field{urlmonth}{9}
+      \field{urlyear}{2025}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1708.04485
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\AJZNLATT\\Parashar et al. - 2017 - SCNN An Accelerator for Compressed-sparse Convolutional Neural Networks.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1708.04485
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1708.04485
+      \endverb
+      \keyw{Computer Science - Hardware Architecture,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing}
+    \endentry
+    \entry{kim_energy-efficient_2020}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a74f002ff9a36aae1d9e8d9e0982ed21}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Bogil},
+           giveni={B\bibinitperiod}}}%
+        {{hash=0b3d22279a6bd9d5e7eccc867e39299f}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Sungjae},
+           giveni={S\bibinitperiod}}}%
+        {{hash=e9d140612d55b668d278afc857409c1d}{%
+           family={Trivedi},
+           familyi={T\bibinitperiod},
+           given={Amit\bibnamedelima Ranjan},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=871bc733702153d05c6a5ac370bed0ed}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={William\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{b3b7e9f93549e0fd1abf95c68b71122a}
+      \strng{fullhash}{ca12a5cc61a4dc45c58a68410643e047}
+      \strng{fullhashraw}{ca12a5cc61a4dc45c58a68410643e047}
+      \strng{bibnamehash}{ca12a5cc61a4dc45c58a68410643e047}
+      \strng{authorbibnamehash}{ca12a5cc61a4dc45c58a68410643e047}
+      \strng{authornamehash}{b3b7e9f93549e0fd1abf95c68b71122a}
+      \strng{authorfullhash}{ca12a5cc61a4dc45c58a68410643e047}
+      \strng{authorfullhashraw}{ca12a5cc61a4dc45c58a68410643e047}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents a hardware management technique that enables energy-efﬁcient acceleration of deep neural networks (DNNs) on realtime-constrained embedded edge devices. It becomes increasingly common for edge devices to incorporate dedicated hardware accelerators for neural processing. The execution of neural accelerators in general follows a host-device model, where CPUs ofﬂoad neural computations (e.g., matrix and vector calculations) to the accelerators for datapath-optimized executions. Such a serialized execution is simple to implement and manage, but it is wasteful for the resource-limited edge devices to exercise only a single type of processing unit in a discrete execution phase. This paper presents a hardware management technique named NeuroPipe that utilizes heterogeneous processing units in an embedded edge device to accelerate DNNs in energy-efﬁcient manner. In particular, NeuroPipe splits a neural network into groups of consecutive layers and pipelines their executions using different types of processing units. The proposed technique offers several advantages to accelerate DNN inference in the embedded edge device. It enables the embedded processor to operate at lower voltage and frequency to enhance energy efﬁciency while delivering the same performance as uncontrolled baseline executions, or inversely it can dispatch faster inferences at the same energy consumption. Our measurement-driven experiments based on NVIDIA Jetson AGX Xavier with 64 tensor cores and eight-core ARM CPU demonstrate that NeuroPipe reduces energy consumption by 11.4\% on average without performance degradation, or it can achieve 30.5\% greater performance for the same energy consumption.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{title}{Energy-{Efficient} {Acceleration} of {Deep} {Neural} {Networks} on {Realtime}-{Constrained} {Embedded} {Edge} {Devices}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{8}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{216259\bibrangedash 216270}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2020.3038908
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\XMUPQR64\\Kim et al. - 2020 - Energy-Efficient Acceleration of Deep Neural Networks on Realtime-Constrained Embedded Edge Devices.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9262933/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9262933/
+      \endverb
+    \endentry
+    \entry{manor_custom_2022}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8c9880d97d67b1549afed39c88e5f963}{%
+           family={Manor},
+           familyi={M\bibinitperiod},
+           given={Erez},
+           giveni={E\bibinitperiod}}}%
+        {{hash=885f1677caf759f4b46dcb54538946b1}{%
+           family={Greenberg},
+           familyi={G\bibinitperiod},
+           given={Shlomo},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{24757320601640dcb23f999e9b03e68a}
+      \strng{fullhash}{24757320601640dcb23f999e9b03e68a}
+      \strng{fullhashraw}{24757320601640dcb23f999e9b03e68a}
+      \strng{bibnamehash}{24757320601640dcb23f999e9b03e68a}
+      \strng{authorbibnamehash}{24757320601640dcb23f999e9b03e68a}
+      \strng{authornamehash}{24757320601640dcb23f999e9b03e68a}
+      \strng{authorfullhash}{24757320601640dcb23f999e9b03e68a}
+      \strng{authorfullhashraw}{24757320601640dcb23f999e9b03e68a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In recent years, the need for the efﬁcient deployment of Neural Networks (NN) on edge devices has been steadily increasing. However, the high computational demand required for Machine Learning (ML) inference on tiny microcontroller-based IoT devices avoids a direct software deployment on such resource-constrained edge devices. Therefore, various custom and application-speciﬁc NN hardware accelerators have been proposed to enable real-time Machine Learning (ML) inference on low-power and resource-limited edge devices. Efﬁcient mapping of the computational load onto hardware and software resources is a key challenge for performance improvement while keeping low power and a low area footprint. High performance and yet low power embedded processors may be attained via the usage of hardware acceleration. This paper presents an efﬁcient hardware-software framework to accelerate machine learning inference on edge devices using a modiﬁed TensorFlow Lite for Microcontroller (TFLM) model running on a Microcontroller (MCU) and a dedicated Neural Processing Unit (NPU) custom hardware accelerator, referred to as MCU-NPU. The proposed framework supports weight compression of pruned quantized NN models and exploits the pruned model sparsity to reduce computational complexity further. The proposed methodology has been evaluated by employing the MCU-NPU acceleration for various TFLM-based NN architectures using the common MLPerf Tiny benchmark. Experimental results demonstrate a signiﬁcant speedup of up to 724x compared to a pure software implementation. For example, the resulting runtime for the CIFAR-10 classiﬁcation is reduced from about 20 sec to only 37 ms using the proposed hardware acceleration. Moreover, the proposed hardware accelerator outperforms all the reference models optimized for edge devices in terms of inference runtime.}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{title}{Custom {Hardware} {Inference} {Accelerator} for {TensorFlow} {Lite} for {Microcontrollers}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{10}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{73484\bibrangedash 73493}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2022.3189776
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\CLBGJ4QU\\Manor and Greenberg - 2022 - Custom Hardware Inference Accelerator for TensorFlow Lite for Microcontrollers.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9825651/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9825651/
+      \endverb
+    \endentry
+    \entry{choi_enabling_2023}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=02230f81568d84cc0474db15b5f26d0b}{%
+           family={Choi},
+           familyi={C\bibinitperiod},
+           given={Jinwoo},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4a268d72489a5ae35579510146d1e2a5}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Yeonan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1eb367b7eb49ed38af4d23cf66c3ad8d}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jounghoo},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0924e1414c20e4f7715a782f971f0340}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Sangsu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=bbab7e47cda2965a80299246f2071de5}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jinho},
+           giveni={J\bibinitperiod}}}%
+        {{hash=53778f37c94ec13a16e1e86e18f81377}{%
+           family={Jang},
+           familyi={J\bibinitperiod},
+           given={Hanhwi},
+           giveni={H\bibinitperiod}}}%
+        {{hash=dff52b7c5afecd51fa388964dd10beeb}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Youngsok},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{13d80bf65367c9680dfdeba385701172}
+      \strng{fullhash}{9cea425e0117f2ec4cf3d1832c103951}
+      \strng{fullhashraw}{9cea425e0117f2ec4cf3d1832c103951}
+      \strng{bibnamehash}{13d80bf65367c9680dfdeba385701172}
+      \strng{authorbibnamehash}{13d80bf65367c9680dfdeba385701172}
+      \strng{authornamehash}{13d80bf65367c9680dfdeba385701172}
+      \strng{authorfullhash}{9cea425e0117f2ec4cf3d1832c103951}
+      \strng{authorfullhashraw}{9cea425e0117f2ec4cf3d1832c103951}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Neural Processing Units (NPUs) frequently suffer from low hardware utilization as the efﬁciency of their systolic arrays heavily depends on the characteristics of a deep neural network (DNN). Spatial multitasking is a promising solution to overcome the low NPU hardware utilization; however, the state-of-the-art spatial-multitasking NPU architecture achieves sub-optimal performance due to its coarse-grained systolic-array distribution and incurs signiﬁcant implementation costs. In this paper, we propose dataﬂow-mirroring NPU (DM-NPU), a novel spatial-multitasking NPU architecture supporting ﬁne-grained systolic-array distribution. The key idea of DM-NPU is to reverse the dataﬂows of co-located DNNs in horizontal and/or vertical directions. DM-NPU can place allocation boundaries between any adjacent processing elements of a systolic array, both horizontally and vertically. We then propose DM-Perf, an accurate systolic-array NPU performance model, to maximize the spatial-multitasking performance of DM-NPU. Utilizing the existing performance models achieves sub-optimal performance as they cannot accurately capture the resource contention caused by spatial multitasking. DM-Perf, on the other hand, exploits the per-layer performance proﬁles of a DNN to accurately capture the resource contention. Our evaluation using MLPerf DNNs shows that DM-NPU and DM-Perf can greatly improve the performance by up to 35.1\% over the state-of-the-art NPU architecture and performance model.}
+      \field{issn}{0018-9340, 1557-9956, 2326-3814}
+      \field{journaltitle}{IEEE Transactions on Computers}
+      \field{month}{12}
+      \field{number}{12}
+      \field{title}{Enabling {Fine}-{Grained} {Spatial} {Multitasking} on {Systolic}-{Array} {NPUs} {Using} {Dataflow} {Mirroring}}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{72}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{3383\bibrangedash 3398}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1109/TC.2023.3299030
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\QT4LJAZS\\Choi et al. - 2023 - Enabling Fine-Grained Spatial Multitasking on Systolic-Array NPUs Using Dataflow Mirroring.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10198513/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10198513/
+      \endverb
+    \endentry
+    \entry{sun_sense_2023}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=f1d69d009b71f4b92d249329fc0b956e}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Wenhao},
+           giveni={W\bibinitperiod}}}%
+        {{hash=9c87f3af5e8ddc47ac17f948d2975a18}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Deng},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c9d557189ffd193d4ede10b121d6a7b2}{%
+           family={Zou},
+           familyi={Z\bibinitperiod},
+           given={Zhiwei},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=c65e2b29c8339371530b4cbcaa311bae}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Wendi},
+           giveni={W\bibinitperiod}}}%
+        {{hash=09147038eb9cd108de334a5bc7842262}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Song},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7258e19d4fc73342a9ed4940b315e599}{%
+           family={Kang},
+           familyi={K\bibinitperiod},
+           given={Yi},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{1d2992df17647d2fc29c9c8ba92420e8}
+      \strng{fullhash}{bfa7e667cf8116f92056568837b5ed9b}
+      \strng{fullhashraw}{bfa7e667cf8116f92056568837b5ed9b}
+      \strng{bibnamehash}{bfa7e667cf8116f92056568837b5ed9b}
+      \strng{authorbibnamehash}{bfa7e667cf8116f92056568837b5ed9b}
+      \strng{authornamehash}{1d2992df17647d2fc29c9c8ba92420e8}
+      \strng{authorfullhash}{bfa7e667cf8116f92056568837b5ed9b}
+      \strng{authorfullhashraw}{bfa7e667cf8116f92056568837b5ed9b}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Sparsity is an intrinsic property of convolutional neural networks (CNNs), worth exploiting for CNN accelerators. However, the extra processing involved comes with hardware overhead, resulting in only marginal profits for most architectures. Meanwhile, systolic arrays have become increasingly competitive on CNN acceleration for its high spatiotemporal locality and low hardware overhead. However, the irregularity of sparsity induces imbalanced workloads under the rigid systolic dataflow, causing performance degradation. Thus, this article proposed a systolic-array-based architecture, called Sense, for sparse CNN acceleration by model-hardware codesign, enabling large performance gains. To balance input feature map (IFM) and weight loads across the processing element (PE) array, we applied channel clustering to gather IFMs with approximate sparsity for array computation and codesigned a load-balancing weight pruning method to keep the sparsity ratio of each kernel at a certain value with little accuracy loss, improving PE utilization and overall performance. In addition, adaptive dataflow configuration was applied to determine the computing strategy based on the storage ratio of IFMs and weights, lowering 1.17×–1.8× dynamic random access memory (DRAM) access compared with Swallow and further reducing system energy consumption. The whole design was implemented on ZynqZCU102 with 200 MHz and performs at 471, 34, 53, and 191 image/s for AlexNet, VGG-16, ResNet-50, and GoogleNet, respectively. Compared with sparse systolic-array-based accelerators, Swallow, fusion-enabled systolic architecture (FESA), and SPOTS, Sense achieves 0.97×–2.18×, 1.3×–1.67×, and 0.94×–1.82× energy efficiency (image/J) on these CNNs, respectively.}
+      \field{issn}{1063-8210, 1557-9999}
+      \field{journaltitle}{IEEE Transactions on Very Large Scale Integration (VLSI) Systems}
+      \field{month}{4}
+      \field{note}{Publisher: Institute of Electrical and Electronics Engineers (IEEE)}
+      \field{number}{4}
+      \field{shorttitle}{Sense}
+      \field{title}{Sense: {Model}-{Hardware} {Codesign} for {Accelerating} {Sparse} {CNNs} on {Systolic} {Arrays}}
+      \field{urlday}{22}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{31}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{470\bibrangedash 483}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/tvlsi.2023.3241933
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\RQ3AW6II\\Sun et al. - 2023 - Sense Model-Hardware Codesign for Accelerating Sparse CNNs on Systolic Arrays.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10043636/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10043636/
+      \endverb
+    \endentry
+    \entry{oh_investigation_2017}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=da18672593a4e0c6fe87bb4bdc8c3ed2}{%
+           family={Oh},
+           familyi={O\bibinitperiod},
+           given={Sangyoon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=831c31fa2a983c85538039d3ee1d55c1}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Minsub},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1408e24df809033aae869051ae6040dc}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Donghoon},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4ae32b3d6cea0adf64c7a8f3387650ba}{%
+           family={Jeong},
+           familyi={J\bibinitperiod},
+           given={Minjoong},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d16ebfd807b6c3f53f52e3fcaf685ea8}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Minsu},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Kuta Bali}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{2ee111c2d50ced7edb65ffe0829dddfb}
+      \strng{fullhash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{fullhashraw}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{bibnamehash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authorbibnamehash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authornamehash}{2ee111c2d50ced7edb65ffe0829dddfb}
+      \strng{authorfullhash}{f7a7ab34deeb7543518e6a6196a55b99}
+      \strng{authorfullhashraw}{f7a7ab34deeb7543518e6a6196a55b99}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The use of a Convolutional Neural Network based method for object detection increases the accuracy that surpasses human visual system. Because it requires considerable computational capability, its use in embedded devices that place constraints in terms of power consumption as well as computational capability has thus far been limited. However, with the recent development of GPU for use in embedded devices and open-source software library for machine learning, it has become viable to utilize CNN in an energy-efficient embedded computing environment. In this study, CPU and GPU performance and energy efficiency of CNN-based object detection inference on an embedded platform is investigated through comparison with a traditional PC-based platform. Two publicly available hardware platforms are empirically evaluated; in one of them—NVIDIA Jetson TX-1—the results demonstrate image processing performance of 65\% of that of the PC, while the embedded device consumes 2.6\% of power consumed by the PC.}
+      \field{booktitle}{2017 4th {International} {Conference} on {Computer} {Applications} and {Information} {Processing} {Technology} ({CAIPT})}
+      \field{isbn}{978-1-5386-0600-1}
+      \field{month}{8}
+      \field{title}{Investigation on performance and energy efficiency of {CNN}-based object detection on embedded device}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 4}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1109/CAIPT.2017.8320657
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\K5V7H78L\\Oh et al. - 2017 - Investigation on performance and energy efficiency of CNN-based object detection on embedded device.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/8320657/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/8320657/
+      \endverb
+    \endentry
+    \entry{liu_energy-efficient_2024}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=e01bab79ba2d6e141c6d42ea37ea5417}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Xing},
+           giveni={X\bibinitperiod}}}%
+        {{hash=b226fd29fe2cc6b3d8f58e7309da243a}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Wenxing},
+           giveni={W\bibinitperiod}}}%
+        {{hash=07a750250bc37c9181998579542af8c2}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=f21793fbe383ed5b3d2f9fca68a8d5c4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Mengya},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d1db83d915774f6233412d7ee58895b9}
+      \strng{fullhash}{f320b5e585a7382983221e95123fec3d}
+      \strng{fullhashraw}{f320b5e585a7382983221e95123fec3d}
+      \strng{bibnamehash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authorbibnamehash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authornamehash}{d1db83d915774f6233412d7ee58895b9}
+      \strng{authorfullhash}{f320b5e585a7382983221e95123fec3d}
+      \strng{authorfullhashraw}{f320b5e585a7382983221e95123fec3d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The time and energy optimization of computationally intensive tasks involving unmanned air vehicles (UAVs) is highly important for increasing the reaction speed of UAVs and for prolonging their lifetime. To achieve the above objective, many studies based on heterogeneous computing have been carried out. Although these studies have achieved good results, limitations remain. First, neural processing units (NPUs) have emerged in recent years. However, insufﬁcient attention has been devoted to CPU/NPU research in academia currently. Second, most popular heterogeneous computing architectures have only one kind of accelerator, e.g., CPU/GPU or CPU/ﬁeld programmable gate array (FPGA). A heterogeneous system with multiple kinds of accelerators, e.g., CPU/FPGA/NPU, has not been investigated in depth. To address the above concerns, we propose a heterogeneous CPU/FPGA/NPU system aimed at realizing energy-efﬁcient computing acceleration for computationally intensive UAV tasks. First, we select several representative computationally intensive UAV tasks and design FPGA and NPU accelerators dedicated to these tasks. Then, we calculate the time and energy costs of these tasks on the FPGA and NPU, respectively, and ﬁnd that different tasks are appropriate for running on different cores. Based on this ﬁnding, we further build a heterogeneous CPU/FPGA/NPU architecture and assign each UAV task to the most appropriate core for execution. In this way, the UAV tasks can be executed more efﬁciently. We conduct experiments by executing all the representative UAV tasks on the CPU, CPU/GPU, CPU/FPGA, CPU/NPU and CPU/FPGA/NPU platforms. The results show that a heterogeneous system with multiple accelerators can achieve better computing performance and higher energy efﬁciency.}
+      \field{issn}{2327-4662, 2372-2541}
+      \field{journaltitle}{IEEE Internet of Things Journal}
+      \field{month}{8}
+      \field{number}{16}
+      \field{title}{Energy-{Efficient} {Computing} {Acceleration} of {Unmanned} {Aerial} {Vehicles} {Based} on a {CPU}/{FPGA}/{NPU} {Heterogeneous} {System}}
+      \field{urlday}{31}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{11}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{27126\bibrangedash 27138}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1109/JIOT.2024.3397649
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\TCDCGNCT\\Liu et al. - 2024 - Energy-Efficient Computing Acceleration of Unmanned Aerial Vehicles Based on a CPUFPGANPU Heteroge.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10525057/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10525057/
+      \endverb
+    \endentry
+    \entry{kim_fpga_2021}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=6152705b3e688d9c8905d55ef8ea611e}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Soobeom},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fc793675f93836eea0b95c020d956b65}{%
+           family={Cho},
+           familyi={C\bibinitperiod},
+           given={Seunghwan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9f786b2380b2d8a162784257496c4340}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Eunhyeok},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2538148fcfacddefed8d7acd8201539b}{%
+           family={Yoo},
+           familyi={Y\bibinitperiod},
+           given={Sungjoo},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Paris, France}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{a4a0503d0ca3c3ed8e50af4f2a0d7056}
+      \strng{fullhash}{c65df112665117882abbc7a8c085ce77}
+      \strng{fullhashraw}{c65df112665117882abbc7a8c085ce77}
+      \strng{bibnamehash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authorbibnamehash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authornamehash}{a4a0503d0ca3c3ed8e50af4f2a0d7056}
+      \strng{authorfullhash}{c65df112665117882abbc7a8c085ce77}
+      \strng{authorfullhashraw}{c65df112665117882abbc7a8c085ce77}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this study, we aim to design an energy-efﬁcient computation system for deep neural networks on edge devices. To maximize energy efﬁciency, we design a novel hardware accelerator that supports low-precision computation and sparsityaware structured zero-skipping on top of the well-known systolicarray structure. In addition, we introduce a full-stack software platform, including a model optimizer, instruction compiler, and host interface, to translate the pre-trained PyTorch model to the proposed accelerator and orchestrate it automatically. We validate the entire system by prototyping the accelerator on the Xilinx Alveo U250 FPGA board and demonstrating the inference of the 4-bit ResNet-50 model through the software stack. According to our experiment, our platform shows 317 GOPS inference speed and 51.96 GOPS/W energy efﬁciency for ResNet-50 on Xilinx Alveo U250 FPGA at 108 MHz, which is comparable to the advanced commercial acceleration system in terms of energy efﬁciency.}
+      \field{booktitle}{2021 {IEEE} {International} {Workshop} on {Rapid} {System} {Prototyping} ({RSP})}
+      \field{isbn}{978-1-6654-6956-2}
+      \field{month}{10}
+      \field{title}{{FPGA} {Prototyping} of {Systolic} {Array}-based {Accelerator} for {Low}-{Precision} {Inference} of {Deep} {Neural} {Networks}}
+      \field{urlday}{30}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 7}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/RSP53691.2021.9806200
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\CMDGP9N6\\Kim et al. - 2021 - FPGA Prototyping of Systolic Array-based Accelerator for Low-Precision Inference of Deep Neural Netw.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9806200/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9806200/
+      \endverb
+    \endentry
+    \entry{gorvadiya_energy_2025}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=138fab28392e37d3d3b5b8774472c342}{%
+           family={Gorvadiya},
+           familyi={G\bibinitperiod},
+           given={Jay},
+           giveni={J\bibinitperiod}}}%
+        {{hash=59424db4fddeaf4efab4c53bf1b0ee02}{%
+           family={Chagela},
+           familyi={C\bibinitperiod},
+           given={Ankur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ee24823c42999ac24bd003142051b0e1}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Mohendra},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Gandhinagar, India}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{fullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{fullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{bibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorbibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authornamehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{authorfullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorfullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As deep learning models are increasingly being deployed on resource-constrained edge devices, the need to develop techniques to make the model more energy efficient without sacrificing its performance becomes crucial. In this study we explored the three most prominent approaches, such as bit quantization, model pruning, and adaptive switching techniques to address the computational and memory overheads of deep neural networks. Bit quantization reduces the weight and activation precisions, effectively lowering the hardware requirements for both storage and computation. Again the model pruning eliminates redundant parameters; thus, reduces the model complexity, and boost the inference time. Along with all these methods the adaptive switching techniques allow the model’s parameters or structure to switch at run-time so that trade-off between accuracy and energy consumption is dynamically optimized. In this paper we explored the advantages and limitations of such techniques for edge devices through a comprehensive study of recent advancements and methodologies. Point out that the open challenge on how to balance model performance with energy efficiency and future directions for the optimization of deep learning models for edge computing environments.}
+      \field{booktitle}{2025 {International} {Conference} on {Sustainable} {Energy} {Technologies} and {Computational} {Intelligence} ({SETCOM})}
+      \field{isbn}{979-8-3315-2054-0}
+      \field{month}{2}
+      \field{title}{Energy {Efficient} {Pruning} and {Quantization} {Methods} for {Deep} {Learning} {Models}}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/SETCOM64758.2025.10932458
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\H6XN8PYV\\Gorvadiya et al. - 2025 - Energy Efficient Pruning and Quantization Methods for Deep Learning Models.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10932458/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10932458/
+      \endverb
+    \endentry
+    \entry{he_sparse-tpu_2020}{inproceedings}{}{}
+      \name{author}{10}{}{%
+        {{hash=8c6ba049f603b2bd1a05026dd9c99aac}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+        {{hash=ad4e28312e51b2a5df5ed1a326b6703e}{%
+           family={Pal},
+           familyi={P\bibinitperiod},
+           given={Subhankar},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5b8753dd4b1c136ad069b65bbe44304c}{%
+           family={Amarnath},
+           familyi={A\bibinitperiod},
+           given={Aporva},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6752d22f6197f7b9b1eafaf0f3d44057}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Siying},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4431746194ebe13ee0885057c36fb818}{%
+           family={Park},
+           familyi={P\bibinitperiod},
+           given={Dong-Hyeon},
+           giveni={D\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=ef6910ec08265be219b5c2209b96b038}{%
+           family={Rovinski},
+           familyi={R\bibinitperiod},
+           given={Austin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8fd556135cd9f81a9d2c181721e81e32}{%
+           family={Ye},
+           familyi={Y\bibinitperiod},
+           given={Haojie},
+           giveni={H\bibinitperiod}}}%
+        {{hash=2d60ad3163adfc30fc8715495d77cd38}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yuhan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=62dd06f11c74ae8198347dc6a54f4b5e}{%
+           family={Dreslinski},
+           familyi={D\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+        {{hash=7915fee88f50d54e66463a458d635a02}{%
+           family={Mudge},
+           familyi={M\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Barcelona Spain}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{bc01dd833babf2939285f967677a5f27}
+      \strng{fullhash}{95af5c696388462610933dec4729650c}
+      \strng{fullhashraw}{95af5c696388462610933dec4729650c}
+      \strng{bibnamehash}{bc01dd833babf2939285f967677a5f27}
+      \strng{authorbibnamehash}{bc01dd833babf2939285f967677a5f27}
+      \strng{authornamehash}{bc01dd833babf2939285f967677a5f27}
+      \strng{authorfullhash}{95af5c696388462610933dec4729650c}
+      \strng{authorfullhashraw}{95af5c696388462610933dec4729650c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{While systolic arrays are widely used for dense-matrix operations, they are seldom used for sparse-matrix operations. In this paper, we show how a systolic array of Multiply-and-Accumulate (MAC) units, similar to Google’s Tensor Processing Unit (TPU), can be adapted to efficiently handle sparse matrices. TPU-like accelerators are built upon a 2D array of MAC units and have demonstrated high throughput and efficiency for dense matrix multiplication, which is a key kernel in machine learning algorithms and is the target of the TPU. In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix and then propose a systolic array based system, Sparse-TPU, abbreviated to STPU, to accommodate the matrix computations for the packed denser matrix counterparts. To demonstrate the efficacy of our co-designed approach, we evaluate sparse matrix-vector multiplication on a broad set of synthetic and real-world sparse matrices. Experimental results show that STPU delivers 16.08× higher performance while consuming 4.39× and 19.79× lower energy for integer (int8) and floating point (float32) implementations, respectively, over a TPU baseline. Meanwhile, STPU has 12.93\% area overhead and an average of 4.14\% increase in dynamic energy over the TPU baseline for the float32 implementation.}
+      \field{booktitle}{Proceedings of the 34th {ACM} {International} {Conference} on {Supercomputing}}
+      \field{isbn}{978-1-4503-7983-0}
+      \field{month}{6}
+      \field{shorttitle}{Sparse-{TPU}}
+      \field{title}{Sparse-{TPU}: adapting systolic arrays for sparse matrices}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 12}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/3392717.3392751
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\C7QAYQ6G\\He et al. - 2020 - Sparse-TPU adapting systolic arrays for sparse matrices.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.1145/3392717.3392751
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.1145/3392717.3392751
+      \endverb
+    \endentry
+    \entry{duk_kim_24_2020}{inproceedings}{}{}
+      \name{author}{13}{}{%
+        {{hash=ebb28ea8468bf300ce6f2e4ff2bb4577}{%
+           family={Duk\bibnamedelima Kim},
+           familyi={D\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Young},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=1ee2dc52846b8609719c1087556d8e30}{%
+           family={Jeong},
+           familyi={J\bibinitperiod},
+           given={Wookyeong},
+           giveni={W\bibinitperiod}}}%
+        {{hash=dd48ac2edfa8fa97e86029fdf28a1d5f}{%
+           family={Jung},
+           familyi={J\bibinitperiod},
+           given={Lakkyung},
+           giveni={L\bibinitperiod}}}%
+        {{hash=1b290ac030eb68146061e0b557b27dd4}{%
+           family={Shin},
+           familyi={S\bibinitperiod},
+           given={Dongsuk},
+           giveni={D\bibinitperiod}}}%
+        {{hash=25b0f03a64a22bdd178d414eb345f7ad}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Jae\bibnamedelima Geun},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=1e2c0611a58c40feec873ba9f12ee5fd}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Jinook},
+           giveni={J\bibinitperiod}}}%
+        {{hash=35b9850f5e6dcfd6997c8b0bc4e8f225}{%
+           family={Kwon},
+           familyi={K\bibinitperiod},
+           given={Hyeokman},
+           giveni={H\bibinitperiod}}}%
+        {{hash=a9d27299f16d7baaf16502a4d7b27266}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jaeyoung},
+           giveni={J\bibinitperiod}}}%
+        {{hash=bfaf29fba868742f6549786915e5cf9e}{%
+           family={Jung},
+           familyi={J\bibinitperiod},
+           given={Jaesu},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3c5ee45c79c42dd2da84cfe19ec27c1f}{%
+           family={Kang},
+           familyi={K\bibinitperiod},
+           given={Myungjin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9bcd8fb347f59e0f7132a1b2a26d6baf}{%
+           family={Jeong},
+           familyi={J\bibinitperiod},
+           given={Jaehun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=50025353ca62417089e394efc5baec52}{%
+           family={Kwon},
+           familyi={K\bibinitperiod},
+           given={Yoonjoo},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=64cd6df6edf6bece01032b7eeb82d818}{%
+           family={Seong},
+           familyi={S\bibinitperiod},
+           given={Nak\bibnamedelima Hee},
+           giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {San Francisco, CA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{75e665540cfd3c40d628e51e28f561a8}
+      \strng{fullhash}{37596fbf81717c48d21789017c753ced}
+      \strng{fullhashraw}{37596fbf81717c48d21789017c753ced}
+      \strng{bibnamehash}{75e665540cfd3c40d628e51e28f561a8}
+      \strng{authorbibnamehash}{75e665540cfd3c40d628e51e28f561a8}
+      \strng{authornamehash}{75e665540cfd3c40d628e51e28f561a8}
+      \strng{authorfullhash}{37596fbf81717c48d21789017c753ced}
+      \strng{authorfullhashraw}{37596fbf81717c48d21789017c753ced}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2020 {IEEE} {International} {Solid}- {State} {Circuits} {Conference} - ({ISSCC})}
+      \field{isbn}{978-1-7281-3205-1}
+      \field{month}{2}
+      \field{title}{2.4 {A} 7nm {High}-{Performance} and {Energy}-{Efficient} {Mobile} {Application} {Processor} with {Tri}-{Cluster} {CPUs} and a {Sparsity}-{Aware} {NPU}}
+      \field{urlday}{15}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{48\bibrangedash 50}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1109/ISSCC19947.2020.9062907
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\FPMIAFVB\\Duk Kim et al. - 2020 - 2.4 A 7nm High-Performance and Energy-Efficient Mobile Application Processor with Tri-Cluster CPUs a.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9062907/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9062907/
+      \endverb
+    \endentry
+    \entry{seo_versa_2024}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5cc888af8d4b35e4f1197167922b62cd}{%
+           family={Seo},
+           familyi={S\bibinitperiod},
+           given={Juwon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cdf783d77e2b5b26a9711598bc223dac}{%
+           family={Kong},
+           familyi={K\bibinitperiod},
+           given={Joonho},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{fullhash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{fullhashraw}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{bibnamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorbibnamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authornamehash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorfullhash}{d0199a29319f81d941dcdb0f03572b70}
+      \strng{authorfullhashraw}{d0199a29319f81d941dcdb0f03572b70}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{A key part of modern deep neural network (DNN) applications is matrix multiplication. As DNN applications are becoming more diverse, there is a need for both dense and sparse matrix multiplications to be accelerated by hardware. However, most hardware accelerators are designed to accelerate either dense or sparse matrix multiplication. In this paper, we propose VerSA, a versatile systolic array architecture for both dense and sparse matrix multiplications. VerSA employs intermediate paths and SRAM buffers between the rows of the systolic array (SA), thereby enabling an early termination in sparse matrix multiplication with a negligible performance overhead when running dense matrix multiplication. When running sparse matrix multiplication, 256 × 256 VerSA brings performance (i.e., an inverse of execution time) improvement and energy saving by 1.21×–1.60× and 7.5–30.2\%, respectively, when compared to the conventional SA. When running dense matrix multiplication, VerSA results in only a 0.52\% performance overhead compared to the conventional SA.}
+      \field{issn}{2079-9292}
+      \field{journaltitle}{Electronics}
+      \field{month}{4}
+      \field{number}{8}
+      \field{shorttitle}{{VerSA}}
+      \field{title}{{VerSA}: {Versatile} {Systolic} {Array} {Architecture} for {Sparse} and {Dense} {Matrix} {Multiplications}}
+      \field{urlday}{15}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{13}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{1500}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/electronics13081500
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\ZB6CP4QF\\Seo and Kong - 2024 - VerSA Versatile Systolic Array Architecture for Sparse and Dense Matrix Multiplications.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2079-9292/13/8/1500
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2079-9292/13/8/1500
+      \endverb
+    \endentry
+    \entry{palacios_systolic_2025}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=a919c51cb179e03235675aab7314989b}{%
+           family={Palacios},
+           familyi={P\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5efdc7f001710ba37ff04609181ff907}{%
+           family={Medina},
+           familyi={M\bibinitperiod},
+           given={Rafael},
+           giveni={R\bibinitperiod}}}%
+        {{hash=2cfdacb91317a8de9a430ddfe0c6fb6c}{%
+           family={Rouas},
+           familyi={R\bibinitperiod},
+           given={Jean-Luc},
+           giveni={J\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=a9a2721a044e1591054b8a918cb5e79a}{%
+           family={Ansaloni},
+           familyi={A\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod}}}%
+        {{hash=c724e73ec61ecb6de11c11c87dba095e}{%
+           family={Atienza},
+           familyi={A\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{60192ab4256fcd62d78eedbbeb836b94}
+      \strng{fullhash}{1cc2862c1e15139165849ca58474975d}
+      \strng{fullhashraw}{1cc2862c1e15139165849ca58474975d}
+      \strng{bibnamehash}{1cc2862c1e15139165849ca58474975d}
+      \strng{authorbibnamehash}{1cc2862c1e15139165849ca58474975d}
+      \strng{authornamehash}{60192ab4256fcd62d78eedbbeb836b94}
+      \strng{authorfullhash}{1cc2862c1e15139165849ca58474975d}
+      \strng{authorfullhashraw}{1cc2862c1e15139165849ca58474975d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Efficient deployment of resource-intensive transformers on edge devices necessitates cross-stack optimization. We thus study the interrelation between structured pruning and systolic acceleration, matching the size of pruned blocks with the systolic array dimensions. In this setting, computations of pruned weight blocks can be skipped, reducing run-time and energy consumption, but potentially impacting quality of service (QoS). To evaluate the trade-offs between systolic array size and sparsity opportunities, we present a novel co-design framework that integrates algorithmic optimization, system simulation, and hardware design. Targeting speech recognition and machine translation using transformers as case study, we analyze how configuration choices across the stack affect performance metrics. Results demonstrate that structured pruning on systems featuring systolic array acceleration can effectively increase performance, while maintaining high QoS levels. Up to 44\% system-wide speedups due to structured pruning and quantization were measured, with only 1.4\% word error rate degradation on the standard LibriSpeech dataset.}
+      \field{annotation}{Comment: 8 pages, GLSVLSI'25}
+      \field{month}{6}
+      \field{note}{arXiv:2411.10285 [cs]}
+      \field{title}{Systolic {Arrays} and {Structured} {Pruning} {Co}-design for {Efficient} {Transformers} in {Edge} {Systems}}
+      \field{urlday}{16}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{320\bibrangedash 327}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/3716368.3735158
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\78JD5H7U\\Palacios et al. - 2025 - Systolic Arrays and Structured Pruning Co-design for Efficient Transformers in Edge Systems.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2411.10285
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2411.10285
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Hardware Architecture}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -149,6 +149,28 @@
 % Disable automatic date printing
 % \date{}
 
+
+%%%%%%%%%%%%%%%%%%%%%
+% REFERENCING OF IMAGES AND FIGURE
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% IMAGES
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\catImage}{
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.3\linewidth]{figures/cat.jpg}
+        \caption{Image of a cat used for testing the AlexNet model}
+        \label{fig:cat}
+    \end{figure}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%
+% FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DOCUMENT BODY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -515,12 +537,26 @@ Thank important people here.
     % Briefly explain the role of each block and the data flow between them.
     
     \subsection{Data Generation and Pre-processing} \label{sec: data_gen}
+    This is section covers the software side of the co-design. It utilises AlexNet to generate and extract realistic weight and activation matcies, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a mif file and stored into the FPGA's BRAM for static testing. This section is crucial as it ensures that the hardware is tested with real-world data, validating its effectiveness in handling sparsity. Additionally, this section was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
+
         \subsubsection{AlexNet Model and Data Extraction} \label{sec: alexnet}
-        % Explain the Python script's role. Why did you choose AlexNet? How did you extract the INT8 weights and activations?
+        
+        The AlexNet model was chosen for its popularity in image classification task and balance between complexity and size. It was commonly found in literature as the model of choice for edge devices due to its efficiency \cite{parashar_scnn_2017,sun_sense_2023}. A pre-trained model from the PyTorch library was used, as training is out of the scope of this project. The weights and activations were extracted from the first convolutional layer, as it has the largest matrices and highest sparsity due to ReLU. The image used for testing is a photo of a cat (shown in Figure \ref{fig: cat}), as it is a common test image for image classification tasks and has a good variety of features for the convolutional layer to extract.
+
+    
+        
         
         \subsubsection{Tiling and .mif File Generation}\label{sec: tiling}
         % Why is tiling necessary? Explain how you break down the large matrices into 8x8 tiles.
         % Explain the purpose of the .mif files for static hardware testing.
+        - we tile these large matrices into 8x8 tiles to match the size of our systolic array. for now, we are only looking into the first 8 tiles to get a diverse set of data to test with.
+        - we save these tiles as .mif files to load into the FPGA's BRAM for static testing. this allows us to easily test and verify our hardware design with real-world data. 
+
+
+        - tiling is done because the systolic array is 8x8, so we need to break down the large matrices into smaller tiles that can be processed by the hardware.
+        - another reason is that from the literature review, many architectures process data in tiles to improve data locality and reduce memory access costs. (find references )
+        - .mif files are used to store the tiles in a format that can be easily read 
+        - the ROM blocks in the FPGA can read .mif files directly, making it easy to load the data into the hardware for testing. it is important to note that only one tile is currently loaded into the BRAM at a time, meaning that the testing is static and not real-time. however, a master data and master weight file does exist to load different tiles into the BRAM, but this is not currently implemented in the hardware design.
         
     \subsection{Baseline Systolic Array Architecture} \label{sec: baseline}
     % Describe your core 8x8 systolic array. Explain the PE design (the MAC unit).
@@ -534,6 +570,9 @@ Thank important people here.
     \subsection{Sparsity Handling Algorithm} \label{sec: handling algo}
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.
+
+    \subsubsection{Software Pre-Processing}
+    % Here talk about how we do the same thing as in the alexnet/tiling section, except after we tile, we do some row stripping algorithm THEN we save it as a mif 
     
 \section{Verification and Results} \label{sec: verification}
     \subsection{Testbench and Simulation Environment} \label{sec: testbench}
@@ -582,24 +621,22 @@ Thank important people here.
 
 % \newpage
 
-% % --- Appendices ---
-% \begin{appendices}
-%      \titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}{Appendix~\thesection}{1em}{}
+\clearpage
+\newpage
+% --- Appendices ---
+\begin{appendices}
+     \titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}{Appendix~\thesection}{1em}{}
      
-%      % Renaming the captions to include the appendix name
-%      \renewcommand{\theequation}{\thesection.\arabic{equation}}
-%      \renewcommand{\thefigure}{\thesection.\arabic{figure}}
-%      \renewcommand{\thetable}{\thesection.\arabic{table}}
-%      \renewcommand{\thelstlisting}{\thesection.\arabic{lstlisting}}
-
-%      \section{The First Appendix}
+     % Renaming the captions to include the appendix name
+     \section{The First Appendix}
+     \catImage
     
-%      \clearpage
-%      \section{Second Appendix}
+     \clearpage
+    %  \section{Second Appendix}
 
 
-%      % Content for the second appendix goes here.
+     % Content for the second appendix goes here.
 
-% \end{appendices}
+\end{appendices}
 
 \end{document}
