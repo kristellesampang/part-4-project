@@ -501,6 +501,8 @@ Thank important people here.
         % \textcite{seo_versa_2024} "(1) pre-processing when conducting a column-wise condensing of the weights (i.e., B matrix) and (2) post-processing for adjusting the column indices of the generated partial sum matrix (i.e.,the partial sum of the C matrix)."
         % \textcite{parashar_scnn_2017} "Compressing data: Encoding the sparse weights and/or activations provides an architecture an opportunity to reduce the amount of data that must be moved throughout the memory hierarchy. It also reduces the data footprint, which allows larger matrices to be held a given size storage structure"
 
+
+        % !! \subsubsection{Rearranged Dataflow of Systolic Arrays}
         \subsubsection{Specialised Dataflows and Architectures} \label{sec: dataflow}
         % This is where you position your work against the state-of-the-art and highlight your contribution.
         % 1.  **Introduce Advanced Architectures**: Summarize a couple of key papers to show you've surveyed the field.
@@ -537,31 +539,7 @@ Thank important people here.
             \item \textbf{Sparse-TPU}: This architecture implements a column-packing algorithm to reorganise the sparse weight matrix into a denser format. It does this by examining each column and pushing non-zero elements to the left, creating a new row if a collision occurs. A collision is considered when two non-zero elements exist in the same row after pushing. This effectively reduces the number of columns, especially with non-structured sparsity, leading to lower memory access costs. However, this method requires complex pre-processing and alters the input data structures, complicating the hardware dataflow. It is critical that the rearrangement is tracked to ensure that the MAC operations are mathematically correct \cite{he_sparse-tpu_2020}. 
             \item \textbf{SCNN}: This architecture uses a different approach to handle sparsity. It operates on a compressed-sparse dataflow, where only non-zero weights and activations are fetched from memory and delivered to the multiplier array. This dataflow tracks the output coordinate for each multiplication and sends the resulting product to a specialised scatter accumulator, ensuring the value is summed at the correct location in the output feature map. This approach maximises data reuse but diverges significantly from standard systolic array designs \cite{parashar_scnn_2017}.
         \end{itemize}
-        % Sparse-TPU: Adapting Systolic Arrays for Sparse Matrices - - 
-        % The way packing works here is that you look at a column. You check the column on 
-        % the right and push it onto the first column. If there are any collisions, then a new row is 
-        % created.  
-        % Keep track of this because we need to rearrange the input the same way so that we 
-        % can mathematically do the MAC operations correctly. This basically just skips out on 
-        % the zeros in the systolic array. 
-
-        % SCNN: An Accelerator for Compressed-sparse Convolutional Neural Networks 
-        % • the SCNN dataflow only delivers weights and activations to the multiplier array that can all 
-        % be multiplied by one another in the manner of a Cartesian product. Furthermore, the 
-        % activation vectors are reused in an input stationary [6] fashion against a number of weight 
-        % vectors to reduce data accesses. Finally, only non-zero weights and activations are fetched 
-        % from the input storage arrays and delivered to the multiplier array. 
-        % • SCNN doesn’t do the typical MAC operation where the multiplied output is directly 
-        % multiplied in the PE. Instead, it tracks the output coordinate  
-        % • Their methods of exploiting sparsity: 
-        % o Compressing data: Encoding the sparse weights and/or activations provides an 
-        % architecture an opportunity to reduce the amount of data that must be moved 
-        % throughout the memory hierarchy. It also reduces the data footprint, which allows 
-        % larger matrices to be held a given size storage structure. 
-        % o Eliminating computation: For multiplications that have a zero weight and/or 
-        % activation operand, the operation can be data gated or the operands might never be 
-        % sent to the multiplier. This can save energy consumption or both time and energy 
-        % consumption, respectively.
+    
         The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests that fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler that can exploit structured sparsity without overhauling the classic systolic array pipeline.
 
         % !! probably need to expand
@@ -575,7 +553,9 @@ Thank important people here.
     % The system architecture is designed to efficiently handle sparsity in neural networks through a reconfigurable systolic array. The high-level block diagram of the final design is shown in Figure \ref{fig:system_architecture}. The main components of the system include the NPU Wrapper, NPU Core (top\_level\_systolic\_array), BRAMs, Control Unit, and the Systolic Array.
 
     \subsection{Data Generation and Pre-processing} \label{sec: data_gen}
-    This is section covers the software side of the co-design. It utilises AlexNet to generate and extract realistic weight and activation matcies, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a mif file and stored into the FPGA's ROMs for static testing. This section is crucial as it ensures that the hardware is tested with real-world data, validating its effectiveness in handling sparsity. Additionally, this section was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
+    This is section covers the software side of the co-design, where Figure X demonstrates a graphical overview. It utilises AlexNet to generate and extract realistic weight and activation matcies, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a mif file and stored into the FPGA's ROMs for static testing. This section is crucial as it ensures that the hardware is tested with real-world data, validating its effectiveness in handling sparsity. Additionally, this section was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
+
+    
 
         \subsubsection{AlexNet Model and Data Extraction} \label{sec: alexnet}
         
@@ -632,20 +612,107 @@ Thank important people here.
 
     As stated previously, the hardware accelerator is designed to take in 8x8 tiles of weights and activation matrices. However, the systolic array is capable of handling different sized inputs up to 8x8 (theoretically it can do NxN but sizes larger than 8x8 were not test). This is achieved by the control unit checking the input matrix sizes, assuming both are uniform in size, and adjusting the operation accordingly. For example, if the input matrix is the size of 6x6, the control unit will ensure that the systolic array will synthesise the correct amount of PEs and busses required. This effectively downsizes the systolic array to only use the necessary resources, improving efficiency. This feature is crucial for handling sparsity, as it allows the array to adapt to the effective size of the input matrices after pre-processing, which will be discussed in Section \ref{sec: handling algo}.
 
-    The performance and behaviour of the Baseline Systolic Array was verified through simulation only without hardware synthesis. More details on the verification process can be found in Section \ref{sec: perform base}.
+    The performance and behaviour of the Baseline Systolic Array was verified through simulation only without hardware synthesis. It is important to note that the control unit and the systolic array together are considered to be the NPU. More details on the verification process can be found in Section \ref{sec: perform base}.
 
     \baselineDataflowImage
 
     \subsection{Systolic Array for Sparse Matrices} \label{sec: handling algo}
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
-    % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.
-    
+    % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.    
+    As the research gap identified in Section \ref{sec: dataflow} suggests, there is a need for a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. To improve upon the Baseline Systolic Array architecture, a software-hardware co-design approach is integrated. This involves an extra step in the pre-processing stage of the data, where a Python-based algorithm function called \texttt{coordinated\_row\_removal} is implemented to remove rows of zeros in the activation and weight matrix. This simple addition significantly improves the performance of the systolic array when handling sparse matrices.
+
+    \subsubsection{Hardware System Overview}
+    Figure X illustrates the high-level block diagram of the final hardware system. The top-level module, named \texttt{de1\_soc\_top}, interfaces the hardware accelerator with the FPGA board. The \texttt{NPU\_Wrapper} module encapsulates the entire NPU design, including the systolic array, control unit, and the ROMs. The ROMs are utilised to store the pre-processed weight and activation tiles in mif format, allowing for static testing of the hardware design. The control unit is responsible for managing the dataflow and synchronisation of the systolic array, as well as adapting to the effective size of the input matrices after pre-processing. The systolic array itself remains largely unchanged from the Baseline Systolic Array, retaining its 8x8 PE grid and output-stationary dataflow. However, it now benefits from the optimised input data, leading to improved efficiency and performance when handling sparse matrices.
+
+            
     \subsubsection{Sparse Handling Algorithm}
     % Here talk about how we do the same thing as in the alexnet/tiling section, except after we tile, we do some row stripping algorithm THEN we save it as a mif 
+    The \texttt{coordinated\_row\_removal} function is an algorithm that safely removes rows and columns of zeros from the weight and activation matrices. To ensure mathematical correctness, it cannot directly remove a row or column without checking the other matrix. The logic of the algorithm is as follows:
+    \begin{itemize}
+        \item Calculate the active rows for both the weight and activation matrices.
+        \item Determine the inner dimension (also known as the shared dimension) by finding the intersection of the active activation columns and the active weight rows. This is denoted as the K value. 
+        \item Create new dense matrices by stripping all the inactive rows and columns. The new activation matrix will be of size (active\_rows, K) and the new weight matrix will be of size (K, active\_cols).
+    \end{itemize}
+    \textcite{qin_sigma_2020}'s paper supports this idea of maintaining the shared dimension, where the inner dimension is cruicial in maintaining mathematical correctness in its General Matrix Multiplication (GEMM) operations. As the MAC operation is simply a series of matrix multiplications, it is critical that the inner dimension is the same for both matrices to ensure that the operations are mathematically valid.   
+    The function returns the M value (active rows of the activation matrix), N value (active columns of the weight matrix), K value (shared inner dimension), and the new dense matrices. This is a crucial step in the pre-processing stage, as it ensures that the data fed into the systolic array is optimised for performance. It is especially effective for structured sparsity, where entire rows or columns of weights are zero, as it allows the systolic array to adapt to the effective size of the input matrices. 
+    The \texttt{coordinated\_row\_removal} algorithm is implemented in the same Python script as Section \ref{sec: alexnet} and Section \ref{sec: tiling}. The M, N, and K values are now stored in the mif file, meaning that each file can have up to 67 values. This is important as the control unit needs to know these values to reconfigure the systolic array.
 
-    \subsubsection{Systolic Array and Control Unit}
 
-    \subsubsection{Data and Weight ROMs}
+    \subsubsection{ROMs}
+    % - in the software pre-processing stage, the mif files are generated and stored in a folder 
+    % - we currently do not have a way to dynamically change the mif file to be read in the ROM, so it has to be manually changed
+    % - however, since we have now instantiated ROMs in the system, it is possible to run the python file, generate NEW mif files, and directly run it on the system without needing to change the hardware design
+    % - this is important as it allows for easy testing of different tiles and sparsity patterns without needing to change the hardware design
+    % - the ROMs are instantiated in the NPU Wrapper, which is the top-level module
+    
+    In the software pre-processing stage, the mif files are generated and stored in a folder. Currently, there is no mechanism to dynamically change the mif file being read by the ROMs, so it has to be manually updated to test different tiles. However, with the ROMs instantiated in the system, it is possible to run the Python script to generate new mif files and directly load them into the ROMs without modifying the hardware design. This flexibility is crucial for testing different tiles and sparsity patterns, allowing for efficient validation of the hardware design against various scenarios.
+    A ROM is instantiated for both the weight and activation matrices in the NPU Wrapper, which serves as the top-level module. Each ROM is configured to read from its respective mif file, storing the pre-processed tiles for static testing. The ROMs are designed to output data in a format compatible with the systolic array, ensuring seamless integration with the control unit and PEs. This setup allows for efficient data retrieval during operation, enabling the systolic array to process the input matrices effectively.
+
+
+    \subsubsection{NPU Wrapper}{
+        % - The NPU Wrapper acts as the interface between the top-level module and the NPU core.
+        % - instantiates all the components of the NPU, including the systolic array, control unit, and ROMs
+        % - now with the addition of the sparsity handling algorithm, the modification of the MIF file, and introduction of the ROM the NPU wrapper needs to be modified to adapt to these new changes
+        % - now that there is a real memory component, we first must be able to read the data from the ROMs correctly
+        % - we know that 1. M, N, K values and 2. at most, we can have up to 67 reads in the MIF
+        % - we create an FSM where:
+        % -- we are in idle mode, we are awaiting for the start signal (S_IDLE)
+        % -- we read the first three values, which are M, N, K so we know how many reads we need because we know that we will read M * K values from the activation ROM and K * N values from the weight ROM (S_LOAD_PARAMS)
+        % -- once we know this, we can go straight into reading roms. as we are reading 1D array, we must covert this into a 2D array to be sent to the control unit. (S_LOAD_MATRICES)
+        % -- we are done reading the mif,  we stay in S_EXECUTE mode until the control unit to send us a signal that it has sent the values to the systolic array (S_EXECUTE)
+        % -- one we are done, we wait for the highest theoretical amount of clock cycles it can take to process the data, which is (M + N + K - 2) clock cycles (S_DONE)
+        % -- once this is done, we send a done signal to the top-level module, which then sends it to the control unit to signal that the operation is done, going back to the S_IDLE state
+
+        The purpose of the NPU Wrapper is to act as the interface with the top-level module and the NPU core. It is responsible for instantiating all the components of the NPU, consisting of the systolic array, control unit, and ROMs. With the addition of the sparsity handling algorithm, modification of the MIF files, and introduction of the ROMs, the NPU Wrapper was created to handle the new changes. 
+        The NPU Wrapper is designed to read data from the ROMs correctly. It utilises a Finite State Machine (FSM) to manage the data flow and control signals. The FSM operates as follows:
+        \begin{itemize}
+            \item \textbf{S\_IDLE}: The system starts in the idle state, waiting for a start signal to initiate the operation.
+            \item \textbf{S\_LOAD\_PARAMS}: Upon receiving the start signal, the FSM transitions to this state to read the first three values from the ROMs, which are M, N, and K. These values determine how many reads are required, as M*K values will be read from the activation ROM and K*N values from the weight ROM.
+            \item \textbf{S\_LOAD\_MATRICES}: Once the parameters are known, the FSM moves to this state to read the matrices from the ROMs. Since the data is stored in a 1D array format, it is converted into a 2D array before being sent to the control unit.
+            \item \textbf{S\_EXECUTE}: After loading the matrices, the FSM enters this state and waits for a signal from the control unit indicating that it has sent the values to the systolic array.
+            \item \textbf{S\_DONE}: Once execution is complete, the FSM transitions to this state and waits for the maximum theoretical number of clock cycles required to process the data, calculated as (M + N + K - 2) clock cycles. After this period, it sends a done signal to the top-level module, which then notifies the control unit that the operation is complete, returning to the S\_IDLE state.
+        \end{itemize}
+
+
+
+    }
+    
+
+
+    \subsubsection{Control Unit and Systolic Array}
+    % - as stated above, the m n k values are now stored in the mif file. this means that the control unit needs to be reconfigured to read these values and adjust the operation of the systolic array accordingly
+    % - however, having these information is extremely valueable as it solifies the control logic required to handle sparsity
+    % - the control unit is modified to read the m n k values from the mif file and adjust the operation of the systolic array accordingly
+    % - this means that the systolic array can now adapt to the effective size of the input matrices after pre-processing, improving efficiency
+    % - for example, if the input matrix is the size of 6x6 after stripping, the control unit will ensure that the systolic array will synthesise the correct amount of PEs and busses required
+    % - this effectively downsizes the systolic array to only use the necessary resources, improving efficiency   
+
+    % - on the systolic array's side, not much of the design in the previous iteration has changed
+    % -
+
+    % As stated in the section above, the M, N, and K values are now stored within the mif files for every tile. This means that the control unit must adapted to read these values and adjust the operations of the systolic array accordingly. This is an important step in the design as it allows the systolic array to adapt to the effective size of the input matrices after pre-processing, improving efficiency. 
+
+    % - the NPU Wrapper sends the contrl unit the weight and activation weight matrices, and m n k values signals as sepearte inputs.
+    % - this means, that the control unit's matrix remains the same, meaning that the logic does not have to modify that much
+    % - the only modification required is taking m n k values into considerations, where it helps verify the shape of the matrix 
+    % - additionally, the only other change we have to do is knowing when the NPU is ready to send us the signals, we can take account for that 
+
+    % - fundamentally, the systolic array and its processing elements have not changed due to the fact that the way data is sent to the control unit has not changed. 
+    % - as the system was originally designed to be modular, this means that the systolic array can remain unchanged, as the control unit is still sending the same data to the systolic array
+
+    The biggest change in the control unit is influenced by the introduction of the NPU Wrapper. The NPU wrapper sends the control unit the weight and activation matrices alongisde the new M, N, and K values as separate inputs. This means that the control unit's matrix handling logic remains largely unchanged, requiring only minor modifications to incorporate the M, N, and K values. These values are crucial for verifying the shape of the matrices and ensuring that the systolic array operates correctly based on the effective size of the input matrices after pre-processing. Additionally, the control unit must now account for when the NPU is ready to send signals, ensuring proper synchronization between components.
+    Fundamentally, the systolic array and its processing elements have not changed due to the modular design of the system. The control unit continues to send the same data format to the systolic array, allowing it to function without any modifications. As the Baseline Systolic Array considered modularity from the start, the incorporation of sparsity handling features was achieved with minimal changes to the core components. This modularity is a key advantage of the design, as it enables easy integration of new features, such as sparsity handling, without requiring extensive changes to the core components.
+
+    Overall, the integration of the sparsity handling algorithm into the hardware design through the NPU Wrapper and minor modifications to the control unit has significantly enhanced the efficiency of the systolic array when processing sparse matrices. This software-hardware co-design approach effectively addresses the research gap identified in Section \ref{sec: dataflow}, providing a simpler solution for exploiting structured sparsity without changing the classic systolic array pipeline.
+    % !! might want to reword this 
+
+
+
+    
+
+
+    
+
     
 \section{Verification and Results} \label{sec: verification}
     \subsection{Testbench and Simulation Environment} \label{sec: testbench}
@@ -660,6 +727,18 @@ Thank important people here.
     % Present the results of running a sparse, stripped matrix through your NPU.
     % What were the new, smaller `active_rows` and `active_cols`?
     % What was the new, lower latency? How did the resource utilization change (if at all)?
+    
+    % \subsection{Systolic Array for Sparse Handling deployed on FPGA}
+    % - the final iteration of the systolic array is synthesised and deployed on an de1-soc fpga. 
+    % - this is important as it allows for real-world testing of the hardware design, validating its effectiveness in handling sparsity
+    % - the de1-soc fpga is chosen as there is prior experience in using the board and is easily available 
+    % - the design above is compiled into a top-level, called NPU\_wrapper, and is instantiated in a de1\_soc\_top file.
+    % - this file is how the NPU communicates with the fpga board, allowing for easy testing and verification of the hardware design
+    % - the important peripherals are the buttons and the leads
+    % - additionally, a raspberry pi pico is connected to the UART through the GPIO pins
+    % - this allows for easy communication between the fpga and a computer, allowing for easy testing and verification of the hardware design
+    % - the way all the peripherals and GPIO works is that when KEY1 is pressed, it starts a signal to the NPU to start. a counter for the amount of clock cycles is started. when the NPU is done, it sends a signal to the de1\_soc\_top file, which stops the counter. the counter value is then sent to the raspberry pi pico through the UART, which then sends it to a computer through USB. this allows for easy measurement of the latency of the hardware design
+    % - as we have to decode the value from the UART, the LEDs represent the number it received, and on top, we verify this using modelsim 
     
     \subsection{Performance Analysis}\label{sec: per analysis}
     % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).

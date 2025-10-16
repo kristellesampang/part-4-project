@@ -994,6 +994,96 @@
       \endverb
       \keyw{Computer Science - Artificial Intelligence,Computer Science - Hardware Architecture}
     \endentry
+    \entry{qin_sigma_2020}{inproceedings}{}{}
+      \name{author}{8}{}{%
+        {{hash=1f05ab76441367e4d675437c233d2575}{%
+           family={Qin},
+           familyi={Q\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=356974c3ce43b5d9ad4fdc400d6bb934}{%
+           family={Samajdar},
+           familyi={S\bibinitperiod},
+           given={Ananda},
+           giveni={A\bibinitperiod}}}%
+        {{hash=19db67aee7a1f42ce4cebeb7df1cb3dc}{%
+           family={Kwon},
+           familyi={K\bibinitperiod},
+           given={Hyoukjun},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4c2fdaefad4a6150c232014cb9d65263}{%
+           family={Nadella},
+           familyi={N\bibinitperiod},
+           given={Vineet},
+           giveni={V\bibinitperiod}}}%
+        {{hash=9beb5c6048515b1c2808141d6527330a}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Sudarshan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2be80fdc9a37b451dbaa34a0180f9fb2}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Dipankar},
+           giveni={D\bibinitperiod}}}%
+        {{hash=7d7e209e9f3fed0612bdbd22060da563}{%
+           family={Kaul},
+           familyi={K\bibinitperiod},
+           given={Bharat},
+           giveni={B\bibinitperiod}}}%
+        {{hash=e1ce26b15a886cbd409e6a8c2254dd49}{%
+           family={Krishna},
+           familyi={K\bibinitperiod},
+           given={Tushar},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {San Diego, CA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{a1c0e578cd4814d8a8a75e769061bbcb}
+      \strng{fullhash}{e5e3660c056ff22835cdb065a2fdd483}
+      \strng{fullhashraw}{e5e3660c056ff22835cdb065a2fdd483}
+      \strng{bibnamehash}{a1c0e578cd4814d8a8a75e769061bbcb}
+      \strng{authorbibnamehash}{a1c0e578cd4814d8a8a75e769061bbcb}
+      \strng{authornamehash}{a1c0e578cd4814d8a8a75e769061bbcb}
+      \strng{authorfullhash}{e5e3660c056ff22835cdb065a2fdd483}
+      \strng{authorfullhashraw}{e5e3660c056ff22835cdb065a2fdd483}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The advent of Deep Learning (DL) has radically transformed the computing industry across the entire spectrum from algorithms to circuits. As myriad application domains embrace DL, it has become synonymous with a genre of workloads across vision, speech, language, recommendations, robotics, and games. The key compute kernel within most DL workloads is general matrix-matrix multiplications (GEMMs), which appears frequently during both the forward pass (inference and training) and backward pass (training). GEMMs are a natural choice for hardware acceleration to speed up training, and have led to 2D systolic architectures like NVIDIA tensor cores and Google Tensor Processing Unit (TPU).}
+      \field{booktitle}{2020 {IEEE} {International} {Symposium} on {High} {Performance} {Computer} {Architecture} ({HPCA})}
+      \field{isbn}{978-1-7281-6149-5}
+      \field{month}{2}
+      \field{shorttitle}{{SIGMA}}
+      \field{title}{{SIGMA}: {A} {Sparse} and {Irregular} {GEMM} {Accelerator} with {Flexible} {Interconnects} for {DNN} {Training}}
+      \field{urlday}{16}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{58\bibrangedash 70}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1109/HPCA47549.2020.00015
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\YTBVYQFD\\Qin et al. - 2020 - SIGMA A Sparse and Irregular GEMM Accelerator with Flexible Interconnects for DNN Training.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9065523/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9065523/
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
