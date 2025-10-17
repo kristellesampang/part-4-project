@@ -13,20 +13,15 @@
 \setlength{\parskip}{\medskipamount}
 
 % -------------------------- Required Packages ---------------------------------
-\usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{amsmath,amssymb}  % Combined for faster loading
 \usepackage{graphicx}
-\usepackage{cancel}
-\usepackage{esint}
-\usepackage{mathdots}
-\usepackage{mathtools}
+\usepackage{mathtools}        % Loads amsmath automatically, provides advanced features
+\usepackage{longtable,booktabs}  % Combined table packages
+\usepackage{pdfpages}
+% Specialized math packages (load only if needed)
+\usepackage{cancel,esint,mathdots,stmaryrd}
 \usepackage[version=4]{mhchem}
 \usepackage{stackrel}
-\usepackage{stmaryrd}
-% \usepackage{undertilde}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{pdfpages}
 % \usepackage[ukenglish]{babel}
 
 % -------------------------- Bibliography Settings -----------------------------
@@ -34,14 +29,10 @@
 \usepackage[style=ieee, backend=biber]{biblatex}
 \addbibresource{final_report.bib} % Make sure this filename matches your .bib file
 
-% -------------------------- Hyperlinks Settings -------------------------------
+% -------------------------- Colors -------------------------------
 \usepackage{xcolor} % Colours for hyperref package
 % Define links colour
 \newcommand{\linksColour}{black}
-% hyperref package
-\usepackage[colorlinks=true, linkcolor=\linksColour, citecolor=\linksColour, urlcolor=blue, bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
-% \usepackage{breakurl}      % break long urls
-\urlstyle{rm}               % Change url fonts to match report font
 
 % -------------------- Header and Footer Settings ------------------------------
 \usepackage{fancyhdr}
@@ -149,16 +140,20 @@
 % Disable automatic date printing
 % \date{}
 
+% -------------------------- Hyperlinks (LOAD LAST) -------------------------------
+% hyperref package should be loaded near the end for optimal performance
+\usepackage[colorlinks=true, linkcolor=\linksColour, citecolor=\linksColour, urlcolor=blue, bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
+\urlstyle{rm}               % Change url fonts to match report font
 
 %%%%%%%%%%%%%%%%%%%%%
 % REFERENCING OF IMAGES AND FIGURE
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-% IMAGES
+% IMAGES - Optimized for faster compilation
 %%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\catImage}{
-    \begin{figure}[h!]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.3\linewidth]{figures/cat.jpg}
         \caption{Image of a cat used for testing the AlexNet model}
@@ -166,10 +161,10 @@
     \end{figure}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%
-% FIGURES
+% FIGURES - Optimized placement
 %%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\MACRegImage}{
-    \begin{figure}[h!]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.2\linewidth]{figures/MAC.jpg}
         \caption{Image of the MAC unit in the Processing Element (PE)}
@@ -177,16 +172,16 @@
     \end{figure}
 }
 \newcommand{\baselineSystolicArrayImage}{
-    \begin{figure}[h!]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array.jpg}
-        \caption{Image of the Baseline Systolic Array Arragement}
+        \caption{Image of the Baseline Systolic Array Arrangement}
         \label{fig:baseline_systolic_array}
     \end{figure}
 }
 
 \newcommand{\baselineDataflowImage}{
-    \begin{figure}[h!]
+    \begin{figure}[ht]
         \centering
         \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array_dataflow.jpg}
         \caption{Image of the Baseline Systolic Array's Dataflow}
@@ -430,16 +425,18 @@ Thank important people here.
     The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
     \[
     O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
-    \] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
+    \]
+
+    where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
 
     An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero \cite{parashar_scnn_2017}. Mathematically, this can be represented as:
-    $$
+    \[
     \text{ReLU}(x) = 
     \begin{cases} 
         1 & \text{if } x > 0 \\ 
         0 & \text{if } x \le 0 
     \end{cases}
-    $$
+    \]
 
 
      A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
@@ -479,9 +476,9 @@ Thank important people here.
     % 1.  **Introduce Sparsity**: Define sparsity as the presence of a large number of zero values in
     %     the weight and activation matrices.
     % 2.  **Sources of Sparsity**:
-    As discussed in Section \ref{sec: CNN}, sparsity is a property of matrices that arise from many sources, such as activation functions and model compression techniques. This section explores these in detail to find the root cause of sparsity in neural networks. 
+    As discussed in Section \ref{sec:CNN}, sparsity is a property of matrices that arise from many sources, such as activation functions and model compression techniques. This section explores these in detail to find the root cause of sparsity in neural networks. 
         \subsubsection{Rectified Linear Unit (ReLU)} \label{sec: relu}
-        To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec: CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
+        To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec:CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
         % !! need references
         % !! need to add the section referencing ReLU in the intro 
 
