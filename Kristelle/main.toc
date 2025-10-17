@@ -16,32 +16,32 @@
 \contentsline {subsection}{\numberline {3.2}Hardware Architectures for Sparsity}{5}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Power Gating and Zero-Skipping}{5}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Compressed Data Formats}{5}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Specialised Dataflows and Architectures}{5}{subsubsection.3.2.3}%
-\contentsline {section}{\numberline {4}Design and Methodology}{6}{section.4}%
-\contentsline {subsection}{\numberline {4.1}System Architecture Overview}{6}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Data Generation and Pre-processing}{6}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Specialised Dataflows and Architectures}{6}{subsubsection.3.2.3}%
+\contentsline {section}{\numberline {4}Design and Methodology}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}System Architecture Overview}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Data Generation and Pre-processing}{7}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}AlexNet Model and Data Extraction}{7}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Tiling and .mif File Generation}{7}{subsubsection.4.2.2}%
 \contentsline {subsection}{\numberline {4.3}Baseline Systolic Array Architecture}{8}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Processing Elements and Systolic Array Formation}{8}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{9}{subsubsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.4}Optimised Systolic Array for Sparse Matrices Architecture}{10}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{10}{subsubsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.4}Optimised Systolic Array for Sparse Matrices Architecture}{11}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Hardware System Overview}{11}{subsubsection.4.4.1}%
 \contentsline {subsubsection}{\numberline {4.4.2}Sparse Handling Algorithm}{11}{subsubsection.4.4.2}%
 \contentsline {subsubsection}{\numberline {4.4.3}ROMs}{12}{subsubsection.4.4.3}%
 \contentsline {subsubsection}{\numberline {4.4.4}NPU Wrapper}{12}{subsubsection.4.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.5}Control Unit and Systolic Array}{13}{subsubsection.4.4.5}%
-\contentsline {section}{\numberline {5}Verification and Results}{13}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Testbench and Simulation Environment}{13}{subsection.5.1}%
+\contentsline {section}{\numberline {5}Verification and Results}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Testbench and Simulation Environment}{14}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Baseline Performance)}{14}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Optimised Performance)}{14}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Performance Analysis}{14}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Discussion}{14}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Analysis of Results}{14}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Design Trade-offs}{14}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Limitations}{14}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Conclusion}{14}{section.7}%
-\contentsline {section}{\numberline {8}Future Work}{14}{section.8}%
-\contentsline {section}{References}{15}{section.8}%
-\contentsline {section}{Appendix \numberline {A}List of Figures}{17}{appendix.1.A}%
-\contentsline {section}{Appendix List of Figures}{17}{appendix.1.A}%
+\contentsline {subsection}{\numberline {5.3}Optimised Performance)}{15}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Performance Analysis}{15}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Discussion}{15}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Analysis of Results}{15}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Design Trade-offs}{15}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Limitations}{15}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}%
+\contentsline {section}{\numberline {8}Future Work}{15}{section.8}%
+\contentsline {section}{References}{16}{section.8}%
+\contentsline {section}{Appendix \numberline {A}List of Figures}{18}{appendix.1.A}%
+\contentsline {section}{Appendix List of Figures}{18}{appendix.1.A}%

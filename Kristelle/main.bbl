@@ -350,8 +350,8 @@
       \strng{authornamehash}{1d2992df17647d2fc29c9c8ba92420e8}
       \strng{authorfullhash}{bfa7e667cf8116f92056568837b5ed9b}
       \strng{authorfullhashraw}{bfa7e667cf8116f92056568837b5ed9b}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Sparsity is an intrinsic property of convolutional neural networks (CNNs), worth exploiting for CNN accelerators. However, the extra processing involved comes with hardware overhead, resulting in only marginal profits for most architectures. Meanwhile, systolic arrays have become increasingly competitive on CNN acceleration for its high spatiotemporal locality and low hardware overhead. However, the irregularity of sparsity induces imbalanced workloads under the rigid systolic dataflow, causing performance degradation. Thus, this article proposed a systolic-array-based architecture, called Sense, for sparse CNN acceleration by model-hardware codesign, enabling large performance gains. To balance input feature map (IFM) and weight loads across the processing element (PE) array, we applied channel clustering to gather IFMs with approximate sparsity for array computation and codesigned a load-balancing weight pruning method to keep the sparsity ratio of each kernel at a certain value with little accuracy loss, improving PE utilization and overall performance. In addition, adaptive dataflow configuration was applied to determine the computing strategy based on the storage ratio of IFMs and weights, lowering 1.17×–1.8× dynamic random access memory (DRAM) access compared with Swallow and further reducing system energy consumption. The whole design was implemented on ZynqZCU102 with 200 MHz and performs at 471, 34, 53, and 191 image/s for AlexNet, VGG-16, ResNet-50, and GoogleNet, respectively. Compared with sparse systolic-array-based accelerators, Swallow, fusion-enabled systolic architecture (FESA), and SPOTS, Sense achieves 0.97×–2.18×, 1.3×–1.67×, and 0.94×–1.82× energy efficiency (image/J) on these CNNs, respectively.}
@@ -381,6 +381,151 @@
       \endverb
       \verb{url}
       \verb https://ieeexplore.ieee.org/document/10043636/
+      \endverb
+    \endentry
+    \entry{cain_convolution_2021}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=5b34db8eef2a77a42aed3e13fbb9c2d8}{%
+           family={Cain},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=263b7c2b64c0f63ae5363ee47ccbf4c6}{%
+           family={Eldash},
+           familyi={E\bibinitperiod},
+           given={Omar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=da3def2c09fb4309cfdaedf871c209d3}{%
+           family={Khalil},
+           familyi={K\bibinitperiod},
+           given={Kasem},
+           giveni={K\bibinitperiod}}}%
+        {{hash=b825ab3062dc00626e685acfb575c2c5}{%
+           family={Bayoumi},
+           familyi={B\bibinitperiod},
+           given={Magdy},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {New Orleans, LA, USA}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{cc0c83906faa732059f231031ab823b9}
+      \strng{fullhash}{0dd39ef8bdbb4795bf93764273e027d3}
+      \strng{fullhashraw}{0dd39ef8bdbb4795bf93764273e027d3}
+      \strng{bibnamehash}{0dd39ef8bdbb4795bf93764273e027d3}
+      \strng{authorbibnamehash}{0dd39ef8bdbb4795bf93764273e027d3}
+      \strng{authornamehash}{cc0c83906faa732059f231031ab823b9}
+      \strng{authorfullhash}{0dd39ef8bdbb4795bf93764273e027d3}
+      \strng{authorfullhashraw}{0dd39ef8bdbb4795bf93764273e027d3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As the demand of low latency machine learning IoT devices has rapidly expanded in the past decade for commercial and industrial applications, cloud computing models have relied on high-speed connectivity which many devices do not have access to. Cloud based solutions are also becoming less attractive for inference solutions with arising privacy and security concerns. Transitioning computation towards edge devices is becoming essential and ﬁnding ways to make such computer vision workloads operational on constrained IPs is a key element in this work. As edge devices are limited in processing resources, relying on reconﬁgurable hardware such as FPGAs will oﬀer an embedded platform to dynamically shape the IPs and cores as needed for each speciﬁc application working on it. Convolutional Neural Networks and alike computer vision techniques rely heavily on computation and matrix based operations, this paper proposes a dedicated convolution processing element. The proposed a convolution processing element is implemented on a Pynq-Z2 FPGA that supports Dynamic Partial Reconﬁguration between integer point convolution operations of 8, 16, and 32 bit precision. The use of Dynamic Partial Reconﬁguration at a processing element level enables the design to be reconﬁgured 800× more quickly than traditional methods while minimally increasing system overhead.}
+      \field{booktitle}{2021 {IEEE} 7th {World} {Forum} on {Internet} of {Things} ({WF}-{IoT})}
+      \field{isbn}{978-1-6654-4431-6}
+      \field{month}{6}
+      \field{title}{Convolution {Processing} {Unit} {Featuring} {Adaptive} {Precision} using {Dynamic} {Reconfiguration}}
+      \field{urlday}{17}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{592\bibrangedash 597}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/WF-IoT51360.2021.9595539
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\FXFQI49E\\Cain et al. - 2021 - Convolution Processing Unit Featuring Adaptive Precision using Dynamic Reconfiguration.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9595539/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9595539/
+      \endverb
+    \endentry
+    \entry{zhang_energy-efficient_2022}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=c9191dc69bc22ce41fc456ae9eb63db8}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Chen},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e7bcbeec221d18ea07073665737d231b}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin’an},
+           giveni={X\bibinitperiod}}}%
+        {{hash=d0a4dc8b12c8afcde945f492ac6c7038}{%
+           family={Yong},
+           familyi={Y\bibinitperiod},
+           given={Shanshan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c1ab873bba0d01a4c097606cad884548}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yining},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=54a1aaa41c76d7d5049949ba745747e2}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Qiuping},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=2521c2fcb663069c2c5eb6a313e7748f}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Chenyang},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{2348f5826634af872a0634ea83f5916a}
+      \strng{fullhash}{591a2cfb34806f6860240c4c24ae7eae}
+      \strng{fullhashraw}{591a2cfb34806f6860240c4c24ae7eae}
+      \strng{bibnamehash}{591a2cfb34806f6860240c4c24ae7eae}
+      \strng{authorbibnamehash}{591a2cfb34806f6860240c4c24ae7eae}
+      \strng{authornamehash}{2348f5826634af872a0634ea83f5916a}
+      \strng{authorfullhash}{591a2cfb34806f6860240c4c24ae7eae}
+      \strng{authorfullhashraw}{591a2cfb34806f6860240c4c24ae7eae}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deep convolutional neural networks (CNNs) have shown strong abilities in the application of artiﬁcial intelligence. However, due to their extensive amount of computation, traditional processors have low energy efﬁciency when executing CNN algorithms, which is unacceptable for portable devices with limited hardware cost and battery capacity, so designing a CNN-speciﬁc processor is necessary. In this paper, we propose an energy-efﬁcient CNN processor architecture for lightweight devices with a processing elements (PEs) array consisting of 384 PEs. Using the systolic array-based PE array, it realizes parallel operations between ﬁlter rows and between channels of output feature maps, supporting the acceleration of 3D convolution and fully connected computation with various parameters by conﬁguring internal instruction registers. The computing strategy based on the proposed systolic dataﬂow achieves less hardware overhead compared with other strategies, and the reuse of image values and weight values, which effectively reduce the power of memory access. A memory system with a multi-level storage structure combined with register ﬁle (RF) and SRAM is used in the proposed CNN processor, which further reduces the energy overhead of computing. The proposed CNN processor architecture has been veriﬁed on a ZC706 FPGA platform using VGG-16 based on the proposed image segmentation method, the evaluation results indicate that the peak throughput achieves 115.2 GOP/s consuming 3.801 W at 150 MHz, energy efﬁciency and DSP efﬁciency reaches 30.32 GOP/s/W and 0.26 GOP/s/DSP, respectively.}
+      \field{issn}{2076-3417}
+      \field{journaltitle}{Applied Sciences}
+      \field{month}{12}
+      \field{note}{Publisher: MDPI AG}
+      \field{number}{24}
+      \field{title}{An {Energy}-{Efficient} {Convolutional} {Neural} {Network} {Processor} {Architecture} {Based} on a {Systolic} {Array}}
+      \field{urlday}{14}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{12}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{12633}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/app122412633
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\NQEVW53A\\Zhang et al. - 2022 - An Energy-Efficient Convolutional Neural Network Processor Architecture Based on a Systolic Array.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2076-3417/12/24/12633
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2076-3417/12/24/12633
       \endverb
     \endentry
     \entry{oh_investigation_2017}{inproceedings}{}{}
@@ -428,8 +573,8 @@
       \strng{authornamehash}{2ee111c2d50ced7edb65ffe0829dddfb}
       \strng{authorfullhash}{f7a7ab34deeb7543518e6a6196a55b99}
       \strng{authorfullhashraw}{f7a7ab34deeb7543518e6a6196a55b99}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The use of a Convolutional Neural Network based method for object detection increases the accuracy that surpasses human visual system. Because it requires considerable computational capability, its use in embedded devices that place constraints in terms of power consumption as well as computational capability has thus far been limited. However, with the recent development of GPU for use in embedded devices and open-source software library for machine learning, it has become viable to utilize CNN in an energy-efficient embedded computing environment. In this study, CPU and GPU performance and energy efficiency of CNN-based object detection inference on an embedded platform is investigated through comparison with a traditional PC-based platform. Two publicly available hardware platforms are empirically evaluated; in one of them—NVIDIA Jetson TX-1—the results demonstrate image processing performance of 65\% of that of the PC, while the embedded device consumes 2.6\% of power consumed by the PC.}
@@ -491,8 +636,8 @@
       \strng{authornamehash}{d1db83d915774f6233412d7ee58895b9}
       \strng{authorfullhash}{f320b5e585a7382983221e95123fec3d}
       \strng{authorfullhashraw}{f320b5e585a7382983221e95123fec3d}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{The time and energy optimization of computationally intensive tasks involving unmanned air vehicles (UAVs) is highly important for increasing the reaction speed of UAVs and for prolonging their lifetime. To achieve the above objective, many studies based on heterogeneous computing have been carried out. Although these studies have achieved good results, limitations remain. First, neural processing units (NPUs) have emerged in recent years. However, insufﬁcient attention has been devoted to CPU/NPU research in academia currently. Second, most popular heterogeneous computing architectures have only one kind of accelerator, e.g., CPU/GPU or CPU/ﬁeld programmable gate array (FPGA). A heterogeneous system with multiple kinds of accelerators, e.g., CPU/FPGA/NPU, has not been investigated in depth. To address the above concerns, we propose a heterogeneous CPU/FPGA/NPU system aimed at realizing energy-efﬁcient computing acceleration for computationally intensive UAV tasks. First, we select several representative computationally intensive UAV tasks and design FPGA and NPU accelerators dedicated to these tasks. Then, we calculate the time and energy costs of these tasks on the FPGA and NPU, respectively, and ﬁnd that different tasks are appropriate for running on different cores. Based on this ﬁnding, we further build a heterogeneous CPU/FPGA/NPU architecture and assign each UAV task to the most appropriate core for execution. In this way, the UAV tasks can be executed more efﬁciently. We conduct experiments by executing all the representative UAV tasks on the CPU, CPU/GPU, CPU/FPGA, CPU/NPU and CPU/FPGA/NPU platforms. The results show that a heterogeneous system with multiple accelerators can achieve better computing performance and higher energy efﬁciency.}
@@ -893,8 +1038,8 @@
       \strng{authornamehash}{d0199a29319f81d941dcdb0f03572b70}
       \strng{authorfullhash}{d0199a29319f81d941dcdb0f03572b70}
       \strng{authorfullhashraw}{d0199a29319f81d941dcdb0f03572b70}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{A key part of modern deep neural network (DNN) applications is matrix multiplication. As DNN applications are becoming more diverse, there is a need for both dense and sparse matrix multiplications to be accelerated by hardware. However, most hardware accelerators are designed to accelerate either dense or sparse matrix multiplication. In this paper, we propose VerSA, a versatile systolic array architecture for both dense and sparse matrix multiplications. VerSA employs intermediate paths and SRAM buffers between the rows of the systolic array (SA), thereby enabling an early termination in sparse matrix multiplication with a negligible performance overhead when running dense matrix multiplication. When running sparse matrix multiplication, 256 × 256 VerSA brings performance (i.e., an inverse of execution time) improvement and energy saving by 1.21×–1.60× and 7.5–30.2\%, respectively, when compared to the conventional SA. When running dense matrix multiplication, VerSA results in only a 0.52\% performance overhead compared to the conventional SA.}
@@ -964,8 +1109,8 @@
       \strng{authornamehash}{60192ab4256fcd62d78eedbbeb836b94}
       \strng{authorfullhash}{1cc2862c1e15139165849ca58474975d}
       \strng{authorfullhashraw}{1cc2862c1e15139165849ca58474975d}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Efficient deployment of resource-intensive transformers on edge devices necessitates cross-stack optimization. We thus study the interrelation between structured pruning and systolic acceleration, matching the size of pruned blocks with the systolic array dimensions. In this setting, computations of pruned weight blocks can be skipped, reducing run-time and energy consumption, but potentially impacting quality of service (QoS). To evaluate the trade-offs between systolic array size and sparsity opportunities, we present a novel co-design framework that integrates algorithmic optimization, system simulation, and hardware design. Targeting speech recognition and machine translation using transformers as case study, we analyze how configuration choices across the stack affect performance metrics. Results demonstrate that structured pruning on systems featuring systolic array acceleration can effectively increase performance, while maintaining high QoS levels. Up to 44\% system-wide speedups due to structured pruning and quantization were measured, with only 1.4\% word error rate degradation on the standard LibriSpeech dataset.}
