@@ -563,9 +563,6 @@ Thank important people here.
         %     achieving significant latency and energy reduction by completely skipping entire rows/columns
         %     of redundant computation.
 
-        % !! review specific architectures that handle sparsity in systolic arrays
-        % !! talk about how it uses the previously mentioned techniques and critique its limitations
-        % !! bridge to the research gap and how your project fills it
         Advanced architectures redesign the entire dataflow and control logic to efficiently handle sparsity in systolic array based hardware. These architecture offer higher performance but at the cost of significant hardware complexity. This section focuses on two key architectures, Sparse-TPU \cite{he_sparse-tpu_2020} and SCNN \cite{parashar_scnn_2017}, to illustrate the current state-of-the-art and identify the research gap that this project aims to fill. 
 
         \begin{itemize}
@@ -573,7 +570,7 @@ Thank important people here.
             \item \textbf{SCNN}: This architecture uses a different approach to handle sparsity. It operates on a compressed-sparse dataflow, where only non-zero weights and activations are fetched from memory and delivered to the multiplier array. This dataflow tracks the output coordinate for each multiplication and sends the resulting product to a specialised scatter accumulator, ensuring the value is summed at the correct location in the output feature map. This approach maximises data reuse but diverges significantly from standard systolic array designs \cite{parashar_scnn_2017}.
         \end{itemize}
     
-        The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests that fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler that can exploit structured sparsity without overhauling the classic systolic array pipeline.
+        The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests, fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler that can exploit structured sparsity without overhauling the classic systolic array pipeline.
 
         % !! probably need to expand
 
@@ -756,73 +753,95 @@ Thank important people here.
     \subsection{Testbench and Simulation Environment} \label{sec: testbench}
     % Describe your VHDL testbench. How does it work? What does it measure (latency)?
     % What tools did you use (ModelSim, Quartus)?
-    The VHDL testbench is designed to simulate the operation of the NPU, including both the Baseline Systolic Array and the Optimised Systolic Array. The testbench is executed on ModelSim-Altera 10.1d, a widely used simulation tool for VHDL designs. 
-    The testbench generates a clock signal and a reset signal to initialise the NPU. It also includes a start signal to trigger the operation of the NPU. 
-    - Baseline Systolic Array: input matrices are hardcoded into the testbench for static testing. Does not rely on a start signal, matrices are directly sent to the control unit.
-    - Optimised Systolic Array: input matrices are read from the ROMs, which are pre-loaded with mif files generated from the Python pre-processing stage. Waits for a start signal to begin operation. This also verifies if the Python code is correctly generating and saving the mif files
+    The VHDL testbench was designed to simulate the operation of the NPU, including both the Baseline Systolic Array and the Optimised Systolic Array. The testbench is executed on ModelSim-Altera 10.1d, a widely used simulation tool for VHDL designs. Furthermore, the Optimised Systolic Array is synthesised on the Intel DE1-SoC FPGA board using Quartus Prime 18.1 software to evaluate its performance on real hardware. 
+    \newline\newline
+    The testbench operates by providing input matrices to the NPU and monitoring the output results. Both systolic array designs are tested under similar conditions to ensure a fair comparison. The key differences between the two designs are as follows:
+    \begin{itemize}
+        \item \textbf{Baseline Systolic Array}: The input matrices are hardcoded into the testbench for static testing. The system starts operation immediately upon, without waiting for a start signal, and the matrices are directly sent to the control unit.
 
-    - Measures latency  by counting number of clock cycles 
-    - provides insight to the performance of the NPU, allowing for comparison between the Baseline and Optimised Systolic Arrays
-    - Checks if the control unit inputted properly, like the staggering behaviour we expect
+        \item \textbf{Optimised Systolic Array}: The input matrices are pre-loaded and read from the ROMs using mif files generated from the Python pre-processing stage. The system waits for a start signal to begin operation to check if the control unit has received the inputs correctly. 
+    \end{itemize}
 
-    - Additionally, the testbench monitors the output of the NPU to verify the correctness of the matrix multiplication results. The output is compared against expected results calculated in Python AND MATLAB to ensure that the NPU operates correctly.
+    The testbench counts the latency by counting the number of clock cycles taken for the NPU to complete the matrix multiplication operation. This measurement provides insight into the NPU performance, allowing for a direct comparison between the Baseline and Optimised Systolic Array. Furthermore, the testbench monitors the output of the NPU to verify the correct of the matrix multiplication results. This is cross-verified against expected results calculated in both Python and MATLAB to ensure the NPU operates correctly. Another crucial behaviour that the testbench verifies is the staggering behaviour of the control unit inputs, ensuring that data is fed into the systolic array in the expected manner.
 
-    - The testbench is designed to be modular, allowing for easy modification and extension. This modularity is crucial for testing different configurations of the NPU, such as varying the size of the input matrices or changing the sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design.  
+    The modularity of the testbench allows for easy modification and extension, essential for testing different test cases. This includes varying size of input matrices and different sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design.
 
-    - The Appendix will include screenshots of all the ModelSim results alongside its expected results from Python/MATLAB 
-    - For the purpose of the project, we will looking into a dense 8x8 matrix (Fig X), 1x8 matrix (Fig X), and a 4x8 matrix (Fig X) to compare the performance of the Baseline and Optimised systolic arrays. 
+    Appendix X includes screenshots of all the ModelSim results alongside the expected results from Python and MATLAB for reference. For the purpose of this report, three types of matrices were tested: a dense 8x8 matrix, a sparse 1x8 matrix, and a 4x8 matrix. These examples were chosen to compare the performance of the Baseline and Optimised Systolic Arrays under different conditions.
+
 
     
     \subsection{Baseline Performance)} \label{sec: perform base}
     % Present the results of running a full 8x8 matrix through your NPU.
     % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
     - This version is purely simulated, no hardware synthesis. There was no synthesise because the focus of this project is to handle sparsity, and the Baseline Systolic Array is simply a reference point to compare against. Additionally, the Baseline Systolic Array is not designed to handle sparsity, so synthesising it would not provide any meaningful insights into its performance but rather as a check if the standalone systolic array behaviour works correctly.
+    - the dense 8x8 matrix will confirm that the systolic array works as intended
+    - the 4x8 matrix will show how the systolic array can adapt to different sizes
+    - the 1x8 matrix will show no matter how sparse the matrix is, the systolic array will still have to process the entire row, showing the inefficiency of the baseline systolic array when handling sparsity
+
+
+    - show three examples where the expected outcome is the same as the modelsim output
+    - show the latency for each example in clock cycles
+    - what part was verified and how? how can we say yes, the baseline systolic array works as intended?
+
 
     
     
     \subsection{Optimised Performance)} \label{sec: perform optimised}
-    % Present the results of running a sparse, stripped matrix through your NPU.
-    % What were the new, smaller `active_rows` and `active_cols`?
-    % What was the new, lower latency? How did the resource utilization change (if at all)?
-    
-    % \subsection{Systolic Array for Sparse Handling deployed on FPGA}
-    % - the final iteration of the systolic array is synthesised and deployed on an de1-soc fpga. 
-    % - this is important as it allows for real-world testing of the hardware design, validating its effectiveness in handling sparsity
-    % - the de1-soc fpga is chosen as there is prior experience in using the board and is easily available 
-    % - the design above is compiled into a top-level, called NPU\_wrapper, and is instantiated in a de1\_soc\_top file.
-    % - this file is how the NPU communicates with the fpga board, allowing for easy testing and verification of the hardware design
-    % - the important peripherals are the buttons and the leads
-    % - additionally, a raspberry pi pico is connected to the UART through the GPIO pins
-    % - this allows for easy communication between the fpga and a computer, allowing for easy testing and verification of the hardware design
-    % - the way all the peripherals and GPIO works is that when KEY1 is pressed, it starts a signal to the NPU to start. a counter for the amount of clock cycles is started. when the NPU is done, it sends a signal to the de1\_soc\_top file, which stops the counter. the counter value is then sent to the raspberry pi pico through the UART, which then sends it to a computer through USB. this allows for easy measurement of the latency of the hardware design
-    % - as we have to decode the value from the UART, the LEDs represent the number it received, and on top, we verify this using modelsim 
-    
+    - Present the results of running both dense and sparse matrices through your Optimised NPU.
+    - What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
+    - show three examples where the expected outcome is the same as the modelsim output
+    - show the latency for each example in clock cycles
+    - demonstrate the software design here. show the pre-processing steps in python, show the mif file generated, then show how the mif file is loaded into the ROMs in the hardware design. this is important as it shows the co-design aspect of the project, where software and hardware work together to achieve the desired outcome.This also verifies if the Python code is correctly generating and saving the mif files.
+    - show how we are actually getting data from real images. compare and constrast the different images, the sparsity it produces, and how the optimised systolic array handles it better than the baseline systolic array.
+    - what part was verified and how? how can we say yes, the optimised systolic array works as intended?
+
     \subsection{Performance Analysis}\label{sec: per analysis}
     % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).
     % Use tables and graphs to make this comparison clear and impactful. This is where you prove your design works and is effective.
+    - create a table that compares the latency of the Baseline and Optimised systolic arrays for each example
+    - this section is going to be purely numbers based and comparisons
+
 
 \section{Discussion} \label{sec: discussion}
     \subsection{Analysis of Results} \label{sec: analysis}
     % Go deeper than the numbers. Why did your design achieve the speedup it did?
     % How does your result compare to the theoretical speedup?
+    - this section should be the WHYs of the performance analysis section
+    - what caused the design to perform? better or worse than expected?
+    - was there anything we missed? 
+    - tie this back to the research:
+    - did we satisfy the research gap we identified?
+    - did we achieve our objectives from the introduction?
+    - what are the key takeaways from this project?
+    - can this design be used in real-world applications? why or why not?
     
     
     \subsection{Design Trade-offs} \label{sec: trade-offs}
     % Discuss the choices you made. Why did you choose to do the stripping in software (Python) instead of in hardware? 
     % What are the pros and cons of this decision? (e.g., Pro: Simpler hardware design. Con: Not a real-time system.)
+    - discuss the pros and cons of the software-hardware co-design approach
+    - discuss the pros and cons of the coordinated row removal algorithm
+
     
     \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
+    - discuss the limitations of the current design
+    - discuss the limitations of the testing methodology
+    - discuss the scope limitation and time constraints of the project
 
-    % !!Energy-efficiency is a critical consideration when designing hardware accelerators for edge devices, where power resources are limited. Efficient energy usage not only extends battery life but produces less heat, important for maintaining device performance and lifespan.
+\section{Future Work} \label{sec: future work}
+    % What would be the next logical steps for this project?
+    % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
+    - talk about short-term and long-term future work
+    - short-term: optimizing the current design, improving the software-hardware co-design process
+    - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)
+
     
 \section{Conclusion} \label{sec: conclusion}
     % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
     % Reiterate the importance and success of your contributions.
 
-\section{Future Work} \label{sec: future work}
-    % What would be the next logical steps for this project?
-    % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
+
 
 % --- Bibliography ---
 \newpage
