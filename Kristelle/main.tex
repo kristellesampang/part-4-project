@@ -492,8 +492,8 @@ Thank important people here.
 \section{Literature Review} \label{sec: literature review}
 
 
-    This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. It explroes the challenges posed by sparsity and reviews existing hardware architectures deisgned to mitigate these issues, leading to the motivation for this project.
-    % !! Add more after section is completed
+    This section delves deep into the novelties and gaps in the current research on handling sparsity in neural networks, particularly in the context of systolic arrays. It explores the challenges posed by sparsity and reviews existing hardware architectures designed to mitigate these issues, leading to the motivation for this project.   
+
 
     \subsection{Sparsity in Neural Networks} \label{sec: sparsity in nn}
     % Explain where the zeros come from and why they are a problem.
@@ -501,9 +501,9 @@ Thank important people here.
     %     the weight and activation matrices.
     % 2.  **Sources of Sparsity**:
     As discussed in Section \ref{sec:CNN}, sparsity is a property of matrices that arise from many sources, such as activation functions and model compression techniques. This section explores these in detail to find the root cause of sparsity in neural networks. 
-    
+
         \subsubsection{Rectified Linear Unit (ReLU)} \label{sec: relu}
-        To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec:CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
+        To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers \cite{tan_vanishing_2019}. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec:CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
 
 
     
@@ -517,6 +517,7 @@ Thank important people here.
     \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
     % !! introductory / bridging paragraph
+    This section explores various hardware techniques that have been discovered to handle sparsity in neural networks. The main methods are power-gating and zero-skipping, compressed data formats, and specialised dataflows and architectures. Each method has its own advantages and disadvantages, discussed in detail below.
         \subsubsection{Power Gating and Zero-Skipping} \label{sec: power-gating}
         As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. The most straight forward approach to handling sparsity in hardware is power-gating. This method skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate.
         

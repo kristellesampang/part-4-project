@@ -24,7 +24,7 @@
 \contentsline {subsubsection}{\numberline {4.2.2}Tiling and .mif File Generation}{7}{subsubsection.4.2.2}%
 \contentsline {subsection}{\numberline {4.3}Baseline Systolic Array Architecture}{8}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Processing Elements and Systolic Array Formation}{8}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{10}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{9}{subsubsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.4}Optimised Systolic Array for Sparse Matrices Architecture}{11}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Hardware System Overview}{11}{subsubsection.4.4.1}%
 \contentsline {subsubsection}{\numberline {4.4.2}Sparse Handling Algorithm}{11}{subsubsection.4.4.2}%
@@ -33,7 +33,7 @@
 \contentsline {subsubsection}{\numberline {4.4.5}Control Unit and Systolic Array}{13}{subsubsection.4.4.5}%
 \contentsline {section}{\numberline {5}Verification and Results}{14}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Testbench and Simulation Environment}{14}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Baseline Performance)}{14}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.2}Baseline Performance)}{15}{subsection.5.2}%
 \contentsline {subsection}{\numberline {5.3}Optimised Performance)}{15}{subsection.5.3}%
 \contentsline {subsection}{\numberline {5.4}Performance Analysis}{15}{subsection.5.4}%
 \contentsline {section}{\numberline {6}Discussion}{15}{section.6}%

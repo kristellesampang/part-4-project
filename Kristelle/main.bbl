@@ -871,6 +871,41 @@
       \verb https://dl.acm.org/doi/10.1145/3392717.3392751
       \endverb
     \endentry
+    \entry{tan_vanishing_2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=f72eb981a97f3a84e43f89bb5e5a9134}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Hong\bibnamedelima Hui},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=ce7cea63a3a82d5e36151a64693814d3}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={King\bibnamedelima Hann},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{fullhash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{fullhashraw}{f85547b8249528d8462c8de8471e9b62}
+      \strng{bibnamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorbibnamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authornamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorfullhash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorfullhashraw}{f85547b8249528d8462c8de8471e9b62}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deep structured learning has emerged as a new area of machine learning research with its wide range of applications in signal and information processing. There are two general aspects often discussed in various high level descriptions of deep learning: i.e. (a) its structural models consisting of multiple layers or stages intended for non-linear information processing, (b) optimization techniques speciﬁcally for supervised or unsupervised learning of feature representation at sequentially higher abstract layers. However, non-linear higher level abstraction are prone to vanishing gradient problem with saturated activation functions. In this paper, the experiment is setup to examine the plausibility of applying Approximate Greatest Descent in deep neural networks. The experiments tested both saturated and unsaturated activation function with up to ﬁve hidden layers. As a result, stochastic diagonal approximate greatest descent (SDAGD) demonstrated no sign of vanishing gradient when training with both saturated and unsaturated activation functions. When hidden layers are added, SDAGD could obtain reasonable results as compared to Stochastic Gradient Descent (SGD).}
+      \field{title}{Vanishing {Gradient} {Mitigation} with {Deep} {Learning} {Neural} {Network} {Optimization}}
+      \field{year}{2019}
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\5J98J2JX\\Tan and Lim - 2019 - Vanishing Gradient Mitigation with Deep Learning Neural Network Optimization.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{kim_fpga_2021}{inproceedings}{}{}
       \name{author}{4}{}{%
         {{hash=6152705b3e688d9c8905d55ef8ea611e}{%
@@ -912,8 +947,8 @@
       \strng{authorfullhash}{c65df112665117882abbc7a8c085ce77}
       \strng{authorfullhashraw}{c65df112665117882abbc7a8c085ce77}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{In this study, we aim to design an energy-efﬁcient computation system for deep neural networks on edge devices. To maximize energy efﬁciency, we design a novel hardware accelerator that supports low-precision computation and sparsityaware structured zero-skipping on top of the well-known systolicarray structure. In addition, we introduce a full-stack software platform, including a model optimizer, instruction compiler, and host interface, to translate the pre-trained PyTorch model to the proposed accelerator and orchestrate it automatically. We validate the entire system by prototyping the accelerator on the Xilinx Alveo U250 FPGA board and demonstrating the inference of the 4-bit ResNet-50 model through the software stack. According to our experiment, our platform shows 317 GOPS inference speed and 51.96 GOPS/W energy efﬁciency for ResNet-50 on Xilinx Alveo U250 FPGA at 108 MHz, which is comparable to the advanced commercial acceleration system in terms of energy efﬁciency.}
@@ -1247,8 +1282,8 @@
       \strng{authornamehash}{a1c0e578cd4814d8a8a75e769061bbcb}
       \strng{authorfullhash}{e5e3660c056ff22835cdb065a2fdd483}
       \strng{authorfullhashraw}{e5e3660c056ff22835cdb065a2fdd483}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{The advent of Deep Learning (DL) has radically transformed the computing industry across the entire spectrum from algorithms to circuits. As myriad application domains embrace DL, it has become synonymous with a genre of workloads across vision, speech, language, recommendations, robotics, and games. The key compute kernel within most DL workloads is general matrix-matrix multiplications (GEMMs), which appears frequently during both the forward pass (inference and training) and backward pass (training). GEMMs are a natural choice for hardware acceleration to speed up training, and have led to 2D systolic architectures like NVIDIA tensor cores and Google Tensor Processing Unit (TPU).}

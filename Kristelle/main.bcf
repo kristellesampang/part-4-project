@@ -2391,30 +2391,31 @@
     <bcf:citekey order="16" intorder="1">seo_versa_2024</bcf:citekey>
     <bcf:citekey order="17" intorder="1">he_sparse-tpu_2020</bcf:citekey>
     <bcf:citekey order="17" intorder="2">sun_sense_2023</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">sun_sense_2023</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">kim_fpga_2021</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">gorvadiya_energy_2025</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">he_sparse-tpu_2020</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">parashar_scnn_2017</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">duk_kim_24_2020</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">kim_fpga_2021</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">he_sparse-tpu_2020</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">seo_versa_2024</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">palacios_systolic_2025</bcf:citekey>
-    <bcf:citekey order="27" intorder="2">kim_fpga_2021</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">seo_versa_2024</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">he_sparse-tpu_2020</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">parashar_scnn_2017</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">he_sparse-tpu_2020</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">parashar_scnn_2017</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">palacios_systolic_2025</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">parashar_scnn_2017</bcf:citekey>
-    <bcf:citekey order="34" intorder="2">sun_sense_2023</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">gorvadiya_energy_2025</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">palacios_systolic_2025</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">parashar_scnn_2017</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">sun_sense_2023</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">qin_sigma_2020</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">tan_vanishing_2019</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">sun_sense_2023</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">kim_fpga_2021</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">gorvadiya_energy_2025</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">duk_kim_24_2020</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">kim_fpga_2021</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">seo_versa_2024</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">palacios_systolic_2025</bcf:citekey>
+    <bcf:citekey order="28" intorder="2">kim_fpga_2021</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">seo_versa_2024</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="31" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">he_sparse-tpu_2020</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">palacios_systolic_2025</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="35" intorder="2">sun_sense_2023</bcf:citekey>
+    <bcf:citekey order="36" intorder="1">gorvadiya_energy_2025</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">palacios_systolic_2025</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">parashar_scnn_2017</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">sun_sense_2023</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">qin_sigma_2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
