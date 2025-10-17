@@ -595,7 +595,7 @@ Thank important people here.
         % !! add more detail for reproducibility
      
 
-        \subsubsection{Tiling and .mif File Generation}\label{sec: tiling}
+        \subsubsection{Tiling and File Generation}\label{sec: tiling}
         % !! find the alexnet size Conv weights shape: (64, 363) Activation shape: (3025, 576)
         % why tile: 
         
@@ -636,7 +636,7 @@ Thank important people here.
 
 
     The dataflow inputted to the systolic array is designed to be highly efficient. Weights are fed into the array from the left, moving horizontally across each row of PEs. Activations are fed in from the top, moving vertically down each column. As weights and activations move through the array, each PE performs its MAC operation and passes the activation to the PE below it and the weight to the PE to its right. This creates a wave-like motion of data flowing through the array, ensuring that all PEs are utilised effectively. The output partial sums are stored in local registers within each PE until the entire matrix multiplication is complete. Once all inputs have been processed, the final output feature map is read out from the bottom-right corner of the array.
-
+    % !! have a reference that shows the staggering input
 
     The dataflow of the systolic array is designed to be highly efficient. Weights are fed into the array from the left, moving horizontally across each row of PEs. Activations are fed in from the top, moving vertically down each column. As weights and activations move through the array, each PE performs its MAC operation and passes the activation to the PE below it and the weight to the PE to its right. This creates a wave-like motion of data flowing through the array, ensuring that all PEs are utilised effectively. This staggered input of weights and activations allows for continuous operation of the array, maximising throughput. Figure \ref{fig:baseline_dataflow} illustrates the dataflow for a 3x3 systolic array. The output partial sums are stored in local registers within each PE until the entire matrix multiplication is complete. Once all inputs have been processed, the final output feature map is read out.  
 
@@ -754,7 +754,7 @@ Thank important people here.
     % Describe your VHDL testbench. How does it work? What does it measure (latency)?
     % What tools did you use (ModelSim, Quartus)?
     The VHDL testbench was designed to simulate the operation of the NPU, including both the Baseline Systolic Array and the Optimised Systolic Array. The testbench is executed on ModelSim-Altera 10.1d, a widely used simulation tool for VHDL designs. Furthermore, the Optimised Systolic Array is synthesised on the Intel DE1-SoC FPGA board using Quartus Prime 18.1 software to evaluate its performance on real hardware. 
-    \newline\newline
+    \newline
     The testbench operates by providing input matrices to the NPU and monitoring the output results. Both systolic array designs are tested under similar conditions to ensure a fair comparison. The key differences between the two designs are as follows:
     \begin{itemize}
         \item \textbf{Baseline Systolic Array}: The input matrices are hardcoded into the testbench for static testing. The system starts operation immediately upon, without waiting for a start signal, and the matrices are directly sent to the control unit.
@@ -770,71 +770,77 @@ Thank important people here.
 
 
     
-    \subsection{Baseline Performance)} \label{sec: perform base}
-    % Present the results of running a full 8x8 matrix through your NPU.
-    % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
-    - This version is purely simulated, no hardware synthesis. There was no synthesise because the focus of this project is to handle sparsity, and the Baseline Systolic Array is simply a reference point to compare against. Additionally, the Baseline Systolic Array is not designed to handle sparsity, so synthesising it would not provide any meaningful insights into its performance but rather as a check if the standalone systolic array behaviour works correctly.
-    - the dense 8x8 matrix will confirm that the systolic array works as intended
-    - the 4x8 matrix will show how the systolic array can adapt to different sizes
-    - the 1x8 matrix will show no matter how sparse the matrix is, the systolic array will still have to process the entire row, showing the inefficiency of the baseline systolic array when handling sparsity
+    \subsection{Baseline Systolic Array Performance} \label{sec: perform base}
+
+    This section presents the performance results of the Baseline Systolic Array when processing various input matrices. The focus is on evaluating the latency in clock cycles for different matrix sizes and sparsity patterns. The Baseline Systolic Array is a reference design, primarily used to validate the functionality of the systolic array architecture without optimisation for sparsity. Therefore, all verification was conducted on simulation without synthesis, as its primary goal is to establish a baseline comparison point for the Optimised Systolic Array. Additionally, as this version does not implement sparsity handling, synthesising would not yield meaningful insights into its performance in sparse scenarios.
+
+    Three test cases were executed to assess the performance of the Baseline Systolic Array:
+    \begin{itemize}
+        \item \textbf{Dense 8x8 Matrix}: This test case confirms the correct operation of the systolic array. The expected output matches the Python calculations, validating the functionality of the design. The measured latency for this case was X clock cycles.
+        
+        \item \textbf{4x8 Matrix}: This test case demonstrates the adaptability of the systolic array to different input sizes. The systolic array successfully processed the 4x8 matrix, with the expected output aligning with the simulation results. The measured latency for this case was Y clock cycles.
+        
+        \item \textbf{1x8 Sparse Matrix}: This test case highlights the inefficiency of the Baseline Systolic Array when handling sparsity. Despite the high sparsity of the input matrix, the systolic array processed the entire row, resulting in unnecessary computations. The expected output matched the simulation results, confirming correct operation. The measured latency for this case was Z clock cycles.
+
+    \end{itemize}
+
+    Table X summarises the latency results for each test case, with some additional test cases included for completeness. The results demonstrate the consistent performance of the Baseline Systolic Array across different input scenarios, proving its correctness.
+
+    The verification process involved cross-referencing the output results from ModelSim with expected results calculated in Python and MATLAB. The successful matching of outputs across all test cases confirms that the Baseline Systolic Array operates as intended. The latency measurements provide a benchmark for comparison with the Optimised Systolic Array. Furthermore, the simulation results validated the correctness of the systolic array's dataflow and control unit operations mentioned in Section \ref{sec: baseline cu}.
+    % !! create a table that summarises the results of other test cases with latency values
 
 
-    - show three examples where the expected outcome is the same as the modelsim output
-    - show the latency for each example in clock cycles
-    - what part was verified and how? how can we say yes, the baseline systolic array works as intended?
 
 
-    
-    
-    \subsection{Optimised Performance)} \label{sec: perform optimised}
-    - Present the results of running both dense and sparse matrices through your Optimised NPU.
-    - What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
-    - show three examples where the expected outcome is the same as the modelsim output
-    - show the latency for each example in clock cycles
-    - demonstrate the software design here. show the pre-processing steps in python, show the mif file generated, then show how the mif file is loaded into the ROMs in the hardware design. this is important as it shows the co-design aspect of the project, where software and hardware work together to achieve the desired outcome.This also verifies if the Python code is correctly generating and saving the mif files.
-    - show how we are actually getting data from real images. compare and constrast the different images, the sparsity it produces, and how the optimised systolic array handles it better than the baseline systolic array.
-    - what part was verified and how? how can we say yes, the optimised systolic array works as intended?
+    \subsection{Optimised Systolic Array Performance} \label{sec: perform optimised}
+    % - Present the results of running both dense and sparse matrices through your Optimised NPU.
+    % - What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
+    % - show three examples where the expected outcome is the same as the modelsim output
+    % - show the latency for each example in clock cycles
+    % - demonstrate the software design here. show the pre-processing steps in python, show the mif file generated, then show how the mif file is loaded into the ROMs in the hardware design. this is important as it shows the co-design aspect of the project, where software and hardware work together to achieve the desired outcome.This also verifies if the Python code is correctly generating and saving the mif files.
+    % - show how we are actually getting data from real images. compare and constrast the different images, the sparsity it produces, and how the optimised systolic array handles it better than the baseline systolic array.
+    % - what part was verified and how? how can we say yes, the optimised systolic array works as intended?
 
     \subsection{Performance Analysis}\label{sec: per analysis}
     % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).
     % Use tables and graphs to make this comparison clear and impactful. This is where you prove your design works and is effective.
-    - create a table that compares the latency of the Baseline and Optimised systolic arrays for each example
-    - this section is going to be purely numbers based and comparisons
+    % - create a table that compares the latency of the Baseline and Optimised systolic arrays for each example
+    % - this section is going to be purely numbers based and comparisons
 
 
 \section{Discussion} \label{sec: discussion}
     \subsection{Analysis of Results} \label{sec: analysis}
     % Go deeper than the numbers. Why did your design achieve the speedup it did?
     % How does your result compare to the theoretical speedup?
-    - this section should be the WHYs of the performance analysis section
-    - what caused the design to perform? better or worse than expected?
-    - was there anything we missed? 
-    - tie this back to the research:
-    - did we satisfy the research gap we identified?
-    - did we achieve our objectives from the introduction?
-    - what are the key takeaways from this project?
-    - can this design be used in real-world applications? why or why not?
+    % - this section should be the WHYs of the performance analysis section
+    % - what caused the design to perform? better or worse than expected?
+    % - was there anything we missed? 
+    % - tie this back to the research:
+    % - did we satisfy the research gap we identified?
+    % - did we achieve our objectives from the introduction?
+    % - what are the key takeaways from this project?
+    % - can this design be used in real-world applications? why or why not?
     
     
     \subsection{Design Trade-offs} \label{sec: trade-offs}
     % Discuss the choices you made. Why did you choose to do the stripping in software (Python) instead of in hardware? 
     % What are the pros and cons of this decision? (e.g., Pro: Simpler hardware design. Con: Not a real-time system.)
-    - discuss the pros and cons of the software-hardware co-design approach
-    - discuss the pros and cons of the coordinated row removal algorithm
+    % - discuss the pros and cons of the software-hardware co-design approach
+    % - discuss the pros and cons of the coordinated row removal algorithm
 
     
     \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
-    - discuss the limitations of the current design
-    - discuss the limitations of the testing methodology
-    - discuss the scope limitation and time constraints of the project
+    % - discuss the limitations of the current design
+    % - discuss the limitations of the testing methodology
+    % - discuss the scope limitation and time constraints of the project
 
 \section{Future Work} \label{sec: future work}
     % What would be the next logical steps for this project?
     % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
-    - talk about short-term and long-term future work
-    - short-term: optimizing the current design, improving the software-hardware co-design process
-    - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)
+    % - talk about short-term and long-term future work
+    % - short-term: optimizing the current design, improving the software-hardware co-design process
+    % - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)
 
     
 \section{Conclusion} \label{sec: conclusion}
