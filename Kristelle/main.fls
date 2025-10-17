@@ -555,6 +555,16 @@ INPUT ./figures/baseline_systolic_array_dataflow.jpg
 INPUT ./figures/baseline_systolic_array_dataflow.jpg
 INPUT ./figures/baseline_systolic_array_dataflow.jpg
 INPUT ./figures/baseline_systolic_array_dataflow.jpg
+INPUT ./results/Latency of Baseline Systolic Array on Different NxN sizes.png
+INPUT ./results/Latency of Baseline Systolic Array on Different NxN sizes.png
+INPUT ./results/Latency of Baseline Systolic Array on Different NxN sizes.png
+INPUT ./results/Latency of Baseline Systolic Array on Different NxN sizes.png
+INPUT ./results/Latency of Baseline Systolic Array on Different NxN sizes.png
+INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
+INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
+INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
+INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
+INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc8t.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc8t.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm

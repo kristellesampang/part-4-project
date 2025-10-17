@@ -63,7 +63,7 @@ begin
                 for i in 0 to array_size - 1 loop
                     if count >= i and count < i + array_size then
                         data_reg(i) <= matrix_data(i, count - i);
-                        if data_reg(i) = x"00" and count >= 2 then
+                        if data_reg(i) = x"00" and count >= 2 yythen
                             done_internal <= '1';
                         end if;
                     else

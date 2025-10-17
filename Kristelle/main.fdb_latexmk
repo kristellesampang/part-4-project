@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760739811.87799 "main.bcf" "main.bbl" "main" 1760741475.12086 0
+["biber main"] 1760739811.87799 "main.bcf" "main.bbl" "main" 1760742858.89241 0
   "final_report.bib" 1760694790 74180 70dd3d84460676e3c712a4fbc82f298b ""
-  "main.bcf" 1760741474 110902 778cbb363857fa44bfd7fc72268e766f "pdflatex"
+  "main.bcf" 1760742858 110902 778cbb363857fa44bfd7fc72268e766f "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760741470.23391 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760741475.12215 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760741469 88271 54338b5977c66bcff36b8103388a854d ""
+["pdflatex"] 1760742854.61163 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760742858.89348 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760742853 88562 4830012d2a034d0dbdc550af0a947ec1 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1744948596 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -281,14 +281,16 @@
   "figures/cat.jpg" 1759222068 138526 7ba11f02fa20b0ec09fe92b2e0c6c078 ""
   "figures/date.png" 1760493387 11011 34ccf860ae95a59a239f3f1ba8e4679f ""
   "figures/signature.png" 1760493396 16213 ca2c53f49a580472bc42db51e9d1186c ""
-  "main.aux" 1760741474 15187 af7112ed66635b9cfb9d83d0d89acab0 "pdflatex"
+  "main.aux" 1760742858 15805 8555fd1c06b3f88058ab69c39ec57e30 "pdflatex"
   "main.bbl" 1760739815 74552 f23cc4af7df12a8400350173e65ccfa5 "biber main"
-  "main.lof" 1760741474 510 cd5dd7bbedb5d30cbe8652451db01141 "pdflatex"
+  "main.lof" 1760742858 788 c92e2b1d59f200b751ba7367cb014e88 "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760741474 9455 a0967a270ee4757f6181cfa935e31f30 "pdflatex"
-  "main.run.xml" 1760741474 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760741469 88271 54338b5977c66bcff36b8103388a854d ""
-  "main.toc" 1760741474 4149 52acf4d912a2e6111eed4dd64d6fe731 "pdflatex"
+  "main.out" 1760742858 9455 a0967a270ee4757f6181cfa935e31f30 "pdflatex"
+  "main.run.xml" 1760742858 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760742853 88562 4830012d2a034d0dbdc550af0a947ec1 ""
+  "main.toc" 1760742858 4149 52acf4d912a2e6111eed4dd64d6fe731 "pdflatex"
+  "results/Latency of Baseline Systolic Array on Different NxN sizes.png" 1760741126 4933 4734eeef3ca9a1964ef59da745fa2ef8 ""
+  "results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png" 1760741103 5892 654f7a58e0f1a27f1abed00b2ec0a63f ""
   (generated)
   "main.aux"
   "main.bcf"

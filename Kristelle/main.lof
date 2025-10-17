@@ -2,3 +2,5 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Image of the MAC unit in the Processing Element (PE)}}{9}{figure.caption.2}%
 \contentsline {figure}{\numberline {3}{\ignorespaces Image of the Baseline Systolic Array Arrangement}}{10}{figure.caption.3}%
 \contentsline {figure}{\numberline {4}{\ignorespaces Image of the Baseline Systolic Array's Dataflow}}{11}{figure.caption.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Latency of Baseline Systolic Array on Different NxN sizes}}{15}{figure.caption.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Latency of Baseline Systolic Array on Varying Input Matrix Size}}{16}{figure.caption.6}%
