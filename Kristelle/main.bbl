@@ -667,6 +667,89 @@
       \verb https://ieeexplore.ieee.org/document/10525057/
       \endverb
     \endentry
+    \entry{gorvadiya_energy_2025}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=138fab28392e37d3d3b5b8774472c342}{%
+           family={Gorvadiya},
+           familyi={G\bibinitperiod},
+           given={Jay},
+           giveni={J\bibinitperiod}}}%
+        {{hash=59424db4fddeaf4efab4c53bf1b0ee02}{%
+           family={Chagela},
+           familyi={C\bibinitperiod},
+           given={Ankur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ee24823c42999ac24bd003142051b0e1}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Mohendra},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Gandhinagar, India}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{fullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{fullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{bibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorbibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authornamehash}{5ce1056f7b4be2d472d28c5fb2df0136}
+      \strng{authorfullhash}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{authorfullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As deep learning models are increasingly being deployed on resource-constrained edge devices, the need to develop techniques to make the model more energy efficient without sacrificing its performance becomes crucial. In this study we explored the three most prominent approaches, such as bit quantization, model pruning, and adaptive switching techniques to address the computational and memory overheads of deep neural networks. Bit quantization reduces the weight and activation precisions, effectively lowering the hardware requirements for both storage and computation. Again the model pruning eliminates redundant parameters; thus, reduces the model complexity, and boost the inference time. Along with all these methods the adaptive switching techniques allow the model’s parameters or structure to switch at run-time so that trade-off between accuracy and energy consumption is dynamically optimized. In this paper we explored the advantages and limitations of such techniques for edge devices through a comprehensive study of recent advancements and methodologies. Point out that the open challenge on how to balance model performance with energy efficiency and future directions for the optimization of deep learning models for edge computing environments.}
+      \field{booktitle}{2025 {International} {Conference} on {Sustainable} {Energy} {Technologies} and {Computational} {Intelligence} ({SETCOM})}
+      \field{isbn}{979-8-3315-2054-0}
+      \field{month}{2}
+      \field{title}{Energy {Efficient} {Pruning} and {Quantization} {Methods} for {Deep} {Learning} {Models}}
+      \field{urlday}{28}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/SETCOM64758.2025.10932458
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\H6XN8PYV\\Gorvadiya et al. - 2025 - Energy Efficient Pruning and Quantization Methods for Deep Learning Models.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10932458/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10932458/
+      \endverb
+    \endentry
+    \entry{noauthor_what_nodate}{misc}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{What is low-precision computing? - {IBM} {Research}}
+      \field{urlday}{2}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb What is low-precision computing? - IBM Research:C\:\\Users\\iamkr\\Zotero\\storage\\9BEP6QUK\\low-precision-computing.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://research.ibm.com/blog/low-precision-computing
+      \endverb
+      \verb{url}
+      \verb https://research.ibm.com/blog/low-precision-computing
+      \endverb
+    \endentry
     \entry{kim_fpga_2021}{inproceedings}{}{}
       \name{author}{4}{}{%
         {{hash=6152705b3e688d9c8905d55ef8ea611e}{%
@@ -737,68 +820,63 @@
       \verb https://ieeexplore.ieee.org/document/9806200/
       \endverb
     \endentry
-    \entry{gorvadiya_energy_2025}{inproceedings}{}{}
-      \name{author}{3}{}{%
-        {{hash=138fab28392e37d3d3b5b8774472c342}{%
-           family={Gorvadiya},
+    \entry{guha_secure_2024}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=eec868c6e7da90c5df123ea236e3c831}{%
+           family={Guha},
            familyi={G\bibinitperiod},
-           given={Jay},
-           giveni={J\bibinitperiod}}}%
-        {{hash=59424db4fddeaf4efab4c53bf1b0ee02}{%
-           family={Chagela},
+           given={Krishnendu},
+           giveni={K\bibinitperiod}}}%
+        {{hash=0fdf392532705affc27d61c202ac1693}{%
+           family={Chakrabarti},
            familyi={C\bibinitperiod},
-           given={Ankur},
+           given={Amlan},
            giveni={A\bibinitperiod}}}%
-        {{hash=ee24823c42999ac24bd003142051b0e1}{%
-           family={Roy},
-           familyi={R\bibinitperiod},
-           given={Mohendra},
-           giveni={M\bibinitperiod}}}%
       }
       \list{language}{1}{%
         {en}%
       }
       \list{location}{1}{%
-        {Gandhinagar, India}%
+        {Knoxville, TN, USA}%
       }
       \list{publisher}{1}{%
         {IEEE}%
       }
-      \strng{namehash}{5ce1056f7b4be2d472d28c5fb2df0136}
-      \strng{fullhash}{f0c2abfc8ff3646c583c927e50a63f23}
-      \strng{fullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
-      \strng{bibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
-      \strng{authorbibnamehash}{f0c2abfc8ff3646c583c927e50a63f23}
-      \strng{authornamehash}{5ce1056f7b4be2d472d28c5fb2df0136}
-      \strng{authorfullhash}{f0c2abfc8ff3646c583c927e50a63f23}
-      \strng{authorfullhashraw}{f0c2abfc8ff3646c583c927e50a63f23}
+      \strng{namehash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{fullhash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{fullhashraw}{88f3eb272b4f230fada52bce467da65b}
+      \strng{bibnamehash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{authorbibnamehash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{authornamehash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{authorfullhash}{88f3eb272b4f230fada52bce467da65b}
+      \strng{authorfullhashraw}{88f3eb272b4f230fada52bce467da65b}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{As deep learning models are increasingly being deployed on resource-constrained edge devices, the need to develop techniques to make the model more energy efficient without sacrificing its performance becomes crucial. In this study we explored the three most prominent approaches, such as bit quantization, model pruning, and adaptive switching techniques to address the computational and memory overheads of deep neural networks. Bit quantization reduces the weight and activation precisions, effectively lowering the hardware requirements for both storage and computation. Again the model pruning eliminates redundant parameters; thus, reduces the model complexity, and boost the inference time. Along with all these methods the adaptive switching techniques allow the model’s parameters or structure to switch at run-time so that trade-off between accuracy and energy consumption is dynamically optimized. In this paper we explored the advantages and limitations of such techniques for edge devices through a comprehensive study of recent advancements and methodologies. Point out that the open challenge on how to balance model performance with energy efficiency and future directions for the optimization of deep learning models for edge computing environments.}
-      \field{booktitle}{2025 {International} {Conference} on {Sustainable} {Energy} {Technologies} and {Computational} {Intelligence} ({SETCOM})}
-      \field{isbn}{979-8-3315-2054-0}
-      \field{month}{2}
-      \field{title}{Energy {Efficient} {Pruning} and {Quantization} {Methods} for {Deep} {Learning} {Models}}
-      \field{urlday}{28}
+      \field{abstract}{A key objective of the fourth industrial revolution or Industry 4.0 is to use processing resources that are reconﬁgurable and ﬂexible, having additional capability to run smart real time intelligent applications in short time. For this, designers deploy reconﬁgurable hardware or ﬁeld programmable gate arrays (FPGAs) in several critical infrastructures, along with cloud and edge platforms. Among the commonly used artiﬁcial neural networks, convolutional neural networks (CNNs) is one of the most widely used for various smart applications. Existing strategies of CNN implementation on FPGAs incur signiﬁcant resources and power, and hence, are not energy efﬁcient. These are even prone to side channel attacks. Moreover, they are associated with prunning and hence, do not generate accurate results, which are important for some real time applications. In our proposed methodology, we pre-compute various operations, mainly operations associated with secret information, which in the present case are weights and bias of the CNN for a particular application and store in available embedded memory blocks (EMBs) of an FPGA. On demand, these pre-computed results are accessed for real time operations. Via this methodology, we eradicate the side channel attacks that steals the weights and biases, obtain low resource utilization, low latency, low power and better energy efﬁciency, without any loss of accuracy. Such a mechanism is particularly suitable for high accuracy real time smart intelligent applications.}
+      \field{booktitle}{2024 {IEEE} {Computer} {Society} {Annual} {Symposium} on {VLSI} ({ISVLSI})}
+      \field{isbn}{979-8-3503-5411-9}
+      \field{month}{7}
+      \field{title}{Secure {Energy}-{Efficient} {Implementation} of {CNN} on {FPGAs} for {Accuracy} {Dependent} {Real} {Time} {Task} {Processing}}
+      \field{urlday}{31}
       \field{urlmonth}{3}
       \field{urlyear}{2025}
-      \field{year}{2025}
+      \field{year}{2024}
       \field{urldateera}{ce}
       \field{pages}{1\bibrangedash 6}
       \range{pages}{6}
       \verb{doi}
-      \verb 10.1109/SETCOM64758.2025.10932458
+      \verb 10.1109/ISVLSI61997.2024.00012
       \endverb
       \verb{file}
-      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\H6XN8PYV\\Gorvadiya et al. - 2025 - Energy Efficient Pruning and Quantization Methods for Deep Learning Models.pdf:application/pdf
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\T5N9FG58\\Guha and Chakrabarti - 2024 - Secure Energy-Efficient Implementation of CNN on FPGAs for Accuracy Dependent Real Time Task Process.pdf:application/pdf
       \endverb
       \verb{urlraw}
-      \verb https://ieeexplore.ieee.org/document/10932458/
+      \verb https://ieeexplore.ieee.org/document/10682707/
       \endverb
       \verb{url}
-      \verb https://ieeexplore.ieee.org/document/10932458/
+      \verb https://ieeexplore.ieee.org/document/10682707/
       \endverb
     \endentry
     \entry{he_sparse-tpu_2020}{inproceedings}{}{}
@@ -871,8 +949,8 @@
       \strng{authornamehash}{bc01dd833babf2939285f967677a5f27}
       \strng{authorfullhash}{95af5c696388462610933dec4729650c}
       \strng{authorfullhashraw}{95af5c696388462610933dec4729650c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{While systolic arrays are widely used for dense-matrix operations, they are seldom used for sparse-matrix operations. In this paper, we show how a systolic array of Multiply-and-Accumulate (MAC) units, similar to Google’s Tensor Processing Unit (TPU), can be adapted to efficiently handle sparse matrices. TPU-like accelerators are built upon a 2D array of MAC units and have demonstrated high throughput and efficiency for dense matrix multiplication, which is a key kernel in machine learning algorithms and is the target of the TPU. In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix and then propose a systolic array based system, Sparse-TPU, abbreviated to STPU, to accommodate the matrix computations for the packed denser matrix counterparts. To demonstrate the efficacy of our co-designed approach, we evaluate sparse matrix-vector multiplication on a broad set of synthetic and real-world sparse matrices. Experimental results show that STPU delivers 16.08× higher performance while consuming 4.39× and 19.79× lower energy for integer (int8) and floating point (float32) implementations, respectively, over a TPU baseline. Meanwhile, STPU has 12.93\% area overhead and an average of 4.14\% increase in dynamic energy over the TPU baseline for the float32 implementation.}
@@ -986,8 +1064,8 @@
       \strng{authornamehash}{75e665540cfd3c40d628e51e28f561a8}
       \strng{authorfullhash}{37596fbf81717c48d21789017c753ced}
       \strng{authorfullhashraw}{37596fbf81717c48d21789017c753ced}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2020 {IEEE} {International} {Solid}- {State} {Circuits} {Conference} - ({ISSCC})}

@@ -460,20 +460,39 @@ Thank important people here.
     
 
 
-    % !! expand on each cpu, gpu, npu, fpga (refer to either miro or logbook for this context)
+    
     % \cite{manor_custom_2022}: why we are making a hardware accelerator "However, the high computational demand required for Machine Learning (ML) inference on tiny microcontroller-based IoT devices avoids a direct software deployment on such resource-constrained edge devices. Therefore, various custom and application-specific NN hardware accelerators have been proposed to enable real-time Machine Learning (ML) inference on low-power and resource-limited edge devices." 
     % \cite{liu_energy-efficient_2024}: based on the table, we see that the CPU/FPGA relationship tends to perform best at image processing tasks
 
 
     \subsection{Systolic Array Architecture} \label{sec: systolic array }
-    A systolic array is a structured network of processing elements (PEs) where computations are carried out in a systematic approach, similar to pipelining. Each PE will receive, process, and pass on data to its neighbour concurrently in one clock cycle. Due to this, it provides characteristics like parallel computing, pipelining, synchronicity, and spatial and temporal locality.  These are advantageous as processes are completed simultaneously at higher speeds, computations are timed by a global clock for predictable data movement, and faster memory accessing time. Additionally, systolic arrays are highly compact together and allow simple data control flow. As its architecture is an array, it can easily be scaled for larger data sets, perfect for ML, and the predictable structure makes it easier to design and optimise algorithms. Furthermore, since the PEs are densely packed together, there are less data transmission, causing lower energy consumption. However, there are some disadvantages to systolic arrays. These include difficult and costly to build and specialised and inflexible in the problems it can solve, limiting its versatility. Because systolic arrayss offer high throughput and effiency, it is commonly used in NPUs to accelerate matrix multiplication, the core operation in a CNN's convolutional layer. However, its rigid and structured dataflow is inefficient for sparse matrices, leading to imbalanced workloads and low PE utilisation. This limitation motivates the need for a reconfigurable systolic array that can adapt to the sparsity in neural networks, becoming the focus of this project.
+    A systolic array is a structured network of processing elements (PEs) where computations are carried out in a systematic approach, similar to pipelining . Each PE will receive, process, and pass on data to its neighbour concurrently in one clock cycle \cite{kung_systolic_1978}. Due to this, it provides characteristics like parallel computing, pipelining, synchronicity, and spatial and temporal locality.  These are advantageous as processes are completed simultaneously at higher speeds, computations are timed by a global clock for predictable data movement, and faster memory accessing time. Additionally, systolic arrays are highly compact together and allow simple data control flow. As its architecture is an array, it can easily be scaled for larger data sets, perfect for ML, and the predictable structure makes it easier to design and optimise algorithms. Furthermore, since the PEs are densely packed together, there are less data transmission, causing lower energy consumption. Energy-efficiency is a critical consideration when designing hardware accelerators for edge devices, where power resources are limited. Efficient energy usage not only extends battery life but produces less heat, important for maintaining device performance and lifespan. 
+    \newline 
+    However, there are some disadvantages to systolic arrays. These include difficult and costly to build and specialised and inflexible in the problems it can solve, limiting its versatility. Because systolic arrays offer high throughput and efficiency, it is commonly used in NPUs to accelerate matrix multiplication, the core operation in a CNN's convolutional layer. However, its rigid and structured dataflow is inefficient for sparse matrices, leading to imbalanced workloads and low PE utilisation. This limitation motivates the need for a reconfigurable systolic array that can adapt to the sparsity in neural networks, becoming the focus of this project.
     % !! need more references here
     %  !! HT KUNG AND CHARLES E LEISERSON. 1979. Systolic Arrays (1st ed.). ACM Press, New York, NY, USA.
-    % !! insert image from that paper for visuals
+    
     % !! talk about how MAC is exploited in a systolic array
     % !! talk about how systolic arrays are used in NPUs
     % !! talk about how systolic arrays are good for dense matrices but not sparse matrices
     % !! talk about PE specifically 
+
+    % !! insert image from that paper for visuals
+
+    % - As systolic arrays offer high throughput, this suggests that it can help improve upon energy-efficiency when processing neural networks. 
+
+    \subsection{Energy-efficiency}\label{sec: energy-efficiency}
+     \textcite{gorvadiya_energy_2025} has identified the following key methods of mitigating unnecessary energy consumption in neural networks: 
+    \begin{itemize}
+    \item\textbf{Bit Quantisation} refers to representing the weights and activations of the models using lower-precision data types like INT8, FP16, and FP32.  The study found that INT8 decreases memory usage the most and is effective for edge devices that support 8-bit operations. Conversely, FP32 is unsuitable for edge devices if resources are scarce. Therefore, FP16 balances the trade-off between efficiency without sacrificing too much accuracy. 
+
+Because large quantities of instructions occur in one AI operation, individual instructions do not need high precision, so redundant precision can be excluded. Furthermore, in a neural network, each neuron completes a small task relative to the large task. This means that if a neuron makes a mistake, it is minute, and the other neurons can compensate to maintain accuracy and produce a reasonable prediction.  \parencite{noauthor_what_nodate}    
+
+
+\item\textbf{Model Pruning} removes unnecessary or duplicated data. It focuses on removing data that do not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that half the weights in convolutional layers can be set to zero without impacting the overall accuracy. To decide what should be pruned, it considers the sensitivity of the data and how it can influence the output effort. The results of Weight Pruning displayed that the impact on accuracy was only 1-2\% but saved 35\% on power. These results highlight the potential value of incorporating model pruning into the project. While pruning is typically applied during the training phase in software, this does not limit its relevance. Structured pruning is known to be suitable and well-supported in hardware as it produces regular patterns. 
+
+
+    % Energy-efficiency is a critical consideration in the design of hardware accelerators for AI, especially for edge devices where power resources are limited. Efficient energy usage not only extends battery life but also reduces heat generation, which is vital for maintaining device performance and longevity. Techniques such as quantisation and pruning are commonly employed to enhance energy-efficiency in neural networks. Quantisation reduces the precision of the weights and activations, leading to lower computational requirements and reduced memory bandwidth. Pruning, on the other hand, eliminates redundant or less significant weights, resulting in sparser models that require fewer computations. Both techniques contribute to reducing the overall energy consumption of AI models without significantly compromising their performance. This project aims to leverage these energy-efficient techniques within a reconfigurable systolic array architecture to optimize the processing of sparse neural networks, thereby addressing the challenges associated with energy consumption in edge AI applications.
 
 
     % !! energy-efficiency section from original literature review (quantisation, pruning etc)
@@ -806,6 +825,8 @@ Thank important people here.
     
     \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
+
+    % !!Energy-efficiency is a critical consideration when designing hardware accelerators for edge devices, where power resources are limited. Efficient energy usage not only extends battery life but produces less heat, important for maintaining device performance and lifespan.
     
 \section{Conclusion} \label{sec: conclusion}
     % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
