@@ -20,7 +20,8 @@ port(
     data_shift    : out input_shift_matrix;
     weight_shift  : out input_shift_matrix;
     cycle_count   : out integer;
-    PE_enabled_mask : out enabled_PE_matrix
+    PE_enabled_mask : out enabled_PE_matrix;
+    
 );
 end control_unit;
 
@@ -30,6 +31,7 @@ architecture behaviour of control_unit is
     signal weight_reg : input_shift_matrix := (others => (others => '0'));
     signal count      : integer := 0;
     signal mask_internal  : enabled_PE_matrix := (others => (others => '0'));
+
     
 begin
 

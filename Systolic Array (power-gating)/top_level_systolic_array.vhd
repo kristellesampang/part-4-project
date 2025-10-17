@@ -8,39 +8,26 @@ entity top_level_systolic_array is
     port (
         clk           : in  bit_1;
         reset         : in  bit_1;
+        size          : in integer;  -- size of the matrices (1 to N)
 
         -- Inputs to feed matrices
-        --matrix_data   : in  systolic_array_matrix_input;
-        --matrix_weight : in  systolic_array_matrix_input;
+        matrix_data   : in  systolic_array_matrix_input;
+        matrix_weight : in  systolic_array_matrix_input;
 
         -- Outputs from the systolic array
         output        : out systolic_array_matrix_output;
         cycle_count   : out integer;
+        done         : out bit_1  -- signal to indicate completion of operation
 
-        -- Debug signals
-        dbg_db_rdaddr     : out std_logic_vector(10 downto 0);
-        dbg_db_data_out   : out std_logic_vector(7 downto 0);
-        dbg_wb_rdaddr     : out std_logic_vector(10 downto 0);
-        dbg_wb_data_out   : out std_logic_vector(7 downto 0);
-        dbg_matrix_data   : out systolic_array_matrix_input;
-        dbg_matrix_weight : out systolic_array_matrix_input
     );
 end top_level_systolic_array;
 
 architecture structure of top_level_systolic_array is
 
     -- Internal signals to connect control unit and systolic array
+    signal enabled_PE_mask   : enabled_PE_matrix;
     signal data_shift_sig    : input_shift_matrix;
     signal weight_shift_sig  : input_shift_matrix;
-    signal enabled_PE_mask   : enabled_PE_matrix;
-
-    -- Data BRAM interface
-    signal db_rdaddr    : std_logic_vector(10 downto 0);
-    signal db_data_out  : std_logic_vector(7 downto 0);
-
-    -- Weight BRAM interface
-    signal wb_rdaddr    : std_logic_vector(10 downto 0);
-    signal wb_data_out  : std_logic_vector(7 downto 0);
 
     -- matrices fed to control unit
     signal matrix_data_sig  : systolic_array_matrix_input := (others => (others => (others => '0')));
@@ -51,66 +38,20 @@ architecture structure of top_level_systolic_array is
     signal loadingCompleteFlag : boolean := false;
 
     signal start_sig : bit_1 := '0';
+    
+    
 begin
-
-    DataBuffer : entity work.DataBuffer
-        port map (
-            clock		=> clk,
-            data		=> (others => '0'),
-            rdaddress   => db_rdaddr,
-            wraddress   => (others => '0'),
-            wren		=> '0',
-            q		    => db_data_out
-	);
-
-    WeightBuffer : entity work.WeightBuffer
-        port map (
-            clock		=> clk,
-            data		=> (others => '0'),
-            rdaddress   => wb_rdaddr,
-            wraddress   => (others => '0'),
-            wren		=> '0',
-            q		    => wb_data_out
-	);
-
-    -- Reading process
-    process(clk)
+    -- Connect input matrices to internal signals
+    matrix_data_sig <= matrix_data;
+    matrix_weight_sig <= matrix_weight;
+    
+    -- Start signal logic - start after reset is released
+    process(clk, reset)
     begin
-        if rising_edge(clk) then
-            if reset = '1' then
-                db_rdaddr <= (others => '0');
-                wb_rdaddr <= (others => '0');
-                row       <= 0;
-                col       <= 0;
-                loadingCompleteFlag <= false;
-                start_sig <= '0';
-
-            elsif not loadingCompleteFlag then
-                --Capture the BRAM outputs into matrix (its kinda relying on it being in the same cycle which it is not)
-                matrix_data_sig(row, col) <= db_data_out;
-                matrix_weight_sig(row, col) <= wb_data_out;
-
-                -- End of Row
-                if col = N-1 then
-                    -- reset the column back to 0
-                    col <= 0;
-                    -- When at the last row, make the start signal high
-                    if row = N-1 then
-                        loadingCompleteFlag <= true; 
-                        start_sig <= '1';
-                    -- Otherwise move to the next row
-                    else
-                        row <= row + 1;
-                    end if;
-                -- Otherwise Move to the next column
-                else
-                    col <= col + 1;
-                end if;
-
-                -- Next BRAM address
-                db_rdaddr <= std_logic_vector(to_unsigned(row * N + col + 1, db_rdaddr'length));
-                wb_rdaddr <= std_logic_vector(to_unsigned(row * N + col + 1, wb_rdaddr'length));
-            end if;
+        if reset = '1' then
+            start_sig <= '0';
+        elsif rising_edge(clk) then
+            start_sig <= '1';  -- Always start after reset
         end if;
     end process;
 
@@ -125,7 +66,8 @@ begin
             data_shift       => data_shift_sig,
             weight_shift     => weight_shift_sig,
             cycle_count      => cycle_count,
-            PE_enabled_mask  => enabled_PE_mask
+            PE_enabled_mask  => enabled_PE_mask,
+            done             => done
         );
 
     -- Instantiate the Systolic Array
@@ -139,10 +81,5 @@ begin
             output      => output
         );
 
-    dbg_db_rdaddr     <= db_rdaddr;
-    dbg_db_data_out   <= db_data_out;
-    dbg_wb_rdaddr     <= wb_rdaddr;
-    dbg_wb_data_out   <= wb_data_out;
-    dbg_matrix_data   <= matrix_data_sig;
-    dbg_matrix_weight <= matrix_weight_sig;
+
 end architecture;
