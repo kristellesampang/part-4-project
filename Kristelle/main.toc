@@ -9,22 +9,22 @@
 \contentsline {subsection}{\numberline {2.1}Convolutional Neural Networks (CNN)}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Hardware Acceleration for Machine Learning}{3}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Systolic Array Architecture}{3}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Literature Review}{3}{section.3}%
+\contentsline {section}{\numberline {3}Literature Review}{4}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Sparsity in Neural Networks}{4}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Rectified Linear Unit (ReLU)}{4}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Pruning}{4}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Hardware Architectures for Sparsity}{4}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Power Gating and Zero-Skipping}{4}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2}Hardware Architectures for Sparsity}{5}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Power Gating and Zero-Skipping}{5}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Compressed Data Formats}{5}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Specialised Dataflows and Architectures}{5}{subsubsection.3.2.3}%
 \contentsline {section}{\numberline {4}Design and Methodology}{6}{section.4}%
 \contentsline {subsection}{\numberline {4.1}System Architecture Overview}{6}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Data Generation and Pre-processing}{6}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}AlexNet Model and Data Extraction}{6}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1}AlexNet Model and Data Extraction}{7}{subsubsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.2}Tiling and .mif File Generation}{7}{subsubsection.4.2.2}%
 \contentsline {subsection}{\numberline {4.3}Baseline Systolic Array Architecture}{8}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}Processing Elements and Systolic Array Formation}{8}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{8}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2}Control Unit}{9}{subsubsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.4}Optimised Systolic Array for Sparse Matrices Architecture}{10}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Hardware System Overview}{11}{subsubsection.4.4.1}%
 \contentsline {subsubsection}{\numberline {4.4.2}Sparse Handling Algorithm}{11}{subsubsection.4.4.2}%
@@ -43,4 +43,5 @@
 \contentsline {section}{\numberline {7}Conclusion}{14}{section.7}%
 \contentsline {section}{\numberline {8}Future Work}{14}{section.8}%
 \contentsline {section}{References}{15}{section.8}%
-\contentsline {section}{Appendix \numberline {A}The First Appendix}{17}{appendix.1.A}%
+\contentsline {section}{Appendix \numberline {A}List of Figures}{17}{appendix.1.A}%
+\contentsline {section}{Appendix List of Figures}{17}{appendix.1.A}%

@@ -421,18 +421,29 @@ Thank important people here.
     % According to the rubric, this section must "Clearly define the project context" and demonstrate
     % "a good understanding of the broader scientific or engineering domain."
     % Think of this section as bringing a reader up to speed on the core technologies you're using.
-    The rapid growth of Artificial Intelligence (AI) in the past decade has driven significant advancements across numerous field. Machine Learning (ML) models, particularly Deep Neural Networks (DNNs), are popular for its applications in image classification to autonomous driving \cite{parashar_scnn_2017}. There has been significant shift from AI inferencing occur at a cloud-level to resource-constrained edge devices. This move motivates the "AI at the Edge" in the research, where lower latency, enhanced data privacy, and real-time processing capabilities must are requirements that must be met without relying on constant network connection \cite{kim_energy-efficient_2020}.
+    The evolving growth of Artificial Intelligence (AI) in the past decade has driven significant advancements across numerous field. Machine Learning (ML) models, particularly Deep Neural Networks (DNNs), are popular for its applications from image classification to autonomous driving \cite{parashar_scnn_2017}. There has been significant shift from AI inferencing occurring at a cloud-level to resource-constrained edge devices. This move motivates the \textit{AI at the Edge} section in the research, where lower latency, enhanced data privacy, and real-time processing capabilities must are requirements that must be met without relying on constant network connection \cite{kim_energy-efficient_2020}.
 
-    However, this shift presents an alarming issue where DNNs are computationally intensive and power-hungry, whilst edge devices operate under strict power and resource limitations. To bridge this gap, hardware accelerators, such as Neural Processing Units (NPUs) are introduced to execute AI algorithms at faster rates than general-purpose CPUs \cite{manor_custom_2022}. This section provides necessary background on the core technologies that support this project, starting with the most popular model for image-based tasks, the Convolutional Neural Network.
-    
-    \subsection{Convolutional Neural Networks (CNN)} \label{sec: CNN}
-    Convolutional Neural Networks (CNNs) is a prominent type of DNN model, mainly utilised image processing tasks, such as object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers. 
+    However, this shift presents an alarming issue where DNNs are computationally intensive and power-hungry, whilst edge devices operate under strict power and resource limitations. To bridge this gap, hardware accelerators, such as Neural Processing Units (NPUs), are introduced to execute AI algorithms at faster rates than general-purpose CPUs \cite{manor_custom_2022}. This section provides necessary background on the core technologies that support this project, starting with the most popular model for image-based tasks: the Convolutional Neural Network.
+
+    \subsection{Convolutional Neural Networks (CNN)} \label{sec:CNN}
+    Convolutional Neural Networks (CNNs) are a prominent type of DNN model, mainly utilised image processing tasks like object recognition, classification, and detection. The network is compromised of four main layers: convolutional, activation layer, pooling layers, and fully connected layers, where this research focuses on the convolutional and activation layers.
     The convolutional layer is where majority of the computations occur \cite{choi_enabling_2023}, as it extracts features from an image and converts it into numerical values. In a convolutional layer, there are several filters that slide through the image, searching for a specific pattern. These filters are typically in the size of 3x3 or 5x5, and is applied to the image by multiplying the filter by the 2D pixel representation of the image. Mathematically, this operation can be represented as
     \[
     O[h][w][c] = \sum_{i=1}^{f_h} \sum_{j=1}^{f_w} \sum_{k=1}^{i_c} I[h + i \cdot s_h][w + j \cdot s_w][k] \times F[i][j][k][c]
     \] where I, O, F are input activation, output activation, and filter weights respectively \cite{choi_enabling_2023}. This can be represented as an enormous number of Multiply-Accumulate (MAC) operations, making CNNs computationally intensive. 
-    \newline 
-    An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero. A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
+
+    An activation layer determines whether a neuron should be activated based on its input. Its primary role is to introduce non-linearity into the network. Without this, a neural network can only learn simple, linear patterns. Non-linearity allows the network to execute complex tasks, such as learning complicated patterns. A commonly used function is the Rectified Linear Unit (ReLU). The main functionality is to allow for positive inputs to remain unchanged whist setting any negative input to zero \cite{parashar_scnn_2017}. Mathematically, this can be represented as:
+    $$
+    \text{ReLU}(x) = 
+    \begin{cases} 
+        1 & \text{if } x > 0 \\ 
+        0 & \text{if } x \le 0 
+    \end{cases}
+    $$
+
+
+     A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}. 
+    
     
 
     \subsection{Hardware Acceleration for Machine Learning} \label{sec: hardware accel}
@@ -473,6 +484,7 @@ Thank important people here.
         To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec: CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
         % !! need references
         % !! need to add the section referencing ReLU in the intro 
+
     
         \subsubsection{Pruning} 
 
@@ -736,14 +748,16 @@ Thank important people here.
 
     - The testbench is designed to be modular, allowing for easy modification and extension. This modularity is crucial for testing different configurations of the NPU, such as varying the size of the input matrices or changing the sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design.  
 
-    
+    - The Appendix will include screenshots of all the ModelSim results alongside its expected results from Python/MATLAB 
+    - For the purpose of the project, we will looking into a dense 8x8 matrix (Fig X), 1x8 matrix (Fig X), and a 4x8 matrix (Fig X) to compare the performance of the Baseline and Optimised systolic arrays. 
 
     
     \subsection{Baseline Performance)} \label{sec: perform base}
     % Present the results of running a full 8x8 matrix through your NPU.
     % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
     - This version is purely simulated, no hardware synthesis. There was no synthesise because the focus of this project is to handle sparsity, and the Baseline Systolic Array is simply a reference point to compare against. Additionally, the Baseline Systolic Array is not designed to handle sparsity, so synthesising it would not provide any meaningful insights into its performance but rather as a check if the standalone systolic array behaviour works correctly.
-    - 
+
+    
     
     \subsection{Optimised Performance)} \label{sec: perform optimised}
     % Present the results of running a sparse, stripped matrix through your NPU.
@@ -801,21 +815,13 @@ Thank important people here.
 \begin{appendices}
      \titleformat{\section}{\normalfont\fontsize{14}{14}\bfseries}{Appendix~\thesection}{1em}{}
      
-     % Renaming the captions to include the appendix name
-    %  \renewcommand{\theequation}{\thesection.\arabic{equation}}
-    %  \renewcommand{\thefigure}{\thesection.\arabic{figure}}
-    %  \renewcommand{\thetable}{\thesection.\arabic{table}}
+     \section{List of Figures}
+     \addcontentsline{toc}{section}{List of Figures}
+     This appendix contains a comprehensive list of all figures used throughout this document.
      
-     % Reset counters for appendix
-     \setcounter{equation}{0}
-     \setcounter{figure}{0}
-     \setcounter{table}{0}
-     \section{The First Appendix}
-     \catImage
-     \MACRegImage
-     \baselineSystolicArrayImage
-     \baselineDataflowImage
-    
+     \listoffigures
+     
+     
      \clearpage
     %  \section{Second Appendix}
 
