@@ -966,6 +966,8 @@ Thank important people here.
 
     This section presents the performance results of the Baseline Systolic Array when processing various input matrices. The focus is on evaluating the latency in clock cycles for different matrix sizes and sparsity patterns. The Baseline Systolic Array is a reference design, primarily used to validate the functionality of the systolic array architecture without optimisation for sparsity. Therefore, all verification was conducted on simulation without synthesis, as its primary goal is to establish a baseline comparison point for the Optimised Systolic Array. Additionally, as this version does not implement sparsity handling, synthesising would not yield meaningful insights into its performance in sparse scenarios.
 
+    Table \ref{latency_baseline_nxn} summarises the latency results when NxN matrices are processed through the Baseline Systolic Array. The results indicate that the latency increases with the size of the input matrices, as expected due to the increased number of computations required. This proves that the systolic array easily adjusts to different input sizes up to its maximum capacity of 8x8, indicating that it is capable of saving power when smaller matrices are used. The latency values are consistent with theoretical expectations for an 8x8 systolic array, confirming the correct operation of the design.
+
     
 
     Three test cases were executed to assess the performance of the Baseline Systolic Array:
