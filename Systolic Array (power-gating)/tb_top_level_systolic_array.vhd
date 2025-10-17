@@ -57,12 +57,18 @@ begin
                 end loop;
             end loop;
 
-            -- Load matrix_A and matrix_B with sample values for current size
+            -- Load matrix_A with a variable number of rows (size x N)
             for i in 0 to size-1 loop
-                for j in 0 to size-1 loop
+                for j in 0 to N-1 loop
                     matrix_A(i,j) <= std_logic_vector(to_unsigned(val_a, 8));
-                    matrix_B(i,j) <= std_logic_vector(to_unsigned(val_b, 8));
                     val_a := val_a + 1;
+                end loop;
+            end loop;
+
+            -- Load matrix_B as a full 8x8 matrix in every test
+            for i in 0 to N-1 loop
+                for j in 0 to N-1 loop
+                    matrix_B(i,j) <= std_logic_vector(to_unsigned(val_b, 8));
                     val_b := val_b + 1;
                 end loop;
             end loop;
@@ -74,7 +80,7 @@ begin
             
             -- Wait for matrix loading and computation to complete
             -- Control unit needs time to process and systolic array needs computation time
-            wait for (3 * size) * CLK_PER;
+            wait for (3 * N) * CLK_PER;
             sim_finished <= '1';
 
             -- Report results for current size
