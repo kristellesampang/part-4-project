@@ -189,6 +189,198 @@
     \end{figure}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\optimisedMValueFigure}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/Effect of M value on the number of Active PEs in the Systolic Array and Latency.png}
+        \caption{Effect of M value on the number of Active PEs in the Systolic Array and Latency}
+        \label{fig:optimised_m_value}
+    \end{figure}
+}
+
+\newcommand{\optimisedLatencyRowStrippingFigure}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/Impact on Latency as Row Stripping Increases in a 8x8 Activation.png}
+        \caption{Impact on Latency as Row Stripping Increases in a 8x8 Activation}
+        \label{fig:latency_row_stripping}
+    \end{figure}
+}
+
+\newcommand{\baselineNxN}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/Latency of Baseline Systolic Array on Different NxN sizes.png}
+        \caption{Latency of Baseline Systolic Array on Different NxN sizes}
+        \label{fig:latency_baseline_nxn}
+    \end{figure}
+}
+
+\newcommand{\baselineNxEight}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png}
+        \caption{Latency of Baseline Systolic Array on Varying Input Matrix Size}
+        \label{fig:latency_baseline_nx8}
+    \end{figure}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%MODELSIM
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\baselineOnexOne}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/1x1.png}
+        \caption{Latency of Baseline Systolic Array on 1x1 Input Matrix}
+        \label{fig:latency_baseline_1x1}
+    \end{figure}
+}
+
+\newcommand{\baselineOnexOneMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/1x1_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 1x1 Input Matrix}
+        \label{fig:latency_baseline_1x1_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineTwoxTwo}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/2x2.png}
+        \caption{Latency of Baseline Systolic Array on 2x2 Input Matrix}
+        \label{fig:latency_baseline_2x2}
+    \end{figure}
+}
+
+\newcommand{\baselineTwoxTwoMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/2x2_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 2x2 Input Matrix}
+        \label{fig:latency_baseline_2x2_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineThreexThree}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/3x3.png}
+        \caption{Latency of Baseline Systolic Array on 3x3 Input Matrix}
+        \label{fig:latency_baseline_3x3}
+    \end{figure}
+}
+\newcommand{\baselineThreexThreeMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/3x3_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 3x3 Input Matrix}
+        \label{fig:latency_baseline_3x3_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineFourxFour}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/4x4.png}
+        \caption{Latency of Baseline Systolic Array on 4x4 Input Matrix}
+        \label{fig:latency_baseline_4x4}
+    \end{figure}
+}
+
+\newcommand{\baselineFourxFourMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/4x4_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 4x4 Input Matrix}
+        \label{fig:latency_baseline_4x4_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineFivexFive}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/5x5.png}
+        \caption{Latency of Baseline Systolic Array on 5x5 Input Matrix}
+        \label{fig:latency_baseline_5x5}
+    \end{figure}
+}
+
+\newcommand{\baselineFivexFiveMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/5x5_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 5x5 Input Matrix}
+        \label{fig:latency_baseline_5x5_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineSixxSix}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/6x6.png}
+        \caption{Latency of Baseline Systolic Array on 6x6 Input Matrix}
+        \label{fig:latency_baseline_6x6}
+    \end{figure}
+}
+\newcommand{\baselineSixxSixMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/6x6_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 6x6 Input Matrix}
+        \label{fig:latency_baseline_6x6_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineSevenxSeven}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/7x7.png}
+        \caption{Latency of Baseline Systolic Array on 7x7 Input Matrix}
+        \label{fig:latency_baseline_7x7}
+    \end{figure}
+}
+\newcommand{\baselineSevenxSevenMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/7x7_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 7x7 Input Matrix}
+        \label{fig:latency_baseline_7x7_matlab}
+    \end{figure}
+}
+
+\newcommand{\baselineEightxEight}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/8x8.png}
+        \caption{Latency of Baseline Systolic Array on 8x8 Input Matrix}
+        \label{fig:latency_baseline_8x8}
+    \end{figure}
+}
+\newcommand{\baselineEightxEightMATLAB}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.2\linewidth]{results/baseline_modelsim/8x8_matlab.png}
+        \caption{MATLAB Calculation of Baseline Systolic Array on 8x8 Input Matrix}
+        \label{fig:latency_baseline_8x8_matlab}
+    \end{figure}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -206,7 +398,7 @@
 % DOCUMENT BODY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-
+% 
 % --- Define name and report number he
 \def\name{Kristelle Sampang}
 \def\reportNumber{COMPSYS043-\the\year}
@@ -301,7 +493,7 @@ I hereby declare that:
     \item This report is not the outcome of work done in collaboration, except that with a potential project sponsor (if any) as stated in the text.
     \item This report is not the same as any report, thesis, conference article or journal paper, or any other publication or unpublished work in any format. 
 \end{enumerate}
-\vspace{1em}
+\vspace{1em}newc
 \noindent
 In the case of a continuing project, please state clearly what has been developed during the project and what was available from previous year(s): 
 \vspace{3cm}
@@ -439,7 +631,7 @@ Thank important people here.
 
 
 
-    A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero \cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section \ref{sec: relu}.
+    A critical consequence of this is that it introduces significant sparsity as approximately half of the elements are zero~\cite{sun_sense_2023}. This sparsity is a key property that this project exploits to improve energy-efficiency, and will be discussed further in Section~\ref{sec:relu}.
 
     Although not the core focus of this project, the pooling layers are used to reduce the spatial dimensions of the input whilst retaining the most relevant features. This helps to decrease computational load and control overfitting. Furthermore, a fully connected layer is typically used at the end of the CNN to perform high-level reasoning based on the features extracted by previous layers\cite{cain_convolution_2021}.
 
@@ -502,7 +694,7 @@ Thank important people here.
     % 2.  **Sources of Sparsity**:
     As discussed in Section \ref{sec:CNN}, sparsity is a property of matrices that arise from many sources, such as activation functions and model compression techniques. This section explores these in detail to find the root cause of sparsity in neural networks. 
 
-        \subsubsection{Rectified Linear Unit (ReLU)} \label{sec: relu}
+        \subsubsection{Rectified Linear Unit (ReLU)} \label{sec:relu}
         To optimise the performance of a neural network, gradients are calculated to update the network's weights. However, this introduces the Vanishing Gradient Problem (VGP) where gradients become increasingly miniscule when backpropagated from the output to earlier layers \cite{tan_vanishing_2019}. The consequence of VGP presents slow convergence and impaired learning. This issue becomes even more problematic when structures have many layers and a solution to this is applying ReLU. As previously mentioned in Section \ref{sec:CNN}, the outcome of ReLU is that all negative values are set to zero, introducing significant sparsity in the activation matrices. However, since ReLU is most commonly applied \cite{sun_sense_2023}, it is difficult to avoid using a model that does not produce sparse matrices due to ReLU in real-case scenarios.
 
 
@@ -617,7 +809,7 @@ Thank important people here.
     The core of the hardware accelerator is an 8x8 systolic array, designed to perform matrix multiplication for convolutional layers. The fundamental building block of this array is the Processing Element (PE), a custom-designed Multiply-Accumulate (MAC) unit. The entire hardware accelerator was designed in VHDL.
     
     \subsubsection{Processing Elements and Systolic Array Formation}
-    The fundamental process that the PE executes is the MAC operation, the core computation in convolutional layers. This can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:MAC}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map. These inputs are multiplied together and adds the result to an accumulate that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
+    The fundamental process that the PE executes is the MAC operation, the core computation in convolutional layers. This can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:MAC}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map, both as INT8 data types. These inputs are multiplied together and adds the result to a 32-bit accumulated register that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
     
     Each PE communicates with its neighbours to pass data along the array, enabling a continuous flow of data through the system. The dataflow chosen for this design is output-stationary, where the output partial sums remain in the PE until the final result is computed \cite{sun_sense_2023}. This approach minimises data movement and maximises data locality, reducing memory access costs. The PE is designed to operate in a pipelined manner, allowing it to accept new inputs every clock cycle while still processing previous inputs. This pipelining is crucial for maintaining high throughput in the systolic array.
 
@@ -773,6 +965,8 @@ Thank important people here.
     \subsection{Baseline Systolic Array Performance} \label{sec: perform base}
 
     This section presents the performance results of the Baseline Systolic Array when processing various input matrices. The focus is on evaluating the latency in clock cycles for different matrix sizes and sparsity patterns. The Baseline Systolic Array is a reference design, primarily used to validate the functionality of the systolic array architecture without optimisation for sparsity. Therefore, all verification was conducted on simulation without synthesis, as its primary goal is to establish a baseline comparison point for the Optimised Systolic Array. Additionally, as this version does not implement sparsity handling, synthesising would not yield meaningful insights into its performance in sparse scenarios.
+
+    
 
     Three test cases were executed to assess the performance of the Baseline Systolic Array:
     \begin{itemize}
