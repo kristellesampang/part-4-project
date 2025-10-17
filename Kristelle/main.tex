@@ -616,7 +616,7 @@ Thank important people here.
 
     \baselineDataflowImage
 
-    \subsection{Systolic Array for Sparse Matrices} \label{sec: handling algo}
+    \subsection{Optimised Systolic Array for Sparse Matrices Architecture} \label{sec: handling algo}
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.    
     As the research gap identified in Section \ref{sec: dataflow} suggests, there is a need for a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. To improve upon the Baseline Systolic Array architecture, a software-hardware co-design approach is integrated. This involves an extra step in the pre-processing stage of the data, where a Python-based algorithm function called \texttt{coordinated\_row\_removal} is implemented to remove rows of zeros in the activation and weight matrix. This simple addition significantly improves the performance of the systolic array when handling sparse matrices.
@@ -673,6 +673,9 @@ Thank important people here.
             \item \textbf{S\_DONE}: Once execution is complete, the FSM transitions to this state and waits for the maximum theoretical number of clock cycles required to process the data, calculated as (M + N + K - 2) clock cycles. After this period, it sends a done signal to the top-level module, which then notifies the control unit that the operation is complete, returning to the S\_IDLE state.
         \end{itemize}
 
+        % !! add the 3N-2 reference latency for the systolic array
+        % !! add the M-1 + N-1 + K-1 reference for the latency of the entire system
+
 
 
     }
@@ -715,15 +718,34 @@ Thank important people here.
 
     
 \section{Verification and Results} \label{sec: verification}
+    This section presents the verification process and results of the software-hardware co-design approach iteration. The performance of the NPU is evaluated using both dense and sparse matrices, demonstrating the flexibility and reconfigurability of the systolic array. The results are compared between the Baseline Systolic Array and the Optimised Systolic Array to highlight the improvements achieved through the sparsity handling algorithm. The verification process includes simulation and synthesis on an FPGA platform, providing a comprehensive assessment of the design's effectiveness in handling sparsity.
+
     \subsection{Testbench and Simulation Environment} \label{sec: testbench}
     % Describe your VHDL testbench. How does it work? What does it measure (latency)?
     % What tools did you use (ModelSim, Quartus)?
+    The VHDL testbench is designed to simulate the operation of the NPU, including both the Baseline Systolic Array and the Optimised Systolic Array. The testbench is executed on ModelSim-Altera 10.1d, a widely used simulation tool for VHDL designs. 
+    The testbench generates a clock signal and a reset signal to initialise the NPU. It also includes a start signal to trigger the operation of the NPU. 
+    - Baseline Systolic Array: input matrices are hardcoded into the testbench for static testing. Does not rely on a start signal, matrices are directly sent to the control unit.
+    - Optimised Systolic Array: input matrices are read from the ROMs, which are pre-loaded with mif files generated from the Python pre-processing stage. Waits for a start signal to begin operation. This also verifies if the Python code is correctly generating and saving the mif files
+
+    - Measures latency  by counting number of clock cycles 
+    - provides insight to the performance of the NPU, allowing for comparison between the Baseline and Optimised Systolic Arrays
+    - Checks if the control unit inputted properly, like the staggering behaviour we expect
+
+    - Additionally, the testbench monitors the output of the NPU to verify the correctness of the matrix multiplication results. The output is compared against expected results calculated in Python AND MATLAB to ensure that the NPU operates correctly.
+
+    - The testbench is designed to be modular, allowing for easy modification and extension. This modularity is crucial for testing different configurations of the NPU, such as varying the size of the input matrices or changing the sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design.  
+
     
-    \subsection{Baseline Performance (Dense Matrices)} \label{sec: perform base}
+
+    
+    \subsection{Baseline Performance)} \label{sec: perform base}
     % Present the results of running a full 8x8 matrix through your NPU.
     % What was the measured latency in clock cycles? What were the resource utilization numbers (DSPs, BRAMs, Logic Elements) from Quartus?
+    - This version is purely simulated, no hardware synthesis. There was no synthesise because the focus of this project is to handle sparsity, and the Baseline Systolic Array is simply a reference point to compare against. Additionally, the Baseline Systolic Array is not designed to handle sparsity, so synthesising it would not provide any meaningful insights into its performance but rather as a check if the standalone systolic array behaviour works correctly.
+    - 
     
-    \subsection{Optimised Performance (Stripped Matrices)} \label{sec: perform optimised}
+    \subsection{Optimised Performance)} \label{sec: perform optimised}
     % Present the results of running a sparse, stripped matrix through your NPU.
     % What were the new, smaller `active_rows` and `active_cols`?
     % What was the new, lower latency? How did the resource utilization change (if at all)?
