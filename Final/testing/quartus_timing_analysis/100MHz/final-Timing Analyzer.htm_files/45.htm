@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Signal Integrity Metrics (Slow 1100mv 85c Model)</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Pin</TH>
+<TH>I/O Standard</TH>
+<TH>Board Delay on Rise</TH>
+<TH>Board Delay on Fall</TH>
+<TH>Steady State Voh at FPGA Pin</TH>
+<TH>Steady State Vol at FPGA Pin</TH>
+<TH>Voh Max at FPGA Pin</TH>
+<TH>Vol Min at FPGA Pin</TH>
+<TH>Ringback Voltage on Rise at FPGA Pin</TH>
+<TH>Ringback Voltage on Fall at FPGA Pin</TH>
+<TH>10-90 Rise Time at FPGA Pin</TH>
+<TH>90-10 Fall Time at FPGA Pin</TH>
+<TH>Monotonic Rise at FPGA Pin</TH>
+<TH>Monotonic Fall at FPGA Pin</TH>
+<TH>Steady State Voh at Far-end</TH>
+<TH>Steady State Vol at Far-end</TH>
+<TH>Voh Max at Far-end</TH>
+<TH>Vol Min at Far-end</TH>
+<TH>Ringback Voltage on Rise at Far-end</TH>
+<TH>Ringback Voltage on Fall at Far-end</TH>
+<TH>10-90 Rise Time at Far-end</TH>
+<TH>90-10 Fall Time at Far-end</TH>
+<TH>Monotonic Rise at Far-end</TH>
+<TH>Monotonic Fall at Far-end</TH>
+</TR>
+</thead><tbody><TR  bgcolor="#FFFFFF">
+<TD >LEDR[0]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >LEDR[1]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >LEDR[2]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >LEDR[3]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >LEDR[4]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >LEDR[5]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >LEDR[6]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >LEDR[7]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >LEDR[8]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >LEDR[9]</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >2.61e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.0638 V</TD>
+<TD >0.034 V</TD>
+<TD >0.099 V</TD>
+<TD >5.12e-10 s</TD>
+<TD >2.97e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >FPGA_UART_TX</TD>
+<TD >3.3-V LVTTL</TD>
+<TD >0 s</TD>
+<TD >0 s</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+<TD >3.08 V</TD>
+<TD >3.32e-05 V</TD>
+<TD >3.09 V</TD>
+<TD >-0.11 V</TD>
+<TD >0.031 V</TD>
+<TD >0.155 V</TD>
+<TD >5.43e-10 s</TD>
+<TD >3.14e-10 s</TD>
+<TD >Yes</TD>
+<TD >Yes</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

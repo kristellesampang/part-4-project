@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Fitter Resource Utilization by Entity</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Compilation Hierarchy Node</TH>
+<TH>ALMs needed [=A-B+C]</TH>
+<TH>[A] ALMs used in final placement</TH>
+<TH>[B] Estimate of ALMs recoverable by dense packing</TH>
+<TH>[C] Estimate of ALMs unavailable</TH>
+<TH>ALMs used for memory</TH>
+<TH>Combinational ALUTs</TH>
+<TH>Dedicated Logic Registers</TH>
+<TH>I/O Registers</TH>
+<TH>Block Memory Bits</TH>
+<TH>M10Ks</TH>
+<TH>DSP Blocks</TH>
+<TH>Pins</TH>
+<TH>Virtual Pins</TH>
+<TH>Full Hierarchy Name</TH>
+<TH>Entity Name</TH>
+<TH>Library Name</TH>
+</TR>
+</thead><tbody><TR >
+<TD >|de1_soc_top</TD>
+<TD >64.0 (0.7)</TD>
+<TD >78.0 (3.8)</TD>
+<TD >14.0 (3.2)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >107 (2)</TD>
+<TD >119 (6)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >15</TD>
+<TD >0</TD>
+<TD >|de1_soc_top</TD>
+<TD >de1_soc_top</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|UART:UART_inst|</TD>
+<TD >18.2 (0.7)</TD>
+<TD >22.0 (3.5)</TD>
+<TD >3.8 (2.8)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >31 (1)</TD>
+<TD >34 (6)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|UART:UART_inst</TD>
+<TD >UART</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|TX:C1|</TD>
+<TD >17.5 (17.5)</TD>
+<TD >18.5 (18.5)</TD>
+<TD >1.0 (1.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >30 (30)</TD>
+<TD >28 (28)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|UART:UART_inst|TX:C1</TD>
+<TD >TX</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|debouncer:debounce_inst|</TD>
+<TD >16.3 (16.3)</TD>
+<TD >17.0 (17.0)</TD>
+<TD >0.7 (0.7)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >30 (30)</TD>
+<TD >25 (25)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|debouncer:debounce_inst</TD>
+<TD >debouncer</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;|npu_wrapper:npu_i|</TD>
+<TD >28.8 (25.7)</TD>
+<TD >35.2 (31.9)</TD>
+<TD >6.3 (6.2)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >44 (39)</TD>
+<TD >54 (46)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i</TD>
+<TD >npu_wrapper</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|data_rom:data_rom_inst|</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i|data_rom:data_rom_inst</TD>
+<TD >data_rom</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram:altsyncram_component|</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i|data_rom:data_rom_inst|altsyncram:altsyncram_component</TD>
+<TD >altsyncram</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram_b0a4:auto_generated|</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0 (0)</TD>
+<TD >512</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i|data_rom:data_rom_inst|altsyncram:altsyncram_component|altsyncram_b0a4:auto_generated</TD>
+<TD >altsyncram_b0a4</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|top_level_systolic_array:systolic_array_inst|</TD>
+<TD >3.2 (0.0)</TD>
+<TD >3.3 (0.0)</TD>
+<TD >0.1 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >5 (0)</TD>
+<TD >8 (0)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i|top_level_systolic_array:systolic_array_inst</TD>
+<TD >top_level_systolic_array</TD>
+<TD >work</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|control_unit:control_unit|</TD>
+<TD >3.2 (3.2)</TD>
+<TD >3.3 (3.3)</TD>
+<TD >0.1 (0.1)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >0.0 (0.0)</TD>
+<TD >5 (5)</TD>
+<TD >8 (8)</TD>
+<TD >0 (0)</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >|de1_soc_top|npu_wrapper:npu_i|top_level_systolic_array:systolic_array_inst|control_unit:control_unit</TD>
+<TD >control_unit</TD>
+<TD >work</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
