@@ -523,7 +523,7 @@ I hereby declare that:
     \item This report is not the outcome of work done in collaboration, except that with a potential project sponsor (if any) as stated in the text.
     \item This report is not the same as any report, thesis, conference article or journal paper, or any other publication or unpublished work in any format. 
 \end{enumerate}
-\vspace{1em}newc
+\vspace{1em}
 \noindent
 In the case of a continuing project, please state clearly what has been developed during the project and what was available from previous year(s): 
 \vspace{3cm}
@@ -593,44 +593,39 @@ Thank important people here.
 \pagenumbering{arabic}
 % --- Main Body of the Report ---
 \section{Introduction} \label{sec: intro}
-    \subsection{Motivation}
+    % \subsection{Motivation}
     % Hook the reader. Why is this project important? What is the big-picture problem? 
     % (e.g., The explosion of AI and IoT devices demands powerful but low-power processing directly on the edge.)
     % Why are current solutions like CPUs/GPUs not good enough for this specific problem? (e.g., Power consumption, size constraints.)
 
-    \begin{itemize}
-        \item As the demand for artificial intelligence grows to become prominent in today's society, its energy consumption has become a key issue. 
-        \item The processing required to run machine learning models is large, with millions of computations needed to be executed. 
-        \item This means that low-power processing devices at edge are limited to its use. 
-        \item The processing power to run machine learning models is large, limiting its use for low-power processing devices at the edge.  
-        \item With high computational power required, energy-efficiency is a key concern, especially nowadays when energy is an essential resource to not waste.
-        \item In the past decade, common types of processors for running AI are CPU, GPU, and FPGA. 
-        \item However, as technology continues to improve, Neural Processing Units (NPU) are developed. These are processors that specialise in processing AI computations.
-        \item By integrating NPU alongside other processors, the performance and energy-efficiency are improved compared to a standalone processor. 
-        % \item This report aims to focus on tacking the issue of low energy-efficient use of AI at edge. 
-        %% I need more context here
-    \end{itemize}
-    
-    \subsection{Problem Statement}
-    % Clearly and concisely state the specific problem you are solving.
-    % (e.g., Conventional systolic arrays on FPGAs are efficient for dense matrices but suffer significant performance and energy penalties when processing sparse neural networks.)
-    % What specific gap are you filling?
-
-    % Aims and objectives
-    
-    
-    % \subsection{Contributions}
-    % List your key achievements in bullet points. This is your main marketing section. Use strong action verbs.
-    % (e.g., "In this work, we present a novel hardware accelerator that:
     % \begin{itemize}
-    %   \item Implements a reconfigurable control unit capable of processing variable-sized matrices, directly enabling the acceleration of stripped sparse data.
-    %   \item Introduces a software-hardware co-design methodology for preparing and verifying sparse matrix tiles from a pre-trained CNN model.
-    %   \item Achieves a speedup of X compared to a baseline dense implementation...")
+    %     \item As the demand for artificial intelligence grows to become prominent in today's society, its energy consumption has become a key issue. 
+    %     \item The processing required to run machine learning models is large, with millions of computations needed to be executed. 
+    %     \item This means that low-power processing devices at edge are limited to its use. 
+    %     \item The processing power to run machine learning models is large, limiting its use for low-power processing devices at the edge.  
+    %     \item With high computational power required, energy-efficiency is a key concern, especially nowadays when energy is an essential resource to not waste.
+    %     \item In the past decade, common types of processors for running AI are CPU, GPU, and FPGA. 
+    %     \item However, as technology continues to improve, Neural Processing Units (NPU) are developed. These are processors that specialise in processing AI computations.
+    %     \item By integrating NPU alongside other processors, the performance and energy-efficiency are improved compared to a standalone processor. 
+    %     % \item This report aims to focus on tacking the issue of low energy-efficient use of AI at edge. 
+    %     %% I need more context here
     % \end{itemize}
-    
-    \subsection{Report Structure}
-    % Briefly outline the rest of the report, section by section.
-    The remainder of this report goes as follows: Section X covers Y....
+    The demand for Artificial Intelligence (AI) has grown exponentially in recent years, becoming prominent in various aspects of today's society. However, the energy consumption associated with AI has emerged as a critical concern. The execution of Machine Learning (ML) models requires a considerable amount of processing power, involving millions of computations. This high computational demand presents a limitation for low-power processing devices, particularly those operating at the edge. As technology continues to evolve, specialised processors, such as Neural Processing Units (NPU), have been developed to address the specific needs of AI computation. 
+
+    These NPUs are specialised to execute algorithms more efficiently than general-purpose CPUs and GPUs, offering significant improvements in both performance and energy efficiency. A common architecture for NPUs is the systolic array, which allows for parallel processing of data, thereby reducing latency and power consumption. This architecture is perfect for the common computation found in Convolutional Neural Networks (CNNs), which rely heavily on matrix multiplications. However, this architecture is challenged by the presence of sparsity in these networks. Therefore, addressing the issue of sparsity is crucial for optimising the performance of NPUs in real-world applications.
+
+    This project aims to design and implement a reconfigurable Neural Processing Unit (NPU) that optimises energy efficiency for AI applications at the edge. The specific objectives of this project are as follows:
+    \begin{itemize}
+        \item Design a reconfigurable NPU architecture that can adapt to varying computational requirements of different AI models.
+        \item Implement energy-efficient dataflow strategies to minimise power consumption during AI inference tasks.
+        \item Evaluate the performance and energy efficiency of the proposed NPU design through simulations and benchmarking against existing solutions.
+        \item Develop a software-hardware co-design approach to facilitate the integration of the NPU with existing AI frameworks.
+        \item Demonstrate the effectiveness of the NPU in real-world edge computing scenarios.
+    \end{itemize}
+
+
+
+    The remainder of this report is organised as follows: Section~\ref{sec: background} provides the necessary background on the core ideas that support this project, including Convolutional Neural Networks (CNNs) and hardware acceleration for machine learning. Section~\ref{sec: literature review} reviews existing literature and related work in the field, highlighting the gaps that this project aims to address. Section~\ref{sec: design_method} details the methodology employed in designing and implementing the reconfigurable NPU. Section~\ref{sec: verification} verifies the proposed design and presents the results obtained from simulations. Section~\ref{sec: discussion} discusses the implications of the results, comparing them with existing solutions and outlining potential areas for improvement. Finally, Section~\ref{sec: conclusion} concludes the report by summarising the key findings and and Section \ref{sec: future work} discusses potential future work.
 
 \clearpage  
 \newpage
@@ -729,7 +724,7 @@ Thank important people here.
 
 
     
-        \subsubsection{Pruning} 
+        \subsubsection{Pruning}\label{sec:pruning}
 
     Model Pruning is a technique used to remove redundant data that may not significantly contribute to the final prediction. \textcite{kim_fpga_2021} found that more than half of weights in convolutional layers can be set to zero without impacting the overall accuracy. To decide what weights to prune, the sensitivity of the weight is considered and how it influences the output. \textcite{gorvadiya_energy_2025} discovered that their Weight Pruning technique resulted in minimal accuracy loss of 1-2\% whilst saving 25\% in power consumption. These results suggests that pruning is an effective method to reduce model size and computation without sacrificing performance.
 
@@ -873,12 +868,12 @@ Thank important people here.
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.    
     As the research gap identified in Section \ref{sec: dataflow} suggests, there is a need for a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. To improve upon the Baseline Systolic Array architecture, a software-hardware co-design approach is integrated. This involves an extra step in the pre-processing stage of the data, where a Python-based algorithm function called \texttt{coordinated\_row\_removal} is implemented to remove rows of zeros in the activation and weight matrix. This simple addition significantly improves the performance of the systolic array when handling sparse matrices.
 
-    \subsubsection{Hardware System Overview}
+    \subsubsection{Hardware System Overview} \label{sec: optimised hw}
     Figure X illustrates the high-level block diagram of the final hardware system. The top-level module, named \texttt{de1\_soc\_top}, interfaces the hardware accelerator with the FPGA board. The \texttt{NPU\_Wrapper} module encapsulates the entire NPU design, including the systolic array, control unit, and the ROMs. The ROMs are utilised to store the pre-processed weight and activation tiles in mif format, allowing for static testing of the hardware design. The control unit is responsible for managing the dataflow and synchronisation of the systolic array, as well as adapting to the effective size of the input matrices after pre-processing. The systolic array itself remains largely unchanged from the Baseline Systolic Array, retaining its 8x8 PE grid and output-stationary dataflow. However, it now benefits from the optimised input data, leading to improved efficiency and performance when handling sparse matrices.
     % !! talk about how we used the rapsberry pi to interface with the de1 soc board to program it and read back results etc
 
             
-    \subsubsection{Sparse Handling Algorithm}
+    \subsubsection{Sparse Handling Algorithm} \label{sec: sparse handling algo}
     % Here talk about how we do the same thing as in the alexnet/tiling section, except after we tile, we do some row stripping algorithm THEN we save it as a mif 
     The \texttt{coordinated\_row\_removal} function is an algorithm that safely removes rows and columns of zeros from the weight and activation matrices. To ensure mathematical correctness, it cannot directly remove a row or column without checking the other matrix. The logic of the algorithm is as follows:
     \begin{itemize}
@@ -891,7 +886,7 @@ Thank important people here.
     The \texttt{coordinated\_row\_removal} algorithm is implemented in the same Python script as Section \ref{sec: alexnet} and Section \ref{sec: tiling}. The M, N, and K values are now stored in the mif file, meaning that each file can have up to 67 values. This is important as the control unit needs to know these values to reconfigure the systolic array.
 
 
-    \subsubsection{ROMs}
+    \subsubsection{ROMs}    \label{sec: roms}
     % - in the software pre-processing stage, the mif files are generated and stored in a folder 
     % - we currently do not have a way to dynamically change the mif file to be read in the ROM, so it has to be manually changed
     % - however, since we have now instantiated ROMs in the system, it is possible to run the python file, generate NEW mif files, and directly run it on the system without needing to change the hardware design
@@ -902,7 +897,7 @@ Thank important people here.
     A ROM is instantiated for both the weight and activation matrices in the NPU Wrapper, which serves as the top-level module. Each ROM is configured to read from its respective mif file, storing the pre-processed tiles for static testing. The ROMs are designed to output data in a format compatible with the systolic array, ensuring seamless integration with the control unit and PEs. This setup allows for efficient data retrieval during operation, enabling the systolic array to process the input matrices effectively.
 
 
-    \subsubsection{NPU Wrapper}{
+    \subsubsection{NPU Wrapper} \label{sec: npu wrapper}
         % - The NPU Wrapper acts as the interface between the top-level module and the NPU core.
         % - instantiates all the components of the NPU, including the systolic array, control unit, and ROMs
         % - now with the addition of the sparsity handling algorithm, the modification of the MIF file, and introduction of the ROM the NPU wrapper needs to be modified to adapt to these new changes
@@ -931,11 +926,11 @@ Thank important people here.
 
 
 
-    }
+    
     
 
 
-    \subsubsection{Control Unit and Systolic Array}
+    \subsubsection{Control Unit and Systolic Array} \label{sec: optimised cu sa}
     % - as stated above, the m n k values are now stored in the mif file. this means that the control unit needs to be reconfigured to read these values and adjust the operation of the systolic array accordingly
     % - however, having these information is extremely valueable as it solifies the control logic required to handle sparsity
     % - the control unit is modified to read the m n k values from the mif file and adjust the operation of the systolic array accordingly
@@ -1193,7 +1188,21 @@ This section discusses the implications and interpretation of the results presen
         \item The fixed array size of 8x8 poses a limitation, as larger matrices require tiling, which can introduce overhead and complexity in managing multiple tiles, especially with the current MIF-based design.
         \item The high-level Python testing did not extensively cover real-world applications, as only 156 images were used, potentially limiting the generalisability of the results.
         \item Time constraints restricted the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. Given the one-year scope of the project and the need to build foundational knowledge, further research and development are necessary to fully realise the potential of sparsity handling in systolic arrays.
+        \item No real measurements of power consumption were taken to validate the energy efficiency claims. All assertions regarding power savings are theoretical and based on reduced computation due to sparsity handling.
     \end{itemize}
+
+\section{Conclusion} \label{sec: conclusion}
+    % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
+    % Reiterate the importance and success of your contributions.
+
+
+
+    In conclusion, this project has addressed the challenges of efficiently handling sparsity in systolic arrays through a software-hardware co-design. By implementing the \newline \texttt{coordinated\_row\_removal} algorithm in software, the Optimised Systolic Array can dynamically reconfigure itself based on structured sparsity patterns in the input matrices. The hardware architecture was designed to be modular and simple, preserving the core principles of the classic systolic array whilst integrating sparsity handling capabilities. Additionally, the architecture was synthesised on the DE1-SoC FPGA board, confirming its functionality in real hardware. 
+
+    The performance evaluated demonstrated a significant reduction in latency, with an average decrease of 60.87\% when processing AlexNet images compared to the Baseline Systolic Array. This improvement highlights the effectiveness of the sparsity handling algorithm in enhancing the efficiency of matrix multiplication operations. The implications of this work are particularly relevant for resource-constrained edge devices, where power consumption and latency are critical factors. Overall, this project successfully contributes to the field of systolic array design by providing a practical solution for exploiting sparsity, paving the way for more efficient ML inference on edge devices. The following section discusses potential directions for future work to expand upon this project and explore new avenues for improvement.
+
+
+
 
 \section{Future Work} \label{sec: future work}
     % What would be the next logical steps for this project?
@@ -1242,9 +1251,6 @@ This section discusses the implications and interpretation of the results presen
 
 
     
-\section{Conclusion} \label{sec: conclusion}
-    % Summarize the problem, your solution, and your key results in a clear and concise paragraph.
-    % Reiterate the importance and success of your contributions.
 
 
 

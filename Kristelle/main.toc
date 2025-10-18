@@ -2,9 +2,6 @@
 \contentsline {section}{Glossary of Terms}{vii}{Item.4}%
 \contentsline {section}{Abbreviations}{vii}{table.1}%
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Motivation}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Problem Statement}{1}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Report Structure}{1}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Background}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Convolutional Neural Networks (CNN)}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Hardware Acceleration for Machine Learning}{3}{subsection.2.2}%
@@ -40,10 +37,10 @@
 \contentsline {subsection}{\numberline {6.1}Analysis of Results}{17}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Design Trade-offs}{18}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Limitations}{19}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Future Work}{19}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Short-term Objectives}{19}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Long-term Objectives}{20}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{20}{section.8}%
-\contentsline {section}{References}{21}{section.8}%
-\contentsline {section}{Appendix \numberline {A}List of Figures}{24}{appendix.1.A}%
-\contentsline {section}{Appendix List of Figures}{24}{appendix.1.A}%
+\contentsline {section}{\numberline {7}Conclusion}{19}{section.7}%
+\contentsline {section}{\numberline {8}Future Work}{20}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Short-term Objectives}{20}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Long-term Objectives}{20}{subsection.8.2}%
+\contentsline {section}{References}{22}{subsection.8.2}%
+\contentsline {section}{Appendix \numberline {A}List of Figures}{25}{appendix.1.A}%
+\contentsline {section}{Appendix List of Figures}{25}{appendix.1.A}%
