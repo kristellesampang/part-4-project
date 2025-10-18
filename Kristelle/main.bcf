@@ -2420,6 +2420,8 @@
     <bcf:citekey order="42" intorder="1">sun_sense_2023</bcf:citekey>
     <bcf:citekey order="43" intorder="1">palacios_systolic_2025</bcf:citekey>
     <bcf:citekey order="44" intorder="1">wang_rethinking_2017</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">liu_energy-efficient_2024</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">beasley_developing_nodate</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

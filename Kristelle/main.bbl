@@ -1439,6 +1439,45 @@
       \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\SH3E4TIK\\2017 - [No title found].pdf:application/pdf
       \endverb
     \endentry
+    \entry{beasley_developing_nodate}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=48e72855c6d03da1bdf1e7863f433cf1}{%
+           family={Beasley},
+           familyi={B\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=06f5cbcf45e33f3bc694b98f2cb7b562}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={Luke},
+           giveni={L\bibinitperiod}}}%
+        {{hash=960d489a1a3f4c18b819b92bd1d8b96e}{%
+           family={Clarke},
+           familyi={C\bibinitperiod},
+           given={Dr\bibnamedelima Chris},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{1f554d9f88aa065d971c86a8a3f1b766}
+      \strng{fullhash}{4d0366847107b5ddd0e419829c58355e}
+      \strng{fullhashraw}{4d0366847107b5ddd0e419829c58355e}
+      \strng{bibnamehash}{4d0366847107b5ddd0e419829c58355e}
+      \strng{authorbibnamehash}{4d0366847107b5ddd0e419829c58355e}
+      \strng{authornamehash}{1f554d9f88aa065d971c86a8a3f1b766}
+      \strng{authorfullhash}{4d0366847107b5ddd0e419829c58355e}
+      \strng{authorfullhashraw}{4d0366847107b5ddd0e419829c58355e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This study explores the benefits of the Dynamic Partial Reconfiguration (DPR) on Field Programmable Gate Array (FPGA) based System on Chip (SoC) architectures. Consideration is given to the constraints imposed by the implementation of partial reconfiguration on both pre-emptible context switching and continuous end-to-end dataflow applications. Skeleton structure systems that permit the insertion and removal of ‘blocks’ into the overall FPGA floorplan have been developed. These can be reconfigured dynamically by the on chip system host even during data processing. In pre-emptible context switching maintaining the execution state of a design before switching away from it becomes of paramount importance; this work presents a new Pre-emptible Flip Flop (PFF) design that is used as a basis for a Task Specific Access Structure (TSAS) for FPGA designs and then proposes an algorithm to automate the insertion of these PFF’s into a synthesised design. Expanding into continuous dataflow application design allows the system host to re-route signals during the partial reconfiguration process and then re-establish the processing chain with the new configuration hence maintaining a continuous uninterrupted dataflow.}
+      \field{title}{Developing and {Implementing} {Dynamic} {Partial} {Reconfiguration} for {Pre}-{Emptible} {Context} {Switching} and {Continuous} {End}-{To}-{End} {Dataflow} {Applications}}
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\9CGTQFWK\\Beasley et al. - Developing and Implementing Dynamic Partial Reconfiguration for Pre-Emptible Context Switching and C.pdf:application/pdf
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

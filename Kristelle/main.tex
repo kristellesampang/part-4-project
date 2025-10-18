@@ -1175,12 +1175,25 @@ This section discusses the implications and interpretation of the results presen
     % - discuss the limitations of the current design
     % - discuss the limitations of the testing methodology
     % - discuss the scope limitation and time constraints of the project
-    - the current design relies on static testing using MIF files, which limits its ability to handle live data streams. this means that the system cannot adapt to changing sparsity patterns in real-time, which is a significant limitation for applications requiring dynamic data processing
-    - pre-processing is separate, its not technically a full pipeline from end to end. ther ei slaos no post-processing stage to revert the output back to its original shape
-    - the algorithm does not look into fine-grained sparsity, not taking advantage of the potential exploitation of unstructured sparsity patterns that are common in real-world data
-    - fixed array size of 8x8, whilst this is technically scalable or can be downgraded, it is limited to 8x8. this means that larger matrices have to be tiled, which could introduce overhead and complexity in managing multiple tiles, esp with the current design of using mifs
-    - the high level python test didn't directly test real-world applications (since we only did 156 rather than thousands of images). this could limit the generalisability of the results to real-world scenarios
-    - time constraints limited the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. the scope of this project was only one year, and the fact that we had to build our knowledge from the ground definitely slowed us down, as we had to learn heaps of unfamiliar concepts rather than going straight into critquing current designs.  further research and development are needed to fully realise the potential of sparsity handling in systolic arrays. 
+    % - the current design relies on static testing using MIF files, which limits its ability to handle live data streams. this means that the system cannot adapt to changing sparsity patterns in real-time, which is a significant limitation for applications requiring dynamic data processing
+    % - pre-processing is separate, its not technically a full pipeline from end to end. ther ei slaos no post-processing stage to revert the output back to its original shape
+    % - the algorithm does not look into fine-grained sparsity, not taking advantage of the potential exploitation of unstructured sparsity patterns that are common in real-world data
+    % - fixed array size of 8x8, whilst this is technically scalable or can be downgraded, it is limited to 8x8. this means that larger matrices have to be tiled, which could introduce overhead and complexity in managing multiple tiles, esp with the current design of using mifs
+    % - the high level python test didn't directly test real-world applications (since we only did 156 rather than thousands of images). this could limit the generalisability of the results to real-world scenarios
+    % - time constraints limited the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. the scope of this project was only one year, and the fact that we had to build our knowledge from the ground definitely slowed us down, as we had to learn heaps of unfamiliar concepts rather than going straight into critquing current designs.  further research and development are needed to fully realise the potential of sparsity handling in systolic arrays. 
+
+    % The current design of the Optimised Systolic Array has several limitations that need to be acknowledged. Firstly, the reliance on static testing using MIF files limits the system's ability to handle live data streams. This means that the system cannot adapt to changing sparsity patterns in real-time, hugely missing out on the benefits of dynamic data processing. Additionally, the pre-processing step is separate from the hardware operation, resulting in a lack of a full end-to-end pipeline. The absence of a post-processing stage to revert the output back to its original shape further limits the system's completeness. Furthermore, the algorithm does not address fine-grained sparsity, deprived of the opportunity to exploit unstructured sparsity patterns that are prevalent in real-world data. The fixed array size of 8x8 also poses a limitation, as larger matrices require tiling, which can introduce overhead and complexity in managing multiple tiles, especially with the current MIF-based design. Moreover, the high-level Python testing did not extensively cover real-world applications, as only 156 images were used, potentially limiting the generalisability of the results. Lastly, time constraints restricted the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. Given the one-year scope of the project and the need to build foundational knowledge, further research and development are necessary to fully realise the potential of sparsity handling in systolic arrays. 
+
+
+    The current design of the Optimised Systolic Array has several limitation that need to be acknowledged:
+    \begin{itemize}
+        \item The reliance on static testing using MIF files limits the system's ability to handle live data streams. This means that the system cannot adapt to changing sparsity patterns in real-time, which is a significant limitation for applications requiring dynamic data processing.
+        \item The pre-processing step is separate from the hardware operation, resulting in a lack of a full end-to-end pipeline. The absence of a post-processing stage to revert the output back to its original shape further limits the system's completeness.
+        \item The algorithm does not address fine-grained sparsity, missing out on the opportunity to exploit unstructured sparsity patterns that are prevalent in real-world data.
+        \item The fixed array size of 8x8 poses a limitation, as larger matrices require tiling, which can introduce overhead and complexity in managing multiple tiles, especially with the current MIF-based design.
+        \item The high-level Python testing did not extensively cover real-world applications, as only 156 images were used, potentially limiting the generalisability of the results.
+        \item Time constraints restricted the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. Given the one-year scope of the project and the need to build foundational knowledge, further research and development are necessary to fully realise the potential of sparsity handling in systolic arrays.
+    \end{itemize}
 
 \section{Future Work} \label{sec: future work}
     % What would be the next logical steps for this project?
@@ -1189,20 +1202,42 @@ This section discusses the implications and interpretation of the results presen
     % - short-term: optimizing the current design, improving the software-hardware co-design process
     % - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)  
 
-    short term:
-    - as we are utilising the Pico as the middle man of our UART transmission, this actually take get the pico to do the pre-processing stage itself. this means that we can have a live data stream where the pico takes in the data, processes it, and sends it to the DE1-SoC board to process. this would make the system more real-time and dynamic. 
-    - then, it can do some post-processing as well, where it takes the output from the DE1-SoC board and reverts it back to its original shape. this would complete the entire pipeline from end to end.
-    - this would also mean we aren't relying on the MIF files, which would simplify the hardware design even further as we don't have to account for reading from ROMs. instead, the data can be sent directly to the control unit from the pico via UART.
-    - Investigate the different sparsity patterns in different layers of AlexNet or CNN models. If a significant structure sparsity is found, the algorithm can be further optimized to exploit these patterns.
-    - investigate the resource utilisation and find a way to optimise It
+
+    % short term:
+    % - as we are utilising the Pico as the middle man of our UART transmission, this actually take get the pico to do the pre-processing stage itself. this means that we can have a live data stream where the pico takes in the data, processes it, and sends it to the DE1-SoC board to process. this would make the system more real-time and dynamic. 
+    % - then, it can do some post-processing as well, where it takes the output from the DE1-SoC board and reverts it back to its original shape. this would complete the entire pipeline from end to end.
+    % - this would also mean we aren't relying on the MIF files, which would simplify the hardware design even further as we don't have to account for reading from ROMs. instead, the data can be sent directly to the control unit from the pico via UART.
+    % - Investigate the different sparsity patterns in different layers of AlexNet or CNN models. If a significant structure sparsity is found, the algorithm can be further optimized to exploit these patterns.
+    % - investigate the resource utilisation and find a way to optimise It
 
 
-    long term:
-    - full hardware implemetnation of saprsity handling algorithnm. a whole hardware block can be impolemented for just the algorthm iretly on the fpga. this would enable real-time dynamic reconfiguration of the systolic array based on live data streams.
-    - integrate the NPU with a softcore processor like NIOS II to create a complete heterogenous system. we can let the NPU handle all the matrix multiplications and offlaod the other tasks to the NIOS II processor. this would create a more versatile system capable of handling a wider range of applications. !! there is a paper that talks about idling time 
-    - DPR is something that was explored earlier in the project. due to time/skill constraint, we did not delve deeply into it. this invovlves reconfiguration of the fpga fabric at runtime to instantiate the neceessary PEs. this would allow for greater power savings and resource flexibility
-    - support for unstructured sparsity, as this is more common, this can be investigated 
-    - end to end cnn inferences. we do the whole processing between layers untl the final output. this would involve integrating with other hardware blocks for convolution, pooling, activation functions etc.
+    % long term:
+    % - full hardware implemetnation of saprsity handling algorithnm. a whole hardware block can be impolemented for just the algorthm iretly on the fpga. this would enable real-time dynamic reconfiguration of the systolic array based on live data streams.
+    % - integrate the NPU with a softcore processor like NIOS II to create a complete heterogenous system. we can let the NPU handle all the matrix multiplications and offlaod the other tasks to the NIOS II processor. this would create a more versatile system capable of handling a wider range of applications. !! there is a paper that talks about idling time 
+    % - DPR is something that was explored earlier in the project. due to time/skill constraint, we did not delve deeply into it. this invovlves reconfiguration of the fpga fabric at runtime to instantiate the neceessary PEs. this would allow for greater power savings and resource flexibility
+    % - support for unstructured sparsity, as this is more common, this can be investigated 
+    % - end to end cnn inferences. we do the whole processing between layers untl the final output. this would involve integrating with other hardware blocks for convolution, pooling, activation functions etc.
+
+
+    This section outlines potential directions for future work to enhance and extend the capabilities of the Optimised Systolic Array. Both short-term and long-term objectives are considered to build upon the current design and explore new avenues for improvement.
+    
+    \subsection{Short-term Objectives} \label{sec: short-term}
+    The immediate next steps for this project focuses on improving upon the limitations and drawbacks identified in the previous sections. Key short-term objectives include:
+    \begin{itemize}
+        \item Utilising the Pico as the intermediary for UART transmission to perform the pre-processing stage. This would enable a live data stream where the Pico processes incoming data and sends it to the DE1-SoC board, making the system more real-time and dynamic. Additionally, the Pico could handle post-processing by reverting the output back to its original shape, completing the end-to-end pipeline. By doing so, reliance on MIF files would be eliminated, simplifying the hardware design as data can be sent directly to the control unit via UART. 
+        \item Investigate the different sparsity patterns in various layers of AlexNet or other CNN models. If significant structured sparsity is found, the algorithm can be further optimised to exploit these patterns.
+        \item Analyse the resource utilisation of the current design and identify opportunities for optimisation to improve efficiency
+    \end{itemize}
+    
+    \subsection{Long-term Objectives} \label{sec: long-term}
+    Looking further ahead, where objectives are beyond the immedaite scope of this project, several long-term objectives can be pursued to significantly advance the capabilities of the systolic array:
+    \begin{itemize}
+        \item Full hardware implementation of sparsity handling algorithm. A dedicated hardware block can be designed to perform the algorithm directly on the FPGA, enabling real-time dynamic reconfiguration of the systolic array based on live data streams.
+        \item Integrate the NPU with a soft-core processor, like NIOS II, to create a complete heterogeneous system investigated by \textcite{liu_energy-efficient_2024}. The NPU can be designed to handle all matrix multiplications while offloading other tasks to the NIOS II processor, resulting in a more versatile system capable of handling a wider range of applications. %!! check reference with idle time
+        \item Dynamic Partial Reconfiguration (DPR) can be explored to enable runtime reconfiguration of the FPGA fabric to instantiate the necessary PEs. \textcite{beasley_developing_nodate} has an example of this, deployed on DE1-SoC board, indicating its feasibility. This would allow for greater power savings and resource flexibility.
+        \item End-to-End CNN inferencing where the entire pipeline between layers is handled until the final output. This would involve integrating with other hardware blocks for convolution, pooling, activation functions, etc., creating a comprehensive solution for CNN inference on FPGA.
+    \end{itemize}
+
 
 
 
