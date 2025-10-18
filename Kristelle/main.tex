@@ -507,6 +507,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     FPGA & Field-Programmable Gate Array \\
     FSM & Finite State Machine \\ 
     GPU & Graphics Processing Unit \\
+    IoT & Internet of Things \\
     MAC & Multiply-Accumulate \\
     MIF & Memory Initialization File \\
     ML & Machine Learning \\
@@ -528,42 +529,28 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 \pagenumbering{arabic}
 % --- Main Body of the Report ---
 \section{Introduction} \label{sec: intro}
-    % \subsection{Motivation}
-    % Hook the reader. Why is this project important? What is the big-picture problem? 
-    % (e.g., The explosion of AI and IoT devices demands powerful but low-power processing directly on the edge.)
-    % Why are current solutions like CPUs/GPUs not good enough for this specific problem? (e.g., Power consumption, size constraints.)
-
-    % \begin{itemize}
-    %     \item As the demand for artificial intelligence grows to become prominent in today's society, its energy consumption has become a key issue. 
-    %     \item The processing required to run machine learning models is large, with millions of computations needed to be executed. 
-    %     \item This means that low-power processing devices at edge are limited to its use. 
-    %     \item The processing power to run machine learning models is large, limiting its use for low-power processing devices at the edge.  
-    %     \item With high computational power required, energy-efficiency is a key concern, especially nowadays when energy is an essential resource to not waste.
-    %     \item In the past decade, common types of processors for running AI are CPU, GPU, and FPGA. 
-    %     \item However, as technology continues to improve, Neural Processing Units (NPU) are developed. These are processors that specialise in processing AI computations.
-    %     \item By integrating NPU alongside other processors, the performance and energy-efficiency are improved compared to a standalone processor. 
-    %     % \item This report aims to focus on tacking the issue of low energy-efficient use of AI at edge. 
-    %     %% I need more context here
-    % \end{itemize}
-    The demand for Artificial Intelligence (AI) has grown exponentially in recent years, becoming prominent in various aspects of today's society. However, the energy consumption associated with AI has emerged as a critical concern. The execution of Machine Learning (ML) models requires a considerable amount of processing power, involving millions of computations. This high computational demand presents a limitation for low-power processing devices, particularly those operating at the edge. As technology continues to evolve, specialised processors, such as Neural Processing Units (NPU), have been developed to address the specific needs of AI computation. 
-
-    These NPUs are specialised to execute algorithms more efficiently than general-purpose CPUs and GPUs, offering significant improvements in both performance and energy efficiency. A common architecture for NPUs is the systolic array, which allows for parallel processing of data, thereby reducing latency and power consumption. This architecture is perfect for the common computation found in Convolutional Neural Networks (CNNs), which rely heavily on matrix multiplications. However, this architecture is challenged by the presence of sparsity in these networks. Therefore, addressing the issue of sparsity is crucial for optimising the performance of NPUs in real-world applications.
+    
+    The demand for Artificial Intelligence (AI) has grown exponentially in recent years, becoming prominent in various aspects of today's society. However, the energy consumption associated with AI has emerged as a critical concern. The execution of Machine Learning (ML) models requires a considerable amount of processing power, involving millions of computations. This high computational demand presents a limitation for low-power processing devices, particularly those operating at the edge. Devices at edge locations, such as mobile phones and Internet of Things (IoT) devices, are often constrained by limited power resources, making it a challenge to run complex AI algorithms efficiently. 
+    
+    As technology continues to evolve, specialised processors, such as Neural Processing Units (NPU), have been developed to address the specific needs of AI computation. These NPUs are tailored to execute algorithms more efficiently than general-purpose Central Processing Units (CPUs) and Graphics Processing Units (GPUs), offering significant improvements in both performance and energy efficiency. A common architecture for NPUs is the systolic array, which allows for parallel processing of data, thereby reducing latency and power consumption whilst maintaining high throughput. This architecture is perfect for the common computation found in Convolutional Neural Networks (CNNs), which rely heavily on matrix multiplications. However, this architecture is challenged by the presence of sparsity in these networks. Sparsity refers to the presence of a high volume of zero values in the data being processed, often resulting from techniques like Rectified Linear Unit (ReLU) activations. This sparsity can lead to inefficiencies in computation as its rigid structure forces zero values to be processed in the same manner as non-zero values even though it has no effect in the final result. Therefore, executing operations on these zero values can lead to unnecessary energy consumption and increased latency. By introducing flexibility to adapt to varying inputs, the NPU can exploit this sparsity to improve performance rather than being hindered by it. Thus, addressing the issue of sparsity is crucial for optimising the performance of NPUs in real-world applications.
 
     This project aims to design and implement a reconfigurable Neural Processing Unit (NPU) that optimises energy efficiency for AI applications at the edge. The specific objectives of this project are as follows:
     \begin{itemize}
-        \item Design a reconfigurable NPU architecture that can adapt to varying computational requirements of different AI models.
-        \item Implement energy-efficient dataflow strategies to minimise power consumption during AI inference tasks.
-        \item Evaluate the performance and energy efficiency of the proposed NPU design through simulations and benchmarking against existing solutions.
-        \item Develop a software-hardware co-design approach to facilitate the integration of the NPU with existing AI frameworks.
-        \item Demonstrate the effectiveness of the NPU in real-world edge computing scenarios.
+        \item Design and implement a reconfigurable 8x8 NPU architecture using a systolic array structure to exploit sparsity in CNNs.
+        \item Implement a software pre-processing script in Python to extract INT8 data from a pre-trained AlexNet model to extract matrices with varying levels of sparsity.
+        \item Develop a sparsity handling algorithm that exploits structured sparsity to reduce latency by skipping computations involving zero values.
+        \item Validate and verify the system's behaviour through simulation to quantify the latency reduction and performance speed up of the proposed design compared to a baseline systolic array architecture.
+        \item Demonstrate the effectiveness of the proposed NPU in real-world edge computing scenarios.
+        % \item Design a reconfigurable NPU architecture that can adapt to varying computational requirements of different AI models.
+        % \item Implement energy-efficient dataflow strategies to minimise power consumption during AI inference tasks.
+        % \item Evaluate the performance and energy efficiency of the proposed NPU design through simulations and benchmarking against existing solutions.
+        % \item Develop a software-hardware co-design approach to facilitate the integration of the NPU with existing AI frameworks.
+        % \item Demonstrate the effectiveness of the NPU in real-world edge computing scenarios.
     \end{itemize}
 
+    The remainder of this report is organised as follows: Section~\ref{sec: background} provides the necessary background on the core ideas that support this project, including Convolutional Neural Networks (CNNs) and hardware acceleration for machine learning. Section~\ref{sec: literature review} reviews existing literature and related work in the field, highlighting the gaps that this project aims to address. Section~\ref{sec: design_method} details the methodology employed in designing and implementing the reconfigurable NPU. Section~\ref{sec: verification} verifies the proposed design and presents the results obtained from simulations. Section~\ref{sec: discussion} discusses the implications of the results, comparing it with existing solutions and outlining potential areas for improvement. Finally, Section~\ref{sec: conclusion} concludes the report by summarising the key findings and and Section \ref{sec: future work} discusses potential future work.
 
 
-    The remainder of this report is organised as follows: Section~\ref{sec: background} provides the necessary background on the core ideas that support this project, including Convolutional Neural Networks (CNNs) and hardware acceleration for machine learning. Section~\ref{sec: literature review} reviews existing literature and related work in the field, highlighting the gaps that this project aims to address. Section~\ref{sec: design_method} details the methodology employed in designing and implementing the reconfigurable NPU. Section~\ref{sec: verification} verifies the proposed design and presents the results obtained from simulations. Section~\ref{sec: discussion} discusses the implications of the results, comparing them with existing solutions and outlining potential areas for improvement. Finally, Section~\ref{sec: conclusion} concludes the report by summarising the key findings and and Section \ref{sec: future work} discusses potential future work.
-
-\clearpage  
-\newpage
 \section{Background} \label{sec: background}
     % According to the rubric, this section must "Clearly define the project context" and demonstrate
     % "a good understanding of the broader scientific or engineering domain."
