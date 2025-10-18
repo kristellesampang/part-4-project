@@ -1312,6 +1312,73 @@
       \verb https://ieeexplore.ieee.org/document/9065523/
       \endverb
     \endentry
+    \entry{tiwari_data_2022}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a3c0dde858382207a1bb1aa1c48d6238}{%
+           family={Tiwari},
+           familyi={T\bibinitperiod},
+           given={Binayak},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a1763fca75a6f4cdb2b642548eaad89d}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Mei},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cf0cde799ce379dd53ed1a0c6df3716b}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xiaohang},
+           giveni={X\bibinitperiod}}}%
+        {{hash=0c35b3aa82ab1375a3e170f4dc33d603}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Yingtao},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{e00ed7774143e5e415adfa30d1840511}
+      \strng{fullhash}{16779aa8ee7275c9c9e68f4c0742137a}
+      \strng{fullhashraw}{16779aa8ee7275c9c9e68f4c0742137a}
+      \strng{bibnamehash}{16779aa8ee7275c9c9e68f4c0742137a}
+      \strng{authorbibnamehash}{16779aa8ee7275c9c9e68f4c0742137a}
+      \strng{authornamehash}{e00ed7774143e5e415adfa30d1840511}
+      \strng{authorfullhash}{16779aa8ee7275c9c9e68f4c0742137a}
+      \strng{authorfullhashraw}{16779aa8ee7275c9c9e68f4c0742137a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The increasing popularity of deep neural network (DNN) applications demands high computing power and efﬁcient hardware accelerator architecture. DNN accelerators use a large number of processing elements (PEs) and on-chip memory for storing weights and other parameters. As the communication backbone of a DNN accelerator, networks-on-chip (NoC) play an important role in supporting various dataﬂow patterns and enabling processing with communication parallelism in a DNN accelerator. However, the widely used mesh-based NoC architectures inherently cannot support the efﬁcient one-to-many and many-to-one trafﬁc largely existing in DNN workloads. In this paper, we propose a modiﬁed mesh architecture with a one-way/two-way streaming bus to speedup one-tomany (multicast) trafﬁc, and the use of gather packets to support many-to-one (gather) trafﬁc. The analysis of the runtime latency of a convolutional layer shows that the two-way streaming architecture achieves better improvement than the one-way streaming architecture for an Output Stationary (OS) dataﬂow architecture. The simulation results demonstrate that the gather packets can help to reduce the runtime latency up to 1.8 times and network power consumption up to 1.7 times, compared with the repetitive unicast method on modiﬁed mesh architectures supporting two-way streaming.}
+      \field{annotation}{Comment: Submitted for the journal review}
+      \field{issn}{13837621}
+      \field{journaltitle}{Journal of Systems Architecture}
+      \field{month}{5}
+      \field{note}{arXiv:2108.02569 [cs]}
+      \field{title}{Data {Streaming} and {Traffic} {Gathering} in {Mesh}-based {NoC} for {Deep} {Neural} {Network} {Acceleration}}
+      \field{urlday}{18}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{126}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{102466}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.sysarc.2022.102466
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\6QBWE5MN\\Tiwari et al. - 2022 - Data Streaming and Traffic Gathering in Mesh-based NoC for Deep Neural Network Acceleration.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2108.02569
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2108.02569
+      \endverb
+      \keyw{Computer Science - Distributed,Parallel,and Cluster Computing,Computer Science - Hardware Architecture,Computer Science - Machine Learning}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

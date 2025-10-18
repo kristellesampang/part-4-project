@@ -565,6 +565,21 @@ INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.
 INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
 INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
 INPUT ./results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png
+INPUT ./results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png
+INPUT ./results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png
+INPUT ./results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png
+INPUT ./results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png
+INPUT ./results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png
+INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
+INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
+INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
+INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
+INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc8t.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc8t.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
