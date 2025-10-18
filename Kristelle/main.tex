@@ -503,7 +503,12 @@
     {\large \textbf{\scshape ABSTRACT}}
 \end{center}
 
-Abstract goes here.
+% Insert abstract here (approx. 250 words). The abstract should summarise the key points of the report, including the project objectives, methodology, results, and conclusions. It should be concise and informative, providing a clear overview of the report's content.
+
+
+As Artificial Intelligence (AI) continues to rapidly advance, hardware accelerators, such as Neural Processing Units (NPUs), are becoming crucial in balancing high performance and energy-efficiency. The key motivator for this research is the growing demand for AI at the edge, where reduced power consumption and latency are essential considerations. One popular architecture for NPUs is the systolic array, efficient at parallelism for matrix multiplications commonly found in Convolutional Neural Networks (CNNs). However, the presence of sparsity in these networks, particularly due to ReLU activations, presents significant challenges to performance optimisation. Therefore, a software-hardware co-design approach is prposed to address this issue. A reconfigurable systolic array is implemented, capable of adpating to different levels of structured sparsity by implementing a row and column stripping algoirthm. This design is validated by synthesis on a DE1-Soc FPGA and by using a pre-trained AlexNet model on sample images, with performance compared against a baseline systolic array. The results demonstrate that the proposed approach significantly reduces latency compared to the baseline, with theoretical improvements of up to XX\% at higher sparsity levels. This research highlights the potential of reconfigurable NPUs in enhancing energy-efficient AI processing at the edge.
+
+
 
 % --- Declaration Page ---
 % \includepdf[pages=-, pagecommand={\thispagestyle{fancy}}]{Declaration.pdf}
@@ -550,10 +555,9 @@ Date: \includegraphics[width=0.2\linewidth]{figures/date.png}
 \addcontentsline{toc}{section}{Acknowledgements}
 
 \label{sec:Acknowledgements1}
-
-Thank important people here.
-
-
+I would like to express my gratitude to my supervisors, Dr Morteza Biglari-Abhari and Dr Maryam Hemmati, for their guidance and support throughout this project. Without their assistance, this work would not have been possible. 
+\newline \newline
+I would like to extend my thanks to Pratham Chhabra, my project partner, for his hard work, collaboration, and dedication throughout this project. His efforts have been significant in the success of this work.
 
 \newpage
 
