@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Control Signals</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Name</TH>
+<TH>Location</TH>
+<TH>Fan-Out</TH>
+<TH>Usage</TH>
+<TH>Global</TH>
+<TH>Global Resource Used</TH>
+<TH>Global Line Name</TH>
+<TH>Enable Signal Source Name</TH>
+</TR>
+</thead><tbody><TR >
+<TD >CLOCK_50</TD>
+<TD >PIN_AF14</TD>
+<TD >122</TD>
+<TD >Clock</TD>
+<TD >yes</TD>
+<TD >Global Clock</TD>
+<TD >GCLK6</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >KEY[0]</TD>
+<TD >PIN_AA14</TD>
+<TD >62</TD>
+<TD >Async. clear, Clock enable, Sync. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >UART:UART_inst|TX:C1|BUSY</TD>
+<TD >FF_X51_Y1_N35</TD>
+<TD >19</TD>
+<TD >Clock enable, Sync. load</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >UART:UART_inst|TX:C1|INDEX[0]~0</TD>
+<TD >LABCELL_X51_Y1_N18</TD>
+<TD >8</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >UART:UART_inst|TX:C1|LessThan0~3</TD>
+<TD >LABCELL_X51_Y1_N54</TD>
+<TD >15</TD>
+<TD >Sync. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >UART:UART_inst|TX:C1|process_0~0</TD>
+<TD >LABCELL_X51_Y1_N21</TD>
+<TD >5</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >UART:UART_inst|process_1~0</TD>
+<TD >LABCELL_X48_Y2_N3</TD>
+<TD >6</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >data_byte[0]~0</TD>
+<TD >LABCELL_X45_Y2_N12</TD>
+<TD >5</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >debouncer:debounce_inst|counter[19]~0</TD>
+<TD >LABCELL_X46_Y2_N36</TD>
+<TD >20</TD>
+<TD >Sync. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >debouncer:debounce_inst|counter[19]~1</TD>
+<TD >LABCELL_X46_Y2_N54</TD>
+<TD >20</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|Selector12~2</TD>
+<TD >LABCELL_X42_Y2_N51</TD>
+<TD >4</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|\fsm_proc:rom_addr_counter[6]~2</TD>
+<TD >LABCELL_X45_Y2_N30</TD>
+<TD >9</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|active_m_sig[0]~0</TD>
+<TD >LABCELL_X42_Y2_N42</TD>
+<TD >4</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|active_n_sig[3]~0</TD>
+<TD >LABCELL_X43_Y2_N27</TD>
+<TD >4</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|current_state.S_IDLE</TD>
+<TD >FF_X45_Y2_N44</TD>
+<TD >13</TD>
+<TD >Sync. clear</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|expected_latency[4]~0</TD>
+<TD >LABCELL_X40_Y2_N18</TD>
+<TD >5</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|npu_cycle_count[0]~0</TD>
+<TD >LABCELL_X45_Y2_N15</TD>
+<TD >5</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|rom_addr~0</TD>
+<TD >LABCELL_X42_Y2_N45</TD>
+<TD >7</TD>
+<TD >Clock enable</TD>
+<TD >no</TD>
+<TD >--</TD>
+<TD >--</TD>
+<TD >--</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
