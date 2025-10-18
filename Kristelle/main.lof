@@ -1,0 +1,13 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Image of a cat used for testing the AlexNet model}}{7}{figure.caption.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Register Transfer Level (RTL) Diagram of the Processing Element (PE)}}{8}{figure.caption.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Baseline Systolic Array Arrangement}}{9}{figure.caption.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Baseline Systolic Array's Dataflow}}{10}{figure.caption.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces System Overview of the Optimised Systolic Array, consisting of both Software and Hardware Components}}{10}{figure.caption.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Finite State Machine (FSM) Diagram of the NPU Loading Data from ROMs}}{12}{figure.caption.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Testbench Finite State Machine (FSM) Diagram}}{14}{figure.caption.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Latency of Baseline Systolic Array on Different NxN sizes}}{14}{figure.caption.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Latency of Baseline Systolic Array on Varying Input Matrix Size}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Impact on Latency as Row Stripping Increases in a 8x8 Activation}}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Effect of M value on the number of Active PEs in the Systolic Array and Latency}}{16}{figure.caption.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity}}{17}{figure.caption.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Performance Comparison: Average Clock Cycles per Tile of an AlexNet Convolutional Layer}}{17}{figure.caption.13}%

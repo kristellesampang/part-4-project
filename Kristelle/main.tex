@@ -167,15 +167,15 @@
     \begin{figure}[ht]
         \centering
         \includegraphics[width=0.2\linewidth]{figures/MAC.jpg}
-        \caption{Image of the MAC unit in the Processing Element (PE)}
+        \caption{MAC unit in the Processing Element (PE)}
         \label{fig:MAC}
     \end{figure}
 }
 \newcommand{\baselineSystolicArrayImage}{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array.jpg}
-        \caption{Image of the Baseline Systolic Array Arrangement}
+        \includegraphics[width=0.4\linewidth]{figures/baseline_systolic_array.jpg}
+        \caption{Baseline Systolic Array Arrangement}
         \label{fig:baseline_systolic_array}
     \end{figure}
 }
@@ -184,7 +184,7 @@
     \begin{figure}[ht]
         \centering
         \includegraphics[width=0.5\linewidth]{figures/baseline_systolic_array_dataflow.jpg}
-        \caption{Image of the Baseline Systolic Array's Dataflow}
+        \caption{Baseline Systolic Array's Dataflow}
         \label{fig:baseline_dataflow}
     \end{figure}
 }
@@ -197,6 +197,34 @@
         \label{fig:performance_comparison}
     \end{figure}
 }
+
+\newcommand{\systemDiagram}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figures/system_diagram.jpg}
+        \caption{System Overview of the Optimised Systolic Array, consisting of both Software and Hardware Components}  
+        \label{fig:system_overview}
+    \end{figure}
+}
+
+\newcommand{\RTL}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figures/rtl.jpg}
+        \caption{Register Transfer Level (RTL) Diagram of the Processing Element (PE)}  
+        \label{fig:rtl}
+    \end{figure}
+}
+
+\newcommand{\tbFSM}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figures/tb_fsm.jpg}
+        \caption{Testbench Finite State Machine (FSM) Diagram}
+        \label{fig:tb_fsm}
+    \end{figure}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % TABLES
@@ -234,8 +262,17 @@
     \begin{figure}[ht]
         \centering
         \includegraphics[width=0.4\linewidth]{results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png}
-        \caption{IImpact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity}
+        \caption{Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity}
         \label{fig:optimise_random_sparsity}
+    \end{figure}
+}
+
+\newcommand{\fsmnpu}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figures/fsm_npu.jpg}
+        \caption{Finite State Machine (FSM) Diagram of the NPU Loading Data from ROMs}
+        \label{fig:fsmnpu}
     \end{figure}
 }
 
@@ -574,22 +611,22 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     % 5G & Fifth generation mobile network \\
 
     AI at the Edge & Performing AI computations directly on edge devices rather than relying on cloud-based servers. \\
-    \bottomrule
+    
     Dataflow & The pattern of how data flows between processing elements and memory in a hardware accelerator. \\
-    \bottomrule
+
     Hardware Acceleratgor & Specialised hardware designed to perform a particular task more efficiently than general-purpose processors. \\
-    \bottomrule
+    
     Latency & The time delay between the input and output of a system, measured in clock cycles for this project. \\
-    \bottomrule
+  
     Pruning & Technique to remove unnecessary weights in a neural network to compress the model. \\ 
-    \bottomrule
+  
     Quantisation & Reducing the precision of numbers to make the model smaller and faster. \\
-    \bottomrule
+  
     Sparsity & The presence of a significant number of zero-valued elements in a matrix or tensor. \\
-    \bottomrule
+
     Systolic Array & Network of processing elements that rhythmically compute and pass data through the system. \\
-    \bottomrule
-    Tiling & Breaking large matrices into smaller, fixed-sized blocks to fit into hardware constraints.
+    
+    Tiling & Breaking large matrices into smaller, fixed-sized blocks to fit into hardware constraints. \\ 
     \bottomrule
 \end{longtable}
 \addtocounter{table}{-1}
@@ -619,7 +656,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     ReLU & Rectified Linear Unit \\
     ROM & Read-Only Memory \\
     RTL & Register-Transfer Level \\
-    
+
     \bottomrule
 \end{longtable}
 \addtocounter{table}{-1}
@@ -832,7 +869,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
 % --- Design and Methodology ---
 \section{Design and Methodology} \label{sec: design_method}
-    \subsection{System Architecture Overview} \label{sec: SA overview}
+    
     % Present a high-level block diagram of your final design. Show the NPU Wrapper, the NPU Core (top_level_systolic_array), the BRAMs, the Control Unit, and the Systolic Array.
     % Briefly explain the role of each block and the data flow between them.
     % high-level overview of the final design iteration.
@@ -873,7 +910,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     The core of the hardware accelerator is an 8x8 systolic array, designed to perform matrix multiplication for convolutional layers. The fundamental building block of this array is the Processing Element (PE), a custom-designed Multiply-Accumulate (MAC) unit. The entire hardware accelerator was designed in VHDL.
     
     \subsubsection{Processing Elements and Systolic Array Formation}
-    The fundamental process that the PE executes is the MAC operation, the core computation in convolutional layers. This can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:MAC}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map, both as INT8 data types. These inputs are multiplied together and adds the result to a 32-bit accumulated register that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
+    The fundamental process that the PE executes is the MAC operation, the core computation in convolutional layers. This can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:rtl}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map, both as INT8 data types. These inputs are multiplied together and adds the result to a 32-bit accumulated register that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
     
     Each PE communicates with its neighbours to pass data along the array, enabling a continuous flow of data through the system. The dataflow chosen for this design is output-stationary, where the output partial sums remain in the PE until the final result is computed \cite{sun_sense_2023}. This approach minimises data movement and maximises data locality, reducing memory access costs. The PE is designed to operate in a pipelined manner, allowing it to accept new inputs every clock cycle while still processing previous inputs. This pipelining is crucial for maintaining high throughput in the systolic array.
 
@@ -883,7 +920,8 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
     
 
-    \MACRegImage
+    % \MACRegImage
+    \RTL
     \baselineSystolicArrayImage
 
 
@@ -903,12 +941,18 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     \baselineDataflowImage
 
     \subsection{Optimised Systolic Array for Sparse Matrices Architecture} \label{sec: handling algo}
+    
     % Explain your Python-based `strip_matrices` algorithm. Why is this a smart way to pre-process the data for your reconfigurable controller?
     % Explain the importance of the coordinated removal of rows and columns to maintain mathematical validity.    
-    As the research gap identified in Section \ref{sec: dataflow} suggests, there is a need for a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. To improve upon the Baseline Systolic Array architecture, a software-hardware co-design approach is integrated. This involves an extra step in the pre-processing stage of the data, where a Python-based algorithm function called \texttt{coordinated\_row\_removal} is implemented to remove rows of zeros in the activation and weight matrix. This simple addition significantly improves the performance of the systolic array when handling sparse matrices.
+    
+    As the research gap identified in Section \ref{sec: dataflow} suggests, there is a need for a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. To improve upon the Baseline Systolic Array architecture, a software-hardware co-design approach is integrated. This involves an extra step in the pre-processing stage of the data, where a Python-based algorithm function called \texttt{coordinated\_row\_removal} is implemented to remove rows of zeros in the activation and weight matrix. This simple addition significantly improves the performance of the systolic array when handling sparse matrices. The system overview for this design is shown in Figure \ref{fig:system_overview}.
+    \systemDiagram
+
+    
 
     \subsubsection{Hardware System Overview} \label{sec: optimised hw}
-    Figure X illustrates the high-level block diagram of the final hardware system. The top-level module, named \texttt{de1\_soc\_top}, interfaces the hardware accelerator with the FPGA board. The \texttt{NPU\_Wrapper} module encapsulates the entire NPU design, including the systolic array, control unit, and the ROMs. The ROMs are utilised to store the pre-processed weight and activation tiles in mif format, allowing for static testing of the hardware design. The control unit is responsible for managing the dataflow and synchronisation of the systolic array, as well as adapting to the effective size of the input matrices after pre-processing. The systolic array itself remains largely unchanged from the Baseline Systolic Array, retaining its 8x8 PE grid and output-stationary dataflow. However, it now benefits from the optimised input data, leading to improved efficiency and performance when handling sparse matrices.
+    % Figure X illustrates the high-level block diagram of the final hardware system. 
+    The top-level module, named \texttt{de1\_soc\_top}, interfaces the hardware accelerator with the FPGA board. The \texttt{NPU\_Wrapper} module encapsulates the entire NPU design, including the systolic array, control unit, and the ROMs. The ROMs are utilised to store the pre-processed weight and activation tiles in mif format, allowing for static testing of the hardware design. The control unit is responsible for managing the dataflow and synchronisation of the systolic array, as well as adapting to the effective size of the input matrices after pre-processing. The systolic array itself remains largely unchanged from the Baseline Systolic Array, retaining its 8x8 PE grid and output-stationary dataflow. However, it now benefits from the optimised input data, leading to improved efficiency and performance when handling sparse matrices.
     % !! talk about how we used the rapsberry pi to interface with the de1 soc board to program it and read back results etc
 
             
@@ -951,7 +995,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
         % -- once this is done, we send a done signal to the top-level module, which then sends it to the control unit to signal that the operation is done, going back to the S_IDLE state
 
         The purpose of the NPU Wrapper is to act as the interface with the top-level module and the NPU core. It is responsible for instantiating all the components of the NPU, consisting of the systolic array, control unit, and ROMs. With the addition of the sparsity handling algorithm, modification of the MIF files, and introduction of the ROMs, the NPU Wrapper was created to handle the new changes. 
-        The NPU Wrapper is designed to read data from the ROMs correctly. It utilises a Finite State Machine (FSM) to manage the data flow and control signals. The FSM operates as follows:
+        The NPU Wrapper is designed to read data from the ROMs correctly. It utilises a Finite State Machine (FSM) to manage the data flow and control signals, illustrated in Figure \ref{fig:fsmnpu}. The FSM operates as follows:
         \begin{itemize}
             \item \textbf{S\_IDLE}: The system starts in the idle state, waiting for a start signal to initiate the operation.
             \item \textbf{S\_LOAD\_PARAMS}: Upon receiving the start signal, the FSM transitions to this state to read the first three values from the ROMs, which are M, N, and K. These values determine how many reads are required, as M*K values will be read from the activation ROM and K*N values from the weight ROM.
@@ -959,6 +1003,8 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
             \item \textbf{S\_EXECUTE}: After loading the matrices, the FSM enters this state and waits for a signal from the control unit indicating that it has sent the values to the systolic array.
             \item \textbf{S\_DONE}: Once execution is complete, the FSM transitions to this state and waits for the maximum theoretical number of clock cycles required to process the data, calculated as (M + N + K - 2) clock cycles. After this period, it sends a done signal to the top-level module, which then notifies the control unit that the operation is complete, returning to the S\_IDLE state.
         \end{itemize}
+
+        \fsmnpu
 
         % !! add the 3N-2 reference latency for the systolic array
         % !! add the M-1 + N-1 + K-1 reference for the latency of the entire system
@@ -1021,9 +1067,11 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
     The testbench counts the latency by counting the number of clock cycles taken for the NPU to complete the matrix multiplication operation. This measurement provides insight into the NPU performance, allowing for a direct comparison between the Baseline and Optimised Systolic Array. Furthermore, the testbench monitors the output of the NPU to verify the correct of the matrix multiplication results. This is cross-verified against expected results calculated in both Python and MATLAB to ensure the NPU operates correctly. Another crucial behaviour that the testbench verifies is the staggering behaviour of the control unit inputs, ensuring that data is fed into the systolic array in the expected manner.
 
-    The modularity of the testbench allows for easy modification and extension, essential for testing different test cases. This includes varying size of input matrices and different sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design.
+    The modularity of the testbench allows for easy modification and extension, essential for testing different test cases. This includes varying size of input matrices and different sparsity patterns. Overall, the VHDL testbench provides a comprehensive environment for verifying the functionality and performance of the NPU design. The behaviour of the FSM can be observed in Figure \ref{fig:tb_fsm}, showcasing the different states during operation.   
+    \tbFSM
 
-    Appendix X includes screenshots of all the ModelSim results alongside the expected results from Python and MATLAB for reference. For the purpose of this report, three types of matrices were tested: a dense 8x8 matrix, a sparse 1x8 matrix, and a 4x8 matrix. These examples were chosen to compare the performance of the Baseline and Optimised Systolic Arrays under different conditions.
+    % Appendix X includes screenshots of all the ModelSim results alongside the expected results from Python and MATLAB for reference.
+     For the purpose of this report, three types of matrices were tested: a dense 8x8 matrix, a sparse 1x8 matrix, and a 4x8 matrix. These examples were chosen to compare the performance of the Baseline and Optimised Systolic Arrays under different conditions.
 
 
     
@@ -1269,7 +1317,7 @@ This section discusses the implications and interpretation of the results presen
 
     This section outlines potential directions for future work to enhance and extend the capabilities of the Optimised Systolic Array. Both short-term and long-term objectives are considered to build upon the current design and explore new avenues for improvement.
     
-    \subsection{Short-term Objectives} \label{sec: short-term}
+    \subsection{Short-Term Objectives} \label{sec: short-term}
     The immediate next steps for this project focuses on improving upon the limitations and drawbacks identified in the previous sections. Key short-term objectives include:
     \begin{itemize}
         \item Utilising the Pico as the intermediary for UART transmission to perform the pre-processing stage. This would enable a live data stream where the Pico processes incoming data and sends it to the DE1-SoC board, making the system more real-time and dynamic. Additionally, the Pico could handle post-processing by reverting the output back to its original shape, completing the end-to-end pipeline. By doing so, reliance on MIF files would be eliminated, simplifying the hardware design as data can be sent directly to the control unit via UART. 
@@ -1277,7 +1325,7 @@ This section discusses the implications and interpretation of the results presen
         \item Analyse the resource utilisation of the current design and identify opportunities for optimisation to improve efficiency
     \end{itemize}
     
-    \subsection{Long-term Objectives} \label{sec: long-term}
+    \subsection{Long-Term Objectives} \label{sec: long-term}
     Looking further ahead, where objectives are beyond the immedaite scope of this project, several long-term objectives can be pursued to significantly advance the capabilities of the systolic array:
     \begin{itemize}
         \item Full hardware implementation of sparsity handling algorithm. A dedicated hardware block can be designed to perform the algorithm directly on the FPGA, enabling real-time dynamic reconfiguration of the systolic array based on live data streams.
