@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760755474.27172 "main.bcf" "main.bbl" "main" 1760755499.90352 0
+["biber main"] 1760755474.27172 "main.bcf" "main.bbl" "main" 1760758495.49245 0
   "final_report.bib" 1760752783 85849 e543639c843685aea46ef937d641aab4 ""
-  "main.bcf" 1760755498 110974 aee262351b4d13cc086d9f2193e4070e "pdflatex"
+  "main.bcf" 1760758494 110974 aee262351b4d13cc086d9f2193e4070e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760755493.02928 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760755499.90538 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760755472 98903 9f5334f6aeca53087228d9a286e841d2 ""
+["pdflatex"] 1760758488.15178 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760758495.49405 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760758476 98983 f6fe3a7259c94a5f6e567de6cee5552e ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1744948596 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -281,14 +281,14 @@
   "figures/cat.jpg" 1759222068 138526 7ba11f02fa20b0ec09fe92b2e0c6c078 ""
   "figures/date.png" 1760493387 11011 34ccf860ae95a59a239f3f1ba8e4679f ""
   "figures/signature.png" 1760493396 16213 ca2c53f49a580472bc42db51e9d1186c ""
-  "main.aux" 1760755498 16988 9112fef5f6938d05f36f23691285f206 "pdflatex"
+  "main.aux" 1760758494 16986 41f2a1b5001db2aa1efba5ebb8db4ced "pdflatex"
   "main.bbl" 1760755478 78701 c3b2e534671cff4724fbe1ef00a74135 "biber main"
-  "main.lof" 1760755498 1255 638d9a7b23e2bb9b6a355509d4bf8037 "pdflatex"
+  "main.lof" 1760758494 1254 0ee26ada31940472685687b0c9ee2097 "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760755498 9455 a0967a270ee4757f6181cfa935e31f30 "pdflatex"
-  "main.run.xml" 1760755498 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760755472 98903 9f5334f6aeca53087228d9a286e841d2 ""
-  "main.toc" 1760755498 4149 d7bc7c7075702ff907a2c5c2cb071974 "pdflatex"
+  "main.out" 1760758494 9455 a0967a270ee4757f6181cfa935e31f30 "pdflatex"
+  "main.run.xml" 1760758494 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760758476 98983 f6fe3a7259c94a5f6e567de6cee5552e ""
+  "main.toc" 1760758494 4149 53a88c836a072538a8296fe5b14e57ef "pdflatex"
   "results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png" 1760746033 10062 8b1f646ac265bb5fa70749cfc87e24a0 ""
   "results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png" 1760755036 26326 312c3aed551693b5a6bd7284b3775269 ""
   "results/Latency of Baseline Systolic Array on Different NxN sizes.png" 1760741126 4933 4734eeef3ca9a1964ef59da745fa2ef8 ""

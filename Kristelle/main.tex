@@ -408,7 +408,7 @@
 \fancyfoot[CO,CE]{\footnotesize\thepage}   % page number  
 % line spacing 
 \usepackage{setspace}
-\setstretch{1.15}
+\setstretch{1.0}
 
 
 
@@ -1086,7 +1086,7 @@ Thank important people here.
     \newline
     Figure \ref{fig:performance_comparison} illustrates the average latency for the Baseline Systolic Array, which was determined to be 23.00 clock cycles per tile, as it does not adapt to the effective size of the input matrices after pre-processing. In contrast, the average latency for the Optimised Systolic Array was found to be 9.07 clock cycles per tile, significantly benefitting from the sparsity in the input matrices. This results in an average reduction of approximately 60.87\% in latency when using the Optimised Systolic Array compared to the Baseline Systolic Array.
     \newline
-    Relating this to the total number of MAC operations in AlexNet, the Optimised Systolic Array has the potential to reduce approaximately 432 million clock cycles on average when processing AlexNet images compared to the Baseline Systolic Array. This is a considerable improvement, demonstrating the efficiency of the sparse handling algorithm in a software-hardware co-design context.
+    Relating this to the total number of MAC operations in AlexNet, the Optimised Systolic Array has the potential to reduce approaximately 432 million clock cycles on average when processing AlexNet images compared to the Baseline Systolic Array. This is a considerable improvement, demonstrating the efficiency of the sparse handling algorithm in a software-hardware co-design context. 
     
     
 
@@ -1110,6 +1110,7 @@ Thank important people here.
 
     % yes we did technically satisfy the research gap we identified, as we have created a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. however, there are still limitations to this design that prevent it from being used in real-world applications, which will be discussed in the limitations section
     % whilst we did reduce the latency of the systolic array when handling sparse matrices, the speedup achieved was not as significant as we had hoped. this is due to the fact that the stripping algorithm only removes rows of zeros from the activation matrix, meaning that if the weight matrix is dense, the systolic array still has to process all the weights. this means that the speedup achieved is limited by the density of the weight matrix. we found that in the two images we tested, there was never any sparsity in teh weight matrix. this could be an issue of the pre-trained model we used? 
+    % consider the reduction in the edge context. reducing it by 60% is huge! 
 
     
     \subsection{Design Trade-offs} \label{sec: trade-offs}
