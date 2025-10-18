@@ -39,9 +39,9 @@
 \contentsline {section}{\numberline {6}Discussion}{17}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Analysis of Results}{17}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Design Trade-offs}{18}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Limitations}{18}{subsection.6.3}%
-\contentsline {section}{\numberline {7}Future Work}{18}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{19}{section.8}%
-\contentsline {section}{References}{20}{section.8}%
-\contentsline {section}{Appendix \numberline {A}List of Figures}{22}{appendix.1.A}%
-\contentsline {section}{Appendix List of Figures}{22}{appendix.1.A}%
+\contentsline {subsection}{\numberline {6.3}Limitations}{19}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Future Work}{19}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{20}{section.8}%
+\contentsline {section}{References}{21}{section.8}%
+\contentsline {section}{Appendix \numberline {A}List of Figures}{24}{appendix.1.A}%
+\contentsline {section}{Appendix List of Figures}{24}{appendix.1.A}%

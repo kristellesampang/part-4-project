@@ -1377,7 +1377,67 @@
       \verb{url}
       \verb http://arxiv.org/abs/2108.02569
       \endverb
-      \keyw{Computer Science - Distributed,Parallel,and Cluster Computing,Computer Science - Hardware Architecture,Computer Science - Machine Learning}
+      \keyw{Computer Science - Hardware Architecture,Computer Science - Machine Learning,Computer Science - Distributed,Parallel,and Cluster Computing}
+    \endentry
+    \entry{wang_rethinking_2017}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=d23f8780b31a9738eb2ec5f9c954bcb4}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=1a1f520c1123587494e9d4c74ae07269}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Xi},
+           giveni={X\bibinitperiod}}}%
+        {{hash=3ad93e4c675a68a22a9c2c52b38e2751}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Chao},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2d990711899d138460a2054c8cc4e06a}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Zhinan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=784b42afe309fe37ef61027e6b95c508}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Jiachen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=654d93e4a2d4d9d3265afb0157487408}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Xuehai},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Guangzhou, China}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{fullhash}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \strng{fullhashraw}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \strng{bibnamehash}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \strng{authorbibnamehash}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \strng{authornamehash}{bcc0ee0115ca53333821bd83b79eadf2}
+      \strng{authorfullhash}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \strng{authorfullhashraw}{bc75f1ed95b8a1e45bd5186a6d2764cd}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 {IEEE} {International} {Symposium} on {Parallel} and {Distributed} {Processing} with {Applications} and 2017 {IEEE} {International} {Conference} on {Ubiquitous} {Computing} and {Communications} ({ISPA}/{IUCC})}
+      \field{isbn}{978-1-5386-3790-6}
+      \field{month}{12}
+      \field{title}{Rethinking {Energy}-{Efficiency} of {Heterogeneous} {Computing} for {CNN}-{Based} {Mobile} {Applications}}
+      \field{year}{2017}
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\SH3E4TIK\\2017 - [No title found].pdf:application/pdf
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

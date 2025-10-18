@@ -1073,13 +1073,13 @@ Thank important people here.
     % The results show that in sparsity levels of 70\% or lower, no rows were stripped
     % this is because the probability of having an entire row of zeros in a random sparsity pattern is low
     % however, as the sparsity level increases, we see that more rows are stripped, leading to a decrease in latency
-
+    To further evalute the performance of the Optimise Systolic Array, matrices with random sparsity patterns were processed. Figure \ref{fig:optimise_random_sparsity} summarises the latency results for these. The results indicated that the probability of having an entire row of zeros in a random sparsity pattern is low, only achieving a row removal at sparsity level higher than 70\%. However, as the sparsity level increased, more rows of zeros appeared and were stripped, leading to a corresponding decrease in latency. This demonstrates that whilst the \texttt{coordinated\_row\_removal} algorithm is most effective for structured sparsity, there is room for a performance boost when applied in a random sparsity context. 
     \optimisedRandomSparsityGraph
     
 
 
 
-    \subsection{Performance Analysis}\label{sec: per analysis}
+    \subsection{Performance Analysis}\label{sec:per-analysis}
     % Directly compare the two sets of results. Calculate the speedup (e.g., (Baseline Latency / Optimized Latency)).
     % Use tables and graphs to make this comparison clear and impactful. This is where you prove your design works and is effective.
     % - create a table that compares the latency of the Baseline and Optimised systolic arrays for each example
@@ -1113,6 +1113,7 @@ Thank important people here.
     
 
 \section{Discussion} \label{sec: discussion}
+This section discusses the implications and interpretation of the results presented in Section \ref{sec: verification}. The purpose is to analyse the performance improvements achieved through the software-hardware co-design approach and the success of the sparsity handling algorithm. Additionally, it examines the design trade-offs of the system and reflects on the limitations found. 
     \subsection{Analysis of Results} \label{sec: analysis}
     % Go deeper than the numbers. Why did your design achieve the speedup it did?
     % How does your result compare to the theoretical speedup?
@@ -1125,68 +1126,50 @@ Thank important people here.
     % - what are the key takeaways from this project?
     % - can this design be used in real-world applications? why or why not?
 
-    - the linear decrease in latency as more rows were stripped from the activation matrix demonstrates that the \texttt{coordinated\_row\_removal} algorithm exploits systems with structured sparsity effectively
-    - relevant in systems where entire rows or columns or weights are zero. 
-    - although the random sparsity patterns did not show significant improvements, this was expected as the probability of having an entire row of zeros in a random sparsity pattern is low
-    - this highlights the importance of understanding the sparsity patterns in the target application when designing hardware
-    
-    - !! link back to a reference
+
+    The performance achieved by the Optimised Systolic Array was accelerated by the \newline \texttt{coordinated\_row\_removal} algorithm by exploiting the structured sparsity that exists in the input matrices. The algorithm becomes incredibly impactful in systems where entire rows and/or columns can be removed, leading to significant reductions in computation and memory usage. However, the algorithm's potential degrades when applied to random sparse patterns, as the likelihood of having entire rows or columns of zeros is extremely low. This higlights the importance of understanding sparsity in the target application when designing hardware solutions. This proves the findings of \textcite{sun_sense_2023} who found that irregular sparsity patterns are more challenging to exploit in hardware designs as it causes inadequate hardware acceleration. Furthermore, it aligns with the observations of \textcite{palacios_systolic_2025} who validated that targeting structured coarse-grained sparsity provided significant performance improvements in systolic array architectures.
+
+    As identified in Section X, the theoretical latency for matrix multiplication in a orthogonal systolic array is given by the foormula M + N + K - 2 clock cycles. The actual latency observed in the simulation results closely matched these theoretical values, confirming the accuracy and correctness of the design implementaitons. Any discrepancies in the clock cyucle counts can be attributed to hardware delays, such as signal propagation delays, or processing zero-value inputs, where accumulated results do not change yet consumed clock cycles to process.
+
+    The implication of the result of 60.87\% latency reduction found in Section \ref{sec:per-analysis} is significant for resource-constrained edge devices. A 9 clock cycle average latency suggests that many input matrices were highly sparse, contributing to lowering the average substantially. By minimising the number of clock cyclces, the number of computations are reduced, leading to lower power consumption and longer battery life on edge devices. \textcite{wang_rethinking_2017} highlighted the importance of balancing latency and energy-efficiency in edge cases like mobile devices. Thus, the Optimised Systolic Array's ability to reduce latency while maintaining accuracy makes it a promising solution for such applications. This links back to the problem statement in Section \ref{sec: intro}, where !!. Furthermore, this addresses the research gap identified in Section \ref{sec: dataflow} by providing a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. By doing so, the project successfully achieves the objectives of X Y Z <!!> outlined in the introduction, demonstrating the effectiveness of the software-hardware co-design approach in handling sparsity in systolic arrays.
+    % !! problem statement and scope
+
+    The key takeaways from this project are: 
+    \begin{itemize}
+        \item The software-hardware co-design approach is a viable method for handling sparsity in systolic array, allowing for dynamic reconfiguration based on pre-processed sparisty patterns. This approach keept the hardware design simple and well within scope, as deploying ML models on the hardware itself was not required. 
+        \item The modular design of the systolic array facilitated the integration of the sparsity handling algorithm with minimal changes to the core components. The PEs and systolic array components were untouched, perserving its core idea whilst improving efficiency.
+        \item The Optimised Systolic Array's ability to reduce latency while maintaining accuracy makes it a promising solution for real-world applications, particularly in resource limited edge devices where efficient ML inference on sparse data is essential.
+    \end{itemize}
 
 
-    - the theorectical latency calculation was 3n-2 or M + N + K -2 clock cycles
-    - the actual latency observed in the simulation results closely matched these theoretical values, confirming the accuracy of the design and its implementation
-    - any one clock cycle delay contributed to hardware delays such as signal propagation. could also be from zero-value inputs, where the results do not look like they changed but did take up clock cycles to process
 
-
-
-    - link it back to the research gap and scope
-    - although this is specifically for structured sparsity, the project still successfully addresses the identified research gap in section \ref{sec: dataflow} by providing a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array
-    - add some scope stuff
-
-    - key takeawakays
-    - the software-hardware co-design approach is effective in handling sparsity in systolic arrays
-    - this kept us in-scope as well since we did not have to deploy ML models on the hardware itself
-    - there was dynamic reconfiguration based on the pre-processed sparsity patterns, that lead to significant performance improvements
-    - the modular design of the systolic array allowed the integration of teh sparsity handling algorithm with minimal changes to the core components
-
-
-    - the implication of 60.87\% latency reduction is huge for resource constrainted edge devices
-    - having a 9 clock cycle on an average suggests that there were lots of input matricers that were 100\% sparse, bringing the average down significantly. 
-    - by minimising the number of clock cycles, we reduce the computations, leading to lower power consumption and longer battery life
-    - this makes it applicable to real world situations where edge devices need to perform ML inference on sparse data efficiently
-    !! link back to the problem
-    !! link back to research
-
-    
-
-    % yes we did technically satisfy the research gap we identified, as we have created a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. however, there are still limitations to this design that prevent it from being used in real-world applications, which will be discussed in the limitations section
-    % whilst we did reduce the latency of the systolic array when handling sparse matrices, the speedup achieved was not as significant as we had hoped. this is due to the fact that the stripping algorithm only removes rows of zeros from the activation matrix, meaning that if the weight matrix is dense, the systolic array still has to process all the weights. this means that the speedup achieved is limited by the density of the weight matrix. we found that in the two images we tested, there was never any sparsity in teh weight matrix. this could be an issue of the pre-trained model we used? 
-    % consider the reduction in the edge context. reducing it by 60% is huge! 
-
-    
     \subsection{Design Trade-offs} \label{sec: trade-offs}
     % Discuss the choices you made. Why did you choose to do the stripping in software (Python) instead of in hardware? 
     % What are the pros and cons of this decision? (e.g., Pro: Simpler hardware design. Con: Not a real-time system.)
     % - discuss the pros and cons of the software-hardware co-design approach
     % - discuss the pros and cons of the coordinated row removal algorithm
+    % The decisions made for this project were motivated by weighing out the benefits and drawbacks of various design choices. 
 
-    pros:
-    - by performing the stripping algo in software, the hardware design was able to remain simple
-    - this reduces hardware complexity, making it easier to verify and synthesise on FPGA. it was very similar to the original systolic array design, meaning that the modularity of the design was preserved
-    - software design is more flexible and easier to modify. if we wanted to change the stripping algorithm, we could do so in python without having to modify the hardware design. pyhon being a high levle language also makes it significantly easier and faster to develop
-    - the pre-processing occurs offline, meaning that the hardware does not have to handle computation loads of the stripping algorithm. this is especially important for resource-constrained edge devices, where hardware resources are limited
-    - the algorithm maintianed mathematical correctness of the matrix multiplication operation, ensuring that the output remains accurate despite the removal of zero rows
-
-
-    cons:
-    - not real-time dynamic reconfiguration, reliance on MIF means that we can't get live data streams. however, this was out of scope for this project
-    - from the testing that we've done, we saw that the weights were always densely packed. there were no zero rows to strip. this could be a limitation of the pre-trained model we used, meaning that the stripping algorithm's effectiveness is limited by the sparsity patterns in the input data. even if activation was extremely sparse, if the weights are dense, the overall speedup is limited. as we saw, when M = 1, N =8, K = 8, it still took 16 clock cycles. from the 23 clock cycles, this is only a 30.43\% reduction, which is not as significant as we had hoped
-    - this limits us to only stripping from the activation matrix, meaning that when we consier M + N + K -2, the K value will always be at its maximum, limiting the overall speedup we can achieve
-    - having to pass on the M N K values in the MIF with the comrpessed matrix. this added extra logic that we had to account for. however, this was minimal due to the modularity of the design
-    - we do not have a post processing stage where we take the output of the hardware and send it back to the software to process to revert it back to its original shape. this could be an area of future work
+    % pros:
+    % - by performing the stripping algo in software, the hardware design was able to remain simple
+    % - this reduces hardware complexity, making it easier to verify and synthesise on FPGA. it was very similar to the original systolic array design, meaning that the modularity of the design was preserved
+    % - software design is more flexible and easier to modify. if we wanted to change the stripping algorithm, we could do so in python without having to modify the hardware design. pyhon being a high levle language also makes it significantly easier and faster to develop
+    % - the pre-processing occurs offline, meaning that the hardware does not have to handle computation loads of the stripping algorithm. this is especially important for resource-constrained edge devices, where hardware resources are limited
+    % - the algorithm maintianed mathematical correctness of the matrix multiplication operation, ensuring that the output remains accurate despite the removal of zero rows
 
 
+    % cons:
+    % - not real-time dynamic reconfiguration, reliance on MIF means that we can't get live data streams. however, this was out of scope for this project
+    % - from the testing that we've done, we saw that the weights were always densely packed. there were no zero rows to strip. this could be a limitation of the pre-trained model we used, meaning that the stripping algorithm's effectiveness is limited by the sparsity patterns in the input data. even if activation was extremely sparse, if the weights are dense, the overall speedup is limited. as we saw, when M = 1, N =8, K = 8, it still took 16 clock cycles. from the 23 clock cycles, this is only a 30.43\% reduction, which is not as significant as we had hoped
+    % - this limits us to only stripping from the activation matrix, meaning that when we consier M + N + K -2, the K value will always be at its maximum, limiting the overall speedup we can achieve
+    % - having to pass on the M N K values in the MIF with the comrpessed matrix. this added extra logic that we had to account for. however, this was minimal due to the modularity of the design
+    % - we do not have a post processing stage where we take the output of the hardware and send it back to the software to process to revert it back to its original shape. this could be an area of future work
+
+    The design decisions in this project was driven by carefully weighing the benefits and drawbacks of various approaches. For the software-hardware co-design approach, the primary advantage was the simplification of the hardware design. By offloading the sparsity handling to software, the hardware remained modular and easy to verify, aligning with the behaviour of the original systolic array design. By developing the algoirthm in Python, a high-level language, the developement process was signifcantly faster and more flexible, allowing for easy modifications without alterting the hardware. Additionally, this allowed the focus to remain on the systolic array and its control unit, rather than analysing complex ML deployment on hardware, which was not the focus nor scope of this project. Lastly, the algoriithm maintained mathematical correctness, ensuring accurate outputs despite the removal of zero rows. 
+    % !! reword 
+    However, this design has its drawbacks. The reliance on MIF files limits the system's ability to handle live data streams, restricting it from real-time dynamic reconfiguration. This was a conscious trade-off, as real-time dynamic reconfiguratbility is outside the project scope. Furthermore, the effectiveness of the sparsity handling algorithm is dependent on the sparsity patterns in the input data. From testing, it was observed that weight matrices were often densely packed, limiting the potential for row stripping. This constraint meant that the algorithm only performed row stripping on the activation matrix, limiting the overeall speedup. For example, for a sparse activation and dense matrix, where M = 1, N = 8, and K = 8, the latency was reduced to 16 clock cycles, representing only a 30.43\% reduction from teh baseline of 23 clock cycles. Although better than no improvements, this is not as significant as initially hope. Furthermore, the need to pass M, N, and K values alongside the compressed matrix in the MIF files introduced additional logic in the control unit. Lastly, the absence of a post-processing stage to revert the output back to its original shape is a limitation that could be addressed in future work.
     
+
     \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
     % - discuss the limitations of the current design
