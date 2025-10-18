@@ -1192,6 +1192,12 @@ Thank important people here.
     % - discuss the limitations of the current design
     % - discuss the limitations of the testing methodology
     % - discuss the scope limitation and time constraints of the project
+    - the current design relies on static testing using MIF files, which limits its ability to handle live data streams. this means that the system cannot adapt to changing sparsity patterns in real-time, which is a significant limitation for applications requiring dynamic data processing
+    - pre-processing is separate, its not technically a full pipeline from end to end. ther ei slaos no post-processing stage to revert the output back to its original shape
+    - the algorithm does not look into fine-grained sparsity, not taking advantage of the potential exploitation of unstructured sparsity patterns that are common in real-world data
+    - fixed array size of 8x8, whilst this is technically scalable or can be downgraded, it is limited to 8x8. this means that larger matrices have to be tiled, which could introduce overhead and complexity in managing multiple tiles, esp with the current design of using mifs
+    - the high level python test didn't directly test real-world applications (since we only did 156 rather than thousands of images). this could limit the generalisability of the results to real-world scenarios
+    - time constraints limited the depth of exploration into more advanced sparsity handling techniques, such as dynamic reconfiguration or support for unstructured sparsity. the scope of this project was only one year, and the fact that we had to build our knowledge from the ground definitely slowed us down, as we had to learn heaps of unfamiliar concepts rather than going straight into critquing current designs.  further research and development are needed to fully realise the potential of sparsity handling in systolic arrays. 
 
 \section{Future Work} \label{sec: future work}
     % What would be the next logical steps for this project?
