@@ -1,17 +1,17 @@
-[1] Config.pm:308> INFO - This is Biber 2.20
-[2] Config.pm:311> INFO - Logfile is 'main.blg'
-[574] biber-MSWIN64:340> INFO - === 
-[756] Biber.pm:420> INFO - Reading 'main.bcf'
-[1201] Biber.pm:994> INFO - Found 21 citekeys in bib section 0
-[1248] Biber.pm:4463> INFO - Processing section 0
-[1287] Biber.pm:4654> INFO - Looking for bibtex file 'final_report.bib' for section 0
-[1505] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1909] bibtex.pm:1519> INFO - Found BibTeX data source 'final_report.bib'
-[2769] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[2769] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[2770] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
-[2770] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[2842] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[2915] bbl.pm:779> INFO - Output to main.bbl
-[2916] Biber.pm:131> WARN - ISBN '979-8-3315-2054-0' in entry 'gorvadiya_energy_2025' is invalid - run biber with '--validate_datamodel' for details.
-[2916] Biber.pm:133> INFO - WARNINGS: 1
+[0] Config.pm:308> INFO - This is Biber 2.20
+[1] Config.pm:311> INFO - Logfile is 'main.blg'
+[162] biber-MSWIN64:340> INFO - === 
+[209] Biber.pm:420> INFO - Reading 'main.bcf'
+[355] Biber.pm:994> INFO - Found 22 citekeys in bib section 0
+[374] Biber.pm:4463> INFO - Processing section 0
+[389] Biber.pm:4654> INFO - Looking for bibtex file 'final_report.bib' for section 0
+[466] bibtex.pm:1713> INFO - LaTeX decoding ...
+[603] bibtex.pm:1519> INFO - Found BibTeX data source 'final_report.bib'
+[969] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[969] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[970] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
+[970] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[1001] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[1038] bbl.pm:779> INFO - Output to main.bbl
+[1039] Biber.pm:131> WARN - ISBN '979-8-3315-2054-0' in entry 'gorvadiya_energy_2025' is invalid - run biber with '--validate_datamodel' for details.
+[1039] Biber.pm:133> INFO - WARNINGS: 1

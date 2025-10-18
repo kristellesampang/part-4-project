@@ -306,6 +306,41 @@
       \verb https://ieeexplore.ieee.org/document/10198513/
       \endverb
     \endentry
+    \entry{tan_vanishing_2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=f72eb981a97f3a84e43f89bb5e5a9134}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Hong\bibnamedelima Hui},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=ce7cea63a3a82d5e36151a64693814d3}{%
+           family={Lim},
+           familyi={L\bibinitperiod},
+           given={King\bibnamedelima Hann},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{fullhash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{fullhashraw}{f85547b8249528d8462c8de8471e9b62}
+      \strng{bibnamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorbibnamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authornamehash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorfullhash}{f85547b8249528d8462c8de8471e9b62}
+      \strng{authorfullhashraw}{f85547b8249528d8462c8de8471e9b62}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deep structured learning has emerged as a new area of machine learning research with its wide range of applications in signal and information processing. There are two general aspects often discussed in various high level descriptions of deep learning: i.e. (a) its structural models consisting of multiple layers or stages intended for non-linear information processing, (b) optimization techniques speciﬁcally for supervised or unsupervised learning of feature representation at sequentially higher abstract layers. However, non-linear higher level abstraction are prone to vanishing gradient problem with saturated activation functions. In this paper, the experiment is setup to examine the plausibility of applying Approximate Greatest Descent in deep neural networks. The experiments tested both saturated and unsaturated activation function with up to ﬁve hidden layers. As a result, stochastic diagonal approximate greatest descent (SDAGD) demonstrated no sign of vanishing gradient when training with both saturated and unsaturated activation functions. When hidden layers are added, SDAGD could obtain reasonable results as compared to Stochastic Gradient Descent (SGD).}
+      \field{title}{Vanishing {Gradient} {Mitigation} with {Deep} {Learning} {Neural} {Network} {Optimization}}
+      \field{year}{2019}
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\5J98J2JX\\Tan and Lim - 2019 - Vanishing Gradient Mitigation with Deep Learning Neural Network Optimization.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{sun_sense_2023}{article}{}{}
       \name{author}{6}{}{%
         {{hash=f1d69d009b71f4b92d249329fc0b956e}{%
@@ -350,8 +385,8 @@
       \strng{authornamehash}{1d2992df17647d2fc29c9c8ba92420e8}
       \strng{authorfullhash}{bfa7e667cf8116f92056568837b5ed9b}
       \strng{authorfullhashraw}{bfa7e667cf8116f92056568837b5ed9b}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{Sparsity is an intrinsic property of convolutional neural networks (CNNs), worth exploiting for CNN accelerators. However, the extra processing involved comes with hardware overhead, resulting in only marginal profits for most architectures. Meanwhile, systolic arrays have become increasingly competitive on CNN acceleration for its high spatiotemporal locality and low hardware overhead. However, the irregularity of sparsity induces imbalanced workloads under the rigid systolic dataflow, causing performance degradation. Thus, this article proposed a systolic-array-based architecture, called Sense, for sparse CNN acceleration by model-hardware codesign, enabling large performance gains. To balance input feature map (IFM) and weight loads across the processing element (PE) array, we applied channel clustering to gather IFMs with approximate sparsity for array computation and codesigned a load-balancing weight pruning method to keep the sparsity ratio of each kernel at a certain value with little accuracy loss, improving PE utilization and overall performance. In addition, adaptive dataflow configuration was applied to determine the computing strategy based on the storage ratio of IFMs and weights, lowering 1.17×–1.8× dynamic random access memory (DRAM) access compared with Swallow and further reducing system energy consumption. The whole design was implemented on ZynqZCU102 with 200 MHz and performs at 471, 34, 53, and 191 image/s for AlexNet, VGG-16, ResNet-50, and GoogleNet, respectively. Compared with sparse systolic-array-based accelerators, Swallow, fusion-enabled systolic architecture (FESA), and SPOTS, Sense achieves 0.97×–2.18×, 1.3×–1.67×, and 0.94×–1.82× energy efficiency (image/J) on these CNNs, respectively.}
@@ -423,8 +458,8 @@
       \strng{authornamehash}{cc0c83906faa732059f231031ab823b9}
       \strng{authorfullhash}{0dd39ef8bdbb4795bf93764273e027d3}
       \strng{authorfullhashraw}{0dd39ef8bdbb4795bf93764273e027d3}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{As the demand of low latency machine learning IoT devices has rapidly expanded in the past decade for commercial and industrial applications, cloud computing models have relied on high-speed connectivity which many devices do not have access to. Cloud based solutions are also becoming less attractive for inference solutions with arising privacy and security concerns. Transitioning computation towards edge devices is becoming essential and ﬁnding ways to make such computer vision workloads operational on constrained IPs is a key element in this work. As edge devices are limited in processing resources, relying on reconﬁgurable hardware such as FPGAs will oﬀer an embedded platform to dynamically shape the IPs and cores as needed for each speciﬁc application working on it. Convolutional Neural Networks and alike computer vision techniques rely heavily on computation and matrix based operations, this paper proposes a dedicated convolution processing element. The proposed a convolution processing element is implemented on a Pynq-Z2 FPGA that supports Dynamic Partial Reconﬁguration between integer point convolution operations of 8, 16, and 32 bit precision. The use of Dynamic Partial Reconﬁguration at a processing element level enables the design to be reconﬁgured 800× more quickly than traditional methods while minimally increasing system overhead.}
@@ -496,8 +531,8 @@
       \strng{authornamehash}{2348f5826634af872a0634ea83f5916a}
       \strng{authorfullhash}{591a2cfb34806f6860240c4c24ae7eae}
       \strng{authorfullhashraw}{591a2cfb34806f6860240c4c24ae7eae}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Deep convolutional neural networks (CNNs) have shown strong abilities in the application of artiﬁcial intelligence. However, due to their extensive amount of computation, traditional processors have low energy efﬁciency when executing CNN algorithms, which is unacceptable for portable devices with limited hardware cost and battery capacity, so designing a CNN-speciﬁc processor is necessary. In this paper, we propose an energy-efﬁcient CNN processor architecture for lightweight devices with a processing elements (PEs) array consisting of 384 PEs. Using the systolic array-based PE array, it realizes parallel operations between ﬁlter rows and between channels of output feature maps, supporting the acceleration of 3D convolution and fully connected computation with various parameters by conﬁguring internal instruction registers. The computing strategy based on the proposed systolic dataﬂow achieves less hardware overhead compared with other strategies, and the reuse of image values and weight values, which effectively reduce the power of memory access. A memory system with a multi-level storage structure combined with register ﬁle (RF) and SRAM is used in the proposed CNN processor, which further reduces the energy overhead of computing. The proposed CNN processor architecture has been veriﬁed on a ZC706 FPGA platform using VGG-16 based on the proposed image segmentation method, the evaluation results indicate that the peak throughput achieves 115.2 GOP/s consuming 3.801 W at 150 MHz, energy efﬁciency and DSP efﬁciency reaches 30.32 GOP/s/W and 0.26 GOP/s/DSP, respectively.}
@@ -600,6 +635,86 @@
       \endverb
       \verb{url}
       \verb http://ieeexplore.ieee.org/document/8320657/
+      \endverb
+    \endentry
+    \entry{tiwari_design_2022}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=06de7f595fa9e33916c054a359b49a26}{%
+           family={Tiwari},
+           familyi={T\bibinitperiod},
+           given={Ankita},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ae0ec278970faba1fe11dac171a8585c}{%
+           family={Mishra},
+           familyi={M\bibinitperiod},
+           given={Saras\bibnamedelima Mani},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=85c78f81af78a0416ab400cfc5f77bdc}{%
+           family={Guha},
+           familyi={G\bibinitperiod},
+           given={Prithwijit},
+           giveni={P\bibinitperiod}}}%
+        {{hash=15fe3c5dfa590110e270b78a0626d603}{%
+           family={Jan},
+           familyi={J\bibinitperiod},
+           given={Pidanic},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7672a115e12ead6ddc6deab677426973}{%
+           family={Nemec},
+           familyi={N\bibinitperiod},
+           given={Zdenek},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=451ccfb264b01cde5fa2c50f2f53d287}{%
+           family={Trivedi},
+           familyi={T\bibinitperiod},
+           given={Gaurav},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Kosice, Slovakia}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{b661930948f726f2da3539f1e682fd15}
+      \strng{fullhash}{1acb0a6e40c422ccf1644817c01f972a}
+      \strng{fullhashraw}{1acb0a6e40c422ccf1644817c01f972a}
+      \strng{bibnamehash}{1acb0a6e40c422ccf1644817c01f972a}
+      \strng{authorbibnamehash}{1acb0a6e40c422ccf1644817c01f972a}
+      \strng{authornamehash}{b661930948f726f2da3539f1e682fd15}
+      \strng{authorfullhash}{1acb0a6e40c422ccf1644817c01f972a}
+      \strng{authorfullhashraw}{1acb0a6e40c422ccf1644817c01f972a}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Nowadays demand for artiﬁcial intelligence (AI) enabled mobile platforms is increasing. From healthcare services to defense and from remote to urban area, there is a huge demand of secured and power efﬁcient devices. The performance of these platforms can be enhanced by providing an efﬁcient compute engine. These compute engines perform a huge amount of matrix operations. The most popular choice for large matrix computation is a systolic array. In general, the systolic array performance degrades for the large input matrices, due to the trade off between resource utilization and computation delay. To address this issue, we need a systolic array with a control unit to re-conﬁgure the array according to the requirement of the computation. Computation array can be further improved by handling the negative weights and reduce the MAC operations. In this paper, we proposed a generalized bﬂoat16 based systolic array in which the sign of the partial sum (PS) is predicted before computation. The PS sign aids in network pruning which enhances system performance. The proposed system is implemented on a Virtex-7 FPGA board and it performs 2.21× and 4.19× better in terms of area and power compared to singleprecision based systolic array.}
+      \field{booktitle}{2022 32nd {International} {Conference} {Radioelektronika} ({RADIOELEKTRONIKA})}
+      \field{isbn}{978-1-7281-8686-3}
+      \field{month}{4}
+      \field{title}{Design of a {Low} {Power} and {Area} {Efficient} {Bfloat16} based {Generalized} {Systolic} {Array} for {DNN} {Applications}}
+      \field{urlday}{17}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/RADIOELEKTRONIKA54537.2022.9764899
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\JA95RD7B\\Tiwari et al. - 2022 - Design of a Low Power and Area Efficient Bfloat16 based Generalized Systolic Array for DNN Applicati.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9764899/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9764899/
       \endverb
     \endentry
     \entry{liu_energy-efficient_2024}{article}{}{}
@@ -739,8 +854,8 @@
       \strng{authornamehash}{d0199a29319f81d941dcdb0f03572b70}
       \strng{authorfullhash}{d0199a29319f81d941dcdb0f03572b70}
       \strng{authorfullhashraw}{d0199a29319f81d941dcdb0f03572b70}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{A key part of modern deep neural network (DNN) applications is matrix multiplication. As DNN applications are becoming more diverse, there is a need for both dense and sparse matrix multiplications to be accelerated by hardware. However, most hardware accelerators are designed to accelerate either dense or sparse matrix multiplication. In this paper, we propose VerSA, a versatile systolic array architecture for both dense and sparse matrix multiplications. VerSA employs intermediate paths and SRAM buffers between the rows of the systolic array (SA), thereby enabling an early termination in sparse matrix multiplication with a negligible performance overhead when running dense matrix multiplication. When running sparse matrix multiplication, 256 × 256 VerSA brings performance (i.e., an inverse of execution time) improvement and energy saving by 1.21×–1.60× and 7.5–30.2\%, respectively, when compared to the conventional SA. When running dense matrix multiplication, VerSA results in only a 0.52\% performance overhead compared to the conventional SA.}
@@ -841,8 +956,8 @@
       \strng{authornamehash}{bc01dd833babf2939285f967677a5f27}
       \strng{authorfullhash}{95af5c696388462610933dec4729650c}
       \strng{authorfullhashraw}{95af5c696388462610933dec4729650c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{abstract}{While systolic arrays are widely used for dense-matrix operations, they are seldom used for sparse-matrix operations. In this paper, we show how a systolic array of Multiply-and-Accumulate (MAC) units, similar to Google’s Tensor Processing Unit (TPU), can be adapted to efficiently handle sparse matrices. TPU-like accelerators are built upon a 2D array of MAC units and have demonstrated high throughput and efficiency for dense matrix multiplication, which is a key kernel in machine learning algorithms and is the target of the TPU. In this work, we employ a co-designed approach of first developing a packing technique to condense a sparse matrix and then propose a systolic array based system, Sparse-TPU, abbreviated to STPU, to accommodate the matrix computations for the packed denser matrix counterparts. To demonstrate the efficacy of our co-designed approach, we evaluate sparse matrix-vector multiplication on a broad set of synthetic and real-world sparse matrices. Experimental results show that STPU delivers 16.08× higher performance while consuming 4.39× and 19.79× lower energy for integer (int8) and floating point (float32) implementations, respectively, over a TPU baseline. Meanwhile, STPU has 12.93\% area overhead and an average of 4.14\% increase in dynamic energy over the TPU baseline for the float32 implementation.}
@@ -869,41 +984,6 @@
       \endverb
       \verb{url}
       \verb https://dl.acm.org/doi/10.1145/3392717.3392751
-      \endverb
-    \endentry
-    \entry{tan_vanishing_2019}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=f72eb981a97f3a84e43f89bb5e5a9134}{%
-           family={Tan},
-           familyi={T\bibinitperiod},
-           given={Hong\bibnamedelima Hui},
-           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=ce7cea63a3a82d5e36151a64693814d3}{%
-           family={Lim},
-           familyi={L\bibinitperiod},
-           given={King\bibnamedelima Hann},
-           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {en}%
-      }
-      \strng{namehash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{fullhash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{fullhashraw}{f85547b8249528d8462c8de8471e9b62}
-      \strng{bibnamehash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{authorbibnamehash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{authornamehash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{authorfullhash}{f85547b8249528d8462c8de8471e9b62}
-      \strng{authorfullhashraw}{f85547b8249528d8462c8de8471e9b62}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Deep structured learning has emerged as a new area of machine learning research with its wide range of applications in signal and information processing. There are two general aspects often discussed in various high level descriptions of deep learning: i.e. (a) its structural models consisting of multiple layers or stages intended for non-linear information processing, (b) optimization techniques speciﬁcally for supervised or unsupervised learning of feature representation at sequentially higher abstract layers. However, non-linear higher level abstraction are prone to vanishing gradient problem with saturated activation functions. In this paper, the experiment is setup to examine the plausibility of applying Approximate Greatest Descent in deep neural networks. The experiments tested both saturated and unsaturated activation function with up to ﬁve hidden layers. As a result, stochastic diagonal approximate greatest descent (SDAGD) demonstrated no sign of vanishing gradient when training with both saturated and unsaturated activation functions. When hidden layers are added, SDAGD could obtain reasonable results as compared to Stochastic Gradient Descent (SGD).}
-      \field{title}{Vanishing {Gradient} {Mitigation} with {Deep} {Learning} {Neural} {Network} {Optimization}}
-      \field{year}{2019}
-      \verb{file}
-      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\5J98J2JX\\Tan and Lim - 2019 - Vanishing Gradient Mitigation with Deep Learning Neural Network Optimization.pdf:application/pdf
       \endverb
     \endentry
     \entry{kim_fpga_2021}{inproceedings}{}{}
@@ -1192,8 +1272,8 @@
       \strng{authornamehash}{60192ab4256fcd62d78eedbbeb836b94}
       \strng{authorfullhash}{1cc2862c1e15139165849ca58474975d}
       \strng{authorfullhashraw}{1cc2862c1e15139165849ca58474975d}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Efficient deployment of resource-intensive transformers on edge devices necessitates cross-stack optimization. We thus study the interrelation between structured pruning and systolic acceleration, matching the size of pruned blocks with the systolic array dimensions. In this setting, computations of pruned weight blocks can be skipped, reducing run-time and energy consumption, but potentially impacting quality of service (QoS). To evaluate the trade-offs between systolic array size and sparsity opportunities, we present a novel co-design framework that integrates algorithmic optimization, system simulation, and hardware design. Targeting speech recognition and machine translation using transformers as case study, we analyze how configuration choices across the stack affect performance metrics. Results demonstrate that structured pruning on systems featuring systolic array acceleration can effectively increase performance, while maintaining high QoS levels. Up to 44\% system-wide speedups due to structured pruning and quantization were measured, with only 1.4\% word error rate degradation on the standard LibriSpeech dataset.}
@@ -1346,6 +1426,7 @@
       \strng{authornamehash}{e00ed7774143e5e415adfa30d1840511}
       \strng{authorfullhash}{16779aa8ee7275c9c9e68f4c0742137a}
       \strng{authorfullhashraw}{16779aa8ee7275c9c9e68f4c0742137a}
+      \field{extraname}{2}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
@@ -1465,8 +1546,8 @@
       \strng{authornamehash}{1f554d9f88aa065d971c86a8a3f1b766}
       \strng{authorfullhash}{4d0366847107b5ddd0e419829c58355e}
       \strng{authorfullhashraw}{4d0366847107b5ddd0e419829c58355e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This study explores the benefits of the Dynamic Partial Reconfiguration (DPR) on Field Programmable Gate Array (FPGA) based System on Chip (SoC) architectures. Consideration is given to the constraints imposed by the implementation of partial reconfiguration on both pre-emptible context switching and continuous end-to-end dataflow applications. Skeleton structure systems that permit the insertion and removal of ‘blocks’ into the overall FPGA floorplan have been developed. These can be reconfigured dynamically by the on chip system host even during data processing. In pre-emptible context switching maintaining the execution state of a design before switching away from it becomes of paramount importance; this work presents a new Pre-emptible Flip Flop (PFF) design that is used as a basis for a Task Specific Access Structure (TSAS) for FPGA designs and then proposes an algorithm to automate the insertion of these PFF’s into a synthesised design. Expanding into continuous dataflow application design allows the system host to re-route signals during the partial reconfiguration process and then re-establish the processing chain with the new configuration hence maintaining a continuous uninterrupted dataflow.}
