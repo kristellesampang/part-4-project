@@ -575,6 +575,11 @@ INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Ar
 INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
 INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
 INPUT ./results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png
+INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
+INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
+INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
+INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
+INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png

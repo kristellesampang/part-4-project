@@ -230,6 +230,16 @@
     \end{figure}
 }
 
+\newcommand{\optimisedRandomSparsityGraph}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.4\linewidth]{results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png}
+        \caption{IImpact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity}
+        \label{fig:optimise_random_sparsity}
+    \end{figure}
+}
+
+
 \newcommand{\baselineNxN}{
     \begin{figure}[ht]
         \centering
@@ -865,6 +875,7 @@ Thank important people here.
 
     \subsubsection{Hardware System Overview}
     Figure X illustrates the high-level block diagram of the final hardware system. The top-level module, named \texttt{de1\_soc\_top}, interfaces the hardware accelerator with the FPGA board. The \texttt{NPU\_Wrapper} module encapsulates the entire NPU design, including the systolic array, control unit, and the ROMs. The ROMs are utilised to store the pre-processed weight and activation tiles in mif format, allowing for static testing of the hardware design. The control unit is responsible for managing the dataflow and synchronisation of the systolic array, as well as adapting to the effective size of the input matrices after pre-processing. The systolic array itself remains largely unchanged from the Baseline Systolic Array, retaining its 8x8 PE grid and output-stationary dataflow. However, it now benefits from the optimised input data, leading to improved efficiency and performance when handling sparse matrices.
+    % !! talk about how we used the rapsberry pi to interface with the de1 soc board to program it and read back results etc
 
             
     \subsubsection{Sparse Handling Algorithm}
@@ -1057,6 +1068,13 @@ Thank important people here.
     As a direct comparison to the Baseline Systolic Array, the 8x8 dense matrix corresponds to an M value of 8, the 4x8 matrix corresponds to an M value of 4, and the 1x8 sparse matrix corresponds to an M value of 1. The latency results of these is shown in Figure \ref{fig:optimised_m_value}, demonstrating the performance improvements achieved through the sparsity handling algorithm.
     \optimisedMValueFigure
 
+    % As we know that our algorithm works better for structured sparsity, we investigated how well it performs on random spasity patterns
+    % Figure \ref{fig:optimised_random_sparsity_graph} summarises the latency results of the Optimised Systolic Array when processing matrices with random sparsity patterns.
+    % The results show that in sparsity levels of 70\% or lower, no rows were stripped
+    % this is because the probability of having an entire row of zeros in a random sparsity pattern is low
+    % however, as the sparsity level increases, we see that more rows are stripped, leading to a decrease in latency
+
+    \optimisedRandomSparsityGraph
     
 
 
@@ -1106,6 +1124,39 @@ Thank important people here.
     % - did we achieve our objectives from the introduction?
     % - what are the key takeaways from this project?
     % - can this design be used in real-world applications? why or why not?
+
+    - the linear decrease in latency as more rows were stripped from the activation matrix demonstrates that the \texttt{coordinated\_row\_removal} algorithm exploits systems with structured sparsity effectively
+    - relevant in systems where entire rows or columns or weights are zero. 
+    - although the random sparsity patterns did not show significant improvements, this was expected as the probability of having an entire row of zeros in a random sparsity pattern is low
+    - this highlights the importance of understanding the sparsity patterns in the target application when designing hardware
+    
+    - !! link back to a reference
+
+
+    - the theorectical latency calculation was 3n-2 or M + N + K -2 clock cycles
+    - the actual latency observed in the simulation results closely matched these theoretical values, confirming the accuracy of the design and its implementation
+    - any one clock cycle delay contributed to hardware delays such as signal propagation. could also be from zero-value inputs, where the results do not look like they changed but did take up clock cycles to process
+
+
+
+    - link it back to the research gap and scope
+    - although this is specifically for structured sparsity, the project still successfully addresses the identified research gap in section \ref{sec: dataflow} by providing a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array
+    - add some scope stuff
+
+    - key takeawakays
+    - the software-hardware co-design approach is effective in handling sparsity in systolic arrays
+    - this kept us in-scope as well since we did not have to deploy ML models on the hardware itself
+    - there was dynamic reconfiguration based on the pre-processed sparsity patterns, that lead to significant performance improvements
+    - the modular design of the systolic array allowed the integration of teh sparsity handling algorithm with minimal changes to the core components
+
+
+    - the implication of 60.87\% latency reduction is huge for resource constrainted edge devices
+    - having a 9 clock cycle on an average suggests that there were lots of input matricers that were 100\% sparse, bringing the average down significantly. 
+    - by minimising the number of clock cycles, we reduce the computations, leading to lower power consumption and longer battery life
+    - this makes it applicable to real world situations where edge devices need to perform ML inference on sparse data efficiently
+    !! link back to the problem
+    !! link back to research
+
     
 
     % yes we did technically satisfy the research gap we identified, as we have created a simpler solution that can exploit structured sparsity without changing the classic pipeline of the systolic array. however, there are still limitations to this design that prevent it from being used in real-world applications, which will be discussed in the limitations section
@@ -1119,6 +1170,22 @@ Thank important people here.
     % - discuss the pros and cons of the software-hardware co-design approach
     % - discuss the pros and cons of the coordinated row removal algorithm
 
+    pros:
+    - by performing the stripping algo in software, the hardware design was able to remain simple
+    - this reduces hardware complexity, making it easier to verify and synthesise on FPGA. it was very similar to the original systolic array design, meaning that the modularity of the design was preserved
+    - software design is more flexible and easier to modify. if we wanted to change the stripping algorithm, we could do so in python without having to modify the hardware design. pyhon being a high levle language also makes it significantly easier and faster to develop
+    - the pre-processing occurs offline, meaning that the hardware does not have to handle computation loads of the stripping algorithm. this is especially important for resource-constrained edge devices, where hardware resources are limited
+    - the algorithm maintianed mathematical correctness of the matrix multiplication operation, ensuring that the output remains accurate despite the removal of zero rows
+
+
+    cons:
+    - not real-time dynamic reconfiguration, reliance on MIF means that we can't get live data streams. however, this was out of scope for this project
+    - from the testing that we've done, we saw that the weights were always densely packed. there were no zero rows to strip. this could be a limitation of the pre-trained model we used, meaning that the stripping algorithm's effectiveness is limited by the sparsity patterns in the input data. even if activation was extremely sparse, if the weights are dense, the overall speedup is limited. as we saw, when M = 1, N =8, K = 8, it still took 16 clock cycles. from the 23 clock cycles, this is only a 30.43\% reduction, which is not as significant as we had hoped
+    - this limits us to only stripping from the activation matrix, meaning that when we consier M + N + K -2, the K value will always be at its maximum, limiting the overall speedup we can achieve
+    - having to pass on the M N K values in the MIF with the comrpessed matrix. this added extra logic that we had to account for. however, this was minimal due to the modularity of the design
+    - we do not have a post processing stage where we take the output of the hardware and send it back to the software to process to revert it back to its original shape. this could be an area of future work
+
+
     
     \subsection{Limitations} \label{sec: limitations}
     % Be honest about the limitations. (e.g., The testing was static using .mif files, not a live data stream. The stripping algorithm is a pre-processing step.)
@@ -1131,7 +1198,24 @@ Thank important people here.
     % (e.g., Implementing the stripping algorithm in hardware for a fully real-time system. Integrating the NPU with a soft-core processor like NIOS II. Testing with more complex sparse patterns.)
     % - talk about short-term and long-term future work
     % - short-term: optimizing the current design, improving the software-hardware co-design process
-    % - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)
+    % - long-term: exploring new architectures, integrating with other systems, real-world testing (DPR specifically)  
+
+    short term:
+    - as we are utilising the Pico as the middle man of our UART transmission, this actually take get the pico to do the pre-processing stage itself. this means that we can have a live data stream where the pico takes in the data, processes it, and sends it to the DE1-SoC board to process. this would make the system more real-time and dynamic. 
+    - then, it can do some post-processing as well, where it takes the output from the DE1-SoC board and reverts it back to its original shape. this would complete the entire pipeline from end to end.
+    - this would also mean we aren't relying on the MIF files, which would simplify the hardware design even further as we don't have to account for reading from ROMs. instead, the data can be sent directly to the control unit from the pico via UART.
+    - Investigate the different sparsity patterns in different layers of AlexNet or CNN models. If a significant structure sparsity is found, the algorithm can be further optimized to exploit these patterns.
+    - investigate the resource utilisation and find a way to optimise It
+
+
+    long term:
+    - full hardware implemetnation of saprsity handling algorithnm. a whole hardware block can be impolemented for just the algorthm iretly on the fpga. this would enable real-time dynamic reconfiguration of the systolic array based on live data streams.
+    - integrate the NPU with a softcore processor like NIOS II to create a complete heterogenous system. we can let the NPU handle all the matrix multiplications and offlaod the other tasks to the NIOS II processor. this would create a more versatile system capable of handling a wider range of applications. !! there is a paper that talks about idling time 
+    - DPR is something that was explored earlier in the project. due to time/skill constraint, we did not delve deeply into it. this invovlves reconfiguration of the fpga fabric at runtime to instantiate the neceessary PEs. this would allow for greater power savings and resource flexibility
+    - support for unstructured sparsity, as this is more common, this can be investigated 
+    - end to end cnn inferences. we do the whole processing between layers untl the final output. this would involve integrating with other hardware blocks for convolution, pooling, activation functions etc.
+
+
 
     
 \section{Conclusion} \label{sec: conclusion}
