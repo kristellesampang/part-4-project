@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760832139.11609 "main.bcf" "main.bbl" "main" 1760833265.53447 0
+["biber main"] 1760832139.11609 "main.bcf" "main.bbl" "main" 1760835096.87007 0
   "final_report.bib" 1760832049 86640 b6d517c8f20b9f1d2ca1a425de1744f8 ""
-  "main.bcf" 1760833265 111732 240c61301141e51f2d91b659c2ae003e "pdflatex"
+  "main.bcf" 1760835096 111732 240c61301141e51f2d91b659c2ae003e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760833260.03091 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760833265.53552 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760833258 108026 bf6fdf7faf93352c5433440e29005542 ""
+["pdflatex"] 1760835091.89771 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760835096.87187 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760835090 105209 e0c5a5f82685130fb398013f211bca83 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1744948596 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -284,14 +284,14 @@
   "figures/signature.png" 1760814025 16213 ca2c53f49a580472bc42db51e9d1186c ""
   "figures/system_diagram.jpg" 1760814026 1260251 9e9ccc753562341278a988a18ac9049a ""
   "figures/tb_fsm.jpg" 1760814026 1003819 50f108459749e2a65f910383498dd361 ""
-  "main.aux" 1760833265 19911 48065604f4c6dc48f359a31396d746bb "pdflatex"
+  "main.aux" 1760835096 20036 fa638be583011b6b3a47e270d7146088 "pdflatex"
   "main.bbl" 1760832142 93913 faa5d41923f3201fc417782ea6902835 "biber main"
-  "main.lof" 1760833265 1848 25c05d98fb57f3039f215e58070e28aa "pdflatex"
+  "main.lof" 1760835096 1848 7ba16780f79a503faaecc8ea182cc177 "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760833265 9142 5adba47c30849e3d112b692b567b6ebe "pdflatex"
-  "main.run.xml" 1760833265 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760833258 108026 bf6fdf7faf93352c5433440e29005542 ""
-  "main.toc" 1760833265 3994 8efa55b7436853c34a81ef3bd6d53ae2 "pdflatex"
+  "main.out" 1760835096 9311 9c9c4b4c3dad1d20deaa2f4dd6391bf4 "pdflatex"
+  "main.run.xml" 1760835096 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760835090 105209 e0c5a5f82685130fb398013f211bca83 ""
+  "main.toc" 1760835096 4078 9a76e04f708ec62aec430c69bbba5a84 "pdflatex"
   "results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png" 1760814026 10062 8b1f646ac265bb5fa70749cfc87e24a0 ""
   "results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png" 1760814026 27647 01b1d5c28deb79e2abd10de88ba237f3 ""
   "results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png" 1760814026 26326 312c3aed551693b5a6bd7284b3775269 ""

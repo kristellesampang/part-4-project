@@ -8,6 +8,6 @@
 \contentsline {figure}{\numberline {8}{\ignorespaces Latency of Baseline Systolic Array on Different NxN sizes}}{15}{figure.caption.8}%
 \contentsline {figure}{\numberline {9}{\ignorespaces Latency of Baseline Systolic Array on Varying Input Matrix Size}}{15}{figure.caption.9}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Impact on Latency as Row Stripping Increases in a 8x8 Activation}}{16}{figure.caption.10}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Effect of M value on the number of Active PEs in the Systolic Array and Latency}}{16}{figure.caption.11}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Effect of M value on the number of Active PEs in the Systolic Array and Latency}}{17}{figure.caption.11}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity}}{17}{figure.caption.12}%
 \contentsline {figure}{\numberline {13}{\ignorespaces Performance Comparison: Average Clock Cycles per Tile of an AlexNet Convolutional Layer}}{18}{figure.caption.13}%
