@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Removed Registers Triggering Further Register Optimizations</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Register name</TH>
+<TH>Reason for Removal</TH>
+<TH>Registers Removed due to This Register</TH>
+</TR>
+</thead><tbody><TR >
+<TD >npu_wrapper:npu_i|npu_cycle_count[7]</TD>
+<TD >Stuck at GND<br>
+due to stuck port data_in</TD>
+<TD >data_byte[7], UART:UART_inst|TX_DATA[7], UART:UART_inst|TX:C1|DATAFLL[8]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|npu_cycle_count[6]</TD>
+<TD >Stuck at GND<br>
+due to stuck port data_in</TD>
+<TD >data_byte[6], UART:UART_inst|TX_DATA[6], UART:UART_inst|TX:C1|DATAFLL[7]</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >npu_wrapper:npu_i|npu_cycle_count[5]</TD>
+<TD >Stuck at GND<br>
+due to stuck port data_in</TD>
+<TD >data_byte[5], UART:UART_inst|TX_DATA[5], UART:UART_inst|TX:C1|DATAFLL[6]</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

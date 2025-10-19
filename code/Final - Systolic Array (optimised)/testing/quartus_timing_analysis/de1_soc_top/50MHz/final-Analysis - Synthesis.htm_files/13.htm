@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>State Machine - |de1_soc_top|npu_wrapper:npu_i|current_state</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.layout-latest.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Name</TH>
+<TH>current_state.S_FINISH</TH>
+<TH>current_state.S_WAIT_DONE</TH>
+<TH>current_state.S_EXECUTE</TH>
+<TH>current_state.S_LOAD_MATRICES</TH>
+<TH>current_state.S_LOAD_PARAMS</TH>
+<TH>current_state.S_IDLE</TH>
+</TR>
+</thead><tbody><TR >
+<TD >current_state.S_IDLE</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >current_state.S_LOAD_PARAMS</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >current_state.S_LOAD_MATRICES</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >current_state.S_EXECUTE</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >current_state.S_WAIT_DONE</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >current_state.S_FINISH</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
