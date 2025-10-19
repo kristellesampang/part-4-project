@@ -753,24 +753,12 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
 
     \subsubsection{ROMs}    \label{sec: roms}
-    
-    In the software pre-processing stage, the mif files are generated and stored in a folder. Currently, there is no mechanism to dynamically change the mif file being read by the ROMs, so it has to be manually updated to test different tiles. However, with the ROMs instantiated in the system, it is possible to run the Python script to generate new mif files and directly load them into the ROMs without modifying the hardware design. This flexibility is crucial for testing different tiles and sparsity patterns, allowing for efficient validation of the hardware design against various scenarios.
-    A ROM is instantiated for both the weight and activation matrices in the NPU Wrapper, which serves as the top-level module. Each ROM is configured to read from its respective mif file, storing the pre-processed tiles for static testing. The ROMs are designed to output data in a format compatible with the systolic array, ensuring seamless integration with the control unit and PEs. This setup allows for efficient data retrieval during operation, enabling the systolic array to process the input matrices effectively.
+    In the software pre-processing stage, the MIF files are generated and stored in a folder. Currently, there is no mechanism to dynamically change the MIF file being read by the ROMs, so it has to be manually updated to test different tiles. However, with the ROMs instantiated in the system, it is possible to run the Python script to generate new MIF files and directly load them into the ROMs without modifying the hardware design. This flexibility is crucial for testing different tiles and sparsity patterns, allowing for efficient validation of the hardware design against various scenarios.
+    A ROM is instantiated for each the weight and activation matrices in the NPU Wrapper, which holds all the hardware components. Each ROM is configured to read from its respective MIF file, storing the pre-processed tiles. The ROMs are designed to output data in a format compatible with the systolic array, ensuring seamless integration with the control unit and PEs. This setup allows for efficient data retrieval during operation, enabling the systolic array to process the input matrices effectively.
 
 
     \subsubsection{NPU Wrapper} \label{sec: npu wrapper}
-        % - The NPU Wrapper acts as the interface between the top-level module and the NPU core.
-        % - instantiates all the components of the NPU, including the systolic array, control unit, and ROMs
-        % - now with the addition of the sparsity handling algorithm, the modification of the MIF file, and introduction of the ROM the NPU wrapper needs to be modified to adapt to these new changes
-        % - now that there is a real memory component, we first must be able to read the data from the ROMs correctly
-        % - we know that 1. M, N, K values and 2. at most, we can have up to 67 reads in the MIF
-        % - we create an FSM where:
-        % -- we are in idle mode, we are awaiting for the start signal (S_IDLE)
-        % -- we read the first three values, which are M, N, K so we know how many reads we need because we know that we will read M * K values from the activation ROM and K * N values from the weight ROM (S_LOAD_PARAMS)
-        % -- once we know this, we can go straight into reading roms. as we are reading 1D array, we must covert this into a 2D array to be sent to the control unit. (S_LOAD_MATRICES)
-        % -- we are done reading the mif,  we stay in S_EXECUTE mode until the control unit to send us a signal that it has sent the values to the systolic array (S_EXECUTE)
-        % -- one we are done, we wait for the highest theoretical amount of clock cycles it can take to process the data, which is (M + N + K - 2) clock cycles (S_DONE)
-        % -- once this is done, we send a done signal to the top-level module, which then sends it to the control unit to signal that the operation is done, going back to the S_IDLE state
+    
 
         The purpose of the NPU Wrapper is to act as the interface with the top-level module and the NPU core. It is responsible for instantiating all the components of the NPU, consisting of the systolic array, control unit, and ROMs. With the addition of the sparsity handling algorithm, modification of the MIF files, and introduction of the ROMs, the NPU Wrapper was created to handle the new changes. 
         The NPU Wrapper is designed to read data from the ROMs correctly. It utilises a Finite State Machine (FSM) to manage the data flow and control signals, illustrated in Figure \ref{fig:fsmnpu}. The FSM operates as follows:
@@ -779,43 +767,19 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
             \item \textbf{S\_LOAD\_PARAMS}: Upon receiving the start signal, the FSM transitions to this state to read the first three values from the ROMs, which are M, N, and K. These values determine how many reads are required, as M*K values will be read from the activation ROM and K*N values from the weight ROM.
             \item \textbf{S\_LOAD\_MATRICES}: Once the parameters are known, the FSM moves to this state to read the matrices from the ROMs. Since the data is stored in a 1D array format, it is converted into a 2D array before being sent to the control unit.
             \item \textbf{S\_EXECUTE}: After loading the matrices, the FSM enters this state and waits for a signal from the control unit indicating that it has sent the values to the systolic array.
-            \item \textbf{S\_DONE}: Once execution is complete, the FSM transitions to this state and waits for the maximum theoretical number of clock cycles required to process the data, calculated as (M + N + K - 2) clock cycles. After this period, it sends a done signal to the top-level module, which then notifies the control unit that the operation is complete, returning to the S\_IDLE state.
+            \item \textbf{S\_WAIT\_DONE}: Once execution is complete, the FSM transitions to this state and waits for the maximum theoretical number of clock cycles required to process the data, calculated as (M + N + K - 2) clock cycles.
+            \item \textbf{S\_FINISH}: After this period, it sends a done signal to the top-level module, which then notifies the control unit that the operation is complete, returning to the S\_IDLE state.
         \end{itemize}
 
         \fsmnpu
 
-        % !! add the 3N-2 reference latency for the systolic array
-        % !! add the M-1 + N-1 + K-1 reference for the latency of the entire system
 
-
-
-    
     
 
 
     \subsubsection{Control Unit and Systolic Array} \label{sec: optimised cu sa}
-    % - as stated above, the m n k values are now stored in the mif file. this means that the control unit needs to be reconfigured to read these values and adjust the operation of the systolic array accordingly
-    % - however, having these information is extremely valueable as it solifies the control logic required to handle sparsity
-    % - the control unit is modified to read the m n k values from the mif file and adjust the operation of the systolic array accordingly
-    % - this means that the systolic array can now adapt to the effective size of the input matrices after pre-processing, improving efficiency
-    % - for example, if the input matrix is the size of 6x6 after stripping, the control unit will ensure that the systolic array will synthesise the correct amount of PEs and busses required
-    % - this effectively downsizes the systolic array to only use the necessary resources, improving efficiency   
 
-    % - on the systolic array's side, not much of the design in the previous iteration has changed
-    % -
-
-    % As stated in the section above, the M, N, and K values are now stored within the mif files for every tile. This means that the control unit must adapted to read these values and adjust the operations of the systolic array accordingly. This is an important step in the design as it allows the systolic array to adapt to the effective size of the input matrices after pre-processing, improving efficiency. 
-
-    % - the NPU Wrapper sends the contrl unit the weight and activation weight matrices, and m n k values signals as sepearte inputs.
-    % - this means, that the control unit's matrix remains the same, meaning that the logic does not have to modify that much
-    % - the only modification required is taking m n k values into considerations, where it helps verify the shape of the matrix 
-    % - additionally, the only other change we have to do is knowing when the NPU is ready to send us the signals, we can take account for that 
-
-    % - fundamentally, the systolic array and its processing elements have not changed due to the fact that the way data is sent to the control unit has not changed. 
-    % - as the system was originally designed to be modular, this means that the systolic array can remain unchanged, as the control unit is still sending the same data to the systolic array
-
-    The biggest change in the control unit is influenced by the introduction of the NPU Wrapper. The NPU wrapper sends the control unit the weight and activation matrices alongisde the new M, N, and K values as separate inputs. This means that the control unit's matrix handling logic remains largely unchanged, requiring only minor modifications to incorporate the M, N, and K values. These values are crucial for verifying the shape of the matrices and ensuring that the systolic array operates correctly based on the effective size of the input matrices after pre-processing. Additionally, the control unit must now account for when the NPU is ready to send signals, ensuring proper synchronization between components.
-    Fundamentally, the systolic array and its processing elements have not changed due to the modular design of the system. The control unit continues to send the same data format to the systolic array, allowing it to function without any modifications. As the Baseline Systolic Array considered modularity from the start, the incorporation of sparsity handling features was achieved with minimal changes to the core components. This modularity is a key advantage of the design, as it enables easy integration of new features, such as sparsity handling, without requiring extensive changes to the core components.
+    The biggest change in the control unit is influenced by the introduction of the NPU Wrapper. The NPU wrapper sends the control unit the weight and activation matrices alongside the new M, N, and K values as separate inputs. This means that the control unit's matrix handling logic remains largely unchanged, requiring only minor modifications to incorporate the M, N, and K values. These values are crucial for verifying the shape of the matrices and ensuring that the systolic array operates correctly based on the effective size of the input matrices after pre-processing. Additionally, the control unit must now account for when the NPU is  ready signal, ensuring proper synchronisation between components. Fundamentally, the systolic array and its processing elements have not changed due to the modular design of the system. The control unit continues to send the same data format to the systolic array, allowing it to function without any modifications. As the Baseline Systolic Array considered modularity from the start, the incorporation of sparsity handling features was achieved with minimal changes to the core components. This modularity is a key advantage of the design, as it enables easy integration of new features, such as sparsity handling, without requiring extensive changes to the core components.
 
     Overall, the integration of the sparsity handling algorithm into the hardware design through the NPU Wrapper and minor modifications to the control unit has significantly enhanced the efficiency of the systolic array when processing sparse matrices. This software-hardware co-design approach effectively addresses the research gap identified in Section \ref{sec: dataflow}, providing a simpler solution for exploiting structured sparsity without changing the classic systolic array pipeline.
     % !! might want to reword this 
