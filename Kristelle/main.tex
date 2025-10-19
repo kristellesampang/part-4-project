@@ -270,7 +270,7 @@
 \newcommand{\fsmnpu}{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.8\linewidth]{figures/fsm_npu.jpg}
+        \includegraphics[width=1.0\linewidth]{figures/fsm_npu.jpg}
         \caption{Finite State Machine (FSM) Diagram of the NPU Loading Data from ROMs}
         \label{fig:fsmnpu}
     \end{figure}
@@ -289,7 +289,7 @@
 \newcommand{\baselineNxN}{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.3\linewidth]{results/Latency of Baseline Systolic Array on Different NxN sizes.png}
+        \includegraphics[width=0.4\linewidth]{results/Latency of Baseline Systolic Array on Different NxN sizes.png}
         \caption{Latency of Baseline Systolic Array on Different NxN sizes}
         \label{fig:latency_baseline_nxn}
     \end{figure}
@@ -298,7 +298,7 @@
 \newcommand{\baselineNxEight}{
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.3\linewidth]{results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png}
+        \includegraphics[width=0.4\linewidth]{results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png}
         \caption{Latency of Baseline Systolic Array on Varying Input Matrix Size}
         \label{fig:latency_baseline_nxeight}
     \end{figure}
@@ -348,7 +348,7 @@
     \HRule
     
     \vspace{0.5cm}
-    Final Report
+    Part 4 Project Report
     \vspace{0.5cm}
     
     {\Large \textbf{Project \#43: Reconfigurable Neural Processing Unit (NPU) for Energy-Efficient AI at the Edge}}
@@ -357,7 +357,7 @@
     {\large \name}
     
     \vspace{0.5cm}
-    Project Report 
+    Project 43 Report 
     
     \vspace{0.5cm}
     \HRule
@@ -408,7 +408,7 @@
 
 
 
-As Artificial Intelligence (AI) continues to rapidly advance, hardware accelerators, such as Neural Processing Units (NPUs), are becoming crucial in balancing high performance and energy-efficiency. The key motivator for this research is the growing demand for AI at the edge, where reduced power consumption and latency are essential considerations. One popular architecture for NPUs is the systolic array, efficient at parallelism for matrix multiplications commonly found in Convolutional Neural Networks (CNNs). However, the presence of sparsity in these networks, particularly due to ReLU activations, presents significant challenges to performance optimisation. Therefore, a software-hardware co-design approach is proposed to address this issue. A reconfigurable systolic array is implemented, capable of adapting to different levels of structured sparsity by implementing a row and column stripping algorithm. This design is validated on hardware by synthesis on a DE1-SoC FPGA and loaded with a pre-trained AlexNet model on sample images, with performance compared against a reference standalone systolic array architecture. The results demonstrate that the proposed approach significantly reduces latency compared to the reference architecture, with theoretical improvements of up to 60.87\% at higher sparsity levels. This research highlights the potential of reconfigurable NPUs in enhancing energy-efficient AI processing at the edge.
+As Artificial Intelligence (AI) continues to rapidly advance, hardware accelerators, such as Neural Processing Units (NPUs), are becoming crucial in balancing high performance and energy-efficiency. The key motivator for this research is the growing demand for AI at the edge, where reduced power consumption and latency are essential considerations. One popular architecture for NPUs is the systolic array, efficient at parallelism for matrix multiplications commonly found in Convolutional Neural Networks (CNNs). However, the presence of sparsity in these networks, particularly due to ReLU activations, presents significant challenges to performance optimisation. Therefore, a software-hardware co-design approach is proposed to address this issue. A reconfigurable systolic array is implemented, capable of adapting to different levels of structured sparsity by implementing a row and column stripping algorithm. The algorithm considers parameters of active rows, active columns, and a shared dimension to maintain mathematical correctness. The design is validated on hardware by synthesising on a DE1-SoC FPGA and data buffers containing matrices extracted from a pre-trained AlexNet model. The performance is compared against a reference standalone systolic array architecture. The results demonstrate that the proposed approach significantly reduces latency compared to the reference architecture, with theoretical improvements of up to 60.87\% at higher sparsity levels. Furthermore, the proposed design has a theoretical throughput of 1.47GOPs/sec, a speedup of 2.55x the reference design when executing an entire convolutional layer of AlexNet. This research highlights the potential of reconfigurable NPUs in enhancing energy-efficient AI processing at the edge.
 
 
 
@@ -476,6 +476,10 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     % 5G & Fifth generation mobile network \\
 
     AI at the Edge & Performing AI computations directly on edge devices rather than relying on cloud-based servers. \\
+
+    Clock Cycles & Unit of time in digital circuits, representing one complete cycle of the clock signal. \\
+
+    Control Unit & Component of the NPU that manages data flow and controls the operation of the processing elements. \\
     
     Dataflow & The pattern of how data moves between processing elements and memory in a hardware accelerator. \\
 
@@ -498,7 +502,8 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     \bottomrule
 \end{longtable}
 \addtocounter{table}{-1}
-
+\clearpage
+\newpage    
 % --- Abbreviations ---
 \section*{Abbreviations}
 \addcontentsline{toc}{section}{Abbreviations}
@@ -520,13 +525,14 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     INT8 & 8-bit Integer \\
     IoT & Internet of Things \\
     MAC & Multiply-Accumulate \\
-    MIF & Memory Initialization File \\
+    MIF & Memory Initialisation File \\
     ML & Machine Learning \\
     NPU & Neural Processing Unit \\
     PE & Processing Element \\
     ReLU & Rectified Linear Unit \\
     ROM & Read-Only Memory \\
     RTL & Register-Transfer Level \\
+
 
     \bottomrule
 \end{longtable}
@@ -550,7 +556,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
         \item Design and implement a reconfigurable 8x8 NPU architecture using a systolic array structure to exploit sparsity in CNNs.
         \item Implement a software pre-processing script in Python to extract INT8 data from a pre-trained AlexNet model to extract matrices with varying levels of sparsity.
         \item Develop a sparsity handling algorithm that exploits structured sparsity to reduce latency by skipping computations involving zero values.
-        \item Validate and verify the system's behaviour through simulation to quantify the latency reduction and performance speed up of the proposed design compared to a baseline systolic array architecture.
+        \item Validate and verify the system's behaviour through simulation and hardware synthesis to quantify the latency reduction and performance speed up of the proposed design compared to a baseline systolic array architecture.
         \item Demonstrate the effectiveness of the proposed NPU in real-world edge computing scenarios.
         % \item Design a reconfigurable NPU architecture that can adapt to varying computational requirements of different AI models.
         % \item Implement energy-efficient dataflow strategies to minimise power consumption during AI inference tasks.
@@ -664,15 +670,16 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
             \item \textbf{SCNN}: This architecture uses a different approach to handle sparsity. It operates on a compressed-sparse dataflow, where only non-zero weights and activations are fetched from memory and delivered to the multiplier array. This dataflow tracks the output coordinate for each multiplication and sends the resulting product to a specialised scatter accumulator, ensuring the value is summed at the correct location in the output feature map. This approach maximises data reuse but diverges significantly from standard systolic array designs \cite{parashar_scnn_2017}.
         \end{itemize}
     
-        The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests, fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler that can exploit structured sparsity without straying away from the classic systolic array pipeline.
+        The examples of Sparse-TPU and SCNN demonstrate a complex yet powerful solutions for unstructured, fine-grained sparsity. However, they require significant redesign of the core dataflow and control logic, leading to increased hardware complexity. As \textcite{palacios_systolic_2025} suggests, fine-grained sparsity requires a fair amount of control logic overhead. In contrast, structured sparsity, where entire rows or columns of weights are zero, is easier to exploit in hardware. This project aims to fill the gap for a simpler design that can exploit structured sparsity without straying away from the classic systolic array pipeline.
 
         % !! probably need to expand
 
 % --- Design and Methodology ---
 \section{Design and Methodology} \label{sec: design_method}
-    This section details the design and methodology presented in this project. It begins with the software design for data generation, pre-processing, tiling, and file generation. Following this, hardaware design of the Baseline Systolic Array architecture is presented, before detailing the proposed Optimised Systolic Array archiutecture that exploits structured sparsity. Finally, the section concludes with the hardware implementation on an FPGA platform.
+    This section details the design and methodology presented in this project. It begins with the software design for data generation, pre-processing, tiling, and file generation. Following this, hardware design of the Baseline Systolic Array architecture is presented, before detailing the proposed Optimised Systolic Array archiutecture that exploits structured sparsity. 
+    % Finally, the section concludes with the hardware implementation on an FPGA platform.
 
-    \subsection{Data Generation and Pre-processing} \label{sec: data_gen}    This covers the software side of the co-design, where it utilises AlexNet to generate and extract realistic weight and activation matrices, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a MIF file and stored into the FPGA's ROMs for static testing. This section is crucial for ensuring hardware is tested with real-world data to validate its effectiveness in handling sparsity. Additionally, this design was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
+    \subsection{Data Generation and Pre-processing} \label{sec: data_gen}    This covers the software side of the co-design, where it utilises AlexNet to generate and extract realistic weight and activation matrices, then pre-processes it into tiles suitable for hardware testing. The processed tiles are then saved as a Memory Initialisation File (MIF) file, where the FPGA's Read-Only Memory (ROM) can directly read from. This section is crucial for ensuring hardware is tested with real-world data to validate its effectiveness in handling sparsity. Additionally, this design was implemented in a straight forward manner, meaning there were no major iterations or challenges faced.
 
     
 
@@ -701,8 +708,9 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     The core of the hardware accelerator is an 8x8 systolic array, designed to perform matrix multiplication for convolutional layers. The fundamental building block of this array is the Processing Element (PE), a custom-designed Multiply-Accumulate (MAC) unit. The entire hardware accelerator was designed in VHDL.
     
     \subsubsection{Processing Elements and Systolic Array Formation}
-    The fundamental process that the PE executes is the MAC operation, which can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:rtl}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map, both as INT8 data types. These inputs are multiplied together and adds the result to a 32-bit accumulated register that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an orthogonal 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
+    The fundamental process that the PE executes is the MAC operation, which can be represented in a Register-Transfer Level (RTL) diagram in Figure \ref{fig:rtl}. The PE is designed to handle INT8 data types, as discussed in Section \ref{sec: alexnet}, to balance accuracy and resource usage. The PE takes two inputs: a weight from the filter matrix and an activation from the input feature map. These inputs are multiplied together and adds the result to a 32-bit accumulated register that holds the partial sum for the output feature map. As each PE is independent from one another and operates concurrently, it allows for parallel processing of multiple MAC operations. Together, 64 PEs are arranged in an orthogonal 8x8 grid to form the systolic array, as shown in Figure \ref{fig:baseline_systolic_array}.
     \RTL
+    \newline
     Each PE communicates with its neighbours to pass data along the array, enabling a continuous flow of data through the system. The dataflow chosen for this design is output-stationary, where the output partial sums remain in the PE until the final result is computed \cite{sun_sense_2023}. This approach minimises data movement and maximises data locality, reducing memory access costs. The PE is designed to operate in a pipelined manner, allowing it to accept new inputs every clock cycle whilst still processing previous inputs. This pipelining is crucial for maintaining high throughput in the systolic array.
 
     The bus communication between each PE uses the \texttt{generate} statement in VHDL to create a scalable and modular design. This allows for easy expansion or modification of the array size in the future. The systolic array is integrated into a top-level module alongside the control unit (detailed in Section \ref{sec: baseline cu}). For the purpose of this project, the systolic array is designed to handle up to 8x8 tiles, as discussed in Section \ref{sec: tiling}. This size was chosen as it provides a good balance between hardware resource usage and computational capability, making it suitable for edge devices with limited resources. Additionally, it is conventional have matrix sizes of $2^{N}$ for ease of hardware implementation and expansion \cite{qin_sigma_2020} and many papers in literature use 8x8 systolic arrays \cite{sakthi_systolic_nodate, ishimura_design_2008}.
@@ -830,6 +838,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
     Figure \ref{fig:latency_baseline_nxn} summarises the latency results when NxN matrices are processed through the Baseline Systolic Array. The results indicate that the latency increases with the size of the input matrices, as expected due to the increased number of computations required. This proves that the systolic array easily adjusts to different input sizes up to its maximum capacity of 8x8, indicating that it is capable of saving power when smaller matrices are used. The latency values are consistent with theoretical expectations for an 8x8 systolic array, confirming the correct operation of the design. 
     \baselineNxN
+    \newline
 
     
 
@@ -942,39 +951,41 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     The successful synthesis on the DE1-SoC FPGA board confirms that the hardware implementation aligns with the simulated model. Furthermore, the model's accuracy in reflecting the Python script's behavior reinforces confidence to do theoretical speedup calculations derived from high-level testing. This multi-tiered validation process ensures that the performance claims are robust and justified. Thus, the following test case was conducted in Python.
     \newline
     The testcase found that AlexNet has approximately 710 million MAC operations, closely aligning with \textcite{tiwari_data_2022}'s discovery of 724 million MAC operations. A variety of 156 images, including of xrays, cats, and nature scenes, were pre-processed using the same Python script mentioned in Section \ref{sec: data_gen}. This generated 8x8 tiles with different sparsity patterns, allowing for a comprehensive evaluation of the systolic array's performance across diverse scenarios.
-    \newline
+    \newline\newline
     Figure \ref{fig:performance_comparison} illustrates the average latency for the Baseline Systolic Array, which was determined to be 23.00 clock cycles per tile, as it does not adapt to the effective size of the input matrices after pre-processing. In contrast, the average latency for the Optimised Systolic Array was found to be 9.07 clock cycles per tile, significantly benefitting from the sparsity in the input matrices. This results in an average reduction of approximately 60.87\% in latency when using the Optimised Systolic Array compared to the Baseline Systolic Array.
-    \newline
+    \newline \newline
     Relating this to the total number of MAC operations in AlexNet, the Optimised Systolic Array has the potential to reduce approaximately 432 million clock cycles on average when processing AlexNet images compared to the Baseline Systolic Array. This is a considerable improvement, demonstrating the efficiency of the sparse handling algorithm in a software-hardware co-design context.
     \newline
-    The theoretical throughput (measured in Operations per Second, OPS) can be calculated on the average latency and clock speed. The following knowledge is re-iterated below:
+    \performanceComparison
+    \newline
+    The theoretical throughput (measured in Operations per Second, OPs/sec) can be calculated on the average latency and clock speed. The following knowledge is re-iterated below:
     \begin{itemize}
         \item 1 MAC operation is equivalent to 2 operations (1 multiplication + 1 addition).
-        \item AlexNet requires 710 million MAC operations, which translates to 1.42 billion operations.
+        \item AlexNet requires 710 million MAC operations, which translates to 1.42 billion total operations.
         \item The FPGA operates at an Fmax of 289.27MHz.
     \end{itemize}
     Using this information, the throughput can be calculated as follows:
     \begin{equation}
-        \text{Time to complete AlexNet} = \frac{\text{Total Cycles}}{Fmax} = \frac{710M MACs}{289.27MHz} = 2.45 \text{ seconds}
+        \text{Time to complete AlexNet} = \frac{\text{Total Cycles}}{Fmax} = \frac{710M OPs}{289.27MHz} = 2.45 \text{ seconds}
     \end{equation}
     % \newline
     \begin{equation}
         \text{Throughput} = \frac{\text{Total Operations}}{\text{Time}}
     \end{equation}
     \begin{equation}
-        \text{Baseline Systolic Array Throughput} =  \frac{1.42 \text{G MACs}}{2.45 \text{ seconds}} = 0.578 \text{GOPS}
+        \text{Baseline Systolic Array Throughput} =  \frac{1.42 \text{GOPS}}{2.45 \text{ seconds}} = 0.578 \text{GOPS/sec}
     \end{equation}
     \begin{equation}
-        \text{Optimised Systolic Array Throughput} = \frac{1.42 \text{G MACs}}{2.45 \text{ seconds} * \left(\frac{9.07}{23}\right)} = 1.47 \text{GOPS}
+        \text{Optimised Systolic Array Throughput} = \frac{1.42 \text{GOPS}}{2.45 \text{ seconds} * \left(\frac{9.07}{23}\right)} = 1.47 \text{GOPS/sec}
     \end{equation}
     \newline
     From this, the speedup can be derived as follows:
     \begin{equation}
-        \text{Speedup} = \frac{\text{Optimised Throughput}}{\text{Baseline Throughput}} = \frac{1.47 \text{GOPS}}{0.578 \text{GOPS}} = 2.54x
+        \text{Speedup} = \frac{\text{Optimised Throughput}}{\text{Baseline Throughput}} = \frac{1.47 \text{GOPS/sec}}{0.578 \text{GOPS/sec}} = 2.54x
     \end{equation}
 
     
-    \performanceComparison
+    
     
 
 \section{Discussion} \label{sec: discussion}
@@ -1025,7 +1036,7 @@ This section discusses the implications and interpretation of the results presen
     % - we do not have a post processing stage where we take the output of the hardware and send it back to the software to process to revert it back to its original shape. this could be an area of future work
 
     The design decisions in this project were driven by carefully weighing the benefits and drawbacks of various approaches. For the software-hardware co-design approach, the primary advantage was the simplification of the hardware design. By offloading the sparsity handling to software, the hardware remained modular and easy to verify, aligning with the behaviour of the original systolic array design. By developing the algorithm in Python, a high-level language, the development process was significantly faster and more flexible, allowing for easy modifications without altering the hardware. Additionally, this allowed the focus to remain on the systolic array and its control unit, rather than analysing complex ML deployment on hardware, which was not the focus nor within the scope of this project. Lastly, the algorithm maintained mathematical correctness, ensuring accurate outputs despite the removal of zero rows.
-    \newline
+    \newline \newline
     However, this design has its drawbacks. The reliance on MIF files limits the system's ability to handle live data streams, restricting it from real-time dynamic reconfiguration. This was a conscious trade-off, as real-time dynamic reconfiguratbility is outside the project scope. Furthermore, the effectiveness of the sparsity handling algorithm is dependent on the sparsity patterns in the input data. From testing, it was observed that weight matrices were often densely packed, limiting the potential for row stripping. This constraint meant that the algorithm only performed row stripping on the activation matrix, limiting the overall speedup. For example, for a sparse activation and dense matrix, where M = 1, N = 8, and K = 8, the latency was reduced to 16 clock cycles, representing only a 30.43\% reduction from the baseline of 23 clock cycles. Although better than no improvements, this is not as significant as initially hoped. Furthermore, the need to pass M, N, and K values alongside the compressed matrix in the MIF files introduced additional logic in the control unit. Lastly, the absence of a post-processing stage to revert the output back to its original shape is a limitation that could be addressed in future work.
 
 
@@ -1130,23 +1141,23 @@ This section discusses the implications and interpretation of the results presen
      \addcontentsline{toc}{section}{List of Figures}
      This appendix contains a comprehensive list of all figures used throughout this document.
      
-    %  \listoffigures
+     \listoffigures
     % start counting from 0 again
-    \setcounter{figure}{0} 
-    \catImage
-    \RTL
-    \baselineSystolicArrayImage
-    \baselineDataflowImage
-    \systemDiagram
-    \fsmnpu
-    \tbFSM
-    \baselineNxN
-    \baselineNxEight
-    \optimisedLatencyRowStrippingGraph
-    \optimisedMValueFigure
-    \optimisedRandomSparsityGraph
-    \fmax
-    \performanceComparison
+    % \setcounter{figure}{0} 
+    % \catImage
+    % \RTL
+    % \baselineSystolicArrayImage
+    % \baselineDataflowImage
+    % \systemDiagram
+    % \fsmnpu
+    % \tbFSM
+    % \baselineNxN
+    % \baselineNxEight
+    % \optimisedLatencyRowStrippingGraph
+    % \optimisedMValueFigure
+    % \optimisedRandomSparsityGraph
+    % \fmax
+    % \performanceComparison
 
     
      
