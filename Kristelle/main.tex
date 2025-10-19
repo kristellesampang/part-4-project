@@ -276,6 +276,15 @@
     \end{figure}
 }
 
+\newcommand{\fmax}{
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.4\linewidth]{results/fmax.png}
+        \caption{Timing Analysis Results Showing Fmax and Slack Values}
+        \label{fig:fmax}
+    \end{figure}
+}
+
 
 \newcommand{\baselineNxN}{
     \begin{figure}[ht]
@@ -432,7 +441,7 @@ Signature:
 
 \vspace{1cm}
 Date: \includegraphics[width=0.2\linewidth]{figures/date.png}
-% !! Remember to sign this
+
 
 \newpage
 
@@ -635,7 +644,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
 
     \subsection{Hardware Architectures for Sparsity} \label{sec: hardware arch spars}
     % Now, review what others have done to solve the sparsity problem.
-    % !! introductory / bridging paragraph
+
     This section explores various hardware techniques that have been discovered to handle sparsity in neural networks. The main methods are power-gating and zero-skipping, compressed data formats, and specialised dataflows and architectures. Each method has its own advantages and disadvantages, discussed in detail below.
         \subsubsection{Power Gating and Zero-Skipping} \label{sec: power-gating}
         As multiplying and accumulating with zero does not change the overall result, it is redundant to execute operations with zero. Thus, a method like power-gating is introduced to skip these unnecessary operations. This method simply skips the MAC operation if one of the operands is zero, dynamically saving power \cite{parashar_scnn_2017}. However, this method requires additional hardware to check if an operand is zero, adding complexity to the design. Additionally, this does not reduce the latency as the PE has to wait for the data to be fetched from memory for the systolic pipeline to advance at the same rate.
@@ -677,7 +686,7 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
      
 
         \subsubsection{Tiling and File Generation}\label{sec: tiling}
-        % !! find the alexnet size Conv weights shape: (64, 363) Activation shape: (3025, 576)
+    
 
         Once the weight and activation matrices were extracted from the model, it was found that its size were (64, 363) and (3025, 576) respectively. These sizes are much larger than what the systolic array can handle, making it necessary to tile the matrices into smaller sub-matrices. Literature from \textcite{palacios_systolic_2025} and \textcite{parashar_scnn_2017} support this approach, as it improves data locality and reduces memory access costs. Additionally, sizes were not perfectly divisible by 8, leading to incomplete tiles. To address this, zero-padding was applied to the matrices to ensure that they could be evenly divided into 8x8 tiles. This involved adding rows and columns of zeros to the bottom and right of the matrices until their dimensions were multiples of 8. This ensured that all tiles were complete and could be processed by the systolic array without any issues.
         
@@ -899,8 +908,13 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     \optimisedRandomSparsityGraph
     
     \subsection{DE1-SoC Synthesis}
-    % add section: hardware synthesis, talk about how we added UART here as well, mostly for transmission, to confirm in the terminal that yesss this atually works in real life
-    % add figures from compilation report
+    The Optimised Systolic Array was synthesised on the DE1-SoC FPGA board to evaluate its real hardware performance. In addition to the design outlined of the Optimised Systolic Array in Section \ref{sec: optimised hw}, a UART component was integrated into the top-level design to communicate with a computer's terminal. This was achieved using a Raspberry Pi Pico (Pico) microcontroller and interface with the FPGA via GPIO pins. The current implementation solely utilises the transmission functionality of the UART to send the latency value from the FGPA to the terminal. This verifies that the design operates correctly on real hardware. 
+
+    The Pico was programmed using MicroPython and deocded the UART signal as an 10-bit input, with 8-bit being the data bits, 1 start bit, and 1 stop bit, at a baud rate of 9600. After a successful synthesis, the latency value received by the Pico matched the expected value from ModelSim. This confirms the correctness of the hardware implementation. 
+
+    The timing constraint was set to 100MHz and the Fmax value was determined to be 289.28MHz for the Slow 1100mV 85C Model 294.9 MHz for the Slow 1100mV 0C Model (tabulated in Figure \ref{fig:fmax}). Under the same models, the setup and hold time analysis demonstrated positive slack values of +6.543ns (setup) and +0.308ns (hold) for the 85C model and +6.609ns (setup) and +0.292ns (hold) for the 0C model respectively. These positive slack values indicate that the design meets the timing requirements at 100MHz, confirming its suitability for real-world applications.
+    \fmax
+
 
 
 
@@ -910,6 +924,8 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     % - create a table that compares the latency of the Baseline and Optimised systolic arrays for each example
     % - this section is going to be purely numbers based and comparisons
     % !! change this section if the synthesis results are different from the simulation results
+    
+
     
     % Now that we have synthesised the design on the DE1-SoC FPGA board and it passes its timing analysis, we know that the Optimised Systolic Array works as intended on real hardware.
     % This means that we can make direct comparisons between the Baseline and Optimised Systolic Arrays based on the simulation results obtained from ModelSim.
@@ -929,9 +945,33 @@ I would like to extend my thanks to Pratham Chhabra, my project partner, for his
     \newline
     Figure \ref{fig:performance_comparison} illustrates the average latency for the Baseline Systolic Array, which was determined to be 23.00 clock cycles per tile, as it does not adapt to the effective size of the input matrices after pre-processing. In contrast, the average latency for the Optimised Systolic Array was found to be 9.07 clock cycles per tile, significantly benefitting from the sparsity in the input matrices. This results in an average reduction of approximately 60.87\% in latency when using the Optimised Systolic Array compared to the Baseline Systolic Array.
     \newline
-    Relating this to the total number of MAC operations in AlexNet, the Optimised Systolic Array has the potential to reduce approaximately 432 million clock cycles on average when processing AlexNet images compared to the Baseline Systolic Array. This is a considerable improvement, demonstrating the efficiency of the sparse handling algorithm in a software-hardware co-design context. 
-    
-    
+    Relating this to the total number of MAC operations in AlexNet, the Optimised Systolic Array has the potential to reduce approaximately 432 million clock cycles on average when processing AlexNet images compared to the Baseline Systolic Array. This is a considerable improvement, demonstrating the efficiency of the sparse handling algorithm in a software-hardware co-design context.
+    \newline
+    The theoretical throughput (measured in Operations per Second, OPS) can be calculated on the average latency and clock speed. The following knowledge is re-iterated below:
+    \begin{itemize}
+        \item 1 MAC operation is equivalent to 2 operations (1 multiplication + 1 addition).
+        \item AlexNet requires 710 million MAC operations, which translates to 1.42 billion operations.
+        \item The FPGA operates at an Fmax of 289.27MHz.
+    \end{itemize}
+    Using this information, the throughput can be calculated as follows:
+    \begin{equation}
+        \text{Time to complete AlexNet} = \frac{\text{Total Cycles}}{Fmax} = \frac{710M MACs}{289.27MHz} = 2.45 \text{ seconds}
+    \end{equation}
+    % \newline
+    \begin{equation}
+        \text{Throughput} = \frac{\text{Total Operations}}{\text{Time}}
+    \end{equation}
+    \begin{equation}
+        \text{Baseline Systolic Array Throughput} =  \frac{1.42 \text{G MACs}}{2.45 \text{ seconds}} = 0.578 \text{GOPS}
+    \end{equation}
+    \begin{equation}
+        \text{Optimised Systolic Array Throughput} = \frac{1.42 \text{G MACs}}{2.45 \text{ seconds} * \left(\frac{9.07}{23}\right)} = 1.47 \text{GOPS}
+    \end{equation}
+    \newline
+    From this, the speedup can be derived as follows:
+    \begin{equation}
+        \text{Speedup} = \frac{\text{Optimised Throughput}}{\text{Baseline Throughput}} = \frac{1.47 \text{GOPS}}{0.578 \text{GOPS}} = 2.54x
+    \end{equation}
 
     
     \performanceComparison
@@ -1008,7 +1048,7 @@ This section discusses the implications and interpretation of the results presen
 
     In conclusion, this project has addressed the challenges of efficiently handling sparsity in systolic arrays through a software-hardware co-design. By implementing the \newline \texttt{coordinated\_row\_removal} algorithm in software, the Optimised Systolic Array can dynamically reconfigure itself based on structured sparsity patterns in the input matrices. The hardware architecture was designed to be modular and simple, preserving the core principles of the classic systolic array whilst integrating sparsity handling capabilities. Additionally, the architecture was synthesised on the DE1-SoC FPGA board, confirming its functionality in real hardware. 
 
-    The performance evaluated demonstrated a significant reduction in latency, with an average decrease of 60.87\% when processing AlexNet images compared to the Baseline Systolic Array. This improvement highlights the effectiveness of the sparsity handling algorithm in enhancing the efficiency of matrix multiplication operations. The implications of this work are particularly relevant for resource-constrained edge devices, where power consumption and latency are critical factors. 
+    The performance evaluated demonstrated a significant reduction in latency, with an average decrease of 60.87\% when processing AlexNet images compared to the Baseline Systolic Array. From this, the theoretical speed up of the Optimised Systolic Array was calculated to be 2.54x. This improvement highlights the effectiveness of the sparsity handling algorithm in enhancing the efficiency of matrix multiplication operations. The implications of this work are particularly relevant for resource-constrained edge devices, where power consumption and latency are critical factors. 
 
 
 
@@ -1090,7 +1130,7 @@ This section discusses the implications and interpretation of the results presen
      \addcontentsline{toc}{section}{List of Figures}
      This appendix contains a comprehensive list of all figures used throughout this document.
      
-     \listoffigures
+    
      
      
      \clearpage

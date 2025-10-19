@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1760832139.11609 "main.bcf" "main.bbl" "main" 1760835096.87007 0
+["biber main"] 1760832139.11609 "main.bcf" "main.bbl" "main" 1760838526.2361 0
   "final_report.bib" 1760832049 86640 b6d517c8f20b9f1d2ca1a425de1744f8 ""
-  "main.bcf" 1760835096 111732 240c61301141e51f2d91b659c2ae003e "pdflatex"
+  "main.bcf" 1760838525 111732 240c61301141e51f2d91b659c2ae003e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1760835091.89771 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760835096.87187 0
-  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760835090 105209 e0c5a5f82685130fb398013f211bca83 ""
+["pdflatex"] 1760838516.49014 "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" "main.pdf" "main" 1760838526.23733 0
+  "c:/Users/iamkr/Documents/part-4-project/Kristelle/main.tex" 1760838518 108221 720dc0a1274a0238c82986c667623068 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1744950273 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1744971868 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1744948596 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -284,24 +284,23 @@
   "figures/signature.png" 1760814025 16213 ca2c53f49a580472bc42db51e9d1186c ""
   "figures/system_diagram.jpg" 1760814026 1260251 9e9ccc753562341278a988a18ac9049a ""
   "figures/tb_fsm.jpg" 1760814026 1003819 50f108459749e2a65f910383498dd361 ""
-  "main.aux" 1760835096 20036 fa638be583011b6b3a47e270d7146088 "pdflatex"
+  "main.aux" 1760838525 20317 698c09a402a5c427eb89994475a50383 "pdflatex"
   "main.bbl" 1760832142 93913 faa5d41923f3201fc417782ea6902835 "biber main"
-  "main.lof" 1760835096 1848 7ba16780f79a503faaecc8ea182cc177 "pdflatex"
   "main.nls" 0 -1 0 ""
-  "main.out" 1760835096 9311 9c9c4b4c3dad1d20deaa2f4dd6391bf4 "pdflatex"
-  "main.run.xml" 1760835096 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
-  "main.tex" 1760835090 105209 e0c5a5f82685130fb398013f211bca83 ""
-  "main.toc" 1760835096 4078 9a76e04f708ec62aec430c69bbba5a84 "pdflatex"
+  "main.out" 1760838525 9311 9c9c4b4c3dad1d20deaa2f4dd6391bf4 "pdflatex"
+  "main.run.xml" 1760838525 2404 1614752bc5434610583c5795c56fbe78 "pdflatex"
+  "main.tex" 1760838518 108221 720dc0a1274a0238c82986c667623068 ""
+  "main.toc" 1760838525 4078 64ee0d3c195be8cd197ce936feeb7750 "pdflatex"
   "results/Effect of M value on the number of Active PEs in the Systolic Array and Latency v2.png" 1760814026 10062 8b1f646ac265bb5fa70749cfc87e24a0 ""
   "results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png" 1760814026 27647 01b1d5c28deb79e2abd10de88ba237f3 ""
   "results/Impact on Latency as Row Stripping Increases in a 8x8 Activation Graph.png" 1760814026 26326 312c3aed551693b5a6bd7284b3775269 ""
   "results/Latency of Baseline Systolic Array on Different NxN sizes.png" 1760814026 4933 4734eeef3ca9a1964ef59da745fa2ef8 ""
   "results/Latency of Baseline Systolic Array on Varying Input Matrix Size.png" 1760814026 5892 654f7a58e0f1a27f1abed00b2ec0a63f ""
   "results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png" 1760814026 44238 6dea789969313579bc6f081529cb0a44 ""
+  "results/fmax.png" 1760838127 4717 98cf4a519ee8ea2451707dccb24486e3 ""
   (generated)
   "main.aux"
   "main.bcf"
-  "main.lof"
   "main.log"
   "main.nlo"
   "main.out"

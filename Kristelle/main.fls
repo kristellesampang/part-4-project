@@ -595,6 +595,11 @@ INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Ra
 INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
 INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
 INPUT ./results/Impact of Stripping Algorithm on Clock Cycles when Applied on Random Sparsity Graph.png
+INPUT ./results/fmax.png
+INPUT ./results/fmax.png
+INPUT ./results/fmax.png
+INPUT ./results/fmax.png
+INPUT ./results/fmax.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
 INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an AlexNet Convolutional Layer.png
@@ -603,10 +608,6 @@ INPUT ./results/Performance Comparison - Average Clock Cycles per Tile of an Ale
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmrc8t.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmrc8t.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT ./main.lof
-INPUT ./main.lof
-INPUT main.lof
-OUTPUT main.lof
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
