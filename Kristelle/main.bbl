@@ -1392,6 +1392,96 @@
       \verb https://ieeexplore.ieee.org/document/9065523/
       \endverb
     \endentry
+    \entry{sakthi_systolic_nodate}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=9947cd18d540bb39660000e1a6382a8e}{%
+           family={Sakthi},
+           familyi={S\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod}}}%
+        {{hash=cf5c68c037e2ea841b6411f618fb7b08}{%
+           family={Abhishek},
+           familyi={A\bibinitperiod},
+           given={N\bibnamedelima Tripathi},
+           giveni={N\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{fullhash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{fullhashraw}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{bibnamehash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{authorbibnamehash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{authornamehash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{authorfullhash}{bf48d821896e7a3cff4117b66e08c803}
+      \strng{authorfullhashraw}{bf48d821896e7a3cff4117b66e08c803}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Convolutional Neural Networks (CNNs) are widely used in image processing, object detection, and other machine learning applications due to their ability to extract features from data effectively. However, the high computational and memory demands of CNNs pose significant challenges for real-time ap plications, especially in resource constrained environments such as edge devices where power consumption is a critical factor. This project proposes the design and implementation of a power efficient heterogeneous systolic array architecture integrated with low-power techniques to accelerate CNN operations. The design aims to optimize resource utilization and throughput while reducing power consumption. By leveraging specialized processing elements (PEs) and efficient dataflow methods, the proposed architecture seeks to achieve substantial improvements in power efficiency and performance compared to traditional systolic arrays.}
+      \field{title}{Systolic {Array} {Design} for {Efficient} {FPGA} {Implementation} of {CNN} {Accelerators}: {Power} and {Area} {Optimizations}}
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\HS7H6JAU\\Systolic Array Design for Efficient FPGA Implementation of CNN Accelerators Power and Area Optimiza.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{ishimura_design_2008}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=4745e00bfbe774e9b5fdf1126eec186a}{%
+           family={ISHIMURA},
+           familyi={I\bibinitperiod},
+           given={Toshiyuki},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5f1d84059d4472bfcb080b09966d239f}{%
+           family={KANASUGI},
+           familyi={K\bibinitperiod},
+           given={Akinori},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {Busan}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{fullhash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{fullhashraw}{628ac1ad7910f776413d90f231db9f92}
+      \strng{bibnamehash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{authorbibnamehash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{authornamehash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{authorfullhash}{628ac1ad7910f776413d90f231db9f92}
+      \strng{authorfullhashraw}{628ac1ad7910f776413d90f231db9f92}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Systolic array is known as an architecture that can process a large amount of data with high speed, by large scale parallel and pipeline processing. If dynamic reconfiguration of systolic array is realized, flexible circuit construction and reduction of circuit scale become possible, without sacrificing the processing speed.}
+      \field{isbn}{978-0-7695-3407-7}
+      \field{month}{11}
+      \field{title}{A {Design} and {Simulation} for {Dynamically} {Reconfigurable} {Systolic} {Array}}
+      \field{urlday}{14}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1109/iccit14748.2008
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\iamkr\\Zotero\\storage\\2LV86M32\\2008 - 2008 Third International Conference on Convergence and Hybrid Information Technology.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=4681983
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=4681983
+      \endverb
+    \endentry
     \entry{tiwari_data_2022}{article}{}{}
       \name{author}{4}{}{%
         {{hash=a3c0dde858382207a1bb1aa1c48d6238}{%
@@ -1546,8 +1636,8 @@
       \strng{authornamehash}{1f554d9f88aa065d971c86a8a3f1b766}
       \strng{authorfullhash}{4d0366847107b5ddd0e419829c58355e}
       \strng{authorfullhashraw}{4d0366847107b5ddd0e419829c58355e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{This study explores the benefits of the Dynamic Partial Reconfiguration (DPR) on Field Programmable Gate Array (FPGA) based System on Chip (SoC) architectures. Consideration is given to the constraints imposed by the implementation of partial reconfiguration on both pre-emptible context switching and continuous end-to-end dataflow applications. Skeleton structure systems that permit the insertion and removal of ‘blocks’ into the overall FPGA floorplan have been developed. These can be reconfigured dynamically by the on chip system host even during data processing. In pre-emptible context switching maintaining the execution state of a design before switching away from it becomes of paramount importance; this work presents a new Pre-emptible Flip Flop (PFF) design that is used as a basis for a Task Specific Access Structure (TSAS) for FPGA designs and then proposes an algorithm to automate the insertion of these PFF’s into a synthesised design. Expanding into continuous dataflow application design allows the system host to re-route signals during the partial reconfiguration process and then re-establish the processing chain with the new configuration hence maintaining a continuous uninterrupted dataflow.}

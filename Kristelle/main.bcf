@@ -2418,12 +2418,15 @@
     <bcf:citekey order="40" intorder="1">parashar_scnn_2017</bcf:citekey>
     <bcf:citekey order="41" intorder="1">sun_sense_2023</bcf:citekey>
     <bcf:citekey order="42" intorder="1">qin_sigma_2020</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">tiwari_data_2022</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">sun_sense_2023</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">palacios_systolic_2025</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">wang_rethinking_2017</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">liu_energy-efficient_2024</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">beasley_developing_nodate</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">sakthi_systolic_nodate</bcf:citekey>
+    <bcf:citekey order="43" intorder="2">ishimura_design_2008</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">qin_sigma_2020</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">tiwari_data_2022</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">sun_sense_2023</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">palacios_systolic_2025</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">wang_rethinking_2017</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">liu_energy-efficient_2024</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">beasley_developing_nodate</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
