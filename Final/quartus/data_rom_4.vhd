@@ -39,17 +39,17 @@ USE ieee.std_logic_1164.all;
 LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
-ENTITY data_rom IS
+ENTITY data_rom_4 IS
 	PORT
 (
 		address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
-END data_rom;
+END data_rom_4;
 
 
-ARCHITECTURE SYN OF data_rom IS
+ARCHITECTURE SYN OF data_rom_4 IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
@@ -61,8 +61,8 @@ BEGIN
 		address_aclr_a => "NONE",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		-- init_file => "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_5/stripped_activation.mif",
-		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/demo/master_data.mif",
+		init_file => "C:/Users/ksam836/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_0/stripped_activation.mif",
+--		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/demo/master_data.mif",
 		intended_device_family => "Cyclone V",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",

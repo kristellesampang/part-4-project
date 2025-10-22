@@ -6,8 +6,8 @@ import time
 
 # --- Constants ---
 
-TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/demo/master_data.mif'
-TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/demo/master_weight.mif'
+TEST_DATA_MIF_DIR = 'C:/Users/ksam836/Documents/part-4-project/Final/demo/master_data.mif'
+TEST_WEIGHT_MIF_DIR = 'C:/Users/ksam836/Documents/part-4-project/Final/demo/master_weight.mif'
 
 MASTER_DATA_TILE_0_START_POS = 0 
 MASTER_DATA_TILE_1_START_POS = 3

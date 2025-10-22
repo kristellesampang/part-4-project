@@ -11,6 +11,7 @@ entity npu_wrapper is
 
         -- Control interface
         start   : in  bit_1;
+        switch : in  integer range 0 to 128;
         done    : out bit_1;
 
         -- output M and K value as an integer
@@ -46,7 +47,7 @@ architecture rtl of npu_wrapper is
     end component;
 
     -- Components for the data and weight ROMs
-    component data_rom is
+    component data_rom_0 is
         port (
             address : in bit_7;
             clock   : in  bit_1;
@@ -54,7 +55,7 @@ architecture rtl of npu_wrapper is
         );
     end component;
 
-    component weight_rom is
+    component weight_rom_0 is
         port (
             address : in  bit_7;
             clock   : in  bit_1;
@@ -62,10 +63,181 @@ architecture rtl of npu_wrapper is
         );
     end component;
 
+    component data_rom_1 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_1 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component data_rom_2 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_2 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+
+    component data_rom_3 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_3 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component data_rom_4 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_4 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component data_rom_5 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_5 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component data_rom_6 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_6 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component data_rom_7 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+
+
+    component weight_rom_7 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+
+    component data_rom_8 is
+        port (
+            address : in bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+    component weight_rom_8 is
+        port (
+            address : in  bit_7;
+            clock   : in  bit_1;
+            q       : out bit_8
+        );
+    end component;
+
+
+
     -- Internal signals
-    signal rom_addr              : unsigned(6 downto 0) := (others => '0');
-    signal data_from_rom         : bit_8;
-    signal weight_from_rom       : bit_8;
+    signal rom_addr         : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom        : bit_8;
+    signal weight_from_rom      : bit_8;
+
+    -- Individual ROM signals
+    signal rom_addr_0              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_0         : bit_8;
+    signal weight_from_rom_0       : bit_8;
+
+    signal rom_addr_1              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_1         : bit_8;
+    signal weight_from_rom_1       : bit_8;
+
+    signal rom_addr_2              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_2         : bit_8;
+    signal weight_from_rom_2       : bit_8;
+
+    signal rom_addr_3              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_3         : bit_8;
+    signal weight_from_rom_3       : bit_8;
+
+    signal rom_addr_4              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_4         : bit_8;
+    signal weight_from_rom_4       : bit_8;
+
+    signal rom_addr_5              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_5         : bit_8;
+    signal weight_from_rom_5       : bit_8;
+
+    signal rom_addr_6              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_6         : bit_8;
+    signal weight_from_rom_6       : bit_8;
+
+    signal rom_addr_7              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_7         : bit_8;
+    signal weight_from_rom_7       : bit_8;
+
+    signal rom_addr_8              : unsigned(6 downto 0) := (others => '0');
+    signal data_from_rom_8         : bit_8;
+    signal weight_from_rom_8       : bit_8;
 
     signal matrix_data_buffer    : systolic_array_matrix_input := (others => (others => (others => '0')));
     signal matrix_weight_buffer  : systolic_array_matrix_input := (others => (others => (others => '0')));
@@ -89,19 +261,132 @@ architecture rtl of npu_wrapper is
 begin
 
     -- Instantiate the ROMs to hold matrix data and weights
-    data_rom_inst : component data_rom
+    data_rom_0_inst : component data_rom_0
         port map (
-            address => std_logic_vector(rom_addr),
+            address => std_logic_vector(rom_addr_0),
             clock   => clk,
-            q       => data_from_rom
+            q       => data_from_rom_0
         );
 
-    weight_rom_inst : component weight_rom
+    weight_rom_0_inst : component weight_rom_0
         port map (
-            address => std_logic_vector(rom_addr),
+            address => std_logic_vector(rom_addr_0),
             clock   => clk,
-            q       => weight_from_rom
+            q       => weight_from_rom_0
         );
+
+    data_rom_1_inst : component data_rom_1
+        port map (
+            address => std_logic_vector(rom_addr_1),
+            clock   => clk,
+            q       => data_from_rom_1
+        );
+
+    weight_rom_1_inst : component weight_rom_1
+        port map (
+            address => std_logic_vector(rom_addr_1),
+            clock   => clk,
+            q       => weight_from_rom_1
+        );
+
+    data_rom_2_inst : component data_rom_2
+        port map (
+            address => std_logic_vector(rom_addr_2),
+            clock   => clk,
+            q       => data_from_rom_2
+        );
+
+    weight_rom_2_inst : component weight_rom_2
+        port map (
+            address => std_logic_vector(rom_addr_2),
+            clock   => clk,
+            q       => weight_from_rom_2
+        );
+
+    data_rom_3_inst : component data_rom_3
+        port map (
+            address => std_logic_vector(rom_addr_3),
+            clock   => clk,
+            q       => data_from_rom_3
+        );
+    
+    weight_rom_3_inst : component weight_rom_3
+        port map (
+            address => std_logic_vector(rom_addr_3),
+            clock   => clk,
+            q       => weight_from_rom_3
+        );
+
+    data_rom_4_inst : component data_rom_4
+        port map (
+            address => std_logic_vector(rom_addr_4),
+            clock   => clk,
+            q       => data_from_rom_4
+        );
+
+    weight_rom_4_inst : component weight_rom_4
+        port map (
+            address => std_logic_vector(rom_addr_4),
+            clock   => clk,
+            q       => weight_from_rom_4
+        );
+
+    data_rom_5_inst : component data_rom_5
+        port map (
+            address => std_logic_vector(rom_addr_5),
+            clock   => clk,
+            q       => data_from_rom_5
+        );
+
+    weight_rom_5_inst : component weight_rom_5
+        port map (
+            address => std_logic_vector(rom_addr_5),
+            clock   => clk,
+            q       => weight_from_rom_5
+        );
+
+    data_rom_6_inst : component data_rom_6
+        port map (
+            address => std_logic_vector(rom_addr_6),
+            clock   => clk,
+            q       => data_from_rom_6
+        );
+
+    weight_rom_6_inst : component weight_rom_6 
+        port map (
+            address => std_logic_vector(rom_addr_6),
+            clock   => clk,
+            q       => weight_from_rom_6
+        );
+
+    data_rom_7_inst : component data_rom_7
+        port map (
+            address => std_logic_vector(rom_addr_7),
+            clock   => clk,
+            q       => data_from_rom_7
+        );
+
+    weight_rom_7_inst : component weight_rom_7
+        port map (
+            address => std_logic_vector(rom_addr_7),
+            clock   => clk,
+            q       => weight_from_rom_7
+        );  
+
+    data_rom_8_inst : component data_rom_8
+        port map (
+            address => std_logic_vector(rom_addr_8),
+            clock   => clk,
+            q       => data_from_rom_8
+        );
+    weight_rom_8_inst : component weight_rom_8  
+        port map (
+            address => std_logic_vector(rom_addr_8),
+            clock   => clk,
+            q       => weight_from_rom_8
+        );
+
+
 
     -- Instantiate the top-level systolic array system
     systolic_array_inst : component top_level_systolic_array
@@ -128,6 +413,9 @@ begin
             current_state      <= S_IDLE;
             rom_addr_counter   := 0;
             rom_addr           <= (others => '0');
+            rom_addr_0         <= (others => '0');
+            rom_addr_1         <= (others => '0');
+            rom_addr_2         <= (others => '0');
             sa_ready_sig       <= '0';
             done               <= '0';
             active_m_sig       <= 0;
@@ -139,6 +427,53 @@ begin
         elsif rising_edge(clk) then
             done <= '0'; -- Default done to low, pulse high for one cycle
             
+            -- Switch-based ROM selection
+            case switch is 
+                when 0 => 
+                    rom_addr <= rom_addr_0;
+                    data_from_rom <= data_from_rom_0;
+                    weight_from_rom <= weight_from_rom_0;
+                when 1 => 
+                    rom_addr <= rom_addr_1;
+                    data_from_rom <= data_from_rom_1;
+                    weight_from_rom <= weight_from_rom_1;
+                -- key[1] = 2^2
+                when 2 => 
+                    rom_addr <= rom_addr_2;
+                    data_from_rom <= data_from_rom_2;
+                    weight_from_rom <= weight_from_rom_2;
+                when 4 =>
+                    rom_addr <= rom_addr_3;
+                    data_from_rom <= data_from_rom_3;
+                    weight_from_rom <= weight_from_rom_3;
+                when 8 =>
+                    rom_addr <= rom_addr_4;
+                    data_from_rom <= data_from_rom_4;
+                    weight_from_rom <= weight_from_rom_4;
+                when 16 =>
+                    rom_addr <= rom_addr_5;
+                    data_from_rom <= data_from_rom_5;
+                    weight_from_rom <= weight_from_rom_5;
+                when 32 =>
+                    rom_addr <= rom_addr_6;
+                    data_from_rom <= data_from_rom_6;
+                    weight_from_rom <= weight_from_rom_6;
+                when 64 =>
+                    rom_addr <= rom_addr_7;
+                    data_from_rom <= data_from_rom_7;
+                    weight_from_rom <= weight_from_rom_7;
+                when 128 =>
+                    rom_addr <= rom_addr_8;
+                    data_from_rom <= data_from_rom_8;
+                    weight_from_rom <= weight_from_rom_8;
+                when others =>
+                    rom_addr <= rom_addr_0;
+                    data_from_rom <= data_from_rom_0;
+                    weight_from_rom <= weight_from_rom_0;
+            end case;
+                
+
+
             case current_state is
                 when S_IDLE =>
                     done <= '0';
@@ -148,14 +483,24 @@ begin
                     end if;
 
                 when S_LOAD_PARAMS =>
-                    rom_addr <= to_unsigned(rom_addr_counter, rom_addr'length);
+                    -- Update all ROM addresses simultaneously
+                    rom_addr_0 <= to_unsigned(rom_addr_counter, rom_addr_0'length);
+                    rom_addr_1 <= to_unsigned(rom_addr_counter, rom_addr_1'length);
+                    rom_addr_2 <= to_unsigned(rom_addr_counter, rom_addr_2'length);
+                    rom_addr_3 <= to_unsigned(rom_addr_counter, rom_addr_3'length);
+                    rom_addr_4 <= to_unsigned(rom_addr_counter, rom_addr_4'length);
+                    rom_addr_5 <= to_unsigned(rom_addr_counter, rom_addr_5'length);
+                    rom_addr_6 <= to_unsigned(rom_addr_counter, rom_addr_6'length);
+                    rom_addr_7 <= to_unsigned(rom_addr_counter, rom_addr_7'length);
+                    rom_addr_8 <= to_unsigned(rom_addr_counter, rom_addr_8'length);
+
                     
                     -- ROMs have a 1-cycle read latency
-                    if rom_addr_counter = 3 then
+                    if rom_addr_counter = 4 then
                         active_m_sig <= to_integer(unsigned(data_from_rom));
-                    elsif rom_addr_counter = 4 then
-                        active_n_sig <= to_integer(unsigned(data_from_rom));
                     elsif rom_addr_counter = 5 then
+                        active_n_sig <= to_integer(unsigned(data_from_rom));
+                    elsif rom_addr_counter = 6 then
                         active_k_sig <= to_integer(unsigned(data_from_rom));
                         current_state    <= S_LOAD_MATRICES;
                     end if;
@@ -164,18 +509,28 @@ begin
 
                 when S_LOAD_MATRICES =>
                 -- sa_ready_sig <= '1';
-                    rom_addr <= to_unsigned(rom_addr_counter, rom_addr'length);
+                    -- Update all ROM addresses simultaneously
+                    rom_addr_0 <= to_unsigned(rom_addr_counter, rom_addr_0'length);
+                    rom_addr_1 <= to_unsigned(rom_addr_counter, rom_addr_1'length);
+                    rom_addr_2 <= to_unsigned(rom_addr_counter, rom_addr_2'length);
+                    rom_addr_3 <= to_unsigned(rom_addr_counter, rom_addr_3'length);
+                    rom_addr_4 <= to_unsigned(rom_addr_counter, rom_addr_4'length);
+                    rom_addr_5 <= to_unsigned(rom_addr_counter, rom_addr_5'length);
+                    rom_addr_6 <= to_unsigned(rom_addr_counter, rom_addr_6'length);
+                    rom_addr_7 <= to_unsigned(rom_addr_counter, rom_addr_7'length);
+                    rom_addr_8 <= to_unsigned(rom_addr_counter, rom_addr_8'length);
+
 
                     -- De-serialize 1D ROM data into 2D matrix buffers
-                    target_row := (rom_addr_counter - 6) / N;
-                    target_col := (rom_addr_counter - 6) mod N;
+                    target_row := (rom_addr_counter - 7) / N;
+                    target_col := (rom_addr_counter - 7) mod N;
 
                     if target_row < N then
                         matrix_data_buffer(target_row, target_col)   <= data_from_rom;
                         matrix_weight_buffer(target_row, target_col) <= weight_from_rom;
                     end if;
 
-                    if rom_addr_counter >= (N*N + 5) then
+                    if rom_addr_counter >= (N*N + 6) then
                         current_state <= S_EXECUTE;
                     else
                         rom_addr_counter := rom_addr_counter + 1;
@@ -200,6 +555,7 @@ begin
                     sa_ready_sig <= '0';
                     done        <= '1'; -- Signal completion
                     npu_cycle_count <= std_logic_vector(to_unsigned(sa_cycle_count, 8));
+                    -- npu_cycle_count <= std_logic_vector(to_unsigned(expected_latency, 8));
                     current_state <= S_IDLE;
                     
             end case;
@@ -207,6 +563,10 @@ begin
 
     internal_result_matrix <= sa_result_internal;
     end process fsm_proc;
+
+    -- Output assignments
+    active_m <= active_m_sig;
+    active_n <= active_n_sig;
 
     -- This process implements the read access to the on-chip memory
     read_logic_proc : process(read_address, internal_result_matrix, current_state, sa_cycle_count)

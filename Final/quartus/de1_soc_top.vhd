@@ -2,6 +2,7 @@
 -- External communication test for the UART component, connected to physical pins.
 
 library ieee;
+use ieee.math_real.all;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.custom_types.all;
@@ -11,6 +12,7 @@ entity de1_soc_top is
         -- Physical pins (must match your .qsf file)
         CLOCK_50      : in  std_logic;
         KEY           : in  std_logic_vector(1 downto 0);
+        SW           : in  std_logic_vector(9 downto 0);
         LEDR          : out std_logic_vector(9 downto 0);
         FPGA_UART_RX  : in  std_logic;   -- Pin AC18
         FPGA_UART_TX  : out std_logic    -- Pin Y17
@@ -18,24 +20,6 @@ entity de1_soc_top is
 end entity de1_soc_top;
 
 architecture Behavioral of de1_soc_top is
-
-    -- Component for the generic UART module
-    -- component UART is
-    --     generic(
-    --         BAUD_RATE      : integer := 9600;
-    --         CLOCK_FREQUENCY : integer := 50_000_000
-    --     );
-    --     port(
-    --         i_Clock         : in  std_logic;
-    --         i_RX_Serial     : in  std_logic;
-    --         o_RX_DV         : out std_logic;
-    --         o_RX_Byte       : out std_logic_vector(7 downto 0);
-    --         i_TX_DV         : in  std_logic;
-    --         i_TX_Byte       : in  std_logic_vector(7 downto 0);
-    --         o_TX_Active     : out std_logic;
-    --         o_TX_Serial     : out std_logic
-    --     );
-    -- end component;
     component UART is
         port( CLOCK_50,RST : in std_logic;
 		-- SW			: in STD_LOGIC_VECTOR(3 downto 0);
@@ -62,6 +46,7 @@ architecture Behavioral of de1_soc_top is
             clk     : in  bit_1;
             reset   : in  bit_1;
             start   : in  bit_1;
+            switch : in  integer range 0 to 128;
             done    : out bit_1;
             active_m    : out integer;
             active_n    : out integer;
@@ -144,6 +129,7 @@ begin
             clk          => CLOCK_50,
             reset        => s_reset,
             start        => s_start_pulse,
+            switch       => to_integer(unsigned(SW)), 
             done         => npu_done,
             active_m     => npu_active_m,
             active_n     => npu_active_n,
@@ -162,6 +148,9 @@ begin
             else
                 if npu_done = '1' then
                    data_byte <= sa_cycle_count; -- Transmit the cycle count when starting
+                    -- send the 8 lsb of switch
+                    -- data_byte <= SW(7 downto 0);
+                    -- data_byte <= "00000001";
                      send_flag <= '1';
                 else
                      send_flag <= '0';

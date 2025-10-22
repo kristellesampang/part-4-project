@@ -4,7 +4,7 @@
 -- MODULE: altsyncram 
 
 -- ============================================================
--- File Name: weight_rom.vhd
+-- File Name: data_rom.vhd
 -- Megafunction Name(s):
 -- 			altsyncram
 --
@@ -39,17 +39,17 @@ USE ieee.std_logic_1164.all;
 LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
 
-ENTITY weight_rom IS
+ENTITY data_rom_5 IS
 	PORT
-	(
+(
 		address		: IN STD_LOGIC_VECTOR (6 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
-END weight_rom;
+END data_rom_5;
 
 
-ARCHITECTURE SYN OF weight_rom IS
+ARCHITECTURE SYN OF data_rom_5 IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (7 DOWNTO 0);
 
@@ -61,8 +61,8 @@ BEGIN
 		address_aclr_a => "NONE",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		-- init_file => "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_5/stripped_weight.mif",
-		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/demo/master_weight.mif",
+		init_file => "C:/Users/ksam836/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_2/stripped_activation.mif",
+--		init_file => "C:/Users/iamkr/Documents/part-4-project/Final/demo/master_data.mif",
 		intended_device_family => "Cyclone V",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
@@ -104,7 +104,7 @@ END SYN;
 -- Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 -- Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 -- Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
--- Retrieval info: PRIVATE: MIFfilename STRING "../mif/pipeline/weight_tile_4.mif"
+-- Retrieval info: PRIVATE: MIFfilename STRING "../mif/pipeline/activation_tile_4.mif"
 -- Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "64"
 -- Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
 -- Retrieval info: PRIVATE: RegAddr NUMERIC "1"
@@ -119,7 +119,7 @@ END SYN;
 -- Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
--- Retrieval info: CONSTANT: INIT_FILE STRING "../mif/pipeline/weight_tile_4.mif"
+-- Retrieval info: CONSTANT: INIT_FILE STRING "../mif/pipeline/activation_tile_4.mif"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 -- Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
@@ -136,9 +136,9 @@ END SYN;
 -- Retrieval info: CONNECT: @address_a 0 0 6 0 address 0 0 6 0
 -- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 8 0 @q_a 0 0 8 0
--- Retrieval info: GEN_FILE: TYPE_NORMAL weight_rom.vhd TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL weight_rom.inc FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL weight_rom.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL weight_rom.bsf FALSE
--- Retrieval info: GEN_FILE: TYPE_NORMAL weight_rom_inst.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL data_rom.vhd TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL data_rom.inc FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL data_rom.cmp TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL data_rom.bsf FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL data_rom_inst.vhd TRUE
 -- Retrieval info: LIB_FILE: altera_mf
