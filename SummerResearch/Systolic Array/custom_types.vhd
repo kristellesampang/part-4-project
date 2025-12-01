@@ -6,6 +6,7 @@ USE ieee.std_logic_1164.ALL;
 PACKAGE custom_types IS
 
     -- bit sizes (from ReCOP, Zoran Salcic)
+	SUBTYPE bit_64 IS STD_LOGIC_VECTOR(63 DOWNTO 0);
 	SUBTYPE bit_32 IS STD_LOGIC_VECTOR(31 DOWNTO 0);
 	SUBTYPE bit_23 IS STD_LOGIC_VECTOR(22 DOWNTO 0);
 	SUBTYPE bit_22 IS STD_LOGIC_VECTOR(21 DOWNTO 0);
@@ -29,19 +30,19 @@ PACKAGE custom_types IS
 	SUBTYPE bit_1 IS STD_LOGIC;
 
 	-- Dynamic Systolic Arrays 
-	constant N : integer := 8; -- array dimension (only need to change this)
+	constant N : integer := 32; -- array dimension (only need to change this)
 
 	-- input and output matrix
-	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_8; -- must match the systolic array size
-	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_32; -- must match the systolic array size
+	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_16; -- must match the systolic array size
+	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_64; -- must match the systolic array size
 	-- shift registers 
-	type input_shift_matrix is array (0 to N-1) of bit_8; -- 1xN size 
+	type input_shift_matrix is array (0 to N-1) of bit_16; -- 1xN size 
 	-- PE enabled mask
 	type enabled_PE_matrix is array (0 to N-1, 0 to N-1) of bit_1; -- 1 bit enable for all PEs
 	-- inter-PE signals (modify based on design)
-	type data_bus_matrix is array(0 to N, 0 to N) of bit_8; -- includes the bus going out of the right   
-	type weight_bus_matrix is array(0 to N, 0 to N) of bit_8; -- includes the bus going out of the bottom
-	type result_matrix is array(0 to N-1, 0 to N-1) of bit_32; -- holds the accumlated 8-bit value of each PE as a matrix
+	type data_bus_matrix is array(0 to N, 0 to N) of bit_16; -- includes the bus going out of the right   
+	type weight_bus_matrix is array(0 to N, 0 to N) of bit_16; -- includes the bus going out of the bottom
+	type result_matrix is array(0 to N-1, 0 to N-1) of bit_64; -- holds the accumlated 8-bit value of each PE as a matrix
 
 
 END custom_types;

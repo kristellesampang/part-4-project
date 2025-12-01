@@ -14,22 +14,22 @@ port(
     en : in bit_1; -- enables PE
 
     -- inputs for the MAC operation
-    in_data : in bit_8; -- can be data input or activation 
-    in_weight : in bit_8; -- weight
+    in_data : in bit_16; -- can be data input or activation 
+    in_weight : in bit_16; -- weight
     
     -- outputs for the MAC operation
-    out_data : out bit_8;
-    out_weight : out bit_8;
-    result_register : out bit_32
+    out_data : out bit_16;
+    out_weight : out bit_16;
+    result_register : out bit_64
 );
 end processing_element;
     
 architecture behaviour of processing_element is
     -- Internal signals for pipelining
-    signal data_reg        : signed(7 downto 0) := (others => '0');
-    signal weight_reg      : signed(7 downto 0) := (others => '0');
-    signal mult_result_reg : signed(15 downto 0) := (others => '0'); -- 8x8 = 16 bits
-    signal accumulator_reg : signed(31 downto 0) := (others => '0');
+    signal data_reg        : signed(15 downto 0) := (others => '0');
+    signal weight_reg      : signed(15 downto 0) := (others => '0');
+    signal mult_result_reg : signed(31 downto 0) := (others => '0');  --16-bit x 16-bit = 32-bit
+    signal accumulator_reg : signed(63 downto 0) := (others => '0');
 
 begin
     process(clk)
