@@ -25,71 +25,101 @@ port(
 end control_unit;
 
 architecture behaviour of control_unit is
-    -- ... (signal declarations) ...
+    signal data_reg   : input_shift_matrix := (others => (others => '0'));
+    signal weight_reg : input_shift_matrix := (others => (others => '0'));
+    -- Initial start signal (we set it high when ready is pulsed, and let it run until reset)
+    signal run_enable : bit_1 := '0'; 
+    signal count      : integer := 0;
+    signal mask_internal : enabled_PE_matrix := (others => (others => '0'));
 
-    signal run_enable : bit_1 := '0'; -- Internal flag for running state
-    signal count      : integer := 0;
-    -- ... (rest of declarations) ...
-
-    -- Pre-calculate max_run_cycles concurrently
-    signal max_run_cycles : integer := 0; 
+    -- Pre-calculate the total cycles needed for one operation (M+N+K-2)
+    -- This is the fixed runtime needed for the control logic.
+    signal max_run_cycles : integer := 0; 
 begin
-    max_run_cycles <= active_rows + active_cols + active_k - 2;
+    -- The maximum run cycle is calculated here, dynamically based on active inputs
+    max_run_cycles <= active_rows + active_cols + active_k - 2;
 
-    process(clk, reset)
-    begin
-        if reset = '1' then
-            count <= 0;
-            run_enable <= '0';
-            -- ... (clearing data_reg, weight_reg, mask_internal) ...
-    
-        elsif rising_edge(clk) then
-            
-            -- 1. STATE CONTROL: START, COUNT, and STOP Logic
-            -- Start: Triggered by one external pulse
-            if ready = '1' then
-                run_enable <= '1';
-            end if;
-
-            -- Stop: Self-terminate after the required latency is reached
-            if run_enable = '1' and count < max_run_cycles then
-                count <= count + 1;
-            elsif count = max_run_cycles then
-                run_enable <= '0'; -- Turn off self-state once calculation is finished
-            end if;
-
-
-            -- 2. DATA SHIFTING (Data Input and Weight Input)
-            -- Data and Weights flow ONLY during the input stream window (0 to active_k-1 cycles).
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            count <= 0;
+            run_enable <= '0';
+            -- Clearing all the elements of the registers upon reset
             for i in 0 to N-1 loop
-                if i < active_rows then
-                    -- Timing check relies on run_enable, NOT external ready
-                    if run_enable = '1' AND (count >= i) AND (count < i + active_k) then
-                        data_reg(i) <= matrix_data(i, count - i);
-                    else
-                        data_reg(i) <= (others => '0');
-                    end if;
-                -- ... (rest of data shifting/zero padding) ...
+                data_reg(i)   <= (others => '0');
+                weight_reg(i) <= (others => '0');
             end loop;
+            for i in 0 to N-1 loop
+                for j in 0 to N-1 loop
+                    mask_internal(i,j) <= '0';
+                end loop;
+            end loop;
+    
+    -- When reset is released and 'ready' pulses, the internal state goes to RUN
+    elsif rising_edge(clk) then
+        if ready = '1' then
+            run_enable <= '1';
+        end if;
 
-            -- ... (Weight shifting logic - apply similar run_enable guard) ...
+        -- Only execute the control logic if we are running and haven't hit the maximum cycle count
+        if run_enable = '1' then
+            count <= count + 1;
+        else
+            count <= 0;
+        end if;
+        -- --- DATA (matrix A) (left->right) ---
+        -- Logic relies on the external 'ready' pulse for the input window.
+        -- When ready is '0', the loop naturally fills unused input cycles with zeros (u16(0)).
+        for i in 0 to N-1 loop
+            if i < active_rows then
+                -- stagger and timing logic
+                -- We use the internal 'count' for the timing offset.
+                if run_enable = '1' and (count >= i) and (count < i + active_k) then
+                    data_reg(i) <= matrix_data(i, count - i);
+                -- fill the rest with zeros after the stream or if ready/active inputs stop
+                else
+                    data_reg(i) <= (others => '0');
+                end if;
+            else
+                data_reg(i) <= (others => '0');
+            end if;
+        end loop;
 
-            -- 3. PE MASK ACTIVATION (Triggered ONCE on start)
-            -- We keep this triggered by the external 'ready' pulse for simplicity.
-            if ready = '1' and count = 0 then
-                for i in 0 to N-1 loop
-                    for j in 0 to N-1 loop
-                        -- **This logic must be correct to enable the 3x3 region**
-                        if (i < active_rows) and (j < active_cols) then
-                            mask_internal(i,j) <= '1';
-                        else
-                            mask_internal(i,j) <= '0';
-                        end if;
-                    end loop;
-                end loop;
-            end if;
 
-        end if; -- end rising_edge(clk)
-    end process;
--- ... (output assignments) ...
+        -- --- WEIGHT (matrix B) -> (top->bottom) ---
+        for j in 0 to N-1 loop
+            if j < active_cols then
+                -- stagger and timing logic
+                if run_enable = '1' and (count >= j) and (count < j + active_k) then
+                    weight_reg(j) <= matrix_weight(count - j, j);
+                -- fill the rest with zeros
+                else
+                    weight_reg(j) <= (others => '0');
+                end if;
+            else
+                weight_reg(j) <= (others => '0');
+            end if;
+        end loop;
+
+        -- --- PE enable mask for power optimisation (Only set once on start) ---
+        if ready = '1' and count = 0 then
+            for i in 0 to N-1 loop
+                for j in 0 to N-1 loop
+                    if (i < active_rows) and (j < active_cols) then
+                        mask_internal(i,j) <= '1';
+                    else
+                        mask_internal(i,j) <= '0';
+                    end if;
+                end loop;
+            end loop;
+        end if;
+
+    end if; -- end rising_edge(clk)
+    end process;
+
+
+    data_shift      <= data_reg;
+    weight_shift    <= weight_reg;
+    PE_enabled_mask <= mask_internal;
+    cycle_count     <= count;
 end behaviour;
