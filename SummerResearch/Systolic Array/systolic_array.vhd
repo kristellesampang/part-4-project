@@ -28,9 +28,7 @@ architecture behaviour of systolic_array is
     signal data_bus   : data_bus_matrix := (others => (others => (others => '0')));
     signal weight_bus : weight_bus_matrix := (others => (others => (others => '0')));
     signal results    : result_matrix := (others => (others => (others => '0')));
-
-
-
+    
 begin
 
     -- Dynamically assign inputs to left/top edges

@@ -23,8 +23,8 @@ architecture sim of tb_dense_test is
     -- constant ACTIVE_K : integer := 32;
     -- constant ACTIVE_COLS : integer := 32;
     -- constant EXPECTED_LATENCY : integer := 94;
-    -- constant CLK_PER     : time  := 20 ns; 
-    -- constant EXPECTED_FINAL_RESULT : bit_64 := std_logic_vector(to_signed(11440, 64)); 
+    constant CLK_PER     : time  := 20 ns; 
+    constant EXPECTED_FINAL_RESULT : bit_64 := std_logic_vector(to_signed(1050, 64)); 
 
     -- Signals to connect to the DUT/Control Logic
     signal clk           : bit_1 := '0';
@@ -37,10 +37,10 @@ architecture sim of tb_dense_test is
 
 
 
-constant ACTIVE_ROWS : integer := 16;
-constant ACTIVE_K : integer := 21;
-constant ACTIVE_COLS : integer := 21;
-constant EXPECTED_LATENCY : integer := 56;
+    constant ACTIVE_ROWS : integer := 16;
+    constant ACTIVE_K : integer := 21;
+    constant ACTIVE_COLS : integer := 21;
+    constant EXPECTED_LATENCY : integer := 56;
 
 constant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (
     (u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(10), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0), u16(0)),
