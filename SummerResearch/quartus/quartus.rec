@@ -1,0 +1,17 @@
+# **************************************************
+# Quartus Prime Version 24.1.0
+# Process ID 17504
+# Start logging TCL commands
+# Fri Dec 5 15:30:32 2025
+# **************************************************
+project_open "C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject.qpf" -revision SummerResearchTopLevel
+set tcl_cmds [list [list set_global_assignment -name VHDL_FILE "../Systolic Array/top_level_systolic_array.vhd"] [list set_global_assignment -name VHDL_FILE "../Systolic Array/systolic_array.vhd"] [list set_global_assignment -name VHDL_FILE "../Systolic Array/processing_element.vhd"] [list set_global_assignment -name VHDL_FILE "../Systolic Array/custom_types.vhd"] [list set_global_assignment -name VHDL_FILE "../Systolic Array/control_unit.vhd"] [list set_global_assignment -name VHDL_FILE HW_Wrapper_Arria10.vhd]]
+execute_assignment_batch $tcl_cmds
+set tcl_cmds [list [list set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"] [list set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"] [list set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL]]
+execute_assignment_batch $tcl_cmds
+flng::run_flow_command -flow "compile"
+project_close
+# **************************************************
+# Fri Dec 5 16:36:20 2025
+# End of logging TCL commands
+# **************************************************
