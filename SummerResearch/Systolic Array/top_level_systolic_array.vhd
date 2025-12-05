@@ -62,7 +62,4 @@ begin
             enabled_PE  => enabled_PE_mask,
             output      => output
         );
-
-
-
 end architecture;
