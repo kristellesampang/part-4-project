@@ -1,0 +1,18 @@
+# system info DataBuffer1 on 2025.12.08.15:53:05
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for DataBuffer1 on 2025.12.08.15:53:05
+files:
+filepath,kind,attributes,module,is_top
+sim/DataBuffer1.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,DataBuffer1,true
+ram_2port_2041/sim/DataBuffer1_ram_2port_2041_tqhxgji.vhd,VHDL,,DataBuffer1_ram_2port_2041_tqhxgji,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+DataBuffer1.ram_2port_0,DataBuffer1_ram_2port_2041_tqhxgji
