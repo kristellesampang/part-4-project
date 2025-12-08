@@ -4,136 +4,136 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 2025  Altera Corporation. All rights reserved.
-Your use of Altera Corporation's design tools, logic functions 
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, the Altera Quartus Prime License Agreement,
-the Altera IP License Agreement, or other applicable license
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Altera and sold by Altera or its authorized distributors.  Please
-refer to the Altera Software License Subscription Agreements 
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the Intel FPGA Software License Subscription Agreements 
 on the Quartus Prime software download page.
 */
 (header "symbol" (version "1.1"))
 (symbol
 	(rect 0 0 288 568)
-	(text "OutputBuffer" (rect 101 0 152 12)(font "SansSerif" (font_size 11)))
+	(text "OutputBuffer" (rect 101 0 152 12)(font "Arial" (font_size 11)))
 	(text "inst" (rect 8 552 20 564)(font "Arial" ))
 	(port
 		(pt 0 76)
 		(input)
-		(text "data_a[15..0]" (rect 0 0 50 12)(font "SansSerif" (font_size 8)))
-		(text "data_a[15..0]" (rect 4 65 82 76)(font "SansSerif" (font_size 8)))
+		(text "data_a[63..0]" (rect 0 0 51 12)(font "Arial" (font_size 8)))
+		(text "data_a[63..0]" (rect 4 65 82 76)(font "Arial" (font_size 8)))
 		(line (pt 0 76)(pt 85 76)(line_width 3))
 	)
 	(port
 		(pt 0 126)
 		(input)
-		(text "data_b[15..0]" (rect 0 0 50 12)(font "SansSerif" (font_size 8)))
-		(text "data_b[15..0]" (rect 4 115 82 126)(font "SansSerif" (font_size 8)))
+		(text "data_b[63..0]" (rect 0 0 51 12)(font "Arial" (font_size 8)))
+		(text "data_b[63..0]" (rect 4 115 82 126)(font "Arial" (font_size 8)))
 		(line (pt 0 126)(pt 85 126)(line_width 3))
 	)
 	(port
 		(pt 0 176)
 		(input)
-		(text "address_a[9..0]" (rect 0 0 62 12)(font "SansSerif" (font_size 8)))
-		(text "address_a[9..0]" (rect 4 165 94 176)(font "SansSerif" (font_size 8)))
+		(text "address_a[9..0]" (rect 0 0 62 12)(font "Arial" (font_size 8)))
+		(text "address_a[9..0]" (rect 4 165 94 176)(font "Arial" (font_size 8)))
 		(line (pt 0 176)(pt 85 176)(line_width 3))
 	)
 	(port
 		(pt 0 226)
 		(input)
-		(text "address_b[9..0]" (rect 0 0 62 12)(font "SansSerif" (font_size 8)))
-		(text "address_b[9..0]" (rect 4 215 94 226)(font "SansSerif" (font_size 8)))
+		(text "address_b[9..0]" (rect 0 0 62 12)(font "Arial" (font_size 8)))
+		(text "address_b[9..0]" (rect 4 215 94 226)(font "Arial" (font_size 8)))
 		(line (pt 0 226)(pt 85 226)(line_width 3))
 	)
 	(port
 		(pt 0 276)
 		(input)
-		(text "wren_a" (rect 0 0 29 12)(font "SansSerif" (font_size 8)))
-		(text "wren_a" (rect 4 265 40 276)(font "SansSerif" (font_size 8)))
+		(text "wren_a" (rect 0 0 29 12)(font "Arial" (font_size 8)))
+		(text "wren_a" (rect 4 265 40 276)(font "Arial" (font_size 8)))
 		(line (pt 0 276)(pt 85 276)(line_width 1))
 	)
 	(port
 		(pt 0 326)
 		(input)
-		(text "wren_b" (rect 0 0 29 12)(font "SansSerif" (font_size 8)))
-		(text "wren_b" (rect 4 315 40 326)(font "SansSerif" (font_size 8)))
+		(text "wren_b" (rect 0 0 29 12)(font "Arial" (font_size 8)))
+		(text "wren_b" (rect 4 315 40 326)(font "Arial" (font_size 8)))
 		(line (pt 0 326)(pt 85 326)(line_width 1))
 	)
 	(port
 		(pt 0 376)
 		(input)
-		(text "clock" (rect 0 0 20 12)(font "SansSerif" (font_size 8)))
-		(text "clock" (rect 4 365 34 376)(font "SansSerif" (font_size 8)))
+		(text "clock" (rect 0 0 20 12)(font "Arial" (font_size 8)))
+		(text "clock" (rect 4 365 34 376)(font "Arial" (font_size 8)))
 		(line (pt 0 376)(pt 85 376)(line_width 1))
 	)
 	(port
 		(pt 0 426)
 		(input)
-		(text "freeze" (rect 0 0 24 12)(font "SansSerif" (font_size 8)))
-		(text "freeze" (rect 4 415 40 426)(font "SansSerif" (font_size 8)))
+		(text "freeze" (rect 0 0 24 12)(font "Arial" (font_size 8)))
+		(text "freeze" (rect 4 415 40 426)(font "Arial" (font_size 8)))
 		(line (pt 0 426)(pt 85 426)(line_width 1))
 	)
 	(port
 		(pt 0 476)
 		(input)
-		(text "enable" (rect 0 0 24 12)(font "SansSerif" (font_size 8)))
-		(text "enable" (rect 4 465 40 476)(font "SansSerif" (font_size 8)))
+		(text "enable" (rect 0 0 24 12)(font "Arial" (font_size 8)))
+		(text "enable" (rect 4 465 40 476)(font "Arial" (font_size 8)))
 		(line (pt 0 476)(pt 85 476)(line_width 1))
 	)
 	(port
 		(pt 0 526)
 		(input)
-		(text "aclr" (rect 0 0 14 12)(font "SansSerif" (font_size 8)))
-		(text "aclr" (rect 4 515 28 526)(font "SansSerif" (font_size 8)))
+		(text "aclr" (rect 0 0 14 12)(font "Arial" (font_size 8)))
+		(text "aclr" (rect 4 515 28 526)(font "Arial" (font_size 8)))
 		(line (pt 0 526)(pt 85 526)(line_width 1))
 	)
 	(port
 		(pt 288 76)
 		(output)
-		(text "q_a[15..0]" (rect 0 0 38 12)(font "SansSerif" (font_size 8)))
-		(text "q_a[15..0]" (rect 240 65 300 76)(font "SansSerif" (font_size 8)))
+		(text "q_a[63..0]" (rect 0 0 40 12)(font "Arial" (font_size 8)))
+		(text "q_a[63..0]" (rect 238 65 298 76)(font "Arial" (font_size 8)))
 		(line (pt 288 76)(pt 204 76)(line_width 3))
 	)
 	(port
 		(pt 288 126)
 		(output)
-		(text "q_b[15..0]" (rect 0 0 38 12)(font "SansSerif" (font_size 8)))
-		(text "q_b[15..0]" (rect 240 115 300 126)(font "SansSerif" (font_size 8)))
+		(text "q_b[63..0]" (rect 0 0 40 12)(font "Arial" (font_size 8)))
+		(text "q_b[63..0]" (rect 238 115 298 126)(font "Arial" (font_size 8)))
 		(line (pt 288 126)(pt 204 126)(line_width 3))
 	)
 	(drawing
-		(text "data_a" (rect 46 46 128 105)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "datain_a" (rect 90 71 228 152)(font "SansSerif" (color 0 0 0)))
-		(text "q_a" (rect 205 46 428 105)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "dataout_a" (rect 159 71 372 152)(font "SansSerif" (color 0 0 0)))
-		(text "data_b" (rect 46 96 128 205)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "datain_b" (rect 90 121 228 252)(font "SansSerif" (color 0 0 0)))
-		(text "q_b" (rect 205 96 428 205)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "dataout_b" (rect 159 121 372 252)(font "SansSerif" (color 0 0 0)))
-		(text "address_a" (rect 24 146 102 305)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "address_a" (rect 90 171 234 352)(font "SansSerif" (color 0 0 0)))
-		(text "address_b" (rect 24 196 102 405)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "address_b" (rect 90 221 234 452)(font "SansSerif" (color 0 0 0)))
-		(text "wren_a" (rect 42 246 120 505)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "wren_a" (rect 90 271 216 552)(font "SansSerif" (color 0 0 0)))
-		(text "wren_b" (rect 42 296 120 605)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "wren_b" (rect 90 321 216 652)(font "SansSerif" (color 0 0 0)))
-		(text "clock" (rect 57 346 144 705)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "clk" (rect 90 371 198 752)(font "SansSerif" (color 0 0 0)))
-		(text "freeze" (rect 49 396 134 805)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "freeze" (rect 90 421 216 852)(font "SansSerif" (color 0 0 0)))
-		(text "enable" (rect 48 446 132 905)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "enable" (rect 90 471 216 952)(font "SansSerif" (color 0 0 0)))
-		(text "aclr" (rect 65 496 154 1005)(font "SansSerif" (color 128 0 0)(font_size 9)))
-		(text "reset" (rect 90 521 210 1052)(font "SansSerif" (color 0 0 0)))
-		(text " system " (rect 254 551 556 1112)(font "SansSerif" ))
+		(text "data_a" (rect 46 46 128 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "datain_a" (rect 90 71 228 152)(font "Arial" (color 0 0 0)))
+		(text "q_a" (rect 205 46 428 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "dataout_a" (rect 159 71 372 152)(font "Arial" (color 0 0 0)))
+		(text "data_b" (rect 46 96 128 205)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "datain_b" (rect 90 121 228 252)(font "Arial" (color 0 0 0)))
+		(text "q_b" (rect 205 96 428 205)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "dataout_b" (rect 159 121 372 252)(font "Arial" (color 0 0 0)))
+		(text "address_a" (rect 24 146 102 305)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "address_a" (rect 90 171 234 352)(font "Arial" (color 0 0 0)))
+		(text "address_b" (rect 24 196 102 405)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "address_b" (rect 90 221 234 452)(font "Arial" (color 0 0 0)))
+		(text "wren_a" (rect 42 246 120 505)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "wren_a" (rect 90 271 216 552)(font "Arial" (color 0 0 0)))
+		(text "wren_b" (rect 42 296 120 605)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "wren_b" (rect 90 321 216 652)(font "Arial" (color 0 0 0)))
+		(text "clock" (rect 57 346 144 705)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 90 371 198 752)(font "Arial" (color 0 0 0)))
+		(text "freeze" (rect 49 396 134 805)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "freeze" (rect 90 421 216 852)(font "Arial" (color 0 0 0)))
+		(text "enable" (rect 48 446 132 905)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "enable" (rect 90 471 216 952)(font "Arial" (color 0 0 0)))
+		(text "aclr" (rect 65 496 154 1005)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset" (rect 90 521 210 1052)(font "Arial" (color 0 0 0)))
+		(text " OutputBuffer " (rect 230 551 544 1112)(font "Arial" ))
 		(line (pt 85 34)(pt 204 34)(line_width 1))
 		(line (pt 204 34)(pt 204 551)(line_width 1))
 		(line (pt 85 551)(pt 204 551)(line_width 1))

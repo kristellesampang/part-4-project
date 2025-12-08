@@ -1,41 +1,50 @@
 # **************************************************
 # Quartus Prime Version 24.1.0
-# Process ID 11416
+# Process ID 8692
 # Start logging UI actions
-# Mon Dec 8 13:36:51 2025
+# Mon Dec 8 13:44:05 2025
 # **************************************************
-[Mon Dec  8 13:36:55 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Mon Dec  8 13:36:59 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Net' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Mon Dec  8 13:37:01 2025] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Mon Dec  8 13:37:01 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Mon Dec  8 13:40:58 2025] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | Start button for task 'run1' clicked
-[Mon Dec  8 13:40:58 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Mon Dec  8 13:43:09 2025] Window title: 'Report Clock Domain Crossing Viewer' | QCheckBox 'Report panel name:' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Report Clock Domain Crossing Viewer' | 'File options': QRadioButton 'Overwrite' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Net' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Mon Dec  8 13:43:09 2025] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Mon Dec  8 13:44:08 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Instance' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Mon Dec  8 13:44:09 2025] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Instance' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Inst Port' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Net' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Mon Dec  8 13:44:10 2025] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Mon Dec  8 13:44:10 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | P&rocessing > 'Compilation Dashboard' was pressed
+[Mon Dec  8 13:44:39 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Tools > '&Programmer' was pressed
+[Mon Dec  8 13:44:42 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | QCheckBox '' was checked
+[Mon Dec  8 13:44:42 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Tools > '&Programmer' was pressed
+[Mon Dec  8 13:44:45 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | QCheckBox '' was checked
+[Mon Dec  8 13:44:52 2025] Window title: 'Hardware Setup' | QCheckBox 'Auto-adjust frequency at chain scanning' was checked
+[Mon Dec  8 13:44:52 2025] Window title: 'Hardware Setup' | combo box changed to: 'USB-BlasterII [USB-1]'
+[Mon Dec  8 13:44:54 2025] Window title: 'Hardware Setup' | QPushButton 'Close' pressed!
+[Mon Dec  8 13:45:12 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel - [SummerResearchTopLevel.cdf][*]' | QPushButton 'Start' pressed!
+[Mon Dec  8 13:46:02 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Tools > '&Programmer' was pressed
+[Mon Dec  8 13:46:05 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | QCheckBox '' was checked
+[Mon Dec  8 13:46:39 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel - [SummerResearchTopLevel.cdf][*]' | QCheckBox '' was checked
+[Mon Dec  8 13:46:44 2025] Window title: 'Programmer - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel - [SummerResearchTopLevel.cdf][*]' | QPushButton 'Start' pressed!
+[Mon Dec  8 13:50:33 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Assignments > 'Pi&n Planner' was pressed
+[Mon Dec  8 13:50:35 2025] [Action triggered] Window title: 'Pin Planner Pro Edition' | 'Selection Tool' was checked
+[Mon Dec  8 14:11:29 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Mon Dec  8 14:20:50 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Tools > 'Install Devices...' was pressed
+[Mon Dec  8 14:20:59 2025] Window title: 'Quartus Prime' | QPushButton 'OK' pressed!
+[Mon Dec  8 14:21:05 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &Tools > 'Install Devices...' was pressed
+[Mon Dec  8 14:21:09 2025] Window title: 'Quartus Prime' | QPushButton 'OK' pressed!
+[Mon Dec  8 15:35:01 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | P&rocessing > 'Compilation &Report' was pressed
+[Mon Dec  8 15:35:10 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &File > 'Export&...' was pressed
+[Mon Dec  8 15:35:57 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | &File > 'Export&...' was pressed
+[Mon Dec  8 15:55:54 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Mon Dec  8 15:55:57 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+# **************************************************
+# Mon Dec 8 15:55:57 2025
+# End of logging UI actions
+# **************************************************

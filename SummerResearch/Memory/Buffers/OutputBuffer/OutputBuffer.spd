@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simPackage>
  <file
-   path="ram_2port_2060/sim/OutputBuffer_ram_2port_2060_j4kvjyy.v"
-   type="VERILOG"
-   library="ram_2port_2060" />
+   path="ram_2port_2041/sim/OutputBuffer_ram_2port_2041_375fvbi.vhd"
+   type="VHDL"
+   library="ram_2port_2041" />
  <file
    path="sim/OutputBuffer.vhd"
    type="VHDL"

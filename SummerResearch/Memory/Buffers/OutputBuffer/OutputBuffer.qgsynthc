@@ -17,10 +17,6 @@
       <instanceData xsi:type="data">
         <parameters>
           <parameter>
-            <name>BASE_DEVICE</name>
-            <value>NIGHTFURY4</value>
-          </parameter>
-          <parameter>
             <name>DEVICE_FAMILY</name>
             <value>Arria 10</value>
           </parameter>
@@ -54,11 +50,11 @@
           </parameter>
           <parameter>
             <name>GUI_BYTE_WIDTH_A</name>
-            <value>2</value>
+            <value>8</value>
           </parameter>
           <parameter>
             <name>GUI_BYTE_WIDTH_B</name>
-            <value>2</value>
+            <value>8</value>
           </parameter>
           <parameter>
             <name>GUI_CLKEN_ADDRESS_STALL_A</name>
@@ -118,11 +114,11 @@
           </parameter>
           <parameter>
             <name>GUI_DATAA_WIDTH</name>
-            <value>16</value>
+            <value>64</value>
           </parameter>
           <parameter>
             <name>GUI_DATA_WIDTH</name>
-            <value>16</value>
+            <value>64</value>
           </parameter>
           <parameter>
             <name>GUI_DIFFERENT_CLKENS</name>
@@ -193,10 +189,6 @@
             <value>altera_syncram</value>
           </parameter>
           <parameter>
-            <name>GUI_MULTIPORT_MODE</name>
-            <value>1W/3R</value>
-          </parameter>
-          <parameter>
             <name>GUI_NBE_A</name>
             <value>true</value>
           </parameter>
@@ -222,11 +214,11 @@
           </parameter>
           <parameter>
             <name>GUI_QA_WIDTH</name>
-            <value>16</value>
+            <value>64</value>
           </parameter>
           <parameter>
             <name>GUI_QB_WIDTH</name>
-            <value>16</value>
+            <value>64</value>
           </parameter>
           <parameter>
             <name>GUI_Q_PORT_MODE</name>
@@ -234,7 +226,7 @@
           </parameter>
           <parameter>
             <name>GUI_Q_WIDTH</name>
-            <value>16</value>
+            <value>64</value>
           </parameter>
           <parameter>
             <name>GUI_RAM_BLOCK_TYPE</name>
@@ -274,7 +266,7 @@
           </parameter>
           <parameter>
             <name>GUI_RESOURCE_USAGE</name>
-            <value>1 M20K</value>
+            <value>4 M20K</value>
           </parameter>
           <parameter>
             <name>GUI_SCLR_READ_OUTPUT_QA</name>
@@ -315,9 +307,9 @@
         </parameters>
         <interconnectAssignments></interconnectAssignments>
         <className>ram_2port</className>
-        <version>20.6.0</version>
+        <version>20.4.1</version>
         <name>ram_2port_0</name>
-        <uniqueName>OutputBuffer_ram_2port_2060_j4kvjyy</uniqueName>
+        <uniqueName>OutputBuffer_ram_2port_2041_375fvbi</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>OutputBuffer.ram_2port_0</path>

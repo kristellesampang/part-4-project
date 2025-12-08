@@ -1,9 +1,9 @@
 	component OutputBuffer is
 		port (
-			data_a    : in  std_logic_vector(15 downto 0) := (others => 'X'); -- datain_a
-			q_a       : out std_logic_vector(15 downto 0);                    -- dataout_a
-			data_b    : in  std_logic_vector(15 downto 0) := (others => 'X'); -- datain_b
-			q_b       : out std_logic_vector(15 downto 0);                    -- dataout_b
+			data_a    : in  std_logic_vector(63 downto 0) := (others => 'X'); -- datain_a
+			q_a       : out std_logic_vector(63 downto 0);                    -- dataout_a
+			data_b    : in  std_logic_vector(63 downto 0) := (others => 'X'); -- datain_b
+			q_b       : out std_logic_vector(63 downto 0);                    -- dataout_b
 			address_a : in  std_logic_vector(9 downto 0)  := (others => 'X'); -- address_a
 			address_b : in  std_logic_vector(9 downto 0)  := (others => 'X'); -- address_b
 			wren_a    : in  std_logic                     := 'X';             -- wren_a
