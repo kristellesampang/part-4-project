@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="ram_2port_2060/sim/WeightBuffer1_ram_2port_2060_o45v4qi.v"
+   type="VERILOG"
+   library="ram_2port_2060" />
+ <file
+   path="sim/WeightBuffer1.vhd"
+   type="VHDL"
+   library="WeightBuffer1"
+   hasInlineConfiguration="true" />
+ <topLevel name="WeightBuffer1.WeightBuffer1" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+</simPackage>

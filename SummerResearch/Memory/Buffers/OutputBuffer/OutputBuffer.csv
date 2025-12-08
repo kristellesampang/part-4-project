@@ -1,0 +1,18 @@
+# system info OutputBuffer on 2025.12.08.19:37:19
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for OutputBuffer on 2025.12.08.19:37:19
+files:
+filepath,kind,attributes,module,is_top
+sim/OutputBuffer.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,OutputBuffer,true
+ram_2port_2060/sim/OutputBuffer_ram_2port_2060_j4kvjyy.v,VERILOG,,OutputBuffer_ram_2port_2060_j4kvjyy,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+OutputBuffer.ram_2port_0,OutputBuffer_ram_2port_2060_j4kvjyy

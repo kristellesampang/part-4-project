@@ -1,0 +1,18 @@
+# system info DataBuffer2 on 2025.12.08.18:11:30
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for DataBuffer2 on 2025.12.08.18:11:30
+files:
+filepath,kind,attributes,module,is_top
+sim/DataBuffer2.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,DataBuffer2,true
+ram_2port_2060/sim/DataBuffer2_ram_2port_2060_btmqeni.v,VERILOG,,DataBuffer2_ram_2port_2060_btmqeni,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+DataBuffer2.ram_2port_0,DataBuffer2_ram_2port_2060_btmqeni
