@@ -1,12 +1,12 @@
 # **************************************************
 # Quartus Prime Version 24.1.0
-# Process ID 8692
+# Process ID 18356
 # Start logging TCL commands
-# Mon Dec 8 13:44:05 2025
+# Tue Dec 9 12:11:15 2025
 # **************************************************
 project_open "C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject.qpf" -revision SummerResearchTopLevel
 project_close
 # **************************************************
-# Mon Dec 8 15:55:57 2025
+# Tue Dec 9 12:46:41 2025
 # End of logging TCL commands
 # **************************************************
