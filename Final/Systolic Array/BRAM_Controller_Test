@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.custom_types.all;
+
+entity BRAM_Controller_Test is
+
+    port (
+        clk_in  : in  std_logic;
+        rest_in  : in  std_logic
+        start_transfer_cmd_in : in  std_logic;
+
+        npu_data_read : out bit_16
+        npu_weight_read : out bit_16;
+
+        current_buffer_is_ping : out std_logic;
+    )
+
+end entity BRAM_Controller_Test;
+
+architecture rtl of BRAM_Controller_Test is
+
+    -- Signals to interfere with the BRAM Components
+    -- A PING
+    signal ping_a_addr : std_logic_vector(9 downto 0);
+    signal ping_a_data_in : bit_16;
+    signal ping_a_data_out : bit_16;
+
+    -- A PONG
+    signal pong_a_addr : std_logic_vector(9 downto 0);
+    signal pong_a_data_in : bit_16;
+    signal pong_a_data_out : bit_16;
+
+    type state_t is (S_PING_COMPUTE, S_WAIT_PONG_LOAD, S_SWITCH, S_PONG_COMPUTE);
+    signal current_state : state_t := S_PING_COMPUTE;
+
+    -- Component Declaration for the BRAM Controller
+    -- ALL 5
+
+
+begin
+    -- For debugging output
+    current_buffer_is_ping <= not ping_pong_sel;
+
+    -- Buffer Switching FSM
+    process(clk_in, rest_in)
+    begin
+        if reset_in = '1' then
+            current_state <= S_PING_COMPUTE;
+            ping_pong_sel <= '0';
+        elsif rising_edge(clk_in) then
+            case current_state is
+                when S_PING_COMPUTE =>
+                    if start_transfer_cmd = '1' then
+                        current_state <= S_SWITCH; -- Kinda problematic
+                    end if;
+                when S_SWITCH =>
+                    ping_pong_sel <= not ping_pong_sel;
+                    if ping_pong_sel = '1' then
+                        current_state = '1' then
+                    else
+                        current_state <= S_PING_COMPUTE;
+                    end if;
+                when S_PONG_COMPUTE =>
+                    if start_transfer_cmd = '1' then
+                        current_state <= S_SWITCH; -- Kinda problematic
+                    end if;
+                when S_WAIT_PONG_LOAD =>
+                    -- Wait state to ensure data is loaded
+                    current_state <= S_SWITCH;
+            end case;
+        end if;
+    end process;
+
+    process(ping_pong_sel, ping_a_data_out, pong_a_data_out)
+    begin
+        if ping_pong_sel = '0' then
+            npu_data_read <= ping_a_data_out;
+        else
+            npu_data_read <= pong_a_data_out;
+        end if;
+    end process;
+
