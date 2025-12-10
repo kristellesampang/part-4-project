@@ -86,7 +86,7 @@ BEGIN
         address_a => address_a,
         address_b => address_b,
         clock0 => clock,
-        clocken0 => clken_reg,
+        clocken0 => enable,
         data_a => data_a,
         data_b => data_b,
         wren_a => wren_a,

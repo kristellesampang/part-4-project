@@ -6,7 +6,7 @@ BUFFER_DEPTH = 1024
 ADDRESS_RADIX = "HEX"
 DATA_RADIX = "HEX"
 # Directory where the MIF files will be saved
-OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Memory/Buffers/MIFs" 
+OUTPUT_DIR = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/MIFs" 
 
 def generate_mif_content(width: int, data_value: int) -> str:
     """Generates the full MIF file content (header + data block)."""

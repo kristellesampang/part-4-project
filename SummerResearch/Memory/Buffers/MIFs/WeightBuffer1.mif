@@ -1,0 +1,9 @@
+WIDTH=16;
+DEPTH=1024;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+	[000..3FF] : 0003;  -- Fill entire buffer with value 0003
+END;
