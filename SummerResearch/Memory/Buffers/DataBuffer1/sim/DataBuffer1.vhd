@@ -44,7 +44,7 @@ architecture rtl of DataBuffer1 is
 	end component DataBuffer1_ram_2port_2041_tqhxgji_cmp;
 
 	for ram_2port_0 : DataBuffer1_ram_2port_2041_tqhxgji_cmp
-		use entity work.DataBuffer1_ram_2port_2041_tqhxgji;
+		use entity DataBuffer1_ram_2port_2041_tqhxgji;
 begin
 
 	ram_2port_0 : component DataBuffer1_ram_2port_2041_tqhxgji_cmp
