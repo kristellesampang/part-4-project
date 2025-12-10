@@ -1,0 +1,219 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.custom_types.all;
+
+entity BRAM_Controller_Test is
+    port (
+        clk_in  : in  std_logic;
+        reset_in : in  std_logic; -- FIXED: Syntax error, added semicolon below
+        start_transfer_cmd_in : in  std_logic;
+
+        npu_data_read : out bit_16; -- FIXED: Added semicolon
+        npu_weight_read : out bit_16; -- FIXED: Added semicolon
+
+        current_buffer_is_ping : out std_logic
+    );
+end entity BRAM_Controller_Test;
+
+architecture rtl of BRAM_Controller_Test is
+
+    constant N_ADDR_BITS : integer := 10;
+    
+    -- Control and State Signals
+    signal ping_pong_sel : std_logic := '0';
+    signal npu_addr : std_logic_vector(N_ADDR_BITS-1 downto 0);
+    signal dma_addr : std_logic_vector(N_ADDR_BITS-1 downto 0);
+    signal npu_addr_int : integer range 0 to 1023 := 0;
+    signal dma_addr_int : integer range 0 to 1023 := 0;
+
+    -- Data Signals from BRAM outputs (16 bits and 64 bits)
+    signal ping_a_q : bit_16;
+    signal pong_a_q : bit_16;
+    signal ping_b_q : bit_16;
+    signal pong_b_q : bit_16;
+    signal output_c_q : std_logic_vector(63 downto 0);
+
+    -- DMA Write Data (Mimic for testbench input)
+    signal dma_write_data_16 : bit_16 := (others => '0');
+    signal dma_write_data_64 : std_logic_vector(63 downto 0) := (others => '0');
+
+    -- Control Signals
+    signal ping_a_wren, pong_a_wren : std_logic := '0';
+    signal ping_b_wren, pong_b_wren : std_logic := '0';
+    signal output_c_wren : std_logic := '0';
+    
+    -- Shared utility signals
+    signal unused_std_logic : std_logic := '0';
+    signal unused_std_logic_vector_16 : std_logic_vector(15 downto 0) := (others => '0');
+    signal unused_std_logic_vector_64 : std_logic_vector(63 downto 0) := (others => '0');
+
+
+    type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
+    signal current_state : state_t := S_IDLE;
+
+begin
+    -- Debug Output
+    current_buffer_is_ping <= not ping_pong_sel;
+    
+    -- Address conversion (used concurrently)
+    npu_addr <= std_logic_vector(to_unsigned(npu_addr_int, npu_addr'length));
+    dma_addr <= std_logic_vector(to_unsigned(dma_addr_int, dma_addr'length));
+    
+    -- NPU data read multiplexer (Concurrent)
+    npu_data_read <= ping_a_q when ping_pong_sel = '0' else pong_a_q;
+    npu_weight_read <= ping_b_q when ping_pong_sel = '0' else pong_b_q;
+
+    -- DMA Write Enable Control (Concurrent)
+    ping_a_wren <= '1' when current_state = S_PONG_COMPUTE else '0'; -- Write to PING when PONG is computing
+    pong_a_wren <= '1' when current_state = S_PING_COMPUTE else '0'; -- Write to PONG when PING is computing
+    ping_b_wren <= '1' when current_state = S_PONG_COMPUTE else '0';
+    pong_b_wren <= '1' when current_state = S_PING_COMPUTE else '0';
+    output_c_wren <= '1' when current_state /= S_IDLE else '0'; 
+    
+    -- *************************************************************************
+    -- *** DIRECT BRAM INSTANTIATION (5 instances) ***
+    -- *************************************************************************
+    
+    -- 1. DATA A PING (16-bit)
+    BRAM_A_PING_INST : entity work.DataBuffer1 
+        port map (
+            data_a    => unused_std_logic_vector_16,     -- Port A is Read only (Connect to GND)
+            q_a       => std_logic_vector(ping_a_q),     -- NPU Read Output
+            data_b    => std_logic_vector(dma_write_data_16), -- DMA Write Data
+            q_b       => unused_std_logic_vector_16,     -- DMA Read Output (Unused)
+            address_a => npu_addr,                       -- NPU Read Address
+            address_b => dma_addr,                       -- DMA Write Address
+            wren_a    => '0',                            -- NPU Write Disabled
+            wren_b    => pong_a_wren,                    -- DMA Write Enabled when PONG is active
+            clock     => clk_in,
+            freeze    => unused_std_logic,
+            enable    => '1',                            -- Enable always on
+            aclr      => reset_in
+        );
+    
+    -- 2. DATA A PONG (16-bit)
+    BRAM_A_PONG_INST : entity work.DataBuffer2 
+        port map (
+            data_a    => unused_std_logic_vector_16,
+            q_a       => std_logic_vector(pong_a_q),
+            data_b    => std_logic_vector(dma_write_data_16),
+            q_b       => unused_std_logic_vector_16,
+            address_a => npu_addr,
+            address_b => dma_addr,
+            wren_a    => '0',
+            wren_b    => ping_a_wren,                    -- DMA Write Enabled when PING is active
+            clock     => clk_in,
+            freeze    => unused_std_logic,
+            enable    => '1',
+            aclr      => reset_in
+        );
+        
+    -- 3. WEIGHT B PING (16-bit)
+    BRAM_B_PING_INST : entity work.WeightBuffer1 
+        port map (
+            data_a    => unused_std_logic_vector_16,
+            q_a       => std_logic_vector(ping_b_q),
+            data_b    => std_logic_vector(dma_write_data_16),
+            q_b       => unused_std_logic_vector_16,
+            address_a => npu_addr,
+            address_b => dma_addr,
+            wren_a    => '0',
+            wren_b    => pong_b_wren,
+            clock     => clk_in,
+            freeze    => unused_std_logic,
+            enable    => '1',
+            aclr      => reset_in
+        );
+        
+    -- 4. WEIGHT B PONG (16-bit)
+    BRAM_B_PONG_INST : entity work.WeightBuffer2
+        port map (
+            data_a    => unused_std_logic_vector_16,
+            q_a       => std_logic_vector(pong_b_q),
+            data_b    => std_logic_vector(dma_write_data_16),
+            q_b       => unused_std_logic_vector_16,
+            address_a => npu_addr,
+            address_b => dma_addr,
+            wren_a    => '0',
+            wren_b    => ping_b_wren,
+            clock     => clk_in,
+            freeze    => unused_std_logic,
+            enable    => '1',
+            aclr      => reset_in
+        );
+
+    -- 5. OUTPUT C (64-bit)
+    BRAM_C_OUT_INST : entity work.OutputBuffer -- Note: Using OutputBuffer component
+        port map (
+            data_a    => unused_std_logic_vector_64, -- DMA is only reading this port
+            q_a       => output_c_q,                 -- DMA Read Output
+            data_b    => dma_write_data_64,          -- NPU Writes 64-bit result to Port B
+            q_b       => unused_std_logic_vector_64, -- NPU Read Output (unused now)
+            address_a => dma_addr,                   -- DMA Read Address
+            address_b => npu_addr,                   -- NPU Write Address
+            wren_a    => '0',                        -- DMA Read only
+            wren_b    => output_c_wren,              -- NPU Write Enable
+            clock     => clk_in,
+            freeze    => unused_std_logic,
+            enable    => '1',
+            aclr      => reset_in
+        );
+
+    -- *************************************************************************
+    -- *** FSM and Address Generation (Sequential Logic) ***
+    -- *************************************************************************
+
+    process(clk_in, reset_in)
+    begin
+        if reset_in = '1' then
+            current_state <= S_IDLE;
+            ping_pong_sel <= '0';
+            npu_addr_int  <= 0;
+            dma_addr_int  <= 0;
+        elsif rising_edge(clk_in) then
+            
+            -- DMA Address Generation (Continues independent of NPU state for background load mimic)
+            dma_addr_int <= (dma_addr_int + 1) mod 1024;
+            
+            -- NPU Address Generation (Reads sequentially during compute phase)
+            if current_state = S_PING_COMPUTE or current_state = S_PONG_COMPUTE then
+                npu_addr_int <= (npu_addr_int + 1) mod 1024;
+            end if;
+
+            case current_state is
+                when S_IDLE =>
+                    if start_transfer_cmd_in = '1' then -- Start command from testbench
+                        current_state <= S_PING_COMPUTE;
+                    end if;
+
+                when S_PING_COMPUTE =>
+                    -- NPU reads PING. DMA writes PONG.
+                    if npu_addr_int = 1023 then -- NPU has read all data from PING
+                        current_state <= S_SWITCH; 
+                    end if;
+
+                when S_SWITCH =>
+                    -- This state confirms DMA completion (mimicked by start_transfer_cmd_in) before switching
+                    if start_transfer_cmd_in = '1' then 
+                        ping_pong_sel <= not ping_pong_sel; 
+                        
+                        -- Determine the next compute phase based on the NEW selector value
+                        if ping_pong_sel = '0' then -- If it's about to be '1' (PONG), next state is PONG_COMPUTE
+                            current_state <= S_PONG_COMPUTE; 
+                        else -- If it's about to be '0' (PING), next state is PING_COMPUTE
+                            current_state <= S_PING_COMPUTE; 
+                        end if;
+                        
+                        -- Reset NPU address for the new compute cycle
+                        npu_addr_int <= 0;
+                    end if;
+
+                when S_PONG_COMPUTE =>
+                    -- NPU reads PONG. DMA writes PING.
+                    if npu_addr_int = 1023 then -- NPU has read all data from PONG
+                        current_state <= S_SWITCH;
+                    end if;
+            end case;
+        end if;
+    end process;
