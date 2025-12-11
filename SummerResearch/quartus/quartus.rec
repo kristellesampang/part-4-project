@@ -1,12 +1,14 @@
 # **************************************************
 # Quartus Prime Version 24.1.0
-# Process ID 7500
+# Process ID 15032
 # Start logging TCL commands
-# Tue Dec 9 15:35:37 2025
+# Thu Dec 11 12:31:56 2025
 # **************************************************
 project_open "C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject.qpf" -revision SummerResearchTopLevel
+flng::run_flow_command -flow "compile" -end "dni_analysis_and_synthesis" -resume
+flng::run_flow_command -flow "compile" -end "dni_analysis_and_synthesis" -resume
 project_close
 # **************************************************
-# Tue Dec 9 17:26:38 2025
+# Thu Dec 11 16:03:49 2025
 # End of logging TCL commands
 # **************************************************
