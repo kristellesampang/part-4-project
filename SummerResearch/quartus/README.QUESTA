@@ -1,0 +1,2 @@
+To utilize the simulation libraries, use the generated modelsim.ini for library mapping
+To utilize the C++ simulation library, ensure that C++ compilation is enabled with the --enable_cpp option.

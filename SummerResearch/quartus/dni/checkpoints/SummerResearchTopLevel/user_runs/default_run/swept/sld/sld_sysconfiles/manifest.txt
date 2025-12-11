@@ -1,5 +1,5 @@
-22 serialization::archive 19 0 0 5 0 0 0 20 DataBuffer1.sopcinfo 0 0 10 text_model 0 0 0 1 1 
+22 serialization::archive 20 0 1 0 0 5 0 0 0 20 DataBuffer1.sopcinfo 0 0 10 text_model 0 0 0 1 1 
  20 DataBuffer2.sopcinfo 10 text_model 0 1 1 
+ 21 OutputBuffer.sopcinfo 10 text_model 0 1 1 
  22 WeightBuffer1.sopcinfo 10 text_model 0 1 1 
  22 WeightBuffer2.sopcinfo 10 text_model 0 1 1 
- 21 OutputBuffer.sopcinfo 10 text_model 0 1 1 
