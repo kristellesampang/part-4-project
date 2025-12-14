@@ -4,7 +4,7 @@
 
 library IEEE;
 --library ram_2port_2060;
-library altera_mf;
+library compiled_altera_mf;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
