@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.12.08.19:06:48"
- outputDirectory="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/">
+ date="2025.12.15.18:14:18"
+ outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -36,7 +36,7 @@
   <parameter
      name="AUTO_BOARD"
      type="String"
-     defaultValue="default"
+     defaultValue="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D"
      onHdl="0"
      affectsHdl="1" />
   <parameter
@@ -136,36 +136,38 @@
   <parameter name="AUTO_GENERATION_ID" value="0" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
-  <parameter name="AUTO_BOARD" value="default" />
+  <parameter
+     name="AUTO_BOARD"
+     value="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <generatedFiles>
    <file
-       path="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/synth/WeightBuffer1.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\WeightBuffer1\synth\WeightBuffer1.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/synth/WeightBuffer1.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\WeightBuffer1\synth\WeightBuffer1.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1.ip" />
+       path="C:/Users/pchh520/Documents/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1.ip" />
   </sourceFiles>
   <childSourceFiles>
    <file
-       path="/home/pratham/altera_pro/25.3/ip/altera/megafunctions/ram_2port/ram_2_port_hw.tcl" />
+       path="C:/intelfpga_pro/24.1/ip/altera/megafunctions/ram_2port/ram_2_port_hw.tcl" />
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="WeightBuffer1">"Generating: WeightBuffer1"</message>
-   <message level="Info" culprit="WeightBuffer1">"Generating: WeightBuffer1_ram_2port_2060_o45v4qi"</message>
+   <message level="Info" culprit="WeightBuffer1">"Generating: WeightBuffer1_ram_2port_2041_3stzzty"</message>
   </messages>
  </entity>
  <entity
    kind="ram_2port"
-   version="20.6.0"
-   name="WeightBuffer1_ram_2port_2060_o45v4qi">
+   version="20.4.1"
+   name="WeightBuffer1_ram_2port_2041_3stzzty">
   <parameter name="GUI_CLKEN_ADDRESS_STALL_A" value="false" />
   <parameter name="GUI_RDEN_DOUBLE" value="false" />
   <parameter name="GUI_NBE_A" value="true" />
@@ -234,8 +236,6 @@
   <parameter name="GUI_WRADDRESS_WIDTH" value="10" />
   <parameter name="GUI_CLKEN_RDADDRESSSTALL" value="false" />
   <parameter name="GUI_MAX_DEPTH" value="1024" />
-  <parameter name="GUI_MULTIPORT_MODE" value="1W/3R" />
-  <parameter name="BASE_DEVICE" value="NIGHTFURY4" />
   <parameter name="GUI_ACLR_READ_OUTPUT_QA" value="true" />
   <parameter name="GUI_ACLR_READ_OUTPUT_QB" value="true" />
   <parameter name="GUI_COHERENT_READ" value="false" />
@@ -244,22 +244,22 @@
   <parameter name="GUI_WIDTH_ECCENCPARITY" value="8" />
   <generatedFiles>
    <file
-       path="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/ram_2port_2060/synth/WeightBuffer1_ram_2port_2060_o45v4qi.v"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\WeightBuffer1\ram_2port_2041\synth\WeightBuffer1_ram_2port_2041_3stzzty.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/WeightBuffer1/ram_2port_2060/synth/WeightBuffer1_ram_2port_2060_o45v4qi.v"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\WeightBuffer1\ram_2port_2041\synth\WeightBuffer1_ram_2port_2041_3stzzty.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="/home/pratham/altera_pro/25.3/ip/altera/megafunctions/ram_2port/ram_2_port_hw.tcl" />
+       path="C:/intelfpga_pro/24.1/ip/altera/megafunctions/ram_2port/ram_2_port_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
   <instantiator instantiator="WeightBuffer1" as="ram_2port_0" />
   <messages>
-   <message level="Info" culprit="WeightBuffer1">"Generating: WeightBuffer1_ram_2port_2060_o45v4qi"</message>
+   <message level="Info" culprit="WeightBuffer1">"Generating: WeightBuffer1_ram_2port_2041_3stzzty"</message>
   </messages>
  </entity>
 </deploy>

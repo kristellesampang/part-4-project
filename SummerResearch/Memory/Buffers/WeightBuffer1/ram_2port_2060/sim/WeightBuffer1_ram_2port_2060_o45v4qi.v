@@ -97,7 +97,7 @@ module  WeightBuffer1_ram_2port_2060_o45v4qi  (
         altera_syncram_component.clock_enable_output_a  = "NORMAL",
         altera_syncram_component.clock_enable_output_b  = "NORMAL",
         altera_syncram_component.indata_reg_b  = "CLOCK0",
-        altera_syncram_component.init_file = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/MIFs/WeightBuffer1.mif",
+        altera_syncram_component.init_file = "C:/Users/pchh520/Documents/part-4-project/SummerResearch/Memory/Buffers/MIFs/WeightBuffer1.mif",
         altera_syncram_component.enable_force_to_zero  = "FALSE",
         altera_syncram_component.intended_device_family  = "Arria 10",
         altera_syncram_component.lpm_type  = "altera_syncram",

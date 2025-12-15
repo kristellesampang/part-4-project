@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simPackage>
  <file
-   path="ram_2port_2060/sim/WeightBuffer2_ram_2port_2060_u3jegsa.v"
-   type="VERILOG"
-   library="ram_2port_2060" />
+   path="ram_2port_2041/sim/WeightBuffer2_ram_2port_2041_vfiw6ja.vhd"
+   type="VHDL"
+   library="ram_2port_2041" />
  <file
    path="sim/WeightBuffer2.vhd"
    type="VHDL"

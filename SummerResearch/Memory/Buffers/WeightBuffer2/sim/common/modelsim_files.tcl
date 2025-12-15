@@ -2,12 +2,12 @@
 namespace eval WeightBuffer2 {
   proc get_design_libraries {} {
     set libraries [dict create]
-    dict set libraries ram_2port_2060 1
+    dict set libraries ram_2port_2041 1
     dict set libraries WeightBuffer2  1
     return $libraries
   }
   
-  proc get_memory_files {QSYS_SIMDIR QUARTUS_INSTALL_DIR} {
+  proc get_memory_files {QSYS_SIMDIR} {
     set memory_files [list]
     return $memory_files
   }
@@ -17,10 +17,10 @@ namespace eval WeightBuffer2 {
     return $design_files
   }
   
-  proc get_design_files {USER_DEFINED_COMPILE_OPTIONS USER_DEFINED_VERILOG_COMPILE_OPTIONS USER_DEFINED_VHDL_COMPILE_OPTIONS QSYS_SIMDIR QUARTUS_INSTALL_DIR} {
+  proc get_design_files {USER_DEFINED_COMPILE_OPTIONS USER_DEFINED_VERILOG_COMPILE_OPTIONS USER_DEFINED_VHDL_COMPILE_OPTIONS QSYS_SIMDIR} {
     set design_files [list]
-    lappend design_files "vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS  \"[normalize_path "$QSYS_SIMDIR/../ram_2port_2060/sim/WeightBuffer2_ram_2port_2060_u3jegsa.v"]\"  -work ram_2port_2060"
-    lappend design_files "vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS  \"[normalize_path "$QSYS_SIMDIR/WeightBuffer2.vhd"]\"  -work WeightBuffer2"                                               
+    lappend design_files "vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS  \"[normalize_path "$QSYS_SIMDIR/../ram_2port_2041/sim/WeightBuffer2_ram_2port_2041_vfiw6ja.vhd"]\"  -work ram_2port_2041"
+    lappend design_files "vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS  \"[normalize_path "$QSYS_SIMDIR/WeightBuffer2.vhd"]\"  -work WeightBuffer2"                                              
     return $design_files
   }
   

@@ -74,6 +74,57 @@ architecture rtl of BRAM_Controller_Test is
             aclr      : in  std_logic
         );
     end component DataBuffer1;
+
+    component DataBuffer2 is
+        port (
+            data_a    : in  std_logic_vector(15 downto 0);
+            q_a       : out std_logic_vector(15 downto 0);
+            data_b    : in  std_logic_vector(15 downto 0);
+            q_b       : out std_logic_vector(15 downto 0);
+            address_a : in  std_logic_vector(9 downto 0);
+            address_b : in  std_logic_vector(9 downto 0);
+            wren_a    : in  std_logic;
+            wren_b    : in  std_logic;
+            clock     : in  std_logic;
+            freeze    : in  std_logic;
+            enable    : in  std_logic;
+            aclr      : in  std_logic
+        );
+    end component DataBuffer2;
+
+    component WeightBuffer1 is
+        port (
+            data_a    : in  std_logic_vector(15 downto 0);
+            q_a       : out std_logic_vector(15 downto 0);
+            data_b    : in  std_logic_vector(15 downto 0);
+            q_b       : out std_logic_vector(15 downto 0);
+            address_a : in  std_logic_vector(9 downto 0);
+            address_b : in  std_logic_vector(9 downto 0);
+            wren_a    : in  std_logic;
+            wren_b    : in  std_logic;
+            clock     : in  std_logic;
+            freeze    : in  std_logic;
+            enable    : in  std_logic;
+            aclr      : in  std_logic
+        );
+    end component WeightBuffer1;
+
+    component WeightBuffer2 is
+        port (
+            data_a    : in  std_logic_vector(15 downto 0);
+            q_a       : out std_logic_vector(15 downto 0);
+            data_b    : in  std_logic_vector(15 downto 0);
+            q_b       : out std_logic_vector(15 downto 0);
+            address_a : in  std_logic_vector(9 downto 0);
+            address_b : in  std_logic_vector(9 downto 0);
+            wren_a    : in  std_logic;
+            wren_b    : in  std_logic;
+            clock     : in  std_logic;
+            freeze    : in  std_logic;
+            enable    : in  std_logic;
+            aclr      : in  std_logic
+        );
+    end component WeightBuffer2;
     
     -- 64-bit Output Buffer Component
     component OutputBuffer is
@@ -161,7 +212,7 @@ begin -- Start of Concurrent Statements
         );
     
     -- 2. DATA A PONG (16-bit)
-    BRAM_A_PONG_INST : component DataBuffer1 
+    BRAM_A_PONG_INST : component DataBuffer2 
         port map (
             data_a    => unused_std_logic_vector_16,
             q_a       => pong_a_q,
@@ -178,7 +229,7 @@ begin -- Start of Concurrent Statements
         );
         
     -- 3. WEIGHT B PING (16-bit)
-    BRAM_B_PING_INST : component DataBuffer1 
+    BRAM_B_PING_INST : component WeightBuffer1 
         port map (
             data_a    => unused_std_logic_vector_16,
             q_a       => ping_b_q,
@@ -195,7 +246,7 @@ begin -- Start of Concurrent Statements
         );
         
     -- 4. WEIGHT B PONG (16-bit)
-    BRAM_B_PONG_INST : component DataBuffer1 
+    BRAM_B_PONG_INST : component WeightBuffer2
         port map (
             data_a    => unused_std_logic_vector_16,
             q_a       => pong_b_q,

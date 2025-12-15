@@ -17,10 +17,6 @@
       <instanceData xsi:type="data">
         <parameters>
           <parameter>
-            <name>BASE_DEVICE</name>
-            <value>NIGHTFURY4</value>
-          </parameter>
-          <parameter>
             <name>DEVICE_FAMILY</name>
             <value>Arria 10</value>
           </parameter>
@@ -193,10 +189,6 @@
             <value>altera_syncram</value>
           </parameter>
           <parameter>
-            <name>GUI_MULTIPORT_MODE</name>
-            <value>1W/3R</value>
-          </parameter>
-          <parameter>
             <name>GUI_NBE_A</name>
             <value>true</value>
           </parameter>
@@ -315,9 +307,9 @@
         </parameters>
         <interconnectAssignments></interconnectAssignments>
         <className>ram_2port</className>
-        <version>20.6.0</version>
+        <version>20.4.1</version>
         <name>ram_2port_0</name>
-        <uniqueName>WeightBuffer2_ram_2port_2060_u3jegsa</uniqueName>
+        <uniqueName>WeightBuffer2_ram_2port_2041_vfiw6ja</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>WeightBuffer2.ram_2port_0</path>

@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Intel IP within the design.
 # ----------------------------------------
-# ACDS 25.3 109 linux 2025.12.08.19:06:48
+# ACDS 24.1 115 win32 2025.12.15.18:14:18
 
 # ----------------------------------------
 # Initialize variables
@@ -113,15 +113,7 @@ if ![info exists QSYS_SIMDIR] {
 }
 
 if ![info exists QUARTUS_INSTALL_DIR] { 
-  set QUARTUS_INSTALL_DIR "/home/pratham/altera_pro/25.3/quartus/"
-}
-
-if ![info exists QUARTUS_SIM_LIB_DIR] { 
-  set QUARTUS_SIM_LIB_DIR "$QUARTUS_INSTALL_DIR/eda/sim_lib/"
-}
-
-if ![info exists DEVICES_SIM_LIB_DIR] { 
-  set DEVICES_SIM_LIB_DIR "$QUARTUS_INSTALL_DIR/../devices/sim_lib/"
+  set QUARTUS_INSTALL_DIR "C:/intelfpga_pro/24.1/quartus/"
 }
 
 if ![info exists USER_DEFINED_COMPILE_OPTIONS] { 
@@ -144,21 +136,9 @@ if ![info exists SILENCE] {
   set SILENCE "false"
 }
 
-if ![info exists PRECOMP_DEVICE_LIB_FILE] { 
-  set PRECOMP_DEVICE_LIB_FILE ""
-}
-
 if ![info exists FORCE_MODELSIM_AE_SELECTION] { 
   set FORCE_MODELSIM_AE_SELECTION "false"
 }
-
-#-------------------------------------------
-# read .tcl file to override initialized variables  
-if { [info exists ::env(QSYS_SIM_SCRIPT_QUESTASIM_OPTIONS_FILE)] && [file exist $::env(QSYS_SIM_SCRIPT_QUESTASIM_OPTIONS_FILE)] } {
-  echo "Sourcing $::env(QSYS_SIM_SCRIPT_QUESTASIM_OPTIONS_FILE)" 
-  source $::env(QSYS_SIM_SCRIPT_QUESTASIM_OPTIONS_FILE)
-}
-
 
 # ----------------------------------------
 # Source Common Tcl File
@@ -183,20 +163,11 @@ if {[dict size $LD_LIBRARY_PATH] !=0 } {
 append ELAB_OPTIONS [subst [WeightBuffer1::get_elab_options $SIMULATOR_TOOL_BITNESS]]
 append SIM_OPTIONS [subst [WeightBuffer1::get_sim_options $SIMULATOR_TOOL_BITNESS]]
 
-proc check_precomp_device {precomp_device_lib_path force_select_modelsim_ae} {
-  set len [string length $precomp_device_lib_path]
-  if {($len == 0) && [string is false -strict [modelsim_ae_select $force_select_modelsim_ae]]} {
-    return 1
-  }
-  return 0
-
-}
-
 proc modelsim_ae_select {force_select_modelsim_ae} {
   if [string is true -strict $force_select_modelsim_ae] {
     return 1
   }
-  return [string match -nocase "*Altera*FPGA*" [ vsimVersionString ]]
+  return [string match -nocase "*Intel*FPGA*" [ vsimVersionString ]]
 
 }
 
@@ -208,7 +179,7 @@ alias file_copy {
     echo "\[exec\] file_copy"
   }
   set memory_files [list]
-  set memory_files [concat $memory_files [WeightBuffer1::get_memory_files "$QSYS_SIMDIR" "$QUARTUS_INSTALL_DIR"]]
+  set memory_files [concat $memory_files [WeightBuffer1::get_memory_files "$QSYS_SIMDIR"]]
   foreach file $memory_files {
   set itercount 0
   while {$itercount < 10  && [file type $file] eq "link"} {
@@ -227,31 +198,11 @@ alias file_copy {
   }
   
 }
-# ----------------------------------------
-# Modify modelsim.ini if precompiled device libraries are in use
-if { $PRECOMP_DEVICE_LIB_FILE ne "" } {
-  echo "Modifying modelsim.ini according to $PRECOMP_DEVICE_LIB_FILE"
-  set PRECOMP_DEVICE_LIB_FILE [string trim $PRECOMP_DEVICE_LIB_FILE]
-  if { [file exists $PRECOMP_DEVICE_LIB_FILE] && [string match [file tail $PRECOMP_DEVICE_LIB_FILE] "modelsim.ini" ] } {
-    if { [file exists "modelsim.ini"] } {
-      echo "modelsim.ini already exists, making backup modelsim.ini.bak"
-      file copy -force "modelsim.ini" "modelsim.ini.bak"
-    }
-    echo "Copying modelsim.ini from $PRECOMP_DEVICE_LIB_FILE"
-    file copy -force $PRECOMP_DEVICE_LIB_FILE ./
-  } elseif { [file exists $PRECOMP_DEVICE_LIB_FILE] && [string match "*tcl" [file tail $PRECOMP_DEVICE_LIB_FILE] ] } {
-    echo "Running $PRECOMP_DEVICE_LIB_FILE to generate device library mapping"
-    source $PRECOMP_DEVICE_LIB_FILE
-  } else {
-    echo "Unable to use $PRECOMP_DEVICE_LIB_FILE for device library mapping. Switching back to local library compilation"
-    set PRECOMP_DEVICE_LIB_FILE ""
-  }
-}
 
 # ----------------------------------------
 # Create compilation libraries
 
-set logical_libraries [list "work" "work_lib" "lpm_ver" "sgate_ver" "altera_ver" "altera_mf_ver" "altera_lnsim_ver" "twentynm_ver" "twentynm_hip_ver" "twentynm_hssi_ver" "lpm" "sgate" "altera" "altera_mf" "altera_lnsim" "twentynm" "twentynm_hip" "twentynm_hssi"]
+set logical_libraries [list "work" "work_lib" "lpm" "sgate" "altera" "altera_mf" "altera_lnsim" "twentynm" "twentynm_hip" "twentynm_hssi"]
 
 proc ensure_lib { lib } { if ![file isdirectory $lib] { vlib $lib } }
 ensure_lib          ./libraries/     
@@ -275,39 +226,23 @@ if { [llength $dpi_libraries] != 0 } {
   }
 }
 
-if [ check_precomp_device $PRECOMP_DEVICE_LIB_FILE $FORCE_MODELSIM_AE_SELECTION ] {
-  ensure_lib                   ./libraries/lpm_ver/          
-  vmap       lpm_ver           ./libraries/lpm_ver/          
-  ensure_lib                   ./libraries/sgate_ver/        
-  vmap       sgate_ver         ./libraries/sgate_ver/        
-  ensure_lib                   ./libraries/altera_ver/       
-  vmap       altera_ver        ./libraries/altera_ver/       
-  ensure_lib                   ./libraries/altera_mf_ver/    
-  vmap       altera_mf_ver     ./libraries/altera_mf_ver/    
-  ensure_lib                   ./libraries/altera_lnsim_ver/ 
-  vmap       altera_lnsim_ver  ./libraries/altera_lnsim_ver/ 
-  ensure_lib                   ./libraries/twentynm_ver/     
-  vmap       twentynm_ver      ./libraries/twentynm_ver/     
-  ensure_lib                   ./libraries/twentynm_hip_ver/ 
-  vmap       twentynm_hip_ver  ./libraries/twentynm_hip_ver/ 
-  ensure_lib                   ./libraries/twentynm_hssi_ver/
-  vmap       twentynm_hssi_ver ./libraries/twentynm_hssi_ver/
-  ensure_lib                   ./libraries/lpm/              
-  vmap       lpm               ./libraries/lpm/              
-  ensure_lib                   ./libraries/sgate/            
-  vmap       sgate             ./libraries/sgate/            
-  ensure_lib                   ./libraries/altera/           
-  vmap       altera            ./libraries/altera/           
-  ensure_lib                   ./libraries/altera_mf/        
-  vmap       altera_mf         ./libraries/altera_mf/        
-  ensure_lib                   ./libraries/altera_lnsim/     
-  vmap       altera_lnsim      ./libraries/altera_lnsim/     
-  ensure_lib                   ./libraries/twentynm/         
-  vmap       twentynm          ./libraries/twentynm/         
-  ensure_lib                   ./libraries/twentynm_hip/     
-  vmap       twentynm_hip      ./libraries/twentynm_hip/     
-  ensure_lib                   ./libraries/twentynm_hssi/    
-  vmap       twentynm_hssi     ./libraries/twentynm_hssi/    
+if [string is false -strict [modelsim_ae_select $FORCE_MODELSIM_AE_SELECTION]] {
+  ensure_lib               ./libraries/lpm/          
+  vmap       lpm           ./libraries/lpm/          
+  ensure_lib               ./libraries/sgate/        
+  vmap       sgate         ./libraries/sgate/        
+  ensure_lib               ./libraries/altera/       
+  vmap       altera        ./libraries/altera/       
+  ensure_lib               ./libraries/altera_mf/    
+  vmap       altera_mf     ./libraries/altera_mf/    
+  ensure_lib               ./libraries/altera_lnsim/ 
+  vmap       altera_lnsim  ./libraries/altera_lnsim/ 
+  ensure_lib               ./libraries/twentynm/     
+  vmap       twentynm      ./libraries/twentynm/     
+  ensure_lib               ./libraries/twentynm_hip/ 
+  vmap       twentynm_hip  ./libraries/twentynm_hip/ 
+  ensure_lib               ./libraries/twentynm_hssi/
+  vmap       twentynm_hssi ./libraries/twentynm_hssi/
 }
 set design_libraries [dict create]
 set design_libraries [dict merge $design_libraries [WeightBuffer1::get_design_libraries]]
@@ -324,41 +259,30 @@ alias dev_com {
   if [string is false -strict $SILENCE] {
     echo "\[exec\] dev_com"
   }
-  if [ check_precomp_device $PRECOMP_DEVICE_LIB_FILE $FORCE_MODELSIM_AE_SELECTION ] {
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/220model.v"                          -work lpm_ver          
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/sgate.v"                             -work sgate_ver        
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/altera_primitives.v"                 -work altera_ver       
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/altera_mf.v"                         -work altera_mf_ver    
-    eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_SIM_LIB_DIR/altera_lnsim.sv"                     -work altera_lnsim_ver 
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/twentynm_atoms.v"                    -work twentynm_ver     
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_atoms_ncrypt.v"      -work twentynm_ver     
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip_ver 
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/twentynm_hip_atoms.v"                -work twentynm_hip_ver 
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi_ver
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/twentynm_hssi_atoms.v"               -work twentynm_hssi_ver
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/220pack.vhd"                         -work lpm              
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/220model.vhd"                        -work lpm              
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/sgate_pack.vhd"                      -work sgate            
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/sgate.vhd"                           -work sgate            
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_syn_attributes.vhd"           -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_standard_functions.vhd"       -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/alt_dspbuilder_package.vhd"          -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_europa_support_lib.vhd"       -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_primitives_components.vhd"    -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_primitives.vhd"               -work altera           
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_mf_components.vhd"            -work altera_mf        
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_mf.vhd"                       -work altera_mf        
-    eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_SIM_LIB_DIR/altera_lnsim.sv"                     -work altera_lnsim     
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/altera_lnsim_components.vhd"         -work altera_lnsim     
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_atoms_ncrypt.v"      -work twentynm         
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_atoms.vhd"                  -work twentynm         
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_components.vhd"             -work twentynm         
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip     
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_hip_components.vhd"         -work twentynm_hip     
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_hip_atoms.vhd"              -work twentynm_hip     
-    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_SIM_LIB_DIR/mentor/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi    
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_hssi_components.vhd"        -work twentynm_hssi    
-    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_SIM_LIB_DIR/twentynm_hssi_atoms.vhd"             -work twentynm_hssi    
+  if [string is false -strict [modelsim_ae_select $FORCE_MODELSIM_AE_SELECTION]] {
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/220pack.vhd"                         -work lpm          
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/220model.vhd"                        -work lpm          
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate_pack.vhd"                      -work sgate        
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate.vhd"                           -work sgate        
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_syn_attributes.vhd"           -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_standard_functions.vhd"       -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/alt_dspbuilder_package.vhd"          -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_europa_support_lib.vhd"       -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives_components.vhd"    -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives.vhd"               -work altera       
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf_components.vhd"            -work altera_mf    
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf.vhd"                       -work altera_mf    
+    eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim.sv"                     -work altera_lnsim 
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim_components.vhd"         -work altera_lnsim 
+    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_INSTALL_DIR/eda/sim_lib/mentor/twentynm_atoms_ncrypt.v"      -work twentynm     
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_atoms.vhd"                  -work twentynm     
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_components.vhd"             -work twentynm     
+    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_INSTALL_DIR/eda/sim_lib/mentor/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip 
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_components.vhd"         -work twentynm_hip 
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.vhd"              -work twentynm_hip 
+    eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QUARTUS_INSTALL_DIR/eda/sim_lib/mentor/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_components.vhd"        -work twentynm_hssi
+    eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS        "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.vhd"             -work twentynm_hssi
   }
   
 }
@@ -376,7 +300,7 @@ alias com {
     eval $file
   }
   set design_files [list]
-  set design_files [concat $design_files [WeightBuffer1::get_design_files $USER_DEFINED_COMPILE_OPTIONS $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_VHDL_COMPILE_OPTIONS "$QSYS_SIMDIR" "$QUARTUS_INSTALL_DIR"]]
+  set design_files [concat $design_files [WeightBuffer1::get_design_files $USER_DEFINED_COMPILE_OPTIONS $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_VHDL_COMPILE_OPTIONS "$QSYS_SIMDIR"]]
   foreach file $design_files {
     eval $file
   }
@@ -464,10 +388,6 @@ alias h {
   echo "USER_DEFINED_ELAB_OPTIONS                         -- User-defined elaboration options, added to elab/elab_debug aliases."
   echo
   echo "SILENCE                                           -- Set to true to suppress all informational and/or warning messages in the generated simulation script. "
-  echo
-  echo "PRECOMP_DEVICE_LIB_FILE                           -- Precompiled device library file."
-  echo "                                                    Use this variable to provide modelsim.ini or tcl containing device library mapping and dev_com will be skipped"
-  echo "                                                    If value is empty, device libraries will be compiled local"
   echo
   echo "FORCE_MODELSIM_AE_SELECTION                       -- Set to true to force to select Modelsim AE always."
 }

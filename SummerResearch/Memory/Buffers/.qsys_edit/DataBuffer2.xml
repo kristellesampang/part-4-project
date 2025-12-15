@@ -821,37 +821,134 @@
 												</leaf>
 											</node>
 											<node nodeId="1375899667063" orientation="HORIZONTAL" divider="0.6950092421441774">
-												<leaf id="2" nodeId="1372710005745">
-													<placeholders>
-														<placeholder>dock.single.System\ Messages</placeholder>
-														<placeholder>dock.single.Generation\ Messages</placeholder>
-													</placeholders>
-													<placeholder-map>
-														<version>0</version>
-														<format>dock.PlaceholderList</format>
-														<entry>
-															<key shared="false">
-																<placeholder>dock.single.Generation\ Messages</placeholder>
-															</key>
-														</entry>
-														<entry>
-															<key shared="false">
-																<placeholder>dock.single.System\ Messages</placeholder>
-															</key>
-															<item key="convert" type="b">true</item>
-															<item key="convert-keys" type="a"/>
-														</entry>
-														<entry>
-															<key shared="false">
-																<placeholder>dock.single.Parameters</placeholder>
-															</key>
-															<item key="convert" type="b">true</item>
-															<item key="convert-keys" type="a"/>
-														</entry>
-													</placeholder-map>
-												</leaf>
+												<node nodeId="1386283918535" orientation="VERTICAL" divider="0.75">
+													<leaf id="1" nodeId="1375899667061">
+														<placeholders>
+															<placeholder>dock.single.Exported\ Interfaces</placeholder>
+															<placeholder>dock.single.Connections</placeholder>
+															<placeholder>dock.single.System\ Contents</placeholder>
+															<placeholder>dock.single.Parameters</placeholder>
+															<placeholder>dock.single.Assignments</placeholder>
+															<placeholder>dock.single.Import\ Quartus\ Project</placeholder>
+															<placeholder>dock.single.System\ View</placeholder>
+															<placeholder>dock.single.Schematic</placeholder>
+															<placeholder>dock.single.System\ Info</placeholder>
+															<placeholder>dock.single.Clocks</placeholder>
+															<placeholder>dock.single.Exported\ Interfaces\ \-\ Alpha\.</placeholder>
+															<placeholder>dock.single.Component\ Instantiation</placeholder>
+															<placeholder>dock.single.Interface\ Diff\ Tool</placeholder>
+															<placeholder>dock.single.Interface\ Requirements</placeholder>
+															<placeholder>dock.single.System\ Scripting</placeholder>
+															<placeholder>dock.single.Interconnect\ Requirements</placeholder>
+															<placeholder>dock.single.Instrumentation</placeholder>
+															<placeholder>dock.single.Wire\-Level\ Expression\ Editor</placeholder>
+															<placeholder>dock.single.HDL\ Parameters</placeholder>
+															<placeholder>dock.single.Instance\ Parameters</placeholder>
+															<placeholder>dock.single.Address\ Map</placeholder>
+														</placeholders>
+														<placeholder-map>
+															<version>0</version>
+															<format>dock.PlaceholderList</format>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.System\ View</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Schematic</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Connections</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Component\ Instantiation</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Address\ Map</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Interface\ Diff\ Tool</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.System\ Info</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Interconnect\ Requirements</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Exported\ Interfaces</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Instrumentation</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Interface\ Requirements</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.System\ Scripting</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Wire\-Level\ Expression\ Editor</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Parameters</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.HDL\ Parameters</placeholder>
+																</key>
+															</entry>
+														</placeholder-map>
+													</leaf>
+													<leaf id="2" nodeId="1372710005745">
+														<placeholders>
+															<placeholder>dock.single.System\ Messages</placeholder>
+															<placeholder>dock.single.Generation\ Messages</placeholder>
+														</placeholders>
+														<placeholder-map>
+															<version>0</version>
+															<format>dock.PlaceholderList</format>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.System\ Messages</placeholder>
+																</key>
+															</entry>
+															<entry>
+																<key shared="false">
+																	<placeholder>dock.single.Generation\ Messages</placeholder>
+																</key>
+															</entry>
+														</placeholder-map>
+													</leaf>
+												</node>
 												<node nodeId="1375899673461" orientation="VERTICAL" divider="0.49909584086799275">
-													<leaf id="0" nodeId="1372710005741">
+													<leaf id="3" nodeId="1372710005741">
 														<placeholders>
 															<placeholder>dock.single.Element\ Docs</placeholder>
 															<placeholder>dock.single.IP\ Catalog</placeholder>
@@ -896,7 +993,7 @@
 															</entry>
 														</placeholder-map>
 													</leaf>
-													<leaf id="1" nodeId="1372710005743">
+													<leaf id="0" nodeId="1372710005743">
 														<placeholders>
 															<placeholder>dock.single.Hierarchy</placeholder>
 															<placeholder>dock.single.Filter</placeholder>
@@ -935,6 +1032,36 @@
 								</layout>
 							</adjacent>
 							<children ignore="false">
+								<child>
+									<layout factory="predefined" placeholder="dock.single.Presets">
+										<replacement id="dockablesingle Presets"/>
+										<delegate id="delegate_ccontrol backup factory id">
+											<id>Presets</id>
+											<area/>
+										</delegate>
+									</layout>
+									<children ignore="false"/>
+								</child>
+								<child>
+									<layout factory="predefined" placeholder="dock.single.Parameters">
+										<replacement id="dockablesingle Parameters"/>
+										<delegate id="delegate_ccontrol backup factory id">
+											<id>Parameters</id>
+											<area/>
+										</delegate>
+									</layout>
+									<children ignore="false"/>
+								</child>
+								<child>
+									<layout factory="predefined" placeholder="dock.single.System\ Messages">
+										<replacement id="dockablesingle System Messages"/>
+										<delegate id="delegate_ccontrol backup factory id">
+											<id>System Messages</id>
+											<area/>
+										</delegate>
+									</layout>
+									<children ignore="false"/>
+								</child>
 								<child>
 									<layout factory="delegate_StackDockStationFactory">
 										<selected>0</selected>
@@ -1002,80 +1129,6 @@
 												<replacement id="dockablesingle Block Symbol"/>
 												<delegate id="delegate_ccontrol backup factory id">
 													<id>Block Symbol</id>
-													<area/>
-												</delegate>
-											</layout>
-											<children ignore="false"/>
-										</child>
-									</children>
-								</child>
-								<child>
-									<layout factory="predefined" placeholder="dock.single.Presets">
-										<replacement id="dockablesingle Presets"/>
-										<delegate id="delegate_ccontrol backup factory id">
-											<id>Presets</id>
-											<area/>
-										</delegate>
-									</layout>
-									<children ignore="false"/>
-								</child>
-								<child>
-									<layout factory="delegate_StackDockStationFactory">
-										<selected>1</selected>
-										<placeholders>
-											<version>0</version>
-											<format>dock.PlaceholderList</format>
-											<entry>
-												<key shared="false">
-													<placeholder>dock.single.Generation\ Messages</placeholder>
-												</key>
-											</entry>
-											<entry>
-												<key shared="false">
-													<placeholder>dock.single.System\ Messages</placeholder>
-												</key>
-												<item key="convert" type="b">true</item>
-												<item key="convert-keys" type="a">
-													<item type="s">index</item>
-													<item type="s">id</item>
-													<item type="s">placeholder</item>
-												</item>
-												<item key="dock.index" type="i">0</item>
-												<item key="dock.id" type="i">0</item>
-												<item key="dock.placeholder" type="s">dock.single.System\ Messages</item>
-											</entry>
-											<entry>
-												<key shared="false">
-													<placeholder>dock.single.Parameters</placeholder>
-												</key>
-												<item key="convert" type="b">true</item>
-												<item key="convert-keys" type="a">
-													<item type="s">index</item>
-													<item type="s">id</item>
-													<item type="s">placeholder</item>
-												</item>
-												<item key="dock.index" type="i">1</item>
-												<item key="dock.id" type="i">1</item>
-												<item key="dock.placeholder" type="s">dock.single.Parameters</item>
-											</entry>
-										</placeholders>
-									</layout>
-									<children ignore="false">
-										<child>
-											<layout factory="predefined" placeholder="dock.single.System\ Messages">
-												<replacement id="dockablesingle System Messages"/>
-												<delegate id="delegate_ccontrol backup factory id">
-													<id>System Messages</id>
-													<area/>
-												</delegate>
-											</layout>
-											<children ignore="false"/>
-										</child>
-										<child>
-											<layout factory="predefined" placeholder="dock.single.Parameters">
-												<replacement id="dockablesingle Parameters"/>
-												<delegate id="delegate_ccontrol backup factory id">
-													<id>Parameters</id>
 													<area/>
 												</delegate>
 											</layout>
@@ -2184,11 +2237,17 @@
 										<property factory="SplitDockPlaceholderProperty">
 											<placeholder>dock.single.Parameters</placeholder>
 											<backup-path>
+												<node location="RIGHT" size="0.93717277486911" id="1372710005721"/>
 												<node location="RIGHT" size="0.25" id="1372710005727"/>
 												<node location="LEFT" size="0.6950092421441774" id="1375899667063"/>
 												<node location="TOP" size="0.75" id="1386283918535"/>
+												<node location="BOTTOM" size="0.49367088607594933" id="1389811549954"/>
 												<leaf id="1375899667061"/>
 											</backup-path>
+										</property>
+										<property factory="StackDockPropertyFactory">
+											<index>0</index>
+											<placeholder>dock.single.Parameters</placeholder>
 										</property>
 									</location>
 								</property>

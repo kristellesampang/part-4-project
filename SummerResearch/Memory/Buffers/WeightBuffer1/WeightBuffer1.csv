@@ -1,4 +1,4 @@
-# system info WeightBuffer1 on 2025.12.08.19:05:58
+# system info WeightBuffer1 on 2025.12.15.18:14:16
 system_info:
 name,value
 DEVICE,10AS066N3F40E2SG
@@ -6,13 +6,13 @@ DEVICE_FAMILY,Arria 10
 GENERATION_ID,0
 #
 #
-# Files generated for WeightBuffer1 on 2025.12.08.19:05:58
+# Files generated for WeightBuffer1 on 2025.12.15.18:14:16
 files:
 filepath,kind,attributes,module,is_top
 sim/WeightBuffer1.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,WeightBuffer1,true
-ram_2port_2060/sim/WeightBuffer1_ram_2port_2060_o45v4qi.v,VERILOG,,WeightBuffer1_ram_2port_2060_o45v4qi,false
+ram_2port_2041/sim/WeightBuffer1_ram_2port_2041_3stzzty.vhd,VHDL,,WeightBuffer1_ram_2port_2041_3stzzty,false
 #
 # Map from instance-path to kind of module
 instances:
 instancePath,module
-WeightBuffer1.ram_2port_0,WeightBuffer1_ram_2port_2060_o45v4qi
+WeightBuffer1.ram_2port_0,WeightBuffer1_ram_2port_2041_3stzzty

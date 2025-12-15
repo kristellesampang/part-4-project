@@ -4,7 +4,6 @@
 
 library IEEE;
 library ram_2port_2041;
-library altera_mf;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
@@ -44,7 +43,7 @@ architecture rtl of DataBuffer1 is
 	end component DataBuffer1_ram_2port_2041_tqhxgji_cmp;
 
 	for ram_2port_0 : DataBuffer1_ram_2port_2041_tqhxgji_cmp
-		use entity DataBuffer1_ram_2port_2041_tqhxgji;
+		use entity ram_2port_2041.DataBuffer1_ram_2port_2041_tqhxgji;
 begin
 
 	ram_2port_0 : component DataBuffer1_ram_2port_2041_tqhxgji_cmp
