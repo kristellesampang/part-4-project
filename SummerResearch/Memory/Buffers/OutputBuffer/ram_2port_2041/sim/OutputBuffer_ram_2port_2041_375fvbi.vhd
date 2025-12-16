@@ -61,7 +61,7 @@ BEGIN
             lpm_type  => "altera_syncram",
             maximum_depth  => 1024,
             numwords_a  => 1024,
-            numwords_b  => 1024,``
+            numwords_b  => 1024,
             operation_mode  => "BIDIR_DUAL_PORT",
             outdata_aclr_a  => "CLEAR0",
             outdata_sclr_a  => "NONE",
