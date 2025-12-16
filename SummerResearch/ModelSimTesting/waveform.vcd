@@ -1,0 +1,17 @@
+$date
+	Tue Dec 16 16:42:34 2025
+$end
+$version
+	QuestaSim Version 2022.1
+$end
+$timescale
+	1ps
+$end
+$scope module tb_npu_memory_system $end
+$scope module NPU_Core $end
+$var integer 32 ! active_rows $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+b100000 !

@@ -9,10 +9,15 @@ entity BRAM_Controller_Test is
         reset_in : in  std_logic;
         start_transfer_cmd_in : in  std_logic;
 
+        dma_write_data_16_in : in bit_16;
+        dma_write_data_64_in : in std_logic_vector(63 downto 0);
+
         npu_data_read : out bit_16;
         npu_weight_read : out bit_16;
 
-        current_buffer_is_ping : out std_logic
+        current_buffer_is_ping : out std_logic;
+
+        current_state_out : out state_t
     );
 end entity BRAM_Controller_Test;
 
@@ -174,6 +179,8 @@ architecture rtl of BRAM_Controller_Test is
 begin -- Start of Concurrent Statements
     -- Debug Output
     current_buffer_is_ping <= not ping_pong_sel;
+
+    current_state_out <= current_state;
     
     -- Address conversion (used concurrently)
     npu_addr <= std_logic_vector(to_unsigned(npu_addr_int, npu_addr'length));
