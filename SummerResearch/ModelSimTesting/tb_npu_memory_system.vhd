@@ -40,25 +40,6 @@ architecture test of tb_npu_memory_system is
     -- for DUT_Controller : BRAM_Controller_Test use entity work.BRAM_Controller_Test;
     -- for NPU_Core : top_level_systolic_array use entity work.top_level_systolic_array;
 
-    dma_writer: process(clk_tb, reset_tb)
-        variable write_data_64 : std_logic_vector(63 downto 0) := X"0000000000000001";
-        variable write_data_16 : bit_16 := X"FFFF";
-    begin
-        if reset_tb = '1' then
-            dma_write_data_16_sig <= (others => '0');
-            dma_write_data_64_sig <= (others => '0');
-            write_data_64 := X"0000000000000001";
-            write_data_16 := X"FFFF";
-        elsif rising_edge(clk_tb) then
-            if current_state_sig /= S_IDLE then
-                write_data_64 := std_logic_vector(unsigned(write_data_64) + 1);
-                write_data_16 := bit_16(std_logic_vector(unsigned(std_logic_vector(write_data_16)) + 1));
-
-                dma_write_data_64_sig <= write_data_64;
-                dma_write_data_16_sig <= write_data_16;
-            end if;
-        end if;
-    end process dma_writer;
 
 
 begin
@@ -80,7 +61,7 @@ begin
             current_buffer_is_ping => buffer_is_ping_sig,
 
             current_state_out => current_state_sig
-        );
+    );
 
     -- Component Instantiation: NPU Core
     NPU_Core : entity work.top_level_systolic_array
@@ -95,7 +76,28 @@ begin
             active_k => TEST_N,
             output => sa_output_sig,
             cycle_count => sa_cycle_count
-        );
+    );
+
+    dma_writer: process(clk_tb, reset_tb)
+        variable write_data_64 : std_logic_vector(63 downto 0) := X"0000000000000001";
+        variable write_data_16 : bit_16 := X"FFFF";
+    begin
+        if reset_tb = '1' then
+            dma_write_data_16_sig <= (others => '0');
+            dma_write_data_64_sig <= (others => '0');
+            write_data_64 := X"0000000000000001";
+            write_data_16 := X"FFFF";
+        elsif rising_edge(clk_tb) then
+            if current_state_sig /= S_IDLE then
+                write_data_64 := std_logic_vector(unsigned(write_data_64) + 1);
+                write_data_16 := bit_16(std_logic_vector(unsigned(std_logic_vector(write_data_16)) + 1));
+
+                dma_write_data_64_sig <= write_data_64;
+                dma_write_data_16_sig <= write_data_16;
+            end if;
+        end if;
+    end process dma_writer;
+
 
     -- Test Procedure
     test_proc : process

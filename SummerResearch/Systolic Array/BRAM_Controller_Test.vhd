@@ -9,8 +9,8 @@ entity BRAM_Controller_Test is
         reset_in : in  std_logic;
         start_transfer_cmd_in : in  std_logic;
 
-        dma_write_data_16_in : in bit_16;
-        dma_write_data_64_in : in std_logic_vector(63 downto 0);
+        dma_write_data_16 : in bit_16;
+        dma_write_data_64 : in std_logic_vector(63 downto 0);
 
         npu_data_read : out bit_16;
         npu_weight_read : out bit_16;
@@ -40,8 +40,8 @@ architecture rtl of BRAM_Controller_Test is
     signal output_c_q : std_logic_vector(63 downto 0);
 
     -- DMA Write Data (Mimic for testbench input)
-    signal dma_write_data_16 : bit_16 := (others => '0');
-    signal dma_write_data_64 : std_logic_vector(63 downto 0) := (others => '0');
+    --signal dma_write_data_16 : bit_16 := (others => '0');
+    --signal dma_write_data_64 : std_logic_vector(63 downto 0) := (others => '0');
 
     -- Control Signals
     signal ping_a_wren, pong_a_wren : std_logic := '0';
@@ -54,7 +54,7 @@ architecture rtl of BRAM_Controller_Test is
     signal unused_std_logic_vector_64 : std_logic_vector(63 downto 0) := (others => '0');
 
 
-    type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
+    --type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
     signal current_state : state_t := S_IDLE;
 
     

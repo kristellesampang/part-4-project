@@ -55,7 +55,7 @@ BEGIN
             clock_enable_output_a  => "NORMAL",
             clock_enable_output_b  => "NORMAL",
             indata_reg_b  => "CLOCK0",
-            init_file  => "C:/Users/pchh520/Documents/part-4-project/SummerResearch/Memory/Buffers/MIFs/WeightBuffer2.mif",
+            init_file  => "/home/pratham/Documents/Github/part-4-project/SummerResearch/Memory/Buffers/MIFs/WeightBuffer2.mif",
             enable_force_to_zero  => "FALSE",
             intended_device_family  => "Arria 10",
             lpm_type  => "altera_syncram",

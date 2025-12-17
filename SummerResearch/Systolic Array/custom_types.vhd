@@ -44,5 +44,6 @@ PACKAGE custom_types IS
 	type weight_bus_matrix is array(0 to N, 0 to N) of bit_16; -- includes the bus going out of the bottom
 	type result_matrix is array(0 to N-1, 0 to N-1) of bit_64; -- holds the accumlated 8-bit value of each PE as a matrix
 
+	type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
 
 END custom_types;
