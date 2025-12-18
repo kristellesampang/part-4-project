@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <window width="1413" height="800" x="21" y="32" />
+ <generation
+   path=""
+   greybox="0"
+   simulation="VHDL"
+   vcs="0"
+   synthesis="VHDL"
+   modelsim="1"
+   modelsim_flow="TRADITIONAL" />
+ <systemtable filter="All Interfaces" />
+ <library expandedCategories="Existing IP Variants,Library,Project" />
+</preferences>

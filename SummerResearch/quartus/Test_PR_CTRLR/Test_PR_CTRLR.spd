@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="alt_pr_1911/sim/alt_pr.v" type="VERILOG" library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_host.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_controller_v1.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_controller_v2.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_cb_host.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_cb_controller_v1.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_cb_controller_v2.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_mux.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_jtag_interface.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_width_adapter.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_int_host.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_ext_host.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_v2.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_v3.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_down_converter.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_fifo.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_up_converter.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_bitstream_decoder.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_enhanced_compression_magic_words_decoder_and_suppressor.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_enhanced_decompressor.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_magic_fifo.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_data.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_clk_mux.v"
+   type="VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/alt_pr_test_pkg.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="alt_pr_1911/sim/rtl/alt_pr_cb_interface.sv"
+   type="SYSTEM_VERILOG"
+   library="alt_pr_1911" />
+ <file
+   path="sim/Test_PR_CTRLR.vhd"
+   type="VHDL"
+   library="Test_PR_CTRLR"
+   hasInlineConfiguration="true" />
+ <topLevel name="Test_PR_CTRLR.Test_PR_CTRLR" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+</simPackage>

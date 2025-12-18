@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_avalon_jtag_uart_1924/sim/PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq.vhd"
+   type="VHDL"
+   library="altera_avalon_jtag_uart_1924" />
+ <file
+   path="sim/PR_Test_Top_jtag_uart_0.vhd"
+   type="VHDL"
+   library="PR_Test_Top_jtag_uart_0"
+   hasInlineConfiguration="true" />
+ <topLevel name="PR_Test_Top_jtag_uart_0.PR_Test_Top_jtag_uart_0" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+</simPackage>

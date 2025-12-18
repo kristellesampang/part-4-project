@@ -1,0 +1,16 @@
+# system info PR_Test_Top_clock_in on 2025.12.18.19:09:54
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for PR_Test_Top_clock_in on 2025.12.18.19:09:54
+files:
+filepath,kind,attributes,module,is_top
+sim/PR_Test_Top_clock_in.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,PR_Test_Top_clock_in,true
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module

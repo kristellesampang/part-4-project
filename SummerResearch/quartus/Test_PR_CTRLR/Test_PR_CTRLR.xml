@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2025.12.18.14:57:47"
+ outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/Test_PR_CTRLR/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Arria 10"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="10AS066N3F40E2SG"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_SPEEDGRADE"
+     type="String"
+     defaultValue="2"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_BOARD"
+     type="String"
+     defaultValue="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="clk" direction="input" role="clk" width="1" />
+  </interface>
+  <interface name="nreset" kind="reset" start="0">
+   <property name="associatedClock" value="clk" />
+   <property name="synchronousEdges" value="DEASSERT" />
+   <port name="nreset" direction="input" role="reset_n" width="1" />
+  </interface>
+  <interface name="freeze" kind="conduit" start="0">
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <property name="prSafe" value="false" />
+   <port name="freeze" direction="output" role="freeze" width="1" />
+  </interface>
+  <interface name="avmm_slave" kind="avalon" start="0">
+   <property name="addressAlignment" value="DYNAMIC" />
+   <property name="addressGroup" value="0" />
+   <property name="addressSpan" value="64" />
+   <property name="addressUnits" value="WORDS" />
+   <property name="alwaysBurstMaxBurst" value="false" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="nreset" />
+   <property name="bitsPerSymbol" value="8" />
+   <property name="bridgedAddressOffset" value="0" />
+   <property name="bridgesToMaster" value="" />
+   <property name="burstOnBurstBoundariesOnly" value="false" />
+   <property name="burstcountUnits" value="WORDS" />
+   <property name="constantBurstBehavior" value="false" />
+   <property name="explicitAddressSpan" value="0" />
+   <property name="holdTime" value="0" />
+   <property name="interleaveBursts" value="false" />
+   <property name="isBigEndian" value="false" />
+   <property name="isFlash" value="false" />
+   <property name="isMemoryDevice" value="false" />
+   <property name="isNonVolatileStorage" value="false" />
+   <property name="linewrapBursts" value="false" />
+   <property name="maximumPendingReadTransactions" value="0" />
+   <property name="maximumPendingWriteTransactions" value="0" />
+   <property name="minimumReadLatency" value="1" />
+   <property name="minimumResponseLatency" value="1" />
+   <property name="minimumUninterruptedRunLength" value="1" />
+   <property name="prSafe" value="false" />
+   <property name="printableDevice" value="false" />
+   <property name="readLatency" value="0" />
+   <property name="readWaitStates" value="0" />
+   <property name="readWaitTime" value="0" />
+   <property name="registerIncomingSignals" value="false" />
+   <property name="registerOutgoingSignals" value="false" />
+   <property name="setupTime" value="0" />
+   <property name="timingUnits" value="Cycles" />
+   <property name="transparentBridge" value="false" />
+   <property name="waitrequestAllowance" value="0" />
+   <property name="wellBehavedWaitrequest" value="false" />
+   <property name="writeLatency" value="0" />
+   <property name="writeWaitStates" value="0" />
+   <property name="writeWaitTime" value="0" />
+   <property name="dfhFeatureGuid" value="0" />
+   <property name="dfhGroupId" value="0" />
+   <property name="dfhParameterId" value="" />
+   <property name="dfhParameterName" value="" />
+   <property name="dfhParameterVersion" value="" />
+   <property name="dfhParameterData" value="" />
+   <property name="dfhParameterDataLength" value="" />
+   <property name="dfhFeatureMajorVersion" value="0" />
+   <property name="dfhFeatureMinorVersion" value="0" />
+   <property name="dfhFeatureId" value="35" />
+   <property name="dfhFeatureType" value="3" />
+   <port name="avmm_slave_address" direction="input" role="address" width="4" />
+   <port name="avmm_slave_read" direction="input" role="read" width="1" />
+   <port
+       name="avmm_slave_writedata"
+       direction="input"
+       role="writedata"
+       width="32" />
+   <port name="avmm_slave_write" direction="input" role="write" width="1" />
+   <port
+       name="avmm_slave_readdata"
+       direction="output"
+       role="readdata"
+       width="32" />
+   <port
+       name="avmm_slave_waitrequest"
+       direction="output"
+       role="waitrequest"
+       width="1" />
+  </interface>
+  <interface name="interrupt" kind="interrupt" start="0">
+   <property name="associatedAddressablePoint" value="Test_PR_CTRLR.avmm_slave" />
+   <property name="associatedClock" value="clk" />
+   <property name="associatedReset" value="nreset" />
+   <property name="bridgedReceiverOffset" value="0" />
+   <property name="bridgesToReceiver" value="" />
+   <property name="irqScheme" value="NONE" />
+   <port name="irq" direction="output" role="irq" width="1" />
+  </interface>
+ </perimeter>
+ <entity kind="Test_PR_CTRLR" version="1.0" name="Test_PR_CTRLR">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
+  <parameter
+     name="AUTO_BOARD"
+     value="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
+  <generatedFiles>
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.vhd"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.vhd"
+       attributes="CONTAINS_INLINE_CONFIGURATION" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/Test_PR_CTRLR.ip" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file path="C:/intelfpga_pro/24.1/ip/altera/alt_pr/alt_pr/alt_pr_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Info" culprit="Test_PR_CTRLR">"Generating: Test_PR_CTRLR"</message>
+   <message level="Info" culprit="Test_PR_CTRLR">"Generating: alt_pr"</message>
+   <message level="Info" culprit="alt_pr_0">generating top-level entity alt_pr</message>
+  </messages>
+ </entity>
+ <entity kind="alt_pr" version="19.1.1" name="alt_pr">
+  <parameter name="ENABLE_ENHANCED_DECOMPRESSION" value="false" />
+  <parameter name="ENABLE_JTAG" value="true" />
+  <parameter name="EDCRC_OSC_DIVIDER" value="1" />
+  <parameter name="CDRATIO" value="1" />
+  <parameter name="DEVICE_FAMILY" value="Arria 10" />
+  <parameter name="DATA_WIDTH_INDEX" value="32" />
+  <parameter name="GENERATE_SDC" value="true" />
+  <parameter name="ENABLE_FREEZE" value="true" />
+  <parameter name="CB_DATA_WIDTH" value="32" />
+  <parameter name="PR_INTERNAL_HOST" value="true" />
+  <parameter name="ENABLE_HPR_UI" value="true" />
+  <parameter name="EXT_HOST_PRPOF_ID" value="0" />
+  <parameter name="ENABLE_PRPOF_ID_CHECK" value="true" />
+  <parameter name="ENABLE_PRPOF_ID_CHECK_UI" value="true" />
+  <parameter name="INSTANTIATE_PR_BLOCK" value="true" />
+  <parameter name="ENABLE_DATA_PACKING" value="true" />
+  <parameter name="INSTANTIATE_CRC_BLOCK" value="true" />
+  <parameter name="ENABLE_AVMM_SLAVE" value="true" />
+  <parameter name="ENABLE_HPR" value="true" />
+  <parameter name="ENABLE_INTERRUPT" value="true" />
+  <parameter name="EXT_HOST_TARGET_DEVICE_FAMILY" value="Arria 10" />
+  <generatedFiles>
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\alt_pr.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_controller_v1.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_controller_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_controller_v1.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_controller_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_mux.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_jtag_interface.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_width_adapter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_int_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_ext_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_v3.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_down_converter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_fifo.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_up_converter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_decoder.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_enhanced_compression_magic_words_decoder_and_suppressor.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_enhanced_decompressor.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_magic_fifo.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_data.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_clk_mux.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_interface.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr.sdc"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\alt_pr.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_controller_v1.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_controller_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_controller_v1.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_controller_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_mux.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_jtag_interface.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_width_adapter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_int_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_ext_host.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_v2.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_compatibility_checker_v3.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_down_converter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_fifo.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_up_converter.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_bitstream_decoder.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_enhanced_compression_magic_words_decoder_and_suppressor.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_enhanced_decompressor.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_magic_fifo.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_data.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_clk_mux.v"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr_cb_interface.sv"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\alt_pr_1911\synth\rtl\alt_pr.sdc"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file path="C:/intelfpga_pro/24.1/ip/altera/alt_pr/alt_pr/alt_pr_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="Test_PR_CTRLR" as="alt_pr_0" />
+  <messages>
+   <message level="Info" culprit="Test_PR_CTRLR">"Generating: alt_pr"</message>
+   <message level="Info" culprit="alt_pr_0">generating top-level entity alt_pr</message>
+  </messages>
+ </entity>
+</deploy>
