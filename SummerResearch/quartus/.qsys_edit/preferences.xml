@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <window width="1936" height="1168" x="-8" y="-8" />
+ <window width="1920" height="1054" x="-8" y="-8" />
  <generation
    path=""
    greybox="0"
@@ -12,5 +12,5 @@
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
  <library
-   expandedCategories="Existing IP Variants,Library/Basic Functions,Library,Library/Basic Functions/On Chip Memory,Project" />
+   expandedCategories="Library/Basic Functions/DMA,Library/Interface Protocols/PCI Express,Library,Project,Library/Basic Functions,Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/Interface Protocols,Existing IP Variants,Library/Basic Functions/DMA/mSGDMA Sub-core,Library/University Program/Audio &amp; Video,Library/Interface Protocols/PCI Express/QSYS Example Designs" />
 </preferences>
