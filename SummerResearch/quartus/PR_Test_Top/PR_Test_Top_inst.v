@@ -20,6 +20,7 @@
 		.sdram_status_local_cal_success (_connected_to_sdram_status_local_cal_success_), //  output,   width = 1,     sdram_status.local_cal_success
 		.sdram_status_local_cal_fail    (_connected_to_sdram_status_local_cal_fail_),    //  output,   width = 1,                 .local_cal_fail
 		.clk_clk                        (_connected_to_clk_clk_),                        //   input,   width = 1,              clk.clk
+		.pr_freeze_freeze               (_connected_to_pr_freeze_freeze_),               //  output,   width = 1,        pr_freeze.freeze
 		.reset_reset                    (_connected_to_reset_reset_)                     //   input,   width = 1,            reset.reset
 	);
 

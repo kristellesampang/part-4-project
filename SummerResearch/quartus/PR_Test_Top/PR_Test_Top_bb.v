@@ -20,6 +20,7 @@ module PR_Test_Top (
 		output wire        sdram_status_local_cal_success, //     sdram_status.local_cal_success
 		output wire        sdram_status_local_cal_fail,    //                 .local_cal_fail
 		input  wire        clk_clk,                        //              clk.clk
+		output wire        pr_freeze_freeze,               //        pr_freeze.freeze
 		input  wire        reset_reset                     //            reset.reset
 	);
 endmodule

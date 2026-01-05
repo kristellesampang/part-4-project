@@ -12,5 +12,5 @@
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
  <library
-   expandedCategories="Library/Basic Functions/DMA,Library/Interface Protocols/PCI Express,Library,Project,Library/Basic Functions,Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/Interface Protocols,Existing IP Variants,Library/Basic Functions/DMA/mSGDMA Sub-core,Library/University Program/Audio &amp; Video,Library/Interface Protocols/PCI Express/QSYS Example Designs" />
+   expandedCategories="Library/Basic Functions,Library/Basic Functions/Bridges and Adaptors/Streaming,Project,Library,Library/Basic Functions/Bridges and Adaptors/Avalon Streaming Credit,Library/Basic Functions/Bridges and Adaptors" />
 </preferences>

@@ -21,6 +21,7 @@
 			sdram_status_local_cal_success : out   std_logic;                                        -- local_cal_success
 			sdram_status_local_cal_fail    : out   std_logic;                                        -- local_cal_fail
 			clk_clk                        : in    std_logic                     := 'X';             -- clk
+			pr_freeze_freeze               : out   std_logic;                                        -- freeze
 			reset_reset                    : in    std_logic                     := 'X'              -- reset
 		);
 	end component PR_Test_Top;
@@ -48,6 +49,7 @@
 			sdram_status_local_cal_success => CONNECTED_TO_sdram_status_local_cal_success, --     sdram_status.local_cal_success
 			sdram_status_local_cal_fail    => CONNECTED_TO_sdram_status_local_cal_fail,    --                 .local_cal_fail
 			clk_clk                        => CONNECTED_TO_clk_clk,                        --              clk.clk
+			pr_freeze_freeze               => CONNECTED_TO_pr_freeze_freeze,               --        pr_freeze.freeze
 			reset_reset                    => CONNECTED_TO_reset_reset                     --            reset.reset
 		);
 

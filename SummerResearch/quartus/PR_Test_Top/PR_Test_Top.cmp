@@ -21,6 +21,7 @@
 			sdram_status_local_cal_success : out   std_logic;                                        -- local_cal_success
 			sdram_status_local_cal_fail    : out   std_logic;                                        -- local_cal_fail
 			clk_clk                        : in    std_logic                     := 'X';             -- clk
+			pr_freeze_freeze               : out   std_logic;                                        -- freeze
 			reset_reset                    : in    std_logic                     := 'X'              -- reset
 		);
 	end component PR_Test_Top;
