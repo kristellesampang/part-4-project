@@ -1,0 +1,99 @@
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TOOL_VERSION "24.1"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_msgdma"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\mSGDMA_PR.ip"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name OCS_IP_TYPE "altera_msgdma"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name OCS_IP_VERSION "19.2.4"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name OCS_IP_HASH "t4e2nri"
+set_global_assignment -library "mSGDMA_PR" -name SOPCINFO_FILE [file join $::quartus(qip_path) "mSGDMA_PR.sopcinfo"]
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name SLD_INFO "QSYS_NAME mSGDMA_PR HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "mSGDMA_PR" -name MISC_FILE [file join $::quartus(qip_path) "mSGDMA_PR.cmp"]
+set_global_assignment -library "mSGDMA_PR" -name SLD_FILE [file join $::quartus(qip_path) "mSGDMA_PR.regmap"]
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "mSGDMA_PR" -name MISC_FILE [file join $::quartus(qip_path) "../mSGDMA_PR.ip"]
+
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_NAME "ZGlzcGF0Y2hlcg=="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_DISPLAY_NAME "TW9kdWxhciBTR0RNQSBEaXNwYXRjaGVyIEludGVsIEZQR0EgSVA="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_VERSION "MTkuMi4w"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_DESCRIPTION "U0dETUEgc2NoZWR1bGluZyBibG9jaw=="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0RNQS9tU0dETUEgU3ViLWNvcmU="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL3NmbzE0MDA3ODc5NTI5MzIvbHJvMTQwMjE5Njk0NjA2MQ=="
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5ODAxMzQwOA=="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_NAME "cmVhZF9tYXN0ZXI="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_DISPLAY_NAME "UmVhZCBNYXN0ZXIgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_VERSION "MTkuMi4w"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_DESCRIPTION "QSBtb2R1bGUgcmVzcG9uc2libGUgZm9yIHN0cmVhbWluZyBkYXRhIGZyb20gbWVtb3J5"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0RNQS9tU0dETUEgU3ViLWNvcmU="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2RtaTE0MjA4MTMyNjg5NTUvZG1pMTQyMTQxOTE5ODY0OQ=="
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5ODAxMzQwOA=="
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_NAME "d3JpdGVfbWFzdGVy"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_DISPLAY_NAME "V3JpdGUgTWFzdGVyIEludGVsIEZQR0EgSVA="
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_VERSION "MTkuMi4w"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_DESCRIPTION "QSBtb2R1bGUgcmVzcG9uc2libGUgZm9yIHdyaXRpbmcgc3RyZWFtaW5nIGRhdGEgdG8gbWVtb3J5"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0RNQS9tU0dETUEgU3ViLWNvcmU="
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2RtaTE0MjA4MTMyNjg5NTUvZG1pMTQyMTQxOTE5ODY0OQ=="
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5ODAxMzQwOA=="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_NAME "bVNHRE1BX1BSX2FsdGVyYV9tc2dkbWFfMTkyNF9vcjcyNGlp"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_DISPLAY_NAME "TW9kdWxhciBTY2F0dGVyLUdhdGhlciBETUEgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_VERSION "MTkuMi40"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_DESCRIPTION "TW9kdWxhciBTR0RNQSB3aXRoIGNvbmZpZ3VyYXRpb24gbW9kZSBvZiBBdmFsb24tTU0gdG8gQXZhbG9uLU1NLCBBdmFsb24tTU0gdG8gQXZhbG9uLVNULCBvciBBdmFsb24tU1QgdG8gQXZhbG9uLU1NIGRhdGEgcGF0aHM="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0RNQQ=="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL3NmbzE0MDA3ODc5NTI5MzIvbHJvMTQwMjE5Njk0NjA2MQ=="
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly9kb2N1bWVudGF0aW9uLmFsdGVyYS5jb20vIy9saW5rL2hjbzE0MjE2OTgwNDIwODcvaGNvMTQyMTY5ODAxMzQwOA=="
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_NAME "bVNHRE1BX1BS"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "mSGDMA_PR" -library "mSGDMA_PR" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/dispatcher.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/descriptor_buffers.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/csr_block.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/response_block.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/fifo_with_byteenables.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/read_signal_breakout.v"]
+set_global_assignment -library "modular_sgdma_dispatcher_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "modular_sgdma_dispatcher_1920/synth/write_signal_breakout.v"]
+set_global_assignment -library "dma_read_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_read_master_1920/synth/read_master.v"]
+set_global_assignment -library "dma_read_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_read_master_1920/synth/MM_to_ST_Adapter.v"]
+set_global_assignment -library "dma_read_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_read_master_1920/synth/read_burst_control.v"]
+set_global_assignment -library "dma_write_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_write_master_1920/synth/write_master.v"]
+set_global_assignment -library "dma_write_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_write_master_1920/synth/byte_enable_generator.v"]
+set_global_assignment -library "dma_write_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_write_master_1920/synth/ST_to_MM_Adapter.v"]
+set_global_assignment -library "dma_write_master_1920" -name VERILOG_FILE [file join $::quartus(qip_path) "dma_write_master_1920/synth/write_burst_control.v"]
+set_global_assignment -library "altera_msgdma_1924" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_msgdma_1924/synth/mSGDMA_PR_altera_msgdma_1924_or724ii.v"]
+set_global_assignment -library "mSGDMA_PR" -name VHDL_FILE [file join $::quartus(qip_path) "synth/mSGDMA_PR.vhd"]
+
+
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_TOOL_NAME "altera_msgdma"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_TOOL_VERSION "19.2.4"
+set_global_assignment -entity "mSGDMA_PR_altera_msgdma_1924_or724ii" -library "altera_msgdma_1924" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_TOOL_NAME "dma_write_master"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_TOOL_VERSION "19.2.0"
+set_global_assignment -entity "write_master" -library "dma_write_master_1920" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_TOOL_NAME "dma_read_master"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_TOOL_VERSION "19.2.0"
+set_global_assignment -entity "read_master" -library "dma_read_master_1920" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_TOOL_NAME "modular_sgdma_dispatcher"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_TOOL_VERSION "19.2.0"
+set_global_assignment -entity "dispatcher" -library "modular_sgdma_dispatcher_1920" -name IP_TOOL_ENV "QsysPrimePro"
+

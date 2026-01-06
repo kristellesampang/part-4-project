@@ -1,0 +1,35 @@
+# system info mSGDMA_PR on 2026.01.06.14:05:23
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for mSGDMA_PR on 2026.01.06.14:05:23
+files:
+filepath,kind,attributes,module,is_top
+sim/mSGDMA_PR.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,mSGDMA_PR,true
+altera_msgdma_1924/sim/mSGDMA_PR_altera_msgdma_1924_or724ii.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,mSGDMA_PR_altera_msgdma_1924_or724ii,false
+modular_sgdma_dispatcher_1920/sim/dispatcher.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/descriptor_buffers.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/csr_block.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/response_block.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/fifo_with_byteenables.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/read_signal_breakout.v,VERILOG,,dispatcher,false
+modular_sgdma_dispatcher_1920/sim/write_signal_breakout.v,VERILOG,,dispatcher,false
+dma_read_master_1920/sim/read_master.v,VERILOG,,read_master,false
+dma_read_master_1920/sim/MM_to_ST_Adapter.v,VERILOG,,read_master,false
+dma_read_master_1920/sim/read_burst_control.v,VERILOG,,read_master,false
+dma_write_master_1920/sim/write_master.v,VERILOG,,write_master,false
+dma_write_master_1920/sim/byte_enable_generator.v,VERILOG,,write_master,false
+dma_write_master_1920/sim/ST_to_MM_Adapter.v,VERILOG,,write_master,false
+dma_write_master_1920/sim/write_burst_control.v,VERILOG,,write_master,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+mSGDMA_PR.mSGDMA_PR,mSGDMA_PR_altera_msgdma_1924_or724ii
+mSGDMA_PR.mSGDMA_PR.dispatcher_internal,dispatcher
+mSGDMA_PR.mSGDMA_PR.read_mstr_internal,read_master
+mSGDMA_PR.mSGDMA_PR.write_mstr_internal,write_master

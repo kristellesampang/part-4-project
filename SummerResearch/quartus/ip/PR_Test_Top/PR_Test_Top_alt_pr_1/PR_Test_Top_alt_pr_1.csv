@@ -1,0 +1,42 @@
+# system info PR_Test_Top_alt_pr_1 on 2026.01.06.14:05:28
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for PR_Test_Top_alt_pr_1 on 2026.01.06.14:05:28
+files:
+filepath,kind,attributes,module,is_top
+sim/PR_Test_Top_alt_pr_1.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,PR_Test_Top_alt_pr_1,true
+alt_pr_1911/sim/alt_pr.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_host.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_controller_v1.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_controller_v2.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_cb_host.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_cb_controller_v1.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_cb_controller_v2.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_mux.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_jtag_interface.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_width_adapter.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_int_host.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_ext_host.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_v2.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_compatibility_checker_v3.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_down_converter.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_fifo.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_up_converter.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_bitstream_decoder.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_enhanced_compression_magic_words_decoder_and_suppressor.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_enhanced_decompressor.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_magic_fifo.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_data.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_clk_mux.v,VERILOG,,alt_pr,false
+alt_pr_1911/sim/alt_pr_test_pkg.sv,SYSTEM_VERILOG,,alt_pr,false
+alt_pr_1911/sim/rtl/alt_pr_cb_interface.sv,SYSTEM_VERILOG,,alt_pr,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+PR_Test_Top_alt_pr_1.alt_pr_1,alt_pr

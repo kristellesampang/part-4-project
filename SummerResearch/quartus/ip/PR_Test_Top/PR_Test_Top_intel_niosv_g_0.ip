@@ -2825,22 +2825,22 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="peripheralRegionASize" type="int">
           <ipxact:name>peripheralRegionASize</ipxact:name>
           <ipxact:displayName>Peripheral Region A Size</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
+          <ipxact:value>65536</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="peripheralRegionABase" type="int">
           <ipxact:name>peripheralRegionABase</ipxact:name>
           <ipxact:displayName>Peripheral Region A Base Address</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
+          <ipxact:value>-2147287040</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="peripheralRegionBSize" type="int">
           <ipxact:name>peripheralRegionBSize</ipxact:name>
           <ipxact:displayName>Peripheral Region B Size</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
+          <ipxact:value>65536</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="peripheralRegionBBase" type="int">
           <ipxact:name>peripheralRegionBBase</ipxact:name>
           <ipxact:displayName>Peripheral Region B Base Address</ipxact:displayName>
-          <ipxact:value>0</ipxact:value>
+          <ipxact:value>-2147221504</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="deviceFamily" type="string">
           <ipxact:name>deviceFamily</ipxact:name>
@@ -2915,7 +2915,7 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED" type="string">
           <ipxact:name>AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED</ipxact:name>
           <ipxact:displayName>Auto INTERRUPTS_USED</ipxact:displayName>
-          <ipxact:value>3</ipxact:value>
+          <ipxact:value>7</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_INSTRUCTION_MANAGER_ADDRESS_WIDTH" type="string">
           <ipxact:name>AUTO_INSTRUCTION_MANAGER_ADDRESS_WIDTH</ipxact:name>
@@ -4657,7 +4657,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;INTERRUPTS_USED&lt;/key&gt;
-                        &lt;value&gt;3&lt;/value&gt;
+                        &lt;value&gt;7&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -4791,7 +4791,7 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:port_mapping altera:name="timer_sw_agent_writedata" altera:internal="timer_sw_agent_writedata"></altera:port_mapping>
       </altera:interface_mapping>
     </altera:altera_interface_boundary>
-    <altera:altera_has_warnings>true</altera:altera_has_warnings>
+    <altera:altera_has_warnings>false</altera:altera_has_warnings>
     <altera:altera_has_errors>false</altera:altera_has_errors>
   </ipxact:vendorExtensions>
 </ipxact:component>

@@ -1,0 +1,69 @@
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TOOL_VERSION "24.1"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TOP_LEVEL_COMPONENT_NAME "alt_pr"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_alt_pr_1.ip"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name OCS_IP_TYPE "alt_pr"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name OCS_IP_VERSION "19.1.1"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name OCS_IP_HASH "ecavlci"
+set_global_assignment -library "PR_Test_Top_alt_pr_1" -name SOPCINFO_FILE [file join $::quartus(qip_path) "PR_Test_Top_alt_pr_1.sopcinfo"]
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name SLD_INFO "QSYS_NAME PR_Test_Top_alt_pr_1 HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "PR_Test_Top_alt_pr_1" -name MISC_FILE [file join $::quartus(qip_path) "PR_Test_Top_alt_pr_1.cmp"]
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "PR_Test_Top_alt_pr_1" -name MISC_FILE [file join $::quartus(qip_path) "../PR_Test_Top_alt_pr_1.ip"]
+
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_NAME "YWx0X3By"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_DISPLAY_NAME "UGFydGlhbCBSZWNvbmZpZ3VyYXRpb24gQ29udHJvbGxlciBJbnRlbCBBcnJpYSAxMC9DeWNsb25lIDEwIEZQR0EgSVA="
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_VERSION "MTkuMS4x"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_DESCRIPTION "UGFydGlhbCBSZWNvbmZpZ3VyYXRpb24gQ29udHJvbGxlciBJbnRlbCBBcnJpYSAxMC9DeWNsb25lIDEwIEZQR0EgSVAgaXMgdXNlZCB0byBpbnRlcmZhY2UgeW91ciBkZXNpZ24gdG8gdGhlIHBhcnRpYWwgcmVjb25maWd1cmF0aW9uIGNvbnRyb2wgYmxvY2su"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL0NvbmZpZ3VyYXRpb24gYW5kIFByb2dyYW1taW5n"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL3RuYzE1MTM5ODc4MTk5OTAuaHRtbCN0Z2kxNDg2MDc0NjI1MjAy"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfYWx0X3ByXzE="
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "PR_Test_Top_alt_pr_1" -library "PR_Test_Top_alt_pr_1" -name IP_COMPONENT_VERSION "MS4w"
+
+set_instance_assignment -entity "alt_pr" -library "alt_pr_1911" -name PRPOF_ID_CHECK ON
+
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/alt_pr.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_host.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_controller_v1.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_controller_v2.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_cb_host.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_cb_controller_v1.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_cb_controller_v2.v"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_mux.sv"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_jtag_interface.v"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_width_adapter.sv"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_compatibility_checker_int_host.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_compatibility_checker_ext_host.v"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_compatibility_checker_v2.v"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_compatibility_checker_v3.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_down_converter.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_fifo.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_up_converter.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_bitstream_decoder.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_enhanced_compression_magic_words_decoder_and_suppressor.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_enhanced_decompressor.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_magic_fifo.sv"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_data.sv"]
+set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_clk_mux.v"]
+set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_cb_interface.sv"]
+set_global_assignment -library "alt_pr_1911" -name SDC_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr.sdc"]
+set_global_assignment -library "PR_Test_Top_alt_pr_1" -name VHDL_FILE [file join $::quartus(qip_path) "synth/PR_Test_Top_alt_pr_1.vhd"]
+
+
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_TOOL_NAME "alt_pr"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_TOOL_VERSION "19.1.1"
+set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_TOOL_ENV "QsysPrimePro"
+

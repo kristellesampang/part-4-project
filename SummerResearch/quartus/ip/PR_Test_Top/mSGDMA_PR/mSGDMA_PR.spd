@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/dispatcher.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/descriptor_buffers.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/csr_block.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/response_block.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/fifo_with_byteenables.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/read_signal_breakout.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="modular_sgdma_dispatcher_1920/sim/write_signal_breakout.v"
+   type="VERILOG"
+   library="modular_sgdma_dispatcher_1920" />
+ <file
+   path="dma_read_master_1920/sim/read_master.v"
+   type="VERILOG"
+   library="dma_read_master_1920" />
+ <file
+   path="dma_read_master_1920/sim/MM_to_ST_Adapter.v"
+   type="VERILOG"
+   library="dma_read_master_1920" />
+ <file
+   path="dma_read_master_1920/sim/read_burst_control.v"
+   type="VERILOG"
+   library="dma_read_master_1920" />
+ <file
+   path="dma_write_master_1920/sim/write_master.v"
+   type="VERILOG"
+   library="dma_write_master_1920" />
+ <file
+   path="dma_write_master_1920/sim/byte_enable_generator.v"
+   type="VERILOG"
+   library="dma_write_master_1920" />
+ <file
+   path="dma_write_master_1920/sim/ST_to_MM_Adapter.v"
+   type="VERILOG"
+   library="dma_write_master_1920" />
+ <file
+   path="dma_write_master_1920/sim/write_burst_control.v"
+   type="VERILOG"
+   library="dma_write_master_1920" />
+ <file
+   path="altera_msgdma_1924/sim/mSGDMA_PR_altera_msgdma_1924_or724ii.vhd"
+   type="VHDL"
+   library="altera_msgdma_1924"
+   hasInlineConfiguration="true" />
+ <file
+   path="sim/mSGDMA_PR.vhd"
+   type="VHDL"
+   library="mSGDMA_PR"
+   hasInlineConfiguration="true" />
+ <topLevel name="mSGDMA_PR.mSGDMA_PR" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+</simPackage>

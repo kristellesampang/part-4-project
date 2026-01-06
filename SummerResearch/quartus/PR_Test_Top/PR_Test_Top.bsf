@@ -201,7 +201,7 @@ on the Quartus Prime software download page.
 		(text "freeze" (rect 192 721 420 1452)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 158 746 346 1505)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset" (rect 192 771 414 1552)(font "Arial" (color 0 0 0)))
-		(text " system " (rect 441 801 930 1612)(font "Arial" ))
+		(text " PR_Test_Top " (rect 412 801 902 1612)(font "Arial" ))
 		(line (pt 187 34)(pt 289 34)(line_width 1))
 		(line (pt 289 34)(pt 289 801)(line_width 1))
 		(line (pt 187 801)(pt 289 801)(line_width 1))

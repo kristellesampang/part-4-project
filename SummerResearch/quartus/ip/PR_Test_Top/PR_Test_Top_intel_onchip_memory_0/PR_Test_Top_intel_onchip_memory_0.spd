@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="intel_onchip_memory_148/sim/PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv"
+   type="SYSTEM_VERILOG"
+   library="intel_onchip_memory_148" />
+ <file
+   path="intel_onchip_memory_148/sim/PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex"
+   type="HEX"
+   library="intel_onchip_memory_148" />
+ <file
+   path="sim/PR_Test_Top_intel_onchip_memory_0.vhd"
+   type="VHDL"
+   library="PR_Test_Top_intel_onchip_memory_0"
+   hasInlineConfiguration="true" />
+ <topLevel
+   name="PR_Test_Top_intel_onchip_memory_0.PR_Test_Top_intel_onchip_memory_0" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+ <modelMap
+   controllerPath="PR_Test_Top_intel_onchip_memory_0.intel_onchip_memory_0"
+   modelPath="PR_Test_Top_intel_onchip_memory_0.intel_onchip_memory_0" />
+</simPackage>

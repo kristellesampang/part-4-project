@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <window width="1920" height="1054" x="-8" y="-8" />
+ <window width="1936" height="1168" x="-8" y="-8" />
  <generation
    path=""
    greybox="0"
@@ -11,6 +11,5 @@
    modelsim="1"
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
- <library
-   expandedCategories="Library/Basic Functions,Library/Basic Functions/Bridges and Adaptors/Streaming,Project,Library,Library/Basic Functions/Bridges and Adaptors/Avalon Streaming Credit,Library/Basic Functions/Bridges and Adaptors" />
+ <library expandedCategories="Library,Project,Existing IP Variants" />
 </preferences>

@@ -152,6 +152,14 @@ https://fpgasoftware.intel.com/eula.-->
          type = "int";
       }
    }
+   element pr_controller.avmm_slave
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
    element reset_in
    {
       datum _sortIndex
@@ -9283,11 +9291,11 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='pr_controller.avmm_slave' start='0x0' end='0x40' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='pr_controller.avmm_slave' start='0x80040000' end='0x80040040' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
-                            &lt;value&gt;6&lt;/value&gt;
+                            &lt;value&gt;32&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -12375,7 +12383,7 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:connection>
       <altera:connection altera:kind="avalon" altera:version="24.1" altera:start="msgdma_pr.mm_write" altera:end="pr_controller.avmm_slave">
         <altera:connection_parameter altera:parameter_name="arbitrationPriority" altera:parameter_value="1"></altera:connection_parameter>
-        <altera:connection_parameter altera:parameter_name="baseAddress" altera:parameter_value="0x0000"></altera:connection_parameter>
+        <altera:connection_parameter altera:parameter_name="baseAddress" altera:parameter_value="0x80040000"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="defaultConnection" altera:parameter_value="false"></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="domainAlias" altera:parameter_value=""></altera:connection_parameter>
         <altera:connection_parameter altera:parameter_name="qsys_mm.burstAdapterImplementation" altera:parameter_value="GENERIC_CONVERTER"></altera:connection_parameter>
@@ -12583,7 +12591,6 @@ https://fpgasoftware.intel.com/eula.-->
         </altera:port_mapping>
       </altera:interface_mapping>
       <altera:interface_mapping altera:name="pr_freeze" altera:internal="pr_controller.freeze" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
-      <altera:interface_mapping altera:name="pr_freeze_sig" altera:internal=".freeze"></altera:interface_mapping>
       <altera:interface_mapping altera:name="pr_start" altera:internal="pr_controller.pr_start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="pr_status" altera:internal="pr_controller.status"></altera:interface_mapping>
       <altera:interface_mapping altera:name="reset" altera:internal="reset_in.in_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
@@ -12677,7 +12684,7 @@ https://fpgasoftware.intel.com/eula.-->
             <ipxact:busType vendor="intel" library="intel" name="avalon" version="24.1"></ipxact:busType>
             <ipxact:master>
               <ipxact:addressSpaceRef addressSpaceRef="msgdma_pr.mm_write">
-                <ipxact:baseAddress>0x0000_0000</ipxact:baseAddress>
+                <ipxact:baseAddress>0x8004_0000</ipxact:baseAddress>
               </ipxact:addressSpaceRef>
             </ipxact:master>
           </ipxact:busInterface>
@@ -12758,7 +12765,7 @@ https://fpgasoftware.intel.com/eula.-->
             <ipxact:segments>
               <ipxact:segment>
                 <ipxact:name>pr_controller.avmm_slave</ipxact:name>
-                <ipxact:addressOffset>0x0000_0000</ipxact:addressOffset>
+                <ipxact:addressOffset>0x8004_0000</ipxact:addressOffset>
                 <ipxact:range>0x0000_0040</ipxact:range>
               </ipxact:segment>
             </ipxact:segments>

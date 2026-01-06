@@ -1895,12 +1895,12 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="AUTO_MM_WRITE_ADDRESS_MAP" type="string">
           <ipxact:name>AUTO_MM_WRITE_ADDRESS_MAP</ipxact:name>
           <ipxact:displayName>Auto ADDRESS_MAP</ipxact:displayName>
-          <ipxact:value></ipxact:value>
+          <ipxact:value>&lt;address-map&gt;&lt;slave name='pr_controller.avmm_slave' start='0x80040000' end='0x80040040' datawidth='32' /&gt;&lt;/address-map&gt;</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_MM_WRITE_ADDRESS_WIDTH" type="string">
           <ipxact:name>AUTO_MM_WRITE_ADDRESS_WIDTH</ipxact:name>
           <ipxact:displayName>Auto ADDRESS_WIDTH</ipxact:displayName>
-          <ipxact:value>-1</ipxact:value>
+          <ipxact:value>5</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_DESCRIPTOR_READ_MASTER_ADDRESS_MAP" type="string">
           <ipxact:name>AUTO_DESCRIPTOR_READ_MASTER_ADDRESS_MAP</ipxact:name>
@@ -3449,11 +3449,11 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                        &lt;value&gt;&lt;/value&gt;
+                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='pr_controller.avmm_slave' start='0x80040000' end='0x80040040' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
-                        &lt;value&gt;&lt;/value&gt;
+                        &lt;value&gt;32&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;

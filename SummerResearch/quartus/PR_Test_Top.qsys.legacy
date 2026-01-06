@@ -136,6 +136,14 @@ https://fpgasoftware.intel.com/eula.-->
          type = "int";
       }
    }
+   element pr_controller.avmm_slave
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
    element reset_in
    {
       datum _sortIndex
@@ -209,7 +217,6 @@ https://fpgasoftware.intel.com/eula.-->
    internal="pr_controller.freeze"
    type="conduit"
    dir="end" />
- <interface name="pr_freeze_sig" internal=".freeze" />
  <interface name="pr_start" internal="pr_controller.pr_start" />
  <interface name="pr_status" internal="pr_controller.status" />
  <interface name="reset" internal="reset_in.in_reset" type="reset" dir="end" />
@@ -8958,11 +8965,11 @@ https://fpgasoftware.intel.com/eula.-->
                     <consumedSystemInfos>
                         <entry>
                             <key>ADDRESS_MAP</key>
-                            <value>&lt;address-map&gt;&lt;slave name='pr_controller.avmm_slave' start='0x0' end='0x40' datawidth='32' /&gt;&lt;/address-map&gt;</value>
+                            <value>&lt;address-map&gt;&lt;slave name='pr_controller.avmm_slave' start='0x80040000' end='0x80040040' datawidth='32' /&gt;&lt;/address-map&gt;</value>
                         </entry>
                         <entry>
                             <key>ADDRESS_WIDTH</key>
-                            <value>6</value>
+                            <value>32</value>
                         </entry>
                     </consumedSystemInfos>
                 </value>
@@ -11957,7 +11964,7 @@ https://fpgasoftware.intel.com/eula.-->
    start="msgdma_pr.mm_write"
    end="pr_controller.avmm_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x80040000" />
   <parameter name="defaultConnection" value="false" />
   <parameter name="domainAlias" value="" />
   <parameter name="qsys_mm.burstAdapterImplementation" value="GENERIC_CONVERTER" />

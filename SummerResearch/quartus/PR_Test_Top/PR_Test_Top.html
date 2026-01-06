@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2025.12.18.19:10:02</td>
+    <td class="l">2026.01.06.14:05:32</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -97,7 +97,13 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </a> intel_onchip_memory 1.4.8
      <br/>&#160;&#160;
      <a href="#module_jtag_uart_0"><b>jtag_uart_0</b>
-     </a> altera_avalon_jtag_uart 19.2.4</span>
+     </a> altera_avalon_jtag_uart 19.2.4
+     <br/>&#160;&#160;
+     <a href="#module_msgdma_pr"><b>msgdma_pr</b>
+     </a> altera_msgdma 19.2.4
+     <br/>&#160;&#160;
+     <a href="#module_pr_controller"><b>pr_controller</b>
+     </a> alt_pr 19.1.1</span>
    </div>
   </div>
   <div style="width:100% ;  height:10px"> </div>
@@ -109,10 +115,16 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <a href="#module_intel_niosv_g_0"><b>intel_niosv_g_0</b>
      </a>
     </td>
+    <td class="mastermodule" colspan="2">
+     <a href="#module_msgdma_pr"><b>msgdma_pr</b>
+     </a>
+    </td>
    </tr>
    <tr>
     <td class="masterl">&#160;instruction_manager</td>
     <td class="masterr">&#160;data_manager</td>
+    <td class="masterl">&#160;mm_read</td>
+    <td class="masterr">&#160;mm_write</td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -121,10 +133,14 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </td>
     <td class="empty"></td>
     <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">ctrl_amm_0&#160;</td>
-    <td class="empty"></td>
+    <td>0x0000_0000 - 0x7fff_ffff</td>
+    <td>0x0000_0000 - 0x7fff_ffff</td>
+    <td>0x0000_0000 - 0x7fff_ffff</td>
     <td class="empty"></td>
    </tr>
    <tr>
@@ -134,16 +150,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </td>
     <td class="empty"></td>
     <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavem">timer_sw_agent&#160;</td>
     <td class="empty"></td>
-    <td>0x0003_0000 - 0x0003_003f</td>
+    <td>0x8003_0000 - 0x8003_003f</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavem">dm_agent&#160;</td>
-    <td>0x0002_0000 - 0x0002_ffff</td>
-    <td>0x0002_0000 - 0x0002_ffff</td>
+    <td>0x8002_0000 - 0x8002_ffff</td>
+    <td>0x8002_0000 - 0x8002_ffff</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -152,11 +174,15 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </td>
     <td class="empty"></td>
     <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">s1&#160;</td>
-    <td>0x0000_0000 - 0x0001_ffff</td>
-    <td>0x0000_0000 - 0x0001_ffff</td>
+    <td>0x8000_0000 - 0x8001_ffff</td>
+    <td>0x8000_0000 - 0x8001_ffff</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slavemodule">&#160;
@@ -165,11 +191,56 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </td>
     <td class="empty"></td>
     <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
    </tr>
    <tr>
     <td class="slaveb">avalon_jtag_slave&#160;</td>
     <td class="empty"></td>
-    <td>0x0003_0040 - 0x0003_0047</td>
+    <td>0x8003_0070 - 0x8003_0077</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_msgdma_pr"><b>msgdma_pr</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavem">csr&#160;</td>
+    <td class="empty"></td>
+    <td>0x8003_0040 - 0x8003_005f</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavem">descriptor_slave&#160;</td>
+    <td class="empty"></td>
+    <td>0x8003_0060 - 0x8003_006f</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_pr_controller"><b>pr_controller</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">avmm_slave&#160;</td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td>0x8004_0000 - 0x8004_003f</td>
    </tr>
   </table>
   <a name="module_SDRAM"> </a>
@@ -177,6 +248,85 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <hr/>
    <h2>SDRAM</h2>altera_emif v19.2.3
    <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_intel_niosv_g_0">intel_niosv_g_0</a>
+      </td>
+      <td class="from">data_manager&#160;&#160;</td>
+      <td class="main" rowspan="17">SDRAM</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr>
+      <td class="from">instruction_manager&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_msgdma_pr">msgdma_pr</a>
+      </td>
+      <td class="from">mm_read&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_clock_in">clock_in</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;pll_ref_clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_reset_in">reset_in</a>
+      </td>
+      <td class="from">out_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;global_reset_n</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">emif_usr_clk&#160;&#160;</td>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_intel_niosv_g_0">intel_niosv_g_0</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">emif_usr_reset_n&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;reset</td>
+     </tr>
+    </table>
+   </div>
    <br/>
    <br/>
    <table class="flowbox">
@@ -234,14 +384,20 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <div class="greydiv">
     <table class="connectionboxes">
      <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_clock_in">clock_in</a>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_SDRAM">SDRAM</a>
       </td>
-      <td class="from">out_clk&#160;&#160;</td>
-      <td class="main" rowspan="14">intel_niosv_g_0</td>
+      <td class="from">emif_usr_clk&#160;&#160;</td>
+      <td class="main" rowspan="31">intel_niosv_g_0</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr>
+      <td class="from">emif_usr_reset_n&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;reset</td>
      </tr>
      <tr style="height:6px">
       <td></td>
@@ -285,6 +441,68 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="from">data_manager&#160;&#160;</td>
+      <td class="neighbor" rowspan="6">
+       <a href="#module_msgdma_pr">msgdma_pr</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;csr</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">data_manager&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;descriptor_slave</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;csr_irq</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">data_manager&#160;&#160;</td>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_SDRAM">SDRAM</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">instruction_manager&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">data_manager&#160;&#160;</td>
       <td class="neighbor" rowspan="4">
        <a href="#module_intel_onchip_memory_0">intel_onchip_memory_0</a>
       </td>
@@ -303,6 +521,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;s1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_pr_controller">pr_controller</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;interrupt</td>
      </tr>
     </table>
    </div>
@@ -328,7 +562,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <table>
        <tr>
         <td class="parametername">CPU_FREQ</td>
-        <td class="parametervalue">50000000u</td>
+        <td class="parametervalue">266666665u</td>
        </tr>
        <tr>
         <td class="parametername">DATA_ADDR_WIDTH</td>
@@ -372,7 +606,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">MTIME_OFFSET</td>
-        <td class="parametervalue">0x00030000</td>
+        <td class="parametervalue">0x80030000</td>
        </tr>
        <tr>
         <td class="parametername">NIOSV_CORE_VARIANT</td>
@@ -384,7 +618,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">RESET_ADDR</td>
-        <td class="parametervalue">0x00000000</td>
+        <td class="parametervalue">0x80000000</td>
        </tr>
        <tr>
         <td class="parametername">TICKS_PER_SEC</td>
@@ -619,6 +853,288 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
+  <a name="module_msgdma_pr"> </a>
+  <div>
+   <hr/>
+   <h2>msgdma_pr</h2>altera_msgdma v19.2.4
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="6">
+       <a href="#module_intel_niosv_g_0">intel_niosv_g_0</a>
+      </td>
+      <td class="from">data_manager&#160;&#160;</td>
+      <td class="main" rowspan="17">msgdma_pr</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;csr</td>
+     </tr>
+     <tr>
+      <td class="from">data_manager&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;descriptor_slave</td>
+     </tr>
+     <tr>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;csr_irq</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_clock_in">clock_in</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clock</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_reset_in">reset_in</a>
+      </td>
+      <td class="from">out_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;reset_n</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">mm_read&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_SDRAM">SDRAM</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;ctrl_amm_0</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">mm_write&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_pr_controller">pr_controller</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;avmm_slave</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>
+      <table>
+       <tr>
+        <td class="parametername">BURST_ENABLE</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">BURST_WRAPPING_SUPPORT</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">CHANNEL_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">CHANNEL_ENABLE_DERIVED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">CHANNEL_WIDTH</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">DATA_FIFO_DEPTH</td>
+        <td class="parametervalue">64</td>
+       </tr>
+       <tr>
+        <td class="parametername">DATA_WIDTH</td>
+        <td class="parametervalue">32</td>
+       </tr>
+       <tr>
+        <td class="parametername">DESCRIPTOR_FIFO_DEPTH</td>
+        <td class="parametervalue">128</td>
+       </tr>
+       <tr>
+        <td class="parametername">DMA_MODE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ENHANCED_FEATURES</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ERROR_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ERROR_ENABLE_DERIVED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">ERROR_WIDTH</td>
+        <td class="parametervalue">8</td>
+       </tr>
+       <tr>
+        <td class="parametername">MAX_BURST_COUNT</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">MAX_BYTE</td>
+        <td class="parametervalue">1024</td>
+       </tr>
+       <tr>
+        <td class="parametername">MAX_STRIDE</td>
+        <td class="parametervalue">1</td>
+       </tr>
+       <tr>
+        <td class="parametername">PACKET_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">PACKET_ENABLE_DERIVED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">PREFETCHER_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">PROGRAMMABLE_BURST_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">RESPONSE_PORT</td>
+        <td class="parametervalue">2</td>
+       </tr>
+       <tr>
+        <td class="parametername">STRIDE_ENABLE</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">STRIDE_ENABLE_DERIVED</td>
+        <td class="parametervalue">0</td>
+       </tr>
+       <tr>
+        <td class="parametername">TRANSFER_TYPE</td>
+        <td class="parametervalue">Full Word Accesses Only</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>
+  </div>
+  <a name="module_pr_controller"> </a>
+  <div>
+   <hr/>
+   <h2>pr_controller</h2>alt_pr v19.1.1
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_msgdma_pr">msgdma_pr</a>
+      </td>
+      <td class="from">mm_write&#160;&#160;</td>
+      <td class="main" rowspan="11">pr_controller</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;avmm_slave</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_clock_in">clock_in</a>
+      </td>
+      <td class="from">out_clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_intel_niosv_g_0">intel_niosv_g_0</a>
+      </td>
+      <td class="from">platform_irq_rx&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;interrupt</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_reset_in">reset_in</a>
+      </td>
+      <td class="from">out_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;nreset</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
   <a name="module_reset_in"> </a>
   <div>
    <hr/>
@@ -631,10 +1147,42 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_clock_in">clock_in</a>
       </td>
       <td class="from">out_clk&#160;&#160;</td>
-      <td class="main" rowspan="10">reset_in</td>
+      <td class="main" rowspan="19">reset_in</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">out_reset&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_SDRAM">SDRAM</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;global_reset_n</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">out_reset&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_pr_controller">pr_controller</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;nreset</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
      </tr>
      <tr>
       <td></td>
@@ -680,6 +1228,22 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td></td>
       <td class="to">&#160;&#160;reset1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="from">out_reset&#160;&#160;</td>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_msgdma_pr">msgdma_pr</a>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td></td>
+      <td class="to">&#160;&#160;reset_n</td>
      </tr>
     </table>
    </div>

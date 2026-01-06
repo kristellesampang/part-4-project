@@ -1,5 +1,5 @@
 
-# (C) 2001-2025 Intel Corporation. All rights reserved.
+# (C) 2001-2026 Intel Corporation. All rights reserved.
 # Your use of Intel Corporation's design tools, logic functions and 
 # other software and tools, and its AMPP partner logic functions, and 
 # any output files any of the foregoing (including device programming 
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Intel IP within the design.
 # ----------------------------------------
-# ACDS 24.1 115 win32 2025.12.18.19:10:01
+# ACDS 24.1 115 win32 2026.01.06.14:05:31
 
 # ----------------------------------------
 # Initialize variables

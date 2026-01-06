@@ -1,0 +1,133 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the Intel FPGA Software License Subscription Agreements 
+on the Quartus Prime software download page.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 0 0 384 392)
+	(text "PR_Test_Top_alt_pr_1" (rect 116 0 212 12)(font "Arial" (font_size 11)))
+	(text "inst" (rect 8 376 20 388)(font "Arial" ))
+	(port
+		(pt 0 76)
+		(input)
+		(text "clk" (rect 0 0 10 12)(font "Arial" (font_size 8)))
+		(text "clk" (rect 4 65 22 76)(font "Arial" (font_size 8)))
+		(line (pt 0 76)(pt 153 76)(line_width 1))
+	)
+	(port
+		(pt 0 126)
+		(input)
+		(text "nreset" (rect 0 0 24 12)(font "Arial" (font_size 8)))
+		(text "nreset" (rect 4 115 40 126)(font "Arial" (font_size 8)))
+		(line (pt 0 126)(pt 153 126)(line_width 1))
+	)
+	(port
+		(pt 0 226)
+		(input)
+		(text "avmm_slave_address[3..0]" (rect 0 0 112 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_address[3..0]" (rect 4 215 148 226)(font "Arial" (font_size 8)))
+		(line (pt 0 226)(pt 153 226)(line_width 3))
+	)
+	(port
+		(pt 0 251)
+		(input)
+		(text "avmm_slave_read" (rect 0 0 77 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_read" (rect 4 240 94 251)(font "Arial" (font_size 8)))
+		(line (pt 0 251)(pt 153 251)(line_width 1))
+	)
+	(port
+		(pt 0 276)
+		(input)
+		(text "avmm_slave_writedata[31..0]" (rect 0 0 118 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_writedata[31..0]" (rect 4 265 166 276)(font "Arial" (font_size 8)))
+		(line (pt 0 276)(pt 153 276)(line_width 3))
+	)
+	(port
+		(pt 0 301)
+		(input)
+		(text "avmm_slave_write" (rect 0 0 77 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_write" (rect 4 290 100 301)(font "Arial" (font_size 8)))
+		(line (pt 0 301)(pt 153 301)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(output)
+		(text "freeze" (rect 0 0 24 12)(font "Arial" (font_size 8)))
+		(text "freeze" (rect 4 165 40 176)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 326)
+		(output)
+		(text "avmm_slave_readdata[31..0]" (rect 0 0 118 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_readdata[31..0]" (rect 4 315 160 326)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 0 351)
+		(output)
+		(text "avmm_slave_waitrequest" (rect 0 0 103 12)(font "Arial" (font_size 8)))
+		(text "avmm_slave_waitrequest" (rect 4 340 136 351)(font "Arial" (font_size 8)))
+	)
+	(port
+		(pt 384 76)
+		(output)
+		(text "irq" (rect 0 0 9 12)(font "Arial" (font_size 8)))
+		(text "irq" (rect 377 65 395 76)(font "Arial" (font_size 8)))
+		(line (pt 384 76)(pt 238 76)(line_width 1))
+	)
+	(drawing
+		(text "clk" (rect 138 46 294 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "clk" (rect 158 71 334 152)(font "Arial" (color 0 0 0)))
+		(text "nreset" (rect 117 96 270 205)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "reset_n" (rect 158 121 358 252)(font "Arial" (color 0 0 0)))
+		(text "freeze" (rect 117 146 270 305)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "freeze" (rect 158 171 352 352)(font "Arial" (color 0 0 0)))
+		(text "avmm_slave" (rect 81 196 222 405)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "address" (rect 158 221 358 452)(font "Arial" (color 0 0 0)))
+		(text "read" (rect 158 246 340 502)(font "Arial" (color 0 0 0)))
+		(text "writedata" (rect 158 271 370 552)(font "Arial" (color 0 0 0)))
+		(text "write" (rect 158 296 346 602)(font "Arial" (color 0 0 0)))
+		(text "readdata" (rect 158 321 364 652)(font "Arial" (color 0 0 0)))
+		(text "waitrequest" (rect 158 346 382 702)(font "Arial" (color 0 0 0)))
+		(text "interrupt" (rect 239 46 532 105)(font "Arial" (color 128 0 0)(font_size 9)))
+		(text "irq" (rect 224 71 466 152)(font "Arial" (color 0 0 0)))
+		(text " PR_Test_Top_alt_pr_1 " (rect 286 376 704 762)(font "Arial" ))
+		(line (pt 153 34)(pt 238 34)(line_width 1))
+		(line (pt 238 34)(pt 238 376)(line_width 1))
+		(line (pt 153 376)(pt 238 376)(line_width 1))
+		(line (pt 153 34)(pt 153 376)(line_width 1))
+		(line (pt 154 55)(pt 154 80)(line_width 1))
+		(line (pt 155 55)(pt 155 80)(line_width 1))
+		(line (pt 154 105)(pt 154 130)(line_width 1))
+		(line (pt 155 105)(pt 155 130)(line_width 1))
+		(line (pt 384 176)(pt 153 176)(line_width 1))
+		(line (pt 154 155)(pt 154 180)(line_width 1))
+		(line (pt 155 155)(pt 155 180)(line_width 1))
+		(line (pt 384 326)(pt 153 326)(line_width 3))
+		(line (pt 384 351)(pt 153 351)(line_width 1))
+		(line (pt 154 205)(pt 154 355)(line_width 1))
+		(line (pt 155 205)(pt 155 355)(line_width 1))
+		(line (pt 237 55)(pt 237 80)(line_width 1))
+		(line (pt 236 55)(pt 236 80)(line_width 1))
+		(line (pt 0 0)(pt 384 0)(line_width 1))
+		(line (pt 384 0)(pt 384 393)(line_width 1))
+		(line (pt 0 393)(pt 384 393)(line_width 1))
+		(line (pt 0 0)(pt 0 393)(line_width 1))
+	)
+)
