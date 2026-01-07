@@ -106,7 +106,9 @@ set_instance_assignment -name PARTITION top_level_systolic_array -to npu_core -e
 set_instance_assignment -name PARTITION_COLOUR 4294937543 -to npu_core -entity SummerResearchTopLevel
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity SummerResearchTopLevel
 set_global_assignment -name REVISION_TYPE PR_BASE
-set_instance_assignment -name PLACE_REGION "X1 Y1 X20 Y20" -to npu_core
-set_instance_assignment -name RESERVE_PLACE_REGION OFF -to npu_core
+set_instance_assignment -name PLACE_REGION "X1 Y1 X77 Y120" -to npu_core
+set_instance_assignment -name RESERVE_PLACE_REGION ON -to npu_core
 set_instance_assignment -name CORE_ONLY_PLACE_REGION ON -to npu_core
 set_instance_assignment -name REGION_NAME npu_core -to npu_core
+set_instance_assignment -name ROUTE_REGION "X0 Y0 X79 Y122" -to npu_core
+set_instance_assignment -name RESERVE_ROUTE_REGION ON -to npu_core

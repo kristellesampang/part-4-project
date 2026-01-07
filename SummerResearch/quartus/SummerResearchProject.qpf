@@ -19,14 +19,14 @@
 #
 # Quartus Prime
 # Version 24.1.0 Build 115 03/21/2024 SC Pro Edition
-# Date created = 17:42:01  January 06, 2026
+# Date created = 14:40:01  January 07, 2026
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "24.1"
-DATE = "17:42:01  January 06, 2026"
+DATE = "14:40:01  January 07, 2026"
 
 # Revisions
 
-PROJECT_REVISION = "NPU_Persona_B"
 PROJECT_REVISION = "SummerResearchTopLevel"
+PROJECT_REVISION = "NPU_Persona_B"
