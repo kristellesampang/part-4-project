@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <internal_error>
 	<sub_system>ERR</sub_system>
-	<callstack>	0x7ff8f62e1890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
-	0x7ff931123a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
-	0x7ff9310f042d: ucrtbase + 0x2042d (_o_free + 0xdd)
-	0x7ff9310edddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
-	0x7ff8f62df590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
-	0x7ff8f62de67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
-	0x7ff8f62de95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
-	0x7ff933f38bce: ntdll + 0x28bce (RtlActivateActivationContextUnsafeFast + 0x12e)
-	0x7ff933f7bae5: ntdll + 0x6bae5 (LdrUnloadAlternateResourceModuleEx + 0x325)
-	0x7ff933f7b51e: ntdll + 0x6b51e (RtlInitAnsiStringEx + 0x7e)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f7b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff933f3d4bd: ntdll + 0x2d4bd (LdrUnloadDll + 0x11d)
-	0x7ff933f3d434: ntdll + 0x2d434 (LdrUnloadDll + 0x94)
-	0x7ff9316de78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
-	0x7ff8fa211fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
-	0x7ff8fa211908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
-	0x1358745d620:
-	0x135e671b327:
-	0x135e7bbb8ef:
-	0x134ffffffff:
-	0x135874594fd:
-	0x61fb5442f:
-	0x1358745d2f5:
-	0x263a9fed6f:
-	0x135e671b327:
-	0x263a9fedd7:
-	0x135e671e2bf:
+	<callstack>	0x7ff88ca385c3: periph_fpp + 0x85c3 (std::basic_string&amp;lt;char,std::char_traits&amp;lt;char&amp;gt;,std::allocator&amp;lt;char&amp;gt; &amp;gt;::basic_string&amp;lt;char,std::char_traits&amp;lt;char&amp;gt;,std::allocator&amp;lt;char&amp;gt; &amp;gt; + 0x2f)
+	0x7ff88ca38549: periph_fpp + 0x8549 (?name@FPP_LOCATION@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ + 0x1d)
+	0x7ff8d7b5bfff: periph_emif + 0x5bfff (?do_addr_cmd_pin_assignment_check@EMIF_GEN6@@IEBA_NXZ + 0xa3b)
+	0x7ff8d7b4752a: periph_emif + 0x4752a (?emif_legality_checks@EMIF_GEN6@@UEAA_NXZ + 0x14a)
+	0x7ff8f24b4610: periph_pcc + 0x24610 (PCC_ENV_IMPL::perform_op + 0x25c)
+	0x7ff8f24aff19: periph_pcc + 0x1ff19 (PCC_ENV_IMPL::propagate_constraints + 0x61)
+	0x7ff8f24afe25: periph_pcc + 0x1fe25 (PCC_ENV_IMPL::apply_constraints + 0x29)
+	0x7ff8f24b8085: periph_pcc + 0x28085 (PCC_PERIPH_FLOW::plan + 0x10d)
+	0x7ff8709d7601: comp_fit2 + 0x27601 (fit2_fit_plan + 0x5e1)
+	 0x77e86442: tcl86 + 0x16442 (TclNRRunCallbacks + 0x62)
+	 0x77e87c4d: tcl86 + 0x17c4d (TclEvalEx + 0x9ed)
+	 0x77f16a8b: tcl86 + 0xa6a8b (Tcl_FSEvalFileEx + 0x22b)
+	 0x77f15136: tcl86 + 0xa5136 (Tcl_EvalFile + 0x36)
+	0x7ff8f59530ac: comp_qexe + 0x230ac (?qexe_evaluate_tcl_script@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z + 0x66c)
+	0x7ff8f5951be9: comp_qexe + 0x21be9 (qexe_do_tcl + 0x8f9)
+	0x7ff8f595a1ad: comp_qexe + 0x2a1ad (?qexe_run_tcl_option@@YA_NPEAVQEXE_FRAMEWORK@@PEBDPEAV?$list@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@_N@Z + 0x6cd)
+	0x7ff88b6adfaf: comp_qcu + 0x3dfaf (?qcu_run_tcl_option@@YA_NPEAVQCU_FRAMEWORK@@PEBDPEAV?$list@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@_N@Z + 0x6ef)
+	0x7ff8f5959969: comp_qexe + 0x29969 (qexe_run + 0x629)
+	0x7ff8f595abd6: comp_qexe + 0x2abd6 (?qexe_standard_main@@YAHPEAVQEXE_FRAMEWORK@@PEAPEBUQEXE_OPTION_DEFINITION@@HPEAPEBD@Z + 0x266)
+	0x7ff70a54bb82: quartus_fit + 0xbb82 (?qfit2_main@@YAHHPEAPEBD@Z + 0x82)
+	0x7ff91b508348: ccl_msg + 0x28348 (?msg_main_thread@@YAPEAXPEAX@Z + 0x18)
+	0x7ff91b509522: ccl_msg + 0x29522 (?msg_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x82)
+	0x7ff91b28b063: ccl_mem + 0x2b063 (?mem_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x73)
+	0x7ff91b50610f: ccl_msg + 0x2610f (?msg_exe_main@@YAHHPEAPEBDP6AHH0@Z@Z + 0x17f)
+	0x7ff70a54cdcb: quartus_fit + 0xcdcb (__scrt_common_main_seh + 0x10b)
+	0x7ff93339259c: KERNEL32 + 0x1259c (BaseThreadInitThunk + 0x1c)
+	0x7ff933f6af77: ntdll + 0x5af77 (RtlUserThreadStart + 0x27)
 </callstack>
-	<error>*** Fatal Error: Access Violation at 00007FF8F62E1891</error>
-	<date>Tue Jan  6 14:11:32 2026
+	<error>*** Fatal Error: Access Violation at 00007FF88CA385C4</error>
+	<date>Thu Jan  8 17:37:11 2026
 </date>
 	<version>Version 24.1.0 Build 115 03/21/2024 SC Pro Edition</version>
 </internal_error>

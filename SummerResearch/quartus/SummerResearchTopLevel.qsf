@@ -41,18 +41,17 @@ set_global_assignment -name VHDL_FILE "../Systolic Array/control_unit.vhd"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
-set_location_assignment PIN_F5 -to CLK_50 -comment IOBANK_3G
-set_location_assignment PIN_AD9 -to LED_STATUS[6] -comment IOBANK_3C
+set_location_assignment PIN_AJ13 -to LED_STATUS[6] -comment IOBANK_3A
 set_location_assignment PIN_K12 -to BTN_RESET -comment IOBANK_3H
 set_location_assignment PIN_H13 -to BTN_START -comment IOBANK_3H
-set_location_assignment PIN_AN3 -to LED_STATUS[2] -comment IOBANK_3C
-set_location_assignment PIN_AN2 -to LED_STATUS[3] -comment IOBANK_3C
-set_location_assignment PIN_AK5 -to LED_STATUS[0] -comment IOBANK_3C
-set_location_assignment PIN_AK3 -to LED_STATUS[4] -comment IOBANK_3C
-set_location_assignment PIN_AG4 -to LED_STATUS[1] -comment IOBANK_3C
-set_location_assignment PIN_AF8 -to LED_STATUS[5] -comment IOBANK_3C
-set_location_assignment PIN_AE7 -to LED_STATUS[7] -comment IOBANK_3C
-set_location_assignment PIN_AC9 -to LED_DONE -comment IOBANK_3C
+set_location_assignment PIN_AH14 -to LED_STATUS[2] -comment IOBANK_3A
+set_location_assignment PIN_AG14 -to LED_STATUS[3] -comment IOBANK_3A
+set_location_assignment PIN_AF15 -to LED_STATUS[0] -comment IOBANK_3A
+set_location_assignment PIN_AF14 -to LED_STATUS[4] -comment IOBANK_3A
+set_location_assignment PIN_AJ14 -to LED_STATUS[1] -comment IOBANK_3A
+set_location_assignment PIN_AK13 -to LED_STATUS[5] -comment IOBANK_3A
+set_location_assignment PIN_AH12 -to LED_STATUS[7] -comment IOBANK_3A
+set_location_assignment PIN_AG15 -to LED_DONE -comment IOBANK_3A
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[4] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to BTN_START -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[7] -entity SummerResearchTopLevel
@@ -60,7 +59,7 @@ set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[0] -entity Summ
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[3] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_DONE -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[6] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to CLK_50 -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD LVDS -to CLK_50 -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[2] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[5] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "1.8-V" -to BTN_RESET -entity SummerResearchTopLevel
@@ -112,3 +111,6 @@ set_instance_assignment -name CORE_ONLY_PLACE_REGION ON -to npu_core
 set_instance_assignment -name REGION_NAME npu_core -to npu_core
 set_instance_assignment -name ROUTE_REGION "X0 Y0 X79 Y122" -to npu_core
 set_instance_assignment -name RESERVE_ROUTE_REGION ON -to npu_core
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to CLK_50 -entity SummerResearchTopLevel
+set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to CLK_50
+set_global_assignment -name OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING NORMAL

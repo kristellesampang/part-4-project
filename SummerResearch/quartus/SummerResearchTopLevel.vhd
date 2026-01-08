@@ -10,7 +10,7 @@ entity SummerResearchTopLevel is
         BTN_RESET      : in  std_logic;
         BTN_START      : in  std_logic;
 
-        -- DDR4 External Memory Interface (Moved from PR_Test_Top to here)
+        -- DDR4 External Memory Interface 
         ddr4_emif_oct_oct_rzqin        : in    std_logic                     := '0';
         ddr4_emif_mem_mem_ck           : out   std_logic_vector(0 downto 0);
         ddr4_emif_mem_mem_ck_n         : out   std_logic_vector(0 downto 0);
@@ -37,7 +37,7 @@ end SummerResearchTopLevel;
 
 architecture rtl of SummerResearchTopLevel is
 
-    -- 1. The Platform Designer (Qsys) Component Declaration
+    -- The Platform Designer (Qsys) Component Declaration
     component PR_Test_Top is
         port (
             clk_clk                        : in    std_logic                     := '0';
@@ -66,7 +66,7 @@ architecture rtl of SummerResearchTopLevel is
         );
     end component;
 
-    -- 2. Your NPU Component Declaration
+    -- NPU Component Declaration
     component top_level_systolic_array is
     port (
         clk           : in  bit_1;
@@ -141,7 +141,7 @@ begin
             sdram_status_local_cal_fail    => open
         );
 
-    -- 4. Instantiate the NPU (The Part we will make a Partition)
+    -- Instantiate the NPU (this part do the partition)
     npu_core : component top_level_systolic_array
         port map (
             clk           => internal_clk,
