@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.01.06.14:05:35"
+ date="2026.01.13.18:56:54"
  outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/PR_Test_Top/">
  <perimeter>
   <parameter
@@ -40,6 +40,24 @@
      onHdl="0"
      affectsHdl="1" />
   <parameter
+     name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_RATE"
+     type="Long"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_SDRAM_PLL_REF_CLK_RESET_DOMAIN"
+     type="Integer"
+     defaultValue="-1"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
      name="AUTO_CLK_CLOCK_RATE"
      type="Long"
      defaultValue="-1"
@@ -57,6 +75,21 @@
      defaultValue="-1"
      onHdl="0"
      affectsHdl="1" />
+  <interface name="sdram_global_reset_n" kind="reset" start="0">
+   <property name="associatedClock" value="" />
+   <property name="synchronousEdges" value="NONE" />
+   <port
+       name="sdram_global_reset_n_reset_n"
+       direction="input"
+       role="reset_n"
+       width="1" />
+  </interface>
+  <interface name="sdram_pll_ref_clk" kind="clock" start="0">
+   <property name="clockRate" value="0" />
+   <property name="externallyDriven" value="false" />
+   <property name="ptfSchematicName" value="" />
+   <port name="sdram_pll_ref_clk_clk" direction="input" role="clk" width="1" />
+  </interface>
   <interface name="sdram_pll_locked" kind="conduit" start="0">
    <property name="associatedClock" value="" />
    <property name="associatedReset" value="" />
@@ -193,16 +226,19 @@
  </perimeter>
  <entity kind="PR_Test_Top" version="1.0" name="PR_Test_Top">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
+  <parameter name="AUTO_SDRAM_PLL_REF_CLK_RESET_DOMAIN" value="-1" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
      name="AUTO_BOARD"
      value="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D" />
+  <parameter name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_DOMAIN" value="-1" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
+  <parameter name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_RATE" value="-1" />
   <generatedFiles>
    <file
        path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\PR_Test_Top\synth\pr_test_top_rst_controller.vhd"
@@ -5393,7 +5429,7 @@
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -5401,7 +5437,7 @@
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -5673,8 +5709,8 @@
   <parameter name="svInterfaceDefinition" value="" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="clockFrequency" value="266666665" />
-  <parameter name="AUTO_CLK_RESET_DOMAIN" value="3" />
-  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="3" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="5" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="5" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />

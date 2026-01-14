@@ -77,12 +77,35 @@ check_state.WAIT_FOR_READY 0 0 1 1
 check_state.CHECK_START 0 1 0 1 
 check_state.CHECK_COMPLETE 1 0 0 1 
 
+State Machine - qsys_inst|sdram|sdram|arch|arch_inst|cal_counter_inst|non_hps.counter_state
+Name non_hps.counter_state.COUNT_CAL non_hps.counter_state.IDLE non_hps.counter_state.STOP non_hps.counter_state.INIT 
+non_hps.counter_state.INIT 0 0 0 0 
+non_hps.counter_state.STOP 0 0 1 1 
+non_hps.counter_state.IDLE 0 1 0 1 
+non_hps.counter_state.COUNT_CAL 1 0 0 1 
+
 State Machine - qsys_inst|pr_controller|alt_pr_1|jtag_input_width_adapter|alt_pr_up_converter|alt_pr_up_converter_from_pfl|current_state
 Name current_state.CONV_WAIT current_state.CONV_SAME current_state.CONV_READ current_state.CONV_INIT 
 current_state.CONV_INIT 0 0 0 0 
 current_state.CONV_READ 0 0 1 1 
 current_state.CONV_SAME 0 1 0 1 
 current_state.CONV_WAIT 1 0 0 1 
+
+State Machine - qsys_inst|intel_niosv_g_0|intel_niosv_g_0|dbg_mod|dm_inst|dm_state
+Name dm_state.CMD_EXE dm_state.RESUMING dm_state.EXE_PNDG dm_state.HALTED dm_state.HALTREQ dm_state.IDLE 
+dm_state.IDLE 0 0 0 0 0 0 
+dm_state.HALTREQ 0 0 0 0 1 1 
+dm_state.HALTED 0 0 0 1 0 1 
+dm_state.EXE_PNDG 0 0 1 0 0 1 
+dm_state.RESUMING 0 1 0 0 0 1 
+dm_state.CMD_EXE 1 0 0 0 0 1 
+
+State Machine - qsys_inst|mm_interconnect_0|msgdma_pr_descriptor_slave_burst_adapter|altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
 State Machine - qsys_inst|sdram|sdram|col_if|colmaster|transacto|p2m|state
 Name state.READ_SEND_WAIT state.READ_DATA_WAIT state.READ_SEND_ISSUE state.READ_CMD_WAIT state.WRITE_WAIT state.RETURN_PACKET state.READ_ASSERT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.READY 
@@ -102,29 +125,6 @@ state.READ_CMD_WAIT 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1
 state.READ_SEND_ISSUE 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.READ_DATA_WAIT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-
-State Machine - qsys_inst|sdram|sdram|arch|arch_inst|cal_counter_inst|non_hps.counter_state
-Name non_hps.counter_state.COUNT_CAL non_hps.counter_state.IDLE non_hps.counter_state.STOP non_hps.counter_state.INIT 
-non_hps.counter_state.INIT 0 0 0 0 
-non_hps.counter_state.STOP 0 0 1 1 
-non_hps.counter_state.IDLE 0 1 0 1 
-non_hps.counter_state.COUNT_CAL 1 0 0 1 
-
-State Machine - qsys_inst|intel_niosv_g_0|intel_niosv_g_0|dbg_mod|dm_inst|dm_state
-Name dm_state.CMD_EXE dm_state.RESUMING dm_state.EXE_PNDG dm_state.HALTED dm_state.HALTREQ dm_state.IDLE 
-dm_state.IDLE 0 0 0 0 0 0 
-dm_state.HALTREQ 0 0 0 0 1 1 
-dm_state.HALTED 0 0 0 1 0 1 
-dm_state.EXE_PNDG 0 0 1 0 0 1 
-dm_state.RESUMING 0 1 0 0 0 1 
-dm_state.CMD_EXE 1 0 0 0 0 1 
-
-State Machine - qsys_inst|mm_interconnect_0|msgdma_pr_descriptor_slave_burst_adapter|altera_merlin_burst_adapter_13_1.burst_adapter|state
-Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
-state.ST_IDLE 0 0 0 0 
-state.ST_UNCOMP_TRANS 1 0 1 0 
-state.ST_COMP_TRANS 1 0 0 1 
-state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
 State Machine - qsys_inst|mm_interconnect_0|intel_onchip_memory_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 

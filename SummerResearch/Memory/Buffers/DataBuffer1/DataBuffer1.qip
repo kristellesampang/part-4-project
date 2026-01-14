@@ -1,7 +1,7 @@
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOOL_NAME "QsysPrimePro"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOOL_VERSION "24.1"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOOL_ENV "QsysPrimePro"
-set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOOL_VENDOR_NAME "Altera Corporation"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_TOP_LEVEL_COMPONENT_NAME "ram_2port"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name PRE_COMPILED_MODULE "ON"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\DataBuffer1.ip"
@@ -37,12 +37,12 @@ set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMP
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_INTERNAL "Off"
-set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
 set_global_assignment -entity "DataBuffer1" -library "DataBuffer1" -name IP_COMPONENT_VERSION "MS4w"
 
 
 set_global_assignment -library "ram_2port_2041" -name VERILOG_FILE [file join $::quartus(qip_path) "ram_2port_2041/synth/DataBuffer1_ram_2port_2041_tqhxgji.v"]
-set_global_assignment -library "DataBuffer1" -name VHDL_FILE [file join $::quartus(qip_path) "synth/DataBuffer1.vhd"]
+set_global_assignment -library "DataBuffer1" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/DataBuffer1.v"]
 
 
 set_global_assignment -entity "DataBuffer1_ram_2port_2041_tqhxgji" -library "ram_2port_2041" -name IP_TOOL_NAME "ram_2port"

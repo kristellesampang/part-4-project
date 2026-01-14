@@ -7,6 +7,7 @@ entity SummerResearchTopLevel is
     port (
         -- Basic Clock/Reset
         CLK_50         : in  std_logic;
+        CLK_EMI : in  std_logic;
         BTN_RESET      : in  std_logic;
         BTN_START      : in  std_logic;
 
@@ -43,6 +44,8 @@ architecture rtl of SummerResearchTopLevel is
             clk_clk                        : in    std_logic                     := '0';
             reset_reset                    : in    std_logic                     := '0';
             pr_freeze_freeze               : out   std_logic;
+            sdram_global_reset_n_reset_n   : in    std_logic;
+            sdram_pll_ref_clk_clk          : in    std_logic                     := '0';
             sdram_pll_locked_pll_locked    : out   std_logic;
             ddr4_emif_oct_oct_rzqin        : in    std_logic                     := '0';
             ddr4_emif_mem_mem_ck           : out   std_logic_vector(0 downto 0);
@@ -115,8 +118,10 @@ begin
         port map (
             clk_clk                        => CLK_50,
             reset_reset                    => not BTN_RESET,
+            sdram_pll_ref_clk_clk          => CLK_EMI,
+
             pr_freeze_freeze               => pr_freeze_sig, -- Connects to NPU reset/ready
-            
+
             -- Direct DDR4 pin mapping
             ddr4_emif_oct_oct_rzqin        => ddr4_emif_oct_oct_rzqin,
             ddr4_emif_mem_mem_ck           => ddr4_emif_mem_mem_ck,
@@ -136,6 +141,7 @@ begin
             ddr4_emif_mem_mem_dq           => ddr4_emif_mem_mem_dq,
             ddr4_emif_mem_mem_dbi_n        => ddr4_emif_mem_mem_dbi_n,
             
+            sdram_global_reset_n_reset_n   => BTN_RESET,
             sdram_pll_locked_pll_locked    => open,
             sdram_status_local_cal_success => open,
             sdram_status_local_cal_fail    => open

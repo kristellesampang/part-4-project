@@ -8,14 +8,39 @@ Progress: Parameterizing module clock_in
 Progress: Parameterizing module intel_niosv_g_0
 Progress: Parameterizing module intel_onchip_memory_0
 Progress: Parameterizing module jtag_uart_0
+Progress: Parameterizing module msgdma_pr
+Progress: Parameterizing module pr_controller
 Progress: Parameterizing module reset_in
 Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Component Instantiation Warning: PR_Test_Top.intel_niosv_g_0: Warnings found in IP parameterization.
-Warning: PR_Test_Top.SDRAM.ctrl_amm_0: SDRAM.ctrl_amm_0 must be connected to an Avalon-MM host or exported
 Info: PR_Test_Top: "Transforming system: PR_Test_Top"
+Info: Inserting clock-crossing logic between cmd_demux.src0 and cmd_mux.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src1 and cmd_mux_001.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src3 and cmd_mux_003.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src5 and cmd_mux_005.sink0
+Info: Inserting clock-crossing logic between cmd_demux_001.src0 and cmd_mux.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src1 and cmd_mux_001.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src3 and cmd_mux_003.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src5 and cmd_mux_005.sink1
+Info: Inserting clock-crossing logic between cmd_demux_002.src2 and cmd_mux_005.sink2
+Info: Inserting clock-crossing logic between cmd_demux_003.src2 and cmd_mux_005.sink3
+Info: Inserting clock-crossing logic between cmd_demux_004.src0 and cmd_mux_002.sink4
+Info: Inserting clock-crossing logic between rsp_demux.src0 and rsp_mux.sink0
+Info: Inserting clock-crossing logic between rsp_demux.src1 and rsp_mux_001.sink0
+Info: Inserting clock-crossing logic between rsp_demux_001.src0 and rsp_mux.sink1
+Info: Inserting clock-crossing logic between rsp_demux_001.src1 and rsp_mux_001.sink1
+Info: Inserting clock-crossing logic between rsp_demux_002.src4 and rsp_mux_004.sink0
+Info: Inserting clock-crossing logic between rsp_demux_003.src0 and rsp_mux.sink3
+Info: Inserting clock-crossing logic between rsp_demux_003.src1 and rsp_mux_001.sink3
+Info: Inserting clock-crossing logic between rsp_demux_005.src0 and rsp_mux.sink5
+Info: Inserting clock-crossing logic between rsp_demux_005.src1 and rsp_mux_001.sink5
+Info: Inserting clock-crossing logic between rsp_demux_005.src2 and rsp_mux_002.sink2
+Info: Inserting clock-crossing logic between rsp_demux_005.src3 and rsp_mux_003.sink2
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has address signal 32 bit wide, but the slave is 4 bit wide.
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has byteenable signal 4 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has burstcount signal 2 bit wide, but the slave is 0 bit wide.
 Info: PR_Test_Top: "Naming system components in system: PR_Test_Top"
 Info: PR_Test_Top: "Processing generation queue"
 Info: PR_Test_Top: "Generating: PR_Test_Top"
@@ -24,34 +49,67 @@ Info: PR_Test_Top: "Generating: PR_Test_Top_clock_in"
 Info: PR_Test_Top: "Generating: PR_Test_Top_intel_niosv_g_0"
 Info: PR_Test_Top: "Generating: PR_Test_Top_intel_onchip_memory_0"
 Info: PR_Test_Top: "Generating: PR_Test_Top_jtag_uart_0"
+Info: PR_Test_Top: "Generating: mSGDMA_PR"
+Info: PR_Test_Top: "Generating: PR_Test_Top_alt_pr_1"
 Info: PR_Test_Top: "Generating: PR_Test_Top_reset_in"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_ho7sqxa"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_mapper_2001_ghcid5i"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_l44q6ua"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_lu2bh2a"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_mapper_2001_jwgfgva"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_clock_crosser_2000_65i6gcy"
 Info: PR_Test_Top: "Generating: altera_reset_controller"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_axi_translator_1950_sjnedva"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_master_translator_192_lykd4la"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_slave_translator_191_x56fcki"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_axi_master_ni_1980_4qd7sla"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_master_agent_1922_fy3n5ti"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_slave_agent_1921_b6r3djy"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_avalon_sc_fifo_1932_5j7ufsq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_6n6pnsq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_zojnl5i"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_bziz2oq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_ugpjvea"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_1921_7c7jj4q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_aczduwy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_jpyigvy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_fbmlooy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_elltwyq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_pyqv4gi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_ijyertq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_usdvqsq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_1921_rcjihci"
 Info: my_altera_avalon_sc_fifo_dest_id_fifo: "Generating: my_altera_avalon_sc_fifo_dest_id_fifo"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_whxnvmi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_ozaqjha"
 Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_37cgyry"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_ge4sdza"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_npoxlmq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_so763ra"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_l2pgmgq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_nkkbquq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_aaxrxoq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_altera_avalon_sc_fifo_1921_xbo52nq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_urolo3y"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_ocwgcva"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_tgpsj6a"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_zm7bfmy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_4u2nvya"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_npj6pbi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_cffvf2a"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_xrgrxhi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_kwx76cq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_zpzy7nq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_qk66dhi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_3idxxmy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_yw2xozq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_v7rg6uq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_s45dz7q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_z6ljz5i"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_ovclcga"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_bhai2hi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_jgd4rma"
+Info: PR_Test_Top: "Generating: PR_Test_Top_hs_clk_xer_1940_ko3tpsi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_pfltgpa"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_e4osxtq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_4owamsy"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_4bpriii"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_huaylbq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_cterxoq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_altera_avalon_sc_fifo_1921_gtrd7va"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_mkcu6ty"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_qyl5faa"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_bsdmb6q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_35wbikq"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_avalon_st_pipeline_stage_1930_bv2ucky"
-Info: PR_Test_Top: Done "PR_Test_Top" with 31 modules, 56 files
+Info: PR_Test_Top: Done "PR_Test_Top" with 61 modules, 135 files
 Info: Generating the following file(s) for MODELSIM simulator in C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/PR_Test_Top/sim/ directory:
 Info: 	common/modelsim_files.tcl
 Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/PR_Test_Top/sim/.
@@ -73,13 +131,13 @@ Progress: Parameterizing module clock_in
 Progress: Parameterizing module intel_niosv_g_0
 Progress: Parameterizing module intel_onchip_memory_0
 Progress: Parameterizing module jtag_uart_0
+Progress: Parameterizing module msgdma_pr
+Progress: Parameterizing module pr_controller
 Progress: Parameterizing module reset_in
 Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Component Instantiation Warning: PR_Test_Top.intel_niosv_g_0: Warnings found in IP parameterization.
-Warning: PR_Test_Top.SDRAM.ctrl_amm_0: SDRAM.ctrl_amm_0 must be connected to an Avalon-MM host or exported
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
@@ -91,14 +149,39 @@ Progress: Parameterizing module clock_in
 Progress: Parameterizing module intel_niosv_g_0
 Progress: Parameterizing module intel_onchip_memory_0
 Progress: Parameterizing module jtag_uart_0
+Progress: Parameterizing module msgdma_pr
+Progress: Parameterizing module pr_controller
 Progress: Parameterizing module reset_in
 Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Component Instantiation Warning: PR_Test_Top.intel_niosv_g_0: Warnings found in IP parameterization.
-Warning: PR_Test_Top.SDRAM.ctrl_amm_0: SDRAM.ctrl_amm_0 must be connected to an Avalon-MM host or exported
 Info: PR_Test_Top: "Transforming system: PR_Test_Top"
+Info: Inserting clock-crossing logic between cmd_demux.src0 and cmd_mux.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src1 and cmd_mux_001.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src3 and cmd_mux_003.sink0
+Info: Inserting clock-crossing logic between cmd_demux.src5 and cmd_mux_005.sink0
+Info: Inserting clock-crossing logic between cmd_demux_001.src0 and cmd_mux.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src1 and cmd_mux_001.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src3 and cmd_mux_003.sink1
+Info: Inserting clock-crossing logic between cmd_demux_001.src5 and cmd_mux_005.sink1
+Info: Inserting clock-crossing logic between cmd_demux_002.src2 and cmd_mux_005.sink2
+Info: Inserting clock-crossing logic between cmd_demux_003.src2 and cmd_mux_005.sink3
+Info: Inserting clock-crossing logic between cmd_demux_004.src0 and cmd_mux_002.sink4
+Info: Inserting clock-crossing logic between rsp_demux.src0 and rsp_mux.sink0
+Info: Inserting clock-crossing logic between rsp_demux.src1 and rsp_mux_001.sink0
+Info: Inserting clock-crossing logic between rsp_demux_001.src0 and rsp_mux.sink1
+Info: Inserting clock-crossing logic between rsp_demux_001.src1 and rsp_mux_001.sink1
+Info: Inserting clock-crossing logic between rsp_demux_002.src4 and rsp_mux_004.sink0
+Info: Inserting clock-crossing logic between rsp_demux_003.src0 and rsp_mux.sink3
+Info: Inserting clock-crossing logic between rsp_demux_003.src1 and rsp_mux_001.sink3
+Info: Inserting clock-crossing logic between rsp_demux_005.src0 and rsp_mux.sink5
+Info: Inserting clock-crossing logic between rsp_demux_005.src1 and rsp_mux_001.sink5
+Info: Inserting clock-crossing logic between rsp_demux_005.src2 and rsp_mux_002.sink2
+Info: Inserting clock-crossing logic between rsp_demux_005.src3 and rsp_mux_003.sink2
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has address signal 32 bit wide, but the slave is 4 bit wide.
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has byteenable signal 4 bit wide, but the slave is 0 bit wide.
+Info: Interconnect is inserted between master msgdma_pr.mm_write and slave pr_controller.avmm_slave because the master has burstcount signal 2 bit wide, but the slave is 0 bit wide.
 Info: PR_Test_Top: "Naming system components in system: PR_Test_Top"
 Info: PR_Test_Top: "Processing generation queue"
 Info: PR_Test_Top: "Generating: PR_Test_Top"
@@ -107,32 +190,65 @@ Info: PR_Test_Top: "Generating: PR_Test_Top_clock_in"
 Info: PR_Test_Top: "Generating: PR_Test_Top_intel_niosv_g_0"
 Info: PR_Test_Top: "Generating: PR_Test_Top_intel_onchip_memory_0"
 Info: PR_Test_Top: "Generating: PR_Test_Top_jtag_uart_0"
+Info: PR_Test_Top: "Generating: mSGDMA_PR"
+Info: PR_Test_Top: "Generating: PR_Test_Top_alt_pr_1"
 Info: PR_Test_Top: "Generating: PR_Test_Top_reset_in"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_ho7sqxa"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_mapper_2001_ghcid5i"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_l44q6ua"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_mm_interconnect_1920_lu2bh2a"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_mapper_2001_jwgfgva"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_irq_clock_crosser_2000_65i6gcy"
 Info: PR_Test_Top: "Generating: altera_reset_controller"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_axi_translator_1950_sjnedva"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_master_translator_192_lykd4la"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_slave_translator_191_x56fcki"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_axi_master_ni_1980_4qd7sla"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_master_agent_1922_fy3n5ti"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_slave_agent_1921_b6r3djy"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_avalon_sc_fifo_1932_5j7ufsq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_6n6pnsq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_zojnl5i"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_bziz2oq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_ugpjvea"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_1921_7c7jj4q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_aczduwy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_jpyigvy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_fbmlooy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_elltwyq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_pyqv4gi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_ijyertq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_usdvqsq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_1921_rcjihci"
 Info: my_altera_avalon_sc_fifo_dest_id_fifo: "Generating: my_altera_avalon_sc_fifo_dest_id_fifo"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_whxnvmi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_ozaqjha"
 Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_37cgyry"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_ge4sdza"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_npoxlmq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_so763ra"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_l2pgmgq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_nkkbquq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_aaxrxoq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_altera_avalon_sc_fifo_1921_xbo52nq"
-Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_urolo3y"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_ocwgcva"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_tgpsj6a"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_zm7bfmy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_4u2nvya"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_npj6pbi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_cffvf2a"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_xrgrxhi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_kwx76cq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_zpzy7nq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_qk66dhi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_3idxxmy"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_yw2xozq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_v7rg6uq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_s45dz7q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_z6ljz5i"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_ovclcga"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_bhai2hi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_width_adapter_1940_jgd4rma"
+Info: PR_Test_Top: "Generating: PR_Test_Top_hs_clk_xer_1940_ko3tpsi"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_pfltgpa"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_router_1921_e4osxtq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_1932_4owamsy"
+Info: my_altera_avalon_st_pipeline_stage: "Generating: my_altera_avalon_st_pipeline_stage"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_demultiplexer_1921_4bpriii"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_huaylbq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_multiplexer_1922_cterxoq"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_traffic_limiter_altera_avalon_sc_fifo_1921_gtrd7va"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_mkcu6ty"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_qyl5faa"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_bsdmb6q"
+Info: PR_Test_Top: "Generating: PR_Test_Top_altera_merlin_burst_adapter_altera_avalon_st_pipeline_stage_1932_35wbikq"
 Info: PR_Test_Top: "Generating: PR_Test_Top_altera_avalon_st_pipeline_stage_1930_bv2ucky"
-Info: PR_Test_Top: Done "PR_Test_Top" with 31 modules, 43 files
+Info: PR_Test_Top: Done "PR_Test_Top" with 61 modules, 112 files
 Info: Finished: Create HDL design files for synthesis

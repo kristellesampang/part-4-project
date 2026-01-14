@@ -42,7 +42,7 @@ set_global_assignment -entity "OutputBuffer" -library "OutputBuffer" -name IP_CO
 
 
 set_global_assignment -library "ram_2port_2041" -name VERILOG_FILE [file join $::quartus(qip_path) "ram_2port_2041/synth/OutputBuffer_ram_2port_2041_375fvbi.v"]
-set_global_assignment -library "OutputBuffer" -name VHDL_FILE [file join $::quartus(qip_path) "synth/OutputBuffer.vhd"]
+set_global_assignment -library "OutputBuffer" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/OutputBuffer.v"]
 
 
 set_global_assignment -entity "OutputBuffer_ram_2port_2041_375fvbi" -library "ram_2port_2041" -name IP_TOOL_NAME "ram_2port"

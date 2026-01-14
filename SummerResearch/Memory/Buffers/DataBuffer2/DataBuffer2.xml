@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.12.15.18:12:24"
+ date="2026.01.13.16:03:26"
  outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/Memory/Buffers/DataBuffer2/">
  <perimeter>
   <parameter
@@ -143,12 +143,12 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\DataBuffer2\synth\DataBuffer2.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\DataBuffer2\synth\DataBuffer2.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\DataBuffer2\synth\DataBuffer2.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\Memory\Buffers\DataBuffer2\synth\DataBuffer2.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>

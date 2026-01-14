@@ -221,9 +221,19 @@ https://fpgasoftware.intel.com/eula.-->
  <interface name="pr_status" internal="pr_controller.status" />
  <interface name="reset" internal="reset_in.in_reset" type="reset" dir="end" />
  <interface
+   name="sdram_global_reset_n"
+   internal="SDRAM.global_reset_n"
+   type="reset"
+   dir="end" />
+ <interface
    name="sdram_pll_locked"
    internal="SDRAM.pll_locked"
    type="conduit"
+   dir="end" />
+ <interface
+   name="sdram_pll_ref_clk"
+   internal="SDRAM.pll_ref_clk"
+   type="clock"
    dir="end" />
  <interface name="sdram_status" internal="SDRAM.status" type="conduit" dir="end" />
  <module
@@ -3703,7 +3713,7 @@ https://fpgasoftware.intel.com/eula.-->
                     <consumedSystemInfos>
                         <entry>
                             <key>CLOCK_DOMAIN</key>
-                            <value>3</value>
+                            <value>5</value>
                         </entry>
                         <entry>
                             <key>CLOCK_RATE</key>
@@ -3711,7 +3721,7 @@ https://fpgasoftware.intel.com/eula.-->
                         </entry>
                         <entry>
                             <key>RESET_DOMAIN</key>
-                            <value>3</value>
+                            <value>5</value>
                         </entry>
                     </consumedSystemInfos>
                 </value>
@@ -12014,11 +12024,6 @@ https://fpgasoftware.intel.com/eula.-->
    start="clock_in.out_clk"
    end="msgdma_pr.clock" />
  <connection
-   kind="clock"
-   version="24.1"
-   start="clock_in.out_clk"
-   end="SDRAM.pll_ref_clk" />
- <connection
    kind="interrupt"
    version="24.1"
    start="intel_niosv_g_0.platform_irq_rx"
@@ -12049,11 +12054,6 @@ https://fpgasoftware.intel.com/eula.-->
    version="24.1"
    start="SDRAM.emif_usr_reset_n"
    end="intel_niosv_g_0.reset" />
- <connection
-   kind="reset"
-   version="24.1"
-   start="reset_in.out_reset"
-   end="SDRAM.global_reset_n" />
  <connection
    kind="reset"
    version="24.1"

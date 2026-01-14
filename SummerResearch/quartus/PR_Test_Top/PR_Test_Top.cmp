@@ -1,5 +1,7 @@
 	component PR_Test_Top is
 		port (
+			sdram_global_reset_n_reset_n   : in    std_logic                     := 'X';             -- reset_n
+			sdram_pll_ref_clk_clk          : in    std_logic                     := 'X';             -- clk
 			sdram_pll_locked_pll_locked    : out   std_logic;                                        -- pll_locked
 			ddr4_emif_oct_oct_rzqin        : in    std_logic                     := 'X';             -- oct_rzqin
 			ddr4_emif_mem_mem_ck           : out   std_logic_vector(0 downto 0);                     -- mem_ck

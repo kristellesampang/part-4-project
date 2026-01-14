@@ -1,4 +1,4 @@
-# system info mSGDMA_PR on 2026.01.06.14:05:23
+# system info mSGDMA_PR on 2026.01.13.18:56:41
 system_info:
 name,value
 DEVICE,10AS066N3F40E2SG
@@ -6,7 +6,7 @@ DEVICE_FAMILY,Arria 10
 GENERATION_ID,0
 #
 #
-# Files generated for mSGDMA_PR on 2026.01.06.14:05:23
+# Files generated for mSGDMA_PR on 2026.01.13.18:56:41
 files:
 filepath,kind,attributes,module,is_top
 sim/mSGDMA_PR.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,mSGDMA_PR,true

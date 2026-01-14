@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.01.06.14:05:32"
+ date="2026.01.13.18:56:52"
  outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_intel_niosv_g_0/">
  <perimeter>
   <parameter
@@ -590,7 +590,7 @@
   <parameter name="itcm2Size" value="0" />
   <parameter name="clockFrequency" value="266666665" />
   <parameter name="resetOffset" value="0" />
-  <parameter name="AUTO_CLK_RESET_DOMAIN" value="3" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="5" />
   <parameter name="itcm1Base" value="0" />
   <parameter name="mnemonic" value="" />
   <parameter
@@ -618,7 +618,7 @@
   <parameter name="peripheralRegionABase" value="-2147287040" />
   <parameter name="peripheralRegionBSize" value="65536" />
   <parameter name="funct7_l" value="" />
-  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="3" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="5" />
   <parameter name="dataCacheSize" value="4096" />
   <parameter name="dtcm1Size" value="0" />
   <generatedFiles>

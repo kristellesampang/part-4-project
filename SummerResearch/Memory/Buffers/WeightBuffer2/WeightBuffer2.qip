@@ -42,7 +42,7 @@ set_global_assignment -entity "WeightBuffer2" -library "WeightBuffer2" -name IP_
 
 
 set_global_assignment -library "ram_2port_2041" -name VERILOG_FILE [file join $::quartus(qip_path) "ram_2port_2041/synth/WeightBuffer2_ram_2port_2041_vfiw6ja.v"]
-set_global_assignment -library "WeightBuffer2" -name VHDL_FILE [file join $::quartus(qip_path) "synth/WeightBuffer2.vhd"]
+set_global_assignment -library "WeightBuffer2" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/WeightBuffer2.v"]
 
 
 set_global_assignment -entity "WeightBuffer2_ram_2port_2041_vfiw6ja" -library "ram_2port_2041" -name IP_TOOL_NAME "ram_2port"

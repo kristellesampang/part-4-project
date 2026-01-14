@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="PR_Test_Top" kind="PR_Test_Top" version="1.0" fabric="QSYS">
  <!-- Format version 24.1 115 (Future versions may contain additional information.) -->
- <!-- 2026.01.06.14:05:35 -->
+ <!-- 2026.01.13.18:56:54 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -56,6 +56,36 @@
   <visible>false</visible>
   <valid>true</valid>
   <sysinfo_type>BOARD</sysinfo_type>
+ </parameter>
+ <parameter name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_RATE">
+  <type>java.lang.Long</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_RATE</sysinfo_type>
+  <sysinfo_arg>sdram_pll_ref_clk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_SDRAM_PLL_REF_CLK_CLOCK_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
+  <sysinfo_arg>sdram_pll_ref_clk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_SDRAM_PLL_REF_CLK_RESET_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>RESET_DOMAIN</sysinfo_type>
+  <sysinfo_arg>sdram_pll_ref_clk</sysinfo_arg>
  </parameter>
  <parameter name="AUTO_CLK_CLOCK_RATE">
   <type>java.lang.Long</type>
@@ -3614,12 +3644,6 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>clock</slaveName>
     <name>msgdma_pr.clock</name>
    </clockDomainMember>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>SDRAM</moduleName>
-    <slaveName>pll_ref_clk</slaveName>
-    <name>SDRAM.pll_ref_clk</name>
-   </clockDomainMember>
   </interface>
  </module>
  <module
@@ -5314,7 +5338,7 @@ the requested settings for a module instance. -->
                     <consumedSystemInfos>
                         <entry>
                             <key>CLOCK_DOMAIN</key>
-                            <value>3</value>
+                            <value>5</value>
                         </entry>
                         <entry>
                             <key>CLOCK_RATE</key>
@@ -5322,7 +5346,7 @@ the requested settings for a module instance. -->
                         </entry>
                         <entry>
                             <key>RESET_DOMAIN</key>
-                            <value>3</value>
+                            <value>5</value>
                         </entry>
                     </consumedSystemInfos>
                 </value>
@@ -7132,7 +7156,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_CLOCK_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -7142,7 +7166,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_RESET_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -22985,7 +23009,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="clockDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -22994,7 +23018,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="resetDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>3</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -23347,69 +23371,6 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>clock</endConnectionPoint>
  </connection>
  <connection
-   name="clock_in.out_clk/SDRAM.pll_ref_clk"
-   kind="clock"
-   version="24.1"
-   start="clock_in.out_clk"
-   end="SDRAM.pll_ref_clk">
-  <parameter name="clockRateSysInfo">
-   <type>java.lang.Long</type>
-   <value>50000000</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_RATE</sysinfo_type>
-  </parameter>
-  <parameter name="clockDomainSysInfo">
-   <type>java.lang.Integer</type>
-   <value>1</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
-  </parameter>
-  <parameter name="resetDomainSysInfo">
-   <type>java.lang.Integer</type>
-   <value>1</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>RESET_DOMAIN</sysinfo_type>
-  </parameter>
-  <parameter name="clockResetSysInfo">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_RESET_INFO</sysinfo_type>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>clock_in</startModule>
-  <startConnectionPoint>out_clk</startConnectionPoint>
-  <endModule>SDRAM</endModule>
-  <endConnectionPoint>pll_ref_clk</endConnectionPoint>
- </connection>
- <connection
    name="intel_niosv_g_0.platform_irq_rx/msgdma_pr.csr_irq"
    kind="interrupt"
    version="24.1"
@@ -23549,7 +23510,7 @@ parameters are a RESULT of the module parameters. -->
    end="intel_niosv_g_0.ndm_reset_in">
   <parameter name="resetDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>5</value>
+   <value>7</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -23558,7 +23519,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="clockDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>5</value>
+   <value>7</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -23603,7 +23564,7 @@ parameters are a RESULT of the module parameters. -->
    end="intel_niosv_g_0.reset">
   <parameter name="resetDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>4</value>
+   <value>6</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -23612,7 +23573,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="clockDomainSysInfo">
    <type>java.lang.Integer</type>
-   <value>4</value>
+   <value>6</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -23648,60 +23609,6 @@ parameters are a RESULT of the module parameters. -->
   <startConnectionPoint>emif_usr_reset_n</startConnectionPoint>
   <endModule>intel_niosv_g_0</endModule>
   <endConnectionPoint>reset</endConnectionPoint>
- </connection>
- <connection
-   name="reset_in.out_reset/SDRAM.global_reset_n"
-   kind="reset"
-   version="24.1"
-   start="reset_in.out_reset"
-   end="SDRAM.global_reset_n">
-  <parameter name="resetDomainSysInfo">
-   <type>java.lang.Integer</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>RESET_DOMAIN</sysinfo_type>
-  </parameter>
-  <parameter name="clockDomainSysInfo">
-   <type>java.lang.Integer</type>
-   <value>2</value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
-  </parameter>
-  <parameter name="clockResetSysInfo">
-   <type>java.lang.String</type>
-   <value></value>
-   <derived>true</derived>
-   <enabled>true</enabled>
-   <visible>false</visible>
-   <valid>true</valid>
-   <sysinfo_type>CLOCK_RESET_INFO</sysinfo_type>
-  </parameter>
-  <parameter name="deviceFamily">
-   <type>java.lang.String</type>
-   <value>UNKNOWN</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="generateLegacySim">
-   <type>boolean</type>
-   <value>false</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <startModule>reset_in</startModule>
-  <startConnectionPoint>out_reset</startConnectionPoint>
-  <endModule>SDRAM</endModule>
-  <endConnectionPoint>global_reset_n</endConnectionPoint>
  </connection>
  <connection
    name="reset_in.out_reset/pr_controller.nreset"
@@ -24070,7 +23977,7 @@ parameters are a RESULT of the module parameters. -->
   <version>24.1</version>
  </plugin>
  <plugin>
-  <instanceCount>7</instanceCount>
+  <instanceCount>6</instanceCount>
   <name>clock</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>
@@ -24086,7 +23993,7 @@ parameters are a RESULT of the module parameters. -->
   <version>24.1</version>
  </plugin>
  <plugin>
-  <instanceCount>8</instanceCount>
+  <instanceCount>7</instanceCount>
   <name>reset</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

@@ -3879,7 +3879,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -3887,7 +3887,7 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -12408,7 +12408,6 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:connection altera:kind="clock" altera:version="24.1" altera:start="clock_in.out_clk" altera:end="pr_controller.clk"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="24.1" altera:start="clock_in.out_clk" altera:end="intel_onchip_memory_0.clk1"></altera:connection>
       <altera:connection altera:kind="clock" altera:version="24.1" altera:start="clock_in.out_clk" altera:end="msgdma_pr.clock"></altera:connection>
-      <altera:connection altera:kind="clock" altera:version="24.1" altera:start="clock_in.out_clk" altera:end="SDRAM.pll_ref_clk"></altera:connection>
       <altera:connection altera:kind="interrupt" altera:version="24.1" altera:start="intel_niosv_g_0.platform_irq_rx" altera:end="msgdma_pr.csr_irq">
         <altera:connection_parameter altera:parameter_name="irqNumber" altera:parameter_value="1"></altera:connection_parameter>
       </altera:connection>
@@ -12420,7 +12419,6 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:connection>
       <altera:connection altera:kind="reset" altera:version="24.1" altera:start="intel_niosv_g_0.dbg_reset_out" altera:end="intel_niosv_g_0.ndm_reset_in"></altera:connection>
       <altera:connection altera:kind="reset" altera:version="24.1" altera:start="SDRAM.emif_usr_reset_n" altera:end="intel_niosv_g_0.reset"></altera:connection>
-      <altera:connection altera:kind="reset" altera:version="24.1" altera:start="reset_in.out_reset" altera:end="SDRAM.global_reset_n"></altera:connection>
       <altera:connection altera:kind="reset" altera:version="24.1" altera:start="reset_in.out_reset" altera:end="pr_controller.nreset"></altera:connection>
       <altera:connection altera:kind="reset" altera:version="24.1" altera:start="reset_in.out_reset" altera:end="intel_niosv_g_0.reset"></altera:connection>
       <altera:connection altera:kind="reset" altera:version="24.1" altera:start="reset_in.out_reset" altera:end="jtag_uart_0.reset"></altera:connection>
@@ -12594,7 +12592,9 @@ https://fpgasoftware.intel.com/eula.-->
       <altera:interface_mapping altera:name="pr_start" altera:internal="pr_controller.pr_start"></altera:interface_mapping>
       <altera:interface_mapping altera:name="pr_status" altera:internal="pr_controller.status"></altera:interface_mapping>
       <altera:interface_mapping altera:name="reset" altera:internal="reset_in.in_reset" altera:type="reset" altera:dir="end"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="sdram_global_reset_n" altera:internal="SDRAM.global_reset_n" altera:type="reset" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="sdram_pll_locked" altera:internal="SDRAM.pll_locked" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="sdram_pll_ref_clk" altera:internal="SDRAM.pll_ref_clk" altera:type="clock" altera:dir="end"></altera:interface_mapping>
       <altera:interface_mapping altera:name="sdram_status" altera:internal="SDRAM.status" altera:type="conduit" altera:dir="end"></altera:interface_mapping>
     </altera:altera_interface_boundary>
     <ipxact:components>

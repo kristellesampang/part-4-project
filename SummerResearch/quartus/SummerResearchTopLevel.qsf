@@ -114,3 +114,19 @@ set_instance_assignment -name RESERVE_ROUTE_REGION ON -to npu_core
 set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to CLK_50 -entity SummerResearchTopLevel
 set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to CLK_50
 set_global_assignment -name OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING NORMAL
+set_location_assignment PIN_F5 -to CLK_50 -comment IOBANK_3G
+set_instance_assignment -name IO_STANDARD LVDS -to CLK_EMI -entity SummerResearchTopLevel
+set_location_assignment PIN_AG5 -to CLK_EMI
+set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to CLK_EMI -entity SummerResearchTopLevel
+set_location_assignment PIN_AK3 -to ddr4_emif_mem_mem_a[8]
+set_location_assignment PIN_AF5 -to ddr4_emif_mem_mem_ba[0]
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_ba[0] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[7] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[8] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[5] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[6] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[2] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[3] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[4] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[1] -entity SummerResearchTopLevel
+set_instance_assignment -name IO_STANDARD "SSTL-12" -to ddr4_emif_mem_mem_a[0] -entity SummerResearchTopLevel

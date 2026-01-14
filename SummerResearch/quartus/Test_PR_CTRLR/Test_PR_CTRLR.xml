@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2025.12.18.14:57:47"
+ date="2026.01.13.16:03:25"
  outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/Test_PR_CTRLR/">
  <perimeter>
   <parameter
@@ -170,12 +170,12 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.vhd"
+       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\Test_PR_CTRLR\synth\Test_PR_CTRLR.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>

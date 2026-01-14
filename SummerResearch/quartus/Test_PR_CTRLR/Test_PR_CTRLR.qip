@@ -60,7 +60,7 @@ set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join
 set_global_assignment -library "alt_pr_1911" -name VERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_clk_mux.v"]
 set_global_assignment -library "alt_pr_1911" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr_cb_interface.sv"]
 set_global_assignment -library "alt_pr_1911" -name SDC_FILE [file join $::quartus(qip_path) "alt_pr_1911/synth/rtl/alt_pr.sdc"]
-set_global_assignment -library "Test_PR_CTRLR" -name VHDL_FILE [file join $::quartus(qip_path) "synth/Test_PR_CTRLR.vhd"]
+set_global_assignment -library "Test_PR_CTRLR" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/Test_PR_CTRLR.v"]
 
 
 set_global_assignment -entity "alt_pr" -library "alt_pr_1911" -name IP_TOOL_NAME "alt_pr"

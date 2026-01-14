@@ -1789,11 +1789,11 @@
             <parameters>
               <parameter>
                 <name>clockDomainSysInfo</name>
-                <value>3</value>
+                <value>5</value>
               </parameter>
               <parameter>
                 <name>resetDomainSysInfo</name>
-                <value>3</value>
+                <value>5</value>
               </parameter>
               <parameter>
                 <name>clockResetSysInfo</name>
@@ -2030,31 +2030,6 @@
           <incidentConnection>
             <parameters>
               <parameter>
-                <name>clockDomainSysInfo</name>
-                <value>1</value>
-              </parameter>
-              <parameter>
-                <name>resetDomainSysInfo</name>
-                <value>1</value>
-              </parameter>
-              <parameter>
-                <name>clockResetSysInfo</name>
-                <value></value>
-              </parameter>
-              <parameter>
-                <name>clockRateSysInfo</name>
-                <value>50000000</value>
-              </parameter>
-            </parameters>
-            <interconnectAssignments></interconnectAssignments>
-            <className>clock</className>
-            <version>24.1</version>
-            <end>SDRAM/pll_ref_clk</end>
-            <start>clock_in/out_clk</start>
-          </incidentConnection>
-          <incidentConnection>
-            <parameters>
-              <parameter>
                 <name>defaultConnection</name>
                 <value>false</value>
               </parameter>
@@ -2148,27 +2123,6 @@
             <version>24.1</version>
             <end>SDRAM/ctrl_amm_0</end>
             <start>mm_interconnect_0/SDRAM_ctrl_amm_0</start>
-          </incidentConnection>
-          <incidentConnection>
-            <parameters>
-              <parameter>
-                <name>resetDomainSysInfo</name>
-                <value>2</value>
-              </parameter>
-              <parameter>
-                <name>clockDomainSysInfo</name>
-                <value>2</value>
-              </parameter>
-              <parameter>
-                <name>clockResetSysInfo</name>
-                <value></value>
-              </parameter>
-            </parameters>
-            <interconnectAssignments></interconnectAssignments>
-            <className>reset</className>
-            <version>24.1</version>
-            <end>SDRAM/global_reset_n</end>
-            <start>reset_in/out_reset</start>
           </incidentConnection>
         </incidentConnections>
         <path>PR_Test_Top.SDRAM</path>
@@ -2478,31 +2432,6 @@
         <fixedName>PR_Test_Top_clock_in</fixedName>
         <nonce>0</nonce>
         <incidentConnections>
-          <incidentConnection>
-            <parameters>
-              <parameter>
-                <name>clockDomainSysInfo</name>
-                <value>1</value>
-              </parameter>
-              <parameter>
-                <name>resetDomainSysInfo</name>
-                <value>1</value>
-              </parameter>
-              <parameter>
-                <name>clockResetSysInfo</name>
-                <value></value>
-              </parameter>
-              <parameter>
-                <name>clockRateSysInfo</name>
-                <value>50000000</value>
-              </parameter>
-            </parameters>
-            <interconnectAssignments></interconnectAssignments>
-            <className>clock</className>
-            <version>24.1</version>
-            <end>SDRAM/pll_ref_clk</end>
-            <start>clock_in/out_clk</start>
-          </incidentConnection>
           <incidentConnection>
             <parameters>
               <parameter>
@@ -2843,11 +2772,11 @@
           </parameter>
           <parameter>
             <name>AUTO_CLK_CLOCK_DOMAIN</name>
-            <value>3</value>
+            <value>5</value>
           </parameter>
           <parameter>
             <name>AUTO_CLK_RESET_DOMAIN</name>
-            <value>3</value>
+            <value>5</value>
           </parameter>
           <parameter>
             <name>AUTO_DATA_MANAGER_ADDRESS_WIDTH</name>
@@ -4402,7 +4331,7 @@
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;CLOCK_RATE&lt;/key&gt;
@@ -4410,7 +4339,7 @@
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                            &lt;value&gt;3&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                     &lt;/consumedSystemInfos&gt;
                 &lt;/value&gt;
@@ -6186,11 +6115,11 @@
             <parameters>
               <parameter>
                 <name>clockDomainSysInfo</name>
-                <value>3</value>
+                <value>5</value>
               </parameter>
               <parameter>
                 <name>resetDomainSysInfo</name>
-                <value>3</value>
+                <value>5</value>
               </parameter>
               <parameter>
                 <name>clockResetSysInfo</name>
@@ -6308,15 +6237,15 @@
             <parameters>
               <parameter>
                 <name>clockDomainSysInfo</name>
-                <value>5</value>
-              </parameter>
-              <parameter>
-                <name>resetDomainSysInfo</name>
-                <value>5</value>
+                <value>7</value>
               </parameter>
               <parameter>
                 <name>clockResetSysInfo</name>
                 <value></value>
+              </parameter>
+              <parameter>
+                <name>resetDomainSysInfo</name>
+                <value>7</value>
               </parameter>
             </parameters>
             <interconnectAssignments></interconnectAssignments>
@@ -71550,27 +71479,6 @@
             <version>24.1</version>
             <end>reset_in/clk</end>
             <start>clock_in/out_clk</start>
-          </incidentConnection>
-          <incidentConnection>
-            <parameters>
-              <parameter>
-                <name>resetDomainSysInfo</name>
-                <value>2</value>
-              </parameter>
-              <parameter>
-                <name>clockDomainSysInfo</name>
-                <value>2</value>
-              </parameter>
-              <parameter>
-                <name>clockResetSysInfo</name>
-                <value></value>
-              </parameter>
-            </parameters>
-            <interconnectAssignments></interconnectAssignments>
-            <className>reset</className>
-            <version>24.1</version>
-            <end>SDRAM/global_reset_n</end>
-            <start>reset_in/out_reset</start>
           </incidentConnection>
           <incidentConnection>
             <parameters>

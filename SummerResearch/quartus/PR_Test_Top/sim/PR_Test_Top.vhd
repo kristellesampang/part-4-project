@@ -23,29 +23,31 @@ use PR_Test_Top.pr_test_top_rst_controller_002;
 
 entity PR_Test_Top is
 	port (
-		sdram_pll_locked_pll_locked    : out   std_logic;                                        -- sdram_pll_locked.pll_locked
-		ddr4_emif_oct_oct_rzqin        : in    std_logic                     := '0';             --    ddr4_emif_oct.oct_rzqin
-		ddr4_emif_mem_mem_ck           : out   std_logic_vector(0 downto 0);                     --    ddr4_emif_mem.mem_ck
-		ddr4_emif_mem_mem_ck_n         : out   std_logic_vector(0 downto 0);                     --                 .mem_ck_n
-		ddr4_emif_mem_mem_a            : out   std_logic_vector(16 downto 0);                    --                 .mem_a
-		ddr4_emif_mem_mem_act_n        : out   std_logic_vector(0 downto 0);                     --                 .mem_act_n
-		ddr4_emif_mem_mem_ba           : out   std_logic_vector(1 downto 0);                     --                 .mem_ba
-		ddr4_emif_mem_mem_bg           : out   std_logic_vector(0 downto 0);                     --                 .mem_bg
-		ddr4_emif_mem_mem_cke          : out   std_logic_vector(0 downto 0);                     --                 .mem_cke
-		ddr4_emif_mem_mem_cs_n         : out   std_logic_vector(0 downto 0);                     --                 .mem_cs_n
-		ddr4_emif_mem_mem_odt          : out   std_logic_vector(0 downto 0);                     --                 .mem_odt
-		ddr4_emif_mem_mem_reset_n      : out   std_logic_vector(0 downto 0);                     --                 .mem_reset_n
-		ddr4_emif_mem_mem_par          : out   std_logic_vector(0 downto 0);                     --                 .mem_par
-		ddr4_emif_mem_mem_alert_n      : in    std_logic_vector(0 downto 0)  := (others => '0'); --                 .mem_alert_n
-		ddr4_emif_mem_mem_dqs          : inout std_logic_vector(7 downto 0)  := (others => '0'); --                 .mem_dqs
-		ddr4_emif_mem_mem_dqs_n        : inout std_logic_vector(7 downto 0)  := (others => '0'); --                 .mem_dqs_n
-		ddr4_emif_mem_mem_dq           : inout std_logic_vector(63 downto 0) := (others => '0'); --                 .mem_dq
-		ddr4_emif_mem_mem_dbi_n        : inout std_logic_vector(7 downto 0)  := (others => '0'); --                 .mem_dbi_n
-		sdram_status_local_cal_success : out   std_logic;                                        --     sdram_status.local_cal_success
-		sdram_status_local_cal_fail    : out   std_logic;                                        --                 .local_cal_fail
-		clk_clk                        : in    std_logic                     := '0';             --              clk.clk
-		pr_freeze_freeze               : out   std_logic;                                        --        pr_freeze.freeze
-		reset_reset                    : in    std_logic                     := '0'              --            reset.reset
+		sdram_global_reset_n_reset_n   : in    std_logic                     := '0';             -- sdram_global_reset_n.reset_n
+		sdram_pll_ref_clk_clk          : in    std_logic                     := '0';             --    sdram_pll_ref_clk.clk
+		sdram_pll_locked_pll_locked    : out   std_logic;                                        --     sdram_pll_locked.pll_locked
+		ddr4_emif_oct_oct_rzqin        : in    std_logic                     := '0';             --        ddr4_emif_oct.oct_rzqin
+		ddr4_emif_mem_mem_ck           : out   std_logic_vector(0 downto 0);                     --        ddr4_emif_mem.mem_ck
+		ddr4_emif_mem_mem_ck_n         : out   std_logic_vector(0 downto 0);                     --                     .mem_ck_n
+		ddr4_emif_mem_mem_a            : out   std_logic_vector(16 downto 0);                    --                     .mem_a
+		ddr4_emif_mem_mem_act_n        : out   std_logic_vector(0 downto 0);                     --                     .mem_act_n
+		ddr4_emif_mem_mem_ba           : out   std_logic_vector(1 downto 0);                     --                     .mem_ba
+		ddr4_emif_mem_mem_bg           : out   std_logic_vector(0 downto 0);                     --                     .mem_bg
+		ddr4_emif_mem_mem_cke          : out   std_logic_vector(0 downto 0);                     --                     .mem_cke
+		ddr4_emif_mem_mem_cs_n         : out   std_logic_vector(0 downto 0);                     --                     .mem_cs_n
+		ddr4_emif_mem_mem_odt          : out   std_logic_vector(0 downto 0);                     --                     .mem_odt
+		ddr4_emif_mem_mem_reset_n      : out   std_logic_vector(0 downto 0);                     --                     .mem_reset_n
+		ddr4_emif_mem_mem_par          : out   std_logic_vector(0 downto 0);                     --                     .mem_par
+		ddr4_emif_mem_mem_alert_n      : in    std_logic_vector(0 downto 0)  := (others => '0'); --                     .mem_alert_n
+		ddr4_emif_mem_mem_dqs          : inout std_logic_vector(7 downto 0)  := (others => '0'); --                     .mem_dqs
+		ddr4_emif_mem_mem_dqs_n        : inout std_logic_vector(7 downto 0)  := (others => '0'); --                     .mem_dqs_n
+		ddr4_emif_mem_mem_dq           : inout std_logic_vector(63 downto 0) := (others => '0'); --                     .mem_dq
+		ddr4_emif_mem_mem_dbi_n        : inout std_logic_vector(7 downto 0)  := (others => '0'); --                     .mem_dbi_n
+		sdram_status_local_cal_success : out   std_logic;                                        --         sdram_status.local_cal_success
+		sdram_status_local_cal_fail    : out   std_logic;                                        --                     .local_cal_fail
+		clk_clk                        : in    std_logic                     := '0';             --                  clk.clk
+		pr_freeze_freeze               : out   std_logic;                                        --            pr_freeze.freeze
+		reset_reset                    : in    std_logic                     := '0'              --                reset.reset
 	);
 end entity PR_Test_Top;
 
@@ -614,9 +616,8 @@ architecture rtl of PR_Test_Top is
 	end component pr_test_top_rst_controller_002_cmp;
 
 	signal sdram_emif_usr_clk_clk                                          : std_logic;                      -- SDRAM:emif_usr_clk -> [intel_niosv_g_0:clk, irq_mapper:clk, irq_synchronizer:sender_clk, irq_synchronizer_001:sender_clk, irq_synchronizer_002:sender_clk, mm_interconnect_0:SDRAM_emif_usr_clk_clk, rst_controller:clk, rst_controller_003:clk]
-	signal clock_in_out_clk_clk                                            : std_logic;                      -- clock_in:out_clk -> [SDRAM:pll_ref_clk, intel_onchip_memory_0:clk, irq_synchronizer:receiver_clk, irq_synchronizer_001:receiver_clk, irq_synchronizer_002:receiver_clk, jtag_uart_0:clk, mm_interconnect_0:clock_in_out_clk_clk, mm_interconnect_1:clock_in_out_clk_clk, msgdma_pr:clock_clk, pr_controller:clk, reset_in:clk, rst_controller_001:clk, rst_controller_002:clk]
+	signal clock_in_out_clk_clk                                            : std_logic;                      -- clock_in:out_clk -> [intel_onchip_memory_0:clk, irq_synchronizer:receiver_clk, irq_synchronizer_001:receiver_clk, irq_synchronizer_002:receiver_clk, jtag_uart_0:clk, mm_interconnect_0:clock_in_out_clk_clk, mm_interconnect_1:clock_in_out_clk_clk, msgdma_pr:clock_clk, pr_controller:clk, reset_in:clk, rst_controller_001:clk, rst_controller_002:clk]
 	signal intel_niosv_g_0_dbg_reset_out_reset                             : std_logic;                      -- intel_niosv_g_0:dbg_reset_out_reset -> intel_niosv_g_0:ndm_reset_in_reset
-	signal reset_in_out_reset_reset                                        : std_logic;                      -- reset_in:out_reset -> [reset_in_out_reset_reset:in, rst_controller:reset_in1, rst_controller_001:reset_in0, rst_controller_002:reset_in0]
 	signal intel_niosv_g_0_data_manager_arlen                              : std_logic_vector(7 downto 0);   -- intel_niosv_g_0:data_manager_arlen -> mm_interconnect_0:intel_niosv_g_0_data_manager_arlen
 	signal intel_niosv_g_0_data_manager_wstrb                              : std_logic_vector(3 downto 0);   -- intel_niosv_g_0:data_manager_wstrb -> mm_interconnect_0:intel_niosv_g_0_data_manager_wstrb
 	signal intel_niosv_g_0_data_manager_wready                             : std_logic;                      -- mm_interconnect_0:intel_niosv_g_0_data_manager_wready -> intel_niosv_g_0:data_manager_wready
@@ -744,11 +745,11 @@ architecture rtl of PR_Test_Top is
 	signal irq_synchronizer_002_receiver_irq                               : std_logic_vector(0 downto 0);   -- jtag_uart_0:av_irq -> irq_synchronizer_002:receiver_irq
 	signal rst_controller_reset_out_reset                                  : std_logic;                      -- rst_controller:reset_out -> [intel_niosv_g_0:reset_reset, irq_mapper:reset, irq_synchronizer:sender_reset, irq_synchronizer_001:sender_reset, irq_synchronizer_002:sender_reset, mm_interconnect_0:intel_niosv_g_0_reset_reset_bridge_in_reset_reset]
 	signal sdram_emif_usr_reset_n_reset                                    : std_logic;                      -- SDRAM:emif_usr_reset_n -> sdram_emif_usr_reset_n_reset:in
+	signal reset_in_out_reset_reset                                        : std_logic;                      -- reset_in:out_reset -> [rst_controller:reset_in1, rst_controller_001:reset_in0, rst_controller_002:reset_in0]
 	signal rst_controller_001_reset_out_reset                              : std_logic;                      -- rst_controller_001:reset_out -> [intel_onchip_memory_0:reset, irq_synchronizer:receiver_reset, irq_synchronizer_001:receiver_reset, irq_synchronizer_002:receiver_reset, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pr_controller_nreset_reset_bridge_in_reset_reset, rst_controller_001_reset_out_reset:in, rst_translator:in_reset]
 	signal rst_controller_001_reset_out_reset_req                          : std_logic;                      -- rst_controller_001:reset_req -> [intel_onchip_memory_0:reset_req, rst_translator:reset_req_in]
 	signal rst_controller_002_reset_out_reset                              : std_logic;                      -- rst_controller_002:reset_out -> rst_controller_002_reset_out_reset:in
 	signal rst_controller_003_reset_out_reset                              : std_logic;                      -- rst_controller_003:reset_out -> mm_interconnect_0:SDRAM_ctrl_amm_0_translator_reset_reset_bridge_in_reset_reset
-	signal reset_in_out_reset_reset_ports_inv                              : std_logic;                      -- reset_in_out_reset_reset:inv -> SDRAM:global_reset_n
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv  : std_logic;                      -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read:inv -> jtag_uart_0:av_read_n
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv : std_logic;                      -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write:inv -> jtag_uart_0:av_write_n
 	signal mm_interconnect_0_sdram_ctrl_amm_0_inv                          : std_logic;                      -- sdram_ctrl_amm_0_waitrequest:inv -> mm_interconnect_0:SDRAM_ctrl_amm_0_waitrequest
@@ -796,8 +797,8 @@ begin
 
 	sdram : component SDRAM_cmp
 		port map (
-			global_reset_n      => reset_in_out_reset_reset_ports_inv,               --   global_reset_n.reset_n
-			pll_ref_clk         => clock_in_out_clk_clk,                             --      pll_ref_clk.clk
+			global_reset_n      => sdram_global_reset_n_reset_n,                     --   global_reset_n.reset_n
+			pll_ref_clk         => sdram_pll_ref_clk_clk,                            --      pll_ref_clk.clk
 			pll_locked          => sdram_pll_locked_pll_locked,                      --       pll_locked.pll_locked
 			oct_rzqin           => ddr4_emif_oct_oct_rzqin,                          --              oct.oct_rzqin
 			mem_ck              => ddr4_emif_mem_mem_ck,                             --              mem.mem_ck
@@ -1432,8 +1433,6 @@ begin
 			reset_in15     => '0',                                    -- (terminated)
 			reset_req_in15 => '0'                                     -- (terminated)
 		);
-
-	reset_in_out_reset_reset_ports_inv <= not reset_in_out_reset_reset;
 
 	mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv <= not mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;
 

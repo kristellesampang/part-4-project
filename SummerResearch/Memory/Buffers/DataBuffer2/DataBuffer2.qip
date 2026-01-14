@@ -42,7 +42,7 @@ set_global_assignment -entity "DataBuffer2" -library "DataBuffer2" -name IP_COMP
 
 
 set_global_assignment -library "ram_2port_2041" -name VERILOG_FILE [file join $::quartus(qip_path) "ram_2port_2041/synth/DataBuffer2_ram_2port_2041_gzns2wq.v"]
-set_global_assignment -library "DataBuffer2" -name VHDL_FILE [file join $::quartus(qip_path) "synth/DataBuffer2.vhd"]
+set_global_assignment -library "DataBuffer2" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/DataBuffer2.v"]
 
 
 set_global_assignment -entity "DataBuffer2_ram_2port_2041_gzns2wq" -library "ram_2port_2041" -name IP_TOOL_NAME "ram_2port"

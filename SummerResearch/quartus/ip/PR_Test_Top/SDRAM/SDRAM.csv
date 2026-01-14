@@ -1,4 +1,4 @@
-# system info SDRAM on 2026.01.06.14:05:40
+# system info SDRAM on 2026.01.13.18:56:57
 system_info:
 name,value
 DEVICE,10AS066N3F40E2SG
@@ -6,7 +6,7 @@ DEVICE_FAMILY,Arria 10
 GENERATION_ID,0
 #
 #
-# Files generated for SDRAM on 2026.01.06.14:05:40
+# Files generated for SDRAM on 2026.01.13.18:56:57
 files:
 filepath,kind,attributes,module,is_top
 sim/SDRAM.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,SDRAM,true
