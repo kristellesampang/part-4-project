@@ -15,11 +15,11 @@ import re
 import serial
 
 # --- Constants ---
-IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/cat.jpg'
+IMAGE_PATH = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2"
+MIF_OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -209,41 +209,38 @@ def save_matrix_to_mif(matrix, filename, depth, width, m, n, k):
         # f.write("END;\n")
     print(f"Matrix saved to {filename}")
     
-# Slices the matrices into NxN tiles and saves each tile as a separate MIF file
 def generate_and_save_tiles(weights, activations, output_dir, layer_size, tile_size):
-    """Slices matrices, generates 8x8 tiles, and saves them as .mif files."""
-    # --- 1. Slice Matrices to the specified layer size ---
-    print(f"\n--- FINDING CONSISTENT NON-SPARSE STARTING POINT FOR TILING ---")
-    # start_r, start_c = find_joint_non_sparse_tile_start(weights, activations, tile_size)
-    start_r, start_c = 0, 0  # Default to (0,0) 
-    print(f"Tiling starts at row {start_r}, col {start_c} for both weights and activations.")
-
-    # --- 2. Generate and save tiles ---
-    print(f"\n--- GENERATING {tile_size}x{tile_size} TILES AND SAVING AS .MIF ---")
+    """Slices matrices, generates tiles, and saves them as .mif files."""
+    print(f"\n--- GENERATING {tile_size}x{tile_size} TILES ---")
+    
+    # Ensure the base output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
+    start_r, start_c = 0, 0 
     tile_counter = 0
+    
     for c in range(start_c, start_c + layer_size, tile_size):
         w_tile = weights[start_r:start_r+tile_size, c:c+tile_size]
         a_tile = activations[start_r:start_r+tile_size, c:c+tile_size]
-        # Ensure a_tile is tile_size x tile_size
-        # if a_tile.shape[0] < tile_size or a_tile.shape[1] < tile_size:
-        #     padded_tile = np.zeros((tile_size, tile_size), dtype=weights.dtype)
-        #     padded_tile[:a_tile.shape[0], :a_tile.shape[1]] = a_tile
-        #     a_tile = padded_tile
-        print(f"\Tile {tile_counter}:")
-        print(w_tile)
-        print(a_tile)
 
-        # save_matrix_to_mif(w_tile, os.path.join(output_dir, f"/tile_{tile_counter}/weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
-        # save_matrix_to_mif(a_tile, os.path.join(output_dir, f"/tile_{tile_counter}/activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
-        save_matrix_to_mif(w_tile, os.path.join(output_dir, f"tile_{tile_counter}", f"weight_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
-        save_matrix_to_mif(a_tile, os.path.join(output_dir, f"tile_{tile_counter}", f"activation_tile_{tile_counter}.mif"), LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)   
+        # --- NEW: Create the tile-specific sub-folder ---
+        tile_dir = os.path.join(output_dir, f"tile_{tile_counter}")
+        if not os.path.exists(tile_dir):
+            os.makedirs(tile_dir)
+            
+        print(f"Processing Tile {tile_counter}...")
+
+        # Save to the new sub-folder
+        w_filename = os.path.join(tile_dir, f"weight_tile_{tile_counter}.mif")
+        a_filename = os.path.join(tile_dir, f"activation_tile_{tile_counter}.mif")
+        
+        save_matrix_to_mif(w_tile, w_filename, LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)
+        save_matrix_to_mif(a_tile, a_filename, LAYER_SIZE, tile_size, m=tile_size, n=tile_size, k=tile_size)   
+        
         tile_counter += 1
 
-    print(f"Generated and saved {tile_counter} pairs of {tile_size}x{tile_size} tiles.")
-    print(f"Files are saved in the '{output_dir}' directory.")
+    print(f"Successfully saved {tile_counter} tiles in: {output_dir}")
     
 
 # def find_joint_non_sparse_tile_start(weights, activations, tile_size, min_nonzero=8):
@@ -449,72 +446,47 @@ def main():
     # Run Inference
     labels = get_imagenet_labels()
     run_inference(model, input_tensor, labels)
+
+    # Step 2: Define the AlexNet Lyaer Map
+    alexnet_conv_layers = [
+        {'name': 'Conv1', 'conv': 0, 'relu': 1},
+        {'name': 'Conv2', 'conv': 3, 'relu': 4},
+        {'name': 'Conv3', 'conv': 6, 'relu': 7},
+        {'name': 'Conv4', 'conv': 8, 'relu': 9},
+        {'name': 'Conv1', 'conv': 10, 'relu': 11},
+    ]
     
-    
-    ##### Part 2: Apply Stripping Algorithm
-    print("\n\n\n=== PART 2: APPLY STRIPPING ALGORITHM ===")
-    # testing_data = mif_to_matrix(TEST_DATA_MIF_DIR, TILE_SIZE, TILE_SIZE)
-    # testing_weight = mif_to_matrix(TEST_WEIGHT_MIF_DIR, TILE_SIZE, TILE_SIZE)
-    
-    # if testing_data is None or testing_weight is None:
-    #     print("Aborting Part 2 due to file read error.")
-    #     return
-    # else:
-    #     # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
-    #     print("### VHDL FOR OPTIMIZED (SPARSITY) TEST ###\n")
-        
-    #     # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
-    #     stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
-    #     # apply twos complement to the stripped_weight 
-    #     stripped_weight = twos_complement_to_uint8(stripped_weight)
+    for layer in alexnet_conv_layers:
+        print(f"\n\n{'='*30}")
+        print(f" ANALYSING LAYER: {layer['name']}")
+        print(f"{'='*30}")
 
+        # Extract the matrices
+        weights_2d, activations_2d = extract_conv_weights_and_activations(model, input_tensor, layer['conv'], layer['relu'])
 
-    #     print(f"Stripped Weight: {stripped_weight}")
-        
-    #     # save the stripped matrices as .mif files
-    #     save_matrix_to_mif(stripped_data, STRIPPED_DATA_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
-    #     save_matrix_to_mif(stripped_weight, STRIPPED_WEIGHT_MIF_DIR, LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
-    #     generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
-        
-    #     # --- CASE 2: WITHOUT SPARSITY HANDLING (No Stripping) ---
-    #     print("### VHDL FOR BASELINE (NO SPARSITY) TEST ###\n")
-    #     generate_vhdl_stimulus(testing_data, testing_weight, TILE_SIZE, TILE_SIZE, TILE_SIZE, N=TILE_SIZE)
-    
-    # Run the Stripping Algorithms on all the saved tiles
-    for tile_idx in range(8):  # Assuming 8 tiles
-        testing_data = mif_to_matrix(os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif"), TILE_SIZE, TILE_SIZE)
-        testing_weight = mif_to_matrix(os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif"), TILE_SIZE, TILE_SIZE)
-        
-        if testing_data is None or testing_weight is None:
-            print(f"Aborting Part 2 due to file read error on tile {tile_idx}.")
-            continue
-        else:
-        # --- CASE 1: WITH SPARSITY HANDLING (Coordinated Stripping) ---
-            print(f"\n--- TILE {tile_idx}: VHDL FOR OPTIMIZED (SPARSITY) TEST ---\n")
-            
-            # stripped_data, stripped_weight = strip_matrices(inputMatrix_data, inputMatrix_weight)
-            stripped_data, stripped_weight, m_value, k_value, n_value = coordinated_row_removal(testing_data, testing_weight)
-            # apply twos complement to the stripped_weight 
-            stripped_weight = twos_complement_to_uint8(stripped_weight)
+        # Test the different tile sizes (e.g. 8x8 and 16x16)
+        for current_tile_size in [8, 16]:
+            print(f"\n>>> Testing Tile Size: {current_tile_size}x{current_tile_size}) ---")
 
+            layer_output_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer['name']}_tile_{current_tile_size}")
 
-            print(f"Stripped Weight: {stripped_weight}")
-            
-            # save the stripped matrices as .mif files
-            save_matrix_to_mif(stripped_data, os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", "stripped_activation.mif"), LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)
-            save_matrix_to_mif(stripped_weight, os.path.join(MIF_OUTPUT_DIR, f"tile_{tile_idx}", "stripped_weight.mif"), LAYER_SIZE, TILE_SIZE, m_value, n_value, k_value)        
-            # generate_vhdl_stimulus(stripped_data, stripped_weight, m_value, k_value, n_value, N=TILE_SIZE)
+            generate_and_save_tiles(weights_2d, activations_2d, layer_output_dir, LAYER_SIZE, current_tile_size)
 
-            ##### Part 3: Systolic Array Simulation on Python
-            print(f"\n\n\n=== PART 3: TILE {tile_idx} SYSTOLIC ARRAY SIMULATION ON PYTHON ===")
-            print("\n--- USING ORIGINAL MATRICES ---")
-            simulate_systolic_array(testing_data, testing_weight, m_value, n_value, k_value)  
-            print("\n--- USING STRIPPED MATRICES ---")
-            simulate_systolic_array(stripped_data, stripped_weight, m_value, n_value, k_value)  
+            print(f"\n--- PERFORMANCE RESULTS FOR {layer['name']} ({current_tile_size}x{current_tile_size}) ---")
+            for tile_idx in range(min(5,8)):
+                w_path = os.path.join(layer_output_dir, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif")
+                a_path = os.path.join(layer_output_dir, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif")
 
+                testing_data = mif_to_matrix(a_path, current_tile_size, current_tile_size)
+                testing_weight = mif_to_matrix(w_path, current_tile_size, current_tile_size)
 
+                if testing_data is not None and testing_weight is not None:
+                    # Apply stripping algorithm
+                    s_data, s_weight, m, k, n = coordinated_row_removal(testing_data, testing_weight)
 
-
+                    # Calculate the cycle count (latency) for this layer
+                    # The adaptive control uni usees M+N+k-1
+                    simulate_systolic_array(s_data, s_weight, m, n, k)
 
 if __name__ == '__main__':
     main()
