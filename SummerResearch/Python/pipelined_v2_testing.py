@@ -15,11 +15,11 @@ import re
 import serial
 
 # --- Constants ---
-IMAGE_PATH = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/cat.jpg"
+IMAGE_PATH = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/mif_results"
+MIF_OUTPUT_DIR = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -356,37 +356,43 @@ def mac_calculator(data_mif_path, weight_mif_path, data_m, data_n, weight_m, wei
     print(result_matrix)
     print("\n" + "="*40 + "\n")
 
-def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
-    """Simulates the behavior of a systolic array for matrix multiplication."""
-    if matrix_A is None or matrix_B is None:
-        return
+# def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
+#     """Simulates the behavior of a systolic array for matrix multiplication."""
+#     if matrix_A is None or matrix_B is None:
+#         return
         
-    rows_A, cols_A = matrix_A.shape
-    rows_B, cols_B = matrix_B.shape
+#     rows_A, cols_A = matrix_A.shape
+#     rows_B, cols_B = matrix_B.shape
     
-    if cols_A != rows_B:
-        print("Error: Matrix dimensions are not compatible for multiplication.")
-        return
+#     if cols_A != rows_B:
+#         print("Error: Matrix dimensions are not compatible for multiplication.")
+#         return
 
-    # Simulate the MAC operation
-    result_matrix = np.matmul(matrix_A, matrix_B)
+#     # Simulate the MAC operation
+#     result_matrix = np.matmul(matrix_A, matrix_B)
     
-    # Calculate the latency (Total Clock Cycles)
-    # latency = (rows_A - 1) + (cols_B - 1) + cols_A # !! change
-    latency = m + n + k - 1
+#     # Calculate the latency (Total Clock Cycles)
+#     # latency = (rows_A - 1) + (cols_B - 1) + cols_A # !! change
+#     latency = m + n + k - 1
     
-    print("\n--- 4. Systolic Array Simulation ---")
-    print(f"Input A shape: {matrix_A.shape}, Input B shape: {matrix_B.shape}")
-    # print both input and output matrices
-    print("\nInput Matrix (A):")
-    print(matrix_A)
-    print("\nInput Matrix (B):")
-    print(matrix_B)
-    print("\nResult Matrix (C):")
-    print(result_matrix)
-    print(f"\nSimulated Total Clock Cycles (Latency): {latency}")
-    print(f"Active Rows (m): {m}, Active Columns (n): {n}, Active K (k): {k}")
-    print("\n" + "="*40)
+#     print("\n--- 4. Systolic Array Simulation ---")
+#     print(f"Input A shape: {matrix_A.shape}, Input B shape: {matrix_B.shape}")
+#     # print both input and output matrices
+#     print("\nInput Matrix (A):")
+#     print(matrix_A)
+#     print("\nInput Matrix (B):")
+#     print(matrix_B)
+#     print("\nResult Matrix (C):")
+#     print(result_matrix)
+#     print(f"\nSimulated Total Clock Cycles (Latency): {latency}")
+#     print(f"Active Rows (m): {m}, Active Columns (n): {n}, Active K (k): {k}")
+#     print("\n" + "="*40)
+def simulate_systolic_array(m, n, k, tile_size):
+    """Calculates latency and theoretical savings."""
+    baseline = (tile_size * 3) - 1
+    actual = m + n + k - 1 if m > 0 else 0
+    savings = baseline - actual if m > 0 else baseline
+    return actual, savings
 
 
 def coordinated_row_removal(data_matrix, weight_matrix):
@@ -424,69 +430,70 @@ def twos_complement_to_uint8(arr):
     return arr.astype(np.int8).astype(np.uint8)
 
 def main():
-    
-    ##### Part 1: Load, Quantise, Extract, Tile, and Inference AlexNet
-    print("\n\n\n=== PART 1: LOAD, QUANTISE, EXTRACT, TILE, AND INFERENCE ALEXNET ===")
-    # Load and Quantise AlexNet
+    print("\n=== ALEXNET PERFORMANCE PROFILER ===")
     model = load_quantized_alexnet()
-    print("\n---  MODEL LOADED AND QUANTISED ---")
-    
-    # Preprocess the image
     input_tensor = preprocess_image(IMAGE_PATH)
-    if input_tensor is None:
-        return # Exit if image was not found
-    print("\n--- IMAGE PREPROCESSED ---")
-
-    # --- Extract and print quantized conv weights and activations (first conv layer) ---
-    print("\n--- EXTRACTING QUANTISED CONV WEIGHTS AND ACTIVATION (CONV0, RELU1) ---")
-    conv_weights_2d, conv_activations_2d = extract_conv_weights_and_activations(model, input_tensor, conv_idx=0, relu_idx=1)
-
-    # Tile the matrices and save as MIF files
-    generate_and_save_tiles(conv_weights_2d, conv_activations_2d, MIF_OUTPUT_DIR, LAYER_SIZE, TILE_SIZE)
-    # Run Inference
     labels = get_imagenet_labels()
-    run_inference(model, input_tensor, labels)
-
-    # Step 2: Define the AlexNet Lyaer Map
-    alexnet_conv_layers = [
-        {'name': 'Conv1', 'conv': 0, 'relu': 1},
-        {'name': 'Conv2', 'conv': 3, 'relu': 4},
-        {'name': 'Conv3', 'conv': 6, 'relu': 7},
-        {'name': 'Conv4', 'conv': 8, 'relu': 9},
-        {'name': 'Conv1', 'conv': 10, 'relu': 11},
-    ]
     
+    # Storage for final results table
+    summary_results = []
+
+    alexnet_conv_layers = [
+        {'name': 'Conv1', 'idx': 0, 'rel': 1},
+        {'name': 'Conv2', 'idx': 3, 'rel': 4},
+        {'name': 'Conv3', 'idx': 6, 'rel': 7},
+        {'name': 'Conv4', 'idx': 8, 'rel': 9},
+        {'name': 'Conv5', 'idx': 10, 'rel': 11}
+    ]
+
     for layer in alexnet_conv_layers:
-        print(f"\n\n{'='*30}")
-        print(f" ANALYSING LAYER: {layer['name']}")
-        print(f"{'='*30}")
+        weights_2d, activations_2d = extract_conv_weights_and_activations(model, input_tensor, layer['idx'], layer['rel'])
 
-        # Extract the matrices
-        weights_2d, activations_2d = extract_conv_weights_and_activations(model, input_tensor, layer['conv'], layer['relu'])
+        for t_size in [8, 16]:
+            layer_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer['name']}_T{t_size}")
+            generate_and_save_tiles(weights_2d, activations_2d, layer_dir, LAYER_SIZE, t_size)
 
-        # Test the different tile sizes (e.g. 8x8 and 16x16)
-        for current_tile_size in [8, 16]:
-            print(f"\n>>> Testing Tile Size: {current_tile_size}x{current_tile_size}) ---")
+            total_actual_cycles = 0
+            total_saved_cycles = 0
+            tiles_processed = 0
 
-            layer_output_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer['name']}_tile_{current_tile_size}")
+            # Only process tiles that actually exist
+            for tile_idx in range(100): # Check up to 100 potential tiles
+                tile_path = os.path.join(layer_dir, f"tile_{tile_idx}")
+                if not os.path.exists(tile_path): break
+                
+                w_file = os.path.join(tile_path, f"weight_tile_{tile_idx}.mif")
+                a_file = os.path.join(tile_path, f"activation_tile_{tile_idx}.mif")
+                
+                data = mif_to_matrix(a_file, t_size, t_size)
+                weight = mif_to_matrix(w_file, t_size, t_size)
+                
+                if data is not None and weight is not None:
+                    _, _, m, k, n = coordinated_row_removal(data, weight)
+                    actual, saved = simulate_systolic_array(m, n, k, t_size)
+                    total_actual_cycles += actual
+                    total_saved_cycles += saved
+                    tiles_processed += 1
 
-            generate_and_save_tiles(weights_2d, activations_2d, layer_output_dir, LAYER_SIZE, current_tile_size)
+            # Calculate efficiency
+            baseline_total = tiles_processed * ((t_size * 3) - 1)
+            speedup = (baseline_total / total_actual_cycles) if total_actual_cycles > 0 else 1
+            
+            summary_results.append({
+                'Layer': layer['name'],
+                'Tile': t_size,
+                'Actual Cycles': total_actual_cycles,
+                'Cycles Saved': total_saved_cycles,
+                'Speedup': round(speedup, 2)
+            })
 
-            print(f"\n--- PERFORMANCE RESULTS FOR {layer['name']} ({current_tile_size}x{current_tile_size}) ---")
-            for tile_idx in range(min(5,8)):
-                w_path = os.path.join(layer_output_dir, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif")
-                a_path = os.path.join(layer_output_dir, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif")
-
-                testing_data = mif_to_matrix(a_path, current_tile_size, current_tile_size)
-                testing_weight = mif_to_matrix(w_path, current_tile_size, current_tile_size)
-
-                if testing_data is not None and testing_weight is not None:
-                    # Apply stripping algorithm
-                    s_data, s_weight, m, k, n = coordinated_row_removal(testing_data, testing_weight)
-
-                    # Calculate the cycle count (latency) for this layer
-                    # The adaptive control uni usees M+N+k-1
-                    simulate_systolic_array(s_data, s_weight, m, n, k)
+    # --- PRINT FINAL RESEARCH TABLE ---
+    print("\n\n" + "="*60)
+    print(f"{'Layer':<10} | {'Tile Size':<10} | {'Actual Cycles':<15} | {'Speedup':<10}")
+    print("-" * 60)
+    for res in summary_results:
+        print(f"{res['Layer']:<10} | {res['Tile']:<10} | {res['Actual Cycles']:<15} | {res['Speedup']}x")
+    print("="*60)
 
 if __name__ == '__main__':
     main()
