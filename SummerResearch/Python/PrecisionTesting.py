@@ -13,6 +13,8 @@ import os
 import sys
 import re
 import serial
+import pandas as pd
+
 
 # --- Constants ---
 IMAGE_PATH = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/cat.jpg"
@@ -420,74 +422,94 @@ def coordinated_row_removal(data_matrix, weight_matrix):
 
     return compact_data, compact_weight, m_new, k_new, n_new
 
+def analyze_optimization(model, image_dir):
+    results_log = []
+    
+    # Define AlexNet Layers
+    layers = [
+        {'name': 'Conv1', 'c': 0, 'r': 1},
+        {'name': 'Conv2', 'c': 3, 'r': 4},
+        {'name': 'Conv3', 'c': 6, 'r': 7},
+        {'name': 'Conv5', 'c': 10, 'r': 11}
+    ]
+
+    # Throughput Multipliers for Arria 10
+    precision_factors = {
+        'FP32': 1.0,   # 1 DSP = 1 MAC
+        'INT16': 2.0,  # 1 DSP = 2 MACs (Packed)
+        'INT8': 2.0    # 1 DSP = 2 MACs (Standard A10 mode)
+    }
+
+    # Iterate through every image in your folder
+    image_files = [os.path.join(image_dir, f) for f in os.listdir(image_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    
+    for layer in layers:
+        print(f"\n--- Analysing {layer['name']} ---")
+        
+        # Extract data for this layer (using one image as a representative sample for weights)
+        # In a full study, you'd average the activations across all images
+        w, a = extract_conv_weights_and_activations(model, preprocess_image(image_files[0]), layer['c'], layer['r'])
+
+        for t_size in [8, 16, 32]:
+            # Calculate Sparsity Speedup (Avg cycles across all images)
+            total_reduction = []
+            
+            for img_path in image_files[:10]: # Process up to 10 images for speed
+                input_t = preprocess_image(img_path)
+                _, act = extract_conv_weights_and_activations(model, input_t, layer['c'], layer['r'])
+                
+                # Sample a few tiles to find average sparsity
+                for i in range(0, 5): 
+                    # Slice a random tile
+                    data_tile = act[i*t_size:(i+1)*t_size, :t_size]
+                    weight_tile = w[:t_size, :t_size]
+                    
+                    if data_tile.shape[0] == t_size:
+                        _, _, m, k, n = coordinated_row_removal(data_tile, weight_tile)
+                        baseline = (t_size * 3) - 1
+                        actual = (m + n + k - 1) if m > 0 else 0
+                        total_reduction.append(baseline / actual if actual > 0 else baseline)
+
+            avg_sparsity_speedup = np.mean(total_reduction)
+
+            # Compare Precisions
+            for prec, hw_factor in precision_factors.items():
+                # OVERALL SCORE = (Sparsity Gain) * (Hardware Parallelism Gain)
+                # This represents how many 'Effective OPS' you get per Arria 10 DSP block
+                efficiency_score = avg_sparsity_speedup * hw_factor
+                
+                results_log.append({
+                    'Layer': layer['name'],
+                    'Tile': t_size,
+                    'Precision': prec,
+                    'Sparsity_Gain': round(avg_sparsity_speedup, 2),
+                    'Total_Efficiency': round(efficiency_score, 2)
+                })
+
+    return pd.DataFrame(results_log)
+
 def twos_complement_to_uint8(arr):
     return arr.astype(np.int8).astype(np.uint8)
 
 def main():
-    print("\n=== ALEXNET PERFORMANCE PROFILER ===")
     model = load_quantized_alexnet()
-    input_tensor = preprocess_image(IMAGE_PATH)
-    labels = get_imagenet_labels()
+    image_dir = '/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/sparsity_analysis_images'
     
-    # Storage for final results table
-    summary_results = []
-
-    alexnet_conv_layers = [
-        {'name': 'Conv1', 'idx': 0, 'rel': 1},
-        {'name': 'Conv2', 'idx': 3, 'rel': 4},
-        {'name': 'Conv3', 'idx': 6, 'rel': 7},
-        {'name': 'Conv4', 'idx': 8, 'rel': 9},
-        {'name': 'Conv5', 'idx': 10, 'rel': 11}
-    ]
-
-    for layer in alexnet_conv_layers:
-        weights_2d, activations_2d = extract_conv_weights_and_activations(model, input_tensor, layer['idx'], layer['rel'])
-
-        for t_size in [8, 16]:
-            layer_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer['name']}_T{t_size}")
-            generate_and_save_tiles(weights_2d, activations_2d, layer_dir, LAYER_SIZE, t_size)
-
-            total_actual_cycles = 0
-            total_saved_cycles = 0
-            tiles_processed = 0
-
-            # Only process tiles that actually exist
-            for tile_idx in range(100): # Check up to 100 potential tiles
-                tile_path = os.path.join(layer_dir, f"tile_{tile_idx}")
-                if not os.path.exists(tile_path): break
-                
-                w_file = os.path.join(tile_path, f"weight_tile_{tile_idx}.mif")
-                a_file = os.path.join(tile_path, f"activation_tile_{tile_idx}.mif")
-                
-                data = mif_to_matrix(a_file, t_size, t_size)
-                weight = mif_to_matrix(w_file, t_size, t_size)
-                
-                if data is not None and weight is not None:
-                    _, _, m, k, n = coordinated_row_removal(data, weight)
-                    actual, saved = simulate_systolic_array(m, n, k, t_size)
-                    total_actual_cycles += actual
-                    total_saved_cycles += saved
-                    tiles_processed += 1
-
-            # Calculate efficiency
-            baseline_total = tiles_processed * ((t_size * 3) - 1)
-            speedup = (baseline_total / total_actual_cycles) if total_actual_cycles > 0 else 1
-            
-            summary_results.append({
-                'Layer': layer['name'],
-                'Tile': t_size,
-                'Actual Cycles': total_actual_cycles,
-                'Cycles Saved': total_saved_cycles,
-                'Speedup': round(speedup, 2)
-            })
-
-    # --- PRINT FINAL RESEARCH TABLE ---
-    print("\n\n" + "="*60)
-    print(f"{'Layer':<10} | {'Tile Size':<10} | {'Actual Cycles':<15} | {'Speedup':<10}")
-    print("-" * 60)
-    for res in summary_results:
-        print(f"{res['Layer']:<10} | {res['Tile']:<10} | {res['Actual Cycles']:<15} | {res['Speedup']}x")
-    print("="*60)
+    df = analyze_optimization(model, image_dir)
+    
+    # Find the best combination for each layer
+    print("\n\n=== OPTIMAL HARDWARE CONFIGURATIONS PER LAYER ===")
+    for layer in df['Layer'].unique():
+        layer_df = df[df['Layer'] == layer]
+        best_row = layer_df.loc[layer_df['Total_Efficiency'].idxmax()]
+        
+        print(f"Layer: {layer}")
+        print(f"  Best Config: {best_row['Tile']}x{best_row['Tile']} at {best_row['Precision']}")
+        print(f"  Reason: Total Efficiency of {best_row['Total_Efficiency']}x over baseline")
+        print("-" * 40)
+        
+    # Optional: Save the whole CSV for your report
+    df.to_csv('alexnet_optimization_results.csv', index=False)
 
 if __name__ == '__main__':
     main()
