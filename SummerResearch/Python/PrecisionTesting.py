@@ -17,11 +17,11 @@ import pandas as pd
 
 
 # --- Constants ---
-IMAGE_PATH = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/cat.jpg"
+IMAGE_PATH = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/mif_results"
+MIF_OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -454,12 +454,12 @@ def analyze_optimization(model, image_dir):
             # Calculate Sparsity Speedup (Avg cycles across all images)
             total_reduction = []
             
-            for img_path in image_files[:10]: # Process up to 10 images for speed
+            for img_path in image_files[:20]: # Process up to 10 images for speed | Can try 20 for better avg
                 input_t = preprocess_image(img_path)
                 _, act = extract_conv_weights_and_activations(model, input_t, layer['c'], layer['r'])
                 
                 # Sample a few tiles to find average sparsity
-                for i in range(0, 5): 
+                for i in range(0, 20): 
                     # Slice a random tile
                     data_tile = act[i*t_size:(i+1)*t_size, :t_size]
                     weight_tile = w[:t_size, :t_size]
@@ -493,7 +493,7 @@ def twos_complement_to_uint8(arr):
 
 def main():
     model = load_quantized_alexnet()
-    image_dir = '/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/sparsity_analysis_images'
+    image_dir = 'C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/sparsity_analysis_images'
     
     df = analyze_optimization(model, image_dir)
     
@@ -509,7 +509,7 @@ def main():
         print("-" * 40)
         
     # Optional: Save the whole CSV for your report
-    df.to_csv('alexnet_optimization_results.csv', index=False)
+    df.to_csv('alexnet_optimization_results_2.csv', index=False)
 
 if __name__ == '__main__':
     main()

@@ -25,7 +25,6 @@ architecture sim of tb_row_stripping_sparsity is
     end function;
 
 
-
 -- VHDL stimulus for data matrix
 constant ACTIVE_ROWS_DATA : integer := 1;
 constant ACTIVE_COLS_DATA : integer := 8;
