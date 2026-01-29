@@ -81,6 +81,7 @@ constant WEIGHT_STIM : systolic_array_matrix_input := (
     signal result_matrix_sig : systolic_array_matrix_output;
     signal cycle_count_sig   : integer;
     signal latency_counter   : natural := 0;
+    signal run_counter       : boolean := false;
 
     constant CLK_PER : time := 10 ns;
 
@@ -98,30 +99,36 @@ begin
         active_cols   => N_VAL,
         active_k      => K_VAL,
         output        => result_matrix_sig,
-        cycle_count   => cycle_count_sig,
-        done          => done
+        cycle_count   => cycle_count_sig
     );
 
     -- Simulation Logic
     process
-        variable expected_cycles : integer := M_VAL + N_VAL + K_VAL - 1;
+        variable total_wait_cycles : integer := M_VAL + N_VAL + K_VAL - 1;
+        variable final_value    : natural := 0;
     begin
         reset <= '1';
+        ready <= '0';
         wait for 2*CLK_PER;
+
         reset <= '0';
         wait for CLK_PER;
         
         ready <= '1'; -- Start the NPU
+        run_counter <= true;
         wait for CLK_PER;
         ready <= '0';
 
-        wait until done = '1';
+        wait for (total_wait_cycles - 1) * CLK_PER; -- Wait for processing to complete
+
+        final_value := latency_counter;
+        run_counter <= false;
         
         report "--- FINAL VERIFICATION REPORT ---";
-        report "Python Predicted: " & integer'image(expected_cycles) & " cycles.";
-        report "VHDL Measured: " & integer'image(latency_counter) & " cycles.";
+        report "Python Predicted: " & integer'image(total_wait_cycles) & " cycles.";
+        report "VHDL Measured: " & integer'image(final_value) & " cycles.";
         
-        assert latency_counter = expected_cycles 
+        assert latency_counter = total_wait_cycles 
             report "TIMING MISMATCH DETECTED" severity warning;
         
         wait;
@@ -133,7 +140,7 @@ begin
         if rising_edge(clk) then
             if ready = '1' then
                 latency_counter <= 0;
-            elsif done = '0' then
+            elsif run_counter = true then
                 latency_counter <= latency_counter + 1;
             end if;
         end if;
