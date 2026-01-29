@@ -1,3 +1,8 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.custom_types.all;
+
 entity processing_element is 
 generic (
     DATA_WIDTH : integer := 16;
