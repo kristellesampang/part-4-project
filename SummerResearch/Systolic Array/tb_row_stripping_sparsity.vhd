@@ -85,7 +85,6 @@ begin
         active_cols   => max_active_cols
     );
 
-
     LatencyTest: process
         -- Calculate latency until last result
         -- Formula (rows-1) for vertical travel + (cols-1) for horizontal travel + (cols) for stream duration + 1 for final PE register stage.

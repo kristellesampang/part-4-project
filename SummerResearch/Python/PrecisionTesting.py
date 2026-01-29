@@ -17,11 +17,11 @@ import pandas as pd
 
 
 # --- Constants ---
-IMAGE_PATH = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/cat.jpg"
+IMAGE_PATH = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/mif_results"
+MIF_OUTPUT_DIR = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -310,30 +310,30 @@ def mif_to_matrix(filename, rows, cols):
 def generate_vhdl_stimulus(compact_data, compact_weight, m, k, n, N=8):
     """
     Generates VHDL 'constant' declarations for the compacted matrices.
-    The padding is a VHDL requirement to fit the smaller logical matrix
-    into the fixed-size 8x8 physical type.
+    Updated for 16-bit (INT16) research.
     """
-    print(f"-- VHDL stimulus for compacted matrices")
+    print(f"-- VHDL stimulus for compacted matrices (INT16)")
     print(f"constant ACTIVE_ROWS : integer := {m};")
     print(f"constant ACTIVE_K : integer := {k};")
     print(f"constant ACTIVE_COLS : integer := {n};")
 
-    # Generate VHDL for the Data Matrix
+    # Generate VHDL for the Data Matrix (using s16 instead of u8)
     vhdl_data = f"\nconstant MATRIX_DATA_STIMULUS : systolic_array_matrix_input := (\n"
     for r in range(m):
-        row_elements = [f"u8({compact_data[r, c]})" for c in range(k)]
-        padding = [f"u8(0)"] * (N - k)
+        # Convert each value to int to ensure clean VHDL output
+        row_elements = [f"s16({int(compact_data[r, c])})" for c in range(k)]
+        padding = [f"s16(0)"] * (N - k)
         vhdl_data += f"    ({', '.join(row_elements + padding)}),\n"
-    vhdl_data += "    others => (others => u8(0))\n);"
+    vhdl_data += "    others => (others => s16(0))\n);"
     print(vhdl_data)
 
-    # Generate VHDL for the Weight Matrix
+    # Generate VHDL for the Weight Matrix (using s16 instead of u8)
     vhdl_weight = f"\nconstant MATRIX_WEIGHT_STIMULUS : systolic_array_matrix_input := (\n"
     for r in range(k):
-        row_elements = [f"u8({compact_weight[r, c]})" for c in range(n)]
-        padding = [f"u8(0)"] * (N - n)
+        row_elements = [f"s16({int(compact_weight[r, c])})" for c in range(n)]
+        padding = [f"s16(0)"] * (N - n)
         vhdl_weight += f"    ({', '.join(row_elements + padding)}),\n"
-    vhdl_weight += "    others => (others => u8(0))\n);"
+    vhdl_weight += "    others => (others => s16(0))\n);"
     print(vhdl_weight)
     print("-" * 40)
     
@@ -491,9 +491,46 @@ def analyze_optimization(model, image_dir):
 def twos_complement_to_uint8(arr):
     return arr.astype(np.int8).astype(np.uint8)
 
+
+def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
+    """Generates the specific MIF files needed and prints the VHDL stimulus."""
+    print(f"\n=== PREPARING STIMULUS: {layer_name} (Tile {tile_idx}, Size {t_size}) ===")
+    
+    # 1. Get the data from the model
+    input_tensor = preprocess_image(IMAGE_PATH)
+    w, a = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
+    
+    # 2. Save these specific tiles to disk so we have them
+    layer_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer_name}_tile_{t_size}")
+    generate_and_save_tiles(w, a, layer_dir, LAYER_SIZE, t_size)
+    
+    # 3. Load the specific tile we just saved
+    a_path = os.path.join(layer_dir, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif")
+    w_path = os.path.join(layer_dir, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif")
+    
+    sim_data = mif_to_matrix(a_path, t_size, t_size)
+    sim_weight = mif_to_matrix(w_path, t_size, t_size)
+    
+    if sim_data is not None and sim_weight is not None:
+        # Get the "Stripped" dimensions and data
+        s_data, s_weight, m, k, n = coordinated_row_removal(sim_data, sim_weight)
+        
+        # Convert weights to uint8 (for VHDL hex compatibility)
+        s_weight_uint = twos_complement_to_uint8(s_weight)
+        
+        # PRINT THE VHDL CODE
+        print(f"\n--- COPY THE CODE BELOW INTO YOUR TESTBENCH ---")
+        print(f"-- Target: {layer_name} Tile {tile_idx} ({t_size}x{t_size})")
+        generate_vhdl_stimulus(s_data, s_weight_uint, m, k, n, N=t_size)
+        print(f"--- END OF VHDL CODE ---\n")
+        
+        # Verification check 
+        print(f"Logbook Note: Python predicts this tile will take {m + n + k - 1} cycles.")
+
+
 def main():
     model = load_quantized_alexnet()
-    image_dir = 'C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/sparsity_analysis_images'
+    image_dir = '/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/sparsity_analysis_images'
     
     df = analyze_optimization(model, image_dir)
     
@@ -510,6 +547,38 @@ def main():
         
     # Optional: Save the whole CSV for your report
     df.to_csv('alexnet_optimization_results_2.csv', index=False)
+
+    # # --- SIMULATION STIMULUS GENERATOR ---
+    # # Pick a "Golden Tile" to test in QuestaSim
+    # # Example: Conv2, 8x8 Tile Size, Tile index 0
+    # target_layer = "Conv1"
+    # target_tile = 0
+    # target_size = 32
+    
+    # print(f"\n\n--- GENERATING VHDL STIMULUS FOR {target_layer} TILE {target_tile} ---")
+    
+    # # Locate the MIFs saved earlier
+    # layer_dir = os.path.join(MIF_OUTPUT_DIR, f"{target_layer}_tile_{target_size}")
+    # a_path = os.path.join(layer_dir, f"tile_{target_tile}", f"activation_tile_{target_tile}.mif")
+    # w_path = os.path.join(layer_dir, f"tile_{target_tile}", f"weight_tile_{target_tile}.mif")
+    
+    # # Load them back into Python
+    # sim_data = mif_to_matrix(a_path, target_size, target_size)
+    # sim_weight = mif_to_matrix(w_path, target_size, target_size)
+    
+    # if sim_data is not None and sim_weight is not None:
+    #     # Get the "Stripped" version
+    #     s_data, s_weight, m, k, n = coordinated_row_removal(sim_data, sim_weight)
+        
+    #     # Convert weight to unsigned for VHDL if necessary
+    #     s_weight_uint = twos_complement_to_uint8(s_weight)
+        
+    #     # This prints the code you copy-paste into your testbench
+    #     generate_vhdl_stimulus(s_data, s_weight_uint, m, k, n, N=target_size)
+
+    # To run Case #1 (The 32x32 Hero):
+    model = load_quantized_alexnet()
+    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=0, t_size=32)
 
 if __name__ == '__main__':
     main()

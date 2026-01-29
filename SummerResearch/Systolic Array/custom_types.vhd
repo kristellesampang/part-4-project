@@ -33,8 +33,8 @@ PACKAGE custom_types IS
 	constant N : integer := 32; -- array dimension (only need to change this)
 
 	-- input and output matrix
-	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_16; -- must match the systolic array size
-	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_64; -- must match the systolic array size
+	type systolic_array_matrix_input_int8 is array (0 to N-1, 0 to N-1) of bit_8; -- must match the systolic array size
+	type systolic_array_matrix_output_int16 is array (0 to N-1, 0 to N-1) of bit_16; -- must match the systolic array size
 	-- shift registers 
 	type input_shift_matrix is array (0 to N-1) of bit_16; -- 1xN size 
 	-- PE enabled mask
