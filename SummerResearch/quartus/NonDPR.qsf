@@ -91,16 +91,10 @@ set_global_assignment -name IP_FILE ../Memory/Buffers/OutputBuffer.ip
 set_global_assignment -name EDA_SIMULATION_TOOL "QuestaSim (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name EDA_USER_COMPILED_SIMULATION_LIBRARY_DIRECTORY "C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/Simulation" -section_id eda_simulation
-set_global_assignment -name IP_FILE Test_PR_CTRLR.ip
 set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_clock_in.ip
 set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_reset_in.ip
 set_global_assignment -name QSYS_FILE PR_Test_Top.qsys
 set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_intel_niosv_g_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_jtag_uart_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/SDRAM.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/mSGDMA_PR.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_alt_pr_1.ip
 set_instance_assignment -name PARTITION top_level_systolic_array -to npu_core -entity SummerResearchTopLevel
 set_instance_assignment -name PARTITION_COLOUR 4294937543 -to npu_core -entity SummerResearchTopLevel
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity SummerResearchTopLevel
@@ -138,3 +132,8 @@ set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emi
 set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[6] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[7] -entity SummerResearchTopLevel
 set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[8] -entity SummerResearchTopLevel
+set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0.ip
+set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_jtag_uart_0.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_master_0.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_0.ip
+set_global_assignment -name QSYS_FILE NonDPR.qsys
