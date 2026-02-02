@@ -2700,17 +2700,17 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="clockFrequency" type="longint">
           <ipxact:name>clockFrequency</ipxact:name>
           <ipxact:displayName>clockFrequency</ipxact:displayName>
-          <ipxact:value>266666665</ipxact:value>
+          <ipxact:value>50000000</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="instSlaveMapParam" type="string">
           <ipxact:name>instSlaveMapParam</ipxact:name>
           <ipxact:displayName>instSlaveMapParam</ipxact:displayName>
-          <ipxact:value>&lt;address-map&gt;&lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&gt;&lt;/address-map&gt;</ipxact:value>
+          <ipxact:value>&lt;address-map&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&gt;&lt;/address-map&gt;</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="dataSlaveMapParam" type="string">
           <ipxact:name>dataSlaveMapParam</ipxact:name>
           <ipxact:displayName>dataSlaveMapParam</ipxact:displayName>
-          <ipxact:value>&lt;address-map&gt;&lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x80030000' end='0x80030040' datawidth='32' /&gt;&lt;slave name='msgdma_pr.csr' start='0x80030040' end='0x80030060' datawidth='32' /&gt;&lt;slave name='msgdma_pr.descriptor_slave' start='0x80030060' end='0x80030070' datawidth='128' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x80030070' end='0x80030078' datawidth='32' /&gt;&lt;/address-map&gt;</ipxact:value>
+          <ipxact:value>&lt;address-map&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x30000' end='0x30040' datawidth='32' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x30040' end='0x30048' datawidth='32' /&gt;&lt;/address-map&gt;</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="enableMulDiv" type="bit">
           <ipxact:name>enableMulDiv</ipxact:name>
@@ -2905,17 +2905,17 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:parameter parameterId="AUTO_CLK_CLOCK_DOMAIN" type="longint">
           <ipxact:name>AUTO_CLK_CLOCK_DOMAIN</ipxact:name>
           <ipxact:displayName>Auto CLOCK_DOMAIN</ipxact:displayName>
-          <ipxact:value>5</ipxact:value>
+          <ipxact:value>1</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_CLK_RESET_DOMAIN" type="longint">
           <ipxact:name>AUTO_CLK_RESET_DOMAIN</ipxact:name>
           <ipxact:displayName>Auto RESET_DOMAIN</ipxact:displayName>
-          <ipxact:value>5</ipxact:value>
+          <ipxact:value>1</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED" type="string">
           <ipxact:name>AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED</ipxact:name>
           <ipxact:displayName>Auto INTERRUPTS_USED</ipxact:displayName>
-          <ipxact:value>7</ipxact:value>
+          <ipxact:value>1</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="AUTO_INSTRUCTION_MANAGER_ADDRESS_WIDTH" type="string">
           <ipxact:name>AUTO_INSTRUCTION_MANAGER_ADDRESS_WIDTH</ipxact:name>
@@ -2933,7 +2933,7 @@ https://fpgasoftware.intel.com/eula.-->
       <ipxact:parameters>
         <ipxact:parameter parameterId="embeddedsw.CMacro.CPU_FREQ" type="string">
           <ipxact:name>embeddedsw.CMacro.CPU_FREQ</ipxact:name>
-          <ipxact:value>266666665u</ipxact:value>
+          <ipxact:value>50000000u</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.CMacro.DATA_ADDR_WIDTH" type="string">
           <ipxact:name>embeddedsw.CMacro.DATA_ADDR_WIDTH</ipxact:name>
@@ -2977,7 +2977,7 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.CMacro.MTIME_OFFSET" type="string">
           <ipxact:name>embeddedsw.CMacro.MTIME_OFFSET</ipxact:name>
-          <ipxact:value>0x80030000</ipxact:value>
+          <ipxact:value>0x00030000</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.CMacro.NIOSV_CORE_VARIANT" type="string">
           <ipxact:name>embeddedsw.CMacro.NIOSV_CORE_VARIANT</ipxact:name>
@@ -2989,7 +2989,7 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.CMacro.RESET_ADDR" type="string">
           <ipxact:name>embeddedsw.CMacro.RESET_ADDR</ipxact:name>
-          <ipxact:value>0x80000000</ipxact:value>
+          <ipxact:value>0x00000000</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.CMacro.TICKS_PER_SEC" type="string">
           <ipxact:name>embeddedsw.CMacro.TICKS_PER_SEC</ipxact:name>
@@ -3065,11 +3065,11 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.dts.params.altr,reset-addr" type="string">
           <ipxact:name>embeddedsw.dts.params.altr,reset-addr</ipxact:name>
-          <ipxact:value>0x80000000</ipxact:value>
+          <ipxact:value>0x00000000</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.dts.params.clock-frequency" type="string">
           <ipxact:name>embeddedsw.dts.params.clock-frequency</ipxact:name>
-          <ipxact:value>266666665u</ipxact:value>
+          <ipxact:value>50000000u</ipxact:value>
         </ipxact:parameter>
         <ipxact:parameter parameterId="embeddedsw.dts.params.dcache-line-size" type="string">
           <ipxact:name>embeddedsw.dts.params.dcache-line-size</ipxact:name>
@@ -4581,15 +4581,15 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_DOMAIN&lt;/key&gt;
-                        &lt;value&gt;5&lt;/value&gt;
+                        &lt;value&gt;1&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;CLOCK_RATE&lt;/key&gt;
-                        &lt;value&gt;266666665&lt;/value&gt;
+                        &lt;value&gt;50000000&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;RESET_DOMAIN&lt;/key&gt;
-                        &lt;value&gt;5&lt;/value&gt;
+                        &lt;value&gt;1&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -4602,11 +4602,11 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&amp;gt;&amp;lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x80030000' end='0x80030040' datawidth='32' /&amp;gt;&amp;lt;slave name='msgdma_pr.csr' start='0x80030040' end='0x80030060' datawidth='32' /&amp;gt;&amp;lt;slave name='msgdma_pr.descriptor_slave' start='0x80030060' end='0x80030070' datawidth='128' /&amp;gt;&amp;lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x80030070' end='0x80030078' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x30000' end='0x30040' datawidth='32' /&amp;gt;&amp;lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x30040' end='0x30048' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
-                        &lt;value&gt;32&lt;/value&gt;
+                        &lt;value&gt;18&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -4640,11 +4640,11 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&amp;gt;&amp;lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                        &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
-                        &lt;value&gt;32&lt;/value&gt;
+                        &lt;value&gt;18&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
@@ -4657,7 +4657,7 @@ https://fpgasoftware.intel.com/eula.-->
                 &lt;suppliedSystemInfos&gt;
                     &lt;entry&gt;
                         &lt;key&gt;INTERRUPTS_USED&lt;/key&gt;
-                        &lt;value&gt;7&lt;/value&gt;
+                        &lt;value&gt;1&lt;/value&gt;
                     &lt;/entry&gt;
                 &lt;/suppliedSystemInfos&gt;
                 &lt;consumedSystemInfos/&gt;
