@@ -1,42 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <internal_error>
 	<sub_system>ERR</sub_system>
-	<callstack>	0x7fffe29b1890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
-	0x7ff82a333a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
-	0x7ff82a30042d: ucrtbase + 0x2042d (_o_free + 0xdd)
-	0x7ff82a2fdddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
-	0x7fffe29af590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
-	0x7fffe29ae67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
-	0x7fffe29ae95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
-	0x7ff82ce18bce: ntdll + 0x28bce (RtlActivateActivationContextUnsafeFast + 0x12e)
-	0x7ff82ce5bae5: ntdll + 0x6bae5 (LdrUnloadAlternateResourceModuleEx + 0x325)
-	0x7ff82ce5b51e: ntdll + 0x6b51e (RtlInitAnsiStringEx + 0x7e)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce5b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff82ce1d4bd: ntdll + 0x2d4bd (LdrUnloadDll + 0x11d)
-	0x7ff82ce1d434: ntdll + 0x2d434 (LdrUnloadDll + 0x94)
-	0x7ff829f4e78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
-	0x7ffffce41fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
-	0x7ffffce41908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
-	0x20b6f5ed620:
-	0x20b5171b147:
-	0x20b531b98cf:
-	0x20affffffff:
-	0x20b6f5e94fd:
-	0x623a3215f:
-	0x20b6f5ed2f5:
-	0xaf106feccf:
-	0x20b5171b147:
-	0xaf106fed37:
-	0x20b5171df8f:
+	<callstack>	0x7ffd4b95f03d: pgm_pgme + 0x6f03d (?device_is_legal@PGME_PROGRAMMER@@SA_NW4PGM_PROGRAMMING_MODE@@PEBVPGM_DEVICE@@PEAIAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N4@Z + 0x4fd)
+	0x7ffd4bd2edee: pgm_pgmwq + 0x8edee (?get_legal_mask@PGMWQ_DEVICE_TREE@@IEAAIPEAVPGM_CHAIN_ELEMENT@@@Z + 0x3ee)
+	0x7ffd4bd74ebe: pgm_pgmwq + 0xd4ebe (?update_checkbox_columns@PGMWQ_DEVICE_TREE@@IEAAXAEBVQModelIndex@@@Z + 0x10e)
+	0x7ffd4bd786c5: pgm_pgmwq + 0xd86c5 (?update_row@PGMWQ_DEVICE_TREE@@IEAAXAEBVQModelIndex@@@Z + 0x1605)
+	0x7ffd4bd74d80: pgm_pgmwq + 0xd4d80 (?update_all_rows@PGMWQ_DEVICE_TREE@@QEAAXXZ + 0x50)
+	0x7ffd4bd69a40: pgm_pgmwq + 0xc9a40 (?selectionChanged@PGMWQ_DEVICE_TREE@@MEAAXAEBVQItemSelection@@0@Z + 0x4c0)
+	0x7ffd4bcc6400: pgm_pgmwq + 0x26400 (?qt_static_metacall@PGMWQ_DEVICE_TREE@@CAXPEAVQObject@@W4Call@QMetaObject@@HPEAPEAX@Z + 0x140)
+	0x7ffd98badcb4: Qt6Core + 0xadcb4 (?qt_static_metacall@QObject@@CAXPEAV1@W4Call@QMetaObject@@HPEAPEAX@Z + 0x1854)
+	0x7ffd98bb02c3: Qt6Core + 0xb02c3 (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x83)
+	0x7ffd98d5f881: Qt6Core + 0x25f881 (?emitSelectionChanged@QItemSelectionModel@@IEAAXAEBVQItemSelection@@0@Z + 0x6c1)
+	0x7ffd98d669ab: Qt6Core + 0x2669ab (?select@QItemSelectionModel@@UEAAXAEBVQItemSelection@@V?$QFlags@W4SelectionFlag@QItemSelectionModel@@@@@Z + 0x1cb)
+	0x7ffd98d66a37: Qt6Core + 0x266a37 (?select@QItemSelectionModel@@UEAAXAEBVQModelIndex@@V?$QFlags@W4SelectionFlag@QItemSelectionModel@@@@@Z + 0x47)
+	0x7ffd98d67261: Qt6Core + 0x267261 (?setCurrentIndex@QItemSelectionModel@@UEAAXAEBVQModelIndex@@V?$QFlags@W4SelectionFlag@QItemSelectionModel@@@@@Z + 0xf1)
+	0x7ffd995d29d8: Qt6Widgets + 0x2729d8 (?setCurrentIndex@QAbstractItemView@@QEAAXAEBVQModelIndex@@@Z + 0xc8)
+	0x7ffd995ca56d: Qt6Widgets + 0x26a56d (?eventFilter@QAbstractItemView@@MEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x7d)
+	0x7ffd98b78246: Qt6Core + 0x78246 (?sendThroughObjectEventFilters@QCoreApplicationPrivate@@SA_NPEAVQObject@@PEAVQEvent@@@Z + 0xd6)
+	0x7ffd99370c52: Qt6Widgets + 0x10c52 (?notify_helper@QApplicationPrivate@@QEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0xf2)
+	0x7ffd9936fe89: Qt6Widgets + 0xfe89 (?notify@QApplication@@UEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x1739)
+	0x7ffd98b75c14: Qt6Core + 0x75c14 (?notifyInternal2@QCoreApplication@@CA_NPEAVQObject@@PEAVQEvent@@@Z + 0xc4)
+	0x7ffd9937570e: Qt6Widgets + 0x1570e (?setFocusWidget@QApplicationPrivate@@SAXPEAVQWidget@@W4FocusReason@Qt@@@Z + 0x19e)
+	0x7ffd993b8474: Qt6Widgets + 0x58474 (?setFocus@QWidget@@QEAAXW4FocusReason@Qt@@@Z + 0x284)
+	0x7ffd995c964d: Qt6Widgets + 0x26964d (?edit@QAbstractItemView@@MEAA_NAEBVQModelIndex@@W4EditTrigger@1@PEAVQEvent@@@Z + 0x9d)
+	0x7ffd995c747f: Qt6Widgets + 0x26747f (?currentChanged@QAbstractItemView@@MEAAXAEBVQModelIndex@@0@Z + 0x19f)
+	0x7ffd9962ad8a: Qt6Widgets + 0x2cad8a (?currentChanged@QTreeView@@MEAAXAEBVQModelIndex@@0@Z + 0x2a)
+	0x7ffd98badcb4: Qt6Core + 0xadcb4 (?qt_static_metacall@QObject@@CAXPEAV1@W4Call@QMetaObject@@HPEAPEAX@Z + 0x1854)
+	0x7ffd98bb02c3: Qt6Core + 0xb02c3 (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x83)
+	0x7ffd98d65756: Qt6Core + 0x265756 (?rowIntersectsSelection@QItemSelectionModel@@QEBA_NHAEBVQModelIndex@@@Z + 0xe86)
+	0x7ffd98d601c3: Qt6Core + 0x2601c3 (?height@QItemSelectionRange@@QEBAHXZ + 0xe3)
+	0x7ffd98badc4a: Qt6Core + 0xadc4a (?qt_static_metacall@QObject@@CAXPEAV1@W4Call@QMetaObject@@HPEAPEAX@Z + 0x17ea)
+	0x7ffd98bb02c3: Qt6Core + 0xb02c3 (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x83)
+	0x7ffd98d4993a: Qt6Core + 0x24993a (?beginRemoveRows@QAbstractItemModel@@IEAAXAEBVQModelIndex@@HH@Z + 0xda)
+	0x7ffd986b2ae7: Qt6Gui + 0x2e2ae7 (?rowCount@QStandardItemModel@@UEBAHAEBVQModelIndex@@@Z + 0x1f7)
+	0x7ffd986b24eb: Qt6Gui + 0x2e24eb (?removeRows@QStandardItem@@QEAAXHH@Z + 0x6b)
+	0x7ffd986b2640: Qt6Gui + 0x2e2640 (?removeRows@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z + 0x90)
+	0x7ffd98ba7e8c: Qt6Core + 0xa7e8c (?removeRow@QAbstractItemModel@@QEAA_NHAEBVQModelIndex@@@Z + 0x1c)
+	0x7ffd4bd6329f: pgm_pgmwq + 0xc329f (?remove_all_items@PGMWQ_DEVICE_TREE_MODEL@@QEAAX_N@Z + 0x15f)
+	0x7ffd4bcfed35: pgm_pgmwq + 0x5ed35 (?add_device_list@PGMWQ_FRAME_WND@@IEAA_NKPEAUAJI_DEVICE@@_NPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@11@Z + 0x1a5)
+	0x7ffd4bd6fa76: pgm_pgmwq + 0xcfa76 (?standalone_auto_detect@PGMWQ_FRAME_WND@@QEAAX_NPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z + 0x1b6)
+	0x7ffd4bd3a083: pgm_pgmwq + 0x9a083 (?on_auto_detect_action@PGMWQ_FRAME_WND@@IEAAXXZ + 0x1063)
+	0x7ffd4bcd098e: pgm_pgmwq + 0x3098e (?qt_static_metacall@PGMWQ_FRAME_WND@@CAXPEAVQObject@@W4Call@QMetaObject@@HPEAPEAX@Z + 0x1fe)
+	0x7ffd98badcb4: Qt6Core + 0xadcb4 (?qt_static_metacall@QObject@@CAXPEAV1@W4Call@QMetaObject@@HPEAPEAX@Z + 0x1854)
+	0x7ffd98bb02c3: Qt6Core + 0xb02c3 (?activate@QMetaObject@@SAXPEAVQObject@@PEBU1@HPEAPEAX@Z + 0x83)
+	0x7ffd994647e6: Qt6Widgets + 0x1047e6 (?clicked@QAbstractButton@@QEAAX_N@Z + 0x2d6)
+	0x7ffd994644d7: Qt6Widgets + 0x1044d7 (?click@QAbstractButton@@QEAAXXZ + 0x197)
+	0x7ffd994658ef: Qt6Widgets + 0x1058ef (?mouseReleaseEvent@QAbstractButton@@MEAAXPEAVQMouseEvent@@@Z + 0xdf)
+	0x7ffd993ab67f: Qt6Widgets + 0x4b67f (?event@QWidget@@MEAA_NPEAVQEvent@@@Z + 0x15f)
+	0x7ffd99370c6d: Qt6Widgets + 0x10c6d (?notify_helper@QApplicationPrivate@@QEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x10d)
+	0x7ffd9936ee0b: Qt6Widgets + 0xee0b (?notify@QApplication@@UEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x6bb)
+	0x7ffd98b75c14: Qt6Core + 0x75c14 (?notifyInternal2@QCoreApplication@@CA_NPEAVQObject@@PEAVQEvent@@@Z + 0xc4)
+	0x7ffd99374501: Qt6Widgets + 0x14501 (?sendMouseEvent@QApplicationPrivate@@SA_NPEAVQWidget@@PEAVQMouseEvent@@00PEAPEAV2@AEAV?$QPointer@VQWidget@@@@_N4@Z + 0x401)
+	0x7ffd993ca1d8: Qt6Widgets + 0x6a1d8 (?updateStaticContentsSize@QWidgetRepaintManager@@AEAAXXZ + 0x33f8)
+	0x7ffd993c7a1a: Qt6Widgets + 0x67a1a (?updateStaticContentsSize@QWidgetRepaintManager@@AEAAXXZ + 0xc3a)
+	0x7ffd99370c6d: Qt6Widgets + 0x10c6d (?notify_helper@QApplicationPrivate@@QEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x10d)
+	0x7ffd9936fe89: Qt6Widgets + 0xfe89 (?notify@QApplication@@UEAA_NPEAVQObject@@PEAVQEvent@@@Z + 0x1739)
+	0x7ffd98b75c14: Qt6Core + 0x75c14 (?notifyInternal2@QCoreApplication@@CA_NPEAVQObject@@PEAVQEvent@@@Z + 0xc4)
+	0x7ffd98454e09: Qt6Gui + 0x84e09 (?processMouseEvent@QGuiApplicationPrivate@@SAXPEAVMouseEvent@QWindowSystemInterfacePrivate@@@Z + 0x6f9)
+	0x7ffd9849fb99: Qt6Gui + 0xcfb99 (?sendWindowSystemEvents@QWindowSystemInterface@@SA_NV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0xe9)
+	0x7ffd98cce3aa: Qt6Core + 0x1ce3aa (?processEvents@QEventDispatcherWin32@@UEAA_NV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x8a)
+	0x7ffd986b84c8: Qt6Gui + 0x2e84c8 (?processEvents@QWindowsGuiEventDispatcher@@UEAA_NV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x18)
+	0x7ffd98b7b0e3: Qt6Core + 0x7b0e3 (?exec@QEventLoop@@QEAAHV?$QFlags@W4ProcessEventsFlag@QEventLoop@@@@@Z + 0x1c3)
+	0x7ffd98b73cec: Qt6Core + 0x73cec (?exec@QCoreApplication@@SAHXZ + 0x15c)
+	0x7ff7c82f2c2e: quartus + 0x2c2e (?qgq_main@@YAHHPEAPEBD@Z + 0x7e)
+	0x7ffdb4de8348: ccl_msg + 0x28348 (?msg_main_thread@@YAPEAXPEAX@Z + 0x18)
+	0x7ffdb4de9522: ccl_msg + 0x29522 (?msg_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x82)
+	0x7ffdb4f6b063: ccl_mem + 0x2b063 (?mem_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x73)
+	0x7ffdb4de610f: ccl_msg + 0x2610f (?msg_exe_main@@YAHHPEAPEBDP6AHH0@Z@Z + 0x17f)
+	0x7ff7c82f446c: quartus + 0x446c (qtEntryPoint + 0x15c)
+	0x7ff7c82f3971: quartus + 0x3971 (__scrt_common_main_seh + 0x105)
+	0x7ffdebe6259c: KERNEL32 + 0x1259c (BaseThreadInitThunk + 0x1c)
+	0x7ffded52af77: ntdll + 0x5af77 (RtlUserThreadStart + 0x27)
 </callstack>
-	<error>*** Fatal Error: Access Violation at 00007FFFE29B1891</error>
-	<date>Mon Feb  2 18:21:28 2026
+	<error>*** Fatal Error: Access Violation at 00007FFD4B95F03E</error>
+	<date>Tue Feb  3 18:35:07 2026
 </date>
 	<version>Version 24.1.0 Build 115 03/21/2024 SC Pro Edition</version>
 </internal_error>

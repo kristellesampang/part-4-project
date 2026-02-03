@@ -1,8 +1,0 @@
-22 serialization::archive 19 0 0 8 0 0 0 24 NonDPR_master_0.sopcinfo 0 0 10 text_model 0 0 0 1 1 
- 28 NonDPR_npu_system_0.sopcinfo 10 text_model 0 1 1 
- 15 NonDPR.sopcinfo 10 text_model 0 1 1 
- 17 data_mem.sopcinfo 10 text_model 0 1 1 
- 19 weight_mem.sopcinfo 10 text_model 0 1 1 
- 29 PR_Test_Top_clock_in.sopcinfo 10 text_model 0 1 1 
- 29 PR_Test_Top_reset_in.sopcinfo 10 text_model 0 1 1 
- 22 alt_sld_fab_0.sopcinfo 10 text_model 0 1 1 

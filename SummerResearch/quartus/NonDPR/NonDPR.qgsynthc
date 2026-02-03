@@ -2440,7 +2440,7 @@
           </parameter>
           <parameter>
             <name>AUTO_DEVICE</name>
-            <value>10AS066N3F40E2SG</value>
+            <value>10AX115H1F34I1SG</value>
           </parameter>
           <parameter>
             <name>AUTO_DEVICE_FAMILY</name>
@@ -2448,7 +2448,7 @@
           </parameter>
           <parameter>
             <name>AUTO_DEVICE_SPEEDGRADE</name>
-            <value>2</value>
+            <value>1</value>
           </parameter>
           <parameter>
             <name>COMPONENT_CLOCK</name>

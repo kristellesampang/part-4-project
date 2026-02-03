@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.02.03.16:38:21"
+ date="2026.02.03.17:38:38"
  outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR/">
  <perimeter>
   <parameter
@@ -72,7 +72,7 @@
  <entity kind="NonDPR" version="1.0" name="NonDPR">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
      name="AUTO_BOARD"
@@ -80,7 +80,7 @@
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="-1" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="1" />
   <generatedFiles>
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\NonDPR\synth\NonDPR.sv"
@@ -400,7 +400,7 @@
     &lt;assignmentValueMap/&gt;
 &lt;/assignmentDefinition&gt;" />
   <parameter name="svInterfaceDefinition" value="" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -1984,7 +1984,7 @@
     &lt;/assignmentValueMap&gt;
 &lt;/assignmentDefinition&gt;" />
   <parameter name="svInterfaceDefinition" value="" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -2779,7 +2779,7 @@
 &lt;/componentDefinition&gt;" />
   <parameter name="COMPONENT_CLOCK" value="0" />
   <parameter name="cpuInfo" value="" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="1" />
   <parameter name="logicalView" value="ip/NonDPR/NonDPR_master_0.ip" />
   <parameter
      name="moduleAssignmentDefinition"
@@ -2792,7 +2792,7 @@
     &lt;/assignmentValueMap&gt;
 &lt;/assignmentDefinition&gt;" />
   <parameter name="svInterfaceDefinition" value="" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -4364,7 +4364,7 @@
         &lt;/svInterface&gt;
     &lt;/svInterfaces&gt;
 &lt;/moduleSvInterfaceDefinition&gt;" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -4686,7 +4686,7 @@
     &lt;assignmentValueMap/&gt;
 &lt;/assignmentDefinition&gt;" />
   <parameter name="svInterfaceDefinition" value="" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -6270,7 +6270,7 @@
     &lt;/assignmentValueMap&gt;
 &lt;/assignmentDefinition&gt;" />
   <parameter name="svInterfaceDefinition" value="" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter
      name="hdlParameters"
      value="&lt;hdlParameterDescriptorDefinitionList/&gt;" />
@@ -6325,7 +6325,7 @@
    kind="altera_mm_interconnect"
    version="19.2.0"
    name="NonDPR_altera_mm_interconnect_1920_mcc4doa">
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
      name="AUTO_BOARD"
@@ -6365,7 +6365,7 @@
    kind="altera_mm_interconnect"
    version="19.2.0"
    name="NonDPR_altera_mm_interconnect_1920_mxt6g6y">
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
      name="AUTO_BOARD"
@@ -6464,7 +6464,7 @@
    kind="altera_mm_interconnect"
    version="19.2.0"
    name="NonDPR_altera_mm_interconnect_1920_zn5rfly">
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
+  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
      name="AUTO_BOARD"
