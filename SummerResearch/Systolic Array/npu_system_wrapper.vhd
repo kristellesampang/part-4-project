@@ -35,6 +35,10 @@ architecture rtl of npu_system_wrapper is
     signal n_cycle_count   : integer := 0;
     signal n_output        : systolic_array_matrix_output;
     signal n_reset      : bit_1;
+
+    signal n_matrix_data   : systolic_array_matrix_input := (others => (others => (others => '0')));
+    signal n_matrix_weight : systolic_array_matrix_input := (others => (others => (others => '0')));
+
     -- internal signals to track fetching progress
     signal fetch_counter : integer range 0 to 1024 := 0;
     signal row_idx, col_idx : integer range 0 to 31 := 0;
@@ -94,8 +98,8 @@ begin
                     -- 2. Wait for RAM to be ready (Waitrequest = '0')
                     if avm_act_waitreq = '0' and avm_weight_waitreq = '0' then
                         -- Map the 32-bit RAM word to your 16-bit Matrix (taking lower 16 bits)
-                        n_matrix_data(row_idx)(col_idx)   <= avm_act_readdata(15 downto 0);
-                        n_matrix_weight(row_idx)(col_idx) <= avm_weight_readdata(15 downto 0);
+                        n_matrix_data(row_idx, col_idx)   <= avm_act_readdata(15 downto 0);
+                        n_matrix_weight(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
 
                         -- 3. Increment indices
                         if fetch_counter < 1023 then
@@ -126,8 +130,8 @@ begin
         clk           => clk,
         reset         => n_reset,
         ready         => reg_ready,
-        matrix_data   => (others => (others => (others => '0'))), -- Placeholder
-        matrix_weight => (others => (others => (others => '0'))), -- Placeholder
+        matrix_data   => n_matrix_data,
+        matrix_weight => n_matrix_weight,
         active_rows   => reg_m,
         active_cols   => reg_n,
         active_k      => reg_k,

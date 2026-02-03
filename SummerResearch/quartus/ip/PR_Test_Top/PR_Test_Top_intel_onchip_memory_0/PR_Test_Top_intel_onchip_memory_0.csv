@@ -1,0 +1,19 @@
+# system info PR_Test_Top_intel_onchip_memory_0 on 2026.02.03.13:10:27
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for PR_Test_Top_intel_onchip_memory_0 on 2026.02.03.13:10:27
+files:
+filepath,kind,attributes,module,is_top
+sim/PR_Test_Top_intel_onchip_memory_0.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,PR_Test_Top_intel_onchip_memory_0,true
+intel_onchip_memory_148/sim/PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv,SYSTEM_VERILOG,,PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq,false
+intel_onchip_memory_148/sim/PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex,HEX,,PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+PR_Test_Top_intel_onchip_memory_0.intel_onchip_memory_0,PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq

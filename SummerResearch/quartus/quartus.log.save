@@ -1,27 +1,28 @@
 # **************************************************
 # Quartus Prime Version 24.1.0
-# Process ID 7500
+# Process ID 12852
 # Start logging UI actions
-# Tue Dec 9 15:35:37 2025
+# Mon Feb 2 12:39:43 2026
 # **************************************************
-[Tue Dec  9 15:35:51 2025] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Dec  9 15:35:52 2025] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Dec  9 15:35:52 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/SummerResearchProject - SummerResearchTopLevel [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Dec  9 17:26:37 2025] [Action triggered] Window title: 'Quartus Prime Pro Edition [*]' | &Help > 'Home' was pressed
+[Mon Feb  2 12:39:48 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Net' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Mon Feb  2 12:39:49 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Mon Feb  2 12:39:49 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
+[Mon Feb  2 12:40:17 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > 'Platfor&m Designer' was pressed
+[Mon Feb  2 18:21:31 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition [*]' | &Help > 'Home' was pressed
 # **************************************************
-# Tue Dec 9 17:26:38 2025
+# Mon Feb 2 18:21:31 2026
 # End of logging UI actions
 # **************************************************
