@@ -14,6 +14,7 @@ entity non_dpr_top is
 end non_dpr_top;
 
 architecture rtl of non_dpr_top is
+    signal actual_reset : std_logic;
 
     signal blink_reg : unsigned (24 downto 0);
 
@@ -28,10 +29,12 @@ architecture rtl of non_dpr_top is
 
 begin
 
+    actual_reset <= not BTN_RESET; -- Active high reset internally
+
     System : component NonDPR
         port map (
             clk_clk       => CLK_50,
-            reset_reset   => '0' -- For now 0
+            reset_reset   => actual_reset
         );
 
     process(CLK_50) begin

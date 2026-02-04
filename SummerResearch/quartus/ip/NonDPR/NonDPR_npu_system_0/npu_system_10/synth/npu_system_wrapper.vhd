@@ -14,6 +14,7 @@ entity npu_system_wrapper is
         avs_writedata : in  std_logic_vector(31 downto 0);
         avs_read      : in  bit_1;
         avs_readdata  : out std_logic_vector(31 downto 0);
+        avs_waitrequest : out bit_1 := '0';
 
         -- Avalon-MM Master Interface for Data/Activation
         avm_act_address    : out std_logic_vector(31 downto 0);
@@ -48,6 +49,7 @@ architecture rtl of npu_system_wrapper is
 
 begin
     n_reset <= not reset_n;
+    avs_waitrequest <= '0'; -- Always ready
 
     process(clk, reset_n)
     begin
@@ -74,7 +76,11 @@ begin
 
             if avs_read = '1' then
                 case avs_address is
-                    when x"4" => avs_readdata <= std_logic_vector(to_signed(n_cycle_count, 32));
+                    when "0000" => avs_readdata <= (31 downto 1 => '0') & reg_ready;
+                    when "0001" => avs_readdata <= std_logic_vector(to_unsigned(reg_m, 32));
+                    when "0010" => avs_readdata <= std_logic_vector(to_unsigned(reg_n, 32));
+                    when "0011" => avs_readdata <= std_logic_vector(to_unsigned(reg_k, 32));
+                    when "0100" => avs_readdata <= std_logic_vector(to_signed(n_cycle_count, 32));
                     when others => avs_readdata <= (others => '0');
                 end case;
             end if;
