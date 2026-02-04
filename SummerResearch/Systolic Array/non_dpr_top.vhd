@@ -39,7 +39,9 @@ begin
             blink_reg <= blink_reg + 1;
         end if;
     end process;
-    LED_STATUS(0) <= std_logic(blink_reg(24));
-    LED_STATUS(7 downto 1) <= (others => '0'); -- Keep the others off
+    LED_STATUS(0) <= std_logic(blink_reg(22));
+    LED_STATUS(1) <= std_logic(blink_reg(23));
+    LED_STATUS(2) <= std_logic(blink_reg(24));
+    LED_STATUS(3) <= not BTN_RESET; -- Active low reset indication
 
 end architecture rtl;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="alt_sld_fab_0" kind="alt_sld_fab_0" version="1.0" fabric="QSYS">
  <!-- Format version 24.1 115 (Future versions may contain additional information.) -->
- <!-- 2026.02.03.17:39:28 -->
+ <!-- 2026.02.04.14:55:40 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -32,7 +32,7 @@
  </parameter>
  <parameter name="AUTO_DEVICE">
   <type>java.lang.String</type>
-  <value>10AX115H1F34I1SG</value>
+  <value>10AS066N3F40E2SG</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -41,7 +41,7 @@
  </parameter>
  <parameter name="AUTO_DEVICE_SPEEDGRADE">
   <type>java.lang.String</type>
-  <value>1</value>
+  <value>2</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -96,7 +96,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_DEVICE">
    <type>java.lang.String</type>
-   <value>10AX115H1F34I1SG</value>
+   <value>10AS066N3F40E2SG</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -105,7 +105,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_DEVICE_SPEEDGRADE">
    <type>java.lang.String</type>
-   <value>1</value>
+   <value>2</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -143,7 +143,7 @@ the requested settings for a module instance. -->
    name="alt_sld_fab_0_alt_sld_fab_0"
    kind="alt_sld_fab"
    version="19.2.0"
-   entity="alt_sld_fab_0_alt_sld_fab_1920_yqkfpey"
+   entity="alt_sld_fab_0_alt_sld_fab_1920_udb6y2q"
    library="alt_sld_fab_1920"
    path="alt_sld_fab_0.alt_sld_fab_0"
    hpath="alt_sld_fab_0|alt_sld_fab_0"
@@ -152,7 +152,7 @@ the requested settings for a module instance. -->
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>0ee04214fa8448a59d80</value>
+   <value>4cb9efe994c3f11f2e48</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -249,7 +249,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_DEVICE">
    <type>java.lang.String</type>
-   <value>10AX115H1F34I1SG</value>
+   <value>10AS066N3F40E2SG</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -258,7 +258,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_DEVICE_SPEEDGRADE">
    <type>java.lang.String</type>
-   <value>1</value>
+   <value>2</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1633,7 +1633,7 @@ parameters are a RESULT of the module parameters. -->
    name="alt_sld_fab_0_alt_sld_fab_0_ident"
    kind="altera_connection_identification_hub"
    version="19.2.0"
-   entity="alt_sld_fab_0_altera_connection_identification_hub_1920_nupafwi"
+   entity="alt_sld_fab_0_altera_connection_identification_hub_1920_eihxq5a"
    library="altera_connection_identification_hub_1920"
    path="alt_sld_fab_0.alt_sld_fab_0.ident"
    hpath="alt_sld_fab_0|alt_sld_fab_0|ident"
@@ -1642,7 +1642,7 @@ parameters are a RESULT of the module parameters. -->
 the requested settings for a module instance. -->
   <parameter name="DESIGN_HASH">
    <type>java.lang.String</type>
-   <value>0ee04214fa8448a59d80</value>
+   <value>4cb9efe994c3f11f2e48</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>

@@ -21,7 +21,7 @@ https://fpgasoftware.intel.com/eula.-->
    tags=""
    categories="Systems"
    tool="QsysPro" />
- <parameter name="board">Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D</parameter>
+ <parameter name="board" value="default" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element clock_in

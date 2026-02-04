@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.02.03.17:38:37"
+ date="2026.02.04.14:42:57"
  outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/NonDPR/weight_mem/">
  <perimeter>
   <parameter
@@ -36,7 +36,7 @@
   <parameter
      name="AUTO_BOARD"
      type="String"
-     defaultValue="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D"
+     defaultValue="default"
      onHdl="0"
      affectsHdl="1" />
   <parameter
@@ -194,15 +194,13 @@
  </perimeter>
  <entity kind="weight_mem" version="1.0" name="weight_mem">
   <parameter name="AUTO_GENERATION_ID" value="0" />
-  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
+  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
-  <parameter
-     name="AUTO_BOARD"
-     value="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D" />
+  <parameter name="AUTO_BOARD" value="default" />
   <parameter name="AUTO_CLK1_CLOCK_DOMAIN" value="-1" />
   <parameter name="AUTO_CLK1_RESET_DOMAIN" value="-1" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="1" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <parameter name="AUTO_CLK1_CLOCK_RATE" value="-1" />
   <generatedFiles>
    <file
@@ -226,7 +224,7 @@
    <message level="Info" culprit="weight_mem">"Generating: weight_mem"</message>
    <message level="Info" culprit="weight_mem">"Generating: weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq"</message>
    <message level="Info" culprit="weight_mem">Starting RTL generation for module 'weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq'</message>
-   <message level="Info" culprit="weight_mem">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0487_5475354584299928105.dir/0001_weight_mem_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0487_5475354584299928105.dir/0001_weight_mem_gen//weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="weight_mem">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0488_5271207927193787877.dir/0001_weight_mem_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0488_5271207927193787877.dir/0001_weight_mem_gen//weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq_component_configuration.pl  --do_build_sim=0  ]</message>
    <message level="Info" culprit="weight_mem">Done RTL generation for module 'weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq'</message>
   </messages>
  </entity>
@@ -291,7 +289,7 @@
   <messages>
    <message level="Info" culprit="weight_mem">"Generating: weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq"</message>
    <message level="Info" culprit="weight_mem">Starting RTL generation for module 'weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq'</message>
-   <message level="Info" culprit="weight_mem">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0487_5475354584299928105.dir/0001_weight_mem_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0487_5475354584299928105.dir/0001_weight_mem_gen//weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="weight_mem">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0488_5271207927193787877.dir/0001_weight_mem_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0488_5271207927193787877.dir/0001_weight_mem_gen//weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq_component_configuration.pl  --do_build_sim=0  ]</message>
    <message level="Info" culprit="weight_mem">Done RTL generation for module 'weight_mem_altera_avalon_onchip_memory2_1939_xou5nhq'</message>
   </messages>
  </entity>

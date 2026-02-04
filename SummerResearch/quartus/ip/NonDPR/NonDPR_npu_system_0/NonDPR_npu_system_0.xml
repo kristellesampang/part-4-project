@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.02.03.17:38:35"
+ date="2026.02.04.14:42:56"
  outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/NonDPR/NonDPR_npu_system_0/">
  <perimeter>
   <parameter
@@ -36,7 +36,7 @@
   <parameter
      name="AUTO_BOARD"
      type="String"
-     defaultValue="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D"
+     defaultValue="default"
      onHdl="0"
      affectsHdl="1" />
   <parameter
@@ -249,15 +249,13 @@
   <parameter name="AUTO_ACT_ADDRESS_MAP" value="" />
   <parameter name="AUTO_GENERATION_ID" value="0" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
-  <parameter
-     name="AUTO_BOARD"
-     value="Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D" />
+  <parameter name="AUTO_BOARD" value="default" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="1" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <parameter name="AUTO_CLOCK_CLOCK_RATE" value="-1" />
   <parameter name="AUTO_CLOCK_CLOCK_DOMAIN" value="-1" />
   <parameter name="AUTO_CLOCK_RESET_DOMAIN" value="-1" />
-  <parameter name="AUTO_DEVICE" value="10AX115H1F34I1SG" />
+  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_ACT_ADDRESS_WIDTH" value="-1" />
   <parameter name="AUTO_WEIGHT_ADDRESS_MAP" value="" />
   <generatedFiles>

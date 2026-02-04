@@ -5,7 +5,7 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 24.1 115 (Future versions may contain additional information.) -->
- <!-- 2026.02.03.17:38:37 -->
+ <!-- 2026.02.04.14:42:57 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -36,7 +36,7 @@
  </parameter>
  <parameter name="AUTO_DEVICE">
   <type>java.lang.String</type>
-  <value>10AX115H1F34I1SG</value>
+  <value>10AS066N3F40E2SG</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -45,7 +45,7 @@
  </parameter>
  <parameter name="AUTO_DEVICE_SPEEDGRADE">
   <type>java.lang.String</type>
-  <value>1</value>
+  <value>2</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -54,7 +54,7 @@
  </parameter>
  <parameter name="AUTO_BOARD">
   <type>java.lang.String</type>
-  <value>Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D</value>
+  <value>default</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>

@@ -2436,11 +2436,11 @@
         <parameters>
           <parameter>
             <name>AUTO_BOARD</name>
-            <value>Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D</value>
+            <value>default</value>
           </parameter>
           <parameter>
             <name>AUTO_DEVICE</name>
-            <value>10AX115H1F34I1SG</value>
+            <value>10AS066N3F40E2SG</value>
           </parameter>
           <parameter>
             <name>AUTO_DEVICE_FAMILY</name>
@@ -2448,7 +2448,7 @@
           </parameter>
           <parameter>
             <name>AUTO_DEVICE_SPEEDGRADE</name>
-            <value>1</value>
+            <value>2</value>
           </parameter>
           <parameter>
             <name>COMPONENT_CLOCK</name>
