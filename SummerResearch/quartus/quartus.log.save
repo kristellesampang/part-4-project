@@ -1,476 +1,101 @@
 # **************************************************
 # Quartus Prime Version 24.1.0
-# Process ID 9228
+# Process ID 15100
 # Start logging UI actions
-# Tue Feb 3 12:30:23 2026
+# Tue Feb 3 16:56:55 2026
 # **************************************************
-[Tue Feb  3 12:36:05 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 12:36:07 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 12:36:07 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 12:36:39 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > 'Platfor&m Designer' was pressed
-[Tue Feb  3 13:37:00 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > '&Settings...' was pressed
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Use project's relative path' was unchecked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'scrollAreaWidgetContents': QRadioButton '&Balanced (normal flow)' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox '&Automatically launch Timing Analyzer GUI after a full compilation' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically read &constraints and update the timing netlist when project is opened' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &run Setup Summary report when project is opened' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &load Timing Closure Summary report when project is opened' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Report &worst-case paths during compilation' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run default timing analysis &before running custom script' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was unchecked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Perform glitch filtering on VCD files' was checked
-[Tue Feb  3 13:37:01 2026] Window title: 'Settings - NonDPR' | 'm_capture_jtemp_radio': QRadioButton '&Auto compute junction temperature using cooling solution' was checked
-[Tue Feb  3 13:37:19 2026] Window title: 'Settings - NonDPR' | 'Files' page: QPushButton '&Remove' pressed!
-[Tue Feb  3 13:37:29 2026] Window title: 'Settings - NonDPR' | 'Files' page: QPushButton '&Remove' pressed!
-[Tue Feb  3 13:40:52 2026] Window title: 'Quartus Prime' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 13:40:58 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Tue Feb  3 13:40:58 2026] Window title: 'Settings - NonDPR' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 13:54:25 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > '&Settings...' was pressed
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Use project's relative path' was unchecked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'scrollAreaWidgetContents': QRadioButton '&Balanced (normal flow)' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox '&Automatically launch Timing Analyzer GUI after a full compilation' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically read &constraints and update the timing netlist when project is opened' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &run Setup Summary report when project is opened' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &load Timing Closure Summary report when project is opened' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Report &worst-case paths during compilation' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run default timing analysis &before running custom script' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was unchecked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Perform glitch filtering on VCD files' was checked
-[Tue Feb  3 13:54:25 2026] Window title: 'Settings - NonDPR' | 'm_capture_jtemp_radio': QRadioButton '&Auto compute junction temperature using cooling solution' was checked
-[Tue Feb  3 13:57:46 2026] Window title: 'Settings - NonDPR' | QPushButton 'Apply' pressed!
-[Tue Feb  3 13:57:50 2026] Window title: 'Settings - NonDPR' | QPushButton 'Close' pressed!
-[Tue Feb  3 13:58:00 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > '&Settings...' was pressed
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Use project's relative path' was unchecked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'scrollAreaWidgetContents': QRadioButton '&Balanced (normal flow)' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox '&Automatically launch Timing Analyzer GUI after a full compilation' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically read &constraints and update the timing netlist when project is opened' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &run Setup Summary report when project is opened' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &load Timing Closure Summary report when project is opened' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Report &worst-case paths during compilation' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run default timing analysis &before running custom script' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was unchecked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Perform glitch filtering on VCD files' was checked
-[Tue Feb  3 13:58:00 2026] Window title: 'Settings - NonDPR' | 'm_capture_jtemp_radio': QRadioButton '&Auto compute junction temperature using cooling solution' was checked
-[Tue Feb  3 13:58:03 2026] Window title: 'Settings - NonDPR' | 'Files' page: QPushButton '&Remove' pressed!
-[Tue Feb  3 13:58:05 2026] Window title: 'Settings - NonDPR' | 'Files' page: QPushButton '&Remove' pressed!
-[Tue Feb  3 13:58:12 2026] Window title: 'Settings - NonDPR' | QPushButton 'Apply' pressed!
-[Tue Feb  3 13:58:12 2026] Window title: 'Settings - NonDPR' | QPushButton 'OK' pressed!
-[Tue Feb  3 13:58:33 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'dni_analysis_and_synthesis' clicked
-[Tue Feb  3 13:58:33 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 13:59:10 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:06:44 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'dni_analysis_and_synthesis' clicked
-[Tue Feb  3 14:06:44 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:07:22 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:13:38 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QMenu > '&Remove File from Project' was pressed
-[Tue Feb  3 14:13:40 2026] Window title: 'Project Navigator' | QPushButton '&Yes' pressed!
-[Tue Feb  3 14:16:14 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'dni_analysis_and_synthesis' clicked
-[Tue Feb  3 14:16:14 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:16:36 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:26:00 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'dni_analysis_and_synthesis' clicked
-[Tue Feb  3 14:26:00 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:26:58 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:26:59 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:27:23 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:27:31 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:27:51 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'sta_early' clicked
-[Tue Feb  3 14:27:52 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:28:04 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:28:12 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:28:26 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:28:28 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'fitter' clicked
-[Tue Feb  3 14:28:29 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:29:02 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:29:04 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:29:04 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:29:19 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:30:18 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:30:19 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:30:37 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > 'Pi&n Planner' was pressed
-[Tue Feb  3 14:30:39 2026] [Action triggered] Window title: 'Pin Planner Pro Edition' | 'Selection Tool' was checked
-[Tue Feb  3 14:31:16 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'power' clicked
-[Tue Feb  3 14:31:17 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:31:28 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:31:29 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:31:55 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:31:55 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:32:02 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 14:32:30 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 14:32:44 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > '&Programmer' was pressed
-[Tue Feb  3 14:32:47 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:32:47 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > '&Programmer' was pressed
-[Tue Feb  3 14:32:49 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:43:14 2026] Window title: 'Hardware Setup' | QCheckBox 'Auto-adjust frequency at chain scanning' was checked
-[Tue Feb  3 14:43:14 2026] Window title: 'Hardware Setup' | combo box changed to: 'USB-BlasterII [USB-1]'
-[Tue Feb  3 14:43:15 2026] Window title: 'Hardware Setup' | QPushButton 'Close' pressed!
-[Tue Feb  3 14:43:17 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QPushButton 'Start' pressed!
-[Tue Feb  3 14:44:03 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > 'Pi&n Planner' was pressed
-[Tue Feb  3 14:44:04 2026] [Action triggered] Window title: 'Pin Planner Pro Edition' | 'Selection Tool' was checked
-[Tue Feb  3 14:44:31 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Tue Feb  3 14:44:31 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QPushButton 'Auto Detect' pressed!
-[Tue Feb  3 14:45:04 2026] Window title: 'Select New Device' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 14:45:09 2026] [Action triggered] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | &Edit > '&Delete' was pressed
-[Tue Feb  3 14:45:26 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QPushButton 'Add File...' pressed!
-[Tue Feb  3 14:45:40 2026] [Action triggered] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | &Edit > '&Delete' was pressed
-[Tue Feb  3 14:45:43 2026] [Action triggered] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | &Edit > '&Delete' was pressed
-[Tue Feb  3 14:45:53 2026] Window title: 'Select Devices' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 14:46:05 2026] Window title: 'Quartus Prime' | QPushButton '&No' pressed!
-[Tue Feb  3 14:46:10 2026] Window title: 'Quartus Prime' | QPushButton '&No' pressed!
-[Tue Feb  3 14:46:16 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > '&Programmer' was pressed
-[Tue Feb  3 14:46:19 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
-[Tue Feb  3 14:46:39 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QCheckBox '' was checked
-[Tue Feb  3 14:46:39 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QCheckBox '' was unchecked
-[Tue Feb  3 14:46:39 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QCheckBox '' was checked
-[Tue Feb  3 14:46:44 2026] Window title: 'Programmer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [NonDPR.cdf][*]' | QPushButton 'Start' pressed!
-[Tue Feb  3 14:48:58 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > Syst&em Debugging Tools > 'Syst&em Console' was pressed
-[Tue Feb  3 15:09:39 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > 'Signal Tap Logic A&nalyzer' was pressed
-[Tue Feb  3 15:17:16 2026] Window title: 'New File from Template' | QPushButton 'Create' pressed!
-[Tue Feb  3 15:17:17 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:17 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:17:22 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | combo box changed to: 'USB-BlasterII [USB-1]'
-[Tue Feb  3 15:17:36 2026] Window title: 'Hardware Setup' | QCheckBox 'Auto-adjust frequency at chain scanning' was checked
-[Tue Feb  3 15:17:36 2026] Window title: 'Hardware Setup' | combo box changed to: 'USB-BlasterII [USB-1]'
-[Tue Feb  3 15:17:47 2026] Window title: 'Hardware Setup' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:17:47 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | QPushButton 'Setup...' pressed!
-[Tue Feb  3 15:18:11 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:18:11 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:18:38 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:18:38 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:18:38 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:18:38 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:18:38 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Post-Compilation'
-[Tue Feb  3 15:19:04 2026] Window title: 'Select Hierarchy Level' | QPushButton 'OK' pressed!
-[Tue Feb  3 15:19:14 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:19:27 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:19:27 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:19:27 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:19:27 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:19:27 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:19:36 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:19:37 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | QPushButton 'Scan Chain' pressed!
-[Tue Feb  3 15:19:57 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:20:52 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:20:52 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:20:52 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:20:52 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:20:52 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Signal Tap: post-fitting'
-[Tue Feb  3 15:20:56 2026] Window title: 'Select Hierarchy Level' | QPushButton 'OK' pressed!
-[Tue Feb  3 15:21:06 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Post-Compilation'
-[Tue Feb  3 15:21:07 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:21:10 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | P&rocessing > 'Run Anal&ysis' was pressed
-[Tue Feb  3 15:21:17 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:21:17 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:21:17 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:21:17 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:21:17 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:21:17 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:21:17 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:21:17 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:21:17 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:21:17 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:21:19 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:21:30 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:21:53 2026] Window title: 'Node Finder' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 15:21:56 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | P&rocessing > 'Aut&orun Analysis' was pressed
-[Tue Feb  3 15:22:14 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | P&rocessing > 'Aut&orun Analysis' was pressed
-[Tue Feb  3 15:22:47 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | QPushButton '<<' pressed!
-[Tue Feb  3 15:22:48 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | QPushButton '>>' pressed!
-[Tue Feb  3 15:23:45 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp1.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:23:50 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Design Entry (all names)'
-[Tue Feb  3 15:24:03 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Design Entry (all names)'
-[Tue Feb  3 15:24:38 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Design Entry (all names)'
-[Tue Feb  3 15:25:49 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:26:35 2026] Window title: 'Quartus Prime' | QPushButton '&No' pressed!
-[Tue Feb  3 15:26:45 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > Netlist &Viewers > '&Technology Map Viewer (Post-Fitting)' was pressed
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | 'Node name': QRadioButton 'Show full name' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | 'Port name': QRadioButton 'Show full name' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | 'Pin name': QRadioButton 'Show full name' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | 'Bus index name': QRadioButton 'Show full name' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | QCheckBox 'Show timing info' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | QCheckBox 'Show node type' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | QCheckBox 'Show constant value' was checked
-[Tue Feb  3 15:26:45 2026] Window title: 'Technology Map Viewer Pro Edition' | QCheckBox 'Select entire net across hierarchies' was checked
-[Tue Feb  3 15:26:48 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:26:56 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:26:57 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:31:18 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > 'Signal Tap Logic A&nalyzer' was pressed
-[Tue Feb  3 15:31:35 2026] Window title: 'New File from Template' | QPushButton 'Create' pressed!
-[Tue Feb  3 15:31:35 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:35 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:38 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | combo box changed to: 'USB-BlasterII [USB-1]'
-[Tue Feb  3 15:31:41 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | QPushButton 'Scan Chain' pressed!
-[Tue Feb  3 15:31:44 2026] Window title: 'Hardware Setup' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:31:44 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | QPushButton 'Setup...' pressed!
-[Tue Feb  3 15:31:46 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:31:46 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:31:47 2026] Window title: '' | QCheckBox 'Record data discontinuities' was checked
-[Tue Feb  3 15:31:47 2026] Window title: '' | 'Trigger in': QRadioButton 'Node:' was checked
-[Tue Feb  3 15:31:47 2026] Window title: '' | 'Data': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:47 2026] Window title: '' | 'Trigger': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:47 2026] Window title: '' | 'Storage qualifier:': QRadioButton 'Auto' was checked
-[Tue Feb  3 15:31:49 2026] Window title: 'Node Finder' | QPushButton '' pressed!
-[Tue Feb  3 15:31:53 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 15:31:53 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 15:31:53 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:31:53 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:31:53 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Signal Tap: post-fitting'
-[Tue Feb  3 15:32:06 2026] Window title: 'Select Hierarchy Level' | QPushButton 'OK' pressed!
-[Tue Feb  3 15:32:08 2026] Window title: 'Node Finder' | 'LookinComboBox' combo box changed to: 'non_dpr_top||'
-[Tue Feb  3 15:32:10 2026] Window title: 'Node Finder' | QCheckBox 'Include subentities' was unchecked
-[Tue Feb  3 15:32:11 2026] Window title: 'Node Finder' | QCheckBox 'Include subentities' was checked
-[Tue Feb  3 15:32:14 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Post-Compilation'
-[Tue Feb  3 15:32:19 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Signal Tap: post-fitting user defined'
-[Tue Feb  3 15:32:22 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Signal Tap: post-fitting preserved for debug'
-[Tue Feb  3 15:32:25 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 15:32:25 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Entity instance: pre-synthesis'
-[Tue Feb  3 15:33:53 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 15:33:53 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Registers: post-fitting'
-[Tue Feb  3 15:34:18 2026] Window title: 'Node Finder' | QCheckBox '&Include subentities' was unchecked
-[Tue Feb  3 15:34:18 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:34:18 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:34:18 2026] Window title: 'Node Finder' | 'FilterComboBox' combo box changed to: 'Pins: all'
-[Tue Feb  3 15:35:31 2026] Window title: 'Options' | QPushButton 'Cancel' pressed!
-[Tue Feb  3 15:35:31 2026] Window title: 'Node Finder' | QPushButton 'Options' pressed!
-[Tue Feb  3 15:35:32 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:35:38 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | P&rocessing > 'Read Data' was pressed
-[Tue Feb  3 15:35:49 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | P&rocessing > 'Aut&orun Analysis' was pressed
-[Tue Feb  3 15:35:53 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:35:53 2026] Window title: 'Node Finder' | QCheckBox '&Include subentities' was checked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 15:35:53 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 15:36:04 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | &Project > 'Add Curre&nt File to Project' was pressed
-[Tue Feb  3 15:36:11 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | P&rocessing > 'Read Data' was pressed
-[Tue Feb  3 15:36:15 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | &Window > '&Attach Window' was pressed
-[Tue Feb  3 15:36:22 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Window > '&Detach Window' was pressed
-[Tue Feb  3 15:37:35 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | QPushButton '<<' pressed!
-[Tue Feb  3 15:37:36 2026] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | QPushButton '>>' pressed!
-[Tue Feb  3 15:37:49 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | &Edit > '&Add Nodes...' was pressed
-[Tue Feb  3 15:37:51 2026] Window title: 'Node Finder' | QPushButton '' pressed!
-[Tue Feb  3 15:37:52 2026] Window title: 'Node Finder' | QPushButton '' pressed!
-[Tue Feb  3 15:37:57 2026] Window title: 'Node Finder' | QPushButton 'Options' pressed!
-[Tue Feb  3 15:38:00 2026] Window title: 'Node Finder' | QPushButton 'Close' pressed!
-[Tue Feb  3 15:38:10 2026] [Action triggered] Window title: 'Signal Tap Logic Analyzer - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR - [stp2.stp][*]' | P&rocessing > 'Run Anal&ysis' was pressed
-[Tue Feb  3 16:37:25 2026] Window title: 'Quartus Prime' | QPushButton '&No' pressed!
-[Tue Feb  3 16:40:03 2026] Window title: 'Do You Want To Reload The File?' | QPushButton '&Yes' pressed!
-[Tue Feb  3 16:40:06 2026] Window title: 'Do You Want To Reload The File?' | QPushButton '&Yes' pressed!
-[Tue Feb  3 16:40:09 2026] Window title: 'Do You Want To Reload The File?' | QPushButton '&Yes' pressed!
-[Tue Feb  3 16:40:20 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QMenu > '&Remove File from Project' was pressed
-[Tue Feb  3 16:40:21 2026] Window title: 'Project Navigator' | QPushButton '&Yes' pressed!
-[Tue Feb  3 16:40:26 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'run1' clicked
-[Tue Feb  3 16:40:26 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
-[Tue Feb  3 16:43:52 2026] Window title: 'Report Clock Domain Crossing Viewer' | QCheckBox 'Report panel name:' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Report Clock Domain Crossing Viewer' | 'File options': QRadioButton 'Overwrite' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Net' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
-[Tue Feb  3 16:43:52 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
-[Tue Feb  3 16:45:49 2026] Window title: 'Quartus Prime' | QPushButton '&No' pressed!
-[Tue Feb  3 16:45:58 2026] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | QCheckBox '' was checked
+[Tue Feb  3 16:57:00 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Tue Feb  3 16:57:02 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Tue Feb  3 16:57:02 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Tue Feb  3 16:57:02 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Tue Feb  3 16:57:02 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Tue Feb  3 16:57:03 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Tue Feb  3 16:57:03 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
+[Tue Feb  3 16:57:10 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > 'Platfor&m Designer' was pressed
+[Tue Feb  3 16:59:27 2026] [Compilation Dashboard] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | Start button for task 'run1' clicked
+[Tue Feb  3 16:59:27 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | P&rocessing > 'Compilation Dashboard' was pressed
+[Tue Feb  3 17:00:54 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Tue Feb  3 17:00:54 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Tue Feb  3 17:00:54 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Tue Feb  3 17:00:54 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Instance' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Inst Port' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Instance' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Instance Bus' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Inst Port' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net Bus' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Mod Port' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Port Bus' was unchecked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Net Bus' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Mod Port' was checked
+[Tue Feb  3 17:00:55 2026] Window title: 'Options' | QCheckBox 'Port Bus' was checked
+[Tue Feb  3 17:01:31 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > '&Settings...' was pressed
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Use project's relative path' was unchecked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'scrollAreaWidgetContents': QRadioButton '&Balanced (normal flow)' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox '&Automatically launch Timing Analyzer GUI after a full compilation' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically read &constraints and update the timing netlist when project is opened' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &run Setup Summary report when project is opened' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &load Timing Closure Summary report when project is opened' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Report &worst-case paths during compilation' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run default timing analysis &before running custom script' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was unchecked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Perform glitch filtering on VCD files' was checked
+[Tue Feb  3 17:01:31 2026] Window title: 'Settings - NonDPR' | 'm_capture_jtemp_radio': QRadioButton '&Auto compute junction temperature using cooling solution' was checked
+[Tue Feb  3 17:03:00 2026] Window title: 'Settings - NonDPR' | QPushButton 'Cancel' pressed!
+[Tue Feb  3 17:03:32 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Tools > '&Options...' was pressed
+[Tue Feb  3 17:03:33 2026] Window title: 'Options' | QCheckBox '&Use project's relative path' was unchecked
+[Tue Feb  3 17:03:33 2026] Window title: 'Options' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
+[Tue Feb  3 17:03:33 2026] Window title: 'Options' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
+[Tue Feb  3 17:03:33 2026] Window title: 'Options' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
+[Tue Feb  3 17:03:34 2026] Window title: 'Options' | QPushButton 'Cancel' pressed!
+[Tue Feb  3 17:03:37 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition - C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/SummerResearchProject - NonDPR [*]' | &Assignments > '&Settings...' was pressed
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Use project's relative path' was unchecked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Enable parallel generation of Intel FPGA IPs in all projects' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Skip regeneration of the IP core if its HDL files have been modified' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | ' IP regeneration policy ': QRadioButton '&Never regenerate design files for IP cores' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'scrollAreaWidgetContents': QRadioButton '&Balanced (normal flow)' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox '&Automatically launch Timing Analyzer GUI after a full compilation' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically read &constraints and update the timing netlist when project is opened' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &run Setup Summary report when project is opened' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Automatically &load Timing Closure Summary report when project is opened' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Report &worst-case paths during compilation' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run default timing analysis &before running custom script' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'Page Label' page: QCheckBox 'Run timing analysis after &Plan stage during compilation' was unchecked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | QCheckBox '&Perform glitch filtering on VCD files' was checked
+[Tue Feb  3 17:03:37 2026] Window title: 'Settings - NonDPR' | 'm_capture_jtemp_radio': QRadioButton '&Auto compute junction temperature using cooling solution' was checked
+[Tue Feb  3 17:04:31 2026] Window title: 'Settings - NonDPR' | QPushButton 'Cancel' pressed!
+[Tue Feb  3 17:08:02 2026] Window title: 'Quartus Prime' | QPushButton '&Yes' pressed!
+[Tue Feb  3 17:08:03 2026] [Action triggered] Window title: 'Quartus Prime Pro Edition [*]' | &Help > 'Home' was pressed
+# **************************************************
+# Tue Feb 3 17:08:03 2026
+# End of logging UI actions
+# **************************************************

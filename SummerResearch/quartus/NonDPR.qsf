@@ -44,7 +44,7 @@ set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_clock_in.ip
 set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_reset_in.ip
 set_global_assignment -name FLOW_ENABLE_EARLY_TIMING_ANALYSIS OFF
 set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
-set_location_assignment PIN_F5 -to CLK_50 -comment IOBANK_3G
+set_location_assignment PIN_AM10 -to CLK_50 -comment IOBANK_3A
 set_location_assignment PIN_K12 -to BTN_RESET -comment IOBANK_3H
 set_location_assignment PIN_A24 -to LED_STATUS[0] -comment IOBANK_2K
 set_instance_assignment -name IO_STANDARD "1.8 V" -to CLK_50 -entity non_dpr_top
