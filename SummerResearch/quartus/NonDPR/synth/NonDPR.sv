@@ -9,7 +9,7 @@ module NonDPR (
 	);
 
 	wire         clock_in_out_clk_clk;                                    // clock_in:out_clk -> [data_mem:clk, master_0:clk_clk, mm_interconnect_0:clock_in_out_clk_clk, mm_interconnect_1:clock_in_out_clk_clk, mm_interconnect_2:clock_in_out_clk_clk, npu_system_0:clk, reset_in:clk, rst_controller:clk, weight_mem:clk]
-	wire         reset_in_out_reset_reset;                                // reset_in:out_reset -> [master_0:clk_reset_reset, mm_interconnect_1:master_0_master_translator_reset_reset_bridge_in_reset_reset]
+	wire         reset_in_out_reset_reset;                                // reset_in:out_reset -> [master_0:clk_reset_reset, rst_controller:reset_in0]
 	wire  [31:0] npu_system_0_act_readdata;                               // mm_interconnect_0:npu_system_0_act_readdata -> npu_system_0:avm_act_readdata
 	wire         npu_system_0_act_waitrequest;                            // mm_interconnect_0:npu_system_0_act_waitrequest -> npu_system_0:avm_act_waitreq
 	wire  [31:0] npu_system_0_act_address;                                // npu_system_0:avm_act_address -> mm_interconnect_0:npu_system_0_act_address
@@ -61,7 +61,6 @@ module NonDPR (
 	wire         mm_interconnect_2_weight_mem_s2_clken;                   // mm_interconnect_2:weight_mem_s2_clken -> weight_mem:clken2
 	wire         rst_controller_reset_out_reset;                          // rst_controller:reset_out -> [data_mem:reset, mm_interconnect_0:npu_system_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:npu_system_0_reset_reset_bridge_in_reset_reset, mm_interconnect_2:npu_system_0_reset_reset_bridge_in_reset_reset, npu_system_0:reset_n, rst_translator:in_reset, weight_mem:reset]
 	wire         rst_controller_reset_out_reset_req;                      // rst_controller:reset_req -> [data_mem:reset_req, rst_translator:reset_req_in, weight_mem:reset_req]
-	wire         master_0_master_reset_reset;                             // master_0:master_reset_reset -> rst_controller:reset_in0
 
 	PR_Test_Top_clock_in clock_in (
 		.in_clk  (clk_clk),              //   input,  width = 1,  in_clk.clk
@@ -91,7 +90,7 @@ module NonDPR (
 	NonDPR_master_0 master_0 (
 		.clk_clk              (clock_in_out_clk_clk),          //   input,   width = 1,          clk.clk
 		.clk_reset_reset      (reset_in_out_reset_reset),      //   input,   width = 1,    clk_reset.reset
-		.master_reset_reset   (master_0_master_reset_reset),   //  output,   width = 1, master_reset.reset
+		.master_reset_reset   (),                              //  output,   width = 1, master_reset.reset
 		.master_address       (master_0_master_address),       //  output,  width = 32,       master.address
 		.master_readdata      (master_0_master_readdata),      //   input,  width = 32,             .readdata
 		.master_read          (master_0_master_read),          //  output,   width = 1,             .read
@@ -162,37 +161,36 @@ module NonDPR (
 		.clock_in_out_clk_clk                           (clock_in_out_clk_clk)                      //   input,   width = 1,                         clock_in_out_clk.clk
 	);
 
-	NonDPR_altera_mm_interconnect_1920_mxt6g6y mm_interconnect_1 (
-		.master_0_master_address                                      (master_0_master_address),                                 //   input,  width = 32,                                        master_0_master.address
-		.master_0_master_waitrequest                                  (master_0_master_waitrequest),                             //  output,   width = 1,                                                       .waitrequest
-		.master_0_master_byteenable                                   (master_0_master_byteenable),                              //   input,   width = 4,                                                       .byteenable
-		.master_0_master_read                                         (master_0_master_read),                                    //   input,   width = 1,                                                       .read
-		.master_0_master_readdata                                     (master_0_master_readdata),                                //  output,  width = 32,                                                       .readdata
-		.master_0_master_readdatavalid                                (master_0_master_readdatavalid),                           //  output,   width = 1,                                                       .readdatavalid
-		.master_0_master_write                                        (master_0_master_write),                                   //   input,   width = 1,                                                       .write
-		.master_0_master_writedata                                    (master_0_master_writedata),                               //   input,  width = 32,                                                       .writedata
-		.npu_system_0_avalon_slave_0_address                          (mm_interconnect_1_npu_system_0_avalon_slave_0_address),   //  output,   width = 4,                            npu_system_0_avalon_slave_0.address
-		.npu_system_0_avalon_slave_0_write                            (mm_interconnect_1_npu_system_0_avalon_slave_0_write),     //  output,   width = 1,                                                       .write
-		.npu_system_0_avalon_slave_0_read                             (mm_interconnect_1_npu_system_0_avalon_slave_0_read),      //  output,   width = 1,                                                       .read
-		.npu_system_0_avalon_slave_0_readdata                         (mm_interconnect_1_npu_system_0_avalon_slave_0_readdata),  //   input,  width = 32,                                                       .readdata
-		.npu_system_0_avalon_slave_0_writedata                        (mm_interconnect_1_npu_system_0_avalon_slave_0_writedata), //  output,  width = 32,                                                       .writedata
-		.data_mem_s1_address                                          (mm_interconnect_1_data_mem_s1_address),                   //  output,  width = 10,                                            data_mem_s1.address
-		.data_mem_s1_write                                            (mm_interconnect_1_data_mem_s1_write),                     //  output,   width = 1,                                                       .write
-		.data_mem_s1_readdata                                         (mm_interconnect_1_data_mem_s1_readdata),                  //   input,  width = 32,                                                       .readdata
-		.data_mem_s1_writedata                                        (mm_interconnect_1_data_mem_s1_writedata),                 //  output,  width = 32,                                                       .writedata
-		.data_mem_s1_byteenable                                       (mm_interconnect_1_data_mem_s1_byteenable),                //  output,   width = 4,                                                       .byteenable
-		.data_mem_s1_chipselect                                       (mm_interconnect_1_data_mem_s1_chipselect),                //  output,   width = 1,                                                       .chipselect
-		.data_mem_s1_clken                                            (mm_interconnect_1_data_mem_s1_clken),                     //  output,   width = 1,                                                       .clken
-		.weight_mem_s1_address                                        (mm_interconnect_1_weight_mem_s1_address),                 //  output,  width = 10,                                          weight_mem_s1.address
-		.weight_mem_s1_write                                          (mm_interconnect_1_weight_mem_s1_write),                   //  output,   width = 1,                                                       .write
-		.weight_mem_s1_readdata                                       (mm_interconnect_1_weight_mem_s1_readdata),                //   input,  width = 32,                                                       .readdata
-		.weight_mem_s1_writedata                                      (mm_interconnect_1_weight_mem_s1_writedata),               //  output,  width = 32,                                                       .writedata
-		.weight_mem_s1_byteenable                                     (mm_interconnect_1_weight_mem_s1_byteenable),              //  output,   width = 4,                                                       .byteenable
-		.weight_mem_s1_chipselect                                     (mm_interconnect_1_weight_mem_s1_chipselect),              //  output,   width = 1,                                                       .chipselect
-		.weight_mem_s1_clken                                          (mm_interconnect_1_weight_mem_s1_clken),                   //  output,   width = 1,                                                       .clken
-		.npu_system_0_reset_reset_bridge_in_reset_reset               (rst_controller_reset_out_reset),                          //   input,   width = 1,               npu_system_0_reset_reset_bridge_in_reset.reset
-		.master_0_master_translator_reset_reset_bridge_in_reset_reset (reset_in_out_reset_reset),                                //   input,   width = 1, master_0_master_translator_reset_reset_bridge_in_reset.reset
-		.clock_in_out_clk_clk                                         (clock_in_out_clk_clk)                                     //   input,   width = 1,                                       clock_in_out_clk.clk
+	NonDPR_altera_mm_interconnect_1920_n7ur6hi mm_interconnect_1 (
+		.master_0_master_address                        (master_0_master_address),                                 //   input,  width = 32,                          master_0_master.address
+		.master_0_master_waitrequest                    (master_0_master_waitrequest),                             //  output,   width = 1,                                         .waitrequest
+		.master_0_master_byteenable                     (master_0_master_byteenable),                              //   input,   width = 4,                                         .byteenable
+		.master_0_master_read                           (master_0_master_read),                                    //   input,   width = 1,                                         .read
+		.master_0_master_readdata                       (master_0_master_readdata),                                //  output,  width = 32,                                         .readdata
+		.master_0_master_readdatavalid                  (master_0_master_readdatavalid),                           //  output,   width = 1,                                         .readdatavalid
+		.master_0_master_write                          (master_0_master_write),                                   //   input,   width = 1,                                         .write
+		.master_0_master_writedata                      (master_0_master_writedata),                               //   input,  width = 32,                                         .writedata
+		.npu_system_0_avalon_slave_0_address            (mm_interconnect_1_npu_system_0_avalon_slave_0_address),   //  output,   width = 4,              npu_system_0_avalon_slave_0.address
+		.npu_system_0_avalon_slave_0_write              (mm_interconnect_1_npu_system_0_avalon_slave_0_write),     //  output,   width = 1,                                         .write
+		.npu_system_0_avalon_slave_0_read               (mm_interconnect_1_npu_system_0_avalon_slave_0_read),      //  output,   width = 1,                                         .read
+		.npu_system_0_avalon_slave_0_readdata           (mm_interconnect_1_npu_system_0_avalon_slave_0_readdata),  //   input,  width = 32,                                         .readdata
+		.npu_system_0_avalon_slave_0_writedata          (mm_interconnect_1_npu_system_0_avalon_slave_0_writedata), //  output,  width = 32,                                         .writedata
+		.data_mem_s1_address                            (mm_interconnect_1_data_mem_s1_address),                   //  output,  width = 10,                              data_mem_s1.address
+		.data_mem_s1_write                              (mm_interconnect_1_data_mem_s1_write),                     //  output,   width = 1,                                         .write
+		.data_mem_s1_readdata                           (mm_interconnect_1_data_mem_s1_readdata),                  //   input,  width = 32,                                         .readdata
+		.data_mem_s1_writedata                          (mm_interconnect_1_data_mem_s1_writedata),                 //  output,  width = 32,                                         .writedata
+		.data_mem_s1_byteenable                         (mm_interconnect_1_data_mem_s1_byteenable),                //  output,   width = 4,                                         .byteenable
+		.data_mem_s1_chipselect                         (mm_interconnect_1_data_mem_s1_chipselect),                //  output,   width = 1,                                         .chipselect
+		.data_mem_s1_clken                              (mm_interconnect_1_data_mem_s1_clken),                     //  output,   width = 1,                                         .clken
+		.weight_mem_s1_address                          (mm_interconnect_1_weight_mem_s1_address),                 //  output,  width = 10,                            weight_mem_s1.address
+		.weight_mem_s1_write                            (mm_interconnect_1_weight_mem_s1_write),                   //  output,   width = 1,                                         .write
+		.weight_mem_s1_readdata                         (mm_interconnect_1_weight_mem_s1_readdata),                //   input,  width = 32,                                         .readdata
+		.weight_mem_s1_writedata                        (mm_interconnect_1_weight_mem_s1_writedata),               //  output,  width = 32,                                         .writedata
+		.weight_mem_s1_byteenable                       (mm_interconnect_1_weight_mem_s1_byteenable),              //  output,   width = 4,                                         .byteenable
+		.weight_mem_s1_chipselect                       (mm_interconnect_1_weight_mem_s1_chipselect),              //  output,   width = 1,                                         .chipselect
+		.weight_mem_s1_clken                            (mm_interconnect_1_weight_mem_s1_clken),                   //  output,   width = 1,                                         .clken
+		.npu_system_0_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                          //   input,   width = 1, npu_system_0_reset_reset_bridge_in_reset.reset
+		.clock_in_out_clk_clk                           (clock_in_out_clk_clk)                                     //   input,   width = 1,                         clock_in_out_clk.clk
 	);
 
 	NonDPR_altera_mm_interconnect_1920_zn5rfly mm_interconnect_2 (
@@ -237,7 +235,7 @@ module NonDPR (
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller (
-		.reset_in0      (master_0_master_reset_reset),        //   input,  width = 1, reset_in0.reset
+		.reset_in0      (reset_in_out_reset_reset),           //   input,  width = 1, reset_in0.reset
 		.clk            (clock_in_out_clk_clk),               //   input,  width = 1,       clk.clk
 		.reset_out      (rst_controller_reset_out_reset),     //  output,  width = 1, reset_out.reset
 		.reset_req      (rst_controller_reset_out_reset_req), //  output,  width = 1,          .reset_req

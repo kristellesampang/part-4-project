@@ -6330,21 +6330,21 @@ https://fpgasoftware.intel.com/eula.-->
  <connection
    kind="reset"
    version="24.1"
-   start="master_0.master_reset"
-   end="npu_system_0.reset" />
- <connection
-   kind="reset"
-   version="24.1"
-   start="master_0.master_reset"
-   end="data_mem.reset1" />
- <connection
-   kind="reset"
-   version="24.1"
-   start="master_0.master_reset"
-   end="weight_mem.reset1" />
+   start="reset_in.out_reset"
+   end="master_0.clk_reset" />
  <connection
    kind="reset"
    version="24.1"
    start="reset_in.out_reset"
-   end="master_0.clk_reset" />
+   end="npu_system_0.reset" />
+ <connection
+   kind="reset"
+   version="24.1"
+   start="reset_in.out_reset"
+   end="data_mem.reset1" />
+ <connection
+   kind="reset"
+   version="24.1"
+   start="reset_in.out_reset"
+   end="weight_mem.reset1" />
 </system>

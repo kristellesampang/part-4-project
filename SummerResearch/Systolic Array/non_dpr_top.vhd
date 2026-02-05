@@ -29,7 +29,7 @@ architecture rtl of non_dpr_top is
 
 begin
 
-    actual_reset <= not BTN_RESET; -- Active high reset internally
+    actual_reset <= BTN_RESET;
 
     System : component NonDPR
         port map (
