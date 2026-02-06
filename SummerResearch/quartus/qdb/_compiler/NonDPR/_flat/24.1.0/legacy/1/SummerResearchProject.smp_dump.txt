@@ -34,7 +34,8 @@ state.READ_DATA_WAIT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - System|npu_system_0|npu_system_0|state
-Name state.start_npu state.fetch_data state.idle 
-state.idle 0 0 0 
-state.fetch_data 0 1 1 
-state.start_npu 1 0 1 
+Name state.wait_for_done state.start_npu state.fetch_data state.idle 
+state.idle 0 0 0 0 
+state.fetch_data 0 0 1 1 
+state.start_npu 0 1 0 1 
+state.wait_for_done 1 0 0 1 

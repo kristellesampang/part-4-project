@@ -67,11 +67,5 @@ end generate gen_PE_array;
             output(i, j) <= results(i, j) when enabled_PE(i,j) = '1' else (others => '0');
         end generate gen_output_col;
     end generate gen_output_assign;
-
-    
-
-
-    
-
-
+   
 end behaviour;
