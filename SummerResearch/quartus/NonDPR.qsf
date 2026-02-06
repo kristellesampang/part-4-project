@@ -61,3 +61,5 @@ set_location_assignment PIN_C26 -to LED_STATUS[2] -comment IOBANK_2K
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[1] -entity non_dpr_top
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[3] -entity non_dpr_top
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[2] -entity non_dpr_top
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_2.ip
+set_global_assignment -name IP_FILE ip/NonDPR/out_mem.ip

@@ -52,8 +52,7 @@ architecture rtl of npu_system_wrapper is
     signal write_counter   : integer range 0 to 1024 := 0;
     signal row_idx, col_idx : integer range 0 to 31 := 0;
     signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
-
-    signal current_output_val : signed(15 downto 0);
+    signal current_output_val : signed(63 downto 0); 
 
     -- Added WRITE_RESULTS state
     type state_type is (IDLE, FETCH_DATA, START_NPU, WAIT_FOR_DONE, WRITE_RESULTS);
@@ -74,7 +73,6 @@ begin
             avm_out_write <= '0';
         elsif rising_edge(clk) then
             avs_readdata <= (others => '0');
-
             -- Register Access
             if avs_write = '1' then 
                 case avs_address is
