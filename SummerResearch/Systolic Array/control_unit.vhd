@@ -124,7 +124,7 @@ begin
         end if; -- end rising_edge(clk)
     end process;
 
-    completed <= completed_internal;
+    completed <= completed_internal;  
     data_shift      <= data_reg;
     weight_shift    <= weight_reg;
     PE_enabled_mask <= mask_internal;
