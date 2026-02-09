@@ -2789,7 +2789,7 @@ https://fpgasoftware.intel.com/eula.-->
                         <name>avs_address</name>
                         <role>address</role>
                         <direction>Input</direction>
-                        <width>4</width>
+                        <width>5</width>
                         <lowerBound>0</lowerBound>
                         <vhdlType>STD_LOGIC_VECTOR</vhdlType>
                         <terminationValue>0</terminationValue>
@@ -2872,7 +2872,7 @@ https://fpgasoftware.intel.com/eula.-->
                         </entry>
                         <entry>
                             <key>addressSpan</key>
-                            <value>16</value>
+                            <value>32</value>
                         </entry>
                         <entry>
                             <key>addressUnits</key>
@@ -3641,11 +3641,11 @@ https://fpgasoftware.intel.com/eula.-->
                     <suppliedSystemInfos>
                         <entry>
                             <key>ADDRESS_MAP</key>
-                            <value>&lt;address-map&gt;&lt;slave name='avalon_slave_0' start='0x0' end='0x40' datawidth='32' /&gt;&lt;/address-map&gt;</value>
+                            <value>&lt;address-map&gt;&lt;slave name='avalon_slave_0' start='0x0' end='0x80' datawidth='32' /&gt;&lt;/address-map&gt;</value>
                         </entry>
                         <entry>
                             <key>ADDRESS_WIDTH</key>
-                            <value>6</value>
+                            <value>7</value>
                         </entry>
                         <entry>
                             <key>MAX_SLAVE_DATA_WIDTH</key>
@@ -3735,7 +3735,7 @@ https://fpgasoftware.intel.com/eula.-->
                     <name>avs_address</name>
                     <role>address</role>
                     <direction>Input</direction>
-                    <width>4</width>
+                    <width>5</width>
                     <lowerBound>0</lowerBound>
                     <vhdlType>STD_LOGIC_VECTOR</vhdlType>
                     <terminationValue>0</terminationValue>
@@ -3818,7 +3818,7 @@ https://fpgasoftware.intel.com/eula.-->
                     </entry>
                     <entry>
                         <key>addressSpan</key>
-                        <value>64</value>
+                        <value>128</value>
                     </entry>
                     <entry>
                         <key>addressUnits</key>

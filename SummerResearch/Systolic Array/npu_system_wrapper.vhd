@@ -50,6 +50,9 @@ architecture rtl of npu_system_wrapper is
     signal row_idx, col_idx : integer range 0 to 31 := 0;
     signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
 
+    signal sa_start_trigger : std_logic := '0'; -- Signal to trigger the start of the NPU operation
+    signal latency_counter : integer range 0 to 2 := 0;
+
     -- Latency Control
     type state_type is (IDLE, FETCH_REQ, FETCH_WAIT, START_NPU, WAIT_FOR_DONE, WRITE_RESULTS);
     signal state : state_type := IDLE;
@@ -83,6 +86,7 @@ begin
 
             case state is
                 when IDLE =>
+                    sa_start_trigger <= '0';
                     fetch_counter <= 0; row_idx <= 0; col_idx <= 0;
                     if reg_ready = '1' then
                         state <= FETCH_REQ;
@@ -104,8 +108,10 @@ begin
                     
                     if fetch_counter < (reg_m * reg_n) - 1 then
                         fetch_counter <= fetch_counter + 1;
+
                         if col_idx = (reg_n - 1) then
-                            col_idx <= 0; row_idx <= row_idx + 1;
+                            col_idx <= 0; 
+                            row_idx <= row_idx + 1;
                         else
                             col_idx <= col_idx + 1;
                         end if;
@@ -116,9 +122,11 @@ begin
 
                 when START_NPU =>
                     avm_act_read <= '0'; avm_weight_read <= '0';
+                    sa_start_trigger <= '1'; -- Trigger the NPU to start processing
                     state <= WAIT_FOR_DONE;
 
                 when WAIT_FOR_DONE =>
+                    sa_start_trigger <= '0'; -- Clear the start trigger after one cycle
                     if n_done = '1' then 
                         write_counter <= 0; w_row_idx <= 0; w_col_idx <= 0;
                         state <= WRITE_RESULTS;
@@ -150,7 +158,7 @@ begin
 
     NPU_CORE : entity work.top_level_systolic_array
     port map (
-        clk => clk, reset => n_reset, ready => reg_ready,
+        clk => clk, reset => n_reset, ready => sa_start_trigger,
         matrix_data => n_matrix_data, matrix_weight => n_matrix_weight,
         active_rows => reg_m, active_cols => reg_n, active_k => reg_k,
         output => n_output, done => n_done, cycle_count => n_cycle_count 

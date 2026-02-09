@@ -14,8 +14,8 @@ refer to the applicable agreement for further details, at
 https://fpgasoftware.intel.com/eula.-->
 <ipxact:component xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
-  <ipxact:library>NonDPR_npu_system_2</ipxact:library>
-  <ipxact:name>npu_system_2</ipxact:name>
+  <ipxact:library>NonDPR_npu_system_4</ipxact:library>
+  <ipxact:name>npu_system_4</ipxact:name>
   <ipxact:version>1.0</ipxact:version>
   <ipxact:busInterfaces>
     <ipxact:busInterface>
@@ -1095,7 +1095,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:fileSetRef>
           <ipxact:localName>QUARTUS_SYNTH</ipxact:localName>
         </ipxact:fileSetRef>
-        <ipxact:parameters></ipxact:parameters>
       </ipxact:componentInstantiation>
     </ipxact:instantiations>
     <ipxact:ports>
@@ -1103,7 +1102,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>clk</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1116,7 +1114,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>reset_n</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1147,7 +1144,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avs_write</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1178,7 +1174,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avs_read</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1209,7 +1204,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avs_waitrequest</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1240,7 +1234,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_act_read</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1271,7 +1264,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_act_waitreq</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1302,7 +1294,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_weight_read</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1333,7 +1324,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_weight_waitreq</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1364,7 +1354,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_out_write</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1395,7 +1384,6 @@ https://fpgasoftware.intel.com/eula.-->
         <ipxact:name>avm_out_waitreq</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC</ipxact:typeName>
@@ -1409,7 +1397,7 @@ https://fpgasoftware.intel.com/eula.-->
   <ipxact:vendorExtensions>
     <altera:entity_info>
       <ipxact:vendor>Altera Corporation</ipxact:vendor>
-      <ipxact:library>NonDPR_npu_system_2</ipxact:library>
+      <ipxact:library>NonDPR_npu_system_4</ipxact:library>
       <ipxact:name>npu_system</ipxact:name>
       <ipxact:version>1.0</ipxact:version>
     </altera:entity_info>
@@ -1448,17 +1436,6 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:displayName>bonusData</ipxact:displayName>
           <ipxact:value>bonusData 
 {
-   element $system
-   {
-      datum _originalDeviceFamily
-      {
-         value = "Arria 10";
-         type = "String";
-      }
-   }
-   element npu_system_2
-   {
-   }
 }
 </ipxact:value>
         </ipxact:parameter>
@@ -2424,13 +2401,13 @@ https://fpgasoftware.intel.com/eula.-->
       </ipxact:parameters>
     </altera:altera_system_parameters>
     <altera:altera_interface_boundary>
-      <altera:interface_mapping altera:name="act" altera:internal="npu_system_2.act" altera:type="avalon" altera:dir="start">
+      <altera:interface_mapping altera:name="act" altera:internal="npu_system_4.act" altera:type="avalon" altera:dir="start">
         <altera:port_mapping altera:name="avm_act_address" altera:internal="avm_act_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_act_read" altera:internal="avm_act_read"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_act_readdata" altera:internal="avm_act_readdata"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_act_waitreq" altera:internal="avm_act_waitreq"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="avalon_slave_0" altera:internal="npu_system_2.avalon_slave_0" altera:type="avalon" altera:dir="end">
+      <altera:interface_mapping altera:name="avalon_slave_0" altera:internal="npu_system_4.avalon_slave_0" altera:type="avalon" altera:dir="end">
         <altera:port_mapping altera:name="avs_address" altera:internal="avs_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avs_read" altera:internal="avs_read"></altera:port_mapping>
         <altera:port_mapping altera:name="avs_readdata" altera:internal="avs_readdata"></altera:port_mapping>
@@ -2438,19 +2415,19 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:port_mapping altera:name="avs_write" altera:internal="avs_write"></altera:port_mapping>
         <altera:port_mapping altera:name="avs_writedata" altera:internal="avs_writedata"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="clock" altera:internal="npu_system_2.clock" altera:type="clock" altera:dir="end">
+      <altera:interface_mapping altera:name="clock" altera:internal="npu_system_4.clock" altera:type="clock" altera:dir="end">
         <altera:port_mapping altera:name="clk" altera:internal="clk"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="out" altera:internal="npu_system_2.out" altera:type="avalon" altera:dir="start">
+      <altera:interface_mapping altera:name="out" altera:internal="npu_system_4.out" altera:type="avalon" altera:dir="start">
         <altera:port_mapping altera:name="avm_out_address" altera:internal="avm_out_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_out_waitreq" altera:internal="avm_out_waitreq"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_out_write" altera:internal="avm_out_write"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_out_writedata" altera:internal="avm_out_writedata"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="reset" altera:internal="npu_system_2.reset" altera:type="reset" altera:dir="end">
+      <altera:interface_mapping altera:name="reset" altera:internal="npu_system_4.reset" altera:type="reset" altera:dir="end">
         <altera:port_mapping altera:name="reset_n" altera:internal="reset_n"></altera:port_mapping>
       </altera:interface_mapping>
-      <altera:interface_mapping altera:name="weight" altera:internal="npu_system_2.weight" altera:type="avalon" altera:dir="start">
+      <altera:interface_mapping altera:name="weight" altera:internal="npu_system_4.weight" altera:type="avalon" altera:dir="start">
         <altera:port_mapping altera:name="avm_weight_address" altera:internal="avm_weight_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_weight_read" altera:internal="avm_weight_read"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_weight_readdata" altera:internal="avm_weight_readdata"></altera:port_mapping>
