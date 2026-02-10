@@ -64,3 +64,5 @@ set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[2] -entity non_
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_2.ip
 set_global_assignment -name IP_FILE ip/NonDPR/out_mem.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_4.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_5.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_6.ip

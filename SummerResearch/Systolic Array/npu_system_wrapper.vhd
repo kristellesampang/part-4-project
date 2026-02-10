@@ -53,13 +53,25 @@ architecture rtl of npu_system_wrapper is
     signal sa_start_trigger : std_logic := '0'; -- Signal to trigger the start of the NPU operation
     signal latency_counter : integer range 0 to 2 := 0;
 
+    signal debug_state_reg : std_logic_vector(31 downto 0);
+
     -- Latency Control
-    type state_type is (IDLE, FETCH_REQ, FETCH_WAIT, START_NPU, WAIT_FOR_DONE, WRITE_RESULTS);
+    type state_type is (IDLE, FETCH_REQ, FETCH_LATENCY, FETCH_WAIT, START_NPU, WAIT_FOR_DONE, WRITE_RESULTS, WRITE_FLUSH);
     signal state : state_type := IDLE;
 
 begin
     n_reset <= not reset_n;
     avs_waitrequest <= '0';
+
+    debug_state_reg <= x"DEB00001" when state = IDLE else
+                        x"DEB00002" when state = FETCH_REQ else
+                        x"DEB00003" when state = FETCH_LATENCY else
+                        x"DEB00004" when state = FETCH_WAIT else
+                        x"DEB00005"  when state = START_NPU else
+                        x"DEB00006" when state = WAIT_FOR_DONE else
+                        x"DEB00007" when state = WRITE_RESULTS else
+                        x"DEB00008" when state = WRITE_FLUSH else
+                        x"DEB0DEAD";
 
     process(clk, reset_n)
         variable v_temp_out : signed(63 downto 0); -- Using 64-bit to match your accumulator
@@ -80,7 +92,13 @@ begin
                     when "0100" => reg_m <= to_integer(unsigned(avs_writedata(15 downto 0))); -- 0x4
                     when "1000" => reg_n <= to_integer(unsigned(avs_writedata(15 downto 0))); -- 0x8
                     when "1100" => reg_k <= to_integer(unsigned(avs_writedata(15 downto 0))); -- 0xC
-                    when others => null;
+                    when others => null; -- Ignore writes to undefined addresses
+                end case;
+            elsif avs_read = '1' then 
+                case avs_address(3 downto 0) is
+                    when "0101" => avs_readdata <= debug_state_reg;
+                    when "0000" => avs_readdata <= (0 => reg_ready, others => '0');
+                    when others => avs_readdata <= (others => '0'); -- Return 0 for undefined addresses
                 end case;
             end if;
 
@@ -93,13 +111,18 @@ begin
                     end if;
 
                 when FETCH_REQ =>
-                    avm_act_read <= '1'; avm_weight_read <= '1';
+                    avm_act_read <= '1'; 
+                    avm_weight_read <= '1';
                     avm_act_address <= std_logic_vector(to_unsigned(fetch_counter * 4, 32));
                     avm_weight_address <= std_logic_vector(to_unsigned(fetch_counter * 4, 32));
                     
                     if avm_act_waitreq = '0' and avm_weight_waitreq = '0' then
-                        state <= FETCH_WAIT; -- Move to wait for 1 cycle of latency
+                        state <= FETCH_LATENCY; -- Move to wait for 1 cycle of latency
                     end if;
+
+                when FETCH_LATENCY =>
+                    latency_counter <= 1;
+                    state <= FETCH_WAIT;
 
                 when FETCH_WAIT =>
                     -- Data is now valid on the bus
@@ -147,10 +170,14 @@ begin
                                 w_col_idx <= w_col_idx + 1;
                             end if;
                         else
-                            avm_out_write <= '0';
-                            reg_ready <= '0'; 
-                            state <= IDLE;
+                            state <= WRITE_FLUSH; -- Optional state to ensure last write completes
                         end if;
+                    end if;
+                when WRITE_FLUSH =>
+                    if avm_out_waitreq = '0' then
+                        avm_out_write <= '0';
+                        reg_ready <= '0';
+                        state <= IDLE;
                     end if;
             end case;         
         end if;

@@ -2,13 +2,15 @@
 State Machine - Summary
 
 State Machine - System|npu_system_0|npu_system_2|state
-Name state.write_results state.wait_for_done state.start_npu state.fetch_wait state.fetch_req state.idle 
-state.idle 0 0 0 0 0 0 
-state.fetch_req 0 0 0 0 1 1 
-state.fetch_wait 0 0 0 1 0 1 
-state.start_npu 0 0 1 0 0 1 
-state.wait_for_done 0 1 0 0 0 1 
-state.write_results 1 0 0 0 0 1 
+Name state.write_flush state.write_results state.wait_for_done state.start_npu state.fetch_wait state.fetch_latency state.fetch_req state.idle 
+state.idle 0 0 0 0 0 0 0 0 
+state.fetch_req 0 0 0 0 0 0 1 1 
+state.fetch_latency 0 0 0 0 0 1 0 1 
+state.fetch_wait 0 0 0 0 1 0 0 1 
+state.start_npu 0 0 0 1 0 0 0 1 
+state.wait_for_done 0 0 1 0 0 0 0 1 
+state.write_results 0 1 0 0 0 0 0 1 
+state.write_flush 1 0 0 0 0 0 0 1 
 
 State Machine - System|master_0|master_0|transacto|p2m|state
 Name state.READ_SEND_WAIT state.READ_DATA_WAIT state.READ_SEND_ISSUE state.READ_CMD_WAIT state.WRITE_WAIT state.RETURN_PACKET state.READ_ASSERT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.READY 

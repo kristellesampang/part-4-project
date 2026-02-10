@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <internal_error>
 	<sub_system>ERR</sub_system>
-	<callstack>	0x7ff8e4361890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
-	0x7ff960993a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
-	0x7ff96096042d: ucrtbase + 0x2042d (_o_free + 0xdd)
-	0x7ff96095dddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
-	0x7ff8e435f590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
-	0x7ff8e435e67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
-	0x7ff8e435e95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
-	0x7ff9636d8bce: ntdll + 0x28bce (RtlActivateActivationContextUnsafeFast + 0x12e)
-	0x7ff96371bae5: ntdll + 0x6bae5 (LdrUnloadAlternateResourceModuleEx + 0x325)
-	0x7ff96371b51e: ntdll + 0x6b51e (RtlInitAnsiStringEx + 0x7e)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff96371b79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
-	0x7ff9636dd4bd: ntdll + 0x2d4bd (LdrUnloadDll + 0x11d)
-	0x7ff9636dd434: ntdll + 0x2d434 (LdrUnloadDll + 0x94)
-	0x7ff960a9e78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
-	0x7ff922891fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
-	0x7ff922891908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
-	0x2810745d620:
-	0x2816071af3f:
-	0x281621bee47:
-	0x280ffffffff:
-	0xa84cafefc7:
-	0xa84cafef77:
-	0x2810745d2f5:
-	0xa84cafef0f:
-	0x2816071af3f:
-	0xa84cafef77:
-	0x2816071ded7:
+	<callstack>	0x7ff984681890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
+	0x7ff9afc63a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
+	0x7ff9afc3042d: ucrtbase + 0x2042d (_o_free + 0xdd)
+	0x7ff9afc2dddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
+	0x7ff98467f590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
+	0x7ff98467e67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
+	0x7ff98467e95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
+	0x7ff9b2a98bce: ntdll + 0x28bce (RtlActivateActivationContextUnsafeFast + 0x12e)
+	0x7ff9b2adbae5: ntdll + 0x6bae5 (LdrUnloadAlternateResourceModuleEx + 0x325)
+	0x7ff9b2adb51e: ntdll + 0x6b51e (RtlInitAnsiStringEx + 0x7e)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2adb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ff9b2a9d4bd: ntdll + 0x2d4bd (LdrUnloadDll + 0x11d)
+	0x7ff9b2a9d434: ntdll + 0x2d434 (LdrUnloadDll + 0x94)
+	0x7ff9affde78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
+	0x7ff9868d1fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
+	0x7ff9868d1908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
+	0x2492035d620:
+	0x2498271b4af:
+	0x249841bf967:
+	0x248ffffffff:
+	0x249203594fd:
+	0x60dd1b8a7:
+	0x2492035d2f5:
+	0xd389cff1ff:
+	0x2498271b4af:
+	0xd389cff267:
+	0x2498271e2f7:
 </callstack>
-	<error>*** Fatal Error: Access Violation at 00007FF8E4361891</error>
-	<date>Mon Feb  9 14:38:51 2026
+	<error>*** Fatal Error: Access Violation at 00007FF984681891</error>
+	<date>Tue Feb 10 14:29:44 2026
 </date>
 	<version>Version 24.1.0 Build 115 03/21/2024 SC Pro Edition</version>
 </internal_error>

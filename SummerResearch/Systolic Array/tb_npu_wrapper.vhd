@@ -81,7 +81,7 @@ begin
         avs_address <= "01000"; avs_writedata <= x"00000004"; avs_write <= '1';
         wait until rising_edge(clk);
         -- Address 0xC = K = 1
-        avs_address <= "01100"; avs_writedata <= x"00000001"; avs_write <= '1';
+        avs_address <= "01100"; avs_writedata <= x"00000004"; avs_write <= '1';
         wait until rising_edge(clk);
         avs_write <= '0';
         
