@@ -36,7 +36,6 @@ set_instance_assignment -name PARTITION_COLOUR 4294937543 -to npu_core -entity S
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity SummerResearchTopLevel
 set_global_assignment -name REVISION_TYPE PR_BASE
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_master_0.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_0.ip
 set_global_assignment -name QSYS_FILE NonDPR.qsys
 set_global_assignment -name IP_FILE ip/NonDPR/data_mem.ip
 set_global_assignment -name IP_FILE ip/NonDPR/weight_mem.ip
@@ -61,8 +60,7 @@ set_location_assignment PIN_C26 -to LED_STATUS[2] -comment IOBANK_2K
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[1] -entity non_dpr_top
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[3] -entity non_dpr_top
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[2] -entity non_dpr_top
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_2.ip
 set_global_assignment -name IP_FILE ip/NonDPR/out_mem.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_4.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_5.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_6.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_7.ip
+set_instance_assignment -name PARTITION_COLOUR 4287561699 -to non_dpr_top -entity non_dpr_top
+set_instance_assignment -name PARTITION_COLOUR 4286250872 -to auto_fab_0 -entity non_dpr_top
