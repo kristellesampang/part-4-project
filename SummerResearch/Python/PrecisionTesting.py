@@ -505,6 +505,9 @@ def run_jtag_inference(m, n, k, data_matrix, weight_matrix):
     header = bytes([m, n, k, 0]) 
     payload = data_matrix.astype(np.int16).tobytes() + weight_matrix.astype(np.int16).tobytes()
     
+    print(f"DEBUG (Python): Sending Packet Size: {len(header) + len(payload)} bytes")
+    print(f"DEBUG (Python): First 4 weights (Hex): {[hex(x) for x in weight_matrix.flatten()[:4]]}")
+    
     with open(bin_file, "wb") as f:
         f.write(header + payload)
 

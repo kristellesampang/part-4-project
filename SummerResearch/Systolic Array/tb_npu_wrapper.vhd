@@ -83,7 +83,7 @@ begin
         -- Address 0xC = K = 1
         avs_address <= "01100"; avs_writedata <= x"00000004"; avs_write <= '1';
         wait until rising_edge(clk);
-        avs_write <= '0';
+        avs_write <= '0'; 
         
         wait for 20 ns;
 
