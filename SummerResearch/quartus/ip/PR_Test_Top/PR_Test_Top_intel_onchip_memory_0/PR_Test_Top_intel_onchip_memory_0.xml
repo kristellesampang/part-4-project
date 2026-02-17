@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.01.13.18:56:44"
- outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0/">
+ date="2026.02.03.13:10:30"
+ outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -147,17 +147,17 @@
   <parameter name="AUTO_CLK1_CLOCK_RATE" value="-1" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\synth\PR_Test_Top_intel_onchip_memory_0.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\synth\PR_Test_Top_intel_onchip_memory_0.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\synth\PR_Test_Top_intel_onchip_memory_0.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\synth\PR_Test_Top_intel_onchip_memory_0.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0.ip" />
+       path="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0.ip" />
   </sourceFiles>
   <childSourceFiles>
    <file
@@ -233,18 +233,18 @@
   <parameter name="abs_path" value="false" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_148_prpkmkq.sv"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0\intel_onchip_memory_148\synth\PR_Test_Top_intel_onchip_memory_0_intel_onchip_memory_0.hex"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>

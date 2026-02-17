@@ -4,7 +4,7 @@ set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_T
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name IP_TOP_LEVEL_COMPONENT_NAME "intel_onchip_memory"
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name PRE_COMPILED_MODULE "ON"
-set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0.ip"
+set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_onchip_memory_0.ip"
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name OCS_IP_TYPE "intel_onchip_memory"
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name OCS_IP_VERSION "1.4.8"
 set_global_assignment -entity "PR_Test_Top_intel_onchip_memory_0" -library "PR_Test_Top_intel_onchip_memory_0" -name OCS_IP_HASH "prpkmkq"

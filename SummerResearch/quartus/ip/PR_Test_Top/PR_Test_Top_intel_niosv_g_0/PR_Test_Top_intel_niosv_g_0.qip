@@ -4,7 +4,7 @@ set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_To
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name IP_TOP_LEVEL_COMPONENT_NAME "intel_niosv_g"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name PRE_COMPILED_MODULE "ON"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_niosv_g_0.ip"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_intel_niosv_g_0.ip"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name OCS_IP_TYPE "intel_niosv_g"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name OCS_IP_VERSION "2.2.0"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name OCS_IP_HASH "3jqx4ly"
@@ -34,13 +34,13 @@ set_global_assignment -entity "niosv_reset_controller" -library "intel_niosv_g_u
 set_global_assignment -entity "niosv_reset_controller" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "niosv_reset_controller" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
 set_global_assignment -entity "niosv_reset_controller" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_VERSION "Mi4yLjA="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfaW50ZWxfbmlvc3ZfZ18wX2ludGVsX25pb3N2X2dfdW5pdF8yMjBfMnM3Y3k2YQ=="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBWL2cgUHJvY2Vzc29yIEhBUlQgSW50ZWwgRlBHQSBJUA=="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_INTERNAL "On"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_VERSION "Mi4yLjA="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_GROUP "UHJvY2Vzc29ycyBhbmQgUGVyaXBoZXJhbHMvRW1iZWRkZWQgUHJvY2Vzc29ycw=="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfaW50ZWxfbmlvc3ZfZ18wX2ludGVsX25pb3N2X2dfdW5pdF8yMjBfZ2JyeXZweQ=="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBWL2cgUHJvY2Vzc29yIEhBUlQgSW50ZWwgRlBHQSBJUA=="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_INTERNAL "On"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_VERSION "Mi4yLjA="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_COMPONENT_GROUP "UHJvY2Vzc29ycyBhbmQgUGVyaXBoZXJhbHMvRW1iZWRkZWQgUHJvY2Vzc29ycw=="
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_COMPONENT_NAME "bmlvc3ZfdGltZXJfbXNpcA=="
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBWIFRpbWVyIGFuZCBTb2Z0d2FyZSBJbnRlcnJ1cHQgSW50ZWwgRlBHQSBJUA=="
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -65,18 +65,18 @@ set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_200
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_COMPONENT_VERSION "MjAuMC4x"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_COMPONENT_DESCRIPTION "Q29udmVydHMgaW5kaXZpZHVhbCBpbnRlcnJ1cHQgd2lyZXMgdG8gYSBidXMuIEJ5IGRlZmF1bHQsIHRoZSBpbnRlcnJ1cHQgc2VuZGVyIGNvbm5lY3RlZCB0byB0aGUgcmVjZWl2ZXIwIGludGVyZmFjZSBvZiB0aGUgSVJRIG1hcHBlciBpcyB0aGUgaGlnaGVzdCBwcmlvcml0eSB3aXRoIHNlcXVlbnRpYWwgcmVjZWl2ZXJzIGJlaWluZyBzdWNjZXNzaXZlbHkgbG93ZXIgcHJpb3JpdHku"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_COMPONENT_GROUP "SW50ZWwgRlBHQSBJbnRlcmNvbm5lY3QvSW50ZXJydXB0"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfaW50ZWxfbmlvc3ZfZ18wX2ludGVsX25pb3N2X2dfMjIwX242MzdmNXk="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBWL2cgR2VuZXJhbCBQdXJwb3NlIFByb2Nlc3NvciBJbnRlbCBGUEdBIElQ"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_INTERNAL "Off"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_VERSION "Mi4yLjA="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DESCRIPTION "TmlvcyBWL2cgaXMgYSBnZW5lcmFsIHB1cnBvc2UgY29yZSBiYXNlZCBvbiB0aGUgUklTQy1WIFJWMzJJTSBjbGFzc2lmaWNhdGlvbi4="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_GROUP "UHJvY2Vzc29ycyBhbmQgUGVyaXBoZXJhbHMvRW1iZWRkZWQgUHJvY2Vzc29ycw=="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzYzMi9jdXJyZW50L292ZXJ2aWV3Lmh0bWw="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzcyNjk1Mi9jdXJyZW50L2Fib3V0LXRoZS1lbWJlZGRlZC1wcm9jZXNzb3IuaHRtbA=="
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzc0MzgxMC9jdXJyZW50L292ZXJ2aWV3LW9mLWVtYmVkZGVkLXByb2Nlc3Nvci1kZXZlbG9wbWVudC5odG1s"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzA5OC8yMy00L3Byb2Nlc3Nvci1yZWxlYXNlLW5vdGVzLTQwNzMzLmh0bWw="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfaW50ZWxfbmlvc3ZfZ18wX2ludGVsX25pb3N2X2dfMjIwXzRrdW9rYXk="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DISPLAY_NAME "TmlvcyBWL2cgR2VuZXJhbCBQdXJwb3NlIFByb2Nlc3NvciBJbnRlbCBGUEdBIElQ"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_VERSION "Mi4yLjA="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DESCRIPTION "TmlvcyBWL2cgaXMgYSBnZW5lcmFsIHB1cnBvc2UgY29yZSBiYXNlZCBvbiB0aGUgUklTQy1WIFJWMzJJTSBjbGFzc2lmaWNhdGlvbi4="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_GROUP "UHJvY2Vzc29ycyBhbmQgUGVyaXBoZXJhbHMvRW1iZWRkZWQgUHJvY2Vzc29ycw=="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzYzMi9jdXJyZW50L292ZXJ2aWV3Lmh0bWw="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzcyNjk1Mi9jdXJyZW50L2Fib3V0LXRoZS1lbWJlZGRlZC1wcm9jZXNzb3IuaHRtbA=="
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzc0MzgxMC9jdXJyZW50L292ZXJ2aWV3LW9mLWVtYmVkZGVkLXByb2Nlc3Nvci1kZXZlbG9wbWVudC5odG1s"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzA5OC8yMy00L3Byb2Nlc3Nvci1yZWxlYXNlLW5vdGVzLTQwNzMzLmh0bWw="
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name IP_COMPONENT_NAME "UFJfVGVzdF9Ub3BfaW50ZWxfbmlvc3ZfZ18w"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0" -library "PR_Test_Top_intel_niosv_g_0" -name IP_COMPONENT_REPORT_HIERARCHY "On"
@@ -119,9 +119,9 @@ set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE
 set_global_assignment -library "intel_niosv_g_unit_220" -name SOURCE_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/fp32_sqrt_memoryC0_uid62_sqrtTables_lutmem.hex"]
 set_global_assignment -library "intel_niosv_g_unit_220" -name SOURCE_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/fp32_sqrt_memoryC1_uid65_sqrtTables_lutmem.hex"]
 set_global_assignment -library "intel_niosv_g_unit_220" -name SOURCE_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/fp32_sqrt_memoryC2_uid68_sqrtTables_lutmem.hex"]
-set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/instr_decoder_PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a.sv"]
-set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/niosv_g_core_PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a.sv"]
-set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a.sv"]
+set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/instr_decoder_PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy.sv"]
+set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/niosv_g_core_PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy.sv"]
+set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy.sv"]
 set_global_assignment -library "intel_niosv_g_unit_220" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_unit_220/synth/altera_avalon_sc_fifo.v"]
 set_global_assignment -library "intel_niosv_timer_msip_120" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_timer_msip_120/synth/niosv_timer_msip.sv"]
 set_global_assignment -library "intel_niosv_dbg_mod_210" -name SOURCE_FILE [file join $::quartus(qip_path) "intel_niosv_dbg_mod_210/synth/csr_mlab.mif"]
@@ -143,13 +143,13 @@ set_global_assignment -library "intel_niosv_dbg_mod_210" -name SYSTEMVERILOG_FIL
 set_global_assignment -library "intel_niosv_dbg_mod_210" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_dbg_mod_210/synth/altera_reset_controller.v"]
 set_instance_assignment -entity "niosv_dm_top" -library "intel_niosv_dbg_mod_210" -name SDC_ENTITY_FILE [file join $::quartus(qip_path) "intel_niosv_dbg_mod_210/synth/altera_reset_controller.sdc"] -no_sdc_promotion  -no_auto_inst_discovery 
 set_global_assignment -library "altera_irq_mapper_2001" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "altera_irq_mapper_2001/synth/PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly.sv"]
-set_global_assignment -library "intel_niosv_g_220" -name VERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_220/synth/PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y.v"]
+set_global_assignment -library "intel_niosv_g_220" -name VERILOG_FILE [file join $::quartus(qip_path) "intel_niosv_g_220/synth/PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay.v"]
 set_global_assignment -library "PR_Test_Top_intel_niosv_g_0" -name VHDL_FILE [file join $::quartus(qip_path) "synth/PR_Test_Top_intel_niosv_g_0.vhd"]
 
 
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_TOOL_NAME "intel_niosv_g"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_TOOL_VERSION "2.2.0"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y" -library "intel_niosv_g_220" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_TOOL_NAME "intel_niosv_g"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_TOOL_VERSION "2.2.0"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay" -library "intel_niosv_g_220" -name IP_TOOL_ENV "QsysPrimePro"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_TOOL_NAME "altera_irq_mapper"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_TOOL_VERSION "20.0.1"
 set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_altera_irq_mapper_2001_3jqx4ly" -library "altera_irq_mapper_2001" -name IP_TOOL_ENV "QsysPrimePro"
@@ -159,9 +159,9 @@ set_global_assignment -entity "niosv_dm_top" -library "intel_niosv_dbg_mod_210" 
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_TOOL_NAME "intel_niosv_timer_msip"
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_TOOL_VERSION "1.2.0"
 set_global_assignment -entity "niosv_timer_msip" -library "intel_niosv_timer_msip_120" -name IP_TOOL_ENV "QsysPrimePro"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_TOOL_NAME "intel_niosv_g_unit"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_TOOL_VERSION "2.2.0"
-set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a" -library "intel_niosv_g_unit_220" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_TOOL_NAME "intel_niosv_g_unit"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_TOOL_VERSION "2.2.0"
+set_global_assignment -entity "PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy" -library "intel_niosv_g_unit_220" -name IP_TOOL_ENV "QsysPrimePro"
 set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_NAME "altera_reset_controller"
 set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_VERSION "19.2.2"
 set_global_assignment -entity "altera_reset_controller" -library "altera_reset_controller_1922" -name IP_TOOL_ENV "QsysPrimePro"

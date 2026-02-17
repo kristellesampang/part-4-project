@@ -1,0 +1,45 @@
+
+State Machine - Summary
+
+State Machine - System|npu_system_0|npu_system_8|state
+Name state.write_flush state.write_results state.wait_for_done state.start_npu state.fetch_wait state.fetch_latency state.fetch_req state.idle 
+state.idle 0 0 0 0 0 0 0 0 
+state.fetch_req 0 0 0 0 0 0 1 1 
+state.fetch_latency 0 0 0 0 0 1 0 1 
+state.fetch_wait 0 0 0 0 1 0 0 1 
+state.start_npu 0 0 0 1 0 0 0 1 
+state.wait_for_done 0 0 1 0 0 0 0 1 
+state.write_results 0 1 0 0 0 0 0 1 
+state.write_flush 1 0 0 0 0 0 0 1 
+
+State Machine - System|master_0|master_0|transacto|p2m|state
+Name state.READ_SEND_WAIT state.READ_DATA_WAIT state.READ_SEND_ISSUE state.READ_CMD_WAIT state.WRITE_WAIT state.RETURN_PACKET state.READ_ASSERT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.READY 
+state.READY 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.GET_EXTRA 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.GET_SIZE1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.GET_SIZE2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.GET_ADDR1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.GET_ADDR2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.GET_ADDR3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.GET_ADDR4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.GET_WRITE_DATA 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.READ_ASSERT 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.RETURN_PACKET 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.WRITE_WAIT 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_CMD_WAIT 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_SEND_ISSUE 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_DATA_WAIT 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.READ_SEND_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|write_state
+Name write_state.ST_WRITE_DATA write_state.ST_HEADER_2 write_state.ST_HEADER_1 write_state.ST_BYPASS 
+write_state.ST_BYPASS 0 0 0 0 
+write_state.ST_HEADER_1 0 0 1 1 
+write_state.ST_HEADER_2 0 1 0 1 
+write_state.ST_WRITE_DATA 1 0 0 1 
+
+State Machine - System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|read_state
+Name read_state.ST_HEADER read_state.ST_READ_DATA read_state.ST_PADDED 
+read_state.ST_HEADER 0 0 0 
+read_state.ST_READ_DATA 1 1 0 
+read_state.ST_PADDED 1 0 1 

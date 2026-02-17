@@ -13,15 +13,17 @@ import os
 import sys
 import re
 import serial
+import subprocess
 import pandas as pd
-
+import socket
+ 
 
 # --- Constants ---
-IMAGE_PATH = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/cat.jpg"
+IMAGE_PATH = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/mif_results"
+MIF_OUTPUT_DIR = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -165,6 +167,9 @@ def extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx
         padding=1
     )
     activations_2d = activations_unfolded.squeeze(0).transpose(0, 1).numpy().astype(np.int8)
+
+    print(f"Max activation value (raw) : {activations_int8.max()}")
+    print(f"Min activation value (raw) : {activations_int8.min()}")
 
     print(f"Conv weights shape: {weights_2d.shape}")
     print(f"Activation shape: {activations_2d.shape}")
@@ -409,7 +414,10 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     data_k_indices = np.where(np.any(data_matrix, axis=0))[0]
     weight_k_indices = np.where(np.any(weight_matrix, axis=1))[0]
     # Using a set union ensures we have a sorted list of unique indices
-    common_k_indices = sorted(list(set(data_k_indices) | set(weight_k_indices)))
+    common_k_indices = sorted(list(set(data_k_indices) & set(weight_k_indices)))
+
+    if not common_k_indices or len(active_m_indices) == 0 or len(active_n_indices) == 0:
+        return np.array([[]]), np.array([[]]), 0, 0, 0
 
     # 3. Create the new, dense matrices by stripping all zero-axes using these indices.
     compact_data = data_matrix[np.ix_(active_m_indices, common_k_indices)]
@@ -491,46 +499,100 @@ def analyze_optimization(model, image_dir):
 def twos_complement_to_uint8(arr):
     return arr.astype(np.int8).astype(np.uint8)
 
+def run_jtag_inference(m, n, k, data_matrix, weight_matrix):
+    bin_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
+    res_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
+    
+    if os.path.exists(res_file): os.remove(res_file)
+
+    # 1. Prepare Payload
+    header = bytes([m, n, k, 0]) 
+    d_int16 = data_matrix.astype(np.int16)
+    w_int16 = weight_matrix.astype(np.int16)
+    
+    # DATA CHECK: Show me the meat of the whole tile
+    print(f"--- PAYLOAD STATS ---")
+    print(f"Data   | Max: {d_int16.max()}, Min: {d_int16.min()}, Non-zeros: {np.count_nonzero(d_int16)}/{d_int16.size}")
+    print(f"Weight | Max: {w_int16.max()}, Min: {w_int16.min()}, Non-zeros: {np.count_nonzero(w_int16)}/{w_int16.size}")
+
+    payload = d_int16.tobytes() + w_int16.tobytes()
+    
+    with open(bin_file, "wb") as f:
+        f.write(header + payload)
+        f.flush()
+        os.fsync(f.fileno())
+
+    # 2. Wait for Hardware
+    start_time = time.time()
+    while not os.path.exists(res_file):
+        if time.time() - start_time > 10: # 10 second timeout
+            print("!!! ERROR: Hardware timed out. Tcl script isn't responding.")
+            return None
+        time.sleep(0.1)
+    
+    # 3. Read Full Result
+    result = np.fromfile(res_file, dtype=np.int16).reshape(m, n)
+    print(f"Result | Max: {result.max()}, Min: {result.min()}, Non-zeros: {np.count_nonzero(result)}")
+    
+    os.remove(res_file)
+    return result
 
 def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
-    """Generates the specific MIF files needed and prints the VHDL stimulus."""
-    print(f"\n=== PREPARING STIMULUS: {layer_name} (Tile {tile_idx}, Size {t_size}) ===")
+    print(f"\n=== PROCESSING: {layer_name} (INTEGRATED FIX) ===")
     
-    # 1. Get the data from the model
     input_tensor = preprocess_image(IMAGE_PATH)
-    w, a = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
+    weights_all, acts_all = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
     
-    # 2. Save these specific tiles to disk so we have them
-    layer_dir = os.path.join(MIF_OUTPUT_DIR, f"{layer_name}_tile_{t_size}")
-    generate_and_save_tiles(w, a, layer_dir, LAYER_SIZE, t_size)
-    
-    # 3. Load the specific tile we just saved
-    a_path = os.path.join(layer_dir, f"tile_{tile_idx}", f"activation_tile_{tile_idx}.mif")
-    w_path = os.path.join(layer_dir, f"tile_{tile_idx}", f"weight_tile_{tile_idx}.mif")
-    
-    sim_data = mif_to_matrix(a_path, t_size, t_size)
-    sim_weight = mif_to_matrix(w_path, t_size, t_size)
-    
-    if sim_data is not None and sim_weight is not None:
-        # Get the "Stripped" dimensions and data
-        s_data, s_weight, m, k, n = coordinated_row_removal(sim_data, sim_weight)
-        
-        # Convert weights to uint8 (for VHDL hex compatibility)
-        s_weight_uint = twos_complement_to_uint8(s_weight)
-        
-        # PRINT THE VHDL CODE
-        print(f"\n--- COPY THE CODE BELOW INTO YOUR TESTBENCH ---")
-        print(f"-- Target: {layer_name} Tile {tile_idx} ({t_size}x{t_size})")
-        generate_vhdl_stimulus(s_data, s_weight_uint, m, k, n, N=t_size)
-        print(f"--- END OF VHDL CODE ---\n")
-        
-        # Verification check 
-        print(f"Logbook Note: Python predicts this tile will take {m + n + k - 1} cycles.")
+    s_data, s_weight = None, None
+    m, k, n = 0, 0, 0
+    final_raw_data = None
+    final_raw_weight = None
 
+    # SEARCH LOOP
+    for search_idx in range(tile_idx, 500):
+        raw_data = acts_all[search_idx*t_size : (search_idx+1)*t_size, :t_size]
+        raw_weight = weights_all[:t_size, :t_size]
+        
+        # Call the UPDATED removal logic
+        temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = coordinated_row_removal(raw_data, raw_weight)
+        
+        # Verify the stripped data actually has non-zero values
+        if temp_m > 0 and temp_k > 0 and np.count_nonzero(temp_s_data) > 20:
+            print(f">>> SUCCESS: Found dense data at Tile {search_idx}")
+            s_data, s_weight = temp_s_data, temp_s_weight
+            m, k, n = temp_m, temp_k, temp_n
+            final_raw_data, final_raw_weight = raw_data, raw_weight
+            break
+
+    if s_data is None:
+        print("!!! FAILED: Could not find non-sparse data.")
+        return None
+
+    # DEBUG TERMINAL CHECK
+    print(f"DEBUG: Sending {m}x{k} Data. First 4: {s_data.flatten()[:4]}")
+
+    # JTAG EXECUTION
+    hw_stripped = run_jtag_inference(m, n, k, s_data, s_weight)
+    
+    if hw_stripped is not None:
+        sw_ref = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
+        mse = np.mean((sw_ref - hw_stripped)**2)
+        print(f"--- ACCURACY: MSE = {mse:.4f} ---")
+        
+        # Reconstruction
+        active_m = np.where(np.any(final_raw_data, axis=1))[0]
+        active_n = np.where(np.any(final_raw_weight, axis=0))[0]
+        reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
+        for i, r_idx in enumerate(active_m):
+            for j, c_idx in enumerate(active_n):
+                if i < hw_stripped.shape[0] and j < hw_stripped.shape[1]:
+                    reconstructed[r_idx, c_idx] = hw_stripped[i, j]
+        return reconstructed
+    return None
 
 def main():
     model = load_quantized_alexnet()
-    image_dir = '/home/pratham/Documents/Github/part-4-project/SummerResearch/Python/sparsity_analysis_images'
+    image_dir = 'C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/sparsity_analysis_images'
     
     df = analyze_optimization(model, image_dir)
     
@@ -578,7 +640,7 @@ def main():
 
     # To run Case #1 (The 32x32 Hero):
     model = load_quantized_alexnet()
-    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=0, t_size=32)
+    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=15, t_size=32)
 
 if __name__ == '__main__':
     main()

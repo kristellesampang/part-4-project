@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.01.13.18:56:46"
- outputDirectory="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_jtag_uart_0/">
+ date="2026.02.03.13:10:34"
+ outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_jtag_uart_0/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -158,17 +158,17 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\synth\PR_Test_Top_jtag_uart_0.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\synth\PR_Test_Top_jtag_uart_0.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\synth\PR_Test_Top_jtag_uart_0.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\synth\PR_Test_Top_jtag_uart_0.vhd"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_jtag_uart_0.ip" />
+       path="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/PR_Test_Top/PR_Test_Top_jtag_uart_0.ip" />
   </sourceFiles>
   <childSourceFiles>
    <file
@@ -178,7 +178,7 @@
    <message level="Info" culprit="PR_Test_Top_jtag_uart_0">"Generating: PR_Test_Top_jtag_uart_0"</message>
    <message level="Info" culprit="PR_Test_Top_jtag_uart_0">"Generating: PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq"</message>
    <message level="Info" culprit="jtag_uart_0">Starting RTL generation for module 'PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq'</message>
-   <message level="Info" culprit="jtag_uart_0">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0466_163942654248858644.dir/0003_jtag_uart_0_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0466_163942654248858644.dir/0003_jtag_uart_0_gen//PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="jtag_uart_0">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0487_6106339737229561317.dir/0006_jtag_uart_0_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0487_6106339737229561317.dir/0006_jtag_uart_0_gen//PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq_component_configuration.pl  --do_build_sim=0  ]</message>
    <message level="Info" culprit="jtag_uart_0">Done RTL generation for module 'PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq'</message>
   </messages>
  </entity>
@@ -204,12 +204,12 @@
   <parameter name="legacySignalAllow" value="false" />
   <generatedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\altera_avalon_jtag_uart_1924\synth\PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq.v"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\altera_avalon_jtag_uart_1924\synth\PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\altera_avalon_jtag_uart_1924\synth\PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq.v"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0\altera_avalon_jtag_uart_1924\synth\PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -221,7 +221,7 @@
   <messages>
    <message level="Info" culprit="PR_Test_Top_jtag_uart_0">"Generating: PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq"</message>
    <message level="Info" culprit="jtag_uart_0">Starting RTL generation for module 'PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq'</message>
-   <message level="Info" culprit="jtag_uart_0">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0466_163942654248858644.dir/0003_jtag_uart_0_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0466_163942654248858644.dir/0003_jtag_uart_0_gen//PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq_component_configuration.pl  --do_build_sim=0  ]</message>
+   <message level="Info" culprit="jtag_uart_0">  Generation command is [exec C:/intelfpga_pro/24.1/quartus/bin64//perl/bin/perl.exe -I C:/intelfpga_pro/24.1/quartus/bin64//perl/lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_pro/24.1/quartus/sopc_builder/bin -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_pro/24.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq --dir=C:/Users/pchh520/AppData/Local/Temp/alt0487_6106339737229561317.dir/0006_jtag_uart_0_gen/ --quartus_dir=C:/intelfpga_pro/24.1/quartus --verilog --config=C:/Users/pchh520/AppData/Local/Temp/alt0487_6106339737229561317.dir/0006_jtag_uart_0_gen//PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq_component_configuration.pl  --do_build_sim=0  ]</message>
    <message level="Info" culprit="jtag_uart_0">Done RTL generation for module 'PR_Test_Top_jtag_uart_0_altera_avalon_jtag_uart_1924_dwkezqq'</message>
   </messages>
  </entity>

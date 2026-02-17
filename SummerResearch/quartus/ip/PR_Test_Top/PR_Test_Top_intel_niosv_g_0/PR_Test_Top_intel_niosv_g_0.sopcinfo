@@ -5,7 +5,7 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 24.1 115 (Future versions may contain additional information.) -->
- <!-- 2026.01.13.18:56:52 -->
+ <!-- 2026.02.03.13:10:37 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -162,7 +162,7 @@
    name="intel_niosv_g_0"
    kind="intel_niosv_g"
    version="2.2.0"
-   entity="PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y"
+   entity="PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay"
    library="intel_niosv_g_220"
    path="intel_niosv_g_0"
    hpath="intel_niosv_g_0"
@@ -171,7 +171,7 @@
 the requested settings for a module instance. -->
   <assignment>
    <name>embeddedsw.CMacro.CPU_FREQ</name>
-   <value>266666665u</value>
+   <value>50000000u</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.DATA_ADDR_WIDTH</name>
@@ -215,7 +215,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.MTIME_OFFSET</name>
-   <value>0x80030000</value>
+   <value>0x00030000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.NIOSV_CORE_VARIANT</name>
@@ -227,7 +227,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.RESET_ADDR</name>
-   <value>0x80000000</value>
+   <value>0x00000000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TICKS_PER_SEC</name>
@@ -303,11 +303,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.altr,reset-addr</name>
-   <value>0x80000000</value>
+   <value>0x00000000</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.clock-frequency</name>
-   <value>266666665u</value>
+   <value>50000000u</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.dcache-line-size</name>
@@ -327,7 +327,7 @@ the requested settings for a module instance. -->
   </assignment>
   <parameter name="clockFrequency">
    <type>long</type>
-   <value>266666665</value>
+   <value>50000000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -337,7 +337,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="instSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /><slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /><slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /><slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -347,7 +347,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="dataSlaveMapParam">
    <type>java.lang.String</type>
-   <value><![CDATA[<address-map><slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /><slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /><slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /><slave name='intel_niosv_g_0.timer_sw_agent' start='0x80030000' end='0x80030040' datawidth='32' /><slave name='msgdma_pr.csr' start='0x80030040' end='0x80030060' datawidth='32' /><slave name='msgdma_pr.descriptor_slave' start='0x80030060' end='0x80030070' datawidth='128' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x80030070' end='0x80030078' datawidth='32' /></address-map>]]></value>
+   <value><![CDATA[<address-map><slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /><slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /><slave name='intel_niosv_g_0.timer_sw_agent' start='0x30000' end='0x30040' datawidth='32' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x30040' end='0x30048' datawidth='32' /></address-map>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -665,7 +665,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_CLOCK_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>5</value>
+   <value>1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -675,7 +675,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_CLK_RESET_DOMAIN">
    <type>java.lang.Integer</type>
-   <value>5</value>
+   <value>1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -685,7 +685,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AUTO_PLATFORM_IRQ_RX_INTERRUPTS_USED">
    <type>java.math.BigInteger</type>
-   <value>7</value>
+   <value>1</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -767,7 +767,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="clockRate">
     <type>java.lang.Long</type>
-    <value>266666665</value>
+    <value>50000000</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>

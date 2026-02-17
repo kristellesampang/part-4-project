@@ -22,119 +22,48 @@
 # Date created = 15:33:38  January 14, 2026
 #
 # -------------------------------------------------------------------------- #
-set_global_assignment -name TOP_LEVEL_ENTITY SummerResearchTopLevel
+set_global_assignment -name TOP_LEVEL_ENTITY non_dpr_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 24.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:33:38  JANUARY 14, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.1.0 Pro Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name FAMILY "Arria 10"
 set_global_assignment -name DEVICE 10AS066N3F40E2SG
-set_global_assignment -name BOARD "Intel Arria 10 SX SoC Development Kits DK-SOC-10AS066S-D"
-set_global_assignment -name VHDL_FILE "../Systolic Array/BRAM_Controller_Test.vhd"
-set_global_assignment -name SDC_FILE SummerResearchTopLevel.out.sdc
-set_global_assignment -name VHDL_FILE SummerResearchTopLevel.vhd
-set_global_assignment -name VHDL_FILE "../Systolic Array/top_level_systolic_array.vhd"
-set_global_assignment -name VHDL_FILE "../Systolic Array/systolic_array.vhd"
-set_global_assignment -name VHDL_FILE "../Systolic Array/processing_element.vhd"
-set_global_assignment -name VHDL_FILE "../Systolic Array/custom_types.vhd"
-set_global_assignment -name VHDL_FILE "../Systolic Array/control_unit.vhd"
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
-set_location_assignment PIN_AJ13 -to LED_STATUS[6] -comment IOBANK_3A
-set_location_assignment PIN_K12 -to BTN_RESET -comment IOBANK_3H
-set_location_assignment PIN_H13 -to BTN_START -comment IOBANK_3H
-set_location_assignment PIN_AH14 -to LED_STATUS[2] -comment IOBANK_3A
-set_location_assignment PIN_AG14 -to LED_STATUS[3] -comment IOBANK_3A
-set_location_assignment PIN_AF15 -to LED_STATUS[0] -comment IOBANK_3A
-set_location_assignment PIN_AF14 -to LED_STATUS[4] -comment IOBANK_3A
-set_location_assignment PIN_AJ14 -to LED_STATUS[1] -comment IOBANK_3A
-set_location_assignment PIN_AK13 -to LED_STATUS[5] -comment IOBANK_3A
-set_location_assignment PIN_AH12 -to LED_STATUS[7] -comment IOBANK_3A
-set_location_assignment PIN_AG15 -to LED_DONE -comment IOBANK_3A
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[4] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to BTN_START -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[7] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[0] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[3] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_DONE -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[6] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD LVDS -to CLK_50 -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[2] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[5] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to BTN_RESET -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS[1] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "1.8-V" -to LED_STATUS -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[4] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[1] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[5] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[2] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[6] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_DONE -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[3] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[0] -entity SummerResearchTopLevel
-set_instance_assignment -name SLEW_RATE 1 -to LED_STATUS[7] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[7] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[0] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[3] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_DONE -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[6] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[2] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[5] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[1] -entity SummerResearchTopLevel
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to LED_STATUS[4] -entity SummerResearchTopLevel
-set_global_assignment -name IP_FILE ../Memory/Buffers/DataBuffer1.ip
-set_global_assignment -name IP_FILE ../Memory/Buffers/DataBuffer2.ip
-set_global_assignment -name IP_FILE ../Memory/Buffers/WeightBuffer1.ip
-set_global_assignment -name IP_FILE ../Memory/Buffers/WeightBuffer2.ip
-set_global_assignment -name IP_FILE ../Memory/Buffers/OutputBuffer.ip
-set_global_assignment -name EDA_SIMULATION_TOOL "QuestaSim (VHDL)"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-set_global_assignment -name EDA_USER_COMPILED_SIMULATION_LIBRARY_DIRECTORY "C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/Simulation" -section_id eda_simulation
-set_global_assignment -name IP_FILE Test_PR_CTRLR.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_clock_in.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_reset_in.ip
-set_global_assignment -name QSYS_FILE PR_Test_Top.qsys
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_intel_niosv_g_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_intel_onchip_memory_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_jtag_uart_0.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/SDRAM.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/mSGDMA_PR.ip
-set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_alt_pr_1.ip
+set_global_assignment -name SDC_FILE NonDPR.out.sdc
+set_global_assignment -name VHDL_FILE "../Systolic Array/non_dpr_top.vhd"
 set_instance_assignment -name PARTITION top_level_systolic_array -to npu_core -entity SummerResearchTopLevel
 set_instance_assignment -name PARTITION_COLOUR 4294937543 -to npu_core -entity SummerResearchTopLevel
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity SummerResearchTopLevel
 set_global_assignment -name REVISION_TYPE PR_BASE
-set_instance_assignment -name PLACE_REGION "X1 Y1 X77 Y120" -to npu_core
-set_instance_assignment -name RESERVE_PLACE_REGION ON -to npu_core
-set_instance_assignment -name CORE_ONLY_PLACE_REGION ON -to npu_core
-set_instance_assignment -name REGION_NAME npu_core -to npu_core
-set_instance_assignment -name ROUTE_REGION "X0 Y0 X79 Y122" -to npu_core
-set_instance_assignment -name RESERVE_ROUTE_REGION ON -to npu_core
-set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to CLK_50 -entity SummerResearchTopLevel
-set_instance_assignment -name GLOBAL_SIGNAL GLOBAL_CLOCK -to CLK_50 -entity SummerResearchTopLevel
-set_global_assignment -name OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING NORMAL
-set_location_assignment PIN_F5 -to CLK_50 -comment IOBANK_3G
-set_instance_assignment -name IO_STANDARD LVDS -to CLK_EMI -entity SummerResearchTopLevel
-set_location_assignment PIN_AG5 -to CLK_EMI
-set_instance_assignment -name INPUT_TERMINATION DIFFERENTIAL -to CLK_EMI -entity SummerResearchTopLevel
-set_location_assignment PIN_AN3 -to ddr4_emif_mem_mem_a[0]
-set_location_assignment PIN_AM4 -to ddr4_emif_mem_mem_a[1]
-set_location_assignment PIN_AL3 -to ddr4_emif_mem_mem_a[2]
-set_location_assignment PIN_AL4 -to ddr4_emif_mem_mem_a[3]
-set_location_assignment PIN_AL5 -to ddr4_emif_mem_mem_a[4]
-set_location_assignment PIN_AK5 -to ddr4_emif_mem_mem_a[5]
-set_location_assignment PIN_AK6 -to ddr4_emif_mem_mem_a[6]
-set_location_assignment PIN_AJ6 -to ddr4_emif_mem_mem_a[7]
-set_location_assignment PIN_AK3 -to ddr4_emif_mem_mem_a[8]
-set_location_assignment PIN_AF5 -to ddr4_emif_mem_mem_ba[0]
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[0] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_ba[0] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[1] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[2] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[3] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[4] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[5] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[6] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[7] -entity SummerResearchTopLevel
-set_instance_assignment -name IO_STANDARD "DIFFERENTIAL 1.2-V SSTL" -to ddr4_emif_mem_mem_a[8] -entity SummerResearchTopLevel
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_master_0.ip
+set_global_assignment -name QSYS_FILE NonDPR.qsys
+set_global_assignment -name IP_FILE ip/NonDPR/data_mem.ip
+set_global_assignment -name IP_FILE ip/NonDPR/weight_mem.ip
+set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_clock_in.ip
+set_global_assignment -name IP_FILE ip/PR_Test_Top/PR_Test_Top_reset_in.ip
+set_global_assignment -name FLOW_ENABLE_EARLY_TIMING_ANALYSIS OFF
+set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_location_assignment PIN_AM10 -to CLK_50 -comment IOBANK_3A
+set_location_assignment PIN_K12 -to BTN_RESET -comment IOBANK_3H
+set_location_assignment PIN_A24 -to LED_STATUS[0] -comment IOBANK_2K
+set_instance_assignment -name IO_STANDARD "1.8 V" -to CLK_50 -entity non_dpr_top
+set_instance_assignment -name IO_STANDARD "1.8 V" -to BTN_RESET -entity non_dpr_top
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[0] -entity non_dpr_top
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
+set_global_assignment -name BOARD default
+set_location_assignment PIN_B26 -to LED_STATUS[1] -comment IOBANK_2K
+set_location_assignment PIN_C26 -to LED_STATUS[2] -comment IOBANK_2K
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[1] -entity non_dpr_top
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[3] -entity non_dpr_top
+set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[2] -entity non_dpr_top
+set_global_assignment -name IP_FILE ip/NonDPR/out_mem.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_7.ip
+set_instance_assignment -name PARTITION_COLOUR 4287561699 -to non_dpr_top -entity non_dpr_top
+set_instance_assignment -name PARTITION_COLOUR 4286250872 -to auto_fab_0 -entity non_dpr_top
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_8.ip
+set_global_assignment -name FAST_PRESERVE AUTO -entity non_dpr_top
+set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity non_dpr_top

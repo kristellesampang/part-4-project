@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<internal_error>
+	<sub_system>ERR</sub_system>
+	<callstack>	0x7ffe01b71890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
+	0x7ffe39b43a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
+	0x7ffe39b1042d: ucrtbase + 0x2042d (_o_free + 0xdd)
+	0x7ffe39b0dddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
+	0x7ffe01b6f590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
+	0x7ffe01b6e67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
+	0x7ffe01b6e95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
+	0x7ffe3bf98bce: ntdll + 0x28bce (RtlActivateActivationContextUnsafeFast + 0x12e)
+	0x7ffe3bfdbae5: ntdll + 0x6bae5 (LdrUnloadAlternateResourceModuleEx + 0x325)
+	0x7ffe3bfdb51e: ntdll + 0x6b51e (RtlInitAnsiStringEx + 0x7e)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bfdb79b: ntdll + 0x6b79b (RtlInitAnsiStringEx + 0x2fb)
+	0x7ffe3bf9d4bd: ntdll + 0x2d4bd (LdrUnloadDll + 0x11d)
+	0x7ffe3bf9d434: ntdll + 0x2d434 (LdrUnloadDll + 0x94)
+	0x7ffe3975e78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
+	0x7ffe26df1fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
+	0x7ffe26df1908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
+	0x1f6e0fbd620:
+	0x1f6c271b147:
+	0x1f6c41bf507:
+	0x1f5ffffffff:
+	0xa8860fef67:
+	0xa8860fef17:
+	0x1f6e0fbd2f5:
+	0xa8860feeaf:
+	0x1f6c271b147:
+	0xa8860fef17:
+	0x1f6c271df8f:
+</callstack>
+	<error>*** Fatal Error: Access Violation at 00007FFE01B71891</error>
+	<date>Tue Feb 17 12:28:35 2026
+</date>
+	<version>Version 24.1.0 Build 115 03/21/2024 SC Pro Edition</version>
+</internal_error>

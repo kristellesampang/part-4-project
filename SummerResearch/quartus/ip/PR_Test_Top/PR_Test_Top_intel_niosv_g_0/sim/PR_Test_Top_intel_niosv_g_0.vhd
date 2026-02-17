@@ -85,7 +85,7 @@ entity PR_Test_Top_intel_niosv_g_0 is
 end entity PR_Test_Top_intel_niosv_g_0;
 
 architecture rtl of PR_Test_Top_intel_niosv_g_0 is
-	component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y_cmp is
+	component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay_cmp is
 		port (
 			clk                          : in  std_logic                     := 'X';             -- clk
 			reset_reset                  : in  std_logic                     := 'X';             -- reset
@@ -160,13 +160,13 @@ architecture rtl of PR_Test_Top_intel_niosv_g_0 is
 			dbg_reset_out_reset          : out std_logic;                                        -- reset
 			ndm_reset_in_reset           : in  std_logic                     := 'X'              -- reset
 		);
-	end component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y_cmp;
+	end component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay_cmp;
 
-	for intel_niosv_g_0 : PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y_cmp
-		use entity intel_niosv_g_220.PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y;
+	for intel_niosv_g_0 : PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay_cmp
+		use entity intel_niosv_g_220.PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay;
 begin
 
-	intel_niosv_g_0 : component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y_cmp
+	intel_niosv_g_0 : component PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay_cmp
 		port map (
 			clk                          => clk,                          --                 clk.clk
 			reset_reset                  => reset_reset,                  --               reset.reset

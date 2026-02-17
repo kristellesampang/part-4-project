@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <window width="1920" height="1152" x="0" y="0" />
+ <window width="1936" height="1168" x="-8" y="-8" />
  <generation
    path=""
    greybox="0"
-   simulation="VHDL"
+   simulation="NONE"
    vcs="0"
-   synthesis="VHDL"
+   synthesis="VERILOG"
    modelsim="1"
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
- <library
-   expandedCategories="Library/DSP/Video and Vision Processing/Clocked Video and Genlock,Existing IP Variants/C:/Users,Existing IP Variants/C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip,Existing IP Variants/C:/Users/pchh520/Documents,Library/University Program/Clock,Library/Bridges and Adapters,Library/Basic Functions,Existing IP Variants/C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus,Library/Intel FPGA Interconnect/Interrupt,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Existing IP Variants/C:,Library/DSP,Library/Basic Functions/On Chip Memory,Existing IP Variants/C:/Users/pchh520/Documents/part-4-project,Library/Interface Protocols/Audio &amp; Video,Library/DSP/Video and Image Processing,Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/Basic Functions/Simulation; Debug and Verification,Library/Interface Protocols/Ethernet/Reference Design Components,Existing IP Variants/C:/Users/pchh520,Library/Basic Functions/Bridges and Adaptors,Library,Existing IP Variants/C:/Users/pchh520/Documents/part-4-project/SummerResearch/quartus/ip/PR_Test_Top,Library/University Program/Audio &amp; Video,Existing IP Variants/C:/Users/pchh520/Documents/part-4-project/SummerResearch,Library/DSP/Video and Vision Processing,Library/Bridges and Adapters/Streaming,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Interface Protocols/Ethernet,Existing IP Variants,Library/Basic Functions/Bridges and Adaptors/Clock,Library/Intel FPGA Interconnect,Library/Interface Protocols" />
+ <library expandedCategories="Project,Library,Existing IP Variants" />
+ <sysinfo autosync="0" />
 </preferences>

@@ -26,7 +26,7 @@
           </parameter>
           <parameter>
             <name>clockFrequency</name>
-            <value>266666665</value>
+            <value>50000000</value>
           </parameter>
           <parameter>
             <name>dataCacheSize</name>
@@ -34,7 +34,7 @@
           </parameter>
           <parameter>
             <name>dataSlaveMapParam</name>
-            <value>&lt;address-map&gt;&lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x80030000' end='0x80030040' datawidth='32' /&gt;&lt;slave name='msgdma_pr.csr' start='0x80030040' end='0x80030060' datawidth='32' /&gt;&lt;slave name='msgdma_pr.descriptor_slave' start='0x80030060' end='0x80030070' datawidth='128' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x80030070' end='0x80030078' datawidth='32' /&gt;&lt;/address-map&gt;</value>
+            <value>&lt;address-map&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x30000' end='0x30040' datawidth='32' /&gt;&lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x30040' end='0x30048' datawidth='32' /&gt;&lt;/address-map&gt;</value>
           </parameter>
           <parameter>
             <name>deviceFamily</name>
@@ -106,7 +106,7 @@
           </parameter>
           <parameter>
             <name>instSlaveMapParam</name>
-            <value>&lt;address-map&gt;&lt;slave name='SDRAM.ctrl_amm_0' start='0x0' end='0x80000000' datawidth='512' /&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x80000000' end='0x80020000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x80020000' end='0x80030000' datawidth='32' /&gt;&lt;/address-map&gt;</value>
+            <value>&lt;address-map&gt;&lt;slave name='intel_onchip_memory_0.s1' start='0x0' end='0x20000' datawidth='32' /&gt;&lt;slave name='intel_niosv_g_0.dm_agent' start='0x20000' end='0x30000' datawidth='32' /&gt;&lt;/address-map&gt;</value>
           </parameter>
           <parameter>
             <name>itcm1Base</name>
@@ -173,7 +173,7 @@
         <className>intel_niosv_g</className>
         <version>2.2.0</version>
         <name>intel_niosv_g_0</name>
-        <uniqueName>PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_n637f5y</uniqueName>
+        <uniqueName>PR_Test_Top_intel_niosv_g_0_intel_niosv_g_220_4kuokay</uniqueName>
         <nonce>0</nonce>
         <incidentConnections></incidentConnections>
         <path>PR_Test_Top_intel_niosv_g_0.intel_niosv_g_0</path>
@@ -185,7 +185,7 @@
             <parameters>
               <parameter>
                 <name>DERIVED_CLOCK_RATE</name>
-                <value>266666665</value>
+                <value>50000000</value>
               </parameter>
               <parameter>
                 <name>EXPLICIT_CLOCK_RATE</name>
@@ -206,20 +206,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -232,20 +232,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -258,20 +258,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="cpu_clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="cpu_clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -359,20 +359,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -410,20 +410,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -470,20 +470,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -576,20 +576,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -664,11 +664,11 @@
               </parameter>
               <parameter>
                 <name>DBG_DATA_S_BASE</name>
-                <value>2147614720</value>
+                <value>131072</value>
               </parameter>
               <parameter>
                 <name>DBG_EXPN_VECTOR</name>
-                <value>2147614720</value>
+                <value>131072</value>
               </parameter>
               <parameter>
                 <name>DEBUG_ENABLED</name>
@@ -772,7 +772,7 @@
               </parameter>
               <parameter>
                 <name>RESET_VECTOR</name>
-                <value>2147483648</value>
+                <value>0</value>
               </parameter>
               <parameter>
                 <name>SUB_OP</name>
@@ -780,7 +780,7 @@
               </parameter>
               <parameter>
                 <name>TIMER_MSIP_DATA_S_BASE</name>
-                <value>2147680256</value>
+                <value>196608</value>
               </parameter>
               <parameter>
                 <name>USE_RESET_REQ</name>
@@ -807,26 +807,26 @@
             <className>intel_niosv_g_unit</className>
             <version>2.2.0</version>
             <name>hart</name>
-            <uniqueName>PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_2s7cy6a</uniqueName>
+            <uniqueName>PR_Test_Top_intel_niosv_g_0_intel_niosv_g_unit_220_gbryvpy</uniqueName>
             <nonce>0</nonce>
             <incidentConnections>
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="cpu_clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="cpu_clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -1539,20 +1539,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>
@@ -2113,20 +2113,20 @@
               <incidentConnection>
                 <parameters>
                   <parameter>
-                    <name>clockDomainSysInfo</name>
-                    <value>1</value>
+                    <name>resetDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
-                    <name>resetDomainSysInfo</name>
-                    <value>1</value>
+                    <name>clockDomainSysInfo</name>
+                    <value>2</value>
                   </parameter>
                   <parameter>
                     <name>clockResetSysInfo</name>
-                    <value>&lt;info&gt;&lt;clock name="clk" rate="266666665" domain="1" /&gt;&lt;/info&gt;</value>
+                    <value>&lt;info&gt;&lt;clock name="clk" rate="50000000" domain="2" /&gt;&lt;/info&gt;</value>
                   </parameter>
                   <parameter>
                     <name>clockRateSysInfo</name>
-                    <value>266666665</value>
+                    <value>50000000</value>
                   </parameter>
                 </parameters>
                 <interconnectAssignments></interconnectAssignments>

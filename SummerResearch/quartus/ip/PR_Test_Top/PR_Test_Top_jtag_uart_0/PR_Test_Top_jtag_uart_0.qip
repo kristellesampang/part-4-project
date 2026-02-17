@@ -4,7 +4,7 @@ set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jt
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_avalon_jtag_uart"
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name PRE_COMPILED_MODULE "ON"
-set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0.ip"
+set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\PR_Test_Top\PR_Test_Top_jtag_uart_0.ip"
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name OCS_IP_TYPE "altera_avalon_jtag_uart"
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name OCS_IP_VERSION "19.2.4"
 set_global_assignment -entity "PR_Test_Top_jtag_uart_0" -library "PR_Test_Top_jtag_uart_0" -name OCS_IP_HASH "dwkezqq"
