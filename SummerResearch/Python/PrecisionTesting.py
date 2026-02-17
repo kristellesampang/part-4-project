@@ -19,11 +19,11 @@ import socket
  
 
 # --- Constants ---
-IMAGE_PATH = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/cat.jpg"
+IMAGE_PATH = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/cat.jpg"
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/hand_xray.jpg'
 # IMAGE_PATH = 'C:/Users/iamkr/Documents/part-4-project/Final/Python/patella_alta.jpg'
 # MIF_OUTPUT_DIR = "C:/Users/iamkr/Documents/part-4-project/Final/mif/pipeline_v2"
-MIF_OUTPUT_DIR = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/mif_results"
+MIF_OUTPUT_DIR = "C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/mif_results"
 # TEST_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/activation_tile_1.mif'
 # TEST_WEIGHT_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_1/tile_1/weight_tile_1.mif'
 STRIPPED_DATA_MIF_DIR = 'C:/Users/iamkr/Documents/part-4-project/Final/testing/v2_alexnet/run_2/tile_1/stripped_activation.mif'
@@ -398,9 +398,9 @@ def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
 
 def coordinated_row_removal(data_matrix, weight_matrix):
     """
-    This function correctly implements your original goal. It finds all active
-    rows and columns for each matrix but coordinates the inner dimension 'k'
-    to ensure the multiplication is always valid.
+    Finds active rows/cols and coordinates the inner 'k' dimension.
+    FIX: Now ensures 'k' is only kept if BOTH matrices have data there,
+    preventing zero-filled columns from polluting the NPU start-packet.
     """
     data_matrix = np.array(data_matrix)
     weight_matrix = np.array(weight_matrix)
@@ -409,26 +409,21 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     active_m_indices = np.where(np.any(data_matrix, axis=1))[0]
     active_n_indices = np.where(np.any(weight_matrix, axis=0))[0]
 
-    # 2. Find the active inner dimension 'k' by taking the UNION of active
-    #    data columns and active weight rows. This captures all contributing parts.
-    data_k_indices = np.where(np.any(data_matrix, axis=0))[0]
-    weight_k_indices = np.where(np.any(weight_matrix, axis=1))[0]
-    # Using a set union ensures we have a sorted list of unique indices
-    common_k_indices = sorted(list(set(data_k_indices) & set(weight_k_indices)))
+    # 2. THE INTERSECTION FIX: 
+    # Only keep 'k' if it has non-zero contributions in BOTH data and weights.
+    data_k_indices = set(np.where(np.any(data_matrix, axis=0))[0])
+    weight_k_indices = set(np.where(np.any(weight_matrix, axis=1))[0])
+    common_k_indices = sorted(list(data_k_indices & weight_k_indices))
 
+    # Guard against empty tiles
     if not common_k_indices or len(active_m_indices) == 0 or len(active_n_indices) == 0:
         return np.array([[]]), np.array([[]]), 0, 0, 0
 
-    # 3. Create the new, dense matrices by stripping all zero-axes using these indices.
+    # 3. Create the new, dense matrices
     compact_data = data_matrix[np.ix_(active_m_indices, common_k_indices)]
     compact_weight = weight_matrix[np.ix_(common_k_indices, active_n_indices)]
 
-    # 4. Extract the final, correct dimensions.
-    m_new = compact_data.shape[0]
-    k_new = compact_data.shape[1]
-    n_new = compact_weight.shape[1]
-
-    return compact_data, compact_weight, m_new, k_new, n_new
+    return compact_data, compact_weight, compact_data.shape[0], compact_data.shape[1], compact_weight.shape[1]
 
 def analyze_optimization(model, image_dir):
     results_log = []
@@ -500,10 +495,17 @@ def twos_complement_to_uint8(arr):
     return arr.astype(np.int8).astype(np.uint8)
 
 def run_jtag_inference(m, n, k, data_matrix, weight_matrix):
-    bin_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
-    res_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
+    # bin_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
+    # res_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
     
-    if os.path.exists(res_file): os.remove(res_file)
+    # if os.path.exists(res_file): os.remove(res_file)
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    bin_file = os.path.join(current_dir, "tile.bin")
+    res_file = os.path.join(current_dir, "result.bin")
+    
+    if os.path.exists(res_file): 
+        os.remove(res_file)
 
     # 1. Prepare Payload
     header = bytes([m, n, k, 0]) 
@@ -543,56 +545,85 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
     input_tensor = preprocess_image(IMAGE_PATH)
     weights_all, acts_all = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
     
+    # --- DEEP DIAGNOSTIC: Where is the meat? ---
+    nz_rows, nz_cols = np.nonzero(acts_all)
+    if nz_cols.size > 0:
+        print(f"DEBUG: Data found in layer! First non-zero at Row {nz_rows[0]}, Col {nz_cols[0]}")
+    else:
+        print("!!! CRITICAL: Entire activation layer is ZERO. Hook/Quantization failure.")
+        return None
+
+    # 2. THE SEARCH LOOP
     s_data, s_weight = None, None
     m, k, n = 0, 0, 0
     final_raw_data = None
     final_raw_weight = None
 
-    # SEARCH LOOP
     for search_idx in range(tile_idx, 500):
-        raw_data = acts_all[search_idx*t_size : (search_idx+1)*t_size, :t_size]
-        raw_weight = weights_all[:t_size, :t_size]
-        
-        # Call the UPDATED removal logic
-        temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = coordinated_row_removal(raw_data, raw_weight)
-        
-        # Verify the stripped data actually has non-zero values
-        if temp_m > 0 and temp_k > 0 and np.count_nonzero(temp_s_data) > 20:
-            print(f">>> SUCCESS: Found dense data at Tile {search_idx}")
-            s_data, s_weight = temp_s_data, temp_s_weight
-            m, k, n = temp_m, temp_k, temp_n
-            final_raw_data, final_raw_weight = raw_data, raw_weight
-            break
+        for col_offset in [0, 100, 200]: 
+            raw_data = acts_all[search_idx*t_size : (search_idx+1)*t_size, col_offset : col_offset+t_size]
+            raw_weight = weights_all[:t_size, col_offset : col_offset+t_size]
+            
+            temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = coordinated_row_removal(raw_data, raw_weight)
+            
+            if temp_m > 0 and np.count_nonzero(temp_s_data) > 10:
+                print(f">>> SUCCESS: Found dense stripped data at Tile {search_idx}, Col Offset {col_offset}")
+                s_data, s_weight = temp_s_data, temp_s_weight
+                m, k, n = temp_m, temp_k, temp_n
+                final_raw_data = raw_data
+                final_raw_weight = raw_weight
+                break
+        if s_data is not None: break
 
     if s_data is None:
-        print("!!! FAILED: Could not find non-sparse data.")
+        print("!!! FAILED: Exhausted search. No non-sparse tiles found.")
         return None
 
-    # DEBUG TERMINAL CHECK
-    print(f"DEBUG: Sending {m}x{k} Data. First 4: {s_data.flatten()[:4]}")
+    # --- 🔎 TILE VISUALIZATION BLOCK (The part you requested) ---
+    print("\n" + "="*50)
+    print(f"VISUALIZING STRIPPED TILE (Size {m}x{k})")
+    print("-" * 50)
+    
+    # We print a 10x10 slice to keep the terminal readable
+    row_view = min(m, 10)
+    col_view = min(k, 10)
+    
+    print(f"S_DATA (Activations) - Top {row_view}x{col_view} Slice:")
+    # Using np.array2string to force alignment
+    print(np.array2string(s_data[:row_view, :col_view], separator=', '))
+    
+    print(f"\nS_WEIGHT (Weights) - Top {row_view}x{col_view} Slice:")
+    print(np.array2string(s_weight[:row_view, :col_view], separator=', '))
+    print("="*50 + "\n")
 
-    # JTAG EXECUTION
+    # 3. EXECUTE ON ARRIA 10 (Expect timeout at home)
     hw_stripped = run_jtag_inference(m, n, k, s_data, s_weight)
     
     if hw_stripped is not None:
+        # Software Reference Comparison
         sw_ref = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
         mse = np.mean((sw_ref - hw_stripped)**2)
-        print(f"--- ACCURACY: MSE = {mse:.4f} ---")
-        
-        # Reconstruction
+        print(f"\n--- RESULTS ---")
+        print(f"Stripped Dimensions: {m}x{k}x{n}")
+        print(f"Accuracy MSE: {mse:.4f}")
+
+        # Reconstruct the 32x32 view
         active_m = np.where(np.any(final_raw_data, axis=1))[0]
         active_n = np.where(np.any(final_raw_weight, axis=0))[0]
         reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
-        for i, r_idx in enumerate(active_m):
-            for j, c_idx in enumerate(active_n):
+        for i, r_orig in enumerate(active_m):
+            for j, c_orig in enumerate(active_n):
                 if i < hw_stripped.shape[0] and j < hw_stripped.shape[1]:
-                    reconstructed[r_idx, c_idx] = hw_stripped[i, j]
+                    reconstructed[r_orig, c_orig] = hw_stripped[i, j]
+        
+        print("Reconstructed Output Preview (Top-Left):\n", reconstructed[:4, :4])
         return reconstructed
+
     return None
 
 def main():
     model = load_quantized_alexnet()
-    image_dir = 'C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/sparsity_analysis_images'
+    image_dir = 'C:/Users/OEM/Documents/part-4-project/SummerResearch/Python/sparsity_analysis_images'
     
     df = analyze_optimization(model, image_dir)
     
