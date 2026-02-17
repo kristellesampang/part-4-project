@@ -168,6 +168,9 @@ def extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx
     )
     activations_2d = activations_unfolded.squeeze(0).transpose(0, 1).numpy().astype(np.int8)
 
+    print(f"Max activation value (raw) : {activations_int8.max()}")
+    print(f"Min activation value (raw) : {activations_int8.min()}")
+
     print(f"Conv weights shape: {weights_2d.shape}")
     print(f"Activation shape: {activations_2d.shape}")
     return weights_2d, activations_2d
@@ -411,7 +414,10 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     data_k_indices = np.where(np.any(data_matrix, axis=0))[0]
     weight_k_indices = np.where(np.any(weight_matrix, axis=1))[0]
     # Using a set union ensures we have a sorted list of unique indices
-    common_k_indices = sorted(list(set(data_k_indices) | set(weight_k_indices)))
+    common_k_indices = sorted(list(set(data_k_indices) & set(weight_k_indices)))
+
+    if not common_k_indices or len(active_m_indices) == 0 or len(active_n_indices) == 0:
+        return np.array([[]]), np.array([[]]), 0, 0, 0
 
     # 3. Create the new, dense matrices by stripping all zero-axes using these indices.
     compact_data = data_matrix[np.ix_(active_m_indices, common_k_indices)]
@@ -497,90 +503,91 @@ def run_jtag_inference(m, n, k, data_matrix, weight_matrix):
     bin_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
     res_file = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
     
-    if os.path.exists(res_file):
-        os.remove(res_file)
+    if os.path.exists(res_file): os.remove(res_file)
 
-    # 1. 4-BYTE ALIGNED HEADER
-    # Adding a 0 padding byte ensures the payload starts on an even boundary
+    # 1. Prepare Payload
     header = bytes([m, n, k, 0]) 
-    payload = data_matrix.astype(np.int16).tobytes() + weight_matrix.astype(np.int16).tobytes()
+    d_int16 = data_matrix.astype(np.int16)
+    w_int16 = weight_matrix.astype(np.int16)
     
-    print(f"DEBUG (Python): Sending Packet Size: {len(header) + len(payload)} bytes")
-    print(f"DEBUG (Python): First 4 weights (Hex): {[hex(x) for x in weight_matrix.flatten()[:4]]}")
+    # DATA CHECK: Show me the meat of the whole tile
+    print(f"--- PAYLOAD STATS ---")
+    print(f"Data   | Max: {d_int16.max()}, Min: {d_int16.min()}, Non-zeros: {np.count_nonzero(d_int16)}/{d_int16.size}")
+    print(f"Weight | Max: {w_int16.max()}, Min: {w_int16.min()}, Non-zeros: {np.count_nonzero(w_int16)}/{w_int16.size}")
+
+    payload = d_int16.tobytes() + w_int16.tobytes()
     
     with open(bin_file, "wb") as f:
         f.write(header + payload)
+        f.flush()
+        os.fsync(f.fileno())
 
-    # 2. Wait for Hardware Handshake
+    # 2. Wait for Hardware
+    start_time = time.time()
     while not os.path.exists(res_file):
+        if time.time() - start_time > 10: # 10 second timeout
+            print("!!! ERROR: Hardware timed out. Tcl script isn't responding.")
+            return None
         time.sleep(0.1)
     
-    expected_size = m * n * 2
-    while os.path.getsize(res_file) < expected_size:
-        time.sleep(0.05)
-
-    # 3. READ AS SIGNED 16-BIT
+    # 3. Read Full Result
     result = np.fromfile(res_file, dtype=np.int16).reshape(m, n)
+    print(f"Result | Max: {result.max()}, Min: {result.min()}, Non-zeros: {np.count_nonzero(result)}")
+    
     os.remove(res_file)
-
-    print("PYTHON DEBUG: Stripped Data (First 4):", data_matrix.flatten()[:4])
-    print("PYTHON DEBUG: Stripped Weights (First 4):", weight_matrix.flatten()[:4])
-
     return result
 
 def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
-    """Generates tiles, triggers hardware, and reconstructs the output."""
-    print(f"\n=== PROCESSING: {layer_name} (Tile {tile_idx}, Size {t_size}) ===")
+    print(f"\n=== PROCESSING: {layer_name} (INTEGRATED FIX) ===")
     
-    # 1. Extract data from the AlexNet model
     input_tensor = preprocess_image(IMAGE_PATH)
-    w, a = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
+    weights_all, acts_all = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
     
-    # 2. Slice the specific tile
-    # (Assuming we are looking at a square tile based on tile_idx)
-    sim_data = a[tile_idx*t_size:(tile_idx+1)*t_size, :t_size]
-    sim_weight = w[:t_size, :t_size]
+    s_data, s_weight = None, None
+    m, k, n = 0, 0, 0
+    final_raw_data = None
+    final_raw_weight = None
+
+    # SEARCH LOOP
+    for search_idx in range(tile_idx, 500):
+        raw_data = acts_all[search_idx*t_size : (search_idx+1)*t_size, :t_size]
+        raw_weight = weights_all[:t_size, :t_size]
+        
+        # Call the UPDATED removal logic
+        temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = coordinated_row_removal(raw_data, raw_weight)
+        
+        # Verify the stripped data actually has non-zero values
+        if temp_m > 0 and temp_k > 0 and np.count_nonzero(temp_s_data) > 20:
+            print(f">>> SUCCESS: Found dense data at Tile {search_idx}")
+            s_data, s_weight = temp_s_data, temp_s_weight
+            m, k, n = temp_m, temp_k, temp_n
+            final_raw_data, final_raw_weight = raw_data, raw_weight
+            break
+
+    if s_data is None:
+        print("!!! FAILED: Could not find non-sparse data.")
+        return None
+
+    # DEBUG TERMINAL CHECK
+    print(f"DEBUG: Sending {m}x{k} Data. First 4: {s_data.flatten()[:4]}")
+
+    # JTAG EXECUTION
+    hw_stripped = run_jtag_inference(m, n, k, s_data, s_weight)
     
-    if sim_data is not None and sim_weight is not None:
-        # 3. SPARSITY GATHER: Get 'Stripped' data and the Index Maps
-        s_data, s_weight, m, k, n = coordinated_row_removal(sim_data, sim_weight)
+    if hw_stripped is not None:
+        sw_ref = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
+        mse = np.mean((sw_ref - hw_stripped)**2)
+        print(f"--- ACCURACY: MSE = {mse:.4f} ---")
         
-        # Identify WHICH rows and columns are active for reconstruction
-        active_m_indices = np.where(np.any(sim_data, axis=1))[0]
-        active_n_indices = np.where(np.any(sim_weight, axis=0))[0]
-        
-        # 4. EXECUTE ON ARRIA 10
-        hw_stripped = run_jtag_inference(m, n, k, s_data, s_weight)
-        
-        if hw_stripped is not None:
-            # 5. SOFTWARE VERIFICATION (The Golden Reference)
-            sw_stripped = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
-            
-            # 6. ACCURACY ANALYSIS (MSE)
-            mse = np.mean((sw_stripped - hw_stripped)**2)
-            print(f"\n--- ACCURACY RESULTS ---")
-            print(f"Mean Squared Error (MSE): {mse:.4f}")
-            if mse == 0:
-                print(">>> SUCCESS: Bit-accurate match between Python and Hardware.")
-            else:
-                print(">>> WARNING: Discrepancy detected. Check bit-widths or flush cycles.")
-
-            # 7. SPATIAL RECONSTRUCTION (The 'Scatter' phase)
-            # Re-expand the m x n result back into a 32x32 grid
-            reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
-            for i, orig_row in enumerate(active_m_indices):
-                for j, orig_col in enumerate(active_n_indices):
-                    reconstructed[orig_row, orig_col] = hw_stripped[i, j]
-
-            print(f"\n--- RECONSTRUCTION COMPLETE ---")
-            print(f"Original Tile Size: {t_size}x{t_size}")
-            print(f"Computed Tile Size: {m}x{n} (Saved {((1 - (m*n)/(t_size*t_size))*100):.1f}% Work)")
-            print("Preview of Reconstructed Output (First 4x4):")
-            print(reconstructed[:4, :4])
-            
-            # Return this for the next layer in the pipeline
-            return reconstructed
-
+        # Reconstruction
+        active_m = np.where(np.any(final_raw_data, axis=1))[0]
+        active_n = np.where(np.any(final_raw_weight, axis=0))[0]
+        reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
+        for i, r_idx in enumerate(active_m):
+            for j, c_idx in enumerate(active_n):
+                if i < hw_stripped.shape[0] and j < hw_stripped.shape[1]:
+                    reconstructed[r_idx, c_idx] = hw_stripped[i, j]
+        return reconstructed
     return None
 
 def main():
@@ -633,7 +640,7 @@ def main():
 
     # To run Case #1 (The 32x32 Hero):
     model = load_quantized_alexnet()
-    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=0, t_size=32)
+    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=15, t_size=32)
 
 if __name__ == '__main__':
     main()

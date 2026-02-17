@@ -1,7 +1,7 @@
 
 State Machine - Summary
 
-State Machine - System|npu_system_0|npu_system_7|state
+State Machine - System|npu_system_0|npu_system_8|state
 Name state.write_flush state.write_results state.wait_for_done state.start_npu state.fetch_wait state.fetch_latency state.fetch_req state.idle 
 state.idle 0 0 0 0 0 0 0 0 
 state.fetch_req 0 0 0 0 0 0 1 1 

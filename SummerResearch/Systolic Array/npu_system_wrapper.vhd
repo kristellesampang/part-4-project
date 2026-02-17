@@ -96,8 +96,11 @@ begin
                 end case;
             elsif avs_read = '1' then 
                 case avs_address(3 downto 0) is
-                    when "0101" => avs_readdata <= debug_state_reg;
                     when "0000" => avs_readdata <= (0 => reg_ready, others => '0');
+                    when "0100" => avs_readdata <= std_logic_vector(to_unsigned(reg_m, 32));
+                    when "1000" => avs_readdata <= std_logic_vector(to_unsigned(reg_n, 32));
+                    when "1100" => avs_readdata <= std_logic_vector(to_unsigned(reg_k, 32));
+                    when "0101" => avs_readdata <= debug_state_reg;
                     when others => avs_readdata <= (others => '0'); -- Return 0 for undefined addresses
                 end case;
             end if;
