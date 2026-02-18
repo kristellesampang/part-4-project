@@ -936,33 +936,26 @@ def simulate_systolic_array(matrix_A, matrix_B, m,n,k):
 
 
 def coordinated_row_removal(data_matrix, weight_matrix):
-    """
-    Finds active rows/cols and coordinates the inner 'k' dimension.
-    FIX: Now ensures 'k' is only kept if BOTH matrices have data there,
-    preventing zero-filled columns from polluting the NPU start-packet.
-    """
     data_matrix = np.array(data_matrix)
     weight_matrix = np.array(weight_matrix)
 
-    # 1. Find the active rows for data (m) and active columns for weight (n).
+    # 1. Capture the indices we are keeping
     active_m_indices = np.where(np.any(data_matrix, axis=1))[0]
     active_n_indices = np.where(np.any(weight_matrix, axis=0))[0]
 
-    # 2. THE INTERSECTION FIX: 
-    # Only keep 'k' if it has non-zero contributions in BOTH data and weights.
     data_k_indices = set(np.where(np.any(data_matrix, axis=0))[0])
     weight_k_indices = set(np.where(np.any(weight_matrix, axis=1))[0])
     common_k_indices = sorted(list(data_k_indices & weight_k_indices))
 
-    # Guard against empty tiles
     if not common_k_indices or len(active_m_indices) == 0 or len(active_n_indices) == 0:
-        return np.array([[]]), np.array([[]]), 0, 0, 0
+        return np.array([[]]), np.array([[]]), 0, 0, 0, [], []
 
-    # 3. Create the new, dense matrices
+    # 2. Create the dense matrices
     compact_data = data_matrix[np.ix_(active_m_indices, common_k_indices)]
     compact_weight = weight_matrix[np.ix_(common_k_indices, active_n_indices)]
 
-    return compact_data, compact_weight, compact_data.shape[0], compact_data.shape[1], compact_weight.shape[1]
+    # RETURN THE INDICES TOO
+    return compact_data, compact_weight, compact_data.shape[0], compact_weight.shape[1], compact_data.shape[1], active_m_indices, active_n_indices
 
 def analyze_optimization(model, image_dir):
     results_log = []
@@ -1079,81 +1072,90 @@ def run_jtag_inference(m, n, k, data_matrix, weight_matrix):
 def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
     print(f"\n=== PROCESSING: {layer_name} (INTEGRATED FIX) ===")
     
+    # 1. Extract Data from Model
     input_tensor = preprocess_image(IMAGE_PATH)
     weights_all, acts_all = extract_conv_weights_and_activations(model, input_tensor, conv_idx, relu_idx)
     
-    # --- DEEP DIAGNOSTIC: Where is the meat? ---
-    nz_rows, nz_cols = np.nonzero(acts_all)
-    if nz_cols.size > 0:
-        print(f"DEBUG: Data found in layer! First non-zero at Row {nz_rows[0]}, Col {nz_cols[0]}")
-    else:
-        print("!!! CRITICAL: Entire activation layer is ZERO. Hook/Quantization failure.")
+    # Check if we actually have activations
+    if np.count_nonzero(acts_all) == 0:
+        print("!!! CRITICAL: Activation layer is empty. Check Hooks.")
         return None
 
-    # 2. THE SEARCH LOOP
+    # 2. Search for a tile with enough non-zero data to be a valid test
     s_data, s_weight = None, None
     m, k, n = 0, 0, 0
     final_raw_data = None
     final_raw_weight = None
+    act_m_idx, act_n_idx = [], []
 
+    print(f"Searching for a dense tile starting from index {tile_idx}...")
     for search_idx in range(tile_idx, 500):
         for col_offset in [0, 100, 200]: 
             raw_data = acts_all[search_idx*t_size : (search_idx+1)*t_size, col_offset : col_offset+t_size]
             raw_weight = weights_all[:t_size, col_offset : col_offset+t_size]
             
-            temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = coordinated_row_removal(raw_data, raw_weight)
+            # Use coordinated_row_removal to strip zeros
+            # Note: I'm assuming you updated coordinated_row_removal to return indices
+            res = coordinated_row_removal(raw_data, raw_weight)
             
+            if len(res) == 7: # If you updated it to return indices
+                temp_s_data, temp_s_weight, temp_m, temp_k, temp_n, temp_act_m, temp_act_n = res
+            else: # Fallback if you haven't updated it yet
+                temp_s_data, temp_s_weight, temp_m, temp_k, temp_n = res
+                temp_act_m = np.where(np.any(raw_data, axis=1))[0]
+                temp_act_n = np.where(np.any(raw_weight, axis=0))[0]
+
             if temp_m > 0 and np.count_nonzero(temp_s_data) > 10:
-                print(f">>> SUCCESS: Found dense stripped data at Tile {search_idx}, Col Offset {col_offset}")
+                print(f">>> SUCCESS: Found dense stripped data at Tile {search_idx}")
                 s_data, s_weight = temp_s_data, temp_s_weight
                 m, k, n = temp_m, temp_k, temp_n
                 final_raw_data = raw_data
                 final_raw_weight = raw_weight
+                act_m_idx, act_n_idx = temp_act_m, temp_act_n
                 break
         if s_data is not None: break
 
     if s_data is None:
-        print("!!! FAILED: Exhausted search. No non-sparse tiles found.")
+        print("!!! FAILED: No suitable tile found.")
         return None
 
-   
-    print("\n" + "="*50)
-    print(f"VISUALIZING STRIPPED TILE (Size {m}x{k})")
-    print("-" * 50)
-    
-    # We print a 10x10 slice to keep the terminal readable
-    row_view = min(m, 10)
-    col_view = min(k, 10)
-    
-    print(f"S_DATA (Activations) - Top {row_view}x{col_view} Slice:")
-    # Using np.array2string to force alignment
-    print(np.array2string(s_data[:row_view, :col_view], separator=', '))
-    
-    print(f"\nS_WEIGHT (Weights) - Top {row_view}x{col_view} Slice:")
-    print(np.array2string(s_weight[:row_view, :col_view], separator=', '))
-    print("="*50 + "\n")
-
-    # 3. EXECUTE ON ARRIA 10 (Expect timeout at home)
+    # 3. Execute on Hardware via TCL Bridge
+    # run_jtag_inference(m, n, k, ...) matches your VHDL order
     hw_stripped = run_jtag_inference(m, n, k, s_data, s_weight)
     
     if hw_stripped is not None:
-        # Software Reference Comparison
-        sw_ref = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
-        mse = np.mean((sw_ref - hw_stripped)**2)
-        print(f"\n--- RESULTS ---")
-        print(f"Stripped Dimensions: {m}x{k}x{n}")
-        print(f"Accuracy MSE: {mse:.4f}")
+        # --- VERIFICATION STEP 1: Dense Math ---
+        # Verify the hardware math against software reference before reconstruction
+        sw_ref_dense = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
+        dense_mse = np.mean((sw_ref_dense - hw_stripped)**2)
+        
+        print(f"\n--- MATH VERIFICATION ---")
+        print(f"Stripped Dimensions (MxNxK): {m}x{n}x{k}")
+        print(f"Hardware-to-Software Dense MSE: {dense_mse:.4f}")
+        
+        if dense_mse == 0:
+            print("SMALL VICTORY: Hardware math is 100% accurate.")
+        else:
+            print(f"Warning: Math mismatch. Check bit-widths and overflows.")
 
-        # Reconstruct the 32x32 view
-        active_m = np.where(np.any(final_raw_data, axis=1))[0]
-        active_n = np.where(np.any(final_raw_weight, axis=0))[0]
+        # --- VERIFICATION STEP 2: Reconstruction ---
+        # Map the dense hardware results back to the original 32x32 sparse grid
         reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
-        for i, r_orig in enumerate(active_m):
-            for j, c_orig in enumerate(active_n):
+        
+        # We use the captured indices to put values back where they belong
+        for i, r_orig in enumerate(act_m_idx):
+            for j, c_orig in enumerate(act_n_idx):
                 if i < hw_stripped.shape[0] and j < hw_stripped.shape[1]:
                     reconstructed[r_orig, c_orig] = hw_stripped[i, j]
         
-        print("Reconstructed Output Preview (Top-Left):\n", reconstructed[:4, :4])
+        # Calculate full-tile MSE against the software's raw multiplication
+        sw_full_tile = np.matmul(final_raw_data.astype(np.int32), final_raw_weight.astype(np.int32))
+        total_mse = np.mean((sw_full_tile - reconstructed)**2)
+        print(f"Reconstructed Total Tile MSE: {total_mse:.4f}")
+        
+        print("\nReconstructed Output Preview (Top-Left 4x4):")
+        print(reconstructed[:4, :4])
+        
         return reconstructed
 
     return None
