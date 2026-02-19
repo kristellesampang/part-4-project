@@ -4,73 +4,57 @@ set res_path "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Py
 set master_path [lindex [get_service_paths master] 0]
 if {[is_service_open master $master_path] == 0} { open_service master $master_path }
 
-puts "WATCHER ACTIVE: Fixed Handshake Mode..."
+puts "WATCHER ACTIVE: Full Active Tile Mode..."
 
 while {1} {
     if {[file exists $bin_path]} {
-        after 50 ;# Tiny delay to ensure file is closed by OS
+        after 100
         set fp [open $bin_path r]; fconfigure $fp -translation binary
         set raw_content [read $fp]
         close $fp
 
-        # FIXED: Explicitly scan the first 4 bytes for M, N, K
         binary scan $raw_content cccc m n k padding
-        # Convert signed char to unsigned integer for the master_write
         set m [expr {$m & 0xFF}]; set n [expr {$n & 0xFF}]; set k [expr {$k & 0xFF}]
 
-        set d_start 4
-        set d_len [expr $m * $k * 2]
-        set w_start [expr $d_start + $d_len]
-        set w_len [expr $k * $n * 2]
+        # GRID SYNC: 1024 words per matrix
+        set grid_size 1024
+        set byte_len [expr $grid_size * 2]
 
-        # Scan 16-bit values and prepare for 32-bit "Sparse" writes
-        binary scan [string range $raw_content $d_start [expr $d_start + $d_len - 1]] s* d_values
-        binary scan [string range $raw_content $w_start [expr $w_start + $w_len - 1]] s* w_values
+        binary scan [string range $raw_content 4 [expr 4 + $byte_len - 1]] s* d_vals
+        binary scan [string range $raw_content [expr 4 + $byte_len] [expr 4 + (2 * $byte_len) - 1]] s* w_vals
 
-        set d_final_list {}; foreach val $d_values { lappend d_final_list [expr $val & 0xFFFF] }
-        set w_final_list {}; foreach val $w_values { lappend w_final_list [expr $val & 0xFFFF] }
+        set d_final {}; foreach v $d_vals { lappend d_final [expr $v & 0xFFFF] }
+        set w_final {}; foreach v $w_vals { lappend w_final [expr $v & 0xFFFF] }
 
-        # --- FPGA EXECUTION ---
-        master_write_32 $master_path 0x2000 $d_final_list
-        master_write_32 $master_path 0x1000 $w_final_list
+        master_write_32 $master_path 0x2000 $d_final
+        master_write_32 $master_path 0x1000 $w_final
 
-        # CONFIGURE REGISTERS
         master_write_32 $master_path 0x3004 $m
         master_write_32 $master_path 0x3008 $n
         master_write_32 $master_path 0x300C $k
         master_write_32 $master_path 0x3000 1 
 
-        puts "Running NPU: M=$m, N=$n, K=$k"
+        puts "NPU Running: M=$m, N=$n, K=$k"
         after 1500
 
-        set data [master_read_32 $master_path 0x2000 16]
-        set idx 0
-        foreach d $data {
-            puts "Data Index $idx: $d"
-            incr idx
-        }
+        # READ FULL 32x32 RESULT (4096 BYTES) FOR PYTHON
+        master_read_to_file $master_path $res_path 0x0000 4096
         
-        set weight [master_read_32 $master_path 0x1000 16]
-        set idx 0
-        foreach w $weight {
-            puts "Weight Index $idx: $w"
-            incr idx
-        }
-
-        set k_check [master_read_32 $master_path 0x300C 1]
-        puts "Hardware K-Register Check: $k_check"
-
-        # READ RESULTS: Each result is 4 bytes (32-bit)
-        master_read_to_file $master_path $res_path 0x0000 [expr $m * $n * 4]
-        set results [master_read_32 $master_path 0x0000 16]
+        # --- DYNAMIC TCL PRINTING: Printing the FULL Active Tile ---
+        set total_active [expr $m * $n]
+        set results [master_read_32 $master_path 0x0000 $total_active]
+        
+        puts "--- FULL ACTIVE HARDWARE TILE ($m x $n) ---"
         set idx 0
         foreach res $results {
-            puts "Index $idx: $res"
+            # Print in rows for readability
+            puts -nonewline [format "%8d " $res]
             incr idx
+            if {[expr $idx % $n] == 0} { puts "" }
         }
         
         file delete $bin_path
-        puts "Tile Done."
+        puts "Tile Complete.\n"
     }
     after 100
 }
