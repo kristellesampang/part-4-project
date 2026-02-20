@@ -96,36 +96,37 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     compact_weight = weight_matrix[np.ix_(common_k, active_n)]
     return compact_data, compact_weight, len(active_m), len(active_n), len(common_k), active_m, active_n
 
-def run_jtag_inference(m, n, k, s_data, s_weight):
+def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     bin_file = os.path.join(current_dir, "tile.bin")
     res_file = os.path.join(current_dir, "result.bin")
+    
     if os.path.exists(res_file): os.remove(res_file)
 
-    # Padding to 32x32 Grid for VHDL Staggered Indexing
-    grid_data = np.zeros((N_GRID, N_GRID), dtype=np.int16)
-    grid_weight = np.zeros((N_GRID, N_GRID), dtype=np.int16)
-    grid_data[:s_data.shape[0], :s_data.shape[1]] = s_data.astype(np.int16)
-    grid_weight[:s_weight.shape[0], :s_weight.shape[1]] = s_weight.astype(np.int16)
-
-    header = bytes([int(m), int(n), int(k), 0]) 
-    payload = grid_data.tobytes() + grid_weight.tobytes()
+    header = bytes([int(m), int(n), int(k), 0])
+    payload = s_data.astype(np.int16).tobytes() + s_weight.astype(np.int16).tobytes()
 
     with open(bin_file, "wb") as f:
         f.write(header + payload)
 
-    print(f"Sent FULL 32x32 Grid. M={m}, N={n}, K={k}. Waiting for Hardware...")
     start = time.time()
     while not os.path.exists(res_file):
         if time.time() - start > 20: return None
         time.sleep(0.1)
     
+    # Read dense results (m*n)
     raw_res = np.fromfile(res_file, dtype='<i4')
-    if raw_res.size != 1024:
-        print(f"Error: Expected 1024 results, got {raw_res.size}")
-        return None
+    os.remove(res_file)
+
+    # Reconstruct 32x32 Sparse Grid
+    sparse_32x32 = np.zeros((32, 32), dtype=np.int32)
+    dense_res = raw_res.reshape(m, n)
     
-    return raw_res.reshape(N_GRID, N_GRID)[:m, :n]
+    for i, orig_row in enumerate(m_idx):
+        for j, orig_col in enumerate(n_idx):
+            sparse_32x32[orig_row, orig_col] = dense_res[i, j]
+            
+    return sparse_32x32
 
 def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
     input_t = preprocess_image(IMAGE_PATH)
@@ -138,38 +139,37 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
     if not res_stripped: return None
     s_data, s_weight, m, n, k, m_idx, n_idx = res_stripped
 
-    # Pad to 32x32 for the systolic array type
-    grid_data = np.zeros((32, 32), dtype=np.int16)
-    grid_weight = np.zeros((32, 32), dtype=np.int16)
-    grid_data[:s_data.shape[0], :s_data.shape[1]] = s_data
-    grid_weight[:s_weight.shape[0], :s_weight.shape[1]] = s_weight
+    hw_reconstructed = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx)
+    if hw_reconstructed is None: return None
 
-    def format_matrix_vhdl(matrix, name):
-        lines = [f"constant {name} : systolic_array_matrix_input := ("]
-        for i in range(32):
-            row_vals = ", ".join([f"s16({int(x)})" for x in matrix[i]])
-            line = f"    ({row_vals})"
-            if i < 31:
-                line += ","
-            lines.append(line)
-        lines.append(");")
-        return "\n".join(lines)
+    # SW Bit-Accurate Reference (Dense)
+    full_precision = np.matmul(s_data.astype(np.int64), s_weight.astype(np.int64))
+    sw_dense = (full_precision + 2**31) % 2**32 - 2**31
+    sw_dense = sw_dense.astype(np.int32)
 
-    print("\n" + "="*20 + " COMPACT VHDL STIMULUS " + "="*20)
-    print(f"constant M_VAL : integer := {int(m)};")
-    print(f"constant N_VAL : integer := {int(n)};")
-    print(f"constant K_VAL : integer := {int(k)};\n")
+    # Extract the Hardware Dense section for comparison
+    hw_dense = hw_reconstructed[np.ix_(m_idx, n_idx)]
+
+    print("\n" + "="*20 + " VERIFICATION " + "="*20)
+    print(f"DENSE HARDWARE RESULT ({m}x{n}):")
+    print(hw_dense)
+    print("\nDENSE SOFTWARE REFERENCE:")
+    print(sw_dense)
     
-    print(format_matrix_vhdl(grid_data, "DATA_STIM"))
-    print("\n")
-    print(format_matrix_vhdl(grid_weight, "WEIGHT_STIM"))
-    print("="*60)
-    
-    return None
+    if np.array_equal(sw_dense, hw_dense):
+        print("\nSTATUS: 100% BIT-ACCURATE MATCH.")
+    else:
+        diff = sw_dense - hw_dense
+        print(f"\nSTATUS: DISCREPANCY FOUND. Non-zero diffs: {np.count_nonzero(diff)}")
+        print("Diff Matrix Sample (Top 5x5):")
+        print(diff[:5, :5])
+
+    return hw_reconstructed
 
 def main():
+                
     model = load_quantized_alexnet()
-    # Execute verified case
+    # Execute verified case                         
     prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=15, t_size=32)
 
 if __name__ == '__main__':
