@@ -128,7 +128,6 @@ def run_jtag_inference(m, n, k, s_data, s_weight):
     return raw_res.reshape(N_GRID, N_GRID)[:m, :n]
 
 def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
-    print(f"\n=== PROCESSING: {layer_name} (BIT-ACCURATE MODE) ===")
     input_t = preprocess_image(IMAGE_PATH)
     weights_all, acts_all = extract_conv_weights_and_activations(model, input_t, conv_idx, relu_idx)
     
@@ -139,43 +138,34 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
     if not res_stripped: return None
     s_data, s_weight, m, n, k, m_idx, n_idx = res_stripped
 
-    # HW Run
-    hw_match = run_jtag_inference(m, n, k, s_data, s_weight)
+    # Pad to 32x32 for the systolic array type
+    grid_data = np.zeros((32, 32), dtype=np.int16)
+    grid_weight = np.zeros((32, 32), dtype=np.int16)
+    grid_data[:s_data.shape[0], :s_data.shape[1]] = s_data
+    grid_weight[:s_weight.shape[0], :s_weight.shape[1]] = s_weight
+
+    def format_matrix_vhdl(matrix, name):
+        lines = [f"constant {name} : systolic_array_matrix_input := ("]
+        for i in range(32):
+            row_vals = ", ".join([f"s16({int(x)})" for x in matrix[i]])
+            line = f"    ({row_vals})"
+            if i < 31:
+                line += ","
+            lines.append(line)
+        lines.append(");")
+        return "\n".join(lines)
+
+    print("\n" + "="*20 + " COMPACT VHDL STIMULUS " + "="*20)
+    print(f"constant M_VAL : integer := {int(m)};")
+    print(f"constant N_VAL : integer := {int(n)};")
+    print(f"constant K_VAL : integer := {int(k)};\n")
     
-    if hw_match is not None:
-        # --- BIT-ACCURATE SOFTWARE REFERENCE ---
-        # 1. Compute full precision dot product (64-bit)
-        full_precision = np.matmul(s_data.astype(np.int64), s_weight.astype(np.int64))
-        
-        # 2. Mimic 32-bit Signed Truncation/Wrap-around
-        # This forces the result to stay within the range [-2^31, 2^31 - 1]
-        sw_match = (full_precision + 2**31) % 2**32 - 2**31
-        sw_match = sw_match.astype(np.int32)
-
-        print("\n" + "="*60)
-        print(f"HARDWARE RESULT MATRIX ({m}x{n}):")
-        np.set_printoptions(threshold=sys.maxsize, linewidth=150)
-        print(hw_match)
-        print("="*60)
-        
-        print("\n" + "="*60)
-        print(f"BIT-ACCURATE SOFTWARE REFERENCE ({m}x{n}):")
-        print(sw_match)
-        print("="*60)
-
-        # Check if they match now
-        if np.array_equal(sw_match, hw_match):
-            print("\nSTATUS: 100% BIT-ACCURATE MATCH (Truncation Verified)")
-        else:
-            diff_count = np.count_nonzero(sw_match - hw_match)
-            print(f"\nSTATUS: {diff_count} elements still differ after truncation fix.")
-
-        reconstructed = np.zeros((t_size, t_size), dtype=np.int32)
-        for i, r_orig in enumerate(m_idx):
-            for j, c_orig in enumerate(n_idx):
-                if i < hw_match.shape[0] and j < hw_match.shape[1]:
-                    reconstructed[r_orig, c_orig] = hw_match[i, j]
-        return reconstructed
+    print(format_matrix_vhdl(grid_data, "DATA_STIM"))
+    print("\n")
+    print(format_matrix_vhdl(grid_weight, "WEIGHT_STIM"))
+    print("="*60)
+    
+    return None
 
 def main():
     model = load_quantized_alexnet()
