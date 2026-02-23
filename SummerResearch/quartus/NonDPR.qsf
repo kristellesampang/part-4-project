@@ -54,7 +54,6 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL
-set_global_assignment -name BOARD default
 set_location_assignment PIN_B26 -to LED_STATUS[1] -comment IOBANK_2K
 set_location_assignment PIN_C26 -to LED_STATUS[2] -comment IOBANK_2K
 set_instance_assignment -name IO_STANDARD "1.8 V" -to LED_STATUS[1] -entity non_dpr_top
@@ -67,3 +66,8 @@ set_instance_assignment -name PARTITION_COLOUR 4286250872 -to auto_fab_0 -entity
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_8.ip
 set_global_assignment -name FAST_PRESERVE AUTO -entity non_dpr_top
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity non_dpr_top
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_intel_niosv_g_0.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_onchip_memory2_0.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_jtag_uart_0.ip
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ

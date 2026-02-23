@@ -1,0 +1,3 @@
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/CMakeFiles/hal2_bsp.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/CMakeFiles/edit_cache.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/CMakeFiles/rebuild_cache.dir

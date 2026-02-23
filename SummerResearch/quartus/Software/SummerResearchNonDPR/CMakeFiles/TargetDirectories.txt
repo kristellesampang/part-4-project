@@ -1,0 +1,9 @@
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/SummerResearchNonDPR.elf.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/create-objdump.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/niosv-stack-report.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/create-hex.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/edit_cache.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/CMakeFiles/rebuild_cache.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/bsp/CMakeFiles/hal2_bsp.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/bsp/CMakeFiles/edit_cache.dir
+C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/Software/SummerResearchNonDPR/bsp/CMakeFiles/rebuild_cache.dir

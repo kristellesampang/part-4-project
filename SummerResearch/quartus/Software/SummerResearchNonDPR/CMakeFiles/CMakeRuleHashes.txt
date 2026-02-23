@@ -1,0 +1,10 @@
+# Hashes of file build rules.
+b02279616e633f766c2914d8cadb1d42 CMakeFiles/create-hex
+b02279616e633f766c2914d8cadb1d42 CMakeFiles/create-objdump
+b02279616e633f766c2914d8cadb1d42 CMakeFiles/niosv-stack-report
+3538e42af4298b793e8f88b478b18c3e SummerResearchNonDPR.elf.objdump
+37836d7dcc7f1bfa3a7a4a27eb8cf0da SummerResearchNonDPR.elf.stack_report
+bddd4e1cde24636a9aacb59c627613aa data_mem.hex
+4efdb8b7d190e432452c525f173682db onchip_memory2_0.hex
+b3ff812a7d5d9525d7f5e3e9f60387e0 out_mem.hex
+7e9996b371a45389e914331916b3b42b weight_mem.hex
