@@ -71,3 +71,4 @@ set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_onchip_memory2_0.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_jtag_uart_0.ip
 set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
 set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
+set_global_assignment -name BOARD default

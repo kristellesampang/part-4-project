@@ -31,9 +31,16 @@
 							<builder buildPath="${workspace_loc:/SummerResearchNonDPR}/Debug_with_RISC-V Cross GCC0" id="com.ashling.riscfree.managedbuild.cross.intelriscv.builder.1486302356" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.builder"/>
 							<tool id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler.1942753090" name="GNU RISC-V Cross Assembler" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler">
 								<option id="com.ashling.riscfree.managedbuild.cross.intelriscv.option.assembler.usepreprocessor.23758890" name="Use preprocessor" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.option.assembler.usepreprocessor" value="true" valueType="boolean"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.ashling.riscfree.managedbuild.cross.intelriscv.option.assembler.include.paths.1781568642" name="Include paths (-I)" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.option.assembler.include.paths" valueType="includePath"/>
 								<inputType id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler.input.2077619537" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler.input"/>
 							</tool>
 							<tool id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.992772375" name="GNU RISC-V Cross C Compiler" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.ashling.riscfree.managedbuild.cross.intelriscv.option.c.compiler.include.paths.622323956" name="Include paths (-I)" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.option.c.compiler.include.paths" useByScannerDiscovery="true" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\bsp\HAL\inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/HAL/inc/sys"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/drivers/inc"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp"/>
+								</option>
 								<inputType id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.input.1484482085" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.input"/>
 							</tool>
 							<tool id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.cpp.compiler.1665334070" name="GNU RISC-V Cross C++ Compiler" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.cpp.compiler"/>
@@ -101,6 +108,14 @@
 								<inputType id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler.input.1243521670" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.assembler.input"/>
 							</tool>
 							<tool id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.1875267990" name="GNU RISC-V Cross C Compiler" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.ashling.riscfree.managedbuild.cross.intelriscv.option.c.compiler.include.paths.1827850561" name="Include paths (-I)" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.option.c.compiler.include.paths" useByScannerDiscovery="true" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include/sys}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\bsp\HAL\inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/HAL/inc/sys"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/drivers/inc"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp"/>
+								</option>
 								<inputType id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.input.1796169711" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.c.compiler.input"/>
 							</tool>
 							<tool id="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.cpp.compiler.729521507" name="GNU RISC-V Cross C++ Compiler" superClass="com.ashling.riscfree.managedbuild.cross.intelriscv.tool.cpp.compiler"/>
@@ -168,12 +183,20 @@
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.assembler.input.1421536809" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.assembler.input"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.385200067" name="GNU RISC-V Cross C Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.compiler.include.paths.1683571047" name="Include paths (-I)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.compiler.include.paths" useByScannerDiscovery="true" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include/sys}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\bsp\HAL\inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/HAL/inc/sys"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/drivers/inc"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp"/>
+								</option>
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.input.1732884515" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.compiler.789489851" name="GNU RISC-V Cross C++ Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.compiler"/>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.1542556544" name="GNU RISC-V Cross C Linker" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker">
 								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.gcsections.1552748349" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.gcsections" value="true" valueType="boolean"/>
-								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other.1431220002" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other" value="--specs=nosys.specs" valueType="string"/>
+								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other.1431220002" name="Other linker flags" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other" value="--specs=nosys.specs" valueType="string"/>
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.input.654635292" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -181,7 +204,7 @@
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.linker.183175492" name="GNU RISC-V Cross C++ Linker" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.linker">
 								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.gcsections.123992215" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.gcsections" value="true" valueType="boolean"/>
-								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other.283318855" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other" value="--specs=nosys.specs" valueType="string"/>
+								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other.283318855" name="Other linker flags" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other" value="--specs=nosys.specs" valueType="string"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.archiver.1443509255" name="GNU RISC-V Cross Archiver" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.archiver"/>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.createflash.897426676" name="GNU RISC-V Cross Create Flash Image" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.createflash"/>
@@ -237,12 +260,20 @@
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.assembler.input.1017162667" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.assembler.input"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.1177356067" name="GNU RISC-V Cross C Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.compiler.include.paths.728441198" name="Include paths (-I)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.compiler.include.paths" useByScannerDiscovery="true" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bsp/include/sys}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\bsp\HAL\inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/HAL/inc/sys"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp/drivers/inc"/>
+									<listOptionValue builtIn="false" value="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/bsp"/>
+								</option>
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.input.1830009036" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.compiler.780971396" name="GNU RISC-V Cross C++ Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.compiler"/>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.898535638" name="GNU RISC-V Cross C Linker" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker">
 								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.gcsections.1541779377" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.gcsections" value="true" valueType="boolean"/>
-								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other.1596311898" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other" value="--specs=nosys.specs" valueType="string"/>
+								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other.1596311898" name="Other linker flags" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.c.linker.other" value="--specs=nosys.specs" valueType="string"/>
 								<inputType id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.input.1137356082" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -250,7 +281,7 @@
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.linker.879482736" name="GNU RISC-V Cross C++ Linker" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.cpp.linker">
 								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.gcsections.1886560127" name="Remove unused sections (-Xlinker --gc-sections)" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.gcsections" value="true" valueType="boolean"/>
-								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other.470435455" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other" value="--specs=nosys.specs" valueType="string"/>
+								<option id="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other.470435455" name="Other linker flags" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.option.cpp.linker.other" value="--specs=nosys.specs" valueType="string"/>
 							</tool>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.archiver.491359" name="GNU RISC-V Cross Archiver" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.archiver"/>
 							<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.createflash.2059387344" name="GNU RISC-V Cross Create Flash Image" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.createflash"/>
@@ -293,4 +324,19 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug_with_RISC-V Cross GCC0">
+			<resource resourceType="PROJECT" workspacePath="/SummerResearchNonDPR"/>
+		</configuration>
+		<configuration configurationName="Debug_with_RISC-V Cross GCC2">
+			<resource resourceType="PROJECT" workspacePath="/SummerResearchNonDPR"/>
+		</configuration>
+		<configuration configurationName="Release_with_RISC-V Cross GCC1">
+			<resource resourceType="PROJECT" workspacePath="/SummerResearchNonDPR"/>
+		</configuration>
+		<configuration configurationName="Release_with_RISC-V Cross GCC3">
+			<resource resourceType="PROJECT" workspacePath="/SummerResearchNonDPR"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

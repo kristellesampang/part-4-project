@@ -1,0 +1,26 @@
+/*
+ ============================================================================
+ Name        : main.c
+ Author      : Pratham Chhabra
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello RISC-V World in C
+ ============================================================================
+ */
+
+//#include <stdio.h>
+#include <sys/alt_sys_init.h>
+#include "altera_avalon_jtag_uart_regs.h"
+#include "system.h"
+
+int main(void) {
+    unsigned int data;
+    while(1) {
+        data = IORD_ALTERA_AVALON_JTAG_UART_DATA(JTAG_UART_0_BASE);
+        if (data & ALTERA_AVALON_JTAG_UART_DATA_RVALID_MSK) {
+            char c = data & ALTERA_AVALON_JTAG_UART_DATA_DATA_MSK;
+            IOWR_ALTERA_AVALON_JTAG_UART_DATA(JTAG_UART_0_BASE, c);
+        }
+    }
+    return 0;
+}

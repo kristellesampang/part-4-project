@@ -35,8 +35,8 @@ int main(void) {
 
     // Write test pattern to data_mem
     for(int i = 0; i < 16; i++) {
-        ((volatile int*)DATA_MEM)[i] = i;
-        ((volatile int*)WEIGHT_MEM)[i] = i;
+        DATA_MEM[i] = (short)i;
+        WEIGHT_MEM[i] = (short)i;
     }
 
     // Trigger NPU
