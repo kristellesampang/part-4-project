@@ -17,37 +17,67 @@
 #define NPU_REG_M        (*(volatile unsigned int*)(NPU_CTRL_BASE + 0x04))
 #define NPU_REG_N        (*(volatile unsigned int*)(NPU_CTRL_BASE + 0x08))
 #define NPU_REG_K        (*(volatile unsigned int*)(NPU_CTRL_BASE + 0x0C))
-
-#define DATA_MEM         ((volatile short*)DATA_MEM_BASE)
-#define WEIGHT_MEM       ((volatile short*)WEIGHT_MEM_BASE)
+#define DATA_MEM         ((volatile int*)DATA_MEM_BASE)
+#define WEIGHT_MEM       ((volatile int*)WEIGHT_MEM_BASE)
 #define OUT_MEM          ((volatile int*)OUT_MEM_BASE)
 
-int main(void) {
-    // Test: write known values to NPU registers
-    NPU_REG_M = 4;
-    NPU_REG_N = 4;
-    NPU_REG_K = 4;
-
-    // Verify readback
-    unsigned int m = NPU_REG_M;
-    unsigned int n = NPU_REG_N;
-    unsigned int k = NPU_REG_K;
-
-    // Write test pattern to data_mem
-    for(int i = 0; i < 16; i++) {
-        ((volatile int*)DATA_MEM)[i] = i;
-        ((volatile int*)WEIGHT_MEM)[i] = i;
+unsigned char read_byte(void) {
+    unsigned int data;
+    while(1) {
+        data = IORD_ALTERA_AVALON_JTAG_UART_DATA(JTAG_UART_0_BASE);
+        if (data & ALTERA_AVALON_JTAG_UART_DATA_RVALID_MSK)
+            return (unsigned char)(data & ALTERA_AVALON_JTAG_UART_DATA_DATA_MSK);
     }
+}
 
-    // Trigger NPU
-    NPU_REG_READY = 1;
+void write_byte(unsigned char c) {
+    IOWR_ALTERA_AVALON_JTAG_UART_DATA(JTAG_UART_0_BASE, c);
+}
 
-    // Poll for done - read reg_ready going back to 0
-    while(NPU_REG_READY != 0);
+int main(void) {
+    while(1) {
+        // Read header
+        unsigned char m = read_byte();
+        unsigned char n = read_byte();
+        unsigned char k = read_byte();
 
-    // Read results
-    int result = OUT_MEM[0];
+        // Read data matrix (m*k * 4 bytes each)
+        for(int i = 0; i < m * k; i++) {
+            unsigned int val = 0;
+            val |= (unsigned int)read_byte();
+            val |= (unsigned int)read_byte() << 8;
+            val |= (unsigned int)read_byte() << 16;
+            val |= (unsigned int)read_byte() << 24;
+            DATA_MEM[i] = (int)val;
+        }
 
-    while(1); // halt
+        // Read weight matrix (k*n * 4 bytes each)
+        for(int i = 0; i < k * n; i++) {
+            unsigned int val = 0;
+            val |= (unsigned int)read_byte();
+            val |= (unsigned int)read_byte() << 8;
+            val |= (unsigned int)read_byte() << 16;
+            val |= (unsigned int)read_byte() << 24;
+            WEIGHT_MEM[i] = (int)val;
+        }
+       
+        // Set dimensions and trigger
+        NPU_REG_M = m;
+        NPU_REG_N = n;
+        NPU_REG_K = k;
+        NPU_REG_READY = 1;
+
+        // Wait for done
+        while(NPU_REG_READY != 0);
+
+        // Send results back
+        for(int i = 0; i < m * n; i++) {
+            int val = OUT_MEM[i];
+            write_byte((val) & 0xFF);
+            write_byte((val >> 8) & 0xFF);
+            write_byte((val >> 16) & 0xFF);
+            write_byte((val >> 24) & 0xFF);
+        }
+    }
     return 0;
 }
