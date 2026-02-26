@@ -5,7 +5,7 @@
  <generation
    path=""
    greybox="0"
-   simulation="NONE"
+   simulation="VHDL"
    vcs="0"
    synthesis="VERILOG"
    modelsim="1"

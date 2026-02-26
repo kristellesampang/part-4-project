@@ -139,6 +139,25 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
     if not res_stripped: return None
     s_data, s_weight, m, n, k, m_idx, n_idx = res_stripped
 
+    print(f"\nconstant M_VAL : integer := {m};")
+    print(f"constant N_VAL : integer := {n};")
+    print(f"constant K_VAL : integer := {k};")
+
+    print("\n-- DATA_STIM (compact, row-major M x K):")
+    for i in range(m):
+        row_vals = ", ".join([f"s16({int(s_data[i,j])})" for j in range(k)] + [f"s16(0)"] * (32 - k))
+        print(f"        ({row_vals}),")
+
+    print("\n-- WEIGHT_STIM (compact, row-major K x N):")
+    for i in range(k):
+        row_vals = ", ".join([f"s16({int(s_weight[i,j])})" for j in range(n)] + [f"s16(0)"] * (32 - n))
+        print(f"        ({row_vals}),")
+    
+    print(f"m_idx = {m_idx}")
+    print(f"n_idx = {n_idx}")
+    print(f"Compact Shapes: Data={s_data.shape}, Weight={s_weight.shape} | M={m}, N={n}, K={k}")
+    print("Zero Rows in s_data:", np.where(~s_data.any(axis=1))[0])
+
     hw_reconstructed = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx)
     if hw_reconstructed is None: return None
 

@@ -132,10 +132,10 @@ begin
                     n_matrix_data(row_idx, col_idx)   <= avm_act_readdata(15 downto 0);
                     n_matrix_weight(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
                     
-                    if fetch_counter < (reg_m * reg_n) - 1 then
+                    if fetch_counter < (reg_m * reg_k) - 1 then
                         fetch_counter <= fetch_counter + 1;
 
-                        if col_idx = (reg_n - 1) then
+                        if col_idx = (reg_k - 1) then
                             col_idx <= 0; 
                             row_idx <= row_idx + 1;
                         else

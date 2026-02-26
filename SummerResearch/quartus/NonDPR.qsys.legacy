@@ -7211,11 +7211,11 @@ https://fpgasoftware.intel.com/eula.-->
                         </entry>
                         <entry>
                             <key>addressSpan</key>
-                            <value>32</value>
+                            <value>128</value>
                         </entry>
                         <entry>
                             <key>addressUnits</key>
-                            <value>SYMBOLS</value>
+                            <value>WORDS</value>
                         </entry>
                         <entry>
                             <key>alwaysBurstMaxBurst</key>
@@ -8910,35 +8910,35 @@ https://fpgasoftware.intel.com/eula.-->
     </interfaces>
 </boundaryDefinition>]]></parameter>
   <parameter name="generationInfoDefinition"><![CDATA[<generationInfoDefinition>
-    <hdlLibraryName>NonDPR_npu_system_8</hdlLibraryName>
+    <hdlLibraryName>NonDPR_npu_system_10</hdlLibraryName>
     <fileSets>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_8</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_8</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_10</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_10</fileSetFixedName>
             <fileSetKind>QUARTUS_SYNTH</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_8</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_8</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_10</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_10</fileSetFixedName>
             <fileSetKind>SIM_VERILOG</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_8</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_8</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_10</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_10</fileSetFixedName>
             <fileSetKind>SIM_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_8</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_8</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_10</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_10</fileSetFixedName>
             <fileSetKind>CDC</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_8</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_8</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_10</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_10</fileSetFixedName>
             <fileSetKind>CDC_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
@@ -8946,8 +8946,8 @@ https://fpgasoftware.intel.com/eula.-->
 </generationInfoDefinition>]]></parameter>
   <parameter name="hdlParameters"><![CDATA[<hdlParameterDescriptorDefinitionList/>]]></parameter>
   <parameter name="hlsFile" value="" />
-  <parameter name="liveModuleName" value="npu_system_8" />
-  <parameter name="logicalView">ip/NonDPR/NonDPR_npu_system_8.ip</parameter>
+  <parameter name="liveModuleName" value="npu_system_10" />
+  <parameter name="logicalView">ip/NonDPR/NonDPR_npu_system_10.ip</parameter>
   <parameter name="moduleAssignmentDefinition"><![CDATA[<assignmentDefinition>
     <assignmentValueMap/>
 </assignmentDefinition>]]></parameter>
