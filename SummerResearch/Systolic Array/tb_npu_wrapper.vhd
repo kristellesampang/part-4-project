@@ -110,7 +110,7 @@ architecture sim of tb_npu_wrapper is
     constant M_VAL : integer := 22;
     constant N_VAL : integer := 32;
     constant K_VAL : integer := 23;
-    file output_file : text open write_mode is "npu_output2.txt";
+    file output_file : text open write_mode is "npu_output3.txt";
 begin
 
     DUT: entity work.npu_system_wrapper
@@ -133,14 +133,21 @@ begin
     begin
         -- STEP 1: LOAD 2D MATRIX INTO 1D RAM SIGNALS
         -- This converts the matrix constants into the memory the NPU actually reads
-        for i in 0 to M_VAL-1 loop
-            for j in 0 to K_VAL-1 loop
-                act_mem(i*K_VAL + j) <= std_logic_vector(resize(signed(DATA_STIM(i,j)), 32));
-            end loop;
-        end loop;
-        for i in 0 to K_VAL-1 loop
-            for j in 0 to N_VAL-1 loop
-                weight_mem(i*N_VAL + j) <= std_logic_vector(resize(signed(WEIGHT_STIM(i,j)), 32));
+        -- for i in 0 to M_VAL-1 loop
+        --     for j in 0 to K_VAL-1 loop
+        --         act_mem(i*K_VAL + j) <= std_logic_vector(resize(signed(DATA_STIM(i,j)), 32));
+        --     end loop;
+        -- end loop;
+        -- for i in 0 to K_VAL-1 loop
+        --     for j in 0 to N_VAL-1 loop
+        --         weight_mem(i*N_VAL + j) <= std_logic_vector(resize(signed(WEIGHT_STIM(i,j)), 32));
+        --     end loop;
+        -- end loop;
+
+        for i in 0 to 31 loop
+            for j in 0 to 31 loop
+                act_mem(i*32 + j)    <= std_logic_vector(resize(signed(DATA_STIM(i, j)), 32));
+                weight_mem(i*32 + j) <= std_logic_vector(resize(signed(WEIGHT_STIM(i, j)), 32));
             end loop;
         end loop;
 
@@ -165,7 +172,7 @@ begin
         wait until rising_edge(clk);
         avs_write <= '0';
 
-        wait for 20000 ns; -- Long enough for 22x32 execution
+        wait for 30000 ns; -- Long enough for 22x32 execution
         report "Simulation Complete.";
         wait;
     end process;
