@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <window width="1936" height="1168" x="-8" y="-8" />
+ <window width="1918" height="1150" x="1" y="1" />
  <generation
    path=""
    greybox="0"
@@ -11,6 +11,6 @@
    modelsim="1"
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
- <library expandedCategories="Library,Existing IP Variants,Project" />
+ <library expandedCategories="Project,Existing IP Variants,Library" />
  <sysinfo autosync="0" />
 </preferences>

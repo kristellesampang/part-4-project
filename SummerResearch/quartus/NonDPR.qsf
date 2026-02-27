@@ -74,3 +74,6 @@ set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
 set_global_assignment -name BOARD default
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_9.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_10.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_11.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_12.ip
+set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE COMPILE TIME"

@@ -103,8 +103,15 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx):
     
     if os.path.exists(res_file): os.remove(res_file)
 
+    # Create emtpy 32x32 containers for padding
+    padded_data = np.zeros((32, 32), dtype=np.int16)
+    padded_weight = np.zeros((32, 32), dtype=np.int16)
+
+    padded_data[:m, :k] = s_data.astype(np.int16)
+    padded_weight[:k, :n] = s_weight.astype(np.int16)
+
     header = bytes([int(m), int(n), int(k), 0])
-    payload = s_data.astype(np.int16).tobytes() + s_weight.astype(np.int16).tobytes()
+    payload = padded_data.tobytes() + padded_weight.tobytes()
 
     with open(bin_file, "wb") as f:
         f.write(header + payload)
