@@ -7211,11 +7211,11 @@ https://fpgasoftware.intel.com/eula.-->
                         </entry>
                         <entry>
                             <key>addressSpan</key>
-                            <value>128</value>
+                            <value>32</value>
                         </entry>
                         <entry>
                             <key>addressUnits</key>
-                            <value>WORDS</value>
+                            <value>SYMBOLS</value>
                         </entry>
                         <entry>
                             <key>alwaysBurstMaxBurst</key>

@@ -7571,11 +7571,11 @@ https://fpgasoftware.intel.com/eula.-->
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;addressSpan&lt;/key&gt;
-                            &lt;value&gt;128&lt;/value&gt;
+                            &lt;value&gt;32&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;addressUnits&lt;/key&gt;
-                            &lt;value&gt;WORDS&lt;/value&gt;
+                            &lt;value&gt;SYMBOLS&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;alwaysBurstMaxBurst&lt;/key&gt;
@@ -14476,7 +14476,7 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:segment>
                 <ipxact:name>npu_system_0.avalon_slave_0</ipxact:name>
                 <ipxact:addressOffset>0x0003_0000</ipxact:addressOffset>
-                <ipxact:range>0x0000_0080</ipxact:range>
+                <ipxact:range>0x0000_0020</ipxact:range>
               </ipxact:segment>
               <ipxact:segment>
                 <ipxact:name>intel_niosv_g_0.dm_agent</ipxact:name>
@@ -14516,7 +14516,7 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:segment>
                 <ipxact:name>npu_system_0.avalon_slave_0</ipxact:name>
                 <ipxact:addressOffset>0x0003_0000</ipxact:addressOffset>
-                <ipxact:range>0x0000_0080</ipxact:range>
+                <ipxact:range>0x0000_0020</ipxact:range>
               </ipxact:segment>
               <ipxact:segment>
                 <ipxact:name>data_mem.s1</ipxact:name>

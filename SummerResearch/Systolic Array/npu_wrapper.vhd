@@ -149,7 +149,7 @@ begin
                     elsif rom_addr_counter = 3 then
                         active_k_sig <= to_integer(unsigned(data_from_rom));
                     end if;
-                    
+                      
                     if rom_addr_counter = 4 then
                         rom_addr_counter := 5; -- Start of matrix data
                         current_state    <= S_LOAD_MATRICES;

@@ -103,29 +103,20 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx):
     
     if os.path.exists(res_file): os.remove(res_file)
 
-    # Create emtpy 32x32 containers for padding
-    padded_data = np.zeros((32, 32), dtype=np.int16)
-    padded_weight = np.zeros((32, 32), dtype=np.int16)
-
-    padded_data[:m, :k] = s_data.astype(np.int16)
-    padded_weight[:k, :n] = s_weight.astype(np.int16)
-
     header = bytes([int(m), int(n), int(k), 0])
-    payload = padded_data.tobytes() + padded_weight.tobytes()
+    payload = s_data.astype(np.int16).tobytes() + s_weight.astype(np.int16).tobytes()
 
     with open(bin_file, "wb") as f:
         f.write(header + payload)
-
+  
     start = time.time()
     while not os.path.exists(res_file):
         if time.time() - start > 20: return None
         time.sleep(0.1)
     
-    # Read dense results (m*n)
     raw_res = np.fromfile(res_file, dtype='<i4')
     os.remove(res_file)
 
-    # Reconstruct 32x32 Sparse Grid
     sparse_32x32 = np.zeros((32, 32), dtype=np.int32)
     dense_res = raw_res.reshape(m, n)
     
