@@ -29,6 +29,10 @@ architecture behaviour of processing_element is
     signal mult_result_reg : signed((DATA_WIDTH*2)-1 downto 0) := (others => '0');
     signal accumulator_reg : signed(ACC_WIDTH-1 downto 0) := (others => '0');
 
+    -- Force DSP-based multiplication for higher bitwidths
+    attribute use_dsp : string;
+    attribute use_dsp of mult_result_reg : signal is "yes";
+
 begin
     process(clk)
     begin
