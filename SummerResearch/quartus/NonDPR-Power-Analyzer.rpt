@@ -1,0 +1,349 @@
+Power Analyzer report for NonDPR
+Tue Mar  3 18:38:11 2026
+Quartus Prime Version 24.1.0 Build 115 03/21/2024 SC Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Power Analyzer Summary
+  3. Power Savings Summary
+  4. Power Analyzer Settings
+  5. Power Analyzer Messages
+  6. Indeterminate Toggle Rates
+  7. Power Analyzer Generated Files
+  8. Operating Conditions Used
+  9. On-Chip Power Dissipation by Block Type
+ 10. Current Drawn per Supply
+ 11. I/O Current Drawn per Supply
+ 12. I/O Current Drawn by Voltage
+ 13. Confidence Metric Details
+ 14. Signal Activities
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the Intel FPGA Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Power Analyzer Summary                                                                                        ;
++------------------------------------------------------------+--------------------------------------------------+
+; Power Analyzer Status                                      ; Successful - Tue Mar  3 13:33:16 2026            ;
+; Quartus Prime Version                                      ; 24.1.0 Build 115 03/21/2024 SC Pro Edition       ;
+; Revision Name                                              ; NonDPR                                           ;
+; Top-level Entity Name                                      ; non_dpr_top                                      ;
+; Family                                                     ; Arria 10                                         ;
+; Device                                                     ; 10AS066N3F40E2SG                                 ;
+; Timing Models                                              ; Final                                            ;
+; Power Models                                               ; Final                                            ;
+; Device Status                                              ; Final                                            ;
+; Total On-Chip Power Dissipation                            ; 3054.60 mW                                       ;
+; Transceiver Standby On-Chip Power Dissipation              ; 0.00 mW                                          ;
+; Transceiver Dynamic On-Chip Power Dissipation              ; 0.00 mW                                          ;
+; I/O Standby On-Chip Power Dissipation                      ; 0.34 mW                                          ;
+; I/O Dynamic On-Chip Power Dissipation                      ; 0.32 mW                                          ;
+; Core Dynamic On-Chip Power Dissipation                     ; 675.09 mW                                        ;
+; HPS Standby On-Chip Power Dissipation                      ; 0.00 mW                                          ;
+; HPS Dynamic On-Chip Power Dissipation                      ; 0.00 mW                                          ;
+; Device Static On-Chip Power Dissipation                    ; 2378.84 mW                                       ;
+; High Bandwidth Memory Standby On-Chip Power Dissipation    ; 0.00 mW                                          ;
+; High Bandwidth Memory Dynamic On-Chip Power Dissipation    ; 0.00 mW                                          ;
+; Analog/Digital Converter Standby On-Chip Power Dissipation ; 0.00 mW                                          ;
+; Analog/Digital Converter Dynamic On-Chip Power Dissipation ; 0.00 mW                                          ;
+; Power Estimation Confidence                                ; Low: user provided insufficient toggle rate data ;
++------------------------------------------------------------+--------------------------------------------------+
+
+
++--------------------------------------+
+; Power Savings Summary                ;
++------------------------+-------------+
+; Power Savings Type     ; Power Saved ;
++------------------------+-------------+
+; SmartVID Power Savings ; 0.00 mW     ;
++------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Power Analyzer Settings                                                                                                         ;
++------------------------------------------------------------------+---------------------------------------+----------------------+
+; Option                                                           ; Setting                               ; Default Value        ;
++------------------------------------------------------------------+---------------------------------------+----------------------+
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                                    ; On                   ;
+; Enable compact report table                                      ; Off                                   ; Off                  ;
+; Design Assistant include IP blocks                               ; Off                                   ; Off                  ;
+; High fanout net threshold for RAM inference                      ; 15                                    ; 15                   ;
+; Design Assistant limit on reported violations per rule           ; 5000                                  ; 5000                 ;
+; Preset Cooling Solution                                          ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ;                      ;
+; Board thermal model                                              ; None (CONSERVATIVE)                   ;                      ;
+; Default Power Toggle Rate                                        ; 12.5%                                 ; 12.5%                ;
+; Default Power Input I/O Toggle Rate                              ; 12.5%                                 ; 12.5%                ;
+; Use vectorless estimation                                        ; On                                    ; On                   ;
+; Use Input Files                                                  ; Off                                   ; Off                  ;
+; Filter Glitches in VCD File Reader                               ; On                                    ; On                   ;
+; Power Analyzer Report Signal Activity                            ; Off                                   ; Off                  ;
+; Power Analyzer Report Power Dissipation                          ; Off                                   ; Off                  ;
+; Device Power Characteristics                                     ; TYPICAL                               ; TYPICAL              ;
+; Automatically Compute Junction Temperature                       ; On                                    ; On                   ;
+; Specified Junction Temperature                                   ; 25                                    ; 25                   ;
+; Ambient Temperature                                              ; 50                                    ; 50                   ;
+; Use Custom Cooling Solution                                      ; Off                                   ; Off                  ;
+; Board Temperature                                                ; 25                                    ; 25                   ;
+; Enable HPS                                                       ; Off                                   ; Off                  ;
+; Processor Frequency                                              ; 0.0                                   ; 0.0                  ;
+; SmartVoltage ID                                                  ; Off                                   ; Off                  ;
+; Early Power Estimator Export File                                ; NonDPR_early_pwr.csv                  ; NonDPR_early_pwr.csv ;
++------------------------------------------------------------------+---------------------------------------+----------------------+
+
+
++-------------------------+
+; Power Analyzer Messages ;
++-------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Power Analyzer
+    Info: Version 24.1.0 Build 115 03/21/2024 SC Pro Edition
+    Info: Processing started: Tue Mar  3 13:31:51 2026
+    Info: System process ID: 19876
+Info: Command: quartus_pow --read_settings_files=on --write_settings_files=off SummerResearchProject -c NonDPR
+Info (16677): Loading final database.
+Info (16734): Loading "final" snapshot for partition "root_partition".
+Info (16734): Loading "final" snapshot for partition "auto_fab_0".
+Info (16678): Successfully loaded final database: elapsed time is 00:00:05.
+Warning (20846): The entity name "SummerResearchTopLevel" specified on the assignment "set_instance_assignment -name PARTITION top_level_systolic_array -to npu_core -entity SummerResearchTopLevel does not exist in the design".
+Warning (20846): The entity name "SummerResearchTopLevel" specified on the assignment "set_instance_assignment -name PARTITION_COLOUR 4294937543 -to npu_core -entity SummerResearchTopLevel does not exist in the design".
+Warning (20846): The entity name "SummerResearchTopLevel" specified on the assignment "set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity SummerResearchTopLevel does not exist in the design".
+Info (21076): Core supply voltage operating condition is not set. Assuming a default value of '0.9V'.
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 100 degrees C
+Info (332164): Evaluating HDL-embedded SDC commands
+    Info (332165): Entity alt_jtag_atlantic
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|jupdate}] -to [get_registers {*|alt_jtag_atlantic:*|jupdate1*}] 
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|rdata[*]}] -to [get_registers {*|alt_jtag_atlantic*|td_shift[*]}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|read}] -to [get_registers {*|alt_jtag_atlantic:*|read1*}] 
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|read_req}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|rvalid}] -to [get_registers {*|alt_jtag_atlantic*|td_shift[*]}]
+        Info (332166): set_false_path -from [get_registers {*|t_dav}] -to [get_registers {*|alt_jtag_atlantic:*|tck_t_dav}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|user_saw_rvalid}] -to [get_registers {*|alt_jtag_atlantic:*|rvalid0*}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|wdata[*]}] -to [get_registers {*}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write}] -to [get_registers {*|alt_jtag_atlantic:*|write1*}] 
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_stalled}] -to [get_registers {*|alt_jtag_atlantic:*|t_ena*}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_stalled}] -to [get_registers {*|alt_jtag_atlantic:*|t_pause*}]
+        Info (332166): set_false_path -from [get_registers {*|alt_jtag_atlantic:*|write_valid}]
+    Info (332165): Entity altera_std_synchronizer
+        Info (332166): set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]
+Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
+Info (332104): Reading SDC File: 'NonDPR.out.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at NonDPR.out.sdc(17): altera_reserved_tck could not be matched with a clock File: C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR.out.sdc Line: 17
+Warning (332054): Assignment set_clock_groups is accepted but has some problems at NonDPR.out.sdc(17): Argument -group with value [get_clocks {altera_reserved_tck}] contains zero elements File: C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR.out.sdc Line: 17
+    Info (332050): set_clock_groups -asynchronous -group [get_clocks {CLK_50}] -group [get_clocks {altera_reserved_tck}] File: C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR.out.sdc Line: 17
+Info (332104): Reading SDC File: 'ip/NonDPR/NonDPR_master_0/altera_jtag_dc_streaming_191/synth/altera_avalon_st_jtag_interface.sdc'
+Info (18794): Reading SDC File: 'ip/NonDPR/NonDPR_master_0/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|master_0|master_0|rst_controller'
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info (18794): Reading SDC File: 'ip/NonDPR/NonDPR_master_0/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|rst_controller'
+Info: Following instance found in the design -  System|rst_controller|*
+Info (18794): Reading SDC File: 'NonDPR/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|master_0|master_0|rst_controller'
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info (18794): Reading SDC File: 'NonDPR/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|rst_controller'
+Info: Following instance found in the design -  System|rst_controller|*
+Info (18794): Reading SDC File: 'ip/NonDPR/NonDPR_intel_niosv_g_0/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|master_0|master_0|rst_controller'
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info (18794): Reading SDC File: 'ip/NonDPR/NonDPR_intel_niosv_g_0/altera_reset_controller_1922/synth/altera_reset_controller.sdc' for instance: 'System|rst_controller'
+Info: Following instance found in the design -  System|rst_controller|*
+Info (332104): Reading SDC File: 'ip/NonDPR/NonDPR_intel_niosv_g_0/intel_niosv_dbg_mod_210/synth/altera_avalon_st_handshake_clock_crosser.sdc'
+Info (332104): Reading SDC File: 'ip/NonDPR/NonDPR_intel_niosv_g_0/intel_niosv_dbg_mod_210/synth/altera_reset_controller.sdc'
+Info: Following instance found in the design -  
+Info (332104): Reading SDC File: 'C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/dni/sandboxes/EN433358_20036_0/sld/default_jtag.sdc'
+Info (19449): Reading SDC files elapsed 00:00:02.
+Warning (332060): Node: altera_reserved_tck was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register System|intel_niosv_g_0|intel_niosv_g_0|dbg_mod|dtm_inst|read_rsp_pndg is being clocked by altera_reserved_tck
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (223000): Starting Vectorless Power Activity Estimation
+Warning (222013): Relative toggle rates could not be calculated because no clock domain could be identified for some nodes
+Info (223001): Completed Vectorless Power Activity Estimation
+Critical Warning (16079): The selected device has an HPS.  HPS power is not modeled in this release of Power Analyzer.  Use the Early Power Estimator (EPE) to model HPS power.
+Info (218000): Using Advanced I/O Power to simulate I/O buffers with the specified board trace model
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info: Following instance found in the design -  System|rst_controller|*
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info: Following instance found in the design -  System|rst_controller|*
+Info: Following instance found in the design -  System|master_0|master_0|rst_controller|*
+Info: Following instance found in the design -  System|rst_controller|*
+Info: Following instance found in the design -  
+Info (214002): Created Early Power Estimation file "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR_early_pwr.csv"
+Info (215049): Average toggle rate for this design is 5.534 millions of transitions / sec.
+Info (215031): Total on-chip power estimate for the design is 3054.60 mW.
+Info: Quartus Prime Power Analyzer was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 8770 megabytes
+    Info: Processing ended: Tue Mar  3 13:33:18 2026
+    Info: Elapsed time: 00:01:27
+    Info: System process ID: 19876
+
+
++---------------------------------------------------+
+; Indeterminate Toggle Rates                        ;
++---------------------+-----------------------------+
+; Node                ; Reason                      ;
++---------------------+-----------------------------+
+; altera_reserved_tck ; No valid clock domain found ;
+; altera_reserved_tdi ; No valid clock domain found ;
+; altera_reserved_tms ; No valid clock domain found ;
++---------------------+-----------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Power Analyzer Generated Files                                                                                                          ;
++------------------------------------------+----------------------------------------------------------------------------------------------+
+; Description                              ; Filename                                                                                     ;
++------------------------------------------+----------------------------------------------------------------------------------------------+
+; Design summary for Early Power Estimator ; C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR_early_pwr.csv ;
++------------------------------------------+----------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------+
+; Operating Conditions Used                               ;
++---------------------------------------------+-----------+
+; Setting                                     ; Value     ;
++---------------------------------------------+-----------+
+; Device power characteristics                ; Typical   ;
+;                                             ;           ;
+; Voltages                                    ;           ;
+;     VCCP                                    ; 0.90 V    ;
+;     VCCPT                                   ; 1.80 V    ;
+;     VCCA_PLL                                ; 1.80 V    ;
+;     VCC                                     ; 0.90 V    ;
+;     VCCPGM                                  ; 1.80 V    ;
+;     VCCBAT                                  ; 1.80 V    ;
+;     VCCL_HPS                                ; 0.90 V    ;
+;     VCCIO_HPS                               ; 1.80 V    ;
+;     VCCIOREF_HPS                            ; 1.80 V    ;
+;     VCCPLL_HPS                              ; 1.80 V    ;
+;     VCCERAM                                 ; 0.90 V    ;
+;     1.8 V I/O Standard                      ; 1.8 V     ;
+;                                             ;           ;
+; Auto computed junction temperature          ; 55.5 °C   ;
+;     Ambient temperature                     ; 50.0 °C   ;
+;     Junction-to-Case thermal resistance     ; 0.20 °C/W ;
+;     Case-to-Heat Sink thermal resistance    ; 0.10 °C/W ;
+;     Heat Sink-to-Ambient thermal resistance ; 1.50 °C/W ;
+;                                             ;           ;
+; Board model used                            ; None      ;
++---------------------------------------------+-----------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; On-Chip Power Dissipation by Block Type                                                                                                            ;
++--------------------+-----------------------------------+-----------------------------+-----------------------------+-------------------------------+
+; Block Type         ; Total On-Chip Power by Block Type ; Block On-Chip Dynamic Power ; Block On-Chip Standby Power ; Routing On-Chip Dynamic Power ;
++--------------------+-----------------------------------+-----------------------------+-----------------------------+-------------------------------+
+; DSP                ; 143.45 mW                         ; 53.38 mW                    ; 0.00 mW                     ; 90.06 mW                      ;
+; M20K               ; 8.35 mW                           ; 4.03 mW                     ; 0.00 mW                     ; 4.32 mW                       ;
+; Combinational cell ; 76.06 mW                          ; 40.94 mW                    ; 0.00 mW                     ; 35.12 mW                      ;
+; Register cell      ; 207.28 mW                         ; 57.55 mW                    ; 0.00 mW                     ; 149.73 mW                     ;
+; IO Analog          ; 0.49 mW                           ; 0.32 mW                     ; 0.17 mW                     ; 0.00 mW                       ;
+; IO Digital         ; 0.18 mW                           ; 0.00 mW                     ; 0.18 mW                     ; 0.00 mW                       ;
+; Clock Network      ; 239.96 mW                         ; 154.24 mW                   ; 0.00 mW                     ; 85.72 mW                      ;
++--------------------+-----------------------------------+-----------------------------+-----------------------------+-------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Current Drawn per Supply                                                                                    ;
++----------------+---------------------+-----------------------+-----------------------+----------------------+
+; Voltage Supply ; Total Current Drawn ; Dynamic Current Drawn ; Standby Current Drawn ; Static Current Drawn ;
++----------------+---------------------+-----------------------+-----------------------+----------------------+
+; VCCP           ; 154.09 mA           ; 0.01 mA               ; 0.22 mA               ; 153.85 mA            ;
+; VCCPT          ; 195.40 mA           ; 0.04 mA               ; 0.07 mA               ; 195.29 mA            ;
+; VCCA_PLL       ; 56.75 mA            ; 0.00 mA               ; 0.00 mA               ; 56.75 mA             ;
+; VCC            ; 2635.29 mA          ; 749.86 mA             ; 0.00 mA               ; 1885.43 mA           ;
+; VCCPGM         ; 0.01 mA             ; 0.00 mA               ; 0.00 mA               ; 0.01 mA              ;
+; VCCBAT         ; 0.07 mA             ; 0.00 mA               ; 0.00 mA               ; 0.07 mA              ;
+; VCCL_HPS       ; 73.21 mA            ; 0.00 mA               ; 0.00 mA               ; 73.21 mA             ;
+; VCCIO_HPS      ; 3.75 mA             ; 0.00 mA               ; 0.00 mA               ; 3.75 mA              ;
+; VCCIOREF_HPS   ; 2.00 mA             ; 0.00 mA               ; 0.00 mA               ; 2.00 mA              ;
+; VCCPLL_HPS     ; 1.66 mA             ; 0.00 mA               ; 0.00 mA               ; 1.66 mA              ;
+; VCCERAM        ; 10.30 mA            ; 0.23 mA               ; 0.00 mA               ; 10.07 mA             ;
++----------------+---------------------+-----------------------+-----------------------+----------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; I/O Current Drawn per Supply                                                                                   ;
++---------+---------+---------------------+-----------------------+-----------------------+----------------------+
+; Supply  ; Voltage ; Total Current Drawn ; Dynamic Current Drawn ; Standby Current Drawn ; Static Current Drawn ;
++---------+---------+---------------------+-----------------------+-----------------------+----------------------+
+; VCCIO2A ; 1.8V    ; 0.10 mA             ; 0.00 mA               ; 0.00 mA               ; 0.10 mA              ;
+; VCCIO2I ; 1.8V    ; 0.14 mA             ; 0.00 mA               ; 0.00 mA               ; 0.14 mA              ;
+; VCCIO2J ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO2K ; 1.8V    ; 0.13 mA             ; 0.07 mA               ; 0.01 mA               ; 0.05 mA              ;
+; VCCIO2L ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3A ; 1.8V    ; 0.06 mA             ; 0.01 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3B ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3C ; 1.8V    ; 0.07 mA             ; 0.00 mA               ; 0.02 mA               ; 0.05 mA              ;
+; VCCIO3D ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3E ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3F ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3G ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
+; VCCIO3H ; 1.8V    ; 0.05 mA             ; 0.00 mA               ; 0.00 mA               ; 0.05 mA              ;
++---------+---------+---------------------+-----------------------+-----------------------+----------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; I/O Current Drawn by Voltage                                                                         ;
++---------+---------------------+-----------------------+-----------------------+----------------------+
+; Voltage ; Total Current Drawn ; Dynamic Current Drawn ; Standby Current Drawn ; Static Current Drawn ;
++---------+---------------------+-----------------------+-----------------------+----------------------+
+; 1.8V    ; 0.88 mA             ; 0.08 mA               ; 0.03 mA               ; 0.77 mA              ;
++---------+---------------------+-----------------------+-----------------------+----------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Confidence Metric Details                                                                                                                                 ;
++----------------------------------------------------------------------------------------+-----------------+------------+-----------------+-----------------+
+; Data Source                                                                            ; Total           ; Pin        ; Registered      ; Combinational   ;
++----------------------------------------------------------------------------------------+-----------------+------------+-----------------+-----------------+
+; Simulation (from file)                                                                 ;                 ;            ;                 ;                 ;
+;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)        ; 0 (0.0%)   ; 0 (0.0%)        ; 0 (0.0%)        ;
+;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)        ; 0 (0.0%)   ; 0 (0.0%)        ; 0 (0.0%)        ;
+;                                                                                        ;                 ;            ;                 ;                 ;
+; Node, entity or clock assignment                                                       ;                 ;            ;                 ;                 ;
+;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 3 (0.0%)        ; 1 (6.7%)   ; 0 (0.0%)        ; 2 (0.0%)        ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 3 (0.0%)        ; 1 (6.7%)   ; 0 (0.0%)        ; 2 (0.0%)        ;
+;                                                                                        ;                 ;            ;                 ;                 ;
+; Vectorless estimation                                                                  ;                 ;            ;                 ;                 ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 422414 (100.0%) ; 10 (66.7%) ; 180686 (100.0%) ; 241718 (100.0%) ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 419 (0.1%)      ; 5 (33.3%)  ; 120 (0.1%)      ; 294 (0.1%)      ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 422414 (100.0%) ; 10 (66.7%) ; 180686 (100.0%) ; 241718 (100.0%) ;
+;                                                                                        ;                 ;            ;                 ;                 ;
+; Default assignment                                                                     ;                 ;            ;                 ;                 ;
+;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)        ; 0 (0.0%)   ; 0 (0.0%)        ; 0 (0.0%)        ;
+;     -- Number of signals with Static Probability from Default assignment               ; 4 (0.0%)        ; 4 (26.7%)  ; 0 (0.0%)        ; 0 (0.0%)        ;
+;                                                                                        ;                 ;            ;                 ;                 ;
+; Assumed 0                                                                              ;                 ;            ;                 ;                 ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 4 (0.0%)        ; 4 (26.7%)  ; 0 (0.0%)        ; 0 (0.0%)        ;
++----------------------------------------------------------------------------------------+-----------------+------------+-----------------+-----------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Activities                                                                                                                           ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+; Signal ; Type ; Toggle Rate (millions of transitions / sec) ; Toggle Rate Data Source ; Static Probability ; Static Probability Data Source ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+(1) The "Signal Activity" Table has been hidden. To show this table, please select the "Write signal activities to report file" option under "Power Analyzer Settings".
+
+

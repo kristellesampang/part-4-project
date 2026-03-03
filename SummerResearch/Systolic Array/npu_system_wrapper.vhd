@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.custom_types.all;
+use work.custom_types_int8.all;
 
 entity npu_system_wrapper is
     port (
@@ -29,25 +30,35 @@ entity npu_system_wrapper is
 end npu_system_wrapper;
 
 architecture rtl of npu_system_wrapper is
-    signal reg_ready       : std_logic := '0';
+    signal reg_ready  : std_logic := '0';
     signal reg_m, reg_n, reg_k : integer := 0;
+    signal reg_config : std_logic := '0'; -- 0 = Int16 32x32, 1 = Int8 8x8
     signal n_cycle_count   : integer := 0;
-    signal n_output        : systolic_array_matrix_output;
     signal n_reset         : std_logic;
-    signal n_done          : std_logic;
 
-    signal n_matrix_data   : systolic_array_matrix_input := (others => (others => (others => '0')));
-    signal n_matrix_weight : systolic_array_matrix_input := (others => (others => (others => '0')));
+    -- Int16 signals
+    signal n_output        : systolic_array_matrix_output;
+    signal n_done          : std_logic;
+    signal n_matrix_data   : systolic_array_matrix_input   := (others => (others => (others => '0')));
+    signal n_matrix_weight : systolic_array_matrix_input   := (others => (others => (others => '0')));
+    signal sa_start_trigger : std_logic := '0';
+
+    -- Int8 signals
+    signal n_output_int8        : systolic_array_matrix_output_int8;
+    signal n_done_int8          : std_logic;
+    signal n_matrix_data_int8   : systolic_array_matrix_input_int8   := (others => (others => (others => '0')));
+    signal n_matrix_weight_int8 : systolic_array_matrix_input_int8   := (others => (others => (others => '0')));
+    signal sa_start_trigger_int8 : std_logic := '0';
+
+    signal n_done_mux : std_logic;
 
     signal fetch_counter   : integer range 0 to 1024 := 0;
     signal write_counter   : integer range 0 to 1024 := 0;
     signal row_idx, col_idx : integer range 0 to 31 := 0;
     signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
-
-    signal sa_start_trigger : std_logic := '0';
     signal debug_state_reg : std_logic_vector(31 downto 0);
 
-    type state_type is (IDLE, 
+    type state_type is (IDLE,
                         FETCH_DATA_REQ, FETCH_DATA_LATENCY, FETCH_DATA_WAIT,
                         FETCH_WEIGHT_REQ, FETCH_WEIGHT_LATENCY, FETCH_WEIGHT_WAIT,
                         START_NPU, WAIT_FOR_DONE, WRITE_RESULTS, WRITE_FLUSH);
@@ -56,6 +67,7 @@ architecture rtl of npu_system_wrapper is
 begin
     n_reset <= not reset_n;
     avs_waitrequest <= '0';
+    n_done_mux <= n_done_int8 when reg_config = '1' else n_done;
 
     debug_state_reg <= x"DEB00001" when state = IDLE else
                        x"DEB00002" when state = FETCH_DATA_REQ else
@@ -71,7 +83,8 @@ begin
                        x"DEB0DEAD";
 
     process(clk, reset_n)
-        variable v_temp_out : signed(63 downto 0);
+        variable v_temp_out    : signed(63 downto 0);
+        variable v_temp_out_i8 : signed(31 downto 0);
     begin
         if reset_n = '0' then
             reg_ready <= '0';
@@ -79,31 +92,36 @@ begin
             avm_act_read <= '0';
             avm_weight_read <= '0';
             avm_out_write <= '0';
+            sa_start_trigger <= '0';
+            sa_start_trigger_int8 <= '0';
         elsif rising_edge(clk) then
             avs_readdata <= (others => '0');
 
             if avs_write = '1' then
-                case avs_address(3 downto 0) is
-                    when "0000" => reg_ready <= avs_writedata(0);
-                    when "0100" => reg_m <= to_integer(unsigned(avs_writedata(15 downto 0)));
-                    when "1000" => reg_n <= to_integer(unsigned(avs_writedata(15 downto 0)));
-                    when "1100" => reg_k <= to_integer(unsigned(avs_writedata(15 downto 0)));
+                case avs_address(4 downto 0) is
+                    when "00000" => reg_ready  <= avs_writedata(0);
+                    when "00100" => reg_m      <= to_integer(unsigned(avs_writedata(15 downto 0)));
+                    when "01000" => reg_n      <= to_integer(unsigned(avs_writedata(15 downto 0)));
+                    when "01100" => reg_k      <= to_integer(unsigned(avs_writedata(15 downto 0)));
+                    when "10000" => reg_config <= avs_writedata(0);
                     when others => null;
                 end case;
             elsif avs_read = '1' then
-                case avs_address(3 downto 0) is
-                    when "0000" => avs_readdata <= (0 => reg_ready, others => '0');
-                    when "0100" => avs_readdata <= std_logic_vector(to_unsigned(reg_m, 32));
-                    when "1000" => avs_readdata <= std_logic_vector(to_unsigned(reg_n, 32));
-                    when "1100" => avs_readdata <= std_logic_vector(to_unsigned(reg_k, 32));
-                    when "0101" => avs_readdata <= debug_state_reg;
-                    when others => avs_readdata <= (others => '0');
+                case avs_address(4 downto 0) is
+                    when "00000" => avs_readdata <= (0 => reg_ready, others => '0');
+                    when "00100" => avs_readdata <= std_logic_vector(to_unsigned(reg_m, 32));
+                    when "01000" => avs_readdata <= std_logic_vector(to_unsigned(reg_n, 32));
+                    when "01100" => avs_readdata <= std_logic_vector(to_unsigned(reg_k, 32));
+                    when "10000" => avs_readdata <= (0 => reg_config, others => '0');
+                    when "10100" => avs_readdata <= debug_state_reg;
+                    when others  => avs_readdata <= (others => '0');
                 end case;
             end if;
 
             case state is
                 when IDLE =>
-                    sa_start_trigger <= '0';
+                    sa_start_trigger      <= '0';
+                    sa_start_trigger_int8 <= '0';
                     fetch_counter <= 0;
                     row_idx <= 0; col_idx <= 0;
                     w_row_idx <= 0; w_col_idx <= 0;
@@ -111,7 +129,6 @@ begin
                         state <= FETCH_DATA_REQ;
                     end if;
 
-                -- ---- FETCH DATA (M x K) ----
                 when FETCH_DATA_REQ =>
                     avm_act_read <= '1';
                     avm_act_address <= std_logic_vector(to_unsigned(16#21000# + fetch_counter * 4, 32));
@@ -123,7 +140,12 @@ begin
                     state <= FETCH_DATA_WAIT;
 
                 when FETCH_DATA_WAIT =>
-                    n_matrix_data(row_idx, col_idx) <= avm_act_readdata(15 downto 0);
+                    if reg_config = '1' then
+                        n_matrix_data_int8(row_idx, col_idx) <= avm_act_readdata(7 downto 0);
+                    else
+                        n_matrix_data(row_idx, col_idx) <= avm_act_readdata(15 downto 0);
+                    end if;
+
                     if fetch_counter < (reg_m * reg_k) - 1 then
                         fetch_counter <= fetch_counter + 1;
                         if col_idx = reg_k - 1 then
@@ -140,7 +162,6 @@ begin
                         state <= FETCH_WEIGHT_REQ;
                     end if;
 
-                -- ---- FETCH WEIGHT (K x N) ----
                 when FETCH_WEIGHT_REQ =>
                     avm_weight_read <= '1';
                     avm_weight_address <= std_logic_vector(to_unsigned(16#22000# + fetch_counter * 4, 32));
@@ -152,7 +173,12 @@ begin
                     state <= FETCH_WEIGHT_WAIT;
 
                 when FETCH_WEIGHT_WAIT =>
-                    n_matrix_weight(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
+                    if reg_config = '1' then
+                        n_matrix_weight_int8(row_idx, col_idx) <= avm_weight_readdata(7 downto 0);
+                    else
+                        n_matrix_weight(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
+                    end if;
+
                     if fetch_counter < (reg_k * reg_n) - 1 then
                         fetch_counter <= fetch_counter + 1;
                         if col_idx = reg_n - 1 then
@@ -168,12 +194,17 @@ begin
                     end if;
 
                 when START_NPU =>
-                    sa_start_trigger <= '1';
+                    if reg_config = '1' then
+                        sa_start_trigger_int8 <= '1';
+                    else
+                        sa_start_trigger <= '1';
+                    end if;
                     state <= WAIT_FOR_DONE;
 
                 when WAIT_FOR_DONE =>
-                    sa_start_trigger <= '0';
-                    if n_done = '1' then
+                    sa_start_trigger      <= '0';
+                    sa_start_trigger_int8 <= '0';
+                    if n_done_mux = '1' then
                         write_counter <= 0;
                         w_row_idx <= 0; w_col_idx <= 0;
                         state <= WRITE_RESULTS;
@@ -182,8 +213,15 @@ begin
                 when WRITE_RESULTS =>
                     avm_out_write <= '1';
                     avm_out_address <= std_logic_vector(to_unsigned(16#23000# + write_counter * 4, 32));
-                    v_temp_out := signed(n_output(w_row_idx, w_col_idx));
-                    avm_out_writedata <= std_logic_vector(resize(v_temp_out, 32));
+
+                    if reg_config = '1' then
+                        v_temp_out_i8 := signed(n_output_int8(w_row_idx, w_col_idx));
+                        avm_out_writedata <= std_logic_vector(v_temp_out_i8);
+                    else
+                        v_temp_out := signed(n_output(w_row_idx, w_col_idx));
+                        avm_out_writedata <= std_logic_vector(resize(v_temp_out, 32));
+                    end if;
+
                     if avm_out_waitreq = '0' then
                         if write_counter < (reg_m * reg_n) - 1 then
                             write_counter <= write_counter + 1;
@@ -208,11 +246,34 @@ begin
         end if;
     end process;
 
-    NPU_CORE : entity work.top_level_systolic_array
+    NPU_CORE_INT16 : entity work.top_level_systolic_array
     port map (
-        clk => clk, reset => n_reset, ready => sa_start_trigger,
-        matrix_data => n_matrix_data, matrix_weight => n_matrix_weight,
-        active_rows => reg_m, active_cols => reg_n, active_k => reg_k,
-        output => n_output, done => n_done, cycle_count => n_cycle_count
+        clk           => clk,
+        reset         => n_reset,
+        ready         => sa_start_trigger,
+        matrix_data   => n_matrix_data,
+        matrix_weight => n_matrix_weight,
+        active_rows   => reg_m,
+        active_cols   => reg_n,
+        active_k      => reg_k,
+        output        => n_output,
+        done          => n_done,
+        cycle_count   => n_cycle_count
     );
+
+    NPU_CORE_INT8 : entity work.top_level_systolic_array_int8
+    port map (
+        clk           => clk,
+        reset         => n_reset,
+        ready         => sa_start_trigger_int8,
+        matrix_data   => n_matrix_data_int8,
+        matrix_weight => n_matrix_weight_int8,
+        active_rows   => reg_m,
+        active_cols   => reg_n,
+        active_k      => reg_k,
+        output        => n_output_int8,
+        done          => n_done_int8,
+        cycle_count   => open
+    );
+
 end architecture rtl;

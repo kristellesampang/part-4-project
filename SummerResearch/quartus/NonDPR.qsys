@@ -3669,7 +3669,7 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;consumedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x10000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x10000' end='0x20000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x23000' end='0x23040' datawidth='32' /&amp;gt;&amp;lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x23060' end='0x23068' datawidth='32' /&amp;gt;&amp;lt;slave name='npu_system_0.avalon_slave_0' start='0x30000' end='0x30080' datawidth='32' /&amp;gt;&amp;lt;slave name='data_mem.s1' start='0x31000' end='0x32000' datawidth='32' /&amp;gt;&amp;lt;slave name='weight_mem.s1' start='0x32000' end='0x33000' datawidth='32' /&amp;gt;&amp;lt;slave name='out_mem.s1' start='0x33000' end='0x34000' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='onchip_memory2_0.s1' start='0x0' end='0x10000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.dm_agent' start='0x10000' end='0x20000' datawidth='32' /&amp;gt;&amp;lt;slave name='intel_niosv_g_0.timer_sw_agent' start='0x23000' end='0x23040' datawidth='32' /&amp;gt;&amp;lt;slave name='jtag_uart_0.avalon_jtag_slave' start='0x23060' end='0x23068' datawidth='32' /&amp;gt;&amp;lt;slave name='npu_system_0.avalon_slave_0' start='0x30000' end='0x30020' datawidth='32' /&amp;gt;&amp;lt;slave name='data_mem.s1' start='0x31000' end='0x32000' datawidth='32' /&amp;gt;&amp;lt;slave name='weight_mem.s1' start='0x32000' end='0x33000' datawidth='32' /&amp;gt;&amp;lt;slave name='out_mem.s1' start='0x33000' end='0x34000' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
@@ -8340,11 +8340,11 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;suppliedSystemInfos&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_MAP&lt;/key&gt;
-                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='avalon_slave_0' start='0x0' end='0x80' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
+                            &lt;value&gt;&amp;lt;address-map&amp;gt;&amp;lt;slave name='avalon_slave_0' start='0x0' end='0x20' datawidth='32' /&amp;gt;&amp;lt;/address-map&amp;gt;&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;ADDRESS_WIDTH&lt;/key&gt;
-                            &lt;value&gt;7&lt;/value&gt;
+                            &lt;value&gt;5&lt;/value&gt;
                         &lt;/entry&gt;
                         &lt;entry&gt;
                             &lt;key&gt;MAX_SLAVE_DATA_WIDTH&lt;/key&gt;
@@ -8525,11 +8525,11 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;addressSpan&lt;/key&gt;
-                        &lt;value&gt;128&lt;/value&gt;
+                        &lt;value&gt;32&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;addressUnits&lt;/key&gt;
-                        &lt;value&gt;WORDS&lt;/value&gt;
+                        &lt;value&gt;SYMBOLS&lt;/value&gt;
                     &lt;/entry&gt;
                     &lt;entry&gt;
                         &lt;key&gt;alwaysBurstMaxBurst&lt;/key&gt;
@@ -9282,35 +9282,35 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:name>generationInfoDefinition</ipxact:name>
               <ipxact:displayName>Generation Behavior</ipxact:displayName>
               <ipxact:value>&lt;generationInfoDefinition&gt;
-    &lt;hdlLibraryName&gt;NonDPR_npu_system_12&lt;/hdlLibraryName&gt;
+    &lt;hdlLibraryName&gt;NonDPR_npu_system_13&lt;/hdlLibraryName&gt;
     &lt;fileSets&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_12&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_12&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_13&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_13&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_12&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_12&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_13&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_13&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_12&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_12&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_13&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_13&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_12&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_12&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_13&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_13&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_12&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_12&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_13&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_13&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
@@ -9330,12 +9330,12 @@ https://fpgasoftware.intel.com/eula.-->
             <ipxact:parameter parameterId="liveModuleName" type="string">
               <ipxact:name>liveModuleName</ipxact:name>
               <ipxact:displayName>Live Module Name</ipxact:displayName>
-              <ipxact:value>npu_system_12</ipxact:value>
+              <ipxact:value>npu_system_13</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="logicalView" type="string">
               <ipxact:name>logicalView</ipxact:name>
               <ipxact:displayName>Logical view</ipxact:displayName>
-              <ipxact:value>ip/NonDPR/NonDPR_npu_system_12.ip</ipxact:value>
+              <ipxact:value>ip/NonDPR/NonDPR_npu_system_13.ip</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="moduleAssignmentDefinition" type="string">
               <ipxact:name>moduleAssignmentDefinition</ipxact:name>

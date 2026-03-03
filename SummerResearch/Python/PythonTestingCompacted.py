@@ -96,19 +96,20 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     compact_weight = weight_matrix[np.ix_(common_k, active_n)]
     return compact_data, compact_weight, len(active_m), len(active_n), len(common_k), active_m, active_n
 
-def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx):
+def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     bin_file = os.path.join(current_dir, "tile.bin")
     res_file = os.path.join(current_dir, "result.bin")
     
     if os.path.exists(res_file): os.remove(res_file)
 
-    header = bytes([int(m), int(n), int(k), 0])
-    payload = s_data.astype(np.int16).tobytes() + s_weight.astype(np.int16).tobytes()
+    dtype = np.int8 if config == 1 else np.int16
+    header = bytes([int(m), int(n), int(k), int(config)])
+    payload = s_data.astype(dtype).tobytes() + s_weight.astype(dtype).tobytes()
 
     with open(bin_file, "wb") as f:
         f.write(header + payload)
-  
+
     start = time.time()
     while not os.path.exists(res_file):
         if time.time() - start > 20: return None
@@ -126,7 +127,8 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx):
             
     return sparse_32x32
 
-def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size):
+
+def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_size, config=0):
     input_t = preprocess_image(IMAGE_PATH)
     weights_all, acts_all = extract_conv_weights_and_activations(model, input_t, conv_idx, relu_idx)
     
@@ -140,31 +142,26 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
     print(f"\nconstant M_VAL : integer := {m};")
     print(f"constant N_VAL : integer := {n};")
     print(f"constant K_VAL : integer := {k};")
+    print(f"Config: {'Int8 8x8' if config == 1 else 'Int16 32x32'}")
 
-    print("\n-- DATA_STIM (compact, row-major M x K):")
-    for i in range(m):
-        row_vals = ", ".join([f"s16({int(s_data[i,j])})" for j in range(k)] + [f"s16(0)"] * (32 - k))
-        print(f"        ({row_vals}),")
-
-    print("\n-- WEIGHT_STIM (compact, row-major K x N):")
-    for i in range(k):
-        row_vals = ", ".join([f"s16({int(s_weight[i,j])})" for j in range(n)] + [f"s16(0)"] * (32 - n))
-        print(f"        ({row_vals}),")
-    
     print(f"m_idx = {m_idx}")
     print(f"n_idx = {n_idx}")
     print(f"Compact Shapes: Data={s_data.shape}, Weight={s_weight.shape} | M={m}, N={n}, K={k}")
     print("Zero Rows in s_data:", np.where(~s_data.any(axis=1))[0])
 
-    hw_reconstructed = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx)
+    hw_reconstructed = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=config)
     if hw_reconstructed is None: return None
 
-    # SW Bit-Accurate Reference (Dense)
-    full_precision = np.matmul(s_data.astype(np.int64), s_weight.astype(np.int64))
-    sw_dense = (full_precision + 2**31) % 2**32 - 2**31
-    sw_dense = sw_dense.astype(np.int32)
+    # SW Bit-Accurate Reference
+    if config == 1:
+        # Int8 reference — 32-bit accumulator, no overflow wrapping needed
+        full_precision = np.matmul(s_data.astype(np.int32), s_weight.astype(np.int32))
+        sw_dense = full_precision.astype(np.int32)
+    else:
+        # Int16 reference — 64-bit then wrap to 32-bit
+        full_precision = np.matmul(s_data.astype(np.int64), s_weight.astype(np.int64))
+        sw_dense = ((full_precision + 2**31) % 2**32 - 2**31).astype(np.int32)
 
-    # Extract the Hardware Dense section for comparison
     hw_dense = hw_reconstructed[np.ix_(m_idx, n_idx)]
 
     print("\n" + "="*20 + " VERIFICATION " + "="*20)
@@ -183,11 +180,11 @@ def prepare_simulation_case(model, layer_name, conv_idx, relu_idx, tile_idx, t_s
 
     return hw_reconstructed
 
+
 def main():
-                
     model = load_quantized_alexnet()
-    # Execute verified case                         
-    prepare_simulation_case(model, "Conv1", 0, 1, tile_idx=15, t_size=32)
+    # config=0 for Int16, config=1 for Int8
+    prepare_simulation_case(model, "Conv5", 10, 11, tile_idx=0, t_size=16, config=0)
 
 if __name__ == '__main__':
     main()
