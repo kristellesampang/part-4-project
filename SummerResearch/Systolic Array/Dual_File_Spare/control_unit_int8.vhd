@@ -34,7 +34,7 @@ architecture behaviour of control_unit_int8 is
     signal completed_internal : bit_1 := '0';
     signal max_run_cycles     : integer := 0;
 begin
-    max_run_cycles <= active_rows + active_cols + active_k - 2;
+    
 
     process(clk, reset)
     begin
@@ -57,12 +57,21 @@ begin
             if ready = '1' then
                 run_enable <= '1';
                 completed_internal <= '0';
+                count <= 0;
+                max_run_cycles <= active_rows + active_cols + active_k - 2;
             end if;
 
             if run_enable = '1' then
                 if count >= max_run_cycles then
                     run_enable <= '0';
                     completed_internal <= '1';
+
+                    -- -- clear the PE mask so en goes low and accumulators can reset for the next run
+                    -- for i in 0 to N8-1 loop
+                    --     for j in 0 to N8-1 loop
+                    --         mask_internal(i,j) <= '0';
+                    --     end loop;
+                    -- end loop;
                 else
                     count <= count + 1;
                 end if;

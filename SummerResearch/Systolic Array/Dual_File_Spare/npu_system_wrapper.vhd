@@ -65,7 +65,7 @@ architecture rtl of npu_system_wrapper is
     signal state : state_type := IDLE;
 
 begin
-    n_reset <= not reset_n;
+    n_reset <= not reset_n; 
     avs_waitrequest <= '0';
     n_done_mux <= n_done_int8 when reg_config = '1' else n_done;
 

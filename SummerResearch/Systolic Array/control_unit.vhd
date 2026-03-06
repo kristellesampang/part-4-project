@@ -38,8 +38,6 @@ architecture behaviour of control_unit is
     -- This is the fixed runtime needed for the control logic.
     signal max_run_cycles : integer := 0; 
 begin
-    -- The maximum run cycle is calculated here, dynamically based on active inputs
-    max_run_cycles <= active_rows + active_cols + active_k - 2;
 
     process(clk, reset)
     begin
@@ -64,6 +62,8 @@ begin
             if ready = '1' then
                 run_enable <= '1';
                 completed_internal <= '0';
+                count <= 0; -- Reset cycle count at the start of a new operation
+                max_run_cycles <= active_rows + active_cols + active_k - 2;
             end if;
 
             -- Only execute the control logic if we are running and haven't hit the maximum cycle count
@@ -71,6 +71,13 @@ begin
                 if count >= max_run_cycles then
                     run_enable <= '0'; -- Stop the operation after the max cycles
                     completed_internal <= '1'; -- Signal completion
+
+                    -- -- clear the PE mask so en goes low and accumulators can reset for the next run
+                    -- for i in 0 to N-1 loop
+                    --     for j in 0 to N-1 loop
+                    --         mask_internal(i,j) <= '0';
+                    --     end loop;
+                    -- end loop;
                 else
                     count <= count + 1; -- Increment cycle count
                 end if;

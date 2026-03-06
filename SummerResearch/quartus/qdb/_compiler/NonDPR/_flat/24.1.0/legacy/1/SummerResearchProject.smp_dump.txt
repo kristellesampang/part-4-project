@@ -1,19 +1,20 @@
 
 State Machine - Summary
 
-State Machine - System|npu_system_0|npu_system_13|state
-Name state.write_flush state.write_results state.wait_for_done state.start_npu state.fetch_weight_wait state.fetch_weight_latency state.fetch_weight_req state.fetch_data_wait state.fetch_data_latency state.fetch_data_req state.idle 
-state.idle 0 0 0 0 0 0 0 0 0 0 0 
-state.fetch_data_req 0 0 0 0 0 0 0 0 0 1 1 
-state.fetch_data_latency 0 0 0 0 0 0 0 0 1 0 1 
-state.fetch_data_wait 0 0 0 0 0 0 0 1 0 0 1 
-state.fetch_weight_req 0 0 0 0 0 0 1 0 0 0 1 
-state.fetch_weight_latency 0 0 0 0 0 1 0 0 0 0 1 
-state.fetch_weight_wait 0 0 0 0 1 0 0 0 0 0 1 
-state.start_npu 0 0 0 1 0 0 0 0 0 0 1 
-state.wait_for_done 0 0 1 0 0 0 0 0 0 0 1 
-state.write_results 0 1 0 0 0 0 0 0 0 0 1 
-state.write_flush 1 0 0 0 0 0 0 0 0 0 1 
+State Machine - System|npu_system_0|npu_system_17|state
+Name state.write_flush state.write_avalon state.write_results state.wait_for_done state.start_npu state.fetch_weight_wait state.fetch_weight_latency state.fetch_weight_req state.fetch_data_wait state.fetch_data_latency state.fetch_data_req state.idle 
+state.idle 0 0 0 0 0 0 0 0 0 0 0 0 
+state.fetch_data_req 0 0 0 0 0 0 0 0 0 0 1 1 
+state.fetch_data_latency 0 0 0 0 0 0 0 0 0 1 0 1 
+state.fetch_data_wait 0 0 0 0 0 0 0 0 1 0 0 1 
+state.fetch_weight_req 0 0 0 0 0 0 0 1 0 0 0 1 
+state.fetch_weight_latency 0 0 0 0 0 0 1 0 0 0 0 1 
+state.fetch_weight_wait 0 0 0 0 0 1 0 0 0 0 0 1 
+state.start_npu 0 0 0 0 1 0 0 0 0 0 0 1 
+state.wait_for_done 0 0 0 1 0 0 0 0 0 0 0 1 
+state.write_results 0 0 1 0 0 0 0 0 0 0 0 1 
+state.write_avalon 0 1 0 0 0 0 0 0 0 0 0 1 
+state.write_flush 1 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - System|mm_interconnect_1|npu_system_0_avalon_slave_0_burst_adapter|altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
@@ -21,15 +22,6 @@ state.ST_IDLE 0 0 0 0
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
-
-State Machine - System|intel_niosv_g_0|intel_niosv_g_0|dbg_mod|dm_inst|dm_state
-Name dm_state.CMD_EXE dm_state.RESUMING dm_state.EXE_PNDG dm_state.HALTED dm_state.HALTREQ dm_state.IDLE 
-dm_state.IDLE 0 0 0 0 0 0 
-dm_state.HALTREQ 0 0 0 0 1 1 
-dm_state.HALTED 0 0 0 1 0 1 
-dm_state.EXE_PNDG 0 0 1 0 0 1 
-dm_state.RESUMING 0 1 0 0 0 1 
-dm_state.CMD_EXE 1 0 0 0 0 1 
 
 State Machine - System|mm_interconnect_1|jtag_uart_0_avalon_jtag_slave_burst_adapter|altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
@@ -125,6 +117,15 @@ state.AMO_RD_0 0 0 0 1 0 0 0 0 0 0 0 0 1
 state.EVICT_IDLE 0 0 1 0 0 0 0 0 0 0 0 0 1 
 state.AMO_RD_1 0 1 0 0 0 0 0 0 0 0 0 0 1 
 state.CMO_EVICT 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - System|intel_niosv_g_0|intel_niosv_g_0|dbg_mod|dm_inst|dm_state
+Name dm_state.CMD_EXE dm_state.RESUMING dm_state.EXE_PNDG dm_state.HALTED dm_state.HALTREQ dm_state.IDLE 
+dm_state.IDLE 0 0 0 0 0 0 
+dm_state.HALTREQ 0 0 0 0 1 1 
+dm_state.HALTED 0 0 0 1 0 1 
+dm_state.EXE_PNDG 0 0 1 0 0 1 
+dm_state.RESUMING 0 1 0 0 0 1 
+dm_state.CMD_EXE 1 0 0 0 0 1 
 
 State Machine - System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|write_state
 Name write_state.ST_WRITE_DATA write_state.ST_HEADER_2 write_state.ST_HEADER_1 write_state.ST_BYPASS 

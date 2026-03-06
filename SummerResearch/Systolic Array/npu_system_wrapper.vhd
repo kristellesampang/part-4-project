@@ -56,16 +56,28 @@ architecture rtl of npu_system_wrapper is
     signal write_counter   : integer range 0 to 1024 := 0;
     signal row_idx, col_idx : integer range 0 to 31 := 0;
     signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
+
+    signal npu_clear : std_logic := '0';
+
+    -- Registered index copies: updated one cycle ahead in WRITE_AVALON so that
+    -- when WRITE_RESULTS executes they are already stable register outputs.
+    -- This breaks the depth-5 long routing path where w_row/col_idx was changing
+    -- combinationally and then immediately indexing the output array mux.
+    signal w_row_idx_reg, w_col_idx_reg : integer range 0 to 31 := 0;
+
+    signal out_data_reg : std_logic_vector(31 downto 0) := (others => '0');
     signal debug_state_reg : std_logic_vector(31 downto 0);
 
     type state_type is (IDLE,
                         FETCH_DATA_REQ, FETCH_DATA_LATENCY, FETCH_DATA_WAIT,
                         FETCH_WEIGHT_REQ, FETCH_WEIGHT_LATENCY, FETCH_WEIGHT_WAIT,
-                        START_NPU, WAIT_FOR_DONE, WRITE_RESULTS, WRITE_FLUSH);
+                        START_NPU, WAIT_FOR_DONE, WRITE_RESULTS, WRITE_AVALON, WRITE_FLUSH);
     signal state : state_type := IDLE;
 
 begin
-    n_reset <= not reset_n;
+    n_reset <= (not reset_n) or npu_clear; -- Clear signal from control unit to reset the NPU for the next run
+
+
     avs_waitrequest <= '0';
     n_done_mux <= n_done_int8 when reg_config = '1' else n_done;
 
@@ -79,8 +91,19 @@ begin
                        x"DEB00008" when state = START_NPU else
                        x"DEB00009" when state = WAIT_FOR_DONE else
                        x"DEB0000A" when state = WRITE_RESULTS else
+                       x"DEB0000C" when state = WRITE_AVALON else
                        x"DEB0000B" when state = WRITE_FLUSH else
                        x"DEB0DEAD";
+
+    -- Combinational read: always valid regardless of when JTAG samples
+    avs_readdata <= (0 => reg_ready, others => '0')                when avs_address = "00000" else
+                    std_logic_vector(to_unsigned(reg_m, 32))       when avs_address = "00100" else
+                    std_logic_vector(to_unsigned(reg_n, 32))       when avs_address = "01000" else
+                    std_logic_vector(to_unsigned(reg_k, 32))       when avs_address = "01100" else
+                    (0 => reg_config, others => '0')               when avs_address = "10000" else
+                    (0 => n_done_mux, others => '0')               when avs_address = "10100" else
+                    debug_state_reg                                when avs_address = "11000" else
+                    (others => '0');
 
     process(clk, reset_n)
         variable v_temp_out    : signed(63 downto 0);
@@ -95,7 +118,6 @@ begin
             sa_start_trigger <= '0';
             sa_start_trigger_int8 <= '0';
         elsif rising_edge(clk) then
-            avs_readdata <= (others => '0');
 
             if avs_write = '1' then
                 case avs_address(4 downto 0) is
@@ -106,16 +128,6 @@ begin
                     when "10000" => reg_config <= avs_writedata(0);
                     when others => null;
                 end case;
-            elsif avs_read = '1' then
-                case avs_address(4 downto 0) is
-                    when "00000" => avs_readdata <= (0 => reg_ready, others => '0');
-                    when "00100" => avs_readdata <= std_logic_vector(to_unsigned(reg_m, 32));
-                    when "01000" => avs_readdata <= std_logic_vector(to_unsigned(reg_n, 32));
-                    when "01100" => avs_readdata <= std_logic_vector(to_unsigned(reg_k, 32));
-                    when "10000" => avs_readdata <= (0 => reg_config, others => '0');
-                    when "10100" => avs_readdata <= debug_state_reg;
-                    when others  => avs_readdata <= (others => '0');
-                end case;
             end if;
 
             case state is
@@ -124,7 +136,9 @@ begin
                     sa_start_trigger_int8 <= '0';
                     fetch_counter <= 0;
                     row_idx <= 0; col_idx <= 0;
-                    w_row_idx <= 0; w_col_idx <= 0;
+                    w_row_idx     <= 0; w_col_idx     <= 0;
+                    w_row_idx_reg <= 0; w_col_idx_reg <= 0;
+                    npu_clear      <= '0';
                     if reg_ready = '1' then
                         state <= FETCH_DATA_REQ;
                     end if;
@@ -206,31 +220,47 @@ begin
                     sa_start_trigger_int8 <= '0';
                     if n_done_mux = '1' then
                         write_counter <= 0;
-                        w_row_idx <= 0; w_col_idx <= 0;
+                        w_row_idx     <= 0; w_col_idx     <= 0;
+                        -- Initialise registered copies to 0 so first WRITE_RESULTS
+                        -- reads element (0,0) correctly
+                        w_row_idx_reg <= 0; w_col_idx_reg <= 0;
                         state <= WRITE_RESULTS;
                     end if;
 
                 when WRITE_RESULTS =>
-                    avm_out_write <= '1';
-                    avm_out_address <= std_logic_vector(to_unsigned(16#23000# + write_counter * 4, 32));
-
+                    -- Index the output array using the registered copies.
+                    -- w_row_idx_reg / w_col_idx_reg were set the previous cycle
+                    -- (either in WAIT_FOR_DONE or WRITE_AVALON), so they are
+                    -- stable register outputs with no combinational fan-in here.
                     if reg_config = '1' then
-                        v_temp_out_i8 := signed(n_output_int8(w_row_idx, w_col_idx));
-                        avm_out_writedata <= std_logic_vector(v_temp_out_i8);
+                        v_temp_out_i8 := signed(n_output_int8(w_row_idx_reg, w_col_idx_reg));
+                        out_data_reg  <= std_logic_vector(v_temp_out_i8);
                     else
-                        v_temp_out := signed(n_output(w_row_idx, w_col_idx));
-                        avm_out_writedata <= std_logic_vector(resize(v_temp_out, 32));
+                        v_temp_out   := signed(n_output(w_row_idx_reg, w_col_idx_reg));
+                        out_data_reg <= std_logic_vector(resize(v_temp_out, 32));
                     end if;
+                    state <= WRITE_AVALON;
 
+                when WRITE_AVALON =>
+                    avm_out_write     <= '1';
+                    avm_out_address   <= std_logic_vector(to_unsigned(16#23000# + write_counter * 4, 32));
+                    avm_out_writedata <= out_data_reg;
                     if avm_out_waitreq = '0' then
                         if write_counter < (reg_m * reg_n) - 1 then
                             write_counter <= write_counter + 1;
                             if w_col_idx = reg_n - 1 then
                                 w_col_idx <= 0;
                                 w_row_idx <= w_row_idx + 1;
+                                -- Pre-register the next indices so WRITE_RESULTS
+                                -- sees them as stable values on the very next cycle
+                                w_col_idx_reg <= 0;
+                                w_row_idx_reg <= w_row_idx + 1;
                             else
                                 w_col_idx <= w_col_idx + 1;
+                                w_col_idx_reg <= w_col_idx + 1;
+                                w_row_idx_reg <= w_row_idx;
                             end if;
+                            state <= WRITE_RESULTS;
                         else
                             state <= WRITE_FLUSH;
                         end if;
@@ -239,8 +269,9 @@ begin
                 when WRITE_FLUSH =>
                     if avm_out_waitreq = '0' then
                         avm_out_write <= '0';
-                        reg_ready <= '0';
-                        state <= IDLE;
+                        reg_ready     <= '0';
+                        npu_clear      <= '1'; -- pulse npu_clear to clear accumulators for the next run
+                        state         <= IDLE;
                     end if;
             end case;
         end if;
@@ -249,7 +280,7 @@ begin
     NPU_CORE_INT16 : entity work.top_level_systolic_array
     port map (
         clk           => clk,
-        reset         => n_reset,
+        reset         => n_reset, -- allow control unit to clear accumulators by pulsing npu_clear
         ready         => sa_start_trigger,
         matrix_data   => n_matrix_data,
         matrix_weight => n_matrix_weight,

@@ -28,3 +28,5 @@ timing/
 *.qws
 *.bak
 c5_e_sii_ddr_p0*
+
+alexnet.bin

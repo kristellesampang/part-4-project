@@ -3,12 +3,15 @@ set DATA_MEM   0x31000
 set WEIGHT_MEM 0x32000
 set OUT_MEM    0x33000
 set CFG_REG    0x30010
+set DONE_REG   0x30014
 
 set bin_path "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
 set res_path "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
 
 set master_path [lindex [get_service_paths master] 0]
-if {[is_service_open master $master_path] == 0} { open_service master $master_path }
+if {[is_service_open master $master_path] == 0} {
+    open_service master $master_path
+}
 
 puts "SYSTEM ALIGNED: Monitoring for tile.bin..."
 
@@ -31,15 +34,13 @@ while {1} {
         set total_wgt [expr {$k * $n}]
 
         if {$config == 1} {
-            # Int8: 1 byte per value
             set bytes_per_val 1
             set fmt "c*"
         } else {
-            # Int16: 2 bytes per value
             set bytes_per_val 2
             set fmt "s*"
         }
-        
+
         binary scan [string range $raw_content 4 [expr {4 + $total_act*$bytes_per_val - 1}]] $fmt d_vals_raw
         binary scan [string range $raw_content [expr {4 + $total_act*$bytes_per_val}] [expr {4 + ($total_act + $total_wgt)*$bytes_per_val - 1}]] $fmt w_vals_raw
 
@@ -52,14 +53,10 @@ while {1} {
         master_write_32 $master_path $NPU_CTRL 0
         after 100
 
-        # Write config first
+        # Write config, memories, dimensions
         master_write_32 $master_path $CFG_REG $config
-
-        # Load memories
         master_write_32 $master_path $DATA_MEM $d_final
         master_write_32 $master_path $WEIGHT_MEM $w_final
-
-        # Write M, N, K
         master_write_32 $master_path [expr {$NPU_CTRL + 0x4}] $m
         master_write_32 $master_path [expr {$NPU_CTRL + 0x8}] $n
         master_write_32 $master_path [expr {$NPU_CTRL + 0xC}] $k
@@ -67,26 +64,45 @@ while {1} {
         set check_val [master_read_32 $master_path $DATA_MEM 1]
         puts "DEBUG: JTAG verified Data at $DATA_MEM is: $check_val"
 
-        after 500
+        set d0 [master_read_32 $master_path $DATA_MEM 4]
+        set w0 [master_read_32 $master_path $WEIGHT_MEM 4]
+        puts "DEBUG: First 4 Data values: $d0"
+        puts "DEBUG: First 4 Weight values: $w0"
 
         # Trigger
         master_write_32 $master_path $NPU_CTRL 1
         puts "NPU triggered (M=$m, N=$n, K=$k, Config=$config)"
 
-        after 2000
+
+        # Poll n_done_mux until high
+        set timeout 500
+        set elapsed 0
+        while {1} {
+            set done [master_read_32 $master_path $DONE_REG 1]
+            if {$done & 1} {
+                puts "Done detected after ${elapsed}ms"
+                break
+            }
+            if {$elapsed >= $timeout} {
+                puts "ERROR: Timeout waiting for done"
+                break
+            }
+            after 10
+            incr elapsed 10
+        }
 
         # Read results
         set total_result [expr {$m * $n}]
         set results [master_read_32 $master_path $OUT_MEM $total_result]
 
-        puts "--- HARDWARE RESULT ($m x $n) ---"
-        set idx 0
-        foreach res $results {
-            if {$res > 0x7FFFFFFF} { set res [expr {$res - 0x100000000}] }
-            puts -nonewline [format "%8d " $res]
-            incr idx
-            if {[expr $idx % $n] == 0} { puts "" }
-        }
+        # puts "--- HARDWARE RESULT ($m x $n) ---"
+        # set idx 0
+        # foreach res $results {
+        #     if {$res > 0x7FFFFFFF} { set res [expr {$res - 0x100000000}] }
+        #     puts -nonewline [format "%8d " $res]
+        #     incr idx
+        #     if {[expr $idx % $n] == 0} { puts "" }
+        # }
 
         # Save result.bin
         set fw [open $res_path w]; fconfigure $fw -translation binary

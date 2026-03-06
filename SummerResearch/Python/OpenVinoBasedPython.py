@@ -68,6 +68,7 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     if not common_k or len(active_m) == 0 or len(active_n) == 0: return None
     return data_matrix[np.ix_(active_m, common_k)], weight_matrix[np.ix_(common_k, active_n)], active_m, active_n
 
+
 def run_jtag_inference(m, n, k, s_data, s_weight):
     if MOCK_HARDWARE:
         # Full 64-bit precision internal accumulation
