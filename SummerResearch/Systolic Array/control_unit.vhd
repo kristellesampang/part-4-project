@@ -71,13 +71,6 @@ begin
                 if count >= max_run_cycles then
                     run_enable <= '0'; -- Stop the operation after the max cycles
                     completed_internal <= '1'; -- Signal completion
-
-                    -- -- clear the PE mask so en goes low and accumulators can reset for the next run
-                    -- for i in 0 to N-1 loop
-                    --     for j in 0 to N-1 loop
-                    --         mask_internal(i,j) <= '0';
-                    --     end loop;
-                    -- end loop;
                 else
                     count <= count + 1; -- Increment cycle count
                 end if;

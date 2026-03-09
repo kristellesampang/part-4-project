@@ -5,12 +5,14 @@ import torch.nn.functional as F
 import numpy as np
 import os
 import time
+import csv
 from PIL import Image
 from torchvision import transforms
 
 # --- Constants ---
 IMAGE_PATH = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/cat.jpg"
 MODEL_DIR  = "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/ov_models"
+CYCLE_COUNT_ADDR = 0x3001C  # n_cycle_count Avalon register
 
 SUPPORTED_MODELS = {
     "alexnet":    (models.alexnet,    (1, 3, 224, 224)),
@@ -114,16 +116,14 @@ def compute_sparsity(matrix):
 def decide_config(m, n, k):
     """
     Routes to one of three hardware modes based on actual stripped dimensions.
-    Int8  8x8  — m<=8  and n<=8  (small sparse tile)
-    Int16 16x16 — m<=16 and n<=16 (medium tile)
-    Int16 32x32 — everything else  (large dense tile)
-    Config byte: 1=Int8 8x8, 0=Int16 (both 16x16 and 32x32 use same SA)
-    Tile size reported separately for logging.
+    Int8  8x8   — m<=8  and n<=8  (small sparse tile)  config=1
+    Int16 16x16 — m<=16 and n<=16 (medium tile)         config=2
+    Int16 32x32 — everything else  (large dense tile)   config=0
     """
     if m <= 8 and n <= 8:
         return 1, 8,  "Int8  8x8"
     elif m <= 16 and n <= 16:
-        return 0, 16, "Int16 16x16"
+        return 2, 16, "Int16 16x16"
     else:
         return 0, 32, "Int16 32x32"
 
@@ -140,6 +140,45 @@ def coordinated_row_removal(data_matrix, weight_matrix):
     compact_data   = data_matrix[np.ix_(active_m, common_k)]
     compact_weight = weight_matrix[np.ix_(common_k, active_n)]
     return compact_data, compact_weight, len(active_m), len(active_n), len(common_k), active_m, active_n
+
+def read_cycle_count():
+    """Read n_cycle_count register via TCL cycle_count.bin handshake file."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    cc_req  = os.path.join(current_dir, "cycle_count_req.bin")
+    cc_file = os.path.join(current_dir, "cycle_count.bin")
+
+    if os.path.exists(cc_file):
+        os.remove(cc_file)
+
+    # Signal TCL to read the register and write result
+    with open(cc_req, "wb") as f:
+        f.write(bytes([0x01]))
+
+    start = time.time()
+    while not os.path.exists(cc_file):
+        if time.time() - start > 5:
+            return -1
+        time.sleep(0.05)
+
+    # Wait for file to be stable
+    prev_size = -1
+    stable_count = 0
+    while stable_count < 3:
+        try:
+            curr_size = os.path.getsize(cc_file)
+        except OSError:
+            time.sleep(0.05)
+            continue
+        if curr_size == prev_size and curr_size > 0:
+            stable_count += 1
+        else:
+            stable_count = 0
+        prev_size = curr_size
+        time.sleep(0.05)
+
+    raw = np.fromfile(cc_file, dtype='<u4')
+    os.remove(cc_file)
+    return int(raw[0]) if len(raw) > 0 else -1
 
 def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -162,13 +201,13 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
             time.sleep(0.2)
     else:
         print("  ERROR: Could not write tile.bin after 10 attempts")
-        return None
+        return None, -1
 
     start = time.time()
     while not os.path.exists(res_file):
         if time.time() - start > 30:
             print("  ERROR: Timeout waiting for result.bin")
-            return None
+            return None, -1
         time.sleep(0.1)
 
     prev_size    = -1
@@ -186,8 +225,11 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
         prev_size = curr_size
         time.sleep(0.05)
 
-    raw_res    = np.fromfile(res_file, dtype='<i4')
+    raw_res = np.fromfile(res_file, dtype='<i4')
     os.remove(res_file)
+
+    # Read cycle count immediately after result is ready
+    cycles = read_cycle_count()
 
     sparse_out = np.zeros((32, 32), dtype=np.int32)
     dense_res  = raw_res.reshape(m, n)
@@ -195,7 +237,7 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
         for j, orig_col in enumerate(n_idx):
             sparse_out[orig_row, orig_col] = dense_res[i, j]
 
-    return sparse_out
+    return sparse_out, cycles
 
 def sw_reference(s_data, s_weight, config):
     if config == 1:
@@ -205,7 +247,7 @@ def sw_reference(s_data, s_weight, config):
         full = np.matmul(s_data.astype(np.int64), s_weight.astype(np.int64))
         return ((full + 2**31) % 2**32 - 2**31).astype(np.int32)
 
-def run_layer(layer_idx, layer, activation, t_size):
+def run_layer(layer_idx, layer, activation, t_size, model_name):
     name     = layer["name"]
     kernel_h = layer["kernel_h"]
     kernel_w = layer["kernel_w"]
@@ -235,15 +277,16 @@ def run_layer(layer_idx, layer, activation, t_size):
     print(f"  Tile size: {t_size}  Total tiles: {total_tiles}")
 
     layer_results = []
-    tile_num    = 0
-    int8_count  = 0
+    tile_num       = 0
+    int8_count     = 0
     int16_16_count = 0
     int16_32_count = 0
-    match_count = 0
+    match_count    = 0
 
     for tr in range(0, total_rows, t_size):
         r_start  = tr
         r_end    = min(r_start + t_size, total_rows)
+        orig_m   = r_end - r_start
         raw_d    = act_2d[r_start:r_end, :t_size]
         raw_d_q8 = quantize_to_int8(raw_d)
 
@@ -251,6 +294,8 @@ def run_layer(layer_idx, layer, activation, t_size):
             tile_num += 1
             c_start  = tc
             c_end    = min(c_start + t_size, total_cols)
+            orig_n   = c_end - c_start
+            orig_k   = min(t_size, act_2d.shape[1])
             raw_w    = weights_2d[c_start:c_end, :t_size].T
             raw_w_q8 = raw_w
 
@@ -259,7 +304,7 @@ def run_layer(layer_idx, layer, activation, t_size):
                 print(f"  Tile {tile_num}/{total_tiles}: skipped (all zeros)")
                 continue
 
-            s_data, s_weight, m, n, k, m_idx, n_idx = result
+            s_data_t, s_weight_t, m, n, k, m_idx, n_idx = result
             config, sa_size, reason = decide_config(m, n, k)
 
             if config == 1:
@@ -270,35 +315,52 @@ def run_layer(layer_idx, layer, activation, t_size):
                 int16_32_count += 1
 
             tile_sparsity = 1.0 - (m * k + k * n) / (raw_d.size + raw_w.size)
-            print(f"  Tile {tile_num}/{total_tiles}: M={m} N={n} K={k}  "
-                  f"Config={reason}  Sparsity={tile_sparsity*100:.1f}%")
+            orig_macs     = 2 * orig_m * orig_n * orig_k
+            eff_macs      = 2 * m * n * k
+            mac_reduction = 1.0 - (eff_macs / orig_macs) if orig_macs > 0 else 0.0
 
-            hw = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=config)
+            print(f"  Tile {tile_num}/{total_tiles}: M={m} N={n} K={k}  "
+                  f"Config={reason}  Sparsity={tile_sparsity*100:.1f}%  "
+                  f"MAC reduction={mac_reduction*100:.1f}%")
+
+            hw, cycles = run_jtag_inference(m, n, k, s_data_t, s_weight_t, m_idx, n_idx, config=config)
             if hw is None:
                 print(f"    TIMEOUT — skipping")
                 continue
 
-            sw       = sw_reference(s_data, s_weight, config)
+            sw       = sw_reference(s_data_t, s_weight_t, config)
             hw_dense = hw[np.ix_(m_idx, n_idx)]
             match    = np.array_equal(sw, hw_dense)
 
             if match:
                 match_count += 1
-                print(f"    MATCH ✓")
+                print(f"    MATCH ✓  cycles={cycles}")
             else:
                 diff = sw - hw_dense
-                print(f"    MISMATCH — {np.count_nonzero(diff)} non-zero diffs")
+                print(f"    MISMATCH — {np.count_nonzero(diff)} non-zero diffs  cycles={cycles}")
                 print(f"    SW sample: {sw[:2, :4]}")
                 print(f"    HW sample: {hw_dense[:2, :4]}")
                 print(f"    Diff sample: {diff[:2, :4]}")
 
             layer_results.append({
-                "tile":     tile_num,
-                "m": m, "n": n, "k": k,
-                "config":   config,
-                "sa_size":  sa_size,
-                "sparsity": tile_sparsity,
-                "match":    match,
+                "model":         model_name,
+                "layer":         name,
+                "layer_idx":     layer_idx,
+                "tile":          tile_num,
+                "orig_m":        orig_m,
+                "orig_n":        orig_n,
+                "orig_k":        orig_k,
+                "m":             m,
+                "n":             n,
+                "k":             k,
+                "config":        config,
+                "sa_size":       sa_size,
+                "sparsity":      round(tile_sparsity, 4),
+                "orig_macs":     orig_macs,
+                "eff_macs":      eff_macs,
+                "mac_reduction": round(mac_reduction, 4),
+                "cycles":        cycles,
+                "match":         match,
             })
 
     print(f"\n  Layer summary: {match_count}/{len(layer_results)} tiles matched")
@@ -314,6 +376,26 @@ def preprocess_image(path):
     ])
     img = Image.open(path).convert('RGB')
     return preprocess(img).unsqueeze(0).numpy()
+
+def export_csv(all_results, model_name, image_path):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(current_dir, f"results_{model_name}_{os.path.splitext(os.path.basename(image_path))[0]}.csv")
+    fieldnames = [
+        "model", "layer", "layer_idx", "tile",
+        "orig_m", "orig_n", "orig_k",
+        "m", "n", "k",
+        "config", "sa_size",
+        "sparsity", "orig_macs", "eff_macs", "mac_reduction",
+        "cycles", "match"
+    ]
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for tiles in all_results.values():
+            for t in tiles:
+                writer.writerow(t)
+    print(f"\nCSV saved to: {csv_path}")
+    return csv_path
 
 def run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=0, tile_row=0, tile_col=0, t_size=32):
     print(f"\nSingle tile test: model={model_name} layer={layer_idx} tile=({tile_row},{tile_col})")
@@ -347,18 +429,19 @@ def run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=0, ti
     if result is None:
         print("Tile is all zeros after stripping")
         return
-    s_data, s_weight, m, n, k, m_idx, n_idx = result
+    s_data_t, s_weight_t, m, n, k, m_idx, n_idx = result
     config, sa_size, reason = decide_config(m, n, k)
     print(f"M={m} N={n} K={k}  Config={reason}")
     print(f"Sparsity: {(1.0 - (m*k + k*n)/(raw_d.size + raw_w.size))*100:.1f}%")
-    hw = run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=config)
+    hw, cycles = run_jtag_inference(m, n, k, s_data_t, s_weight_t, m_idx, n_idx, config=config)
     if hw is None:
         print("TIMEOUT")
         return
-    sw       = sw_reference(s_data, s_weight, config)
+    sw       = sw_reference(s_data_t, s_weight_t, config)
     hw_dense = hw[np.ix_(m_idx, n_idx)]
     print(f"\nHARDWARE:\n{hw_dense}")
     print(f"\nSOFTWARE:\n{sw}")
+    print(f"\nCycles: {cycles}")
     if np.array_equal(sw, hw_dense):
         print("\nSTATUS: BIT-ACCURATE MATCH")
     else:
@@ -387,7 +470,7 @@ def main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32):
         if name not in activations:
             print(f"\nLayer [{i}] {name}: no activation captured, skipping")
             continue
-        layer_results     = run_layer(i, layer, activations[name], t_size)
+        layer_results     = run_layer(i, layer, activations[name], t_size, model_name)
         all_results[name] = layer_results
 
     print(f"\n{'='*60}")
@@ -396,16 +479,22 @@ def main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32):
     total_tiles    = sum(len(v) for v in all_results.values())
     total_match    = sum(sum(1 for t in v if t["match"]) for v in all_results.values())
     total_int8     = sum(sum(1 for t in v if t["config"] == 1) for v in all_results.values())
-    total_int16_16 = sum(sum(1 for t in v if t["config"] == 0 and t["sa_size"] == 16) for v in all_results.values())
-    total_int16_32 = sum(sum(1 for t in v if t["config"] == 0 and t["sa_size"] == 32) for v in all_results.values())
+    total_int16_16 = sum(sum(1 for t in v if t["config"] == 2) for v in all_results.values())
+    total_int16_32 = sum(sum(1 for t in v if t["config"] == 0) for v in all_results.values())
     avg_sparsity   = np.mean([t["sparsity"] for v in all_results.values() for t in v]) if total_tiles > 0 else 0
+    total_orig_macs = sum(t["orig_macs"] for v in all_results.values() for t in v)
+    total_eff_macs  = sum(t["eff_macs"]  for v in all_results.values() for t in v)
+    overall_mac_red = 1.0 - (total_eff_macs / total_orig_macs) if total_orig_macs > 0 else 0
 
-    print(f"Total tiles processed : {total_tiles}")
-    print(f"Bit-accurate matches  : {total_match}/{total_tiles}")
-    print(f"Int8  8x8  tiles      : {total_int8}")
-    print(f"Int16 16x16 tiles     : {total_int16_16}")
-    print(f"Int16 32x32 tiles     : {total_int16_32}")
-    print(f"Average tile sparsity : {avg_sparsity*100:.1f}%")
+    print(f"Total tiles processed  : {total_tiles}")
+    print(f"Bit-accurate matches   : {total_match}/{total_tiles}")
+    print(f"Int8  8x8  tiles       : {total_int8}")
+    print(f"Int16 16x16 tiles      : {total_int16_16}")
+    print(f"Int16 32x32 tiles      : {total_int16_32}")
+    print(f"Average tile sparsity  : {avg_sparsity*100:.1f}%")
+    print(f"Overall MAC reduction  : {overall_mac_red*100:.1f}%")
+
+    export_csv(all_results, model_name, image_path)
 
 if __name__ == "__main__":
     #run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=4, tile_row=0, tile_col=0, t_size=16)

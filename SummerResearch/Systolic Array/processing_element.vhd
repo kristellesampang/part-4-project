@@ -51,11 +51,6 @@ begin
                 -- but the PE must be ready to accumulate at any width
                 accumulator_reg <= accumulator_reg + resize(mult_result_reg, ACC_WIDTH);
 
-            -- elsif en = '0' then
-            --     accumulator_reg <= (others => '0'); -- Clear accumulator when disabled
-            --     mult_result_reg <= (others => '0'); -- Clear multiplier result when disabled
-            --     data_reg        <= (others => '0'); -- Clear data register when disabled
-            --     weight_reg      <= (others => '0'); -- Clear weight register when disabled
             end if;
         end if;
     end process;
