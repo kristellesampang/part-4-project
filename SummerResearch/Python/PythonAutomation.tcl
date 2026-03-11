@@ -4,6 +4,7 @@ set WEIGHT_MEM 0x32000
 set OUT_MEM    0x33000
 set CFG_REG    0x30010
 set DONE_REG   0x30014
+set CC_REG     0x3001C
 
 set bin_path "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/tile.bin"
 set res_path "C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/Python/result.bin"
@@ -64,10 +65,10 @@ while {1} {
         set check_val [master_read_32 $master_path $DATA_MEM 1]
         puts "DEBUG: JTAG verified Data at $DATA_MEM is: $check_val"
 
-        set d0 [master_read_32 $master_path $DATA_MEM 4]
-        set w0 [master_read_32 $master_path $WEIGHT_MEM 4]
-        puts "DEBUG: First 4 Data values: $d0"
-        puts "DEBUG: First 4 Weight values: $w0"
+       # set d0 [master_read_32 $master_path $DATA_MEM 20]
+        #set w0 [master_read_32 $master_path $WEIGHT_MEM 4]
+        #puts "DEBUG: First 20 Data values: $d0"
+        #puts "DEBUG: First 4 Weight values: $w0"
 
         # Trigger
         master_write_32 $master_path $NPU_CTRL 1
@@ -91,6 +92,9 @@ while {1} {
             incr elapsed 10
         }
 
+        set cc [master_read_32 $master_path $CC_REG 1]
+        puts "Cycle Count: $cc"
+
         # Read results
         set total_result [expr {$m * $n}]
         set results [master_read_32 $master_path $OUT_MEM $total_result]
@@ -103,7 +107,9 @@ while {1} {
         #     incr idx
         #     if {[expr $idx % $n] == 0} { puts "" }
         # }
-
+         set cc [master_read_32 $master_path $CC_REG 1]
+        puts "Cycle Count: $cc"
+        
         # Save result.bin
         set fw [open $res_path w]; fconfigure $fw -translation binary
         puts -nonewline $fw [binary format i* $results]

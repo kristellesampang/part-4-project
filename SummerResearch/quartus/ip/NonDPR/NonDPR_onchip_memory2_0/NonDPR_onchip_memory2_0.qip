@@ -1,0 +1,44 @@
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TOOL_VERSION "24.1"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TOOL_VENDOR_NAME "Intel Corporation"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TOP_LEVEL_COMPONENT_NAME "altera_avalon_onchip_memory2"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name OCS_IP_FILE "C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_onchip_memory2_0.ip"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name OCS_IP_TYPE "altera_avalon_onchip_memory2"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name OCS_IP_VERSION "19.3.9"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name OCS_IP_HASH "l3tw5py"
+set_global_assignment -library "NonDPR_onchip_memory2_0" -name SOPCINFO_FILE [file join $::quartus(qip_path) "NonDPR_onchip_memory2_0.sopcinfo"]
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name SLD_INFO "QSYS_NAME NonDPR_onchip_memory2_0 HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "NonDPR_onchip_memory2_0" -name MISC_FILE [file join $::quartus(qip_path) "NonDPR_onchip_memory2_0.cmp"]
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "NonDPR_onchip_memory2_0" -name MISC_FILE [file join $::quartus(qip_path) "../NonDPR_onchip_memory2_0.ip"]
+
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_NAME "Tm9uRFBSX29uY2hpcF9tZW1vcnkyXzBfYWx0ZXJhX2F2YWxvbl9vbmNoaXBfbWVtb3J5Ml8xOTM5X2wzdHc1cHk="
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_DISPLAY_NAME "T24tQ2hpcCBNZW1vcnkgKFJBTSBvciBST00pIEludGVsIEZQR0EgSVA="
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_VERSION "MTkuMy45"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_GROUP "QmFzaWMgRnVuY3Rpb25zL09uIENoaXAgTWVtb3J5"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL2RvY3MvcHJvZ3JhbW1hYmxlLzY4MzEzMC8="
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_COMPONENT_DOCUMENTATION_LINK "aHR0cHM6Ly93d3cuaW50ZWwuY29tL2NvbnRlbnQvd3d3L3VzL2VuL3Byb2dyYW1tYWJsZS9kb2N1bWVudGF0aW9uL2xybzE0NjU0MDc0NzQ4MzMuaHRtbCNoYnIxNTk5NzUxMDc0Mzgy"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_NAME "Tm9uRFBSX29uY2hpcF9tZW1vcnkyXzA="
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "NonDPR_onchip_memory2_0" -library "NonDPR_onchip_memory2_0" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "altera_avalon_onchip_memory2_1939" -name VERILOG_FILE [file join $::quartus(qip_path) "altera_avalon_onchip_memory2_1939/synth/NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py.v"]
+set_global_assignment -library "NonDPR_onchip_memory2_0" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/NonDPR_onchip_memory2_0.v"]
+
+
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_TOOL_NAME "altera_avalon_onchip_memory2"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_TOOL_VERSION "19.3.9"
+set_global_assignment -entity "NonDPR_onchip_memory2_0_altera_avalon_onchip_memory2_1939_l3tw5py" -library "altera_avalon_onchip_memory2_1939" -name IP_TOOL_ENV "QsysPrimePro"
+

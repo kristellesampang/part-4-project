@@ -66,9 +66,6 @@ set_instance_assignment -name PARTITION_COLOUR 4286250872 -to auto_fab_0 -entity
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_8.ip
 set_global_assignment -name FAST_PRESERVE OFF -entity non_dpr_top
 set_instance_assignment -name PARTIAL_RECONFIGURATION_PARTITION ON -to npu_core -entity non_dpr_top
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_intel_niosv_g_0.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_onchip_memory2_0.ip
-set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_jtag_uart_0.ip
 set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
 set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
 set_global_assignment -name BOARD default
@@ -87,3 +84,8 @@ set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_14.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_15.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_16.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_17.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_18.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_19.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_20.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_21.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_22.ip

@@ -13,11 +13,11 @@ PACKAGE custom_types_int16 IS
     constant N16 : integer := 16;
 
     type systolic_array_matrix_input_int16  is array (0 to N16-1, 0 to N16-1) of bit_16;
-    type systolic_array_matrix_output_int16 is array (0 to N16-1, 0 to N16-1) of bit_64;
+    type systolic_array_matrix_output_int16 is array (0 to N16-1, 0 to N16-1) of bit_32;
     type input_shift_matrix_int16           is array (0 to N16-1) of bit_16;
     type enabled_PE_matrix_int16            is array (0 to N16-1, 0 to N16-1) of bit_1;
     type data_bus_matrix_int16              is array (0 to N16, 0 to N16) of bit_16;
     type weight_bus_matrix_int16            is array (0 to N16, 0 to N16) of bit_16;
     type result_matrix_int16                is array (0 to N16-1, 0 to N16-1) of bit_32;
 
-END custom_types_int16+;
+END custom_types_int16;

@@ -34,7 +34,7 @@ PACKAGE custom_types IS
 
 	-- input and output matrix
 	type systolic_array_matrix_input is array (0 to N-1, 0 to N-1) of bit_16; -- must match the systolic array size
-	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_64; -- must match the systolic array size
+	type systolic_array_matrix_output is array (0 to N-1, 0 to N-1) of bit_32; -- must match the systolic array size
 	-- shift registers 
 	type input_shift_matrix is array (0 to N-1) of bit_16; -- 1xN size 
 	-- PE enabled mask
@@ -42,8 +42,6 @@ PACKAGE custom_types IS
 	-- inter-PE signals (modify based on design)
 	type data_bus_matrix is array(0 to N, 0 to N) of bit_16; -- includes the bus going out of the right   
 	type weight_bus_matrix is array(0 to N, 0 to N) of bit_16; -- includes the bus going out of the bottom
-	type result_matrix is array(0 to N-1, 0 to N-1) of bit_64; -- holds the accumlated 8-bit value of each PE as a matrix
-
-	type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
+	type result_matrix is array(0 to N-1, 0 to N-1) of bit_32; -- holds the accumlated 8-bit value of each PE as a matrix
 
 END custom_types;

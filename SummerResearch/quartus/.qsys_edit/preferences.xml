@@ -11,6 +11,6 @@
    modelsim="1"
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
- <library expandedCategories="Project,Existing IP Variants,Library" />
+ <library expandedCategories="Project,Library,Existing IP Variants" />
  <sysinfo autosync="0" />
 </preferences>

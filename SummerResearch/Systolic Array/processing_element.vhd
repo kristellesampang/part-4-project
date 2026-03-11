@@ -6,7 +6,7 @@ use work.custom_types.all;
 entity processing_element is 
 generic (
     DATA_WIDTH : integer := 16;
-    ACC_WIDTH  : integer := 64
+    ACC_WIDTH  : integer := 32
 );
 port(
     clk   : in std_logic; 
