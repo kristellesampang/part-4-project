@@ -408,5 +408,5 @@ def main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32):
     print(f"Average tile sparsity : {avg_sparsity*100:.1f}%")
 
 if __name__ == "__main__":
-    run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=4, tile_row=0, tile_col=0, t_size=16)
+    run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=0, tile_row=1, tile_col=0, t_size=32)
     #main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32)

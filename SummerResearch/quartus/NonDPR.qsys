@@ -12,7 +12,7 @@ the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
 refer to the applicable agreement for further details, at
 https://fpgasoftware.intel.com/eula.-->
-<ipxact:design xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions">
+<ipxact:design xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
   <ipxact:vendor>Altera Corporation</ipxact:vendor>
   <ipxact:library>NonDPR</ipxact:library>
   <ipxact:name>NonDPR</ipxact:name>
@@ -4851,35 +4851,35 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:name>generationInfoDefinition</ipxact:name>
               <ipxact:displayName>Generation Behavior</ipxact:displayName>
               <ipxact:value>&lt;generationInfoDefinition&gt;
-    &lt;hdlLibraryName&gt;NonDPR_npu_system_22&lt;/hdlLibraryName&gt;
+    &lt;hdlLibraryName&gt;NonDPR_npu_system_25&lt;/hdlLibraryName&gt;
     &lt;fileSets&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_22&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_22&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_25&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_25&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_22&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_22&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_25&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_25&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_22&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_22&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_25&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_25&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_22&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_22&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_25&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_25&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_22&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_22&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_25&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_25&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
@@ -4899,12 +4899,12 @@ https://fpgasoftware.intel.com/eula.-->
             <ipxact:parameter parameterId="liveModuleName" type="string">
               <ipxact:name>liveModuleName</ipxact:name>
               <ipxact:displayName>Live Module Name</ipxact:displayName>
-              <ipxact:value>npu_system_22</ipxact:value>
+              <ipxact:value>npu_system_25</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="logicalView" type="string">
               <ipxact:name>logicalView</ipxact:name>
               <ipxact:displayName>Logical view</ipxact:displayName>
-              <ipxact:value>ip/NonDPR/NonDPR_npu_system_22.ip</ipxact:value>
+              <ipxact:value>ip/NonDPR/NonDPR_npu_system_25.ip</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="moduleAssignmentDefinition" type="string">
               <ipxact:name>moduleAssignmentDefinition</ipxact:name>

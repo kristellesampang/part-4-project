@@ -89,3 +89,6 @@ set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_19.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_20.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_21.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_22.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_23.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_24.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_25.ip
