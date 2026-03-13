@@ -30,3 +30,30 @@ timing/
 c5_e_sii_ddr_p0*
 
 alexnet.bin
+
+
+# Quartus II / Prime Output Folders
+db/
+incremental_db/
+greybox_tmp/
+hc_output/
+hps_isw_handoff/
+simulation/
+stp_priv_cache/
+qdb/
+dni/
+
+# Compilation Outputs
+*.bak
+*.orig
+*.rpt
+*.summary
+*.sof
+*.pof
+*.jdi
+*.map
+*.pin
+*.done
+*.qws
+*.smsg
+*.txt

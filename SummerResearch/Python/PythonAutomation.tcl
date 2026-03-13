@@ -74,26 +74,29 @@ while {1} {
         master_write_32 $master_path $NPU_CTRL 1
         puts "NPU triggered (M=$m, N=$n, K=$k, Config=$config)"
 
-
+        #wasit some time for it to complete, temporary to see if polling is not wrking
+        after 3000
         # Poll n_done_mux until high
-        set timeout 500
-        set elapsed 0
-        while {1} {
-            set done [master_read_32 $master_path $DONE_REG 1]
-            if {$done & 1} {
-                puts "Done detected after ${elapsed}ms"
-                break
-            }
-            if {$elapsed >= $timeout} {
-                puts "ERROR: Timeout waiting for done"
-                break
-            }
-            after 10
-            incr elapsed 10
-        }
+        # set timeout 500
+        # set elapsed 0
+        # while {1} {
+        #     set done [master_read_32 $master_path $DONE_REG 1]
+        #     if {$done & 1} {
+        #         puts "Done detected after ${elapsed}ms"
+        #         break
+        #     }
+        #     if {$elapsed >= $timeout} {
+        #         puts "ERROR: Timeout waiting for done"
+        #         break
+        #     }
+        #     after 10
+        #     incr elapsed 10
+        # }
 
-        set cc [master_read_32 $master_path $CC_REG 1]
-        puts "Cycle Count: $cc"
+        set debug_state [master_read_32 $master_path 0x30018 1]
+        puts "DEBUG STATE: $debug_state"
+        set cycle_count [master_read_32 $master_path $CC_REG 1]
+        puts "DEBUG CYCLE COUNT: $cycle_count"
 
         # Read results
         set total_result [expr {$m * $n}]
@@ -107,8 +110,7 @@ while {1} {
         #     incr idx
         #     if {[expr $idx % $n] == 0} { puts "" }
         # }
-         set cc [master_read_32 $master_path $CC_REG 1]
-        puts "Cycle Count: $cc"
+
         
         # Save result.bin
         set fw [open $res_path w]; fconfigure $fw -translation binary

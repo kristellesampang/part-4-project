@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_jtag_interface.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_jtag_dc_streaming.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_jtag_sld_node.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_jtag_streaming.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_clock_crosser.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_reset_synchronizer.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_std_synchronizer_nocut.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_pipeline_base.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_idle_remover.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_idle_inserter.v"
+   type="VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_pipeline_stage.sv"
+   type="SYSTEM_VERILOG"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="altera_jtag_dc_streaming_191/sim/altera_avalon_st_jtag_interface.sdc"
+   type="SDC_ENTITY"
+   library="altera_jtag_dc_streaming_191" />
+ <file
+   path="timing_adapter_1940/sim/NonDPR_master_0_timing_adapter_1940_5ju4ddy.sv"
+   type="SYSTEM_VERILOG"
+   library="timing_adapter_1940" />
+ <file
+   path="altera_avalon_sc_fifo_1932/sim/NonDPR_master_0_altera_avalon_sc_fifo_1932_5j7ufsq.v"
+   type="VERILOG"
+   library="altera_avalon_sc_fifo_1932" />
+ <file
+   path="altera_avalon_st_bytes_to_packets_1922/sim/altera_avalon_st_bytes_to_packets.v"
+   type="VERILOG"
+   library="altera_avalon_st_bytes_to_packets_1922" />
+ <file
+   path="altera_avalon_st_packets_to_bytes_1922/sim/altera_avalon_st_packets_to_bytes.v"
+   type="VERILOG"
+   library="altera_avalon_st_packets_to_bytes_1922" />
+ <file
+   path="altera_avalon_packets_to_master_1922/sim/altera_avalon_packets_to_master.v"
+   type="VERILOG"
+   library="altera_avalon_packets_to_master_1922" />
+ <file
+   path="channel_adapter_1921/sim/NonDPR_master_0_channel_adapter_1921_5wnzrci.sv"
+   type="SYSTEM_VERILOG"
+   library="channel_adapter_1921" />
+ <file
+   path="channel_adapter_1921/sim/NonDPR_master_0_channel_adapter_1921_fkajlia.sv"
+   type="SYSTEM_VERILOG"
+   library="channel_adapter_1921" />
+ <file
+   path="altera_reset_controller_1922/sim/mentor/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="modelsim" />
+ <file
+   path="altera_reset_controller_1922/sim/mentor/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="modelsim" />
+ <file
+   path="altera_reset_controller_1922/sim/aldec/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="riviera" />
+ <file
+   path="altera_reset_controller_1922/sim/aldec/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="riviera" />
+ <file
+   path="altera_reset_controller_1922/sim/cadence/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="ncsim" />
+ <file
+   path="altera_reset_controller_1922/sim/cadence/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="ncsim" />
+ <file
+   path="altera_reset_controller_1922/sim/synopsys/altera_reset_controller.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="vcs, vcsmx" />
+ <file
+   path="altera_reset_controller_1922/sim/synopsys/altera_reset_synchronizer.v"
+   type="VERILOG_ENCRYPT"
+   library="altera_reset_controller_1922"
+   simulator="vcs, vcsmx" />
+ <file
+   path="altera_jtag_avalon_master_191/sim/NonDPR_master_0_altera_jtag_avalon_master_191_3zppvky.vhd"
+   type="VHDL"
+   library="altera_jtag_avalon_master_191"
+   hasInlineConfiguration="true" />
+ <file
+   path="sim/NonDPR_master_0.vhd"
+   type="VHDL"
+   library="NonDPR_master_0"
+   hasInlineConfiguration="true" />
+ <topLevel name="NonDPR_master_0.NonDPR_master_0" />
+ <deviceFamily name="arria10" />
+ <device name="10AS066N3F40E2SG" />
+</simPackage>

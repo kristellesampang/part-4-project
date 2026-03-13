@@ -1,7 +1,7 @@
 
 State Machine - Summary
 
-State Machine - System|npu_system_0|npu_system_25|state
+State Machine - System|npu_system_0|npu_system_28|state
 Name state.write_flush state.write_avalon state.write_results state.wait_for_done state.start_npu state.fetch_weight_wait state.fetch_weight_latency state.fetch_weight_req state.fetch_data_wait state.fetch_data_latency state.fetch_data_req state.idle 
 state.idle 0 0 0 0 0 0 0 0 0 0 0 0 
 state.fetch_data_req 0 0 0 0 0 0 0 0 0 0 1 1 

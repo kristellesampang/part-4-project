@@ -1,0 +1,32 @@
+# system info NonDPR_npu_system_28 on 2026.03.13.16:11:12
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,0
+#
+#
+# Files generated for NonDPR_npu_system_28 on 2026.03.13.16:11:12
+files:
+filepath,kind,attributes,module,is_top
+sim/NonDPR_npu_system_28.vhd,VHDL,CONTAINS_INLINE_CONFIGURATION,NonDPR_npu_system_28,true
+npu_system_10/sim/npu_system_wrapper.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/top_level_systolic_array.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/control_unit.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/systolic_array.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/custom_types.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/processing_element.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/top_level_systolic_array_int8.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/control_unit_int8.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/systolic_array_int8.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/processing_element_int8.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/custom_types_int8.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/top_level_systolic_array_int16.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/control_unit_int16.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/systolic_array_int16.vhd,VHDL,,npu_system_wrapper,false
+npu_system_10/sim/custom_types_int16.vhd,VHDL,,npu_system_wrapper,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+NonDPR_npu_system_28.npu_system_28,npu_system_wrapper
