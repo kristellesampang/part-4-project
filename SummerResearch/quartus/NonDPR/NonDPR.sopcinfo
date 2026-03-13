@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="NonDPR" kind="NonDPR" version="1.0" fabric="QSYS">
  <!-- Format version 24.1 115 (Future versions may contain additional information.) -->
- <!-- 2026.03.13.16:11:16 -->
+ <!-- 2026.03.13.20:06:39 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
@@ -4937,8 +4937,8 @@ parameters are a RESULT of the module parameters. -->
    name="npu_system_0"
    kind="npu_system"
    version="1.0"
-   entity="NonDPR_npu_system_28"
-   library="NonDPR_npu_system_28"
+   entity="NonDPR_npu_system_35"
+   library="NonDPR_npu_system_35"
    path="npu_system_0"
    hpath="npu_system_0"
    className="altera_generic_component">
@@ -5900,35 +5900,35 @@ the requested settings for a module instance. -->
   <parameter name="generationInfoDefinition">
    <type>com.altera.qsys.blackboxmodule.definitions.GenerationInfoDefinition</type>
    <value><![CDATA[<generationInfoDefinition>
-    <hdlLibraryName>NonDPR_npu_system_28</hdlLibraryName>
+    <hdlLibraryName>NonDPR_npu_system_35</hdlLibraryName>
     <fileSets>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>QUARTUS_SYNTH</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>SIM_VERILOG</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>SIM_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>CDC</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>CDC_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
@@ -5949,7 +5949,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="logicalView">
    <type>java.lang.String</type>
-   <value>ip/NonDPR/NonDPR_npu_system_28.ip</value>
+   <value>ip/NonDPR/NonDPR_npu_system_35.ip</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -6917,7 +6917,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="liveModuleName">
    <type>java.lang.String</type>
-   <value>npu_system_28</value>
+   <value>npu_system_35</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>

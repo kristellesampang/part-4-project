@@ -120,7 +120,7 @@ module NonDPR (
 		.master_byteenable    (master_0_master_byteenable)     //  output,   width = 4,             .byteenable
 	);
 
-	NonDPR_npu_system_28 npu_system_0 (
+	NonDPR_npu_system_35 npu_system_0 (
 		.clk                 (clock_in_out_clk_clk),                                      //   input,   width = 1,          clock.clk
 		.reset_n             (~rst_controller_reset_out_reset),                           //   input,   width = 1,          reset.reset_n
 		.avs_address         (mm_interconnect_1_npu_system_0_avalon_slave_0_address),     //   input,   width = 5, avalon_slave_0.address

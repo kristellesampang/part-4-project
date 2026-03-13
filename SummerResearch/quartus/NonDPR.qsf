@@ -95,3 +95,10 @@ set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_25.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_26.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_27.ip
 set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_28.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_29.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_30.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_31.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_32.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_33.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_34.ip
+set_global_assignment -name IP_FILE ip/NonDPR/NonDPR_npu_system_35.ip

@@ -43,12 +43,12 @@ begin
             run_enable <= '0';
             completed_internal <= '0';
             
-            for i in 0 to N8-1 loop
+            for i in 0 to N16-1 loop
                 data_reg(i)   <= (others => '0');
                 weight_reg(i) <= (others => '0');
             end loop;
-            for i in 0 to N8-1 loop
-                for j in 0 to N8-1 loop
+            for i in 0 to N16-1 loop
+                for j in 0 to N16-1 loop
                     mask_internal(i,j) <= '0';
                 end loop;
             end loop;
@@ -65,19 +65,12 @@ begin
                 if count >= max_run_cycles then
                     run_enable <= '0';
                     completed_internal <= '1';
-
-                    -- -- clear the PE mask so en goes low and accumulators can reset for the next run
-                    -- for i in 0 to N8-1 loop
-                    --     for j in 0 to N8-1 loop
-                    --         mask_internal(i,j) <= '0';
-                    --     end loop;
-                    -- end loop;
                 else
                     count <= count + 1;
                 end if;
             end if;
 
-            for i in 0 to N8-1 loop
+            for i in 0 to N16-1 loop
                 if i < active_rows then
                     if run_enable = '1' and (count >= i) and (count < i + active_k) then
                         data_reg(i) <= matrix_data(i, count - i);
@@ -89,7 +82,7 @@ begin
                 end if;
             end loop;
 
-            for j in 0 to N8-1 loop
+            for j in 0 to N16-1 loop
                 if j < active_cols then
                     if run_enable = '1' and (count >= j) and (count < j + active_k) then
                         weight_reg(j) <= matrix_weight(count - j, j);
@@ -102,8 +95,8 @@ begin
             end loop;
 
             if ready = '1' and count = 0 then
-                for i in 0 to N8-1 loop
-                    for j in 0 to N8-1 loop
+                for i in 0 to N16-1 loop
+                    for j in 0 to N16-1 loop
                         if (i < active_rows) and (j < active_cols) then
                             mask_internal(i,j) <= '1';
                         else

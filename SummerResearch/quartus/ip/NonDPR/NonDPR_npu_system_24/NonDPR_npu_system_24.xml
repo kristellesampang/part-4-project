@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.03.13.13:56:47"
+ date="2026.03.13.20:07:32"
  outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/ip/NonDPR/NonDPR_npu_system_24/">
  <perimeter>
   <parameter
@@ -353,16 +353,10 @@
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array_int16.vhd"
-       attributes="" />
-   <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array_int8.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit_int16.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit_int8.vhd"
@@ -371,25 +365,19 @@
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array_int16.vhd"
-       attributes="" />
-   <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array_int8.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element_int8.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types_int16.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types_int8.vhd"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types.vhd"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
@@ -400,16 +388,10 @@
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array_int16.vhd"
-       attributes="" />
-   <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\top_level_systolic_array_int8.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit_int16.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\control_unit_int8.vhd"
@@ -418,25 +400,19 @@
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array_int16.vhd"
-       attributes="" />
-   <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\systolic_array_int8.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element_int8.vhd"
        attributes="" />
    <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types.vhd"
-       attributes="" />
-   <file
-       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types_int16.vhd"
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\processing_element.vhd"
        attributes="" />
    <file
        path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types_int8.vhd"
+       attributes="" />
+   <file
+       path="C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_24\npu_system_10\synth\custom_types.vhd"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>

@@ -120,10 +120,8 @@ def decide_config(m, n, k):
     Config byte: 1=Int8 8x8, 0=Int16 (both 16x16 and 32x32 use same SA)
     Tile size reported separately for logging.
     """
-    if m <= 8 and n <= 8:
-        return 1, 8,  "Int8  8x8"
-    elif m <= 16 and n <= 16:
-        return 0, 16, "Int16 16x16"
+    if m <= 16 and n <= 16:
+        return 1, 16, "Int8 16x16"
     else:
         return 0, 32, "Int16 32x32"
 
@@ -302,7 +300,7 @@ def run_layer(layer_idx, layer, activation, t_size):
             })
 
     print(f"\n  Layer summary: {match_count}/{len(layer_results)} tiles matched")
-    print(f"  Int8 8x8: {int8_count}  Int16 16x16: {int16_16_count}  Int16 32x32: {int16_32_count}")
+    print(f"  Int8 16x16: {int8_count}  Int16 32x32: {int16_32_count}")
     return layer_results
 
 def preprocess_image(path):

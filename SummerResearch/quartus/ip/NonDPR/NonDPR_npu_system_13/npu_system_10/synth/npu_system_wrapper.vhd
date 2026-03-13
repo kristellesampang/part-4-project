@@ -3,7 +3,6 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.custom_types.all;
 use work.custom_types_int8.all;
-use work.custom_types_int16.all;
 
 entity npu_system_wrapper is
     port (
@@ -33,36 +32,20 @@ end npu_system_wrapper;
 architecture rtl of npu_system_wrapper is
     signal reg_ready  : std_logic := '0';
     signal reg_m, reg_n, reg_k : integer := 0;
-    signal reg_config : std_logic_vector(1 downto 0) := "00"; 
-    signal n_cycle_count      : integer := 0;
-    signal n_cycle_count_16   : integer := 0;
-    signal n_cycle_count_int8 : integer := 0;
-    signal active_cycle_count : integer := 0;
+    signal reg_config : std_logic := '0';
+    signal n_cycle_count        : integer := 0;
+    signal n_cycle_count_int8   : integer := 0;
+    signal cycle_count_lat      : integer := 0;  -- latched at done, holds until next tile
     signal n_reset         : std_logic;
 
-    -- Signal declarations must come BEFORE attributes
-    signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
-    signal w_row_idx_reg, w_col_idx_reg : integer range 0 to 31 := 0;
-
-    -- Speed Fix: Slash the 14ns Interconnect Delay by duplicating the index
-    attribute max_fanout : integer;
-    attribute max_fanout of w_row_idx_reg : signal is 30;
-    attribute max_fanout of w_col_idx_reg : signal is 30;
-    attribute max_fanout of reg_config     : signal is 10;
-
-    -- Core Logic Signals
+    -- Int16 32x32 signals
     signal n_output        : systolic_array_matrix_output;
     signal n_done          : std_logic;
     signal n_matrix_data   : systolic_array_matrix_input   := (others => (others => (others => '0')));
     signal n_matrix_weight : systolic_array_matrix_input   := (others => (others => (others => '0')));
     signal sa_start_trigger : std_logic := '0';
 
-    signal n_output_16        : systolic_array_matrix_output_int16;
-    signal n_done_16          : std_logic;
-    signal n_matrix_data_16   : systolic_array_matrix_input_int16   := (others => (others => (others => '0')));
-    signal n_matrix_weight_16 : systolic_array_matrix_input_int16   := (others => (others => (others => '0')));
-    signal sa_start_trigger_16 : std_logic := '0';
-
+    -- Int8 16x16 signals
     signal n_output_int8        : systolic_array_matrix_output_int8;
     signal n_done_int8          : std_logic;
     signal n_matrix_data_int8   : systolic_array_matrix_input_int8   := (others => (others => (others => '0')));
@@ -70,10 +53,21 @@ architecture rtl of npu_system_wrapper is
     signal sa_start_trigger_int8 : std_logic := '0';
 
     signal n_done_mux : std_logic;
+
     signal fetch_counter   : integer range 0 to 1024 := 0;
     signal write_counter   : integer range 0 to 1024 := 0;
     signal row_idx, col_idx : integer range 0 to 31 := 0;
+    signal w_row_idx, w_col_idx : integer range 0 to 31 := 0;
+
     signal npu_clear : std_logic := '0';
+
+    signal w_row_idx_reg, w_col_idx_reg : integer range 0 to 31 := 0;
+
+    -- max_fanout attributes to reduce logic depth on critical index paths
+    attribute max_fanout : integer;
+    attribute max_fanout of w_row_idx_reg : signal is 30;
+    attribute max_fanout of w_col_idx_reg : signal is 30;
+
     signal out_data_reg : std_logic_vector(31 downto 0) := (others => '0');
     signal debug_state_reg : std_logic_vector(31 downto 0);
 
@@ -85,15 +79,9 @@ architecture rtl of npu_system_wrapper is
 
 begin
     n_reset <= (not reset_n) or npu_clear;
+
     avs_waitrequest <= '0';
-
-    n_done_mux <= n_done_int8 when reg_config = "01" else
-                  n_done_16   when reg_config = "10" else
-                  n_done;
-
-    active_cycle_count <= n_cycle_count_int8 when reg_config = "01" else
-                          n_cycle_count_16   when reg_config = "10" else
-                          n_cycle_count;
+    n_done_mux <= n_done_int8 when reg_config = '1' else n_done;
 
     debug_state_reg <= x"DEB00001" when state = IDLE else
                        x"DEB00002" when state = FETCH_DATA_REQ else
@@ -109,14 +97,14 @@ begin
                        x"DEB0000B" when state = WRITE_FLUSH else
                        x"DEB0DEAD";
 
-    avs_readdata <= (0 => reg_ready, others => '0')                       when avs_address = "00000" else
-                    std_logic_vector(to_unsigned(reg_m, 32))              when avs_address = "00100" else
-                    std_logic_vector(to_unsigned(reg_n, 32))              when avs_address = "01000" else
-                    std_logic_vector(to_unsigned(reg_k, 32))              when avs_address = "01100" else
-                    std_logic_vector(resize(unsigned(reg_config), 32))    when avs_address = "10000" else
-                    (0 => n_done_mux, others => '0')                      when avs_address = "10100" else
-                    debug_state_reg                                       when avs_address = "11000" else
-                    std_logic_vector(to_unsigned(active_cycle_count, 32)) when avs_address = "11100" else
+    avs_readdata <= (0 => reg_ready, others => '0')                when avs_address = "00000" else
+                    std_logic_vector(to_unsigned(reg_m, 32))       when avs_address = "00100" else
+                    std_logic_vector(to_unsigned(reg_n, 32))       when avs_address = "01000" else
+                    std_logic_vector(to_unsigned(reg_k, 32))       when avs_address = "01100" else
+                    (0 => reg_config, others => '0')               when avs_address = "10000" else
+                    (0 => n_done_mux, others => '0')               when avs_address = "10100" else
+                    debug_state_reg                                when avs_address = "11000" else
+                    std_logic_vector(to_unsigned(cycle_count_lat, 32)) when avs_address = "11100" else
                     (others => '0');
 
     process(clk, reset_n)
@@ -129,9 +117,9 @@ begin
             avm_act_read <= '0';
             avm_weight_read <= '0';
             avm_out_write <= '0';
-            sa_start_trigger      <= '0';
-            sa_start_trigger_16   <= '0';
+            sa_start_trigger <= '0';
             sa_start_trigger_int8 <= '0';
+            cycle_count_lat <= 0;
         elsif rising_edge(clk) then
 
             if avs_write = '1' then
@@ -140,7 +128,7 @@ begin
                     when "00100" => reg_m      <= to_integer(unsigned(avs_writedata(15 downto 0)));
                     when "01000" => reg_n      <= to_integer(unsigned(avs_writedata(15 downto 0)));
                     when "01100" => reg_k      <= to_integer(unsigned(avs_writedata(15 downto 0)));
-                    when "10000" => reg_config <= avs_writedata(1 downto 0);
+                    when "10000" => reg_config <= avs_writedata(0);
                     when others => null;
                 end case;
             end if;
@@ -149,12 +137,11 @@ begin
                 when IDLE =>
                     sa_start_trigger      <= '0';
                     sa_start_trigger_int8 <= '0';
-                    sa_start_trigger_16   <= '0';
                     fetch_counter <= 0;
                     row_idx <= 0; col_idx <= 0;
                     w_row_idx     <= 0; w_col_idx     <= 0;
                     w_row_idx_reg <= 0; w_col_idx_reg <= 0;
-                    npu_clear     <= '0'; -- RESTORE: This releases reset for a fresh run
+                    npu_clear     <= '0';
                     if reg_ready = '1' then
                         state <= FETCH_DATA_REQ;
                     end if;
@@ -170,10 +157,8 @@ begin
                     state <= FETCH_DATA_WAIT;
 
                 when FETCH_DATA_WAIT =>
-                    if reg_config = "01" then
+                    if reg_config = '1' then
                         n_matrix_data_int8(row_idx, col_idx) <= avm_act_readdata(7 downto 0);
-                    elsif reg_config = "10" then
-                        n_matrix_data_16(row_idx, col_idx) <= avm_act_readdata(15 downto 0);
                     else
                         n_matrix_data(row_idx, col_idx) <= avm_act_readdata(15 downto 0);
                     end if;
@@ -205,10 +190,8 @@ begin
                     state <= FETCH_WEIGHT_WAIT;
 
                 when FETCH_WEIGHT_WAIT =>
-                    if reg_config = "01" then
+                    if reg_config = '1' then
                         n_matrix_weight_int8(row_idx, col_idx) <= avm_weight_readdata(7 downto 0);
-                    elsif reg_config = "10" then
-                        n_matrix_weight_16(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
                     else
                         n_matrix_weight(row_idx, col_idx) <= avm_weight_readdata(15 downto 0);
                     end if;
@@ -228,10 +211,8 @@ begin
                     end if;
 
                 when START_NPU =>
-                    if reg_config = "01" then
+                    if reg_config = '1' then
                         sa_start_trigger_int8 <= '1';
-                    elsif reg_config = "10" then
-                        sa_start_trigger_16 <= '1';
                     else
                         sa_start_trigger <= '1';
                     end if;
@@ -240,8 +221,12 @@ begin
                 when WAIT_FOR_DONE =>
                     sa_start_trigger      <= '0';
                     sa_start_trigger_int8 <= '0';
-                    sa_start_trigger_16   <= '0';
                     if n_done_mux = '1' then
+                        if reg_config = '1' then
+                            cycle_count_lat <= n_cycle_count_int8;
+                        else
+                            cycle_count_lat <= n_cycle_count;
+                        end if;
                         write_counter <= 0;
                         w_row_idx     <= 0; w_col_idx     <= 0;
                         w_row_idx_reg <= 0; w_col_idx_reg <= 0;
@@ -249,14 +234,11 @@ begin
                     end if;
 
                 when WRITE_RESULTS =>
-                    if reg_config = "01" then
-                        v_temp_out_i8 := signed(n_output_int8(w_row_idx, w_col_idx));
+                    if reg_config = '1' then
+                        v_temp_out_i8 := signed(n_output_int8(w_row_idx_reg, w_col_idx_reg));
                         out_data_reg  <= std_logic_vector(v_temp_out_i8);
-                    elsif reg_config = "10" then
-                        v_temp_out   := signed(n_output_16(w_row_idx, w_col_idx));
-                        out_data_reg <= std_logic_vector(resize(v_temp_out, 32));
                     else
-                        v_temp_out   := signed(n_output(w_row_idx, w_col_idx));
+                        v_temp_out   := signed(n_output(w_row_idx_reg, w_col_idx_reg));
                         out_data_reg <= std_logic_vector(resize(v_temp_out, 32));
                     end if;
                     state <= WRITE_AVALON;
@@ -268,21 +250,16 @@ begin
                     if avm_out_waitreq = '0' then
                         if write_counter < (reg_m * reg_n) - 1 then
                             write_counter <= write_counter + 1;
-                            
-                            -- ACCURACY FIX: Look-ahead indexing to ensure the mux starts moving NOW
                             if w_col_idx = reg_n - 1 then
                                 w_col_idx     <= 0;
-                                w_col_idx_reg <= 0;
                                 w_row_idx     <= w_row_idx + 1;
-                                w_row_idx_reg <= w_row_idx + 1; -- Target the NEW row immediately
+                                w_col_idx_reg <= 0;
+                                w_row_idx_reg <= w_row_idx + 1;
                             else
                                 w_col_idx     <= w_col_idx + 1;
                                 w_col_idx_reg <= w_col_idx + 1;
                                 w_row_idx_reg <= w_row_idx;
                             end if;
-                            
-                            -- FORCE a 20ns settle cycle to beat the Interconnect Delay
-                            avm_out_write <= '0'; 
                             state <= WRITE_RESULTS;
                         else
                             state <= WRITE_FLUSH;
@@ -328,21 +305,6 @@ begin
         output        => n_output_int8,
         done          => n_done_int8,
         cycle_count   => n_cycle_count_int8
-    );
-
-    NPU_CORE_INT16_16x16 : entity work.top_level_systolic_array_int16
-    port map (
-        clk           => clk,
-        reset         => n_reset,
-        ready         => sa_start_trigger_16,
-        matrix_data   => n_matrix_data_16,
-        matrix_weight => n_matrix_weight_16,
-        active_rows   => reg_m,
-        active_cols   => reg_n,
-        active_k      => reg_k,
-        output        => n_output_16,
-        done          => n_done_16,
-        cycle_count   => n_cycle_count_16
     );
 
 end architecture rtl;

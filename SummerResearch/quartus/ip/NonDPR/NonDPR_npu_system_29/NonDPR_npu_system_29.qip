@@ -1,0 +1,45 @@
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TOOL_NAME "QsysPrimePro"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TOOL_VERSION "24.1"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TOOL_ENV "QsysPrimePro"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TOOL_VENDOR_NAME "Altera Corporation"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TOP_LEVEL_COMPONENT_NAME "npu_system"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name PRE_COMPILED_MODULE "ON"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name OCS_IP_FILE "C:\Users\pchh520\Documents\GitHub\part-4-project\SummerResearch\quartus\ip\NonDPR\NonDPR_npu_system_29.ip"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name OCS_IP_TYPE "npu_system"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name OCS_IP_VERSION "1.0"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name OCS_IP_HASH "zgs4zca"
+set_global_assignment -library "NonDPR_npu_system_29" -name SOPCINFO_FILE [file join $::quartus(qip_path) "NonDPR_npu_system_29.sopcinfo"]
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name SLD_INFO "QSYS_NAME NonDPR_npu_system_29 HAS_SOPCINFO 1 GENERATION_ID 0"
+set_global_assignment -library "NonDPR_npu_system_29" -name MISC_FILE [file join $::quartus(qip_path) "NonDPR_npu_system_29.cmp"]
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_QSYS_MODE "STANDALONE"
+set_global_assignment -name SYNTHESIS_ONLY_QIP ON
+set_global_assignment -library "NonDPR_npu_system_29" -name MISC_FILE [file join $::quartus(qip_path) "../NonDPR_npu_system_29.ip"]
+
+set_global_assignment -entity "npu_system_wrapper" -library "npu_system_10" -name IP_COMPONENT_NAME "bnB1X3N5c3RlbV93cmFwcGVy"
+set_global_assignment -entity "npu_system_wrapper" -library "npu_system_10" -name IP_COMPONENT_DISPLAY_NAME "bnB1X3N5c3RlbQ=="
+set_global_assignment -entity "npu_system_wrapper" -library "npu_system_10" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "npu_system_wrapper" -library "npu_system_10" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "npu_system_wrapper" -library "npu_system_10" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_NAME "Tm9uRFBSX25wdV9zeXN0ZW1fMjk="
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_DISPLAY_NAME "c3lzdGVt"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_REPORT_HIERARCHY "On"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
+set_global_assignment -entity "NonDPR_npu_system_29" -library "NonDPR_npu_system_29" -name IP_COMPONENT_VERSION "MS4w"
+
+
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/npu_system_wrapper.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/top_level_systolic_array.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/top_level_systolic_array_int8.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/control_unit.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/control_unit_int8.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/systolic_array.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/systolic_array_int8.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/processing_element_int8.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/processing_element.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/custom_types_int8.vhd"]
+set_global_assignment -library "npu_system_10" -name VHDL_FILE [file join $::quartus(qip_path) "npu_system_10/synth/custom_types.vhd"]
+set_global_assignment -library "NonDPR_npu_system_29" -name VERILOG_FILE [file join $::quartus(qip_path) "synth/NonDPR_npu_system_29.v"]
+

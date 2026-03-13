@@ -4579,35 +4579,35 @@ https://fpgasoftware.intel.com/eula.-->
     </interfaces>
 </boundaryDefinition>]]></parameter>
   <parameter name="generationInfoDefinition"><![CDATA[<generationInfoDefinition>
-    <hdlLibraryName>NonDPR_npu_system_28</hdlLibraryName>
+    <hdlLibraryName>NonDPR_npu_system_35</hdlLibraryName>
     <fileSets>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>QUARTUS_SYNTH</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>SIM_VERILOG</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>SIM_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>CDC</fileSetKind>
             <fileSetFiles/>
         </fileSet>
         <fileSet>
-            <fileSetName>NonDPR_npu_system_28</fileSetName>
-            <fileSetFixedName>NonDPR_npu_system_28</fileSetFixedName>
+            <fileSetName>NonDPR_npu_system_35</fileSetName>
+            <fileSetFixedName>NonDPR_npu_system_35</fileSetFixedName>
             <fileSetKind>CDC_VHDL</fileSetKind>
             <fileSetFiles/>
         </fileSet>
@@ -4615,8 +4615,8 @@ https://fpgasoftware.intel.com/eula.-->
 </generationInfoDefinition>]]></parameter>
   <parameter name="hdlParameters"><![CDATA[<hdlParameterDescriptorDefinitionList/>]]></parameter>
   <parameter name="hlsFile" value="" />
-  <parameter name="liveModuleName" value="npu_system_28" />
-  <parameter name="logicalView">ip/NonDPR/NonDPR_npu_system_28.ip</parameter>
+  <parameter name="liveModuleName" value="npu_system_35" />
+  <parameter name="logicalView">ip/NonDPR/NonDPR_npu_system_35.ip</parameter>
   <parameter name="moduleAssignmentDefinition"><![CDATA[<assignmentDefinition>
     <assignmentValueMap/>
 </assignmentDefinition>]]></parameter>

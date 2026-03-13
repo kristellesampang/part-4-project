@@ -74,24 +74,23 @@ while {1} {
         master_write_32 $master_path $NPU_CTRL 1
         puts "NPU triggered (M=$m, N=$n, K=$k, Config=$config)"
 
-        #wasit some time for it to complete, temporary to see if polling is not wrking
-        after 3000
-        # Poll n_done_mux until high
-        # set timeout 500
-        # set elapsed 0
-        # while {1} {
-        #     set done [master_read_32 $master_path $DONE_REG 1]
-        #     if {$done & 1} {
-        #         puts "Done detected after ${elapsed}ms"
-        #         break
-        #     }
-        #     if {$elapsed >= $timeout} {
-        #         puts "ERROR: Timeout waiting for done"
-        #         break
-        #     }
-        #     after 10
-        #     incr elapsed 10
-        # }
+       
+        #Poll n_done_mux until high
+        set timeout 500
+        set elapsed 0
+        while {1} {
+            set done [master_read_32 $master_path $DONE_REG 1]
+            if {$done & 1} {
+                puts "Done detected after ${elapsed}ms"
+                break
+            }
+            if {$elapsed >= $timeout} {
+                puts "ERROR: Timeout waiting for done"
+                break
+            }
+            after 10
+            incr elapsed 10
+        }
 
         set debug_state [master_read_32 $master_path 0x30018 1]
         puts "DEBUG STATE: $debug_state"

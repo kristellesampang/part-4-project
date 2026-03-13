@@ -21,16 +21,16 @@ architecture behaviour of systolic_array_int8 is
     signal results    : result_matrix_int8     := (others => (others => (others => '0')));
 begin
 
-    feed_data_edge: for i in 0 to N8-1 generate
+    feed_data_edge: for i in 0 to N16-1 generate
         data_bus(i, 0) <= data_shift(i);
     end generate feed_data_edge;
 
-    feed_weight_edge: for i in 0 to N8-1 generate
+    feed_weight_edge: for i in 0 to N16-1 generate
         weight_bus(0, i) <= weight_shift(i);
     end generate feed_weight_edge;
 
-    gen_PE_array : for i in 0 to N8-1 generate
-    pe_col : for j in 0 to N8-1 generate
+    gen_PE_array : for i in 0 to N16-1 generate
+    pe_col : for j in 0 to N16-1 generate
     begin
         PE_inst : entity work.processing_element_int8
         port map (
@@ -46,8 +46,8 @@ begin
     end generate pe_col;
     end generate gen_PE_array;
 
-    gen_output_assign : for i in 0 to N8-1 generate
-    gen_output_col : for j in 0 to N8-1 generate
+    gen_output_assign : for i in 0 to N16-1 generate
+    gen_output_col : for j in 0 to N16-1 generate
     begin
         output(i, j) <= results(i, j) when enabled_PE(i,j) = '1' else (others => '0');
     end generate gen_output_col;

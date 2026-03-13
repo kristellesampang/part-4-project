@@ -4851,35 +4851,35 @@ https://fpgasoftware.intel.com/eula.-->
               <ipxact:name>generationInfoDefinition</ipxact:name>
               <ipxact:displayName>Generation Behavior</ipxact:displayName>
               <ipxact:value>&lt;generationInfoDefinition&gt;
-    &lt;hdlLibraryName&gt;NonDPR_npu_system_28&lt;/hdlLibraryName&gt;
+    &lt;hdlLibraryName&gt;NonDPR_npu_system_35&lt;/hdlLibraryName&gt;
     &lt;fileSets&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
@@ -4899,12 +4899,12 @@ https://fpgasoftware.intel.com/eula.-->
             <ipxact:parameter parameterId="liveModuleName" type="string">
               <ipxact:name>liveModuleName</ipxact:name>
               <ipxact:displayName>Live Module Name</ipxact:displayName>
-              <ipxact:value>npu_system_28</ipxact:value>
+              <ipxact:value>npu_system_35</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="logicalView" type="string">
               <ipxact:name>logicalView</ipxact:name>
               <ipxact:displayName>Logical view</ipxact:displayName>
-              <ipxact:value>ip/NonDPR/NonDPR_npu_system_28.ip</ipxact:value>
+              <ipxact:value>ip/NonDPR/NonDPR_npu_system_35.ip</ipxact:value>
             </ipxact:parameter>
             <ipxact:parameter parameterId="moduleAssignmentDefinition" type="string">
               <ipxact:name>moduleAssignmentDefinition</ipxact:name>

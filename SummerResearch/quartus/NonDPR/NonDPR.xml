@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2026.03.13.16:11:16"
+ date="2026.03.13.20:06:39"
  outputDirectory="C:/Users/pchh520/Documents/GitHub/part-4-project/SummerResearch/quartus/NonDPR/">
  <perimeter>
   <parameter
@@ -148,7 +148,7 @@
    <message level="Info" culprit="NonDPR">"Generating: PR_Test_Top_clock_in"</message>
    <message level="Info" culprit="NonDPR">"Generating: data_mem"</message>
    <message level="Info" culprit="NonDPR">"Generating: NonDPR_master_0"</message>
-   <message level="Info" culprit="NonDPR">"Generating: NonDPR_npu_system_28"</message>
+   <message level="Info" culprit="NonDPR">"Generating: NonDPR_npu_system_35"</message>
    <message level="Info" culprit="NonDPR">"Generating: out_mem"</message>
    <message level="Info" culprit="NonDPR">"Generating: PR_Test_Top_reset_in"</message>
    <message level="Info" culprit="NonDPR">"Generating: weight_mem"</message>
@@ -2769,7 +2769,7 @@
  <entity
    kind="altera_generic_component"
    version="1.0"
-   name="NonDPR_npu_system_28">
+   name="NonDPR_npu_system_35">
   <parameter name="hlsFile" value="" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter
@@ -4635,7 +4635,7 @@
     &lt;/systemInfos&gt;
 &lt;/componentDefinition&gt;" />
   <parameter name="cpuInfo" value="" />
-  <parameter name="logicalView" value="ip/NonDPR/NonDPR_npu_system_28.ip" />
+  <parameter name="logicalView" value="ip/NonDPR/NonDPR_npu_system_35.ip" />
   <parameter
      name="moduleAssignmentDefinition"
      value="&lt;assignmentDefinition&gt;
@@ -4649,48 +4649,48 @@
   <parameter
      name="generationInfoDefinition"
      value="&lt;generationInfoDefinition&gt;
-    &lt;hdlLibraryName&gt;NonDPR_npu_system_28&lt;/hdlLibraryName&gt;
+    &lt;hdlLibraryName&gt;NonDPR_npu_system_35&lt;/hdlLibraryName&gt;
     &lt;fileSets&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
     &lt;/fileSets&gt;
 &lt;/generationInfoDefinition&gt;" />
-  <parameter name="liveModuleName" value="npu_system_28" />
+  <parameter name="liveModuleName" value="npu_system_35" />
   <generatedFiles/>
   <childGeneratedFiles/>
   <sourceFiles/>
   <childSourceFiles/>
   <instantiator instantiator="NonDPR" as="npu_system_0" />
   <messages>
-   <message level="Info" culprit="NonDPR">"Generating: NonDPR_npu_system_28"</message>
+   <message level="Info" culprit="NonDPR">"Generating: NonDPR_npu_system_35"</message>
   </messages>
  </entity>
  <entity kind="altera_generic_component" version="1.0" name="out_mem">

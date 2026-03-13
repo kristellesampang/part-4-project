@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <internal_error>
 	<sub_system>ERR</sub_system>
-	<callstack>	0x7ff9678c1890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
+	<callstack>	0x7ff96a831890: dni_orch + 0x11890 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x3590)
 	0x7ff97fa53a92: ucrtbase + 0x53a92 (__sys_nerr + 0x2b2)
 	0x7ff97fa2042d: ucrtbase + 0x2042d (_o_free + 0xdd)
 	0x7ff97fa1dddc: ucrtbase + 0x1dddc (_execute_onexit_table + 0x3c)
-	0x7ff9678bf590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
-	0x7ff9678be67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
-	0x7ff9678be95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
+	0x7ff96a82f590: dni_orch + 0xf590 (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x1290)
+	0x7ff96a82e67d: dni_orch + 0xe67d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x37d)
+	0x7ff96a82e95d: dni_orch + 0xe95d (?is_developer_debug@ORCH_UTIL@@YA_NXZ + 0x65d)
 	0x7ff9822b8c0e: ntdll + 0x28c0e (RtlActivateActivationContextUnsafeFast + 0x12e)
 	0x7ff9822fbb25: ntdll + 0x6bb25 (LdrUnloadAlternateResourceModuleEx + 0x325)
 	0x7ff9822fb55e: ntdll + 0x6b55e (RtlInitAnsiStringEx + 0x7e)
@@ -21,22 +21,22 @@
 	0x7ff9822bd4fd: ntdll + 0x2d4fd (LdrUnloadDll + 0x11d)
 	0x7ff9822bd474: ntdll + 0x2d474 (LdrUnloadDll + 0x94)
 	0x7ff97f3fe78d: KERNELBASE + 0x3e78d (FreeLibrary + 0x1d)
-	0x7ff942a91fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
-	0x7ff942a91908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
-	0x1df4d76d620:
-	0x1dfae71a99f:
-	0x60b62eca7:
-	0x1deffffffff:
-	0x1df4d7694fd:
-	0x60b000177:
-	0x1df4d76d2f5:
-	0x78291feddf:
-	0x1dfae71a99f:
-	0x78291fee47:
-	0x1dfae71d7e7:
+	0x7ff96b551fc8: mega_qsysipc_jni_stub + 0x1fc8 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x6c8)
+	0x7ff96b551908: mega_qsysipc_jni_stub + 0x1908 (Java_com_altera_qsys_ipc_QsysIPCNativeInterface_nativeShutDownJNIModule + 0x8)
+	0x241d53ed620:
+	0x241f571b147:
+	0x241f71c49ff:
+	0x240ffffffff:
+	0x241d53e94fd:
+	0x60e68e287:
+	0x241d53ed2f5:
+	0x70386fedff:
+	0x241f571b147:
+	0x70386fee67:
+	0x241f571df8f:
 </callstack>
-	<error>*** Fatal Error: Access Violation at 00007FF9678C1891</error>
-	<date>Fri Mar 13 19:01:26 2026
+	<error>*** Fatal Error: Access Violation at 00007FF96A831891</error>
+	<date>Fri Mar 13 20:06:56 2026
 </date>
 	<version>Version 24.1.0 Build 115 03/21/2024 SC Pro Edition</version>
 </internal_error>

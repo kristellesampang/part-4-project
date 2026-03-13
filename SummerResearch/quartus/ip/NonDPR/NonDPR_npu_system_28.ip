@@ -462,14 +462,6 @@ https://fpgasoftware.intel.com/eula.-->
                 <ipxact:name>avm_act_readdata</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>waitrequest</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>avm_act_waitreq</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
           </ipxact:portMaps>
         </ipxact:abstractionType>
       </ipxact:abstractionTypes>
@@ -678,14 +670,6 @@ https://fpgasoftware.intel.com/eula.-->
                 <ipxact:name>avm_weight_readdata</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>waitrequest</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>avm_weight_waitreq</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
           </ipxact:portMaps>
         </ipxact:abstractionType>
       </ipxact:abstractionTypes>
@@ -892,14 +876,6 @@ https://fpgasoftware.intel.com/eula.-->
               </ipxact:logicalPort>
               <ipxact:physicalPort>
                 <ipxact:name>avm_out_writedata</ipxact:name>
-              </ipxact:physicalPort>
-            </ipxact:portMap>
-            <ipxact:portMap>
-              <ipxact:logicalPort>
-                <ipxact:name>waitrequest</ipxact:name>
-              </ipxact:logicalPort>
-              <ipxact:physicalPort>
-                <ipxact:name>avm_out_waitreq</ipxact:name>
               </ipxact:physicalPort>
             </ipxact:portMap>
           </ipxact:portMaps>
@@ -1268,19 +1244,6 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
-        <ipxact:name>avm_act_waitreq</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
         <ipxact:name>avm_weight_address</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
@@ -1330,19 +1293,6 @@ https://fpgasoftware.intel.com/eula.-->
         </ipxact:wire>
       </ipxact:port>
       <ipxact:port>
-        <ipxact:name>avm_weight_waitreq</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
         <ipxact:name>avm_out_address</ipxact:name>
         <ipxact:wire>
           <ipxact:direction>out</ipxact:direction>
@@ -1386,19 +1336,6 @@ https://fpgasoftware.intel.com/eula.-->
           <ipxact:wireTypeDefs>
             <ipxact:wireTypeDef>
               <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
-              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
-            </ipxact:wireTypeDef>
-          </ipxact:wireTypeDefs>
-        </ipxact:wire>
-      </ipxact:port>
-      <ipxact:port>
-        <ipxact:name>avm_out_waitreq</ipxact:name>
-        <ipxact:wire>
-          <ipxact:direction>in</ipxact:direction>
-          <ipxact:vectors></ipxact:vectors>
-          <ipxact:wireTypeDefs>
-            <ipxact:wireTypeDef>
-              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
               <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
             </ipxact:wireTypeDef>
           </ipxact:wireTypeDefs>
@@ -1856,15 +1793,6 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;avm_act_waitreq&lt;/name&gt;
-                    &lt;role&gt;waitrequest&lt;/role&gt;
-                    &lt;direction&gt;Input&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
             &lt;/ports&gt;
             &lt;assignments&gt;
                 &lt;assignmentValueMap/&gt;
@@ -2041,15 +1969,6 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;avm_weight_waitreq&lt;/name&gt;
-                    &lt;role&gt;waitrequest&lt;/role&gt;
-                    &lt;direction&gt;Input&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
             &lt;/ports&gt;
             &lt;assignments&gt;
                 &lt;assignmentValueMap/&gt;
@@ -2224,15 +2143,6 @@ https://fpgasoftware.intel.com/eula.-->
                     &lt;width&gt;32&lt;/width&gt;
                     &lt;lowerBound&gt;0&lt;/lowerBound&gt;
                     &lt;vhdlType&gt;STD_LOGIC_VECTOR&lt;/vhdlType&gt;
-                    &lt;terminationValue&gt;0&lt;/terminationValue&gt;
-                &lt;/port&gt;
-                &lt;port&gt;
-                    &lt;name&gt;avm_out_waitreq&lt;/name&gt;
-                    &lt;role&gt;waitrequest&lt;/role&gt;
-                    &lt;direction&gt;Input&lt;/direction&gt;
-                    &lt;width&gt;1&lt;/width&gt;
-                    &lt;lowerBound&gt;0&lt;/lowerBound&gt;
-                    &lt;vhdlType&gt;STD_LOGIC&lt;/vhdlType&gt;
                     &lt;terminationValue&gt;0&lt;/terminationValue&gt;
                 &lt;/port&gt;
             &lt;/ports&gt;
@@ -2428,7 +2338,6 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:port_mapping altera:name="avm_act_address" altera:internal="avm_act_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_act_read" altera:internal="avm_act_read"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_act_readdata" altera:internal="avm_act_readdata"></altera:port_mapping>
-        <altera:port_mapping altera:name="avm_act_waitreq" altera:internal="avm_act_waitreq"></altera:port_mapping>
       </altera:interface_mapping>
       <altera:interface_mapping altera:name="avalon_slave_0" altera:internal="npu_system_28.avalon_slave_0" altera:type="avalon" altera:dir="end">
         <altera:port_mapping altera:name="avs_address" altera:internal="avs_address"></altera:port_mapping>
@@ -2443,7 +2352,6 @@ https://fpgasoftware.intel.com/eula.-->
       </altera:interface_mapping>
       <altera:interface_mapping altera:name="out" altera:internal="npu_system_28.out" altera:type="avalon" altera:dir="start">
         <altera:port_mapping altera:name="avm_out_address" altera:internal="avm_out_address"></altera:port_mapping>
-        <altera:port_mapping altera:name="avm_out_waitreq" altera:internal="avm_out_waitreq"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_out_write" altera:internal="avm_out_write"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_out_writedata" altera:internal="avm_out_writedata"></altera:port_mapping>
       </altera:interface_mapping>
@@ -2454,7 +2362,6 @@ https://fpgasoftware.intel.com/eula.-->
         <altera:port_mapping altera:name="avm_weight_address" altera:internal="avm_weight_address"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_weight_read" altera:internal="avm_weight_read"></altera:port_mapping>
         <altera:port_mapping altera:name="avm_weight_readdata" altera:internal="avm_weight_readdata"></altera:port_mapping>
-        <altera:port_mapping altera:name="avm_weight_waitreq" altera:internal="avm_weight_waitreq"></altera:port_mapping>
       </altera:interface_mapping>
     </altera:altera_interface_boundary>
     <altera:altera_has_warnings>false</altera:altera_has_warnings>

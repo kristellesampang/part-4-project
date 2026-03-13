@@ -23077,35 +23077,35 @@
           <parameter>
             <name>generationInfoDefinition</name>
             <value>&lt;generationInfoDefinition&gt;
-    &lt;hdlLibraryName&gt;NonDPR_npu_system_28&lt;/hdlLibraryName&gt;
+    &lt;hdlLibraryName&gt;NonDPR_npu_system_35&lt;/hdlLibraryName&gt;
     &lt;fileSets&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;QUARTUS_SYNTH&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VERILOG&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;SIM_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
         &lt;fileSet&gt;
-            &lt;fileSetName&gt;NonDPR_npu_system_28&lt;/fileSetName&gt;
-            &lt;fileSetFixedName&gt;NonDPR_npu_system_28&lt;/fileSetFixedName&gt;
+            &lt;fileSetName&gt;NonDPR_npu_system_35&lt;/fileSetName&gt;
+            &lt;fileSetFixedName&gt;NonDPR_npu_system_35&lt;/fileSetFixedName&gt;
             &lt;fileSetKind&gt;CDC_VHDL&lt;/fileSetKind&gt;
             &lt;fileSetFiles/&gt;
         &lt;/fileSet&gt;
@@ -23122,11 +23122,11 @@
           </parameter>
           <parameter>
             <name>liveModuleName</name>
-            <value>npu_system_28</value>
+            <value>npu_system_35</value>
           </parameter>
           <parameter>
             <name>logicalView</name>
-            <value>ip/NonDPR/NonDPR_npu_system_28.ip</value>
+            <value>ip/NonDPR/NonDPR_npu_system_35.ip</value>
           </parameter>
           <parameter>
             <name>moduleAssignmentDefinition</name>
@@ -23143,8 +23143,8 @@
         <className>altera_generic_component</className>
         <version>1.0</version>
         <name>npu_system_0</name>
-        <uniqueName>NonDPR_npu_system_28</uniqueName>
-        <fixedName>NonDPR_npu_system_28</fixedName>
+        <uniqueName>NonDPR_npu_system_35</uniqueName>
+        <fixedName>NonDPR_npu_system_35</fixedName>
         <nonce>0</nonce>
         <incidentConnections>
           <incidentConnection>

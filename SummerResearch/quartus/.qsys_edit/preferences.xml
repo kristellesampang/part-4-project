@@ -5,12 +5,12 @@
  <generation
    path=""
    greybox="0"
-   simulation="VHDL"
+   simulation="NONE"
    vcs="0"
    synthesis="VERILOG"
    modelsim="1"
    modelsim_flow="TRADITIONAL" />
  <systemtable filter="All Interfaces" />
- <library expandedCategories="Project,Library,Existing IP Variants" />
+ <library expandedCategories="Project,Existing IP Variants,Library" />
  <sysinfo autosync="0" />
 </preferences>
