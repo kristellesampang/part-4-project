@@ -27,6 +27,7 @@ greybox_tmp/
 timing/
 *.qws
 *.bak
+*.rpt
 c5_e_sii_ddr_p0*
 
 alexnet.bin
@@ -46,7 +47,6 @@ dni/
 # Compilation Outputs
 *.bak
 *.orig
-*.rpt
 *.summary
 *.sof
 *.pof
