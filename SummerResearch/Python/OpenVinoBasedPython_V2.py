@@ -169,6 +169,7 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
         print("  ERROR: Could not write tile.bin after 10 attempts")
         return None, -1
 
+    expected_bytes = (m * n + 1) * 4
     start = time.time()
     while True:
         if time.time() - start > 30:
@@ -176,7 +177,7 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
             return None, -1
         if os.path.exists(res_file):
             sz = os.path.getsize(res_file)
-            if sz > 0:
+            if sz == expected_bytes:
                 time.sleep(0.02)
                 if os.path.getsize(res_file) == sz:
                     break
@@ -185,7 +186,7 @@ def run_jtag_inference(m, n, k, s_data, s_weight, m_idx, n_idx, config=0):
     for _ in range(20):
         try:
             raw_res = np.fromfile(res_file, dtype='<i4')
-            if raw_res.size == 0:
+            if raw_res.size != m * n + 1:
                 time.sleep(0.05)
                 continue
             os.remove(res_file)
@@ -494,8 +495,8 @@ def main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32, pruned=False, p
     print(f"Average tile sparsity  : {avg_sparsity*100:.1f}%")
     print(f"Overall MAC reduction  : {overall_mac_red*100:.1f}%")
 
-    export_csv(all_results, model_name, image_path, pruned=pruned, prune_amount=prune_amount)
+    print(f"\nCSV saved to: {csv_path}")
 
 if __name__ == "__main__":
     #run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=4, tile_row=0, tile_col=0, t_size=16)
-    main(model_name="vgg16", image_path=IMAGE_PATH, t_size=32, pruned=True, prune_amount=0.45, start_layer=0)
+    main(model_name="mobilenetv2", image_path=IMAGE_PATH, t_size=32, pruned=True, prune_amount=0.45, start_layer=0)
