@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Command Info</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui/1.10.2/css/smoothness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-ui/1.10.2/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.min.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<div class="rdb_text">Report Timing: Found 10 recovery paths (0 violated).  Worst case slack is 14.350 
+
+Tcl Command:
+    report_timing -recovery -panel_name {Worst-Case Timing Paths||Recovery||CLK_50} -to_clock [get_clocks {CLK_50}] -npaths 10 -detail full_path
+
+Options:
+    -to_clock [get_clocks {CLK_50}] 
+    -recovery 
+    -npaths 10 
+    -detail full_path 
+    -panel_name {CLK_50} 
+
+Snapshot:
+    final
+
+Delay Models:
+    Slow 900mV 100C Model
+    Slow 900mV 0C Model
+    Fast 900mV 100C Model
+    Fast 900mV 0C Model</div>
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

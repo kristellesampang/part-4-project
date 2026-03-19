@@ -499,4 +499,4 @@ def main(model_name="alexnet", image_path=IMAGE_PATH, t_size=32, pruned=False, p
 
 if __name__ == "__main__":
     #run_single_tile(model_name="alexnet", image_path=IMAGE_PATH, layer_idx=4, tile_row=0, tile_col=0, t_size=16)
-    main(model_name="mobilenetv2", image_path=IMAGE_PATH, t_size=32, pruned=True, prune_amount=0.45, start_layer=0)
+    main(model_name="vgg16", image_path=IMAGE_PATH, t_size=32, pruned=True, prune_amount=0.45, start_layer=8)

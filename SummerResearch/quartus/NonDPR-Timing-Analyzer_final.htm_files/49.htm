@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Summary of Paths</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui/1.10.2/css/smoothness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-ui/1.10.2/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.min.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Slack</TH>
+<TH>From Node</TH>
+<TH>To Node</TH>
+<TH>Launch Clock</TH>
+<TH>Latch Clock</TH>
+<TH>Relationship</TH>
+<TH>Clock Skew</TH>
+<TH>Data Delay</TH>
+<TH>Worst-Case Operating Conditions</TH>
+</TR>
+</thead><tbody><TR  bgcolor="#FFFFFF">
+<TD >0.020</TD>
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem_used[0]</TD>
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem_used[0]</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.254</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >0.021</TD>
+<TD >System|master_0|master_0|transacto|p2m|read</TD>
+<TD >System|master_0|master_0|transacto|p2m|read</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.257</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >0.021</TD>
+<TD >System|master_0|master_0|transacto|p2m|state.WRITE_WAIT</TD>
+<TD >System|master_0|master_0|transacto|p2m|state.WRITE_WAIT</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.257</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >0.022</TD>
+<TD >System|master_0|master_0|transacto|p2m|state.READY</TD>
+<TD >System|master_0|master_0|transacto|p2m|state.READY~DUPLICATE</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.269</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >0.022</TD>
+<TD >System|npu_system_0|npu_system_35|w_col_idx[0]</TD>
+<TD >System|npu_system_0|npu_system_35|w_col_idx[0]</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >-0.001</TD>
+<TD >0.287</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >0.022</TD>
+<TD >System|mm_interconnect_0|npu_system_0_act_translator|read_accepted</TD>
+<TD >System|mm_interconnect_0|npu_system_0_act_translator|read_accepted</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.257</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >0.022</TD>
+<TD >System|master_0|master_0|fifo|empty</TD>
+<TD >System|master_0|master_0|fifo|empty</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.256</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >0.022</TD>
+<TD >System|master_0|master_0|b2p|out_startofpacket</TD>
+<TD >System|master_0|master_0|b2p|out_startofpacket</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.001</TD>
+<TD >0.255</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >0.022</TD>
+<TD >System|mm_interconnect_1|master_0_master_limiter|has_pending_responses</TD>
+<TD >System|mm_interconnect_1|master_0_master_limiter|has_pending_responses</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.253</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >0.023</TD>
+<TD >System|master_0|master_0|fifo|rd_ptr[4]</TD>
+<TD >System|master_0|master_0|fifo|rd_ptr[4]</TD>
+<TD >CLK_50</TD>
+<TD >CLK_50</TD>
+<TD >0.000</TD>
+<TD >0.000</TD>
+<TD >0.255</TD>
+<TD >Fast 900mV 0C Model</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>

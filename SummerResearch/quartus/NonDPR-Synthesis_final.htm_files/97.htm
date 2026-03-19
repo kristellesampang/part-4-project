@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Registers Removed During Synthesis</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui/1.10.2/css/smoothness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-ui/1.10.2/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.min.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Register name</TH>
+<TH>Reason for Removal</TH>
+</TR>
+</thead><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0..1][36..67]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0..1][77..80]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0..1][36..67]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0..1][77..80]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0..1][36..67]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0..1][77..80]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0..1][36..67]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0..1][77..80]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|b2p|received_varchannel</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|p2b|stored_channel[7]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[0]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|p2b|stored_channel[0]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|p2b|stored_channel[1]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[2]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|p2b|stored_channel[2]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[3]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|p2b|stored_channel[3]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[4]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|p2b|stored_channel[4]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[5]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|p2b|stored_channel[5]</TD>
+<TD >Merged with System|master_0|master_0|p2b|stored_channel[6]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][76]</TD>
+<TD >Merged with System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][68]</TD>
+<TD >Merged with System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][74]</TD>
+<TD >Merged with System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][76]</TD>
+<TD >Merged with System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][68]</TD>
+<TD >Merged with System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][74]</TD>
+<TD >Merged with System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][76]</TD>
+<TD >Merged with System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][68]</TD>
+<TD >Merged with System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][74]</TD>
+<TD >Merged with System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][76]</TD>
+<TD >Merged with System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][68]</TD>
+<TD >Merged with System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][74]</TD>
+<TD >Merged with System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0][74..75]</TD>
+<TD >Merged with System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0][68]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0][76]</TD>
+<TD >Merged with System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0][74..75]</TD>
+<TD >Merged with System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0][76]</TD>
+<TD >Merged with System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0][74..75]</TD>
+<TD >Merged with System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0][76]</TD>
+<TD >Merged with System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0][74..75]</TD>
+<TD >Merged with System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0][76]</TD>
+<TD >Merged with System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0][130]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|reg_k[17..31]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|reg_k[16]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|w_col_idx_reg[4]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_col_idx[4]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|w_col_idx_reg[3]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_col_idx[3]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|w_col_idx_reg[2]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_col_idx[2]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|w_col_idx_reg[1]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_col_idx[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|w_col_idx_reg[0]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_col_idx[0]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|w_row_idx_reg[4]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_row_idx[4]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|w_row_idx_reg[3]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_row_idx[3]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|w_row_idx_reg[2]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_row_idx[2]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|w_row_idx_reg[1]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_row_idx[1]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|w_row_idx_reg[0]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|w_row_idx[0]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|reg_m[17..31]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|reg_m[16]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|reg_n[17..31]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|reg_n[16]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|reg_m[16]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|reg_n[16]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|reg_k[16]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0][68]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[1][75]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0..1][128]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent_rsp_fifo|mem[0..1][130]</TD>
+<TD >Stuck at VCC due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0..1][128]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent_rsp_fifo|mem[0..1][130]</TD>
+<TD >Stuck at VCC due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0..1][128]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent_rsp_fifo|mem[0..1][130]</TD>
+<TD >Stuck at VCC due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0][68]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[1][75]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0..1][128]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent_rsp_fifo|mem[0..1][130]</TD>
+<TD >Stuck at VCC due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|p2b|channel_needs_esc</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|dr_info[9..10]</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent|uncompressor|burst_uncompress_busy</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent|uncompressor|burst_uncompress_busy</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent|uncompressor|burst_uncompress_busy</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent|uncompressor|burst_uncompress_busy</TD>
+<TD >Stuck at GND due to stuck port data_in</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|npu_system_0_avalon_slave_0_agent|uncompressor|burst_uncompress_byte_counter[2]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|data_mem_s1_agent|uncompressor|burst_uncompress_byte_counter[2]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|mm_interconnect_1|weight_mem_s1_agent|uncompressor|burst_uncompress_byte_counter[2]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|mm_interconnect_1|out_mem_s1_agent|uncompressor|burst_uncompress_byte_counter[2]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|p2b|channel_escaped</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|npu_system_0|npu_system_35|NPU_CORE_INT16|control_unit|max_run_cycles[20..31]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|NPU_CORE_INT16|control_unit|max_run_cycles[19]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|npu_system_0|npu_system_35|NPU_CORE_INT8|control_unit_inst|max_run_cycles[20..31]</TD>
+<TD >Merged with System|npu_system_0|npu_system_35|NPU_CORE_INT8|control_unit_inst|max_run_cycles[19]</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|transacto|p2m|address[18..31]</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|transacto|p2m|state~0</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|transacto|p2m|state~1</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|transacto|p2m|state~2</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|transacto|p2m|state~3</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|write_state~0</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#EDEDED">
+<TD >System|master_0|master_0|jtag_phy_embedded_in_jtag_master|normal.jtag_dc_streaming|jtag_streaming|write_state~1</TD>
+<TD >Lost fanout</TD>
+</TR>
+</tbody><tbody><TR  bgcolor="#FFFFFF">
+<TD >Total Number of Removed Registers = 458</TD>
+<TD >&nbsp;</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
