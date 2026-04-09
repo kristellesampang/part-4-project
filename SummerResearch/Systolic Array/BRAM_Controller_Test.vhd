@@ -57,11 +57,8 @@ architecture rtl of BRAM_Controller_Test is
     --type state_t is (S_IDLE, S_PING_COMPUTE, S_SWITCH, S_PONG_COMPUTE);
     signal current_state : state_t := S_IDLE;
 
-    
-    -- *************************************************************************
-    -- *** COMPONENT DECLARATIONS (Required for Quartus Synthesis) ***
-    -- *************************************************************************
 
+    --  COMPONENT DECLARATIONS (Required for Quartus Synthesis) 
     -- 16-bit Input Buffer Component
     component DataBuffer1 is
         port (
@@ -149,9 +146,7 @@ architecture rtl of BRAM_Controller_Test is
         );
     end component OutputBuffer;
 
-    -- ***************************************************************
-    -- *** CUSTOM TYPE CONVERSION FUNCTIONS (VHDL-2002/2008 Syntax) ***
-    -- ***************************************************************
+    -- CUSTOM TYPE CONVERSION FUNCTIONS
     
     -- Utility function 1: Converts std_logic to bit_1 (FIXED SYNTAX)
     function to_bit (S : std_logic) return bit_1 is
@@ -197,9 +192,7 @@ begin -- Start of Concurrent Statements
     pong_b_wren <= '1' when current_state = S_PING_COMPUTE else '0';
     output_c_wren <= '1' when current_state /= S_IDLE else '0'; 
     
-    -- *************************************************************************
     -- *** COMPONENT INSTANTIATION (5 instances) ***
-    -- *************************************************************************
     
     -- 1. DATA A PING (16-bit)
     BRAM_A_PING_INST : component DataBuffer1 
@@ -285,10 +278,7 @@ begin -- Start of Concurrent Statements
             enable    => '1',
             aclr      => reset_in
         );
-
-    -- *************************************************************************
     -- *** FSM and Address Generation (SEQUENTIAL LOGIC) ***
-    -- *************************************************************************
 
     process(clk_in, reset_in)
     begin

@@ -142,9 +142,7 @@ begin
         reset_n <= '1';
         wait for 50 ns;
 
-        -- ============================================
         -- TEST 1: INT16 MODE (reg_config = 0)
-        -- ============================================
         report "Loading INT16 memories...";
 
         -- Load data into act_mem (tight packed as int16 in lower 16 bits)
@@ -188,9 +186,7 @@ begin
             end loop;
         end loop;
 
-        -- ============================================
         -- TEST 2: INT8 MODE (reg_config = 1)
-        -- ============================================
         report "Loading INT8 memories...";
         wait for 200 ns;
 
